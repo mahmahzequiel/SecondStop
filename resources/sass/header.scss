@@ -1,0 +1,65 @@
+/* Header Styles */
+.header-layer {
+    background-color: #E8AB99;
+    color: white;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 20px;
+    position: sticky;
+    top: 0;
+    z-index: 1000; /* Ensures the header stays on top */
+  
+    .logo {
+      display: flex;
+      align-items: center;
+  
+      img {
+        height: 70px; /* Adjust the height of the logo */
+        width: 70px;
+      }
+  
+      .icon {
+        margin-left: 10px;
+        font-size: 20px;
+      }
+    }
+  
+    .search-bar {
+      display: flex;
+      align-items: center;
+      background-color: white;
+      border-radius: 5px;
+      padding: 5px;
+  
+      input {
+        padding: 8px;
+        border: none;
+        outline: none;
+        width: 700px;
+      }
+  
+      .search-icon {
+        color: #333;
+        font-size: 24px; /* Increased size for the search icon */
+        cursor: pointer;
+        margin-left: 10px; /* Add spacing between input and icon */
+      }
+    }
+  
+    .navbar-icons {
+      display: flex;
+      gap: 20px;
+  
+      .icon {
+        font-size: 32px; /* Increased size for the icons */
+        cursor: pointer;
+        color: white;
+  
+        &:hover {
+          color: #ddd; /* Light gray on hover */
+        }
+      }
+    }
+  }
+  
