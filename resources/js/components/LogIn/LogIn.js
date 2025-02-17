@@ -27,7 +27,7 @@ export default function Login() {
       const { token } = response.data;
       if (token) {
         localStorage.setItem("userToken", token);
-        navigate("/dashboard");
+        navigate("/mainpage");
       } else {
         setError("Invalid credentials. Please try again.");
       }

@@ -12,47 +12,23 @@ class CreateProfilesTable extends Migration
      * @return void
      */
     public function up()
-    {
-        Schema::create('profiles', function (Blueprint $table) {
-            $table->id();
+{
+    Schema::create('profiles', function (Blueprint $table) {
+        $table->id();
+        $table->unsignedBigInteger('user_id');
+        $table->unsignedBigInteger('address_id')->nullable();
+        $table->string('profile_image', 255)->nullable();
+        $table->string('first_name');
+        $table->string('last_name');
+        $table->string('middle_name')->nullable();
+        $table->string('sex');
+        $table->string('phone_number', 20)->nullable();
+        $table->timestamps();
 
-            // Foreign key to users table
-            $table->unsignedBigInteger('user_id');
-            $table->foreign('user_id')
-                  ->references('id')
-                  ->on('users')
-                  ->onDelete('cascade'); 
-            // onDelete('cascade') → if a user is deleted, the related profile will also be deleted
-            
-
-            // Foreign key to addresses table 
-            $table->unsignedBigInteger('address_id')->nullable();
-            $table->foreign('address_id')
-                  ->references('id')
-                  ->on('addresses')
-                  ->onDelete('cascade');
-            // Or use onDelete('set null') if you don't want to delete the profile when the address is removed
-
-            
-            // Name fields
-            $table->string('first_name', 100)->nullable();
-            $table->string('last_name', 100)->nullable();
-
-            // Profile image: text type (can store full path or base64, etc.)
-            $table->text('profile_image')->nullable();
-
-            // Phone number, up to 15 chars
-            $table->string('phone_number', 15)->nullable();
-
-            // Gender, as an enum
-            $table->enum('sex', ['male', 'female', 'other'])->nullable(); 
-        
-     
-            // Timestamps
-            $table->timestamps();
-            $table->softDeletes()->nullable(); 
-        });
-    }
+        $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
+        $table->foreign('address_id')->references('id')->on('addresses')->onDelete('set null');
+    });
+}
 
     /**
      * Reverse the migrations.
