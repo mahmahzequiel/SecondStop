@@ -5,6 +5,7 @@ import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 // Import the Example component
 import MainPage from "./Reusable/MainPage";
 import Login from "./LogIn/LogIn";
+import DisplayProducts from "./Products/DisplayProducts";
 
 export default function Routers() {
     return (
@@ -13,6 +14,7 @@ export default function Routers() {
                 {/* Route to the Example component */}
                 <Route path="/mainpage" element={<MainPage />} />
                 <Route path="/login" element={<Login />} />
+                <Route path="/products" element={<DisplayProducts />} />
             </Routes>
         </Router>
     );

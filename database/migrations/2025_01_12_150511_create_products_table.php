@@ -22,17 +22,16 @@ class CreateProductsTable extends Migration
                   ->references('id')
                   ->on('categories')
                   ->onDelete('cascade');
-            // Adjust 'categories' to your actual categories table name, if different
 
             // Product fields
             $table->string('product_name', 100);
             $table->text('description')->nullable();
             $table->decimal('price', 10, 2)->default(0.00);
-            $table->binary('product_image')->nullable();
+            $table->string('product_image', 255)->nullable(); // ✅ Accepts image file paths (.jpg/.png)
             $table->string('brand', 100);
 
             $table->timestamps();
-            $table->softDeletes()->nullable(); 
+            $table->softDeletes();
         });
     }
 
