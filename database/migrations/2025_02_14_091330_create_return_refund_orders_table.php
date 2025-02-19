@@ -16,29 +16,21 @@ class CreateReturnRefundOrdersTable extends Migration
         Schema::create('return_refund_orders', function (Blueprint $table) {
             $table->id();
 
-            // Foreign key linking order table
-            $table->unsignedBigInteger('order_id');
-            $table->foreign('order_id')
-                  ->references('id')
-                  ->on('orders')
-                  ->onDelete('cascade');
-
+            // Example foreign key to users table (if applicable)
             $table->unsignedBigInteger('user_id');
             $table->foreign('user_id')
                   ->references('id')
                   ->on('users')
                   ->onDelete('cascade');
 
-            $table->dateTime('request_date')->nullable();
+            // You can add additional columns relevant to return/refund orders here
+            // For example, an order id, reason, status, etc.
+            // $table->unsignedBigInteger('order_id');
+            // $table->string('reason')->nullable();
+            // $table->string('status')->default('pending');
 
-            // New enum columns for status and type
-            $table->enum('status', ['pending', 'approved', 'rejected'])->default('pending');
-            $table->enum('type', ['return', 'refund', 'cancelled'])->default('return');
-            $table->text('reason')->nullable();
-
-            // Timestamps (optional)
             $table->timestamps();
-            $table->softDeletes()->nullable(); 
+            $table->softDeletes(); // This creates a nullable deleted_at column
         });
     }
 
