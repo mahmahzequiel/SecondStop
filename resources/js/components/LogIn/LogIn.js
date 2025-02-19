@@ -21,7 +21,7 @@ export default function Login() {
     try {
       const response = await axios.post(
         "http://127.0.0.1:8000/api/login",
-        { name: username, password },
+        { username, password }, // Use 'username' key
         { headers: { "Content-Type": "application/json" } }
       );
       const { token } = response.data;
@@ -32,6 +32,7 @@ export default function Login() {
         setError("Invalid credentials. Please try again.");
       }
     } catch (err) {
+      console.error(err.response.data); // Log full error details for debugging
       setError(err.response?.data?.error || "Login failed. Please try again.");
     }
   };
@@ -79,7 +80,13 @@ export default function Login() {
             </div>
 
             <button className="signin-btn" type="submit">Sign In</button>
-             <p className="forgot-password" onClick={() => navigate("/forgot-password")} style={{ cursor: "pointer", color: "blue" }}>Forgot Password?</p>
+            <p
+              className="forgot-password"
+              onClick={() => navigate("/forgot-password")}
+              style={{ cursor: "pointer", color: "blue" }}
+            >
+              Forgot Password?
+            </p>
           </form>
         </div>
       </div>

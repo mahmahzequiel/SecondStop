@@ -1,25 +1,31 @@
 import React from "react";
-import ReactDOM from "react-dom";
+import ReactDOM from "react-dom/client"; // Note: Import from react-dom/client for React 18
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import axios from "axios";
 
-// Import the Example component
+// Set axios default header for Authorization if a token exists
+const token = localStorage.getItem("userToken");
+if (token) {
+  axios.defaults.headers.common["Authorization"] = `Bearer ${token}`;
+}
+
+// Import your components
 import MainPage from "./Reusable/MainPage";
-import Login from "./LogIn/LogIn";
+import Login from "./LogIn/LogIn"; // Ensure the path is correct (note: file name capitalization)
 import DisplayProducts from "./Products/DisplayProducts";
 
-export default function Routers() {
-    return (
-        <Router>
-            <Routes>
-                {/* Route to the Example component */}
-                <Route path="/mainpage" element={<MainPage />} />
-                <Route path="/login" element={<Login />} />
-                <Route path="/products" element={<DisplayProducts />} />
-            </Routes>
-        </Router>
-    );
+function Routers() {
+  return (
+    <Router>
+      <Routes>
+        <Route path="/mainpage" element={<MainPage />} />
+        <Route path="/login" element={<Login />} />
+        <Route path="/products" element={<DisplayProducts />} />
+      </Routes>
+    </Router>
+  );
 }
 
-if (document.getElementById("root")) {
-    ReactDOM.render(<Routers />, document.getElementById("root"));
-}
+const container = document.getElementById("root");
+const root = ReactDOM.createRoot(container);
+root.render(<Routers />);
