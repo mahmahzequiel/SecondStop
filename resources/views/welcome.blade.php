@@ -6,7 +6,7 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Second Stop</title>
     <link rel="stylesheet" href="{{ mix('css/app.css') }}">
-    <link rel="icon" type="image/svg+xml" href="/../images/secondstop.svg">
+    <link rel="icon" type="image/png" href="/../images/logo.png">
 </head>
 <body>
     <div id="root"></div>

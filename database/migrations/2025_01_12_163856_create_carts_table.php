@@ -37,7 +37,7 @@ class CreateCartsTable extends Migration
 
             // Timestamps
             $table->timestamps();
-            $table->softDeletes()->nullable(); 
+            $table->softDeletes(); 
         });
     }
 
