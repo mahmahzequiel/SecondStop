@@ -51,7 +51,33 @@ class ProductsTableSeeder extends Seeder
                 'price' => 600.00,
                 'brand' => 'Apple',
                 'product_image' => 'images/women/bottoms/image1.png', // Adjust the path accordingly
-            ]
+            ],
+            
+
+        );
+        Products::firstOrCreate(
+            [
+                'category_id' => 3, // Ensure this category exists in the categories table
+                'product_name' => 'Skirt',
+            ],
+            [
+                'description' => 'Long skirt',
+                'price' => 600.00,
+                'brand' => 'Apple',
+                'product_image' => 'images/women/bottoms/image1.png', // Adjust the path accordingly
+            ],
+        );
+        Products::firstOrCreate(
+            [
+                'category_id' => 4, // Ensure this category exists in the categories table
+                'product_name' => 'Skirt',
+            ],
+            [
+                'description' => 'Long skirt',
+                'price' => 600.00,
+                'brand' => 'Apple',
+                'product_image' => 'images/women/bottoms/image1.png', // Adjust the path accordingly
+            ],
         );
     }
 }

@@ -22,6 +22,7 @@ class CategoriesTableSeeder extends Seeder
             ['id' => 1, 'category_name' => 'Electronics', 'category_type' => 'Digital'],
             ['id' => 2, 'category_name' => 'Fashion', 'category_type' => 'Clothing'],
             ['id' => 3, 'category_name' => 'Home & Kitchen', 'category_type' => 'Appliances'],
+            ['id' => 4, 'category_name' => 'Home & Kitchen', 'category_type' => 'Appliances'],
         ]);
     }
 }

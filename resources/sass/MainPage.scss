@@ -1,27 +1,27 @@
-/* Main Page Styles */
-body {
-  margin: 0;
-  font-family: Arial, sans-serif;
-}
-
-/* First Layer (Magenta) */
 .first-layer {
   background-color: #750139;
-  height: 100vh; /* Full viewport height */
+  min-height: 100vh; // Ensure it takes at least the full viewport height
   display: flex;
+  flex-direction: column;
   justify-content: center;
   align-items: center;
 }
 
-/* Second Layer (Pink) */
+.content-wrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+}
+
 .second-layer {
   background-color: #FFD0C1;
-  width: 95%; /* Takes up 95% of the first layer's width */
-  height: 95%; /* Takes up 95% of the first layer's height */
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  font-size: 24px;
-  color: #333;
-  border-radius: 10px; /* Rounded corners */
+  width: 95%;
+  padding: 20px; // Add some padding for spacing
+  border-radius: 10px;
+  margin-top: 40px;
+}
+
+.footer {
+  width: 100%;
 }

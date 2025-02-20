@@ -3,6 +3,9 @@
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Api\ApiController;
+use App\Http\Controllers\ProductsController;
+use App\Http\Controllers\ProfileController;
+
 
 /*
 |--------------------------------------------------------------------------
@@ -18,6 +21,9 @@ use App\Http\Controllers\Api\ApiController;
 //Open Routes
 Route::post("register", [ApiController::class, "register"]);
 Route::post("login", [ApiController::class, "login"]);
+Route::apiResource('products', ProductsController::class);
+// routes/api.php
+// Route::post('/register', [ProfileController::class, 'register']);
 
 
 //Protected Routes 

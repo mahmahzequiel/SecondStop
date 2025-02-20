@@ -1,0 +1,33 @@
+.registration-container {
+    max-width: 1500px; /* Increased width for better spacing */
+    margin: 30px auto; /* Adjusted margin to move it up */
+    padding: 20px;
+    background-color: #fff;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    position: relative;
+    top: -20px; /* Moves the container higher */
+  }
+  
+  h2 {
+    text-align: center;
+    margin-bottom: 20px;
+  }
+  
+  .ant-form-item {
+    margin-bottom: 15px;
+  }
+  
+  /* Position button to the right */
+  .form-submit-container {
+    display: flex;
+    justify-content: flex-end;
+    margin-top: 10px;
+  }
+  
+  /* Make the button smaller */
+  .ant-btn-primary {
+    padding: 5px 15px;
+    font-size: 14px;
+  }
+  

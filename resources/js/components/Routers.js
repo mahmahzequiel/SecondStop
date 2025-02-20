@@ -13,6 +13,7 @@ if (token) {
 import MainPage from "./Reusable/MainPage";
 import Login from "./LogIn/LogIn"; // Ensure the path is correct (note: file name capitalization)
 import DisplayProducts from "./Products/DisplayProducts";
+import Registration from "./Registration/Registration";
 
 function Routers() {
   return (
@@ -21,6 +22,7 @@ function Routers() {
         <Route path="/mainpage" element={<MainPage />} />
         <Route path="/login" element={<Login />} />
         <Route path="/products" element={<DisplayProducts />} />
+        <Route path="/register" element={<Registration />} />
       </Routes>
     </Router>
   );

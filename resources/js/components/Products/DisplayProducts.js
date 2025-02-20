@@ -49,47 +49,49 @@ const DisplayProducts = () => {
 
   return (
     <MainPage>
-      {/* Category Section - Positioned at the Top */}
-      <div className="category-container">
-        {categories.map((category) => (
-          <div key={category.id} className="category-item">
-            <img
-              src={`http://127.0.0.1:8000/${category.image}`} // Ensure correct image path
-              alt={category.name}
-              className="category-image"
-            />
-            <p>{category.name}</p>
-          </div>
-        ))}
-      </div>
-
-      {/* Product List Section */}
-      <div className="product-list">
-        {products.map((product) => (
-          <div key={product.id} className="product-item">
-            {product.product_image && (
+      <div className="product-section">
+        {/* Category Section - Positioned at the Top */}
+        <div className="category-container">
+          {categories.map((category) => (
+            <div key={category.id} className="category-item">
               <img
-                src={`http://127.0.0.1:8000/${product.product_image}`} // Ensure correct image path
-                alt={product.product_name}
-                className="product-image"
+                src={`http://127.0.0.1:8000/${category.image}`}
+                alt={category.name}
+                className="category-image"
               />
-            )}
-            <h2>{product.product_name}</h2>
-            <p>Price: ${product.price}</p>
-            <div className="description-container">
-              <p>{product.description}</p>
-              <button
-                className="cart-button"
-                onClick={() => handleAddToCart(product)}
-              >
-                <ShoppingCartOutlined className="icon" />
-              </button>
+              <p>{category.name}</p>
             </div>
-          </div>
-        ))}
+          ))}
+        </div>
+  
+        {/* Product List Section */}
+        <div className="product-list">
+          {products.map((product) => (
+            <div key={product.id} className="product-item">
+              {product.product_image && (
+                <img
+                  src={`http://127.0.0.1:8000/${product.product_image}`}
+                  alt={product.product_name}
+                  className="product-image"
+                />
+              )}
+              <h2>{product.product_name}</h2>
+              <p>Price: ${product.price}</p>
+              <div className="description-container">
+                <p>{product.description}</p>
+                <button
+                  className="cart-button"
+                  onClick={() => handleAddToCart(product)}
+                >
+                  <ShoppingCartOutlined className="icon" />
+                </button>
+              </div>
+            </div>
+          ))}
+        </div>
       </div>
     </MainPage>
   );
-};
+}  
 
 export default DisplayProducts;
