@@ -4,110 +4,145 @@ namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
-use App\Models\User;
-use Illuminate\Support\Facades\Hash;
+use App\Models\Profile;
+use App\Models\User; // Import the User model
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Hash; // Import Hash facade
 
 class ApiController extends Controller
 {
-    // POST [username, email, password]
-    public function register(Request $request){
-  
-         //Validation
+    // POST [first_name, middle_name, last_name, sex, phone_number, username, email, password]
+    public function register(Request $request)
+    {
+        // Validation
         $request->validate([
-            "username" => "required|string",
-            "email" => "required|string|email|unique:users", 
-            "password" => "required|confirmed" //password confirmation
+            "first_name"   => "required|string|max:255",
+            "middle_name"  => "nullable|string|max:255",
+            "last_name"    => "required|string|max:255",
+            "sex"          => "required|in:Male,Female",
+            "phone_number" => "required|string|max:15|unique:profiles",
+            "username"     => "required|string|max:255|unique:profiles",
+            "email"        => "required|string|email|max:255|unique:users",
+            "password"     => "required|string|confirmed|min:8"
         ]);
 
-
-         //Create User
-        User::create([
-            'role_id'  => 1, // default role
+        // Create User first
+        $user = User::create([
+            "role_id"  => 1, // Default role
             "username" => $request->username,
-            "email" => $request->email,
-            "password" => bcrypt($request->password)
-            
-        ]) ;
-        
+            "email"    => $request->email,
+            "password" => bcrypt($request->password),
+        ]);
+
+        // Create Profile and link it to the User
+        $profile = Profile::create([
+            "user_id"      => $user->id, // Link to user
+            "first_name"   => $request->first_name,
+            "middle_name"  => $request->middle_name,
+            "last_name"    => $request->last_name,
+            "sex"          => $request->sex,
+            "phone_number" => $request->phone_number,
+            "username"     => $request->username,
+            "email"        => $request->email
+        ]);
+
         return response()->json([
-            "status" => true,
+            "status"  => true,
             "message" => "User registered successfully",
-            "data" => []
+            "data"    => [
+                "user"    => $user,
+                "profile" => $profile
+            ]
         ]);
     }
 
-    // POST [username, password]
-    public function login(Request $request){
-        // validation
+    public function updateProfile(Request $request)
+    {
+        $user = Auth::user(); // Use Auth facade for authenticated user
+
+        if (!$user) {
+            return response()->json([
+                'status' => false,
+                'message' => 'Unauthorized access',
+            ], 401);
+        }
+
         $request->validate([
-            "username" => "required|string",
-            "password" => "required"
+            'first_name'   => 'required|string|max:255',
+            'last_name'    => 'required|string|max:255',
+            'email'        => 'required|email|max:255|unique:profiles,email,' . $user->id,
+            'phone_number' => 'required|string|max:15|unique:profiles,phone_number,' . $user->id, // Fixed field name
+            'address'      => 'nullable|string|max:500',
+            'middle_name'  => 'nullable|string|max:255',
         ]);
 
-        //user object
-        $user = User::where("username", $request->username)->first();
+        try {
+            // Check if the user already has a profile
+            $profile = Profile::where('user_id', $user->id)->first();
 
-        if(!empty($user)){
-
-            //user exists
-
-            if(Hash::check($request->password, $user->password)){
-                
-                //password matched
-                $token = $user->createToken("mytoken")->accessToken;
-
-                return response()->json([
-                    "status" => true,
-                    "message" => "User logged in successfully",
-                    "token" => $token,
-                    "data" => []
+            if ($profile) {
+                // If profile exists, update it
+                $profile->update([
+                    'first_name'   => $request->first_name,
+                    'middle_name'  => $request->middle_name,
+                    'last_name'    => $request->last_name,
+                    'address'      => $request->address,
+                    'phone_number' => $request->phone_number, // Match validation field
+                    'email'        => $request->email,
                 ]);
-            }else{
-                return response()->json([
-                    "status" => false,
-                    "message" => "Password didn't match",
-                    "data" => []
+            } else {
+                // If no profile exists, create a new one
+                $profile = Profile::create([
+                    'user_id'      => $user->id, // Assign user_id automatically
+                    'first_name'   => $request->first_name,
+                    'middle_name'  => $request->middle_name,
+                    'last_name'    => $request->last_name,
+                    'address'      => $request->address,
+                    'phone_number' => $request->phone_number,
+                    'email'        => $request->email,
                 ]);
             }
-        }else{
 
             return response()->json([
-                "status" => false,
-                "message" => "Invalid Email value",
-                "data" => []
+                'status'  => true,
+                'message' => 'Profile updated successfully',
+                'profile' => $profile
             ]);
+        } catch (\Exception $e) {
+            return response()->json([
+                'status'  => false,
+                'message' => 'Profile update failed',
+                'error'   => $e->getMessage()
+            ], 500);
         }
-        //email check
-
-        //password
-
-
-        //auth token
     }
 
-    // GET [Auth:Token]
-    public function profile(){
+    public function login(Request $request)
+{
+    $request->validate([
+        'email'    => 'required|email',
+        'password' => 'required'
+    ]);
 
-        $userData = auth()->user();
-
+    if (!auth()->attempt($request->only('email', 'password'))) {
         return response()->json([
-            "status" => true,
-            "message" => "Profile Information",
-            "data" => $userData,
-            "id" => auth()->user()->id
-        ]);
+            'status'  => false,
+            'message' => 'Invalid login credentials'
+        ], 401);
     }
 
-    // GET [Auth:Token]
-    public function logout(){
+    $user = auth()->user();
+    
+    // Generate access token using Passport
+    $tokenResult = $user->createToken('authToken'); 
 
-        $token = auth()->user()->token();
+    return response()->json([
+        'status'       => true,
+        'message'      => 'Login successful',
+        'access_token' => $tokenResult->accessToken,  // ✅ Correct property for Passport
+        'token_type'   => 'Bearer',
+        'user'         => $user
+    ]);
+}
 
-        $token->revoke();
-
-        return response()->json([
-            "status" => true,
-            "message" => "User Logged Out Successfully"
-        ]);
-    }
 }

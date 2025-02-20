@@ -11,9 +11,16 @@ class Profile extends Model
     use HasFactory, SoftDeletes;
 
     protected $fillable = [
-        'user_id', 'first_name', 'last_name',
-        'profile_image', 'phone_number', 'sex'
-        // Note: We removed 'address_id' because now a profile has many addresses.
+        'user_id', 
+        'first_name', 
+        'middle_name',  // Added middle name
+        'last_name',
+        'sex',
+        'phone_number',
+        'username',
+        'email',        // Added email
+        'password',     // Added password (for storing encrypted passwords)
+        'profile_image'
     ];
 
     // Each Profile belongs to a User.
@@ -32,5 +39,11 @@ class Profile extends Model
     public function faqs()
     {
         return $this->hasMany(Faq::class);
+    }
+
+    // Encrypt password before saving
+    public function setPasswordAttribute($value)
+    {
+        $this->attributes['password'] = bcrypt($value);
     }
 }

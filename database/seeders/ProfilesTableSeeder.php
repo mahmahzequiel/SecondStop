@@ -17,6 +17,7 @@ class ProfilesTableSeeder extends Seeder
             'first_name' => 'John',
             'last_name' => 'Doe',
             'middle_name' => 'A',
+            'username' => 'johndoe#=@gmail.com',
             'sex' => 'Male',
             'phone_number' => '1234567890',
         ]);

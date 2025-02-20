@@ -5,35 +5,44 @@ import logo from "/images/logo.png";
 
 export default function Login() {
   const navigate = useNavigate();
-  const [username, setUsername] = useState("");
+  const [email, setEmail] = useState(""); // Change to email
   const [password, setPassword] = useState("");
   const [showPassword, setShowPassword] = useState(false);
   const [error, setError] = useState("");
+  const [loading, setLoading] = useState(false);
 
   const togglePasswordState = () => setShowPassword((prev) => !prev);
 
   const handleLogin = async (e) => {
     e.preventDefault();
-    if (!username || !password) {
-      setError("Please enter both username and password.");
+    setError("");
+    if (!email || !password) {
+      setError("Please enter both email and password.");
       return;
     }
+
+    setLoading(true); // Show loading state
     try {
       const response = await axios.post(
         "http://127.0.0.1:8000/api/login",
-        { username, password }, // Use 'username' key
+        { email, password }, // Change to email (matches backend)
         { headers: { "Content-Type": "application/json" } }
       );
-      const { token } = response.data;
-      if (token) {
-        localStorage.setItem("userToken", token);
-        navigate("/mainpage");
+
+      const { access_token } = response.data; // Laravel Passport returns 'access_token'
+      if (access_token) {
+        localStorage.setItem("userToken", access_token);
+        navigate("/products");
       } else {
         setError("Invalid credentials. Please try again.");
       }
     } catch (err) {
-      console.error(err.response.data); // Log full error details for debugging
-      setError(err.response?.data?.error || "Login failed. Please try again.");
+      console.error(err.response?.data || err.message);
+      setError(
+        err.response?.data?.message || "Login failed. Please try again."
+      );
+    } finally {
+      setLoading(false);
     }
   };
 
@@ -48,15 +57,15 @@ export default function Login() {
           {error && <p className="error-message">{error}</p>}
           <form onSubmit={handleLogin}>
             <div className="input-group">
-              <label htmlFor="username">Username</label>
+              <label htmlFor="email">Email</label>
               <div className="input-container">
                 <i className="bx bxs-user bx-sm icon-right"></i>
                 <input
-                  id="username"
-                  type="text"
-                  placeholder="Enter Username"
-                  value={username}
-                  onChange={(e) => setUsername(e.target.value)}
+                  id="email"
+                  type="email"
+                  placeholder="Enter Email"
+                  value={email}
+                  onChange={(e) => setEmail(e.target.value)}
                 />
               </div>
             </div>
@@ -79,7 +88,9 @@ export default function Login() {
               </div>
             </div>
 
-            <button className="signin-btn" type="submit">Sign In</button>
+            <button className="signin-btn" type="submit" disabled={loading}>
+              {loading ? "Signing in..." : "Sign In"}
+            </button>
             <p
               className="forgot-password"
               onClick={() => navigate("/forgot-password")}

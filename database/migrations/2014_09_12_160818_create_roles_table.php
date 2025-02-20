@@ -13,6 +13,7 @@ class CreateRolesTable extends Migration
             $table->id(); // This creates an unsigned big integer column named `id`
             $table->string('role_name');
             $table->timestamps();
+            $table->softDeletes();
         });
     }
 
