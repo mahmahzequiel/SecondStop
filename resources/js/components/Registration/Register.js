@@ -1,17 +1,16 @@
-import React from "react";
+import React, { useState } from "react";
 import { Form, Input, Select, Button, Row, Col, message } from "antd";
-import { useNavigate } from "react-router-dom"; // Import useNavigate
 import MainPage from "../Reusable/MainPage";
 
 const { Option } = Select;
 
 const Registration = () => {
   const [form] = Form.useForm();
-  const navigate = useNavigate(); // Initialize navigate
 
   // Handle form submission
   const handleSubmit = async (values) => {
     try {
+      // Send the values to the API
       const response = await fetch("http://127.0.0.1:8000/api/register", {
         method: "POST",
         headers: {
@@ -21,19 +20,25 @@ const Registration = () => {
         body: JSON.stringify(values),
       });
 
+      const data = await response.json();
+
       if (!response.ok) {
+        if (data.errors) {
+          Object.values(data.errors).forEach((errorMessages) => {
+            errorMessages.forEach((errorMessage) => {
+              message.error(errorMessage);
+            });
+          });
+        }
         throw new Error("Registration failed");
       }
 
-      const data = await response.json();
       console.log("Registration successful:", data);
       message.success("Registration successful!");
-
       form.resetFields();
-      navigate("/products"); // Redirect to products page after success
     } catch (error) {
       console.error("Error during registration:", error);
-      message.error("Registration failed. Please try again.");
+      message.error("Registration failed. Please check the form.");
     }
   };
 
@@ -41,19 +46,10 @@ const Registration = () => {
     <MainPage>
       <div className="registration-container">
         <h2>Register</h2>
-        <Form
-          form={form}
-          layout="vertical"
-          onFinish={handleSubmit}
-          autoComplete="off"
-        >
+        <Form form={form} layout="vertical" onFinish={handleSubmit} autoComplete="off">
           <Row gutter={16}>
             <Col span={8}>
-              <Form.Item
-                label="First Name"
-                name="first_name"
-                rules={[{ required: true, message: "First name is required" }]}
-              >
+              <Form.Item label="First Name" name="first_name" rules={[{ required: true, message: "First name is required" }]}>
                 <Input placeholder="Enter first name" />
               </Form.Item>
             </Col>
@@ -65,11 +61,7 @@ const Registration = () => {
             </Col>
 
             <Col span={8}>
-              <Form.Item
-                label="Last Name"
-                name="last_name"
-                rules={[{ required: true, message: "Last name is required" }]}
-              >
+              <Form.Item label="Last Name" name="last_name" rules={[{ required: true, message: "Last name is required" }]}>
                 <Input placeholder="Enter last name" />
               </Form.Item>
             </Col>
@@ -77,11 +69,7 @@ const Registration = () => {
 
           <Row gutter={16}>
             <Col span={8}>
-              <Form.Item
-                label="Sex"
-                name="sex"
-                rules={[{ required: true, message: "Sex is required" }]}
-              >
+              <Form.Item label="Sex" name="sex" rules={[{ required: true, message: "Sex is required" }]}>
                 <Select placeholder="Select">
                   <Option value="Male">Male</Option>
                   <Option value="Female">Female</Option>
@@ -94,9 +82,12 @@ const Registration = () => {
               <Form.Item
                 label="Phone Number"
                 name="phone_number"
-                rules={[{ required: true, message: "Phone number is required" }]}
+                rules={[
+                  { required: true, message: "Phone number is required" },
+                  { pattern: /^\+639\d{9}$/, message: "Phone number must be in +639XXXXXXXXX format" },
+                ]}
               >
-                <Input placeholder="Enter phone number" />
+                <Input placeholder="+639XXXXXXXXX" />
               </Form.Item>
             </Col>
 
@@ -116,11 +107,7 @@ const Registration = () => {
 
           <Row gutter={16}>
             <Col span={8}>
-              <Form.Item
-                label="Username"
-                name="username"
-                rules={[{ required: true, message: "Username is required" }]}
-              >
+              <Form.Item label="Username" name="username" rules={[{ required: true, message: "Username is required" }]}>
                 <Input placeholder="Enter username" />
               </Form.Item>
             </Col>
@@ -161,9 +148,7 @@ const Registration = () => {
           </Row>
 
           <Form.Item className="form-submit-container">
-            <Button type="primary" htmlType="submit">
-              Register
-            </Button>
+            <Button type="primary" htmlType="submit">Register</Button>
           </Form.Item>
         </Form>
       </div>
