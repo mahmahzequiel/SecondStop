@@ -1,22 +1,22 @@
-import React, { useState } from "react";
+import React from "react";
 import { Form, Input, Select, Button, Row, Col, message } from "antd";
+import { useNavigate } from "react-router-dom"; // Import useNavigate
 import MainPage from "../Reusable/MainPage";
 
 const { Option } = Select;
 
 const Registration = () => {
   const [form] = Form.useForm();
+  const navigate = useNavigate(); // Initialize navigate
 
   // Handle form submission
   const handleSubmit = async (values) => {
     try {
-      // Send the values to the API
       const response = await fetch("http://127.0.0.1:8000/api/register", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
-          // Add Accept header if you want JSON back
-          "Accept": "application/json"
+          "Accept": "application/json",
         },
         body: JSON.stringify(values),
       });
@@ -28,7 +28,9 @@ const Registration = () => {
       const data = await response.json();
       console.log("Registration successful:", data);
       message.success("Registration successful!");
+
       form.resetFields();
+      navigate("/products"); // Redirect to products page after success
     } catch (error) {
       console.error("Error during registration:", error);
       message.error("Registration failed. Please try again.");
@@ -46,7 +48,6 @@ const Registration = () => {
           autoComplete="off"
         >
           <Row gutter={16}>
-            {/* First Name -> first_name */}
             <Col span={8}>
               <Form.Item
                 label="First Name"
@@ -57,14 +58,12 @@ const Registration = () => {
               </Form.Item>
             </Col>
 
-            {/* Middle Name -> middle_name */}
             <Col span={8}>
               <Form.Item label="Middle Name" name="middle_name">
                 <Input placeholder="Enter middle name" />
               </Form.Item>
             </Col>
 
-            {/* Last Name -> last_name */}
             <Col span={8}>
               <Form.Item
                 label="Last Name"
@@ -77,7 +76,6 @@ const Registration = () => {
           </Row>
 
           <Row gutter={16}>
-            {/* Sex -> sex with capitalized values */}
             <Col span={8}>
               <Form.Item
                 label="Sex"
@@ -87,13 +85,11 @@ const Registration = () => {
                 <Select placeholder="Select">
                   <Option value="Male">Male</Option>
                   <Option value="Female">Female</Option>
-                  {/* If you updated your backend to allow "Other" */}
                   <Option value="Other">Other</Option>
                 </Select>
               </Form.Item>
             </Col>
 
-            {/* Phone Number -> phone_number */}
             <Col span={8}>
               <Form.Item
                 label="Phone Number"
@@ -104,7 +100,6 @@ const Registration = () => {
               </Form.Item>
             </Col>
 
-            {/* Email -> email */}
             <Col span={8}>
               <Form.Item
                 label="Email"
@@ -120,7 +115,6 @@ const Registration = () => {
           </Row>
 
           <Row gutter={16}>
-            {/* Username -> username */}
             <Col span={8}>
               <Form.Item
                 label="Username"
@@ -131,18 +125,19 @@ const Registration = () => {
               </Form.Item>
             </Col>
 
-            {/* Password -> password */}
             <Col span={8}>
               <Form.Item
                 label="Password"
                 name="password"
-                rules={[{ required: true, message: "Password is required" }]}
+                rules={[
+                  { required: true, message: "Password is required" },
+                  { min: 8, message: "Password must be at least 8 characters long" },
+                ]}
               >
                 <Input.Password placeholder="Enter password" />
               </Form.Item>
             </Col>
 
-            {/* Confirm Password -> password_confirmation */}
             <Col span={8}>
               <Form.Item
                 label="Confirm Password"
@@ -155,9 +150,7 @@ const Registration = () => {
                       if (!value || getFieldValue("password") === value) {
                         return Promise.resolve();
                       }
-                      return Promise.reject(
-                        new Error("Passwords do not match")
-                      );
+                      return Promise.reject(new Error("Passwords do not match"));
                     },
                   }),
                 ]}
@@ -167,12 +160,11 @@ const Registration = () => {
             </Col>
           </Row>
 
-          {/* Submit Button */}
           <Form.Item className="form-submit-container">
             <Button type="primary" htmlType="submit">
-                Register
+              Register
             </Button>
-            </Form.Item>
+          </Form.Item>
         </Form>
       </div>
     </MainPage>

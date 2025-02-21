@@ -1,83 +1,108 @@
 <?php
 
+// app/Http/Controllers/CategoryController.php
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
 use App\Models\Category;
+use App\Models\CategoryType;
+use Illuminate\Http\Request;
 
 class CategoryController extends Controller
 {
     /**
-     * Display a listing of the categories.
-     *
-     * @return \Illuminate\Http\Response
+     * Display a listing of categories.
      */
     public function index()
     {
-        $categories = Category::all();
-        return response()->json($categories);
+        $categories = Category::with('types')->get();
+        return view('categories.index', compact('categories'));
     }
 
     /**
-     * Store a newly created category in the database.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
+     * Show the form for creating a new category.
+     */
+    public function create()
+    {
+        return view('categories.create');
+    }
+
+    /**
+     * Store a newly created category and its types.
      */
     public function store(Request $request)
     {
         $request->validate([
-            'category_name' => 'required|string|max:50',
-            'category_type' => 'nullable|string|max:50',
+            'category_name' => 'required|string|max:255',
+            'category_types' => 'required|array',
+            'category_types.*' => 'string|max:255',
         ]);
 
-        $category = Category::create($request->all());
-        return response()->json($category, 201);
+        // Create the category
+        $category = Category::create([
+            'category_name' => $request->category_name,
+        ]);
+
+        // Add category types
+        foreach ($request->category_types as $type) {
+            $category->types()->create([
+                'category_type' => $type,
+            ]);
+        }
+
+        return redirect()->route('categories.index')->with('success', 'Category created successfully!');
     }
 
     /**
-     * Display the specified category.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
+     * Display the specified category and its types.
      */
-    public function show($id)
+    public function show(Category $category)
     {
-        $category = Category::findOrFail($id);
-        return response()->json($category);
+        return view('categories.show', compact('category'));
     }
 
     /**
-     * Update the specified category in the database.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
+     * Show the form for editing the specified category.
      */
-    public function update(Request $request, $id)
+    public function edit(Category $category)
+    {
+        return view('categories.edit', compact('category'));
+    }
+
+    /**
+     * Update the specified category and its types.
+     */
+    public function update(Request $request, Category $category)
     {
         $request->validate([
-            'category_name' => 'required|string|max:50',
-            'category_type' => 'nullable|string|max:50',
+            'category_name' => 'required|string|max:255',
+            'category_types' => 'required|array',
+            'category_types.*' => 'string|max:255',
         ]);
 
-        $category = Category::findOrFail($id);
-        $category->update($request->all());
+        // Update the category
+        $category->update([
+            'category_name' => $request->category_name,
+        ]);
 
-        return response()->json($category);
+        // Delete existing types and add new ones
+        $category->types()->delete();
+        foreach ($request->category_types as $type) {
+            $category->types()->create([
+                'category_type' => $type,
+            ]);
+        }
+
+        return redirect()->route('categories.index')->with('success', 'Category updated successfully!');
     }
 
     /**
-     * Remove the specified category from the database.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
+     * Remove the specified category and its types.
      */
-    public function destroy($id)
+    public function destroy(Category $category)
     {
-        $category = Category::findOrFail($id);
-        $category->delete();
+        $category->types()->delete(); // Delete associated types
+        $category->delete(); // Delete the category
 
-        return response()->json(null, 204);
+        return redirect()->route('categories.index')->with('success', 'Category deleted successfully!');
     }
 }
