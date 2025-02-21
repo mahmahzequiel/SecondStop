@@ -6,27 +6,35 @@ const { Option } = Select;
 
 const Registration = () => {
   const [form] = Form.useForm();
+  const [loading, setLoading] = useState(false); // Loading state
 
-  // Handle form submission
   const handleSubmit = async (values) => {
+    setLoading(true);
     try {
+      // Remove confirm_password from the payload
+      const { confirm_password, ...payload } = values;
+
       const response = await fetch("http://127.0.0.1:8000/api/register", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(values),
+        body: JSON.stringify(payload),
       });
 
-      if (!response.ok) {
-        throw new Error("Registration failed");
+      // Ensure response is JSON
+      const text = await response.text();
+      const data = text.startsWith("{") ? JSON.parse(text) : null;
+
+      if (!response.ok || !data) {
+        throw new Error(data?.message || "Registration failed. Check API.");
       }
 
-      const data = await response.json();
-      console.log("Registration successful:", data);
       message.success("Registration successful!");
-      form.resetFields(); // Reset form fields after successful submission
+      form.resetFields();
     } catch (error) {
       console.error("Error during registration:", error);
-      message.error("Registration failed. Please try again.");
+      message.error(error.message || "Registration failed. Try again.");
+    } finally {
+      setLoading(false);
     }
   };
 
@@ -45,7 +53,7 @@ const Registration = () => {
             <Col span={8}>
               <Form.Item
                 label="First Name"
-                name="firstName"
+                name="first_name"
                 rules={[{ required: true, message: "First name is required" }]}
               >
                 <Input placeholder="Enter first name" />
@@ -54,7 +62,7 @@ const Registration = () => {
 
             {/* Middle Name */}
             <Col span={8}>
-              <Form.Item label="Middle Name" name="middleName">
+              <Form.Item label="Middle Name" name="middle_name">
                 <Input placeholder="Enter middle name" />
               </Form.Item>
             </Col>
@@ -63,52 +71,10 @@ const Registration = () => {
             <Col span={8}>
               <Form.Item
                 label="Last Name"
-                name="lastName"
+                name="last_name"
                 rules={[{ required: true, message: "Last name is required" }]}
               >
                 <Input placeholder="Enter last name" />
-              </Form.Item>
-            </Col>
-          </Row>
-
-          <Row gutter={16}>
-            {/* Sex */}
-            <Col span={8}>
-              <Form.Item
-                label="Sex"
-                name="sex"
-                rules={[{ required: true, message: "Sex is required" }]}
-              >
-                <Select placeholder="Select">
-                  <Option value="male">Male</Option>
-                  <Option value="female">Female</Option>
-                  <Option value="other">Other</Option>
-                </Select>
-              </Form.Item>
-            </Col>
-
-            {/* Phone Number */}
-            <Col span={8}>
-              <Form.Item
-                label="Phone Number"
-                name="phoneNumber"
-                rules={[{ required: true, message: "Phone number is required" }]}
-              >
-                <Input placeholder="Enter phone number" />
-              </Form.Item>
-            </Col>
-
-            {/* Email */}
-            <Col span={8}>
-              <Form.Item
-                label="Email"
-                name="email"
-                rules={[
-                  { required: true, message: "Email is required" },
-                  { type: "email", message: "Invalid email address" },
-                ]}
-              >
-                <Input placeholder="Enter email" />
               </Form.Item>
             </Col>
           </Row>
@@ -122,6 +88,48 @@ const Registration = () => {
                 rules={[{ required: true, message: "Username is required" }]}
               >
                 <Input placeholder="Enter username" />
+              </Form.Item>
+            </Col>
+
+            {/* Sex */}
+            <Col span={8}>
+              <Form.Item
+                label="Sex"
+                name="sex"
+                rules={[{ required: true, message: "Sex is required" }]}
+              >
+                <Select placeholder="Select">
+                  <Option value="Male">Male</Option>
+                  <Option value="Female">Female</Option>
+                  <Option value="Other">Other</Option>
+                </Select>
+              </Form.Item>
+            </Col>
+
+            {/* Phone Number */}
+            <Col span={8}>
+              <Form.Item
+                label="Phone Number"
+                name="phone_number"
+                rules={[{ required: true, message: "Phone number is required" }]}
+              >
+                <Input placeholder="Enter phone number" />
+              </Form.Item>
+            </Col>
+          </Row>
+
+          <Row gutter={16}>
+            {/* Email */}
+            <Col span={8}>
+              <Form.Item
+                label="Email"
+                name="email"
+                rules={[
+                  { required: true, message: "Email is required" },
+                  { type: "email", message: "Invalid email address" },
+                ]}
+              >
+                <Input placeholder="Enter email" />
               </Form.Item>
             </Col>
 
@@ -140,7 +148,7 @@ const Registration = () => {
             <Col span={8}>
               <Form.Item
                 label="Confirm Password"
-                name="confirmPassword"
+                name="confirm_password"
                 dependencies={["password"]}
                 rules={[
                   { required: true, message: "Please confirm your password" },
@@ -163,11 +171,10 @@ const Registration = () => {
 
           {/* Submit Button */}
           <Form.Item className="form-submit-container">
-            <Button type="primary" htmlType="submit">
-                Register
+            <Button type="primary" htmlType="submit" loading={loading}>
+              {loading ? "Registering..." : "Register"}
             </Button>
-            </Form.Item>
-
+          </Form.Item>
         </Form>
       </div>
     </MainPage>

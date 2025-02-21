@@ -4,41 +4,20 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Products extends Model
 {
-    use HasFactory, SoftDeletes;
+    use HasFactory;
 
-    /**
-     * The attributes that are mass assignable.
-     *
-     * @var array
-     */
     protected $fillable = [
         'category_id',
+        'category_type_id',
+        'brand_id',
         'product_name',
         'description',
         'price',
         'product_image',
-        'brand',
     ];
-
-    /**
-     * The attributes that should be cast.
-     *
-     * @var array
-     */
-    protected $casts = [
-        'price' => 'decimal:2',
-    ];
-
-    /**
-     * The attributes that should be mutated to dates.
-     *
-     * @var array
-     */
-    protected $dates = ['deleted_at'];
 
     /**
      * Get the category that owns the product.
@@ -49,15 +28,18 @@ class Products extends Model
     }
 
     /**
-     * Get the URL for the product image.
-     *
-     * @return string|null
+     * Get the category type that owns the product.
      */
-    public function getImageUrlAttribute()
+    public function categoryType()
     {
-        if ($this->product_image) {
-            return Storage::disk('public')->url($this->product_image);
-        }
-        return null;
+        return $this->belongsTo(CategoryType::class, 'category_type_id');
+    }
+
+    /**
+     * Get the brand that owns the product.
+     */
+    public function brand()
+    {
+        return $this->belongsTo(Brand::class);
     }
 }

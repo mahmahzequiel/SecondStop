@@ -13,48 +13,48 @@ class ApiController extends Controller
 {
     // POST [first_name, middle_name, last_name, sex, phone_number, username, email, password]
     public function register(Request $request)
-    {
-        // Validation
-        $request->validate([
-            "first_name"   => "required|string|max:255",
-            "middle_name"  => "nullable|string|max:255",
-            "last_name"    => "required|string|max:255",
-            "sex"          => "required|in:Male,Female",
-            "phone_number" => "required|string|max:15|unique:profiles",
-            "username"     => "required|string|max:255|unique:profiles",
-            "email"        => "required|string|email|max:255|unique:users",
-            "password"     => "required|string|confirmed|min:8"
-        ]);
+{
+    // Validation
+    $request->validate([
+        "first_name"   => "required|string|max:255",
+        "middle_name"  => "nullable|string|max:255",
+        "last_name"    => "required|string|max:255",
+        "sex"          => "required|in:Male,Female",
+        "phone_number" => "required|string|max:15|unique:profiles",
+        "username"     => "required|string|max:255|unique:profiles",
+        "email"        => "required|string|email|max:255|unique:users",
+        "password"     => "required|string|confirmed|min:8" // Ensure password_confirmation is present
+    ]);
 
-        // Create User first
-        $user = User::create([
-            "role_id"  => 1, // Default role
-            "username" => $request->username,
-            "email"    => $request->email,
-            "password" => bcrypt($request->password),
-        ]);
+    // Create User first
+    $user = User::create([
+        "role_id"  => 1, // Default role
+        "username" => $request->username,
+        "email"    => $request->email,
+        "password" => bcrypt($request->password),
+    ]);
 
-        // Create Profile and link it to the User
-        $profile = Profile::create([
-            "user_id"      => $user->id, // Link to user
-            "first_name"   => $request->first_name,
-            "middle_name"  => $request->middle_name,
-            "last_name"    => $request->last_name,
-            "sex"          => $request->sex,
-            "phone_number" => $request->phone_number,
-            "username"     => $request->username,
-            "email"        => $request->email
-        ]);
+    // Create Profile and link it to the User
+    $profile = Profile::create([
+        "user_id"      => $user->id, // Link to user
+        "first_name"   => $request->first_name,
+        "middle_name"  => $request->middle_name,
+        "last_name"    => $request->last_name,
+        "sex"          => $request->sex,
+        "phone_number" => $request->phone_number,
+        "username"     => $request->username,
+        "email"        => $request->email
+    ]);
 
-        return response()->json([
-            "status"  => true,
-            "message" => "User registered successfully",
-            "data"    => [
-                "user"    => $user,
-                "profile" => $profile
-            ]
-        ]);
-    }
+    return response()->json([
+        "status"  => true,
+        "message" => "User registered successfully",
+        "data"    => [
+            "user"    => $user,
+            "profile" => $profile
+        ]
+    ], 201); // HTTP 201: Created
+}
 
     public function updateProfile(Request $request)
     {

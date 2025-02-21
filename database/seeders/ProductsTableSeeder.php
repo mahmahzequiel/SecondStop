@@ -9,75 +9,77 @@ class ProductsTableSeeder extends Seeder
 {
     /**
      * Run the database seeds.
-     *
-     * @return void
      */
     public function run()
     {
         // Insert sample products only if they don't already exist
-        Products::UpdateOrCreate(
+        Products::updateOrCreate(
             [
-                'category_id' => 1, // Ensure this category exists in the categories table
-                'product_name' => 'Blue Top',
+                'category_id' => 2, // Women's Apparel
+                'category_type_id' => 1, // Tops
+                'product_name' => "Women's Top",
             ],
             [
-                'description' => 'Nice blue top.',
+                'description' => "Nice women's top.",
                 'price' => 1200.00,
-                'brand' => 'Dell',
-                'product_image' => 'images/women/tops/image1.png', // Adjust the path accordingly
+                'brand_id' => 1, // H&M
+                'product_image' => 'images/women/tops/image1.png',
             ]
         );
 
-        Products::firstOrCreate(
+        Products::updateOrCreate(
             [
-                'category_id' => 1,
-                'product_name' => 'Pants',
+                'category_id' => 1, // Women's Apparel
+                'category_type_id' => 2, // Bottoms
+                'product_name' => "Men's Pants",
             ],
             [
-                'description' => 'Jag Pants',
+                'description' => "Comfortable women's pants.",
                 'price' => 800.00,
-                'brand' => 'Samsung',
-                'product_image' => 'images/women/bottoms/image.png', // Adjust the path accordingly
+                'brand_id' => 2, // Penshoppe
+                'product_image' => 'images/women/bottoms/image.png',
             ]
         );
 
-        Products::firstOrCreate(
+        Products::updateOrCreate(
             [
-                'category_id' => 2, // Ensure this category exists in the categories table
-                'product_name' => 'Skirt',
+                'category_id' => 2, // Women's Apparel
+                'category_type_id' => 2, // Accessories
+                'product_name' => "Women's Bag",
             ],
             [
-                'description' => 'Long skirt',
+                'description' => "Stylish women's bag.",
                 'price' => 600.00,
-                'brand' => 'Apple',
-                'product_image' => 'images/women/bottoms/image1.png', // Adjust the path accordingly
-            ],
-            
+                'brand_id' => 3, // UNIQLO
+                'product_image' => 'images/women/bottoms/image1.png',
+            ]
+        );
 
+        Products::updateOrCreate(
+            [
+                'category_id' => 1, // men's Apparel
+                'category_type_id' => 2, // Bottoms
+                'product_name' => "Men's Pants",
+            ],
+            [
+                'description' => "Comfortable women's pants.",
+                'price' => 800.00,
+                'brand_id' => 2, // Penshoppe
+                'product_image' => 'images/women/bottoms/image.png',
+            ]
         );
-        Products::firstOrCreate(
+        Products::updateOrCreate(
             [
-                'category_id' => 3, // Ensure this category exists in the categories table
-                'product_name' => 'Skirt',
+                'category_id' => 3, // Women's Apparel
+                'category_type_id' => 1, // Bottoms
+                'product_name' => "Men's Pants",
             ],
             [
-                'description' => 'Long skirt',
-                'price' => 600.00,
-                'brand' => 'Apple',
-                'product_image' => 'images/women/bottoms/image1.png', // Adjust the path accordingly
-            ],
-        );
-        Products::firstOrCreate(
-            [
-                'category_id' => 4, // Ensure this category exists in the categories table
-                'product_name' => 'Skirt',
-            ],
-            [
-                'description' => 'Long skirt',
-                'price' => 600.00,
-                'brand' => 'Apple',
-                'product_image' => 'images/women/bottoms/image1.png', // Adjust the path accordingly
-            ],
+                'description' => "Comfortable kid's pants.",
+                'price' => 800.00,
+                'brand_id' => 2, // Penshoppe
+                'product_image' => 'images/women/bottoms/image.png',
+            ]
         );
     }
 }

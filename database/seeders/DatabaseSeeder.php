@@ -13,6 +13,8 @@ class DatabaseSeeder extends Seeder
             // ProfilesTableSeeder::class,
             RolesTableSeeder::class,
             CategoriesTableSeeder::class,
+            CategoryTypeSeeder::class,
+            BrandSeeder::class,
             ProductsTableSeeder::class,
         ]);
     }
