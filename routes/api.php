@@ -13,7 +13,7 @@ Route::post("login", [ApiController::class, "login"]);
 Route::apiResource("products", ProductsController::class);
 
 // Protected Routes
-Route::group(["middleware" => ["auth:sanctum"]], function() {
+Route::group(["middleware" => ["auth:api"]], function() {
     Route::get("profile", [ApiController::class, "profile"]);
     Route::put("profile/update", [ApiController::class, "updateProfile"]);
     Route::post("logout", [ApiController::class, "logout"]);
