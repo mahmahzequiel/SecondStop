@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { Form, Input, Select, Button, Row, Col, message } from "antd";
-import MainPage from "../Reusable/MainPage"; // Import MainPage
+import MainPage from "../Reusable/MainPage";
 
 const { Option } = Select;
 
@@ -10,9 +10,14 @@ const Registration = () => {
   // Handle form submission
   const handleSubmit = async (values) => {
     try {
+      // Send the values to the API
       const response = await fetch("http://127.0.0.1:8000/api/register", {
         method: "POST",
-        headers: { "Content-Type": "application/json" },
+        headers: {
+          "Content-Type": "application/json",
+          // Add Accept header if you want JSON back
+          "Accept": "application/json"
+        },
         body: JSON.stringify(values),
       });
 
@@ -23,7 +28,7 @@ const Registration = () => {
       const data = await response.json();
       console.log("Registration successful:", data);
       message.success("Registration successful!");
-      form.resetFields(); // Reset form fields after successful submission
+      form.resetFields();
     } catch (error) {
       console.error("Error during registration:", error);
       message.error("Registration failed. Please try again.");
@@ -41,29 +46,29 @@ const Registration = () => {
           autoComplete="off"
         >
           <Row gutter={16}>
-            {/* First Name */}
+            {/* First Name -> first_name */}
             <Col span={8}>
               <Form.Item
                 label="First Name"
-                name="firstName"
+                name="first_name"
                 rules={[{ required: true, message: "First name is required" }]}
               >
                 <Input placeholder="Enter first name" />
               </Form.Item>
             </Col>
 
-            {/* Middle Name */}
+            {/* Middle Name -> middle_name */}
             <Col span={8}>
-              <Form.Item label="Middle Name" name="middleName">
+              <Form.Item label="Middle Name" name="middle_name">
                 <Input placeholder="Enter middle name" />
               </Form.Item>
             </Col>
 
-            {/* Last Name */}
+            {/* Last Name -> last_name */}
             <Col span={8}>
               <Form.Item
                 label="Last Name"
-                name="lastName"
+                name="last_name"
                 rules={[{ required: true, message: "Last name is required" }]}
               >
                 <Input placeholder="Enter last name" />
@@ -72,7 +77,7 @@ const Registration = () => {
           </Row>
 
           <Row gutter={16}>
-            {/* Sex */}
+            {/* Sex -> sex with capitalized values */}
             <Col span={8}>
               <Form.Item
                 label="Sex"
@@ -80,25 +85,26 @@ const Registration = () => {
                 rules={[{ required: true, message: "Sex is required" }]}
               >
                 <Select placeholder="Select">
-                  <Option value="male">Male</Option>
-                  <Option value="female">Female</Option>
-                  <Option value="other">Other</Option>
+                  <Option value="Male">Male</Option>
+                  <Option value="Female">Female</Option>
+                  {/* If you updated your backend to allow "Other" */}
+                  <Option value="Other">Other</Option>
                 </Select>
               </Form.Item>
             </Col>
 
-            {/* Phone Number */}
+            {/* Phone Number -> phone_number */}
             <Col span={8}>
               <Form.Item
                 label="Phone Number"
-                name="phoneNumber"
+                name="phone_number"
                 rules={[{ required: true, message: "Phone number is required" }]}
               >
                 <Input placeholder="Enter phone number" />
               </Form.Item>
             </Col>
 
-            {/* Email */}
+            {/* Email -> email */}
             <Col span={8}>
               <Form.Item
                 label="Email"
@@ -114,7 +120,7 @@ const Registration = () => {
           </Row>
 
           <Row gutter={16}>
-            {/* Username */}
+            {/* Username -> username */}
             <Col span={8}>
               <Form.Item
                 label="Username"
@@ -125,7 +131,7 @@ const Registration = () => {
               </Form.Item>
             </Col>
 
-            {/* Password */}
+            {/* Password -> password */}
             <Col span={8}>
               <Form.Item
                 label="Password"
@@ -136,11 +142,11 @@ const Registration = () => {
               </Form.Item>
             </Col>
 
-            {/* Confirm Password */}
+            {/* Confirm Password -> password_confirmation */}
             <Col span={8}>
               <Form.Item
                 label="Confirm Password"
-                name="confirmPassword"
+                name="password_confirmation"
                 dependencies={["password"]}
                 rules={[
                   { required: true, message: "Please confirm your password" },
@@ -167,7 +173,6 @@ const Registration = () => {
                 Register
             </Button>
             </Form.Item>
-
         </Form>
       </div>
     </MainPage>

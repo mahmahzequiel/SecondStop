@@ -1,3 +1,4 @@
+
 import React from "react";
 import ReactDOM from "react-dom/client"; // Note: Import from react-dom/client for React 18
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
@@ -19,7 +20,7 @@ function Routers() {
   return (
     <Router>
       <Routes>
-        <Route path="/mainpage" element={<MainPage />} />
+        <Route path="/" element={<DisplayProducts />} />
         <Route path="/login" element={<Login />} />
         <Route path="/products" element={<DisplayProducts />} />
         <Route path="/register" element={<Registration />} />
