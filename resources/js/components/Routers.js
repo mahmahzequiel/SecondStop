@@ -19,7 +19,7 @@ function Routers() {
   return (
     <Router>
       <Routes>
-        <Route path="/mainpage" element={<MainPage />} />
+        <Route path="/" element={<DisplayProducts />} />
         <Route path="/login" element={<Login />} />
         <Route path="/products" element={<DisplayProducts />} />
         <Route path="/register" element={<Registration />} />
