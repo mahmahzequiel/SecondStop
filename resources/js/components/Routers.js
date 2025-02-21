@@ -11,7 +11,7 @@ export default function Routers() {
         <Router>
             <Routes>
                 {/* Route to the Example component */}
-                <Route path="/mainpage" element={<MainPage />} />
+                <Route path="/" element={<MainPage />} />
                 <Route path="/login" element={<Login />} />
             </Routes>
         </Router>

@@ -1,4 +1,5 @@
 @import url(https://fonts.googleapis.com/css?family=Nunito);
+@import url(https://fonts.googleapis.com/css2?family=Inria+Serif:wght@400;700&display=swap);
 @charset "UTF-8";
 /*!
  * Bootstrap  v5.3.3 (https://getbootstrap.com/)
@@ -12017,61 +12018,96 @@ body {
   background-color: #750139;
 }
 .login-container .right-section .form-container {
-  width: 80%;
-  height: 80%;
-  max-width: 400px;
+  width: 603px;
+  height: 706px;
+  flex-shrink: 0;
+  background: #FFF;
+  box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
+  border-radius: 20px;
   padding: 20px;
-  background: #fff;
-  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
-  border-radius: 8px;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start; /* Align everything to the left */
+  justify-content: center;
+  position: relative; /* Enables absolute positioning inside */
 }
 .login-container .right-section .form-container h1, .login-container .right-section .form-container .h1 {
-  text-align: center;
-  margin-bottom: 20px;
+  position: absolute;
+  top: 33px;
+  left: 42px;
+  font-size: 40px;
+  font-weight: bold;
+  font-family: "Inria Serif", serif; /* Updated font */
+  margin: 0;
 }
 .login-container .right-section .form-container .error-message {
   color: red;
-  text-align: center;
+  text-align: left;
   margin-bottom: 10px;
+  margin-left: 42px; /* Align error message with input */
 }
 .login-container .right-section .form-container .input-group {
-  margin-bottom: 15px;
+  width: 100%;
+  margin-bottom: 15px; /* Keeps input spacing */
 }
-.login-container .right-section .form-container .input-group label {
-  display: block;
-  font-weight: bold;
-  margin-bottom: 5px;
-}
-.login-container .right-section .form-container .input-group .input-container {
+.login-container .right-section .form-container .input-container {
   display: flex;
   align-items: center;
-  border: 1px solid #ccc;
-  border-radius: 5px;
-  padding: 8px;
+  width: 483px;
+  height: 78px;
+  flex-shrink: 0;
+  border-radius: 15px;
+  border: 1px solid #000;
+  background: #FFF;
+  padding: 10px;
+  overflow: hidden;
+  margin-left: 42px; /* Moves input container 42px from the left */
 }
-.login-container .right-section .form-container .input-group .input-container input {
+.login-container .right-section .form-container .input-container input {
   flex: 1;
   border: none;
   outline: none;
-  padding: 5px;
+  padding: 0 15px;
+  font-size: 16px;
+  background: transparent;
+  border-radius: inherit;
+  display: block;
+  width: 100%;
+  height: 100%;
 }
-.login-container .right-section .form-container .input-group .input-container .icon-right,
-.login-container .right-section .form-container .input-group .input-container .icon-left {
+.login-container .right-section .form-container .input-container .icon-left {
+  margin-right: 10px;
+}
+.login-container .right-section .form-container .input-container .icon-right {
+  margin-left: 10px;
   cursor: pointer;
-  margin-left: 5px;
 }
 .login-container .right-section .form-container .signin-btn {
-  width: 100%;
-  padding: 10px;
+  width: 483px;
+  height: 50px;
   background: #007bff;
   color: white;
   border: none;
-  border-radius: 5px;
+  border-radius: 15px;
   cursor: pointer;
-  font-size: 16px;
+  font-size: 18px;
+  text-align: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-top: 20px;
+  margin-left: 42px; /* Moves button 42px from the left */
 }
 .login-container .right-section .form-container .signin-btn:hover {
   background: #0056b3;
+}
+.login-container .right-section .form-container .forgot-password {
+  font-size: 16px;
+  color: blue;
+  text-align: left;
+  cursor: pointer;
+  margin-top: 15px;
+  margin-left: 42px; /* Moves forgot password 42px from the left */
 }
 
 /* Header Styles */

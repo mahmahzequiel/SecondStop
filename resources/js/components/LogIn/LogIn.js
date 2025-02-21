@@ -43,13 +43,12 @@ export default function Login() {
       </div>
       <div className="right-section">
         <div className="form-container">
-          <h1>User Login</h1>
+          <h1>Log-In</h1>
           {error && <p className="error-message">{error}</p>}
           <form onSubmit={handleLogin}>
             <div className="input-group">
-              <label htmlFor="username">Username</label>
               <div className="input-container">
-                <i className="bx bxs-user bx-sm icon-right"></i>
+                <i className="bx bxs-user bx-sm icon-left"></i>
                 <input
                   id="username"
                   type="text"
@@ -61,9 +60,8 @@ export default function Login() {
             </div>
 
             <div className="input-group">
-              <label htmlFor="password">Password</label>
               <div className="input-container">
-                <i className="bx bxs-lock-alt bx-sm icon-right"></i>
+                <i className="bx bxs-lock-alt bx-sm icon-left"></i>
                 <input
                   id="password"
                   type={showPassword ? "text" : "password"}
@@ -72,14 +70,14 @@ export default function Login() {
                   onChange={(e) => setPassword(e.target.value)}
                 />
                 <i
-                  className={`bx ${showPassword ? "bx-show" : "bx-low-vision"} bx-sm icon-left`}
+                  className={`bx ${showPassword ? "bx-show" : "bx-low-vision"} bx-sm icon-right`}
                   onClick={togglePasswordState}
                 ></i>
               </div>
             </div>
 
             <button className="signin-btn" type="submit">Sign In</button>
-             <p className="forgot-password" onClick={() => navigate("/forgot-password")} style={{ cursor: "pointer", color: "blue" }}>Forgot Password?</p>
+            <p className="forgot-password" onClick={() => navigate("/forgot-password")} style={{ cursor: "pointer", color: "blue" }}>Forgot Password?</p>
           </form>
         </div>
       </div>
