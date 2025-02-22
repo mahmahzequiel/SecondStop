@@ -1,5 +1,6 @@
 import React from 'react';
-import { BellOutlined, ShoppingCartOutlined, UserOutlined, SearchOutlined } from '@ant-design/icons'; // Import Ant Design Icons
+import { Link } from 'react-router-dom';
+import { BellOutlined, ShoppingCartOutlined, UserOutlined, SearchOutlined } from '@ant-design/icons';
 
 function Header() {
   return (
@@ -10,12 +11,14 @@ function Header() {
       </div>
       <div className="search-bar">
         <input type="text" placeholder="Search..." />
-        <SearchOutlined className="search-icon" /> {/* Search icon */}
+        <SearchOutlined className="search-icon" />
       </div>
       <div className="navbar-icons">
-        <BellOutlined className="icon" /> {/* Notifications icon */}
-        <ShoppingCartOutlined className="icon" /> {/* Cart icon */}
-        <UserOutlined className="icon" /> {/* Profile icon */}
+        <BellOutlined className="icon" />
+        <ShoppingCartOutlined className="icon" />
+        <Link to="/profile">
+          <UserOutlined className="icon" />
+        </Link>
       </div>
     </header>
   );

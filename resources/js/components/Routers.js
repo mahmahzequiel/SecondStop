@@ -1,5 +1,5 @@
 import React from "react";
-import ReactDOM from "react-dom/client"; // Note: Import from react-dom/client for React 18
+import ReactDOM from "react-dom/client";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import axios from "axios";
 
@@ -11,9 +11,15 @@ if (token) {
 
 // Import your components
 import MainPage from "./Reusable/MainPage";
-import Login from "./LogIn/LogIn"; // Ensure the path is correct (note: file name capitalization)
+import Login from "./LogIn/LogIn";
 import DisplayProducts from "./Products/DisplayProducts";
 import Register from "./Registration/Register";
+import Profiles from "./Profile/profiles";
+import Logout from "./Profile/Logout";
+import Purchases from "./Profile/Purchases";
+import Address from "./Profile/Address";
+import ChangePassword from "./Profile/ChangePassword";
+import FAQ from "./Profile/Faq";
 
 function Routers() {
   return (
@@ -23,6 +29,13 @@ function Routers() {
         <Route path="/login" element={<Login />} />
         <Route path="/products" element={<DisplayProducts />} />
         <Route path="/register" element={<Register />} />
+        <Route path="/profile" element={<Profiles />} />
+        <Route path="/logout" element={<Logout />} />
+        <Route path="/purchases" element={<Purchases />} />
+        <Route path="/address" element={<Address />} />
+        <Route path="/change-password" element={<ChangePassword />} />
+        <Route path="/faq" element={<FAQ />} />
+        {/* Add other routes as needed */}
       </Routes>
     </Router>
   );

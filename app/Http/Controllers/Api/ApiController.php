@@ -168,17 +168,14 @@ class ApiController extends Controller
     public function logout(Request $request)
     {
         $user = Auth::user();
-        
         if (!$user) {
             return response()->json([
                 'status'  => false,
                 'message' => 'Unauthenticated'
             ], 401);
         }
-
-    // Revoke the current token.
-        $user->token()->revoke();
         
+        $user->token()->revoke();
         return response()->json([
             'status'  => true,
             'message' => 'Successfully logged out'

@@ -106,14 +106,6 @@ const DisplayProducts = () => {
 
   return (
     <MainPage>
-      {/* Display welcome message if profile exists */}
-      {profile && (
-        <div style={{ padding: "1rem", backgroundColor: "#f0f2f5" }}>
-          <h3>
-            Welcome, {profile.first_name} {profile.last_name}!
-          </h3>
-        </div>
-      )}
       <div
         className="product-section"
         style={{ display: "flex", justifyContent: "center", alignItems: "flex-start" }}
