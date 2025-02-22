@@ -1,93 +1,130 @@
+@import url('https://fonts.googleapis.com/css2?family=Inria+Serif:wght@400;700&display=swap');
+
 .login-container {
-    display: flex;
-    height: 100vh;
-  
-    .left-section {
+  display: flex;
+  height: 100vh;
+
+  .left-section {
       flex: 1;
       display: flex;
       justify-content: center;
       align-items: center;
       background-color: #750139;
-  
+
       .login-logo {
-        max-width: 60%;
-        height: auto;
+          max-width: 60%;
+          height: auto;
       }
-    }
-  
-    .right-section {
+  }
+
+  .right-section {
       flex: 1;
       display: flex;
       justify-content: center;
       align-items: center;
       background-color: #750139;
-  
+
       .form-container {
-        width: 80%;
-        height: 80%;
-        max-width: 400px;
-        padding: 20px;
-        background: #fff;
-        box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
-        border-radius: 8px;
-  
-        h1 {
-          text-align: center;
-          margin-bottom: 20px;
-        }
-  
-        .error-message {
-          color: red;
-          text-align: center;
-          margin-bottom: 10px;
-        }
-  
-        .input-group {
-          margin-bottom: 15px;
-  
-          label {
-            display: block;
-            font-weight: bold;
-            margin-bottom: 5px;
+          width: 603px;
+          height: 706px;
+          flex-shrink: 0;
+          background: #FFF;
+          box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
+          border-radius: 20px;
+          padding: 20px;
+          display: flex;
+          flex-direction: column;
+          align-items: center; /* Center aligns content */
+          justify-content: center;
+          position: relative; /* Enables absolute positioning inside */
+
+          h1 {
+              position: absolute;
+              top: 33px;
+              left: 42px;
+              font-size: 40px;
+              font-weight: bold;
+              font-family: 'Inria Serif', serif; /* Updated font */
+              margin: 0;
           }
-  
+
+          .error-message {
+              color: red;
+              text-align: left;
+              margin-bottom: 10px;
+              margin-left: 42px; /* Align error message with input */
+          }
+
+          .input-group {
+              width: 100%;
+              margin-bottom: 15px; /* Keeps input spacing */
+          }
+
           .input-container {
-            display: flex;
-            align-items: center;
-            border: 1px solid #ccc;
-            border-radius: 5px;
-            padding: 8px;
-  
-            input {
+              display: flex;
+              align-items: center;
+              width: 483px;
+              height: 78px;
+              flex-shrink: 0;
+              border-radius: 15px !important; /* Ensures 15px border-radius */
+              border: 1px solid #000;
+              background: #FFF;
+              padding: 10px;
+              overflow: hidden;
+              margin: 0 auto; /* Centers input container */
+          }
+
+          .input-container input {
               flex: 1;
               border: none;
               outline: none;
-              padding: 5px;
-            }
-  
-            .icon-right,
-            .icon-left {
+              padding: 0 15px;
+              font-size: 16px;
+              background: transparent;
+              border-radius: inherit;
+              display: block;
+              width: 100%;
+              height: 100%;
+          }
+
+          .input-container .icon-left {
+              margin-right: 10px;
+          }
+
+          .input-container .icon-right {
+              margin-left: 10px;
               cursor: pointer;
-              margin-left: 5px;
-            }
           }
-        }
-  
-        .signin-btn {
-          width: 100%;
-          padding: 10px;
-          background: #007bff;
-          color: white;
-          border: none;
-          border-radius: 5px;
-          cursor: pointer;
-          font-size: 16px;
-  
-          &:hover {
-            background: #0056b3;
+
+          .signin-btn {
+              width: 483px;
+              height: 50px;
+              background: #007bff;
+              color: white;
+              border: none;
+              border-radius: 15px;
+              cursor: pointer;
+              font-size: 18px;
+              text-align: center;
+              display: flex;
+              align-items: center;
+              justify-content: center;
+              margin-top: 20px;
+              margin: 0 auto; /* Centers button */
           }
-        }
+
+          .signin-btn:hover {
+              background: #0056b3;
+          }
+
+          .forgot-password {
+              font-size: 16px;
+              color: blue;
+              text-align: left;
+              cursor: pointer;
+              margin-top: 15px;
+              margin-left: 42px; /* Moves forgot password 42px from the left */
+          }
       }
-    }
   }
-  
+}

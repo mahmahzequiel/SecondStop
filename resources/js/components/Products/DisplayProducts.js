@@ -15,6 +15,15 @@ const DisplayProducts = () => {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
   const [showCategories, setShowCategories] = useState(true);
+  const [profile, setProfile] = useState(null);
+
+  // Fetch profile from localStorage.
+  useEffect(() => {
+    const storedProfile = localStorage.getItem("userProfile");
+    if (storedProfile) {
+      setProfile(JSON.parse(storedProfile));
+    }
+  }, []);
 
   useEffect(() => {
     const fetchProducts = async () => {
@@ -46,7 +55,9 @@ const DisplayProducts = () => {
   }, [selectedCategoryType]);
 
   const handleCategorySelect = (category) => {
-    setSelectedCategory((prevCategory) => (prevCategory?.id === category.id ? null : category));
+    setSelectedCategory((prevCategory) =>
+      prevCategory?.id === category.id ? null : category
+    );
     setShowFilters(true);
     setSelectedCategoryType(null);
     setSelectedBrand(null);
@@ -55,22 +66,30 @@ const DisplayProducts = () => {
   };
 
   const handleCategoryTypeSelect = (categoryType) => {
-    setSelectedCategoryType((prevType) => (prevType?.id === categoryType?.id ? null : categoryType));
+    setSelectedCategoryType((prevType) =>
+      prevType?.id === categoryType?.id ? null : categoryType
+    );
   };
 
   const handleBrandSelect = (brand) => {
-    setSelectedBrand((prevBrand) => (prevBrand?.id === brand?.id ? null : brand));
+    setSelectedBrand((prevBrand) =>
+      prevBrand?.id === brand?.id ? null : brand
+    );
   };
 
   useEffect(() => {
     let filtered = products;
 
     if (selectedCategory) {
-      filtered = filtered.filter((product) => product.category_id === selectedCategory.id);
+      filtered = filtered.filter(
+        (product) => product.category_id === selectedCategory.id
+      );
     }
 
     if (selectedBrand) {
-      filtered = filtered.filter((product) => product.brand_id === selectedBrand.id);
+      filtered = filtered.filter(
+        (product) => product.brand_id === selectedBrand.id
+      );
     }
 
     Object.entries(selectedFilters).forEach(([key, value]) => {
@@ -87,20 +106,38 @@ const DisplayProducts = () => {
 
   return (
     <MainPage>
-      <div className="product-section" style={{ display: "flex", justifyContent: "center", alignItems: "flex-start" }}>
+      {/* Display welcome message if profile exists */}
+      {profile && (
+        <div style={{ padding: "1rem", backgroundColor: "#f0f2f5" }}>
+          <h3>
+            Welcome, {profile.first_name} {profile.last_name}!
+          </h3>
+        </div>
+      )}
+      <div
+        className="product-section"
+        style={{ display: "flex", justifyContent: "center", alignItems: "flex-start" }}
+      >
         {/* Filters Column */}
         <div className="filters-container" style={{ width: "20%", paddingRight: "20px" }}>
           {showCategories && (
             <div className="category-container">
               {categories.map((category) => (
-                <div key={category.id} className="category-item" onClick={() => handleCategorySelect(category)}>
-                  <img src={`http://127.0.0.1:8000/${category.image}`} alt={category.name} className="category-image" />
+                <div
+                  key={category.id}
+                  className="category-item"
+                  onClick={() => handleCategorySelect(category)}
+                >
+                  <img
+                    src={`http://127.0.0.1:8000/${category.image}`}
+                    alt={category.name}
+                    className="category-image"
+                  />
                   <p>{category.name}</p>
                 </div>
               ))}
             </div>
           )}
-
           {showFilters && selectedCategory && (
             <div className="filter-section">
               <Filters
@@ -114,19 +151,23 @@ const DisplayProducts = () => {
         </div>
 
         {/* Product List Column */}
-        <div className="product-list" style={{ width: "60%", display: "flex", flexWrap: "wrap", justifyContent: "center" }}>
+        <div className="product-list">
           {filteredProducts.length > 0 ? (
             filteredProducts.map((product) => (
-              <div key={product.id} className="product-item" style={{ textAlign: "center" }}>
+              <div key={product.id} className="product-item">
                 {product.product_image && (
-                  <img src={`http://127.0.0.1:8000/${product.product_image}`} alt={product.product_name} className="product-image" />
+                  <img
+                    src={`http://127.0.0.1:8000/${product.product_image}`}
+                    alt={product.product_name}
+                    className="product-image"
+                  />
                 )}
                 <h2>{product.product_name}</h2>
                 <p>Price: ${product.price}</p>
                 <div className="description-container">
                   <p>{product.description}</p>
                   <button className="cart-button">
-                    <ShoppingCartOutlined className="icon" />
+                    <ShoppingCartOutlined className="cart-icon" />
                   </button>
                 </div>
               </div>
