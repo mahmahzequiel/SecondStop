@@ -1,7 +1,8 @@
 import React, { useEffect, useState } from "react";
 import { Checkbox, Spin } from "antd";
 
-const Filters = ({ selectedFilters, setSelectedFilters, onCategoryTypeSelect, onBrandSelect }) => {
+const Filters = ({ selectedFilters, setSelectedFilters, onCategorySelect, onCategoryTypeSelect, onBrandSelect }) => {
+  const [categories, setCategories] = useState([]);
   const [categoryTypes, setCategoryTypes] = useState([]);
   const [brands, setBrands] = useState([]);
   const [loading, setLoading] = useState(true);
@@ -9,21 +10,23 @@ const Filters = ({ selectedFilters, setSelectedFilters, onCategoryTypeSelect, on
   useEffect(() => {
     const fetchFilters = async () => {
       try {
-        const [categoryResponse, brandResponse] = await Promise.all([
+        const [categoryResponse, categoryTypeResponse, brandResponse] = await Promise.all([
+          fetch("http://127.0.0.1:8000/api/categories"),
           fetch("http://127.0.0.1:8000/api/category-types"),
           fetch("http://127.0.0.1:8000/api/brands"),
         ]);
 
-        if (!categoryResponse.ok || !brandResponse.ok) {
+        if (!categoryResponse.ok || !categoryTypeResponse.ok || !brandResponse.ok) {
           throw new Error("Failed to fetch filter data");
         }
 
         const categoryData = await categoryResponse.json();
+        const categoryTypeData = await categoryTypeResponse.json();
         const brandData = await brandResponse.json();
 
-        setCategoryTypes(Array.isArray(categoryData) ? categoryData : []);
-        setBrands(Array.isArray(brandData.data) ? brandData.data : []); // Fix
-
+        setCategories(Array.isArray(categoryData) ? categoryData : []);
+        setCategoryTypes(Array.isArray(categoryTypeData) ? categoryTypeData : []);
+        setBrands(Array.isArray(brandData.data) ? brandData.data : []);
       } catch (error) {
         console.error("Error fetching filters:", error);
       } finally {
@@ -34,29 +37,50 @@ const Filters = ({ selectedFilters, setSelectedFilters, onCategoryTypeSelect, on
     fetchFilters();
   }, []);
 
-  const handleFilterChange = (checkedValues) => {
-    const updatedFilters = {};
+  const handleFilterChange = (value, type) => {
+    setSelectedFilters((prevFilters) => {
+      let updatedFilters = { ...prevFilters };
 
-    setSelectedFilters(updatedFilters);
+      if (type === "category") {
+        Object.keys(updatedFilters).forEach((key) => {
+          if (key.startsWith("category_")) delete updatedFilters[key];
+        });
+      } else if (type === "categoryType") {
+        Object.keys(updatedFilters).forEach((key) => {
+          if (key.startsWith("categoryType_")) delete updatedFilters[key];
+        });
+      } else if (type === "brand") {
+        Object.keys(updatedFilters).forEach((key) => {
+          if (key.startsWith("brand_")) delete updatedFilters[key];
+        });
+      }
 
-    // **Category Selection Logic**
-    const selectedCategoryIds = checkedValues
-      .filter((value) => value.startsWith("category_"))
-      .map((value) => value.replace("category_", ""));
+      if (value) {
+        updatedFilters[value] = false;
+      }
 
-    if (selectedCategoryIds.length > 0 && onCategoryTypeSelect) {
-      const selectedCategoryType = categoryTypes.find((type) => type.id === parseInt(selectedCategoryIds[0]));
-      onCategoryTypeSelect(selectedCategoryType);
+      return updatedFilters;
+    });
+
+    if (type === "category" && value && onCategorySelect) {
+      const selectedCategory = categories.find((cat) => `category_${cat.id}` === value);
+      onCategorySelect(selectedCategory);
+    } else if (type === "category" && !value && onCategorySelect) {
+      onCategorySelect(null);
     }
 
-    // **Brand Selection Logic**
-    const selectedBrandIds = checkedValues
-      .filter((value) => value.startsWith("brand_"))
-      .map((value) => value.replace("brand_", ""));
+    if (type === "categoryType" && value && onCategoryTypeSelect) {
+      const selectedCategoryType = categoryTypes.find((type) => `categoryType_${type.id}` === value);
+      onCategoryTypeSelect(selectedCategoryType);
+    } else if (type === "categoryType" && !value && onCategoryTypeSelect) {
+      onCategoryTypeSelect(null);
+    }
 
-    if (selectedBrandIds.length > 0 && onBrandSelect) {
-      const selectedBrand = brands.find((brand) => brand.id === parseInt(selectedBrandIds[0]));
+    if (type === "brand" && value && onBrandSelect) {
+      const selectedBrand = brands.find((brand) => `brand_${brand.id}` === value);
       onBrandSelect(selectedBrand);
+    } else if (type === "brand" && !value && onBrandSelect) {
+      onBrandSelect(null);
     }
   };
 
@@ -67,31 +91,54 @@ const Filters = ({ selectedFilters, setSelectedFilters, onCategoryTypeSelect, on
         <Spin tip="Loading filters..." />
       ) : (
         <>
+          {categories.length > 0 && (
+            <div className="filter-group">
+              <h4>Categories</h4>
+              {categories.map((category) => (
+                <Checkbox
+                  key={category.id}
+                  checked={Object.keys(selectedFilters).includes(`category_${category.id}`)}
+                  onChange={(e) =>
+                    handleFilterChange(e.target.checked ? `category_${category.id}` : null, "category")
+                  }
+                >
+                  {category.category_name}
+                </Checkbox>
+              ))}
+            </div>
+          )}
+
           {categoryTypes.length > 0 && (
             <div className="filter-group">
               <h4>Sub Category</h4>
-              <Checkbox.Group
-                options={categoryTypes.map((category) => ({
-                  label: category.category_type,
-                  value: `category_${category.id}`,
-                }))}
-                value={Object.keys(selectedFilters).filter((key) => selectedFilters[key])}
-                onChange={handleFilterChange}
-              />
+              {categoryTypes.map((categoryType) => (
+                <Checkbox
+                  key={categoryType.id}
+                  checked={Object.keys(selectedFilters).includes(`categoryType_${categoryType.id}`)}
+                  onChange={(e) =>
+                    handleFilterChange(e.target.checked ? `categoryType_${categoryType.id}` : null, "categoryType")
+                  }
+                >
+                  {categoryType.category_type}
+                </Checkbox>
+              ))}
             </div>
           )}
 
           {brands.length > 0 && (
             <div className="filter-group">
               <h4>Brands</h4>
-              <Checkbox.Group
-                options={brands.map((brand) => ({
-                  label: brand.name,
-                  value: `brand_${brand.id}`,
-                }))}
-                value={Object.keys(selectedFilters).filter((key) => selectedFilters[key])}
-                onChange={handleFilterChange}
-              />
+              {brands.map((brand) => (
+                <Checkbox
+                  key={brand.id}
+                  checked={Object.keys(selectedFilters).includes(`brand_${brand.id}`)}
+                  onChange={(e) =>
+                    handleFilterChange(e.target.checked ? `brand_${brand.id}` : null, "brand")
+                  }
+                >
+                  {brand.name}
+                </Checkbox>
+              ))}
             </div>
           )}
         </>

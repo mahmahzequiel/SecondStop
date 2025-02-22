@@ -9,19 +9,19 @@ const DisplayProducts = () => {
   const [filteredProducts, setFilteredProducts] = useState([]);
   const [selectedCategory, setSelectedCategory] = useState(null);
   const [selectedCategoryType, setSelectedCategoryType] = useState(null);
-  const [selectedBrand, setSelectedBrand] = useState(null); // NEW: State for selected brand
+  const [selectedBrand, setSelectedBrand] = useState(null);
   const [selectedFilters, setSelectedFilters] = useState({});
   const [showFilters, setShowFilters] = useState(false);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
+  const [showCategories, setShowCategories] = useState(true);
 
-  // Fetch products based on selected category type
   useEffect(() => {
     const fetchProducts = async () => {
       try {
         let url = "http://127.0.0.1:8000/api/products";
 
-        if (selectedCategoryType) {
+        if (selectedCategoryType && selectedCategoryType.id) {
           url = `http://127.0.0.1:8000/api/products-by-category-type?category_type_id=${selectedCategoryType.id}`;
         }
 
@@ -45,26 +45,23 @@ const DisplayProducts = () => {
     fetchProducts();
   }, [selectedCategoryType]);
 
-  // Handle category selection
   const handleCategorySelect = (category) => {
     setSelectedCategory((prevCategory) => (prevCategory?.id === category.id ? null : category));
-    setShowFilters((prev) => (selectedCategory?.id === category.id ? false : true));
+    setShowFilters(true);
     setSelectedCategoryType(null);
-    setSelectedBrand(null); // Reset brand selection when category changes
+    setSelectedBrand(null);
     setSelectedFilters({});
+    setShowCategories(false);
   };
 
-  // Handle category type selection from Filters
   const handleCategoryTypeSelect = (categoryType) => {
-    setSelectedCategoryType((prevType) => (prevType?.id === categoryType.id ? null : categoryType));
+    setSelectedCategoryType((prevType) => (prevType?.id === categoryType?.id ? null : categoryType));
   };
 
-  // Handle brand selection from Filters
   const handleBrandSelect = (brand) => {
-    setSelectedBrand((prevBrand) => (prevBrand?.id === brand.id ? null : brand));
+    setSelectedBrand((prevBrand) => (prevBrand?.id === brand?.id ? null : brand));
   };
 
-  // Apply additional filters locally
   useEffect(() => {
     let filtered = products;
 
@@ -83,59 +80,60 @@ const DisplayProducts = () => {
     });
 
     setFilteredProducts(filtered);
-  }, [selectedFilters, selectedBrand, products]);
+  }, [selectedFilters, selectedBrand, products, selectedCategory]);
 
   if (loading) return <div>Loading...</div>;
   if (error) return <div>Error: {error}</div>;
 
   return (
     <MainPage>
-      <div className="product-section">
-        {/* Category List */}
-        <div className="category-container">
-          {categories.map((category) => (
-            <div key={category.id} className="category-item" onClick={() => handleCategorySelect(category)}>
-              <img src={`http://127.0.0.1:8000/${category.image}`} alt={category.name} className="category-image" />
-              <p>{category.name}</p>
+      <div className="product-section" style={{ display: "flex", justifyContent: "center", alignItems: "flex-start" }}>
+        {/* Filters Column */}
+        <div className="filters-container" style={{ width: "20%", paddingRight: "20px" }}>
+          {showCategories && (
+            <div className="category-container">
+              {categories.map((category) => (
+                <div key={category.id} className="category-item" onClick={() => handleCategorySelect(category)}>
+                  <img src={`http://127.0.0.1:8000/${category.image}`} alt={category.name} className="category-image" />
+                  <p>{category.name}</p>
+                </div>
+              ))}
             </div>
-          ))}
-        </div>
+          )}
 
-        {/* Filters & Products */}
-        <div className="content">
           {showFilters && selectedCategory && (
             <div className="filter-section">
               <Filters
                 selectedFilters={selectedFilters}
                 setSelectedFilters={setSelectedFilters}
                 onCategoryTypeSelect={handleCategoryTypeSelect}
-                onBrandSelect={handleBrandSelect} // NEW: Pass brand selection function
+                onBrandSelect={handleBrandSelect}
               />
             </div>
           )}
+        </div>
 
-          {/* Product List */}
-          <div className="product-list">
-            {filteredProducts.length > 0 ? (
-              filteredProducts.map((product) => (
-                <div key={product.id} className="product-item">
-                  {product.product_image && (
-                    <img src={`http://127.0.0.1:8000/${product.product_image}`} alt={product.product_name} className="product-image" />
-                  )}
-                  <h2>{product.product_name}</h2>
-                  <p>Price: ${product.price}</p>
-                  <div className="description-container">
-                    <p>{product.description}</p>
-                    <button className="cart-button">
-                      <ShoppingCartOutlined className="icon" />
-                    </button>
-                  </div>
+        {/* Product List Column */}
+        <div className="product-list" style={{ width: "60%", display: "flex", flexWrap: "wrap", justifyContent: "center" }}>
+          {filteredProducts.length > 0 ? (
+            filteredProducts.map((product) => (
+              <div key={product.id} className="product-item" style={{ textAlign: "center" }}>
+                {product.product_image && (
+                  <img src={`http://127.0.0.1:8000/${product.product_image}`} alt={product.product_name} className="product-image" />
+                )}
+                <h2>{product.product_name}</h2>
+                <p>Price: ${product.price}</p>
+                <div className="description-container">
+                  <p>{product.description}</p>
+                  <button className="cart-button">
+                    <ShoppingCartOutlined className="icon" />
+                  </button>
                 </div>
-              ))
-            ) : (
-              <p>No products found.</p>
-            )}
-          </div>
+              </div>
+            ))
+          ) : (
+            <p>No products found.</p>
+          )}
         </div>
       </div>
     </MainPage>
