@@ -8,30 +8,11 @@ const { Option } = Select;
 const Registration = () => {
   const [form] = Form.useForm();
   const navigate = useNavigate();
-  const [countdown, setCountdown] = useState(null);
-
-  // Effect to handle the countdown timer.
-  useEffect(() => {
-    let timer;
-    if (countdown !== null && countdown > 0) {
-      timer = setInterval(() => {
-        setCountdown((prev) => {
-          if (prev <= 1) {
-            clearInterval(timer);
-            navigate("/products");
-            return 0;
-          }
-          return prev - 1;
-        });
-      }, 1000);
-    }
-    return () => clearInterval(timer);
-  }, [countdown, navigate]);
+  const [countdown, setCountdown] = useState(null); // null means no countdown yet
 
   // Handle form submission
   const handleSubmit = async (values) => {
     try {
-      // Send the registration request to the API.
       const response = await fetch("http://127.0.0.1:8000/api/register", {
         method: "POST",
         headers: {
@@ -43,7 +24,7 @@ const Registration = () => {
 
       const data = await response.json();
 
-      if (!response.ok) {
+      if (!response.ok || !data.status) {
         if (data.errors) {
           Object.values(data.errors).forEach((errorMessages) => {
             errorMessages.forEach((errorMessage) => {
@@ -54,32 +35,38 @@ const Registration = () => {
         throw new Error("Registration failed");
       }
 
-      console.log("Registration successful:", data);
-      // Store the returned profile data locally.
+      // Store the returned access token so the user is logged in automatically
+      localStorage.setItem("userToken", data.data.access_token);
+      // Optionally, store the profile data if needed
       localStorage.setItem("userProfile", JSON.stringify(data.data.profile));
+
       message.success("Registration successful!");
 
-      // Reset the form.
+      // Start countdown from 3 seconds for redirect
+      setCountdown(3);
       form.resetFields();
-
-      // Start the countdown (set to 4 seconds).
-      setCountdown(4);
     } catch (error) {
       console.error("Error during registration:", error);
       message.error("Registration failed. Please check the form.");
     }
   };
 
+  // Countdown effect: when countdown is active, reduce it by 1 every second until 0, then navigate
+  useEffect(() => {
+    if (countdown === null) return;
+    if (countdown <= 0) {
+      navigate("/products");
+      return;
+    }
+    const timer = setTimeout(() => setCountdown(countdown - 1), 1000);
+    return () => clearTimeout(timer);
+  }, [countdown, navigate]);
+
   return (
     <MainPage>
       <div className="registration-container">
         <h2>Register</h2>
-        <Form
-          form={form}
-          layout="vertical"
-          onFinish={handleSubmit}
-          autoComplete="off"
-        >
+        <Form form={form} layout="vertical" onFinish={handleSubmit} autoComplete="off">
           <Row gutter={16}>
             <Col span={8}>
               <Form.Item
@@ -105,6 +92,7 @@ const Registration = () => {
               </Form.Item>
             </Col>
           </Row>
+
           <Row gutter={16}>
             <Col span={8}>
               <Form.Item
@@ -125,10 +113,7 @@ const Registration = () => {
                 name="phone_number"
                 rules={[
                   { required: true, message: "Phone number is required" },
-                  {
-                    pattern: /^\+639\d{9}$/,
-                    message: "Phone number must be in +639XXXXXXXXX format",
-                  },
+                  { pattern: /^\+639\d{9}$/, message: "Phone number must be in +639XXXXXXXXX format" },
                 ]}
               >
                 <Input placeholder="+639XXXXXXXXX" />
@@ -147,6 +132,7 @@ const Registration = () => {
               </Form.Item>
             </Col>
           </Row>
+
           <Row gutter={16}>
             <Col span={8}>
               <Form.Item
@@ -190,14 +176,15 @@ const Registration = () => {
               </Form.Item>
             </Col>
           </Row>
+
           <Form.Item className="form-submit-container">
-            <Button type="primary" htmlType="submit">
-              Register
-            </Button>
+            <Button type="primary" htmlType="submit">Register</Button>
           </Form.Item>
         </Form>
+
+        {/* If countdown is active, display the countdown message */}
         {countdown !== null && (
-          <div style={{ marginTop: "20px", textAlign: "center" }}>
+          <div style={{ marginTop: "20px", textAlign: "center", fontSize: "16px" }}>
             Redirecting in {countdown}...
           </div>
         )}

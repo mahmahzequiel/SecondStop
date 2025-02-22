@@ -10,8 +10,15 @@ const profiles = () => {
   const [loadingProfile, setLoadingProfile] = useState(false);
   const [profileData, setProfileData] = useState(null);
 
-  // Fetch profile data on mount and pre-fill the form fields
   useEffect(() => {
+    // Ensure token exists and set the Authorization header
+    const token = localStorage.getItem("userToken");
+    if (!token) {
+      message.error("No token found. Please log in.");
+      return;
+    }
+    axios.defaults.headers.common["Authorization"] = `Bearer ${token}`;
+
     const fetchProfile = async () => {
       setLoadingProfile(true);
       try {
@@ -27,7 +34,7 @@ const profiles = () => {
             username: data.username,
             email: data.email,
             phoneNumber: data.phone_number,
-            gender: data.sex, // Adjust if your API uses a different key
+            gender: data.sex, // Adjust if your API returns a different key
           });
         } else {
           message.error("Failed to load profile.");
@@ -46,7 +53,7 @@ const profiles = () => {
   // Handle form submission (profile update)
   const onFinish = async (values) => {
     console.log("Updated profile values:", values);
-    // Example: PUT request to update profile
+    // Uncomment and adjust the API call if needed:
     // try {
     //   const res = await axios.put("http://127.0.0.1:8000/api/profile/update", values);
     //   if (res.data.status) {
@@ -64,7 +71,7 @@ const profiles = () => {
   const uploadProps = {
     beforeUpload: (file) => {
       console.log("Selected file:", file);
-      return false; // Prevent automatic upload; handle manually if needed
+      return false;
     },
   };
 
@@ -84,9 +91,7 @@ const profiles = () => {
           <div style={{ textAlign: "center", marginBottom: "20px" }}>
             <Avatar size={80} icon={<UserOutlined />} />
             <p style={{ marginTop: "10px", fontWeight: "bold" }}>
-              {profileData
-                ? `${profileData.first_name} ${profileData.last_name}`
-                : "User Name"}
+              {profileData ? `${profileData.first_name} ${profileData.last_name}` : "User Name"}
             </p>
           </div>
           <div style={{ display: "flex", flexDirection: "column", gap: "10px" }}>

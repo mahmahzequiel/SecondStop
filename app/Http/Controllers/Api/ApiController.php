@@ -24,7 +24,6 @@ class ApiController extends Controller
             "email"        => "required|string|email|max:255|unique:users",
             "password"     => "required|string|confirmed|min:8"
         ]);
-
         // Create User.
         $user = User::create([
             "role_id"  => 1, // Default role.
@@ -45,15 +44,20 @@ class ApiController extends Controller
             "email"        => $request->email
         ]);
 
+        // Create an access token for the user
+        $token = $user->createToken('authToken')->accessToken;
+
         return response()->json([
             "status"  => true,
             "message" => "User registered successfully",
             "data"    => [
                 "user"    => $user,
-                "profile" => $profile
-            ]
+                "profile" => $profile,
+                "access_token" => $token
+                ]
         ]);
     }
+
 
     // Login user and return an access token.
     public function login(Request $request)
