@@ -10,15 +10,8 @@ const profiles = () => {
   const [loadingProfile, setLoadingProfile] = useState(false);
   const [profileData, setProfileData] = useState(null);
 
+  // Fetch profile data on mount and pre-fill the form fields
   useEffect(() => {
-    // Ensure token exists and set the Authorization header
-    const token = localStorage.getItem("userToken");
-    if (!token) {
-      message.error("No token found. Please log in.");
-      return;
-    }
-    axios.defaults.headers.common["Authorization"] = `Bearer ${token}`;
-
     const fetchProfile = async () => {
       setLoadingProfile(true);
       try {
@@ -30,11 +23,12 @@ const profiles = () => {
           setProfileData(data);
           form.setFieldsValue({
             firstName: data.first_name,
+            middleName: data.middle_name, // Added middle name
             lastName: data.last_name,
             username: data.username,
             email: data.email,
             phoneNumber: data.phone_number,
-            gender: data.sex, // Adjust if your API returns a different key
+            gender: data.sex, // Adjust if your API returns a different key for gender
           });
         } else {
           message.error("Failed to load profile.");
@@ -53,7 +47,7 @@ const profiles = () => {
   // Handle form submission (profile update)
   const onFinish = async (values) => {
     console.log("Updated profile values:", values);
-    // Uncomment and adjust the API call if needed:
+    // Example: PUT request to update profile
     // try {
     //   const res = await axios.put("http://127.0.0.1:8000/api/profile/update", values);
     //   if (res.data.status) {
@@ -71,7 +65,7 @@ const profiles = () => {
   const uploadProps = {
     beforeUpload: (file) => {
       console.log("Selected file:", file);
-      return false;
+      return false; // Prevent automatic upload; handle manually if needed
     },
   };
 
@@ -91,7 +85,9 @@ const profiles = () => {
           <div style={{ textAlign: "center", marginBottom: "20px" }}>
             <Avatar size={80} icon={<UserOutlined />} />
             <p style={{ marginTop: "10px", fontWeight: "bold" }}>
-              {profileData ? `${profileData.first_name} ${profileData.last_name}` : "User Name"}
+              {profileData
+                ? `${profileData.first_name} ${profileData.middle_name} ${profileData.last_name}`
+                : "User Name"}
             </p>
           </div>
           <div style={{ display: "flex", flexDirection: "column", gap: "10px" }}>
@@ -154,7 +150,7 @@ const profiles = () => {
           {/* Profile Form */}
           <Form form={form} layout="vertical" onFinish={onFinish}>
             <Row gutter={16}>
-              <Col span={12}>
+              <Col span={8}>
                 <Form.Item
                   label="First Name"
                   name="firstName"
@@ -163,7 +159,16 @@ const profiles = () => {
                   <Input placeholder="Enter first name" />
                 </Form.Item>
               </Col>
-              <Col span={12}>
+              <Col span={8}>
+                <Form.Item
+                  label="Middle Name"
+                  name="middleName"
+                  // Middle name might be optional, so no required rule here
+                >
+                  <Input placeholder="Enter middle name" />
+                </Form.Item>
+              </Col>
+              <Col span={8}>
                 <Form.Item
                   label="Last Name"
                   name="lastName"
