@@ -5,7 +5,7 @@ import logo from "/images/logodescription.png";
 
 export default function Login() {
   const navigate = useNavigate();
-  const [email, setEmail] = useState(""); // Change to email
+  const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [showPassword, setShowPassword] = useState(false);
   const [error, setError] = useState("");
@@ -21,18 +21,27 @@ export default function Login() {
       return;
     }
 
-    setLoading(true); // Show loading state
+    setLoading(true);
     try {
       const response = await axios.post(
         "http://127.0.0.1:8000/api/login",
-        { email, password }, // Change to email (matches backend)
+        { email, password },
         { headers: { "Content-Type": "application/json" } }
       );
 
-      const { access_token } = response.data; // Laravel Passport returns 'access_token'
+      const { access_token, user } = response.data;
       if (access_token) {
+        // Store token and update axios header immediately.
         localStorage.setItem("userToken", access_token);
-        navigate("/products");
+        axios.defaults.headers.common["Authorization"] = `Bearer ${access_token}`;
+        localStorage.setItem("user", JSON.stringify(user));
+
+        // Redirect based on role: if role_id is 2 (admin), go to /admin.
+        if (user.role_id === 2) {
+          navigate("/admin");
+        } else {
+          navigate("/products");
+        }
       } else {
         setError("Invalid credentials. Please try again.");
       }
@@ -57,7 +66,7 @@ export default function Login() {
           {error && <p className="error-message">{error}</p>}
           <form onSubmit={handleLogin}>
             <div className="input-group">
-             <label htmlFor="email"></label>
+              <label htmlFor="email"></label>
               <div className="input-container">
                 <i className="bx bxs-user bx-sm icon-left"></i>
                 <input
@@ -71,7 +80,7 @@ export default function Login() {
             </div>
 
             <div className="input-group">
-             <label htmlFor="password"></label>
+              <label htmlFor="password"></label>
               <div className="input-container">
                 <i className="bx bxs-lock-alt bx-sm icon-left"></i>
                 <input
@@ -87,8 +96,6 @@ export default function Login() {
                 ></i>
               </div>
             </div>
-
-            
 
             <button className="signin-btn" type="submit" disabled={loading}>
               {loading ? "Signing in..." : "Sign In"}

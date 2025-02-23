@@ -1,6 +1,6 @@
 import React from "react";
 import ReactDOM from "react-dom/client";
-import { BrowserRouter as Router, Routes, Route, useLocation } from "react-router-dom";
+import { BrowserRouter as Router, Routes, Route, useLocation, Navigate } from "react-router-dom";
 import axios from "axios";
 
 // Set axios default header for Authorization if a token exists
@@ -10,7 +10,6 @@ if (token) {
 }
 
 // Import your components
-import MainDashboard from "./AdminReusable/AdminPage";
 import MainPage from "./Reusable/MainPage";
 import Login from "./LogIn/LogIn";
 import DisplayProducts from "./Products/DisplayProducts";
@@ -25,6 +24,7 @@ import ProductDetails from "./Products/ProductDetails";
 import Carts from "./Cart/Carts";
 import Chatbot from "./Chat/Chatbot";
 import AdminPage from "./AdminReusable/AdminPage";
+import RoleBasedRoute from "./RoleBasedRoute"; // The wrapper we created
 
 // Wrapper Component to conditionally render Chatbot
 function AppContent() {
@@ -45,7 +45,15 @@ function AppContent() {
         <Route path="/address" element={<Address />} />
         <Route path="/change-password" element={<ChangePassword />} />
         <Route path="/faq" element={<FAQ />} />
-        <Route path="/product/:id" element={<ProductDetails />} />
+        {/* Wrap the product details route */}
+        <Route 
+          path="/product/:id" 
+          element={
+            <RoleBasedRoute allowedRoles={[1]}>
+              <ProductDetails />
+            </RoleBasedRoute>
+          } 
+        />
         <Route path="/cart" element={<Carts />} />
       </Routes>
 
@@ -66,4 +74,3 @@ function Routers() {
 const container = document.getElementById("root");
 const root = ReactDOM.createRoot(container);
 root.render(<Routers />);
- 
