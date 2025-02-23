@@ -1,0 +1,28 @@
+.admin-sidebar {
+    width: 200px;
+    background-color: #E8AB99;
+    color: black;
+    border-right: 1px solid #f0f0f0;
+    padding: 20px 0px;
+  
+    .nav-item {
+        display: flex;
+        align-items: center;
+        padding: 12px 24px;
+        font-size: 26px;
+        cursor: pointer;
+        font-family: 'Inria Serif', serif;
+        color: black; // Change this to white if you want white text
+        cursor: pointer;
+        transition: background 0.3s ease;
+
+        .nav-icon {
+            margin-right: 10px; // Adjust spacing between icon and text
+          }
+      
+        &:hover {
+          background: #e6f7ff;
+        }
+      }
+  }
+  

@@ -12139,7 +12139,8 @@ textarea.form-control-lg {
 }
 .header-layer .logo .icon {
   margin-left: 10px;
-  font-size: 20px;
+  font-size: 30px;
+  font-family: "Inria Serif", serif;
 }
 .header-layer .search-bar {
   display: flex;
@@ -12650,4 +12651,74 @@ h2, .h2 {
 }
 .cart-container .cart-actions .checkout-btn:hover {
   background: #a84300;
+}
+
+.admin-page {
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+}
+.admin-page .admin-body {
+  display: flex;
+  flex: 1;
+  background-color: #750139;
+}
+.admin-page .admin-content {
+  width: 100%;
+  flex: 1;
+  padding: 24px;
+  border-radius: 20px;
+  overflow-y: auto;
+  background: #fff;
+  margin: 15px;
+}
+
+.admin-sidebar {
+  width: 200px;
+  background-color: #E8AB99;
+  color: black;
+  border-right: 1px solid #f0f0f0;
+  padding: 20px 0px;
+}
+.admin-sidebar .nav-item {
+  display: flex;
+  align-items: center;
+  padding: 12px 24px;
+  font-size: 26px;
+  cursor: pointer;
+  font-family: "Inria Serif", serif;
+  color: black;
+  cursor: pointer;
+  transition: background 0.3s ease;
+}
+.admin-sidebar .nav-item .nav-icon {
+  margin-right: 10px;
+}
+.admin-sidebar .nav-item:hover {
+  background: #e6f7ff;
+}
+
+.admin-header {
+  background-color: #E8AB99;
+  color: white;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px 20px;
+  position: sticky;
+  top: 0;
+  z-index: 1000; /* Ensures the header stays on top */
+}
+.admin-header .logo {
+  display: flex;
+  align-items: center;
+}
+.admin-header .logo img {
+  height: 70px;
+  width: 70px;
+}
+.admin-header .logo .title {
+  margin-left: 10px;
+  font-size: 30px;
+  font-family: "Inria Serif", serif;
 }

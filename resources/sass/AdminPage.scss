@@ -1,0 +1,25 @@
+.admin-page {
+    display: flex;
+    flex-direction: column;
+    height: 100vh; // Full viewport height
+  
+    // Body contains the sidebar and main content
+    .admin-body {
+      display: flex;
+      flex: 1;
+      background-color: #750139; // Ant Design's light gray background
+    }
+  
+    // Main content area styles
+    .admin-content {
+      width: 100%;;       // Set a fixed width (adjust as needed)
+      
+      flex: 1;
+      padding: 24px;
+      border-radius: 20px; 
+      overflow-y: auto;
+      background: #fff;
+      margin: 15px;
+    }
+  }
+  

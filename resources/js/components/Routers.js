@@ -10,6 +10,7 @@ if (token) {
 }
 
 // Import your components
+import MainDashboard from "./AdminReusable/AdminPage";
 import MainPage from "./Reusable/MainPage";
 import Login from "./LogIn/LogIn";
 import DisplayProducts from "./Products/DisplayProducts";
@@ -23,16 +24,18 @@ import FAQ from "./Profile/Faq";
 import ProductDetails from "./Products/ProductDetails";
 import Carts from "./Cart/Carts";
 import Chatbot from "./Chat/Chatbot";
+import AdminPage from "./AdminReusable/AdminPage";
 
 // Wrapper Component to conditionally render Chatbot
 function AppContent() {
   const location = useLocation(); // Get current route
-  const hideChatbotPaths = ["/login", "/register"]; // Define routes where Chatbot should be hidden
+  const hideChatbotPaths = ["/login", "/register", "/admin"]; // Define routes where Chatbot should be hidden
 
   return (
     <>
       <Routes>
         <Route path="/" element={<DisplayProducts />} />
+        <Route path="/admin" element={<AdminPage />} />
         <Route path="/login" element={<Login />} />
         <Route path="/products" element={<DisplayProducts />} />
         <Route path="/register" element={<Register />} />
@@ -63,3 +66,4 @@ function Routers() {
 const container = document.getElementById("root");
 const root = ReactDOM.createRoot(container);
 root.render(<Routers />);
+ 

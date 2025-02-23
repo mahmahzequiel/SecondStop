@@ -1,0 +1,28 @@
+.admin-header {
+    background-color: #E8AB99;
+    color: white;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 20px;
+    position: sticky;
+    top: 0;
+    z-index: 1000; /* Ensures the header stays on top */
+  
+    .logo {
+      display: flex;
+      align-items: center;
+  
+      img {
+        height: 70px;
+        width: 70px;
+      }
+  
+      .title {
+        margin-left: 10px;
+        font-size: 30px;
+        font-family: 'Inria Serif', serif;
+      }
+    }
+  }
+  
