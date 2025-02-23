@@ -20,6 +20,7 @@ import Purchases from "./Profile/Purchases";
 import Address from "./Profile/Address";
 import ChangePassword from "./Profile/ChangePassword";
 import FAQ from "./Profile/Faq";
+import ProductDetails from "./Products/ProductDetails";
 
 function Routers() {
   return (
@@ -35,6 +36,7 @@ function Routers() {
         <Route path="/address" element={<Address />} />
         <Route path="/change-password" element={<ChangePassword />} />
         <Route path="/faq" element={<FAQ />} />
+        <Route path="/product/:id" element={<ProductDetails />} />
         {/* Add other routes as needed */}
       </Routes>
     </Router>

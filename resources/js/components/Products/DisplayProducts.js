@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import MainPage from "../Reusable/MainPage";
 import { ShoppingCartOutlined } from "@ant-design/icons";
+import { useNavigate } from "react-router-dom";
 import categories from "../Categories/Categories";
 import Filters from "./Filters";
 
@@ -14,6 +15,7 @@ const DisplayProducts = () => {
   const [showFilters, setShowFilters] = useState(false);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
+  const navigate = useNavigate();
 
   useEffect(() => {
     const fetchProducts = async () => {
@@ -104,7 +106,7 @@ const DisplayProducts = () => {
           <div className="product-list">
             {filteredProducts.length > 0 ? (
               filteredProducts.map((product) => (
-                <div key={product.id} className="product-item">
+                <div key={product.id} className="product-item" onClick={() => navigate(`/product/${product.id}`)}>
                   {product.product_image && (
                     <img
                       src={`http://127.0.0.1:8000/${product.product_image}`}
