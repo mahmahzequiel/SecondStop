@@ -36,9 +36,9 @@ export default function Login() {
         axios.defaults.headers.common["Authorization"] = `Bearer ${access_token}`;
         localStorage.setItem("user", JSON.stringify(user));
 
-        // Redirect based on role: if role_id is 2 (admin), go to /admin.
+        // Redirect based on role: if role_id is 2 (admin), navigate to the admin section.
         if (user.role_id === 2) {
-          navigate("/admin");
+          navigate("/admin"); // or navigate("/admin/profile") if you want to land directly on the admin profile page
         } else {
           navigate("/products");
         }
@@ -91,7 +91,9 @@ export default function Login() {
                   onChange={(e) => setPassword(e.target.value)}
                 />
                 <i
-                  className={`bx ${showPassword ? "bx-show" : "bx-low-vision"} bx-sm icon-right`}
+                  className={`bx ${
+                    showPassword ? "bx-show" : "bx-low-vision"
+                  } bx-sm icon-right`}
                   onClick={togglePasswordState}
                 ></i>
               </div>

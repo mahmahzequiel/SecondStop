@@ -6,23 +6,31 @@
     padding: 20px 0px;
   
     .nav-item {
+      display: flex;
+      align-items: center;
+      padding: 12px 24px;
+      font-size: 26px;
+      font-family: 'Inria Serif', serif;
+      color: black;
+      cursor: pointer;
+      transition: background 0.3s ease;
+  
+      .nav-icon {
+        margin-right: 10px;
+      }
+  
+      // This rule applies to any link inside .nav-item
+      a {
         display: flex;
         align-items: center;
-        padding: 12px 24px;
-        font-size: 26px;
-        cursor: pointer;
-        font-family: 'Inria Serif', serif;
-        color: black; // Change this to white if you want white text
-        cursor: pointer;
-        transition: background 0.3s ease;
-
-        .nav-icon {
-            margin-right: 10px; // Adjust spacing between icon and text
-          }
-      
-        &:hover {
-          background: #e6f7ff;
-        }
+        color: inherit;
+        text-decoration: none;
+        width: 100%;
       }
+  
+      &:hover {
+        background: #e6f7ff;
+      }
+    }
   }
   

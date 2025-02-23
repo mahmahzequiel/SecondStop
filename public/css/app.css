@@ -12685,7 +12685,6 @@ h2, .h2 {
   align-items: center;
   padding: 12px 24px;
   font-size: 26px;
-  cursor: pointer;
   font-family: "Inria Serif", serif;
   color: black;
   cursor: pointer;
@@ -12693,6 +12692,13 @@ h2, .h2 {
 }
 .admin-sidebar .nav-item .nav-icon {
   margin-right: 10px;
+}
+.admin-sidebar .nav-item a {
+  display: flex;
+  align-items: center;
+  color: inherit;
+  text-decoration: none;
+  width: 100%;
 }
 .admin-sidebar .nav-item:hover {
   background: #e6f7ff;

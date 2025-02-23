@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router-dom";
 import {
   DashboardOutlined,
   UserOutlined,
@@ -37,8 +38,10 @@ function AdminSidebar() {
         <span>Messages</span>
       </div>
       <div className="nav-item">
-        <ProfileOutlined className="nav-icon" />
-        <span>Profile</span>
+        <Link to="/adminprofile" style={{ display: "flex", alignItems: "center", color: "inherit", textDecoration: "none" }}>
+          <ProfileOutlined className="nav-icon" />
+          <span>Profile</span>
+        </Link>
       </div>
     </aside>
   );

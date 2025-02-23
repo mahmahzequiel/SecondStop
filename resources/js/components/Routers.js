@@ -1,6 +1,12 @@
 import React from "react";
 import ReactDOM from "react-dom/client";
-import { BrowserRouter as Router, Routes, Route, useLocation, Navigate } from "react-router-dom";
+import {
+  BrowserRouter as Router,
+  Routes,
+  Route,
+  useLocation,
+  Navigate
+} from "react-router-dom";
 import axios from "axios";
 
 // Set axios default header for Authorization if a token exists
@@ -9,12 +15,13 @@ if (token) {
   axios.defaults.headers.common["Authorization"] = `Bearer ${token}`;
 }
 
-// Import your components
+// Import components
 import MainPage from "./Reusable/MainPage";
 import Login from "./LogIn/LogIn";
 import DisplayProducts from "./Products/DisplayProducts";
 import Register from "./Registration/Register";
 import Profiles from "./Profile/profiles";
+import AdminProfile from "./Admin/AdminProfile"; // Admin-specific profile component
 import Logout from "./Profile/Logout";
 import Purchases from "./Profile/Purchases";
 import Address from "./Profile/Address";
@@ -24,40 +31,52 @@ import ProductDetails from "./Products/ProductDetails";
 import Carts from "./Cart/Carts";
 import Chatbot from "./Chat/Chatbot";
 import AdminPage from "./AdminReusable/AdminPage";
-import RoleBasedRoute from "./RoleBasedRoute"; // The wrapper we created
 
-// Wrapper Component to conditionally render Chatbot
 function AppContent() {
-  const location = useLocation(); // Get current route
-  const hideChatbotPaths = ["/login", "/register", "/admin"]; // Define routes where Chatbot should be hidden
+  const location = useLocation();
+  // Retrieve the stored user (if any)
+  const storedUser = localStorage.getItem("user");
+  const user = storedUser ? JSON.parse(storedUser) : null;
+
+  // Define paths where Chatbot should not appear
+  const hideChatbotPaths = ["/login", "/register", "/admin", "/adminprofile"];
 
   return (
     <>
       <Routes>
         <Route path="/" element={<DisplayProducts />} />
-        <Route path="/admin" element={<AdminPage />} />
+
+        {/* If an admin is logged in, set up admin routes */}
+        {user && user.role_id === 2 ? (
+          <>
+            <Route path="/admin" element={<AdminPage />} />
+            <Route path="/adminprofile" element={<AdminProfile />} />
+            {/* Redirect customer profile path to admin profile */}
+            <Route path="/profile" element={<Navigate to="/adminprofile" />} />
+          </>
+        ) : (
+          // Otherwise (or if no user logged in), assume a customer
+          <>
+            <Route path="/profile" element={<Profiles />} />
+            {/* Optionally, redirect any /admin path to /profile for customers */}
+            <Route path="/admin" element={<Navigate to="/profile" />} />
+          </>
+        )}
+
+        {/* Other common routes */}
         <Route path="/login" element={<Login />} />
         <Route path="/products" element={<DisplayProducts />} />
         <Route path="/register" element={<Register />} />
-        <Route path="/profile" element={<Profiles />} />
         <Route path="/logout" element={<Logout />} />
         <Route path="/purchases" element={<Purchases />} />
         <Route path="/address" element={<Address />} />
         <Route path="/change-password" element={<ChangePassword />} />
         <Route path="/faq" element={<FAQ />} />
-        {/* Wrap the product details route */}
-        <Route 
-          path="/product/:id" 
-          element={
-            <RoleBasedRoute allowedRoles={[1]}>
-              <ProductDetails />
-            </RoleBasedRoute>
-          } 
-        />
+        <Route path="/product/:id" element={<ProductDetails />} />
         <Route path="/cart" element={<Carts />} />
       </Routes>
 
-      {/* Conditionally render Chatbot */}
+      {/* Render Chatbot unless on one of the specified paths */}
       {!hideChatbotPaths.includes(location.pathname) && <Chatbot />}
     </>
   );
