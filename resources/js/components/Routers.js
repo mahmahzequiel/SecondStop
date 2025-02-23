@@ -1,6 +1,6 @@
 import React from "react";
 import ReactDOM from "react-dom/client";
-import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import { BrowserRouter as Router, Routes, Route, useLocation } from "react-router-dom";
 import axios from "axios";
 
 // Set axios default header for Authorization if a token exists
@@ -22,10 +22,15 @@ import ChangePassword from "./Profile/ChangePassword";
 import FAQ from "./Profile/Faq";
 import ProductDetails from "./Products/ProductDetails";
 import Carts from "./Cart/Carts";
+import Chatbot from "./Chat/Chatbot";
 
-function Routers() {
+// Wrapper Component to conditionally render Chatbot
+function AppContent() {
+  const location = useLocation(); // Get current route
+  const hideChatbotPaths = ["/login", "/register"]; // Define routes where Chatbot should be hidden
+
   return (
-    <Router>
+    <>
       <Routes>
         <Route path="/" element={<DisplayProducts />} />
         <Route path="/login" element={<Login />} />
@@ -39,8 +44,18 @@ function Routers() {
         <Route path="/faq" element={<FAQ />} />
         <Route path="/product/:id" element={<ProductDetails />} />
         <Route path="/cart" element={<Carts />} />
-        {/* Add other routes as needed */}
       </Routes>
+
+      {/* Conditionally render Chatbot */}
+      {!hideChatbotPaths.includes(location.pathname) && <Chatbot />}
+    </>
+  );
+}
+
+function Routers() {
+  return (
+    <Router>
+      <AppContent />
     </Router>
   );
 }

@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
-import logo from "/images/logo.png";
+import logo from "/images/logodescription.png";
 
 export default function Login() {
   const navigate = useNavigate();
@@ -99,6 +99,16 @@ export default function Login() {
               style={{ cursor: "pointer", color: "blue" }}
             >
               Forgot Password?
+            </p>
+
+            <p className="signup-link">
+              New to Second Stop?{" "}
+              <span
+                onClick={() => navigate("/register")}
+                style={{ cursor: "pointer", color: "blue", fontWeight: "bold" }}
+              >
+                Sign Up
+              </span>
             </p>
           </form>
         </div>

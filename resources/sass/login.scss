@@ -123,7 +123,15 @@
               text-align: left;
               cursor: pointer;
               margin-top: 15px;
-              margin-left: 42px; /* Moves forgot password 42px from the left */
+              margin-left: 10px; /* Moves forgot password 42px from the left */
+          }
+
+          .signup-link {
+            font-family: 'Inria Serif', serif;
+            font-size: 20px;
+            font-weight: bold;
+            margin-top: 61px;
+            text-align: center;
           }
       }
   }
