@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import MainPage from "../Reusable/MainPage";
 import { ShoppingCartOutlined } from "@ant-design/icons";
 import categories from "../Categories/Categories";
-import Filters from "../Categories/Filters";
+import Filters from "./Filters";
 
 const DisplayProducts = () => {
   const [products, setProducts] = useState([]);
@@ -14,13 +14,11 @@ const DisplayProducts = () => {
   const [showFilters, setShowFilters] = useState(false);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
-  const [showCategories, setShowCategories] = useState(true);
 
   useEffect(() => {
     const fetchProducts = async () => {
       try {
         let url = "http://127.0.0.1:8000/api/products";
-
         if (selectedCategoryType && selectedCategoryType.id) {
           url = `http://127.0.0.1:8000/api/products-by-category-type?category_type_id=${selectedCategoryType.id}`;
         }
@@ -45,34 +43,16 @@ const DisplayProducts = () => {
     fetchProducts();
   }, [selectedCategoryType]);
 
-  const handleCategorySelect = (category) => {
-    setSelectedCategory((prevCategory) => (prevCategory?.id === category.id ? null : category));
-    setShowFilters(true);
-    setSelectedCategoryType(null);
-    setSelectedBrand(null);
-    setSelectedFilters({});
-    setShowCategories(false);
-  };
-
-  const handleCategoryTypeSelect = (categoryType) => {
-    setSelectedCategoryType((prevType) => (prevType?.id === categoryType?.id ? null : categoryType));
-  };
-
-  const handleBrandSelect = (brand) => {
-    setSelectedBrand((prevBrand) => (prevBrand?.id === brand?.id ? null : brand));
-  };
-
   useEffect(() => {
     let filtered = products;
-
     if (selectedCategory) {
-      filtered = filtered.filter((product) => product.category_id === selectedCategory.id);
+      filtered = filtered.filter(
+        (product) => product.category_id === selectedCategory.id
+      );
     }
-
     if (selectedBrand) {
       filtered = filtered.filter((product) => product.brand_id === selectedBrand.id);
     }
-
     Object.entries(selectedFilters).forEach(([key, value]) => {
       if (value) {
         filtered = filtered.filter((product) => product[key] === value);
@@ -87,53 +67,65 @@ const DisplayProducts = () => {
 
   return (
     <MainPage>
-      <div className="product-section" style={{ display: "flex", justifyContent: "center", alignItems: "flex-start" }}>
-        {/* Filters Column */}
-        <div className="filters-container" style={{ width: "20%", paddingRight: "20px" }}>
-          {showCategories && (
-            <div className="category-container">
-              {categories.map((category) => (
-                <div key={category.id} className="category-item" onClick={() => handleCategorySelect(category)}>
-                  <img src={`http://127.0.0.1:8000/${category.image}`} alt={category.name} className="category-image" />
-                  <p>{category.name}</p>
-                </div>
-              ))}
+      <div className="display-products">
+        {/* Categories at the top */}
+        <div className="category-container">
+          {categories.map((category) => (
+            <div
+              key={category.id}
+              className="category-item"
+              onClick={() => setSelectedCategory(category)}
+            >
+              <img
+                src={`http://127.0.0.1:8000/${category.image}`}
+                alt={category.name}
+                className="category-image"
+              />
+              <p>{category.name}</p>
             </div>
-          )}
+          ))}
+        </div>
 
-          {showFilters && selectedCategory && (
-            <div className="filter-section">
+        {/* Main Grid Layout */}
+        <div className="content-grid">
+          {/* Filters on the left */}
+          <div className="filters-container">
+            {selectedCategory && (
               <Filters
                 selectedFilters={selectedFilters}
                 setSelectedFilters={setSelectedFilters}
-                onCategoryTypeSelect={handleCategoryTypeSelect}
-                onBrandSelect={handleBrandSelect}
+                onCategoryTypeSelect={setSelectedCategoryType}
+                onBrandSelect={setSelectedBrand}
               />
-            </div>
-          )}
-        </div>
+            )}
+          </div>
 
-        {/* Product List Column */}
-        <div className="product-list" style={{ width: "60%", display: "flex", flexWrap: "wrap", justifyContent: "center" }}>
-          {filteredProducts.length > 0 ? (
-            filteredProducts.map((product) => (
-              <div key={product.id} className="product-item" style={{ textAlign: "center" }}>
-                {product.product_image && (
-                  <img src={`http://127.0.0.1:8000/${product.product_image}`} alt={product.product_name} className="product-image" />
-                )}
-                <h2>{product.product_name}</h2>
-                <p>Price: ${product.price}</p>
-                <div className="description-container">
-                  <p>{product.description}</p>
-                  <button className="cart-button">
-                    <ShoppingCartOutlined className="icon" />
-                  </button>
+          {/* Product Grid */}
+          <div className="product-list">
+            {filteredProducts.length > 0 ? (
+              filteredProducts.map((product) => (
+                <div key={product.id} className="product-item">
+                  {product.product_image && (
+                    <img
+                      src={`http://127.0.0.1:8000/${product.product_image}`}
+                      alt={product.product_name}
+                      className="product-image"
+                    />
+                  )}
+                  <h2>{product.product_name}</h2>
+                  <p>Price: ${product.price}</p>
+                  <div className="description-container">
+                    <p>{product.description}</p>
+                    <button className="cart-button">
+                      <ShoppingCartOutlined className="cart-icon" />
+                    </button>
+                  </div>
                 </div>
-              </div>
-            ))
-          ) : (
-            <p>No products found.</p>
-          )}
+              ))
+            ) : (
+              <p>No products found.</p>
+            )}
+          </div>
         </div>
       </div>
     </MainPage>
