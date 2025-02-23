@@ -57,7 +57,7 @@ export default function Login() {
           {error && <p className="error-message">{error}</p>}
           <form onSubmit={handleLogin}>
             <div className="input-group">
-             <label htmlFor="email"></label>
+              <label htmlFor="email"></label>
               <div className="input-container">
                 <i className="bx bxs-user bx-sm icon-left"></i>
                 <input
@@ -71,7 +71,7 @@ export default function Login() {
             </div>
 
             <div className="input-group">
-             <label htmlFor="password"></label>
+              <label htmlFor="password"></label>
               <div className="input-container">
                 <i className="bx bxs-lock-alt bx-sm icon-left"></i>
                 <input
@@ -87,12 +87,10 @@ export default function Login() {
                 ></i>
               </div>
             </div>
-
-            
-
             <button className="signin-btn" type="submit" disabled={loading}>
               {loading ? "Signing in..." : "Sign In"}
             </button>
+
             <p
               className="forgot-password"
               onClick={() => navigate("/forgot-password")}
@@ -100,10 +98,19 @@ export default function Login() {
             >
               Forgot Password?
             </p>
+
+            <p className="signup-link" style={{ marginTop: "10px", textAlign: "center" }}>
+              New to Second Stop?{" "}
+              <span
+                onClick={() => navigate("/signup")}
+                style={{ cursor: "pointer", color: "blue", fontWeight: "bold" }}
+              >
+                Sign Up
+              </span>
+            </p>
           </form>
         </div>
       </div>
     </div>
   );
 }
-
