@@ -2,10 +2,10 @@ import React from "react";
 import Header from "./Header"; // Import Header component
 import Footer from "./Footer"; // Import Footer component
 
-function MainPage({ children }) {
+function MainPage({ children, onSearch }) { // ✅ Accept onSearch as a prop
   return (
     <div>
-      <Header />
+      <Header onSearch={onSearch} /> {/* ✅ Pass onSearch to Header */}
       {/* First Layer (Magenta) */}
       <div className="first-layer">
         <div className="content-wrapper">

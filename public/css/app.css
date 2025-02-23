@@ -12555,3 +12555,92 @@ h2, .h2 {
     justify-content: center;
   }
 }
+.cart-container {
+  max-width: 1500px;
+  margin: 2rem auto;
+  padding: 1.5rem;
+  background: #fff;
+  border-radius: 10px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+.cart-container h2, .cart-container .h2 {
+  text-align: center;
+  margin-bottom: 1rem;
+}
+.cart-container .empty-cart-message {
+  text-align: center;
+  font-size: 1.2rem;
+  color: #888;
+}
+.cart-container .cart-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-bottom: 1rem;
+}
+.cart-container .cart-table th, .cart-container .cart-table td {
+  padding: 10px;
+  text-align: left;
+  border-bottom: 1px solid #ddd;
+}
+.cart-container .cart-table th {
+  background: #f8f8f8;
+}
+.cart-container .cart-table .price {
+  color: red;
+  font-weight: bold;
+}
+.cart-container .cart-table input[type=checkbox] {
+  cursor: pointer;
+}
+.cart-container .cart-table .cart-image {
+  width: 50px;
+  height: 50px;
+  -o-object-fit: cover;
+     object-fit: cover;
+  border-radius: 5px;
+}
+.cart-container .cart-actions {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 10px;
+  background: #f1f1f1;
+  border-radius: 8px;
+}
+.cart-container .cart-actions label {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  cursor: pointer;
+}
+.cart-container .cart-actions .delete-btn {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  background: #e74c3c;
+  color: white;
+  padding: 8px 12px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: 0.3s ease;
+}
+.cart-container .cart-actions .delete-btn:hover {
+  background: #c0392b;
+}
+.cart-container .cart-actions .total-price {
+  font-size: 1.1rem;
+  font-weight: bold;
+}
+.cart-container .cart-actions .checkout-btn {
+  background: #d35400;
+  color: white;
+  padding: 10px 15px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: 0.3s ease;
+}
+.cart-container .cart-actions .checkout-btn:hover {
+  background: #a84300;
+}

@@ -26,6 +26,28 @@ const ProductDetails = () => {
     fetchProduct();
   }, [id]);
 
+  const handleAddToCart = () => {
+    if (!product) return;
+
+    const cart = JSON.parse(localStorage.getItem("cart")) || [];
+    const newItem = {
+      id: product.id,
+      name: product.product_name,
+      brand: product.brand ? product.brand.name : "N/A",
+      price: product.price,
+    };
+
+    // Prevent duplicate entries
+    const isItemInCart = cart.some((item) => item.id === newItem.id);
+    if (!isItemInCart) {
+      cart.push(newItem);
+      localStorage.setItem("cart", JSON.stringify(cart));
+      alert("Item added to cart!");
+    } else {
+      alert("Item is already in the cart.");
+    }
+  };
+
   if (loading) return <h2>Loading...</h2>;
   if (error) return <h2>{error}</h2>;
   if (!product) return <h2>Product not found</h2>;
@@ -54,7 +76,7 @@ const ProductDetails = () => {
             <p><strong>Brand:</strong> {product.brand ? product.brand.name : "N/A"}</p>
 
             <div className="buttons">
-              <button className="add-to-cart">🛒 Add to Cart</button>
+              <button className="add-to-cart" onClick={handleAddToCart}>🛒 Add to Cart</button>
               <button className="buy-now">Buy Now</button>
             </div>
           </div>
