@@ -69,7 +69,7 @@ const Registration = () => {
         {/* Moved the Back button here, outside the form */}
         <Button
           className="back-button"
-          onClick={() => navigate("/LogIn")}
+          onClick={() => navigate("/login")}
         >
         <ArrowLeftOutlined />  Back
         </Button>

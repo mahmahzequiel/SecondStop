@@ -20,8 +20,8 @@ import MainPage from "./Reusable/MainPage";
 import Login from "./LogIn/LogIn";
 import DisplayProducts from "./Products/DisplayProducts";
 import Register from "./Registration/Register";
-import Profiles from "./Profile/profiles";           // For customers (role_id = 1)
-import AdminProfile from "./Admin/AdminProfile";      // For admins   (role_id = 2)
+import Profiles from "./Profile/profiles";           
+import AdminProfile from "./Admin/AdminProfile";    
 import Logout from "./Profile/Logout";
 import AdminLogout from "./Admin/AdminLogout";
 import Purchases from "./Profile/Purchases";
@@ -40,7 +40,7 @@ function AppContent() {
   const location = useLocation();
 
   // We hide the Chatbot on these paths
-  const hideChatbotPaths = ["/login", "/register", "/admin", "/adminprofile"];
+  const hideChatbotPaths = ["/LogIn", "/register", "/admin", "/adminprofile", "/admindashboard"];
 
   return (
     <>
@@ -60,35 +60,12 @@ function AppContent() {
         <Route path="/checkout" element={<Checkout />} />
         <Route path="/adminlogout" element={<AdminLogout />} />
         <Route path="/admindashboard" element={<AdminDashboard />} />
-        
-
         {/* Customer-Only Routes (role_id = 1) */}
-        <Route
-          path="/profile"
-          element={
-            <RoleBasedRoute allowedRoles={[1]}>
-              <Profiles />
-            </RoleBasedRoute>
-          }
-        />
-
+        <Route path="/profile" element={<RoleBasedRoute allowedRoles={[1]}> <Profiles /> </RoleBasedRoute>}/>
         {/* Admin-Only Routes (role_id = 2) */}
-        <Route
-          path="/admin"
-          element={
-            <RoleBasedRoute allowedRoles={[2]}>
-              <AdminPage />
-            </RoleBasedRoute>
-          }
-        />
-        <Route
-          path="/adminprofile"
-          element={
-            <RoleBasedRoute allowedRoles={[2]}>
-              <AdminProfile />
-            </RoleBasedRoute>
-          }
-        />
+        <Route path="/admin" element={<RoleBasedRoute allowedRoles={[2]}> <AdminDashboard /></RoleBasedRoute>}/>
+        <Route path="/adminprofile" element={<RoleBasedRoute allowedRoles={[2]}> <AdminProfile /></RoleBasedRoute>}/>
+      
       </Routes>
 
       {/* Conditionally Render Chatbot */}
