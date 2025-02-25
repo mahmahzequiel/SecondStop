@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
 import MainPage from "../Reusable/MainPage";
 import axios from "axios";
+import { ShoppingCartOutlined, CreditCardOutlined, CheckCircleOutlined } from "@ant-design/icons"; // Import Antd icons
 
 const Checkout = () => {
   const location = useLocation();
@@ -91,31 +92,30 @@ const Checkout = () => {
   return (
     <MainPage>
       <div className="checkout-container">
-        {/* ✅ Progress Bar */}
+        {/* Progress Bar with Icons */}
         <div className="progress-bar">
           <div className="step active">
-            <span className="icon">🛒</span>
-            <span>1. Checkout</span>
+            <ShoppingCartOutlined style={{ fontSize: "24px", marginBottom: "8px" }} />
+            <span>Checkout</span>
           </div>
           <div className="line"></div>
           <div className="step">
-            <span className="icon">💳</span>
-            <span>2. Payment</span>
+            <CreditCardOutlined style={{ fontSize: "24px", marginBottom: "8px" }} />
+            <span>Payment</span>
           </div>
           <div className="line"></div>
           <div className="step">
-            <span className="icon">📃</span>
-            <span>3. Confirmation</span>
+            <CheckCircleOutlined style={{ fontSize: "24px", marginBottom: "8px" }} />
+            <span>Confirmation</span>
           </div>
         </div>
 
-        <h2>1. Checkout</h2>
-
+        {/* Two-Column Layout */}
         <div className="checkout-content">
-          {/* ✅ Order Details Section */}
+          {/* Order Details Section */}
           <div className="order-details">
-            <h3>Detail Order</h3>
-            <table className="order-table">
+            <h3>Order Details</h3>
+            <table>
               <tbody>
                 {selectedItems.map((item, index) => (
                   <tr key={index}>
@@ -128,7 +128,7 @@ const Checkout = () => {
                   <td>PHP{totalPrice}.00</td>
                 </tr>
                 <tr>
-                  <td><strong>Shipping Cost</strong></td>
+                  <td><strong>Shipping</strong></td>
                   <td>PHP70.00</td>
                 </tr>
                 <tr>
@@ -139,7 +139,7 @@ const Checkout = () => {
             </table>
           </div>
 
-          {/* ✅ Billing Address Section */}
+          {/* Billing Address Section */}
           <div className="billing-address">
             <h3>Billing Address</h3>
             <form>
@@ -151,7 +151,7 @@ const Checkout = () => {
               ))}
             </form>
 
-            {/* ✅ Edit and Save Buttons */}
+            {/* Edit & Save Buttons */}
             {!isEditing ? (
               <button onClick={() => setIsEditing(true)}>Edit Address</button>
             ) : (
@@ -160,7 +160,7 @@ const Checkout = () => {
           </div>
         </div>
 
-        {/* ✅ Checkout Buttons */}
+        {/* Checkout Buttons */}
         <div className="checkout-actions">
           <button onClick={() => navigate(-1)}>Cancel</button>
           <button className="proceed-btn" onClick={() => navigate("/payment", { state: { selectedItems, totalPrice } })}>
