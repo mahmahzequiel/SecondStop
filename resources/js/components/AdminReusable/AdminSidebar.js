@@ -1,3 +1,4 @@
+// AdminSidebar.js
 import React from "react";
 import { Link } from "react-router-dom";
 import {
@@ -14,8 +15,19 @@ function AdminSidebar() {
   return (
     <aside className="admin-sidebar">
       <div className="nav-item">
-        <DashboardOutlined className="nav-icon" />
-        <span>Dashboard</span>
+        <Link
+          to="/admindashboard"
+          style={{
+            display: "flex",
+            alignItems: "center",
+            color: "inherit",
+            textDecoration: "none",
+            width: "100%",
+          }}
+        >
+          <DashboardOutlined className="nav-icon" />
+          <span>Dashboard</span>
+        </Link>
       </div>
       <div className="nav-item">
         <UserOutlined className="nav-icon" />
@@ -38,7 +50,16 @@ function AdminSidebar() {
         <span>Messages</span>
       </div>
       <div className="nav-item">
-        <Link to="/adminprofile" style={{ display: "flex", alignItems: "center", color: "inherit", textDecoration: "none" }}>
+        <Link
+          to="/adminprofile"
+          style={{
+            display: "flex",
+            alignItems: "center",
+            color: "inherit",
+            textDecoration: "none",
+            width: "100%",
+          }}
+        >
           <ProfileOutlined className="nav-icon" />
           <span>Profile</span>
         </Link>
