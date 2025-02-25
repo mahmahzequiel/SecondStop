@@ -15,17 +15,20 @@ class CreateAddressesTable extends Migration
     {
         Schema::create('addresses', function (Blueprint $table) {
             $table->id();
-            
-            // Region, Province, Barangay, etc.
-            // All set to nullable since they can be NULL if not provided
-            $table->string('region', 100)->nullable();
-            $table->string('province', 100)->nullable();
-            $table->string('barangay', 100)->nullable();
-            $table->string('postal_code', 10)->nullable();
-            $table->string('street_name', 100)->nullable();
-            $table->string('house_number', 50)->nullable();
+            $table->unsignedBigInteger('user_id'); // Foreign key to users table
+            $table->string('street');
+            $table->string('barangay'); // ✅ Added barangay
+            $table->string('city');
+            $table->string('state');
+            $table->string('country');
+            $table->string('region'); // ✅ Added region
+            $table->string('postal_code');
+            $table->boolean('is_default')->default(false); // Mark default address
             $table->timestamps();
-            $table->softDeletes()->nullable(); 
+            $table->softDeletes(); // Adds `deleted_at` column
+
+            // Foreign key constraint for user_id
+            $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
         });
     }
 
@@ -36,6 +39,6 @@ class CreateAddressesTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('addresses');
+        Schema::dropIfExists('addresses'); // This removes the table entirely, so no need for dropSoftDeletes()
     }
 }

@@ -31,7 +31,7 @@ import ProductDetails from "./Products/ProductDetails";
 import Carts from "./Cart/Carts";
 import Chatbot from "./Chat/Chatbot";
 import AdminPage from "./AdminReusable/AdminPage";
-
+import Checkout from "./Shipping/Checkout";
 function AppContent() {
   const location = useLocation();
   // Retrieve the stored user (if any)
@@ -74,6 +74,7 @@ function AppContent() {
         <Route path="/faq" element={<FAQ />} />
         <Route path="/product/:id" element={<ProductDetails />} />
         <Route path="/cart" element={<Carts />} />
+        <Route path="/checkout" element={<Checkout />} />
       </Routes>
 
       {/* Render Chatbot unless on one of the specified paths */}

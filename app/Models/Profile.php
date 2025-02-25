@@ -30,10 +30,6 @@ class Profile extends Model
     }
 
     // A Profile has many Addresses.
-    public function addresses()
-    {
-        return $this->hasMany(Address::class);
-    }
 
     // A Profile can have many FAQs.
     public function faqs()

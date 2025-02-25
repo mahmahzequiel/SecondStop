@@ -12,12 +12,12 @@ class ProfilesTableSeeder extends Seeder
     {
         Profile::create([
             'user_id' => 1, // Assuming user_id 1 exists
-            'address_id' => 1, // Assuming address_id 1 exists
             'profile_image' => 'default.jpg',
             'first_name' => 'John',
             'last_name' => 'Doe',
             'middle_name' => 'A',
-            'username' => 'johndoe#=@gmail.com',
+            'username' => 'johndoe',
+            'email' => 'johndoe#=@gmail.com',
             'sex' => 'Male',
             'phone_number' => '1234567890',
         ]);

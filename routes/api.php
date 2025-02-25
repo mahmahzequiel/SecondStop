@@ -7,6 +7,7 @@ use App\Http\Controllers\ProductsController;
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\CategoryTypeController;
 use App\Http\Controllers\BrandController;
+use App\Http\Controllers\AddressController;
 
 // Open Routes
 Route::post("register", [ApiController::class, "register"]);
@@ -18,6 +19,10 @@ Route::resource('categories', CategoryController::class);
 Route::get("category-types", [CategoryTypeController::class, "index"]);
 Route::get("/products-by-category-type", [ProductsController::class, "getProductsByCategoryType"]); // <-- Added Route
 Route::resource('brands', BrandController::class);
+
+Route::get('address', [AddressController::class, 'index']);
+Route::get('address/user/{userId}', [AddressController::class, 'getByUser']);
+Route::post('address/{id}', [AddressController::class, 'update']); 
 
 // Protected Routes
 Route::group(["middleware" => ["auth:api"]], function() {

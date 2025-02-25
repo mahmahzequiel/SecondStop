@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import { useNavigate } from "react-router-dom"; // ✅ Import useNavigate
 import { DeleteOutlined } from "@ant-design/icons";
 import MainPage from "../Reusable/MainPage"; // Import MainPage
 
@@ -6,6 +7,7 @@ const Carts = () => {
   const [cartItems, setCartItems] = useState([]);
   const [selectedItems, setSelectedItems] = useState([]);
   const [selectAll, setSelectAll] = useState(false);
+  const navigate = useNavigate(); // ✅ Initialize navigate
 
   useEffect(() => {
     const storedCart = JSON.parse(localStorage.getItem("cart")) || [];
@@ -38,9 +40,25 @@ const Carts = () => {
   };
 
   // ✅ Compute only the total of selected items
-  const totalPrice = cartItems
-    .filter((item) => selectedItems.includes(item.id))
-    .reduce((acc, item) => acc + parseFloat(item.price), 0);
+  const selectedCartItems = cartItems.filter((item) => selectedItems.includes(item.id));
+  const totalPrice = selectedCartItems.reduce((acc, item) => acc + parseFloat(item.price), 0);
+
+  // ✅ Handle Checkout (Redirect to Shipping)
+  const handleCheckout = () => {
+    const userToken = localStorage.getItem("userToken"); // ✅ Ensure user is logged in
+    if (!userToken) {
+      alert("Please log in to proceed to checkout.");
+      return;
+    }
+    if (selectedCartItems.length === 0) {
+      alert("Please select items to checkout.");
+      return;
+    }
+
+    navigate("/checkout", {
+      state: { selectedItems: selectedCartItems, totalPrice: totalPrice },
+    });
+  };
 
   return (
     <MainPage>
@@ -72,13 +90,20 @@ const Carts = () => {
                     </td>
                     <td>{item.name}</td>
                     <td>
-                      <img
-                        src={`${process.env.REACT_APP_BASE_URL}/${item.product_image}`}
-                        alt={item.product_name}
-                        className="cart-image"
-                      />
+                    <img
+  src={
+    item.product_image
+      ? item.product_image.startsWith("http")
+        ? item.product_image
+        : `${process.env.REACT_APP_BASE_URL}/${item.product_image}`
+      : "/placeholder.jpg" // Fallback image if product_image is missing
+  }
+  alt={item.product_name || "Product Image"}
+  className="cart-image"
+/>
+
                     </td>
-                    <td>{typeof item.brand === "object" ? item.brand.name : item.brand}</td> {/* ✅ Fixed brand rendering */}
+                    <td>{typeof item.brand === "object" ? item.brand.name : item.brand}</td>
                     <td className="price">PHP{item.price}.00</td>
                   </tr>
                 ))}
@@ -101,7 +126,9 @@ const Carts = () => {
 
               <span className="total-price">Total: PHP{totalPrice.toFixed(2)}</span>
 
-              <button className="checkout-btn">Checkout</button>
+              <button className="checkout-btn" onClick={handleCheckout}> {/* ✅ Checkout Redirect */}
+                Checkout
+              </button>
             </div>
           </div>
         )}

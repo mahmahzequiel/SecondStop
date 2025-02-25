@@ -10,12 +10,22 @@ class Address extends Model
 {
     use HasFactory, SoftDeletes;
 
-    protected $fillable = ['region', 'province', 'barangay', 'postal_code', 'street_name', 'house_number', 'profile_id'];
+    protected $fillable = [
+        'user_id',
+        'street',
+        'barangay', 
+        'city',
+        'region',
+        'state',
+        'country',
+        'postal_code',
+        'is_default',
+    ];
 
-    // Each Address belongs to a Profile.
-    public function profile()
+    // Each Address belongs to a User.
+    public function user()
     {
-        return $this->belongsTo(Profile::class);
+        return $this->belongsTo(User::class);
     }
 
     // An Address can have many Orders.
