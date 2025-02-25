@@ -1,14 +1,16 @@
 import React, { useState, useEffect } from "react";
 import { Form, Input, Select, Button, Row, Col, message } from "antd";
 import { useNavigate } from "react-router-dom";
+import axios from "axios";
 import MainPage from "../Reusable/MainPage";
+import { ArrowLeftOutlined } from "@ant-design/icons";
 
 const { Option } = Select;
 
 const Registration = () => {
   const [form] = Form.useForm();
   const navigate = useNavigate();
-  const [countdown, setCountdown] = useState(null); // null means no countdown yet
+  const [countdown, setCountdown] = useState(null);
 
   // Handle form submission
   const handleSubmit = async (values) => {
@@ -23,6 +25,8 @@ const Registration = () => {
       });
 
       const data = await response.json();
+      console.log("Registration response status:", response.status);
+      console.log("Registration response data:", data);
 
       if (!response.ok || !data.status) {
         if (data.errors) {
@@ -35,14 +39,11 @@ const Registration = () => {
         throw new Error("Registration failed");
       }
 
-      // Store the returned access token so the user is logged in automatically
       localStorage.setItem("userToken", data.data.access_token);
-      // Optionally, store the profile data if needed
+      axios.defaults.headers.common["Authorization"] = `Bearer ${data.data.access_token}`;
       localStorage.setItem("userProfile", JSON.stringify(data.data.profile));
 
       message.success("Registration successful!");
-
-      // Start countdown from 3 seconds for redirect
       setCountdown(3);
       form.resetFields();
     } catch (error) {
@@ -51,7 +52,7 @@ const Registration = () => {
     }
   };
 
-  // Countdown effect: when countdown is active, reduce it by 1 every second until 0, then navigate
+  // Countdown effect for redirect
   useEffect(() => {
     if (countdown === null) return;
     if (countdown <= 0) {
@@ -65,8 +66,22 @@ const Registration = () => {
   return (
     <MainPage>
       <div className="registration-container">
+        {/* Moved the Back button here, outside the form */}
+        <Button
+          className="back-button"
+          onClick={() => navigate("/LogIn")}
+        >
+        <ArrowLeftOutlined />  Back
+        </Button>
+
         <h2>Register</h2>
-        <Form form={form} layout="vertical" onFinish={handleSubmit} autoComplete="off">
+        <Form
+          form={form}
+          layout="vertical"
+          onFinish={handleSubmit}
+          autoComplete="off"
+        >
+          {/* First/Middle/Last Name */}
           <Row gutter={16}>
             <Col span={8}>
               <Form.Item
@@ -93,6 +108,7 @@ const Registration = () => {
             </Col>
           </Row>
 
+          {/* Sex/Phone/Email */}
           <Row gutter={16}>
             <Col span={8}>
               <Form.Item
@@ -113,7 +129,10 @@ const Registration = () => {
                 name="phone_number"
                 rules={[
                   { required: true, message: "Phone number is required" },
-                  { pattern: /^\+639\d{9}$/, message: "Phone number must be in +639XXXXXXXXX format" },
+                  {
+                    pattern: /^\+639\d{9}$/,
+                    message: "Phone number must be in +639XXXXXXXXX format",
+                  },
                 ]}
               >
                 <Input placeholder="+639XXXXXXXXX" />
@@ -133,6 +152,7 @@ const Registration = () => {
             </Col>
           </Row>
 
+          {/* Username/Password/Confirm Password */}
           <Row gutter={16}>
             <Col span={8}>
               <Form.Item
@@ -167,7 +187,9 @@ const Registration = () => {
                       if (!value || getFieldValue("password") === value) {
                         return Promise.resolve();
                       }
-                      return Promise.reject(new Error("Passwords do not match"));
+                      return Promise.reject(
+                        new Error("Passwords do not match")
+                      );
                     },
                   }),
                 ]}
@@ -178,11 +200,14 @@ const Registration = () => {
           </Row>
 
           <Form.Item className="form-submit-container">
-            <Button type="primary" htmlType="submit">Register</Button>
+            {/* Only the Register button remains here */}
+            <Button type="primary" htmlType="submit">
+              Register
+            </Button>
           </Form.Item>
         </Form>
 
-        {/* If countdown is active, display the countdown message */}
+        {/* If countdown is active, display a redirect message */}
         {countdown !== null && (
           <div style={{ marginTop: "20px", textAlign: "center", fontSize: "16px" }}>
             Redirecting in {countdown}...

@@ -12379,27 +12379,40 @@ textarea.form-control-lg {
   position: relative;
   top: -20px; /* Moves the container higher */
 }
-
-h2, .h2 {
+.registration-container h2, .registration-container .h2 {
   text-align: center;
   margin-bottom: 20px;
 }
-
-.ant-form-item {
+.registration-container .ant-form-item {
   margin-bottom: 15px;
 }
-
-/* Position button to the right */
-.form-submit-container {
+.registration-container .form-submit-container {
   display: flex;
   justify-content: flex-end;
   margin-top: 10px;
+  /* Adjust main button size (Register) */
 }
-
-/* Make the button smaller */
-.ant-btn-primary {
+.registration-container .form-submit-container .ant-btn-primary {
   padding: 5px 15px;
   font-size: 14px;
+}
+.registration-container .form-submit-container .back-button {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  border: none;
+  background: none;
+  cursor: pointer;
+  font-size: 16px;
+  font-weight: bold;
+  position: absolute;
+  top: 20px;
+  left: 20px;
+  color: #a52a2a;
+  transition: color 0.3s ease;
+}
+.registration-container .form-submit-container .back-button:hover {
+  color: #d9534f;
 }
 
 .filters-container {
