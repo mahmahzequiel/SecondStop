@@ -39,13 +39,24 @@ const Registration = () => {
         throw new Error("Registration failed");
       }
 
-      localStorage.setItem("userToken", data.data.access_token);
-      axios.defaults.headers.common["Authorization"] = `Bearer ${data.data.access_token}`;
-      localStorage.setItem("userProfile", JSON.stringify(data.data.profile));
+      // Store token immediately so the user is logged in
+      const token = data.data.access_token;
+      if (token) {
+        localStorage.setItem("userToken", token);
+        axios.defaults.headers.common["Authorization"] = `Bearer ${token}`;
 
-      message.success("Registration successful!");
-      setCountdown(3);
-      form.resetFields();
+        // Optionally store user or profile data
+        localStorage.setItem("userProfile", JSON.stringify(data.data.profile));
+        // localStorage.setItem("user", JSON.stringify(data.data.user));
+
+        message.success("Registration successful!");
+
+        // Start countdown for redirect to products
+        setCountdown(3);
+        form.resetFields();
+      } else {
+        message.error("No token returned. Please login manually.");
+      }
     } catch (error) {
       console.error("Error during registration:", error);
       message.error("Registration failed. Please check the form.");
@@ -56,6 +67,7 @@ const Registration = () => {
   useEffect(() => {
     if (countdown === null) return;
     if (countdown <= 0) {
+      // Navigate to products
       navigate("/products");
       return;
     }
@@ -66,12 +78,9 @@ const Registration = () => {
   return (
     <MainPage>
       <div className="registration-container">
-        {/* Moved the Back button here, outside the form */}
-        <Button
-          className="back-button"
-          onClick={() => navigate("/login")}
-        >
-        <ArrowLeftOutlined />  Back
+        {/* Back button */}
+        <Button className="back-button" onClick={() => navigate("/login")}>
+          <ArrowLeftOutlined /> Back
         </Button>
 
         <h2>Register</h2>
@@ -81,7 +90,7 @@ const Registration = () => {
           onFinish={handleSubmit}
           autoComplete="off"
         >
-          {/* First/Middle/Last Name */}
+          {/* First / Middle / Last name */}
           <Row gutter={16}>
             <Col span={8}>
               <Form.Item
@@ -108,7 +117,7 @@ const Registration = () => {
             </Col>
           </Row>
 
-          {/* Sex/Phone/Email */}
+          {/* Sex / Phone / Email */}
           <Row gutter={16}>
             <Col span={8}>
               <Form.Item
@@ -152,7 +161,7 @@ const Registration = () => {
             </Col>
           </Row>
 
-          {/* Username/Password/Confirm Password */}
+          {/* Username / Password / Confirm Password */}
           <Row gutter={16}>
             <Col span={8}>
               <Form.Item
@@ -200,7 +209,6 @@ const Registration = () => {
           </Row>
 
           <Form.Item className="form-submit-container">
-            {/* Only the Register button remains here */}
             <Button type="primary" htmlType="submit">
               Register
             </Button>
@@ -219,3 +227,5 @@ const Registration = () => {
 };
 
 export default Registration;
+
+//hello
