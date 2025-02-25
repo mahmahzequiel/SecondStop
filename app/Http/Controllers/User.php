@@ -8,7 +8,7 @@ use Laravel\Passport\HasApiTokens;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
-class User extends Authenticatable
+class UserController extends Authenticatable
 {
     use HasApiTokens, HasFactory, Notifiable, SoftDeletes;
 
@@ -34,17 +34,16 @@ class User extends Authenticatable
     ];
 
     /**
-     * A User belongs to a Role (one Role can have many Users).
-     * role_id references roles.id
+     * A User belongs to one Role (optional, if you use roles).
      */
     public function role()
     {
-        return $this->belongsTo(Role::class, 'role_id', 'id');
+        return $this->belongsTo(Role::class);
     }
 
     /**
-     * A User has one Profile (one-to-one).
-     * user_id in profiles references this user's id
+     * A User has one Profile (one-to-one relationship).
+     * The 'user_id' column in the 'profiles' table references this user's 'id'.
      */
     public function profile()
     {

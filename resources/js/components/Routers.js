@@ -35,12 +35,13 @@ import AdminPage from "./AdminReusable/AdminPage";
 import Checkout from "./Shipping/Checkout";
 import RoleBasedRoute from "./RoleBasedRoute";    
 import AdminDashboard from "./Admin/AdminDashboard";
+import AllUsers from "./Admin/AllUsers";
 
 function AppContent() {
   const location = useLocation();
 
   // We hide the Chatbot on these paths
-  const hideChatbotPaths = ["/LogIn", "/register", "/admin", "/adminprofile", "/admindashboard"];
+  const hideChatbotPaths = ["/LogIn", "/register", "/admin", "/adminprofile", "/admindashboard", "/allusers"];
 
   return (
     <>
@@ -60,6 +61,7 @@ function AppContent() {
         <Route path="/checkout" element={<Checkout />} />
         <Route path="/adminlogout" element={<AdminLogout />} />
         <Route path="/admindashboard" element={<AdminDashboard />} />
+        <Route path="/allusers" element={<AllUsers />} />
         {/* Customer-Only Routes (role_id = 1) */}
         <Route path="/profile" element={<RoleBasedRoute allowedRoles={[1]}> <Profiles /> </RoleBasedRoute>}/>
         {/* Admin-Only Routes (role_id = 2) */}

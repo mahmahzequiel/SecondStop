@@ -3,15 +3,14 @@
 namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
-use Illuminate\Http\Request;
 use App\Models\Profile;
 use App\Models\User;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\Hash;
 
 class ApiController extends Controller
 {
-    // Register a new user and create an associated profile.
+    // Register user + profile
     public function register(Request $request)
     {
         $request->validate([
@@ -24,15 +23,15 @@ class ApiController extends Controller
             "email"        => "required|string|email|max:255|unique:users",
             "password"     => "required|string|confirmed|min:8"
         ]);
-        // Create User.
+
+        // Default role_id = 1 => "Customer" or "User"
         $user = User::create([
-            "role_id"  => 1, // Default role.
+            "role_id"  => 1, 
             "username" => $request->username,
             "email"    => $request->email,
             "password" => bcrypt($request->password),
         ]);
 
-        // Create Profile linked to the User.
         $profile = Profile::create([
             "user_id"      => $user->id,
             "first_name"   => $request->first_name,
@@ -44,22 +43,20 @@ class ApiController extends Controller
             "email"        => $request->email
         ]);
 
-        // Create an access token for the user
         $token = $user->createToken('authToken')->accessToken;
 
         return response()->json([
             "status"  => true,
             "message" => "User registered successfully",
             "data"    => [
-                "user"    => $user,
-                "profile" => $profile,
+                "user"         => $user,
+                "profile"      => $profile,
                 "access_token" => $token
-                ]
+            ]
         ]);
     }
 
-
-    // Login user and return an access token.
+    // Login user (email + password) => token
     public function login(Request $request)
     {
         $request->validate([
@@ -86,20 +83,18 @@ class ApiController extends Controller
         ]);
     }
 
-    // Retrieve the authenticated user's profile.
-    public function profile(Request $request)
+    // Return profile of logged-in user
+    public function profile()
     {
         $user = Auth::user();
-
         if (!$user) {
             return response()->json([
-                'status'  => false,
+                'status' => false,
                 'message' => 'Unauthenticated'
             ], 401);
         }
 
-        // Retrieve the profile (assuming Profile is linked via user_id).
-        $profile = Profile::where('user_id', $user->id)->first();
+        $profile = $user->profile; // or Profile::where('user_id', $user->id)->first();
 
         return response()->json([
             'status'  => true,
@@ -109,11 +104,10 @@ class ApiController extends Controller
         ]);
     }
 
-    // Update the authenticated user's profile.
+    // Update profile (must be logged in)
     public function updateProfile(Request $request)
     {
         $user = Auth::user();
-
         if (!$user) {
             return response()->json([
                 'status' => false,
@@ -131,8 +125,7 @@ class ApiController extends Controller
         ]);
 
         try {
-            $profile = Profile::where('user_id', $user->id)->first();
-
+            $profile = $user->profile; 
             if ($profile) {
                 $profile->update([
                     'first_name'   => $request->first_name,
@@ -168,8 +161,8 @@ class ApiController extends Controller
         }
     }
 
-    // Logout the authenticated user.
-    public function logout(Request $request)
+    // Logout
+    public function logout()
     {
         $user = Auth::user();
         if (!$user) {
@@ -183,6 +176,38 @@ class ApiController extends Controller
         return response()->json([
             'status'  => true,
             'message' => 'Successfully logged out'
+        ]);
+    }
+
+    // Fetch all users (admin only)
+    public function getAllUsers()
+    {
+        $authUser = Auth::user();
+        if (!$authUser) {
+            return response()->json([
+                'status'  => false,
+                'message' => 'Unauthenticated'
+            ], 401);
+        }
+
+        // If role_id !== 2 => Not admin
+        if ($authUser->role_id !== 2) {
+            return response()->json([
+                'status'  => false,
+                'message' => 'Forbidden: Only admins can access this.'
+            ], 403);
+        }
+
+        // Eager load profile AND role if you want role info as well
+        // For now, just 'profile' as in your code
+        $users = User::with('profile')->get();
+
+        return response()->json([
+            'status' => true,
+            'message' => 'All users retrieved successfully',
+            'data' => [
+                'users' => $users
+            ]
         ]);
     }
 }

@@ -30,8 +30,10 @@ function AdminSidebar() {
         </Link>
       </div>
       <div className="nav-item">
-        <UserOutlined className="nav-icon" />
-        <span>Users</span>
+        <Link to="/allusers" style={{ display: "flex", alignItems: "center", color: "inherit", textDecoration: "none" }}>
+          <UserOutlined className="nav-icon" />
+          <span>Users</span>
+        </Link>
       </div>
       <div className="nav-item">
         <AppstoreOutlined className="nav-icon" />

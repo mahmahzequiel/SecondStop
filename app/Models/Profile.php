@@ -13,31 +13,42 @@ class Profile extends Model
     protected $fillable = [
         'user_id', 
         'first_name', 
-        'middle_name',  // Added middle name
+        'middle_name',
         'last_name',
         'sex',
         'phone_number',
         'username',
-        'email',        // Added email
-        'password',     // Added password (for storing encrypted passwords)
-        'profile_image'
+        'email',
+        'password',
+        'profile_image',
+        'address',
     ];
 
-    // Each Profile belongs to a User.
+    // Auto-include "full_name" when converting to JSON
+    protected $appends = ['full_name'];
+
+    /**
+     * A Profile belongs to one User (one-to-one inverse).
+     */
     public function user()
     {
-        return $this->belongsTo(User::class);
+        return $this->belongsTo(User::class, 'user_id', 'id');
     }
 
-    // A Profile has many Addresses.
-
-    // A Profile can have many FAQs.
-    public function faqs()
+    /**
+     * Accessor: combine first, middle, last names into "full_name".
+     */
+    public function getFullNameAttribute()
     {
-        return $this->hasMany(Faq::class);
+        $parts = array_filter([
+            $this->first_name,
+            $this->middle_name,
+            $this->last_name
+        ]);
+        return implode(' ', $parts);
     }
 
-    // Encrypt password before saving
+    // Example if you store password in Profile
     public function setPasswordAttribute($value)
     {
         $this->attributes['password'] = bcrypt($value);
