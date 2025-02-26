@@ -1,18 +1,42 @@
 import React, { useState, useEffect } from "react";
-import { useNavigate } from "react-router-dom"; // ✅ Import useNavigate
+import { useNavigate } from "react-router-dom";
 import { DeleteOutlined } from "@ant-design/icons";
-import MainPage from "../Reusable/MainPage"; // Import MainPage
+import axios from "axios";
+import MainPage from "../Reusable/MainPage";
 
 const Carts = () => {
   const [cartItems, setCartItems] = useState([]);
   const [selectedItems, setSelectedItems] = useState([]);
   const [selectAll, setSelectAll] = useState(false);
-  const navigate = useNavigate(); // ✅ Initialize navigate
+  const navigate = useNavigate();
 
   useEffect(() => {
-    const storedCart = JSON.parse(localStorage.getItem("cart")) || [];
-    setCartItems(storedCart);
-  }, []);
+    const userToken = localStorage.getItem("userToken");
+
+    if (!userToken) {
+      alert("Please log in to view your cart.");
+      navigate("/login");
+      return;
+    }
+
+    axios
+      .get("http://127.0.0.1:8000/api/carts", {
+        headers: { Authorization: `Bearer ${userToken}` },
+      })
+      .then((response) => {
+        console.log("Cart API Response:", response.data);
+        setCartItems(Array.isArray(response.data) ? response.data : []);
+      })
+      .catch((error) => {
+        console.error("Error fetching cart items:", error);
+
+        if (error.response && error.response.status === 401) {
+          alert("Session expired. Please log in again.");
+          localStorage.removeItem("userToken");
+          navigate("/login");
+        }
+      });
+  }, [navigate]);
 
   const handleSelectItem = (productId) => {
     setSelectedItems((prevSelected) =>
@@ -23,42 +47,61 @@ const Carts = () => {
   };
 
   const handleSelectAll = () => {
-    if (selectAll) {
-      setSelectedItems([]);
-    } else {
-      setSelectedItems(cartItems.map((item) => item.id));
-    }
+    setSelectedItems(selectAll ? [] : cartItems.map((item) => item.id));
     setSelectAll(!selectAll);
   };
 
   const handleDeleteSelected = () => {
-    const updatedCart = cartItems.filter((item) => !selectedItems.includes(item.id));
-    setCartItems(updatedCart);
-    setSelectedItems([]);
-    setSelectAll(false);
-    localStorage.setItem("cart", JSON.stringify(updatedCart));
-  };
-
-  // ✅ Compute only the total of selected items
-  const selectedCartItems = cartItems.filter((item) => selectedItems.includes(item.id));
-  const totalPrice = selectedCartItems.reduce((acc, item) => acc + parseFloat(item.price), 0);
-
-  // ✅ Handle Checkout (Redirect to Shipping)
-  const handleCheckout = () => {
-    const userToken = localStorage.getItem("userToken"); // ✅ Ensure user is logged in
+    const userToken = localStorage.getItem("userToken");
     if (!userToken) {
-      alert("Please log in to proceed to checkout.");
+      alert("Please log in to delete items.");
+      navigate("/login");
       return;
     }
+
+    axios
+      .post(
+        "http://127.0.0.1:8000/api/carts/delete",
+        { cart_ids: selectedItems },
+        { headers: { Authorization: `Bearer ${userToken}` } }
+      )
+      .then(() => {
+        setCartItems(cartItems.filter((item) => !selectedItems.includes(item.id)));
+        setSelectedItems([]);
+        setSelectAll(false);
+      })
+      .catch((error) => {
+        console.error("Error deleting cart items:", error);
+      });
+  };
+
+  const selectedCartItems = cartItems.filter((item) => selectedItems.includes(item.id));
+  const totalPrice = selectedCartItems.reduce((acc, item) => acc + parseFloat(item.product?.price || 0), 0);
+
+
+  const handleCheckout = () => {
+    const userToken = localStorage.getItem("userToken");
+    if (!userToken) {
+      alert("Please log in to proceed to checkout.");
+      navigate("/login");
+      return;
+    }
+
     if (selectedCartItems.length === 0) {
       alert("Please select items to checkout.");
       return;
     }
 
     navigate("/checkout", {
-      state: { selectedItems: selectedCartItems, totalPrice: totalPrice },
+      state: { selectedItems: selectedCartItems.map(item => ({ 
+        cart_id: item.id, 
+        product_name: item.product?.product_name, 
+        price: item.product?.price, 
+        brand: item.product?.brand 
+      })), totalPrice: totalPrice },
     });
-  };
+  }
+    
 
   return (
     <MainPage>
@@ -79,44 +122,38 @@ const Carts = () => {
                 </tr>
               </thead>
               <tbody>
-                {cartItems.map((item) => (
-                  <tr key={item.id}>
-                    <td>
-                      <input
-                        type="checkbox"
-                        checked={selectedItems.includes(item.id)}
-                        onChange={() => handleSelectItem(item.id)}
-                      />
-                    </td>
-                    <td>{item.name}</td>
-                    <td>
-                    <img
-  src={
-    item.product_image
-      ? item.product_image.startsWith("http")
-        ? item.product_image
-        : `${process.env.REACT_APP_BASE_URL}/${item.product_image}`
-      : "/placeholder.jpg" // Fallback image if product_image is missing
-  }
-  alt={item.product_name || "Product Image"}
-  className="cart-image"
-/>
+  {cartItems.map((item) => (
+    <tr key={item.id}>
+      <td>
+        <input
+          type="checkbox"
+          checked={selectedItems.includes(item.id)}
+          onChange={() => handleSelectItem(item.id)}
+        />
+      </td>
+      <td>{item.product?.product_name || "Unknown Product"}</td>
+      <td>
+        <img
+          src={
+            item.product?.product_image
+              ? `http://127.0.0.1:8000/storage/${item.product.product_image}`
+              : "/placeholder.jpg"
+          }
+          alt={item.product?.product_name || "Product Image"}
+          className="cart-image"
+        />
+      </td>
+      <td className="description">{item.product?.description || "No Description"}</td>
+      <td className="price">PHP {item.product?.price || "0"}.00</td>
+    </tr>
+  ))}
+</tbody>
 
-                    </td>
-                    <td>{typeof item.brand === "object" ? item.brand.name : item.brand}</td>
-                    <td className="price">PHP{item.price}.00</td>
-                  </tr>
-                ))}
-              </tbody>
             </table>
 
             <div className="cart-actions">
               <label>
-                <input
-                  type="checkbox"
-                  checked={selectAll}
-                  onChange={handleSelectAll}
-                />
+                <input type="checkbox" checked={selectAll} onChange={handleSelectAll} />
                 Select All
               </label>
 
@@ -124,11 +161,9 @@ const Carts = () => {
                 <DeleteOutlined /> Delete
               </button>
 
-              <span className="total-price">Total: PHP{totalPrice.toFixed(2)}</span>
+              <span className="total-price">Total: PHP {totalPrice.toFixed(2)}</span>
 
-              <button className="checkout-btn" onClick={handleCheckout}> {/* ✅ Checkout Redirect */}
-                Checkout
-              </button>
+              <button className="checkout-btn" onClick={handleCheckout}>Checkout</button>
             </div>
           </div>
         )}

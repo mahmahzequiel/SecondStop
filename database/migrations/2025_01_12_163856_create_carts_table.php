@@ -25,11 +25,12 @@ class CreateCartsTable extends Migration
             // onDelete('cascade'): if a user is deleted, remove their cart items
 
             // Foreign key to products table
-            $table->unsignedBigInteger('products_id');
-            $table->foreign('products_id')
-                  ->references('id')
-                  ->on('products')
-                  ->onDelete('cascade');
+            $table->unsignedBigInteger('product_id');
+$table->foreign('product_id')
+      ->references('id')
+      ->on('products')
+      ->onDelete('cascade');
+
             // If your products table is named differently, adjust the reference
 
             // If want to add another column, uncomment next line:

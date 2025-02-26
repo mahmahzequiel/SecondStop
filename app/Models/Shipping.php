@@ -9,8 +9,16 @@ class Shipping extends Model
 {
     use HasFactory;
 
-    protected $fillable = ['order_id', 'option_name', 'cost', 'delivery_time'];
+    protected $fillable = [
+        'order_id',
+        'option_name',
+        'cost',
+        'delivery_time',
+    ];
 
+    /**
+     * Relationship with Order model.
+     */
     public function order()
     {
         return $this->belongsTo(Order::class);

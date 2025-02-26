@@ -36,6 +36,8 @@ import Checkout from "./Shipping/Checkout";
 import RoleBasedRoute from "./RoleBasedRoute";    
 import AdminDashboard from "./Admin/AdminDashboard";
 import AllUsers from "./Admin/AllUsers";
+import Payment from "./Shipping/Payment";
+import Confirmation from "./Shipping/Confirmation";
 
 function AppContent() {
   const location = useLocation();
@@ -59,6 +61,8 @@ function AppContent() {
         <Route path="/product/:id" element={<ProductDetails />} />
         <Route path="/cart" element={<Carts />} />
         <Route path="/checkout" element={<Checkout />} />
+        <Route path="/payment" element={<Payment />} />
+        <Route path="/confirmation" element={<Confirmation />} />
         <Route path="/adminlogout" element={<AdminLogout />} />
         <Route path="/admindashboard" element={<AdminDashboard />} />
         <Route path="/allusers" element={<AllUsers />} />

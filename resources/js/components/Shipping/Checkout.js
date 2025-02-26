@@ -5,9 +5,11 @@ import axios from "axios";
 import { ShoppingCartOutlined, CreditCardOutlined, CheckCircleOutlined } from "@ant-design/icons"; // Import Antd icons
 
 const Checkout = () => {
-  const location = useLocation();
   const navigate = useNavigate();
+  const location = useLocation();
   const { selectedItems, totalPrice } = location.state || { selectedItems: [], totalPrice: 0 };
+
+  console.log("Retrieved in Checkout Page:", selectedItems, totalPrice); // Debugging
 
   const [address, setAddress] = useState({
     fullname: "",
@@ -116,26 +118,27 @@ const Checkout = () => {
           <div className="order-details">
             <h3>Order Details</h3>
             <table>
-              <tbody>
-                {selectedItems.map((item, index) => (
-                  <tr key={index}>
-                    <td>{item.name}</td>
-                    <td>PHP{item.price}.00</td>
-                  </tr>
-                ))}
-                <tr>
-                  <td><strong>Subtotal</strong></td>
-                  <td>PHP{totalPrice}.00</td>
-                </tr>
-                <tr>
-                  <td><strong>Shipping</strong></td>
-                  <td>PHP70.00</td>
-                </tr>
-                <tr>
-                  <td><strong>Grand Total</strong></td>
-                  <td>PHP{(totalPrice + 70).toFixed(2)}</td>
-                </tr>
-              </tbody>
+            <tbody>
+  {selectedItems.map((item, index) => (
+    <tr key={index}>
+      <td>{item.product?.product_name || "Unknown Product"}</td>
+      <td>PHP {item.product?.price || "0"}.00</td>
+    </tr>
+  ))}
+  <tr>
+    <td><strong>Subtotal</strong></td>
+    <td>PHP {totalPrice.toFixed(2)}</td>
+  </tr>
+  <tr>
+    <td><strong>Shipping</strong></td>
+    <td>PHP 70.00</td>
+  </tr>
+  <tr>
+    <td><strong>Grand Total</strong></td>
+    <td>PHP {(totalPrice + 70).toFixed(2)}</td>
+  </tr>
+</tbody>
+
             </table>
           </div>
 
