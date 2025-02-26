@@ -81,26 +81,35 @@ const DisplayProducts = () => {
   }, [selectedFilters, selectedBrand, products, selectedCategory]);
 
   // ✅ Add to Cart Functionality
-  const handleAddToCart = (product) => {
-    let cart = JSON.parse(localStorage.getItem("cart")) || [];
+  const handleAddToCart = async (product) => {
+    const userToken = localStorage.getItem("userToken");
+    const userId = localStorage.getItem("userId"); // ✅ Get userId from LocalStorage
 
-    // Check if the product is already in the cart
-    const exists = cart.some((item) => item.id === product.id);
-    if (!exists) {
-      cart.push({
-        id: product.id,
-        name: product.product_name,
-        price: product.price,
-        brand: product.brand,
-        product_image: product.product_image,
-      });
-
-      localStorage.setItem("cart", JSON.stringify(cart));
-      alert(`${product.product_name} added to cart!`);
-    } else {
-      alert(`${product.product_name} is already in your cart.`);
+    if (!userToken) {
+        alert("Please log in to add items to the cart.");
+        return;
     }
-  };
+
+    try {
+        const response = await axios.post(
+            "http://127.0.0.1:8000/api/carts",
+            { 
+                user_id: userId,  // ✅ Include user_id
+                product_id: product.id 
+            },
+            { 
+                headers: { Authorization: `Bearer ${userToken}`, "Content-Type": "application/json" }
+            }
+        );
+
+        alert(`${product.product_name} added to cart!`);
+    } catch (error) {
+        console.error("Error adding to cart:", error.response?.data || error);
+        alert("Error: " + JSON.stringify(error.response?.data.errors || error.response?.data || error));
+    }
+};
+
+
 
   if (loading) return <div>Loading...</div>;
   if (error) return <div>Error: {error}</div>;

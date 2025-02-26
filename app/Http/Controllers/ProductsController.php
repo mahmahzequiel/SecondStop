@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Models\Products;
+use App\Models\Product;
 use Illuminate\Support\Facades\Storage;
 
 class ProductsController extends Controller
@@ -14,7 +14,7 @@ class ProductsController extends Controller
     public function index()
     {
         // Load category, category type, and brand relationships
-        $products = Products::with(['category', 'categoryType', 'brand'])->get();
+        $products = Product::with(['category', 'categoryType', 'brand'])->get();
         return response()->json($products);
     }
 
@@ -33,7 +33,7 @@ class ProductsController extends Controller
             'product_image' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
         ]);
 
-        $product = new Products();
+        $product = new Product();
         $product->category_id = $request->category_id;
         $product->category_type_id = $request->category_type_id;
         $product->brand_id = $request->brand_id;
@@ -56,7 +56,7 @@ class ProductsController extends Controller
      */
     public function show($id)
     {
-        $product = Products::with(['category', 'categoryType', 'brand'])->findOrFail($id);
+        $product = Product::with(['category', 'categoryType', 'brand'])->findOrFail($id);
         return response()->json($product);
     }
 
@@ -75,7 +75,7 @@ class ProductsController extends Controller
             'product_image' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
         ]);
 
-        $product = Products::findOrFail($id);
+        $product = Product::findOrFail($id);
         $product->category_id = $request->category_id;
         $product->category_type_id = $request->category_type_id;
         $product->brand_id = $request->brand_id;
@@ -102,7 +102,7 @@ class ProductsController extends Controller
      */
     public function destroy($id)
     {
-        $product = Products::findOrFail($id);
+        $product = Product::findOrFail($id);
         if ($product->product_image) {
             Storage::disk('public')->delete($product->product_image);
         }
@@ -125,7 +125,7 @@ class ProductsController extends Controller
     }
 
     // Fetch products that belong to the given category type
-    $products = Products::where('category_type_id', $categoryTypeId)->get();
+    $products = Product::where('category_type_id', $categoryTypeId)->get();
 
     return response()->json($products);
 }

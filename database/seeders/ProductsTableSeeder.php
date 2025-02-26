@@ -3,7 +3,7 @@
 namespace Database\Seeders;
 
 use Illuminate\Database\Seeder;
-use App\Models\Products;
+use App\Models\Product;
 
 class ProductsTableSeeder extends Seeder
 {
@@ -13,7 +13,7 @@ class ProductsTableSeeder extends Seeder
     public function run()
     {
         // Insert sample products only if they don't already exist
-        Products::updateOrCreate(
+        Product::updateOrCreate(
             [
                 'category_id' => 2, // Women's Apparel
                 'category_type_id' => 1, // Tops
@@ -27,7 +27,7 @@ class ProductsTableSeeder extends Seeder
             ]
         );
 
-        Products::updateOrCreate(
+        Product::updateOrCreate(
             [
                 'category_id' => 1, // Women's Apparel
                 'category_type_id' => 2, // Bottoms
@@ -41,7 +41,7 @@ class ProductsTableSeeder extends Seeder
             ]
         );
 
-        Products::updateOrCreate(
+        Product::updateOrCreate(
             [
                 'category_id' => 2, // Women's Apparel
                 'category_type_id' => 2, // Accessories
@@ -55,7 +55,7 @@ class ProductsTableSeeder extends Seeder
             ]
         );
 
-        Products::updateOrCreate(
+        Product::updateOrCreate(
             [
                 'category_id' => 1, // men's Apparel
                 'category_type_id' => 2, // Bottoms
@@ -68,7 +68,7 @@ class ProductsTableSeeder extends Seeder
                 'product_image' => 'images/women/bottoms/image.png',
             ]
         );
-        Products::updateOrCreate(
+        Product::updateOrCreate(
             [
                 'category_id' => 3, // Women's Apparel
                 'category_type_id' => 1, // Bottoms

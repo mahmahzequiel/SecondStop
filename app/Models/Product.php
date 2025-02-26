@@ -5,7 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Products extends Model
+class Product extends Model // Renamed from Products to Product
 {
     use HasFactory;
 
@@ -41,5 +41,13 @@ class Products extends Model
     public function brand()
     {
         return $this->belongsTo(Brand::class);
+    }
+
+    /**
+     * Get the carts that contain this product.
+     */
+    public function carts()
+    {
+        return $this->hasMany(Cart::class, 'product_id');
     }
 }

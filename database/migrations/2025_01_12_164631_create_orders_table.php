@@ -22,8 +22,12 @@ class CreateOrdersTable extends Migration
                   ->references('id')
                   ->on('carts')
                   ->onDelete('cascade');
-            // If you want to prevent deleting the order when cart is deleted,
-            // use ->onDelete('restrict') or ->onDelete('set null') instead.
+
+            $table->unsignedBigInteger('payment_id');
+            $table->foreign('payment_id')
+                        ->references('id')
+                        ->on('payments')
+                        ->onDelete('cascade'); 
 
             // Foreign key to addresses table 
             $table->unsignedBigInteger('address_id')->nullable();
@@ -32,7 +36,8 @@ class CreateOrdersTable extends Migration
                   ->on('addresses')
                   ->onDelete('cascade');
 
-            
+            // Order number as a string
+            $table->string('order_number')->unique();
 
             // Decimal columns with default values
             $table->decimal('subtotal', 10, 2)->default(0.00);
@@ -48,6 +53,9 @@ class CreateOrdersTable extends Migration
                 'returned',
                 'refunded',
             ])->default('pending');
+
+            // Date of purchase
+            $table->dateTime('purchase_date')->nullable(); // 🔥 Added purchase_date
 
             // created_at & updated_at
             $table->dateTime('date_time')->nullable();

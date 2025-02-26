@@ -16,23 +16,12 @@ class CreatePaymentsTable extends Migration
         Schema::create('payments', function (Blueprint $table) {
             $table->id();
 
-            // Foreign key to orders table
-            $table->unsignedBigInteger('order_id');
-            $table->foreign('order_id')
-                  ->references('id')
-                  ->on('orders')
-                  ->onDelete('cascade');
-            // Use onDelete('restrict') or onDelete('set null') instead of 'cascade'
-            // if you do not want to automatically delete payments
-            // when an order is deleted.
-
-            // Payment method enum
+            // Payment method
             $table->enum('payment_method', ['cod', 'gcash', 'paypal'])
                   ->default('cod');
 
-            // created_at, updated_at
             $table->timestamps();
-            $table->softDeletes()->nullable(); 
+            $table->softDeletes(); 
         });
     }
 
