@@ -1,0 +1,39 @@
+.gcash-payment-container {
+    .input-wrapper {
+        position: relative;
+        width: 100%;
+        height: 150px; // Set a fixed height to prevent layout shift
+        overflow: hidden;
+    }
+
+    .mobile-input,
+    .otp-input {
+        position: absolute;
+        width: 100%;
+        transition: opacity 0.3s ease-in-out, transform 0.4s ease-in-out;
+    }
+
+    .mobile-input {
+        opacity: 1;
+        transform: translateX(0);
+    }
+
+    .otp-input {
+        opacity: 0;
+        transform: translateX(100%);
+        transition-delay: 0.3s; // Small delay before OTP slides in
+    }
+
+    .otp-active {
+        .mobile-input {
+            opacity: 0;
+            transform: translateX(-100%);
+            pointer-events: none;
+        }
+
+        .otp-input {
+            opacity: 1;
+            transform: translateX(0);
+        }
+    }
+}

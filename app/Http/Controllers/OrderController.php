@@ -24,7 +24,7 @@ class OrderController extends Controller
 {
     try {
         $validated = $request->validate([
-            'cart_id' => 'required|exists:carts,id',
+            'cart_id' => 'required', // Can be an integer or an array
             'payment_id' => 'required|exists:payments,id',
             'address_id' => 'nullable|exists:addresses,id',
             'order_number' => 'nullable|string|unique:orders,order_number',
@@ -35,10 +35,25 @@ class OrderController extends Controller
             'purchase_date' => 'nullable|date',
         ]);
 
+        // Handle array or single cart_id
+        if (is_array($request->cart_id)) {
+            $cartIds = $request->cart_id;
+        } else {
+            $cartIds = [$request->cart_id]; // Convert single ID to array
+        }
+
+        // Validate each cart_id exists in the carts table
+        foreach ($cartIds as $cartId) {
+            if (!\App\Models\Cart::where('id', $cartId)->exists()) {
+                return response()->json(['error' => "Invalid cart_id: $cartId"], 400);
+            }
+        }
+
         if (!$request->order_number) {
             $validated['order_number'] = 'ORD-' . mt_rand(100000, 999999);
         }
 
+        // Save order
         $order = Order::create($validated);
 
         return response()->json([
@@ -46,10 +61,11 @@ class OrderController extends Controller
             'order' => $order
         ], 201);
     } catch (ValidationException $e) {
-        \Log::error('Validation Error:', $e->errors());  // 🔴 Logs validation errors
         return response()->json(['errors' => $e->errors()], 422);
     }
 }
+
+
 
 
     /**

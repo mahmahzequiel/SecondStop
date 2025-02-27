@@ -13093,3 +13093,131 @@ textarea.form-control-lg {
 .payment-container .payment-actions button:hover {
   opacity: 0.8;
 }
+
+.confirmation-page {
+  display: grid;
+  grid-template-columns: 1fr 2fr;
+  gap: 20px;
+  align-items: start;
+  padding: 20px;
+  max-width: 2000px;
+  margin: 0 auto;
+  font-family: Arial, sans-serif;
+  background: #fff;
+}
+.confirmation-page .progress-bar {
+  grid-column: span 2;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 40px;
+  padding: 0 20px;
+}
+.confirmation-page .progress-bar .step {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  color: #888;
+  font-size: 14px;
+}
+.confirmation-page .progress-bar .step.active {
+  color: #d9534f;
+  font-weight: bold;
+}
+.confirmation-page .progress-bar .step .anticon {
+  font-size: 24px;
+  margin-bottom: 8px;
+}
+.confirmation-page .progress-bar .line {
+  flex: 1;
+  height: 2px;
+  background: #ddd;
+  margin: 0 10px;
+}
+.confirmation-page .animation-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  padding: 20px;
+  text-align: center;
+}
+.confirmation-page .animation-container img {
+  width: 100%;
+  height: auto;
+  max-width: 700px;
+}
+.confirmation-page .animation-container .track-order {
+  margin-top: 20px;
+  background: #d9534f;
+  color: white;
+  padding: 8px 16px;
+  border-radius: 5px;
+  text-decoration: none;
+  font-weight: bold;
+  font-size: 14px;
+  cursor: pointer;
+  border: none;
+  width: -moz-fit-content;
+  width: fit-content;
+}
+.confirmation-page .animation-container .track-order:hover {
+  background: #c9302c;
+}
+.confirmation-page .order-details {
+  background: #fff;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  padding: 20px;
+  width: 100%;
+  text-align: left;
+}
+.confirmation-page .order-details h2, .confirmation-page .order-details .h2 {
+  font-size: 24px;
+  font-weight: bold;
+  color: #333;
+  margin-bottom: 15px;
+  text-align: center;
+}
+.confirmation-page .order-details h3, .confirmation-page .order-details .h3 {
+  font-size: 18px;
+  font-weight: bold;
+  margin-top: 10px;
+}
+.confirmation-page .order-details p {
+  margin: 5px 0;
+  font-size: 16px;
+}
+.confirmation-page .order-details p strong {
+  font-weight: bold;
+  color: #333;
+}
+.confirmation-page .order-details ul {
+  list-style: none;
+  padding: 0;
+}
+.confirmation-page .order-details ul li {
+  display: flex;
+  justify-content: space-between;
+  padding: 8px 0;
+  border-bottom: 1px solid #eee;
+}
+.confirmation-page .order-details ul li span {
+  font-size: 16px;
+  color: #555;
+}
+.confirmation-page .order-details ul li span:last-child {
+  font-weight: bold;
+  color: #333;
+}
+.confirmation-page .order-details .summary {
+  border-top: 1px solid #ddd;
+  margin-top: 10px;
+  padding-top: 10px;
+}
+.confirmation-page .order-details .summary p {
+  display: flex;
+  justify-content: space-between;
+  font-weight: bold;
+}

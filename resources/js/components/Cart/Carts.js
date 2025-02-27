@@ -11,32 +11,29 @@ const Carts = () => {
   const navigate = useNavigate();
 
   useEffect(() => {
-    const userToken = localStorage.getItem("userToken");
+    const fetchCartItems = async () => {
+        try {
+            const userToken = localStorage.getItem("userToken");
+            if (!userToken) {
+                alert("Please log in to view your cart.");
+                navigate("/login");
+                return;
+            }
 
-    if (!userToken) {
-      alert("Please log in to view your cart.");
-      navigate("/login");
-      return;
-    }
+            const response = await axios.get("http://127.0.0.1:8000/api/carts", {
+                headers: { Authorization: `Bearer ${userToken}` },
+            });
 
-    axios
-      .get("http://127.0.0.1:8000/api/carts", {
-        headers: { Authorization: `Bearer ${userToken}` },
-      })
-      .then((response) => {
-        console.log("Cart API Response:", response.data);
-        setCartItems(Array.isArray(response.data) ? response.data : []);
-      })
-      .catch((error) => {
-        console.error("Error fetching cart items:", error);
-
-        if (error.response && error.response.status === 401) {
-          alert("Session expired. Please log in again.");
-          localStorage.removeItem("userToken");
-          navigate("/login");
+            console.log("🔄 Updated cart items:", response.data);
+            setCartItems(Array.isArray(response.data) ? response.data : []);
+        } catch (error) {
+            console.error("Error fetching cart items:", error);
         }
-      });
-  }, [navigate]);
+    };
+
+    fetchCartItems(); // Fetch updated cart after checkout
+}, []); // Run once on page load
+
 
   const handleSelectItem = (productId) => {
     setSelectedItems((prevSelected) =>

@@ -25,9 +25,7 @@ Route::get("/products-by-category-type", [ProductsController::class, "getProduct
 Route::resource('brands', BrandController::class);
 
 // Address Routes
-Route::get('address', [AddressController::class, 'index']);
-Route::get('address/user/{userId}', [AddressController::class, 'getByUser']);
-Route::post('address/{id}', [AddressController::class, 'update']); 
+
 
 // Order and Payment Routes
 Route::apiResource('orders', OrderController::class);
@@ -48,6 +46,15 @@ Route::group(["middleware" => ["auth:api"]], function() {
 
     Route::post('carts', [CartController::class, 'addToCart']);
     Route::get('carts', [CartController::class, 'index']);
+    Route::post('/carts/delete', [CartController::class, 'bulkDestroy']);
+
+    // Address Routes
+Route::get('address', [AddressController::class, 'index']);
+// Route::post('/address', [AddressController::class, 'store']);
+Route::get('address/user/{userId}', [AddressController::class, 'getByUser']);
+// Route::put('address/{id}', [AddressController::class, 'update']); 
+Route::post('/address', [AddressController::class, 'storeOrUpdate']);
+
 
     // ✅ NEW: Only admins can fetch all users
     Route::get("users", [ApiController::class, "getAllUsers"]);

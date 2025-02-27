@@ -2,14 +2,12 @@ import React, { useEffect, useState } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
 import MainPage from "../Reusable/MainPage";
 import axios from "axios";
-import { ShoppingCartOutlined, CreditCardOutlined, CheckCircleOutlined } from "@ant-design/icons"; // Import Antd icons
+import { ShoppingCartOutlined, CreditCardOutlined, CheckCircleOutlined } from "@ant-design/icons";
 
 const Checkout = () => {
   const navigate = useNavigate();
   const location = useLocation();
   const { selectedItems, totalPrice } = location.state || { selectedItems: [], totalPrice: 0 };
-
-  console.log("Retrieved in Checkout Page:", selectedItems, totalPrice); // Debugging
 
   const [address, setAddress] = useState({
     fullname: "",
@@ -25,6 +23,7 @@ const Checkout = () => {
   });
 
   const [isEditing, setIsEditing] = useState(false);
+  const [userId, setUserId] = useState(null);
 
   useEffect(() => {
     const fetchProfileAndAddress = async () => {
@@ -32,15 +31,17 @@ const Checkout = () => {
         const token = localStorage.getItem("userToken");
         if (!token) return;
 
+        // Fetch user profile
         const profileResponse = await axios.get(`http://127.0.0.1:8000/api/profile`, {
           headers: { Authorization: `Bearer ${token}` },
         });
 
-        if (profileResponse.data) {
-          const profile = profileResponse.data.profile || {};
-          const userId = profile.user_id;
+        if (profileResponse.data && profileResponse.data.profile) {
+          const profile = profileResponse.data.profile;
+          setUserId(profile.user_id);
 
-          const addressResponse = await axios.get(`http://127.0.0.1:8000/api/address/user/${userId}`, {
+          // Fetch user address
+          const addressResponse = await axios.get(`http://127.0.0.1:8000/api/address/user/${profile.user_id}`, {
             headers: { Authorization: `Bearer ${token}` },
           });
 
@@ -58,6 +59,11 @@ const Checkout = () => {
             street: addressData.street || "",
             houseNo: addressData.house_no || "",
           });
+
+          // Enable editing mode if no address exists
+          if (!addressData.street) {
+            setIsEditing(true);
+          }
         }
       } catch (error) {
         console.error("Failed to fetch profile or address", error);
@@ -75,21 +81,48 @@ const Checkout = () => {
   const handleSaveAddress = async () => {
     try {
       const token = localStorage.getItem("userToken");
-      if (!token) return;
-
-      const userId = 1;
-
-      await axios.post(`http://127.0.0.1:8000/api/address/${userId}`, address, {
-        headers: { Authorization: `Bearer ${token}` },
+      if (!token || !userId) {
+        alert("Authentication token is missing. Please log in again.");
+        return;
+      }
+  
+      const addressData = { 
+        user_id: userId, // Ensure user_id is included
+        street: address.street,
+        barangay: address.barangay,
+        city: address.city,
+        state: address.state,
+        country: address.country,
+        region: address.region,
+        postal_code: address.postalCode,
+        is_default: true,
+      };
+  
+      console.log("Sending address data:", addressData); // ✅ Log request payload
+  
+      const response = await axios.post("http://127.0.0.1:8000/api/address", addressData, {
+        headers: {
+          Authorization: `Bearer ${token}`,
+          "Content-Type": "application/json",
+        },
       });
-
-      alert("Address updated successfully!");
+  
+      console.log("Address saved successfully:", response.data); // ✅ Log success response
+      alert("Address saved successfully!");
       setIsEditing(false);
     } catch (error) {
       console.error("Failed to update address", error);
-      alert("Failed to update address.");
+      if (error.response) {
+        console.error("Response data:", error.response.data);
+        console.error("Response status:", error.response.status);
+        console.error("Response headers:", error.response.headers);
+      }
+      alert("Failed to update address. Please check the console for details.");
     }
   };
+  
+
+
 
   return (
     <MainPage>
@@ -118,27 +151,26 @@ const Checkout = () => {
           <div className="order-details">
             <h3>Order Details</h3>
             <table>
-            <tbody>
-  {selectedItems.map((item, index) => (
-    <tr key={index}>
-      <td>{item.product?.product_name || "Unknown Product"}</td>
-      <td>PHP {item.product?.price || "0"}.00</td>
-    </tr>
-  ))}
-  <tr>
-    <td><strong>Subtotal</strong></td>
-    <td>PHP {totalPrice.toFixed(2)}</td>
-  </tr>
-  <tr>
-    <td><strong>Shipping</strong></td>
-    <td>PHP 70.00</td>
-  </tr>
-  <tr>
-    <td><strong>Grand Total</strong></td>
-    <td>PHP {(totalPrice + 70).toFixed(2)}</td>
-  </tr>
-</tbody>
-
+              <tbody>
+                {selectedItems.map((item, index) => (
+                  <tr key={index}>
+                    <td>{item.product_name || "Unknown Product"}</td>
+                    <td>PHP {item.price || "0"}.00</td>
+                  </tr>
+                ))}
+                <tr>
+                  <td><strong>Subtotal</strong></td>
+                  <td>PHP {totalPrice.toFixed(2)}</td>
+                </tr>
+                <tr>
+                  <td><strong>Shipping</strong></td>
+                  <td>PHP 70.00</td>
+                </tr>
+                <tr>
+                  <td><strong>Grand Total</strong></td>
+                  <td>PHP {(totalPrice + 70).toFixed(2)}</td>
+                </tr>
+              </tbody>
             </table>
           </div>
 
@@ -165,10 +197,16 @@ const Checkout = () => {
 
         {/* Checkout Buttons */}
         <div className="checkout-actions">
-          <button onClick={() => navigate(-1)}>Cancel</button>
-          <button className="proceed-btn" onClick={() => navigate("/payment", { state: { selectedItems, totalPrice } })}>
-            Proceed to Payment
-          </button>
+        <button
+  className="proceed-btn"
+  onClick={() => {
+    const updatedAddress = { ...address }; // Ensure you pass the latest state
+    navigate("/payment", { state: { selectedItems, totalPrice, address: updatedAddress } });
+  }}
+>
+  Proceed to Payment
+</button>
+
         </div>
       </div>
     </MainPage>

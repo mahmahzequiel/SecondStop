@@ -4,6 +4,8 @@ import { ShoppingCartOutlined } from "@ant-design/icons";
 import { useNavigate } from "react-router-dom";
 import categories from "../Categories/Categories";
 import Filters from "./Filters";
+import axios from "axios";
+
 
 const DisplayProducts = () => {
   const [products, setProducts] = useState([]);
@@ -81,20 +83,28 @@ const DisplayProducts = () => {
   }, [selectedFilters, selectedBrand, products, selectedCategory]);
 
   // ✅ Add to Cart Functionality
-  const handleAddToCart = async (product) => {
+
+const handleAddToCart = async (product) => {
     const userToken = localStorage.getItem("userToken");
-    const userId = localStorage.getItem("userId"); // ✅ Get userId from LocalStorage
+    const userId = localStorage.getItem("userId"); // ✅ Get userId from localStorage
 
     if (!userToken) {
         alert("Please log in to add items to the cart.");
         return;
     }
 
+    if (!userId) {
+        alert("User ID is missing. Please log in again.");
+        return;
+    }
+
     try {
+        console.log("Adding to cart:", { userId, productId: product.id });
+
         const response = await axios.post(
             "http://127.0.0.1:8000/api/carts",
             { 
-                user_id: userId,  // ✅ Include user_id
+                user_id: userId,  // ✅ Ensure the correct user ID is sent
                 product_id: product.id 
             },
             { 
@@ -108,6 +118,7 @@ const DisplayProducts = () => {
         alert("Error: " + JSON.stringify(error.response?.data.errors || error.response?.data || error));
     }
 };
+
 
 
 

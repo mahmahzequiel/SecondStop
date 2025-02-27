@@ -12,18 +12,17 @@ import CODPayment from "../PaymentMethods/CODPayment";
 const Payment = () => {
     const navigate = useNavigate();
     const location = useLocation();
-    const { selectedItems = [], totalPrice = 0 } = location.state || {};
+    const { selectedItems = [], totalPrice = 0, address: receivedAddress } = location.state || {};
 
-    console.log("Received in Payment Page:", selectedItems); // Debugging
-
-    const [address, setAddress] = useState({
-        fullname: "",
-        phone: "",
-        country: "",
-        region: "",
-        state: "",
-        city: "",
-        barangay: ""
+const [address, setAddress] = useState(receivedAddress || {
+    fullname: "",
+    phone: "",
+    country: "",
+    region: "",
+    state: "",
+    city: "",
+    barangay: "",
+    street: ""
     });
 
     const [selectedPaymentMethod, setSelectedPaymentMethod] = useState("");
@@ -56,7 +55,8 @@ const Payment = () => {
                         region: addressData.region || "",
                         state: addressData.state || "",
                         city: addressData.city || "",
-                        barangay: addressData.barangay || ""
+                        barangay: addressData.barangay || "",
+                        street: addressData.street || ""
                     });
                 }
             } catch (error) {
@@ -66,6 +66,28 @@ const Payment = () => {
 
         fetchProfileAndAddress();
     }, []);
+
+    const removePurchasedItemsFromCart = async (cartIds) => {
+        try {
+            if (!Array.isArray(cartIds) || cartIds.length === 0) {
+                console.warn("⚠ No valid cart items to remove.");
+                return;
+            }
+    
+            const userToken = localStorage.getItem("userToken");
+    
+            await axios.post(
+                "http://127.0.0.1:8000/api/carts/delete",
+                { cart_ids: cartIds },  // Ensure cart_ids is an array
+                { headers: { Authorization: `Bearer ${userToken}` } }
+            );
+    
+            console.log("✅ Purchased items removed from cart:", cartIds);
+        } catch (error) {
+            console.error("❌ Failed to remove purchased items:", error.response?.data || error);
+        }
+    };
+    
 
     const handlePaymentSuccess = async (details) => {
         try {
@@ -93,14 +115,20 @@ const Payment = () => {
                 })),
                 totalPrice: totalPrice + 70,
                 paymentMethod: details.method,
-                shippingAddress: `${address.country}, ${address.region}, ${address.state}, ${address.city}, ${address.barangay}`,
+                shippingAddress: `${address.country}, ${address.region}, ${address.state}, ${address.city}, ${address.barangay}, ${address.street}`,
                 paymentId // Step 3: Attach Payment ID
             };
     
             // Step 4: Save Order Details
             const orderId = await saveOrderDetails(orderData);
     
-            // Step 5: Redirect to Confirmation Page
+            // Step 5: Remove Purchased Items from Cart
+            const cartIds = selectedItems.map(item => item.cart_id);
+            if (cartIds.length > 0) {
+                await removePurchasedItemsFromCart(cartIds);
+            }
+    
+            // Step 6: Redirect to Confirmation Page
             navigate("/confirmation", {
                 state: {
                     orderNumber: orderData.orderNumber,
@@ -114,8 +142,12 @@ const Payment = () => {
     
         } catch (error) {
             console.error("Error processing payment:", error);
+            alert("Failed to process payment. Please try again.");
         }
     };
+    
+    
+    
     
     
 
@@ -129,16 +161,17 @@ const Payment = () => {
             );
     
             console.log("✅ Payment details saved:", response.data);
-            
-            if (response.data && response.data.id) {
-                return response.data.id;  // ✅ Ensure ID is returned
+    
+            // Check if the response contains the expected payment_id
+            if (response.data && response.data.payment_id) {
+                return response.data.payment_id;  // Use payment_id instead of id
             } else {
-                console.error("❌ Payment ID not received from API");
-                return null;
+                console.error("❌ Payment ID not received from API. Response:", response.data);
+                throw new Error("Payment ID is missing in the API response");
             }
         } catch (error) {
             console.error("❌ Failed to save payment details:", error.response?.data || error);
-            return null;
+            throw error; // Re-throw the error to handle it in the calling function
         }
     };
     
@@ -146,13 +179,22 @@ const Payment = () => {
     const saveOrderDetails = async (orderData) => {
         try {
             const token = localStorage.getItem("userToken");
-
-            console.log("🔍 Sending Order Data:", orderData); 
-
+    
+            console.log("🔍 Sending Order Data:", orderData);
+    
+            let cartIds = orderData.items.map(item => item.cart_id).filter(id => id !== undefined && id !== null);
+    
+            // If only one cart ID, send it as a single integer
+            if (cartIds.length === 1) {
+                cartIds = cartIds[0];
+            }
+    
+            console.log("📌 Processed cart_id:", cartIds, "Type:", typeof cartIds); // Debugging
+    
             const response = await axios.post(
                 "http://127.0.0.1:8000/api/orders",
                 {
-                    cart_id: orderData.items.map(item => item.cart_id),
+                    cart_id: cartIds, // Try cart_id: String(cartIds) if needed
                     payment_id: orderData.paymentId,
                     address_id: orderData.addressId || null,
                     subtotal: totalPrice,
@@ -163,7 +205,7 @@ const Payment = () => {
                 },
                 { headers: { Authorization: `Bearer ${token}` } }
             );
-
+    
             console.log("✅ Order details saved:", response.data);
             return response.data.order.id;
         } catch (error) {
@@ -171,19 +213,50 @@ const Payment = () => {
             throw error;
         }
     };
+    
+
+    const [isGcashModalVisible, setIsGcashModalVisible] = useState(false);
+    const [isPaypalVisible, setIsPaypalVisible] = useState(false);
+    
 
     const renderPaymentForm = () => {
         switch (selectedPaymentMethod) {
             case "Paypal":
-                return <PaypalPayment onPaymentSuccess={handlePaymentSuccess} />;
+                return (
+                    <PaypalPayment 
+                        isVisible={isPaypalVisible} 
+                        onClose={() => setIsPaypalVisible(false)} 
+                        onPaymentSuccess={handlePaymentSuccess} 
+                    />
+                );
             case "Gcash":
-                return <GcashPayment onPaymentSuccess={handlePaymentSuccess} />;
+                return (
+                    <GcashPayment 
+                        visible={isGcashModalVisible} 
+                        onClose={() => setIsGcashModalVisible(false)}
+                        onPaymentSuccess={handlePaymentSuccess} 
+                    />
+                );
             case "COD":
                 return <CODPayment onPaymentSuccess={handlePaymentSuccess} />;
             default:
                 return null;
         }
     };
+    
+    
+    
+    
+    const handlePaymentMethodChange = (e) => {
+        const method = e.target.value;
+        setSelectedPaymentMethod(method);
+    
+        // Ensure only one modal is open at a time
+        setIsPaypalVisible(method === "Paypal");
+        setIsGcashModalVisible(method === "Gcash");
+    };
+    
+    
 
     return (
         <MainPage>
@@ -193,7 +266,7 @@ const Payment = () => {
                     <h3>Customer Information</h3>
                     <p><strong>Name:</strong> {address.fullname}</p>
                     <p><strong>Phone:</strong> {address.phone}</p>
-                    <p><strong>Shipping Address:</strong> {`${address.country}, ${address.region}, ${address.state}, ${address.city}, ${address.barangay}`}</p>
+                    <p><strong>Shipping Address:</strong> {`${address.country}, ${address.region}, ${address.state}, ${address.city}, ${address.barangay}, ${address.street}`}</p>
                     <hr />
 
                     <h3>Item/s Details</h3>
@@ -224,12 +297,24 @@ const Payment = () => {
                 <h3>Payment Method</h3>
                 <div className="payment-method">
                     <label>
-                        <input type="radio" name="payment" value="Paypal" onChange={(e) => setSelectedPaymentMethod(e.target.value)} />
-                        <PayCircleOutlined /> Paypal
+                    <input 
+    type="radio" 
+    name="payment" 
+    value="Paypal" 
+    onChange={handlePaymentMethodChange} 
+/>
+<PayCircleOutlined /> Paypal
+
                     </label>
                     <label>
-                        <input type="radio" name="payment" value="Gcash" onChange={(e) => setSelectedPaymentMethod(e.target.value)} />
-                        <MobileOutlined /> Gcash
+                    <input 
+    type="radio" 
+    name="payment" 
+    value="Gcash" 
+    onChange={handlePaymentMethodChange} 
+/>
+<MobileOutlined /> Gcash
+
                     </label>
                     <label>
                         <input type="radio" name="payment" value="COD" onChange={(e) => setSelectedPaymentMethod(e.target.value)} />

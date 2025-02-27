@@ -65,11 +65,29 @@ class CartController extends Controller
 
     // Create cart entry
     $cart = Cart::create([
-        'user_id' => $validatedData['user_id'],
+        'user_id' => Auth::id(), // ✅ Securely use authenticated user ID
+
         'product_id' => $validatedData['product_id'],
     ]);
 
     return response()->json(['message' => 'Product added to cart successfully', 'cart' => $cart], 201);
 }
+public function bulkDestroy(Request $request)
+{
+    $request->validate([
+        'cart_ids' => 'required|array', // Ensure it's an array
+        'cart_ids.*' => 'exists:carts,id', // Validate each cart_id
+    ]);
+
+    $user = Auth::id();
+
+    // Delete only the cart items belonging to the authenticated user
+    Cart::whereIn('id', $request->cart_ids)
+        ->where('user_id', $user)
+        ->delete();
+
+    return response()->json(['message' => 'Selected cart items removed successfully']);
+}
+
 
 }

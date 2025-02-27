@@ -22,9 +22,11 @@ const Logout = () => {
         message.error("Logout error. Please try again.");
       } finally {
         localStorage.removeItem("userToken");
+        localStorage.removeItem("userId"); // ✅ Ensure userId is also removed
         delete axios.defaults.headers.common["Authorization"];
         navigate("/LogIn");
       }
+      
     };
 
     performLogout();

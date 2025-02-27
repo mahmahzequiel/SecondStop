@@ -1,119 +1,92 @@
 import React, { useEffect, useState } from "react";
-import { useLocation } from "react-router-dom";
-import axios from "axios";
+import MainPage from "../Reusable/MainPage";
+import { ShoppingCartOutlined, CreditCardOutlined, CheckCircleOutlined } from "@ant-design/icons"; // Import icons
 
 const Confirmation = () => {
-    const location = useLocation();
-    const { selectedItems = [], totalPrice = 0 } = location.state || {};
-
-    const [orderNumber, setOrderNumber] = useState("");
-    const [purchaseDate, setPurchaseDate] = useState("");
-    const [profile, setProfile] = useState({
-        first_name: "",
-        middle_name: "",
-        last_name: "",
-        phone_number: "",
-    });
-    const [address, setAddress] = useState({
-        fullname: "",
-        phone: "",
-        country: "",
-        region: "",
-        state: "",
-        city: "",
-        barangay: "",
-        houseNo: "",
-        street: "",
-        postalCode: "",
-    });
+    const [orderDetails, setOrderDetails] = useState(null);
 
     useEffect(() => {
-        // Generate order number and purchase date
-        setOrderNumber("ORD-" + Math.floor(100000 + Math.random() * 900000));
-        setPurchaseDate(new Date().toLocaleString());
-
-        // Fetch profile and address data
-        const fetchProfileAndAddress = async () => {
-            try {
-                const token = localStorage.getItem("userToken");
-                if (!token) return;
-
-                // Fetch profile data
-                const profileResponse = await axios.get("http://127.0.0.1:8000/api/profile", {
-                    headers: { Authorization: `Bearer ${token}` },
-                });
-
-                if (profileResponse.data) {
-                    const profile = profileResponse.data.profile || {};
-                    const userId = profile.user_id;
-
-                    // Fetch address data
-                    const addressResponse = await axios.get(`http://127.0.0.1:8000/api/address/user/${userId}`, {
-                        headers: { Authorization: `Bearer ${token}` },
-                    });
-
-                    const addressData = addressResponse.data.addresses?.[0] || {};
-
-                    // Set profile and address state
-                    setProfile({
-                        first_name: profile.first_name || "",
-                        middle_name: profile.middle_name || "",
-                        last_name: profile.last_name || "",
-                        phone_number: profile.phone_number || "",
-                    });
-
-                    setAddress({
-                        fullname: `${profile.first_name || ""} ${profile.middle_name ? profile.middle_name + " " : ""}${profile.last_name || ""}`,
-                        phone: profile.phone_number || "",
-                        country: addressData.country || "",
-                        region: addressData.region || "",
-                        state: addressData.state || "",
-                        city: addressData.city || "",
-                        barangay: addressData.barangay || "",
-                        houseNo: addressData.house_no || "",
-                        street: addressData.street || "",
-                        postalCode: addressData.postal_code || "",
-                    });
-                }
-            } catch (error) {
-                console.error("Failed to fetch profile or address", error);
-            }
-        };
-
-        fetchProfileAndAddress();
+        // Retrieve order details from LocalStorage
+        const storedOrder = localStorage.getItem("orderDetails");
+        if (storedOrder) {
+            setOrderDetails(JSON.parse(storedOrder));
+        }
     }, []);
 
-    // Construct full name from profile data
-    const fullName = `${profile.first_name || ""} ${profile.middle_name ? profile.middle_name + " " : ""}${profile.last_name || ""}`;
+    if (!orderDetails) {
+        return <p>Loading order details...</p>;
+    }
+
+    const { 
+        orderNumber, 
+        purchaseDate, 
+        fullName, 
+        phoneNumber, 
+        address, 
+        selectedItems, 
+        subtotal, 
+        shippingCost, 
+        grandTotal 
+    } = orderDetails;
 
     return (
-        <div>
-            <h2>Order Confirmation</h2>
-            <p><strong>Order Number:</strong> {orderNumber}</p>
-            <p><strong>Purchase Date:</strong> {purchaseDate}</p>
+        <MainPage>
+            <div className="confirmation-page">
+                {/* Progress Bar */}
+                <div className="progress-bar">
+                    <div className="step">
+                        <ShoppingCartOutlined />
+                        <span>Checkout</span>
+                    </div>
+                    <div className="line"></div>
+                    <div className="step">
+                        <CreditCardOutlined />
+                        <span>Payment</span>
+                    </div>
+                    <div className="line"></div>
+                    <div className="step active">
+                        <CheckCircleOutlined />
+                        <span>Confirmation</span>
+                    </div>
+                </div>
 
-            <h3>Customer Information</h3>
-            <p><strong>Full Name:</strong> {fullName.trim() || "N/A"}</p>
-            <p><strong>Phone Number:</strong> {profile.phone_number || "N/A"}</p>
-            <p>
-                <strong>Address:</strong>{" "}
-                {`${address.houseNo || ""} ${address.street || ""}, ${address.barangay || ""}, ${address.city || ""}, ${address.state || ""}, ${address.region || ""}, ${address.country || ""}, ${address.postalCode || ""}`}
-            </p>
+                {/* Animation or Image Container */}
+                <div className="animation-container">
+                    <img src="/images/order.png" alt="Order Confirmation" />
+                    {/* Track Order Button */}
+                    <button className="track-order">Track Your Order</button>
+                </div>
 
-            <h3>Item Details</h3>
-            <ul>
-                {selectedItems.map((item, index) => (
-                    <li key={index}>
-                        <span>{item.name}</span> - <span>PHP{item.price}.00</span>
-                    </li>
-                ))}
-            </ul>
+                {/* Order Details Container */}
+                <div className="order-details">
+                    <h2>Order Confirmation</h2>
+                    <p><strong>Order Number:</strong> {orderNumber}</p>
+                    <p><strong>Purchase Date:</strong> {purchaseDate}</p>
 
-            <h3>Order Summary</h3>
-            <p><strong>Subtotal:</strong> PHP{totalPrice}.00</p>
-            <p><strong>Shipping Cost:</strong> PHP70.00</p>
-            <p><strong>Grand Total:</strong> PHP{(totalPrice + 70).toFixed(2)}</p>
-        </div>
+                    <h3>Customer Information</h3>
+                    <p><strong>Full Name:</strong> {fullName}</p>
+                    <p><strong>Phone Number:</strong> {phoneNumber}</p>
+                    <p><strong>Address:</strong> {address}</p>
+
+                    <h3>Item Details</h3>
+                    <ul>
+                        {selectedItems.map((item, index) => (
+                            <li key={index}>
+                                <span>{item.product_name}</span>
+                                <span>PHP{item.price}.00</span>
+                            </li>
+                        ))}
+                    </ul>
+
+                    <h3>Order Summary</h3>
+                    <div className="summary">
+                        <p><strong>Subtotal:</strong> PHP{subtotal}.00</p>
+                        <p><strong>Shipping Cost:</strong> PHP{shippingCost}.00</p>
+                        <p><strong>Grand Total:</strong> PHP{grandTotal}.00</p>
+                    </div>
+                </div>
+            </div>
+        </MainPage>
     );
 };
 
