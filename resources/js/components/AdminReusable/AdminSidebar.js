@@ -48,8 +48,10 @@ function AdminSidebar() {
         <span>Customers</span>
       </div>
       <div className="nav-item">
+      <Link to="/adminchat" style={{ display: "flex", alignItems: "center", color: "inherit", textDecoration: "none" }}>
         <MessageOutlined className="nav-icon" />
         <span>Messages</span>
+      </Link>
       </div>
       <div className="nav-item">
         <Link

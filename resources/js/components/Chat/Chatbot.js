@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { FloatButton, Input, Button, Card } from "antd";
 import { MessageOutlined, SendOutlined, CloseOutlined } from "@ant-design/icons";
+import axios from "axios";
 
 function Chatbot() {
   const [openChat, setOpenChat] = useState(false);
@@ -9,23 +10,33 @@ function Chatbot() {
     { text: "Hello! How can we help you?", sender: "bot" },
   ]);
 
-  const sendMessage = () => {
-    if (message.trim() !== "") {
-      setMessages([...messages, { text: message, sender: "user" }]);
-      setMessage("");
+  const userToken = localStorage.getItem("userToken");
 
-      setTimeout(() => {
+  const sendMessage = () => {
+    if (message.trim() === "") return;
+    console.log("Attempting to send message to API:", message);
+
+    axios
+      .post(
+        "http://127.0.0.1:8000/api/chat/send",
+        { message: message },
+        { headers: { Authorization: `Bearer ${userToken}` } }
+      )
+      .then((res) => {
+        console.log("Message sent from customer:", res.data.data);
         setMessages((prev) => [
           ...prev,
-          { text: "Thank you for reaching out!", sender: "bot" },
+          { text: res.data.data.message, sender: "user" },
         ]);
-      }, 1000); 
-    }
+        setMessage("");
+      })
+      .catch((err) => {
+        console.error("Error sending message:", err.response ? err.response.data : err);
+      });
   };
 
   return (
     <>
-      {/* Floating Button to open chat */}
       <FloatButton
         icon={<MessageOutlined style={{ fontSize: "22px" }} />}
         type="primary"
@@ -40,7 +51,6 @@ function Chatbot() {
         onClick={() => setOpenChat(!openChat)}
       />
 
-      {/* Chat Card */}
       {openChat && (
         <Card
           style={{
@@ -63,7 +73,6 @@ function Chatbot() {
             />
           }
         >
-          {/* Messages */}
           <div
             style={{
               flex: 1,
@@ -92,7 +101,6 @@ function Chatbot() {
             ))}
           </div>
 
-          {/* Input + Send */}
           <div style={{ borderTop: "1px solid #f0f0f0", padding: "10px" }}>
             <Input.TextArea
               rows={2}

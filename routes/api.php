@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Api\ApiController;
+use App\Http\Controllers\ChatController;
 use App\Http\Controllers\ProductsController;
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\CategoryTypeController;
@@ -57,5 +58,10 @@ Route::post('/address', [AddressController::class, 'storeOrUpdate']);
 
 
     // ✅ NEW: Only admins can fetch all users
+    Route::get('chat/{otherUserId}', [ChatController::class, 'getMessages']);
+    Route::post('chat/send', [ChatController::class, 'sendMessage']);
+    Route::get('chat/customer-chats', [ChatController::class, 'getAllCustomerChats']);
+
     Route::get("users", [ApiController::class, "getAllUsers"]);
+
 });

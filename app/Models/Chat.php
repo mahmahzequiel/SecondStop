@@ -2,14 +2,21 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Chat extends Model
 {
-    use HasFactory;
+    use HasFactory, SoftDeletes;
 
-    protected $fillable = ['sender_id', 'receiver_id', 'message'];
+    protected $fillable = [
+        'sender_id',
+        'receiver_id',
+        'date_time',
+        'message',
+        'is_read',
+    ];
 
     public function sender()
     {
