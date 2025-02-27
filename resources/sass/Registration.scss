@@ -1,33 +1,90 @@
-.registration-container {
-    max-width: 1500px; /* Increased width for better spacing */
-    margin: 30px auto; /* Adjusted margin to move it up */
-    padding: 20px;
-    background-color: #fff;
-    border-radius: 8px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    position: relative;
-    top: -20px; /* Moves the container higher */
-  }
-  
-  h2 {
-    text-align: center;
-    margin-bottom: 20px;
-  }
-  
-  .ant-form-item {
-    margin-bottom: 15px;
-  }
-  
-  /* Position button to the right */
-  .form-submit-container {
-    display: flex;
-    justify-content: flex-end;
-    margin-top: 10px;
-  }
-  
-  /* Make the button smaller */
-  .ant-btn-primary {
-    padding: 5px 15px;
-    font-size: 14px;
-  }
-  
+@import url('https://fonts.googleapis.com/css2?family=Inria+Serif:wght@400;700&display=swap');
+
+
+.signup-title {
+  margin-top: 20px; 
+  text-align: center; /* Center horizontally */
+  font-size: 32px; /* Adjust size */
+  font-weight: bold; /* Make it bold */
+  color: #000000; /* Match the theme */
+  margin-bottom: 20px; /* Add space below */
+  font-family: 'Inria Serif', serif; /* Apply Inria Serif font */
+}
+
+body {
+  background-color: #750139; /* Background color */
+  margin: 0;
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  overflow: auto; /* Enables scrolling if needed */
+}
+
+/* Fixed-size form container */
+.form-container {
+  width: 1400px; /* Fixed width */
+  height: 650px; /* Fixed height */
+  background-color: #FFFFFF;
+  border-radius: 8px;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden; /* Prevents overflow */
+}
+
+/* Input boxes: width 375px, height 78px */
+.ant-input,
+.ant-select-selector,
+.ant-input-password {
+  width: 375px !important; /* Fixed width */
+  height: 65px !important; /* Fixed height */
+  font-size: 18px; /* Increase text size */
+  padding: 10px; /* Spacing for readability */
+  border-radius: 15px !important; /* 15px curved border */
+  border: 1px solid #ccc; /* Optional: Adds a subtle border */
+  display: flex;
+  align-items: center; /* Aligns text vertically */
+}
+
+/* Fix password input alignment */
+.ant-input-password {
+  display: flex !important;
+  align-items: center !important;
+  height: 65px !important; /* Ensure same height */
+  border-radius: 15px !important;
+}
+
+.ant-input-password input {
+  height: 100% !important; /* Ensure full height usage */
+  border-radius: 15px !important;
+  padding: 0 15px !important; /* Adjust padding for better alignment */
+  font-size: 18px !important; /* Match other inputs */
+}
+
+/* Align submit button */
+.form-submit-container {
+  display: flex;
+  justify-content: flex-end; /* Aligns button to the right */
+  width: 100%; /* Ensures full width usage */
+  margin-top: 20px; /* Adds spacing from inputs */
+}
+
+/* Styling for Register button */
+.ant-btn-primary {
+  background-color: #D84727 !important; /* Updated button color */
+  border-color: #D84727 !important; /* Match border */
+  color: #fff !important; /* White text for contrast */
+  padding: 25px 55px; /* Increase button size */
+  font-size: 16px;
+  border-radius: 8px; /* Optional: Rounded corners */
+  transition: background 0.3s ease-in-out; /* Smooth hover effect */
+}
+
+/* Hover effect */
+.ant-btn-primary:hover {
+  background-color: #B53B22 !important; /* Darker shade on hover */
+  border-color: #B53B22 !important;
+}

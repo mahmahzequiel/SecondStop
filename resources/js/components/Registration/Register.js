@@ -1,14 +1,14 @@
 import React, { useState, useEffect } from "react";
 import { Form, Input, Select, Button, Row, Col, message } from "antd";
 import { useNavigate } from "react-router-dom";
-import MainPage from "../Reusable/MainPage";
+import logo from "/images/logodescription.png";
 
 const { Option } = Select;
 
 const Registration = () => {
   const [form] = Form.useForm();
   const navigate = useNavigate();
-  const [countdown, setCountdown] = useState(null); // null means no countdown yet
+  const [countdown, setCountdown] = useState(null);
 
   // Handle form submission
   const handleSubmit = async (values) => {
@@ -35,14 +35,10 @@ const Registration = () => {
         throw new Error("Registration failed");
       }
 
-      // Store the returned access token so the user is logged in automatically
       localStorage.setItem("userToken", data.data.access_token);
-      // Optionally, store the profile data if needed
       localStorage.setItem("userProfile", JSON.stringify(data.data.profile));
 
       message.success("Registration successful!");
-
-      // Start countdown from 3 seconds for redirect
       setCountdown(3);
       form.resetFields();
     } catch (error) {
@@ -51,7 +47,6 @@ const Registration = () => {
     }
   };
 
-  // Countdown effect: when countdown is active, reduce it by 1 every second until 0, then navigate
   useEffect(() => {
     if (countdown === null) return;
     if (countdown <= 0) {
@@ -63,17 +58,21 @@ const Registration = () => {
   }, [countdown, navigate]);
 
   return (
-    <MainPage>
-      <div className="registration-container">
-        <h2>Register</h2>
+    
+    
+    
+    <div className="form-container">
+      {/* Sign-up Title */}
+      <h2 className="signup-title">Sign-up</h2>
+
+      
+      
+      {/* New Wrapper for Form */}
+      <div className="form-container">
         <Form form={form} layout="vertical" onFinish={handleSubmit} autoComplete="off">
           <Row gutter={16}>
             <Col span={8}>
-              <Form.Item
-                label="First Name"
-                name="first_name"
-                rules={[{ required: true, message: "First name is required" }]}
-              >
+              <Form.Item label="First Name" name="first_name" rules={[{ required: true, message: "First name is required" }]}>
                 <Input placeholder="Enter first name" />
               </Form.Item>
             </Col>
@@ -83,11 +82,7 @@ const Registration = () => {
               </Form.Item>
             </Col>
             <Col span={8}>
-              <Form.Item
-                label="Last Name"
-                name="last_name"
-                rules={[{ required: true, message: "Last name is required" }]}
-              >
+              <Form.Item label="Last Name" name="last_name" rules={[{ required: true, message: "Last name is required" }]}>
                 <Input placeholder="Enter last name" />
               </Form.Item>
             </Col>
@@ -95,11 +90,7 @@ const Registration = () => {
 
           <Row gutter={16}>
             <Col span={8}>
-              <Form.Item
-                label="Sex"
-                name="sex"
-                rules={[{ required: true, message: "Sex is required" }]}
-              >
+              <Form.Item label="Sex" name="sex" rules={[{ required: true, message: "Sex is required" }]}>
                 <Select placeholder="Select">
                   <Option value="Male">Male</Option>
                   <Option value="Female">Female</Option>
@@ -108,26 +99,18 @@ const Registration = () => {
               </Form.Item>
             </Col>
             <Col span={8}>
-              <Form.Item
-                label="Phone Number"
-                name="phone_number"
-                rules={[
-                  { required: true, message: "Phone number is required" },
-                  { pattern: /^\+639\d{9}$/, message: "Phone number must be in +639XXXXXXXXX format" },
-                ]}
-              >
+              <Form.Item label="Phone Number" name="phone_number" rules={[
+                { required: true, message: "Phone number is required" },
+                { pattern: /^\+639\d{9}$/, message: "Phone number must be in +639XXXXXXXXX format" },
+              ]}>
                 <Input placeholder="+639XXXXXXXXX" />
               </Form.Item>
             </Col>
             <Col span={8}>
-              <Form.Item
-                label="Email"
-                name="email"
-                rules={[
-                  { required: true, message: "Email is required" },
-                  { type: "email", message: "Invalid email address" },
-                ]}
-              >
+              <Form.Item label="Email" name="email" rules={[
+                { required: true, message: "Email is required" },
+                { type: "email", message: "Invalid email address" },
+              ]}>
                 <Input placeholder="Enter email" />
               </Form.Item>
             </Col>
@@ -135,61 +118,49 @@ const Registration = () => {
 
           <Row gutter={16}>
             <Col span={8}>
-              <Form.Item
-                label="Username"
-                name="username"
-                rules={[{ required: true, message: "Username is required" }]}
-              >
+              <Form.Item label="Username" name="username" rules={[{ required: true, message: "Username is required" }]}>
                 <Input placeholder="Enter username" />
               </Form.Item>
             </Col>
             <Col span={8}>
-              <Form.Item
-                label="Password"
-                name="password"
-                rules={[
-                  { required: true, message: "Password is required" },
-                  { min: 8, message: "Password must be at least 8 characters long" },
-                ]}
-              >
+              <Form.Item label="Password" name="password" rules={[
+                { required: true, message: "Password is required" },
+                { min: 8, message: "Password must be at least 8 characters long" },
+              ]}>
                 <Input.Password placeholder="Enter password" />
               </Form.Item>
             </Col>
             <Col span={8}>
-              <Form.Item
-                label="Confirm Password"
-                name="password_confirmation"
-                dependencies={["password"]}
-                rules={[
-                  { required: true, message: "Please confirm your password" },
-                  ({ getFieldValue }) => ({
-                    validator(_, value) {
-                      if (!value || getFieldValue("password") === value) {
-                        return Promise.resolve();
-                      }
-                      return Promise.reject(new Error("Passwords do not match"));
-                    },
-                  }),
-                ]}
-              >
+              <Form.Item label="Confirm Password" name="password_confirmation" dependencies={["password"]} rules={[
+                { required: true, message: "Please confirm your password" },
+                ({ getFieldValue }) => ({
+                  validator(_, value) {
+                    if (!value || getFieldValue("password") === value) {
+                      return Promise.resolve();
+                    }
+                    return Promise.reject(new Error("Passwords do not match"));
+                  },
+                }),
+              ]}>
                 <Input.Password placeholder="Confirm password" />
               </Form.Item>
             </Col>
           </Row>
 
           <Form.Item className="form-submit-container">
-            <Button type="primary" htmlType="submit">Register</Button>
+            <Button type="primary" htmlType="submit">
+              Register
+            </Button>
           </Form.Item>
         </Form>
-
-        {/* If countdown is active, display the countdown message */}
-        {countdown !== null && (
-          <div style={{ marginTop: "20px", textAlign: "center", fontSize: "16px" }}>
-            Redirecting in {countdown}...
-          </div>
-        )}
       </div>
-    </MainPage>
+
+      {countdown !== null && (
+        <div style={{ marginTop: "20px", textAlign: "center", fontSize: "16px" }}>
+          Redirecting in {countdown}...
+        </div>
+      )}
+    </div>
   );
 };
 
