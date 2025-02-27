@@ -1,52 +1,49 @@
 <?php
 
-namespace App\Models;
+namespace App\Http\Controllers;
 
-use Illuminate\Foundation\Auth\User as Authenticatable;
-use Illuminate\Notifications\Notifiable;
-use Laravel\Passport\HasApiTokens;
-use Illuminate\Database\Eloquent\Factories\HasFactory;
-use Illuminate\Database\Eloquent\SoftDeletes;
+use App\Models\User;
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
-class UserController extends Authenticatable
+class UserController extends Controller
 {
-    use HasApiTokens, HasFactory, Notifiable, SoftDeletes;
-
-    protected $fillable = [
-        "role_id",
-        "first_name",
-        "middle_name",
-        "last_name",
-        "sex",
-        "phone_number",
-        "username",
-        "email",
-        "password",
-    ];
-
-    protected $hidden = [
-        "password",
-        "remember_token",
-    ];
-
-    protected $casts = [
-        "email_verified_at" => "datetime",
-    ];
-
-    /**
-     * A User belongs to one Role (optional, if you use roles).
-     */
-    public function role()
+    public function index()
     {
-        return $this->belongsTo(Role::class);
+        $users = User::with('profile')->get();
+        return view('users.index', compact('users'));
     }
 
-    /**
-     * A User has one Profile (one-to-one relationship).
-     * The 'user_id' column in the 'profiles' table references this user's 'id'.
-     */
-    public function profile()
+    public function create()
     {
-        return $this->hasOne(Profile::class, 'user_id', 'id');
+        return view('users.create');
+    }
+
+    public function store(Request $request)
+    {
+        $user = User::create($request->only(['role_id', 'username', 'email', 'password']));
+        return redirect()->route('users.index');
+    }
+
+    // ✅ Login Function
+    public function login(Request $request)
+    {
+        $credentials = $request->validate([
+            'login' => 'required', // Can be email or username
+            'password' => 'required'
+        ]);
+
+        // Check if the user exists by email or username
+        $user = User::where('email', $credentials['login'])
+                    ->orWhere('username', $credentials['login'])
+                    ->first();
+
+        if ($user && Auth::attempt(['email' => $user->email, 'password' => $credentials['password']])) {
+            // ✅ Redirect to main page after successful login
+            return redirect()->route('mainpage')->with('success', 'Login successful!');
+        }
+
+        // ❌ Login failed
+        return back()->withErrors(['login' => 'Invalid username/email or password.']);
     }
 }
