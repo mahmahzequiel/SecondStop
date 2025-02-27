@@ -48753,14 +48753,13 @@ function Login() {
             response = _context.sent;
             _response$data = response.data, access_token = _response$data.access_token, user = _response$data.user;
             if (access_token) {
-              // Store token and update axios header immediately.
+              // Store token and userId separately
               localStorage.setItem("userToken", access_token);
+              localStorage.setItem("userId", user.id); // ✅ Store userId separately
               (axios__WEBPACK_IMPORTED_MODULE_1___default().defaults).headers.common["Authorization"] = "Bearer ".concat(access_token);
               localStorage.setItem("user", JSON.stringify(user));
-
-              // Redirect based on role: if role_id is 2 (admin), navigate to the admin section.
               if (user.role_id === 2) {
-                navigate("/admin"); // or navigate("/admin/profile") if you want to land directly on the admin profile page
+                navigate("/admin");
               } else {
                 navigate("/products");
               }

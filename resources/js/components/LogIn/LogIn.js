@@ -16,11 +16,12 @@ export default function Login() {
   const handleLogin = async (e) => {
     e.preventDefault();
     setError("");
+  
     if (!email || !password) {
       setError("Please enter both email and password.");
       return;
     }
-
+  
     setLoading(true);
     try {
       const response = await axios.post(
@@ -28,17 +29,17 @@ export default function Login() {
         { email, password },
         { headers: { "Content-Type": "application/json" } }
       );
-
+  
       const { access_token, user } = response.data;
       if (access_token) {
-        // Store token and update axios header immediately.
+        // Store token and userId separately
         localStorage.setItem("userToken", access_token);
+        localStorage.setItem("userId", user.id); // ✅ Store userId separately
         axios.defaults.headers.common["Authorization"] = `Bearer ${access_token}`;
         localStorage.setItem("user", JSON.stringify(user));
-
-        // Redirect based on role: if role_id is 2 (admin), navigate to the admin section.
+  
         if (user.role_id === 2) {
-          navigate("/admin"); // or navigate("/admin/profile") if you want to land directly on the admin profile page
+          navigate("/admin");
         } else {
           navigate("/products");
         }
@@ -47,13 +48,12 @@ export default function Login() {
       }
     } catch (err) {
       console.error(err.response?.data || err.message);
-      setError(
-        err.response?.data?.message || "Login failed. Please try again."
-      );
+      setError(err.response?.data?.message || "Login failed. Please try again.");
     } finally {
       setLoading(false);
     }
   };
+  
 
   return (
     <div className="login-container">
