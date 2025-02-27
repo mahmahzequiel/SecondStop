@@ -1,19 +1,23 @@
 import React, { useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import {
   BellOutlined,
   ShoppingCartOutlined,
   UserOutlined,
   SearchOutlined,
 } from "@ant-design/icons";
+import { message } from "antd"; // Import message for notifications
 
-function Header({ onSearch = () => {} }) { // Default to prevent errors
+function Header({ onSearch = () => {} }) { 
   const [searchQuery, setSearchQuery] = useState("");
+  const navigate = useNavigate();
+  const isAuthenticated = localStorage.getItem("userToken"); // Check if user is logged in
 
-  const handleSearchChange = (e) => {
-    const query = e.target.value.trim(); // Trim to avoid unnecessary spaces
-    setSearchQuery(query);
-    onSearch(query); // Call parent function if provided
+  const handleProfileClick = (e) => {
+    if (!isAuthenticated) {
+      e.preventDefault(); // Prevent navigation
+      message.warning("You must log in or sign up first!");
+    }
   };
 
   return (
@@ -28,7 +32,7 @@ function Header({ onSearch = () => {} }) { // Default to prevent errors
           type="text"
           placeholder="Search..."
           value={searchQuery}
-          onChange={handleSearchChange}
+          onChange={(e) => setSearchQuery(e.target.value.trim())}
         />
         <SearchOutlined className="search-icon" />
       </div>
@@ -37,8 +41,8 @@ function Header({ onSearch = () => {} }) { // Default to prevent errors
         <BellOutlined className="icon" />
         <Link to="/cart">
           <ShoppingCartOutlined className="icon" />
-          </Link>
-        <Link to="/profile">
+        </Link>
+        <Link to={isAuthenticated ? "/profile" : "#"} onClick={handleProfileClick}>
           <UserOutlined className="icon" />
         </Link>
       </div>
