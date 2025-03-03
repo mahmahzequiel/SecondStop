@@ -39,6 +39,7 @@ import AllUsers from "./Admin/AllUsers";
 import Payment from "./Shipping/Payment";
 import Confirmation from "./Shipping/Confirmation";
 import AdminChat from "./Admin/AdminChat";
+import AddUserModal from "./Admin/AddUserModal";
 
 function AppContent() {
   const location = useLocation();
@@ -67,6 +68,7 @@ function AppContent() {
         <Route path="/adminlogout" element={<AdminLogout />} />
         <Route path="/admindashboard" element={<AdminDashboard />} />
         <Route path="/allusers" element={<AllUsers />} />
+        <Route path="/addusermodal" element={<AddUserModal />} />
         {/* Customer-Only Routes (role_id = 1) */}
         <Route path="/profile" element={<RoleBasedRoute allowedRoles={[1]}> <Profiles /> </RoleBasedRoute>}/>
         {/* Admin-Only Routes (role_id = 2) */}

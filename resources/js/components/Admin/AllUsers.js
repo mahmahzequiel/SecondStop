@@ -1,7 +1,8 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
 import AdminPage from "../AdminReusable/AdminPage";
-import { SearchOutlined, EditOutlined, DeleteOutlined } from "@ant-design/icons";
+import { SearchOutlined, EditOutlined, InboxOutlined } from "@ant-design/icons";
+import AddUserModal from "./AddUserModal"; // import the modal component
 
 const USERS_API = "http://127.0.0.1:8000/api/users";
 
@@ -10,10 +11,9 @@ function AllUsers() {
   const [search, setSearch] = useState("");
   const [roleFilter, setRoleFilter] = useState("");
   const [statusFilter, setStatusFilter] = useState("");
+  const [isModalVisible, setIsModalVisible] = useState(false); // control modal visibility
 
   useEffect(() => {
-    // Make sure you've set axios.defaults.headers.common['Authorization'] = 'Bearer <token>'
-    // for admin login.
     axios
       .get(USERS_API)
       .then((res) => {
@@ -31,23 +31,30 @@ function AllUsers() {
 
   // Example filtering
   const filteredUsers = users.filter((user) => {
-    // If user.profile exists, get the .full_name; else empty
     const name = user.profile ? user.profile.full_name.toLowerCase() : "";
     const email = (user.email || "").toLowerCase();
     const combinedString = name + " " + email;
-
     const matchesSearch = combinedString.includes(search.toLowerCase());
-
-    // For roleFilter, we compare role_id with "Admin" or "Customer" if you prefer,
-    // or just skip it if you're only filtering text. Here's a placeholder example:
     const userRole = user.role_id === 2 ? "Admin" : "Customer";
-    const matchesRole = roleFilter ? (userRole === roleFilter) : true;
-
-    // If you store user.status, compare here:
-    const matchesStatus = statusFilter ? (user.status === statusFilter) : true;
+    const matchesRole = roleFilter ? userRole === roleFilter : true;
+    const matchesStatus = statusFilter ? user.status === statusFilter : true;
 
     return matchesSearch && matchesRole && matchesStatus;
   });
+
+  // Modal handlers
+  const handleOpenModal = () => {
+    setIsModalVisible(true);
+  };
+
+  const handleCancelModal = () => {
+    setIsModalVisible(false);
+  };
+
+  const handleSaveModal = () => {
+    // Insert saving logic here (e.g., form validation, API call, etc.)
+    setIsModalVisible(false);
+  };
 
   return (
     <AdminPage>
@@ -88,7 +95,7 @@ function AllUsers() {
               <SearchOutlined />
             </div>
 
-            {/* Role Filter (optional) */}
+            {/* Role Filter */}
             <select
               value={roleFilter}
               onChange={(e) => setRoleFilter(e.target.value)}
@@ -99,7 +106,7 @@ function AllUsers() {
               <option value="Customer">Customer</option>
             </select>
 
-            {/* Status Filter (optional) */}
+            {/* Status Filter */}
             <select
               value={statusFilter}
               onChange={(e) => setStatusFilter(e.target.value)}
@@ -122,6 +129,7 @@ function AllUsers() {
                 border: "none",
                 cursor: "pointer",
               }}
+              onClick={handleOpenModal}
             >
               + Add Users
             </button>
@@ -177,14 +185,13 @@ function AllUsers() {
                     {user.profile ? user.profile.full_name : "No Name"}
                   </td>
                   <td style={{ padding: "8px" }}>{user.email}</td>
-                  {/* Display "Admin" if user.role_id === 2, else "Customer" */}
                   <td style={{ padding: "8px" }}>
                     {user.role_id === 2 ? "Admin" : "Customer"}
                   </td>
                   <td style={{ padding: "8px" }}>{user.status || "Active"}</td>
                   <td style={{ padding: "8px", display: "flex", gap: "8px" }}>
                     <EditOutlined style={{ cursor: "pointer" }} />
-                    <DeleteOutlined style={{ cursor: "pointer" }} />
+                    <InboxOutlined style={{ cursor: "pointer" }} />
                   </td>
                 </tr>
               ))}
@@ -199,6 +206,13 @@ function AllUsers() {
           </table>
         </div>
       </div>
+
+      {/* Render the custom Add User modal */}
+      <AddUserModal
+        visible={isModalVisible}
+        onCancel={handleCancelModal}
+        onSave={handleSaveModal}
+      />
     </AdminPage>
   );
 }

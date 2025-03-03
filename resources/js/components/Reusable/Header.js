@@ -22,10 +22,12 @@ function Header({ onSearch = () => {} }) {
 
   return (
     <header className="header-layer">
-      <div className="logo">
-        <img src="/images/logo.png" alt="Logo" />
-        <span className="icon">Second Stop</span>
-      </div>
+      <Link to="/products" className="logo-link">
+        <div className="logo">
+          <img src="/images/logo.png" alt="Logo" />
+          <span className="icon">Second Stop</span>
+        </div>
+      </Link>
 
       <div className="search-bar">
         <input

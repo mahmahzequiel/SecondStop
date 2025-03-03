@@ -1,10 +1,9 @@
-import React, { useState, useEffect } from "react";
-import { Form, Input, Select, Button, Row, Col, message } from "antd";
+import React from "react";
+import { Form, Row, Col, message } from "antd";
 import { ArrowLeftOutlined } from "@ant-design/icons";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
 
-const { Option } = Select;
 
 const Registration = () => {
   const [form] = Form.useForm();
@@ -42,7 +41,7 @@ const Registration = () => {
       const { access_token, user } = data.data;
 
       if (access_token && user) {
-        // Store token and user info so the user is "logged in"
+        // Store token and user info
         localStorage.setItem("userToken", access_token);
         localStorage.setItem("userId", user.id);
         localStorage.setItem("user", JSON.stringify(user));
@@ -51,19 +50,7 @@ const Registration = () => {
         axios.defaults.headers.common["Authorization"] = `Bearer ${access_token}`;
 
         message.success("Registration successful! You are now logged in.");
-
-        // Option A: Redirect immediately
-        // If you have role-based logic (e.g. user.role_id === 2 is admin), do:
-        // if (user.role_id === 2) {
-        //   navigate("/admin");
-        // } else {
-        //   navigate("/products");
-        // }
-
-        // Otherwise, always go to /products:
         navigate("/products");
-
-        // Clear the form
         form.resetFields();
       } else {
         message.error("No token or user info returned. Please login manually.");
@@ -76,10 +63,14 @@ const Registration = () => {
 
   return (
     <div className="registration-page">
-      {/* Back button */}
-      <Button className="back-button" onClick={() => navigate("/login")}>
+      {/* Back button (plain HTML <button>) */}
+      <button
+        type="button"
+        className="back-button"
+        onClick={() => navigate("/login")}
+      >
         <ArrowLeftOutlined /> Back
-      </Button>
+      </button>
 
       <div className="registration-container">
         <h2>Sign Up</h2>
@@ -95,24 +86,33 @@ const Registration = () => {
               <Form.Item
                 name="first_name"
                 rules={[{ required: true, message: "First name is required" }]}
+                getValueProps={(value) => ({ value })}
+                getValueFromEvent={(e) => e.target.value}
               >
-                <Input placeholder="Enter first name" />
+                <input className="custom-input" placeholder="Enter first name" />
               </Form.Item>
             </Col>
             <Col span={8}>
               <Form.Item
                 name="middle_name"
                 rules={[{ required: true, message: "Middle name is required" }]}
+                getValueProps={(value) => ({ value })}
+                getValueFromEvent={(e) => e.target.value}
               >
-                <Input placeholder="Enter middle name" />
+                <input
+                  className="custom-input"
+                  placeholder="Enter middle name"
+                />
               </Form.Item>
             </Col>
             <Col span={8}>
               <Form.Item
                 name="last_name"
                 rules={[{ required: true, message: "Last name is required" }]}
+                getValueProps={(value) => ({ value })}
+                getValueFromEvent={(e) => e.target.value}
               >
-                <Input placeholder="Enter last name" />
+                <input className="custom-input" placeholder="Enter last name" />
               </Form.Item>
             </Col>
           </Row>
@@ -123,12 +123,15 @@ const Registration = () => {
               <Form.Item
                 name="sex"
                 rules={[{ required: true, message: "Sex is required" }]}
+                getValueProps={(value) => ({ value })}
+                getValueFromEvent={(e) => e.target.value}
               >
-                <Select placeholder="Select">
-                  <Option value="Male">Male</Option>
-                  <Option value="Female">Female</Option>
-                  <Option value="Other">Other</Option>
-                </Select>
+                <select className="custom-select">
+                  <option value="">Select</option>
+                  <option value="Male">Male</option>
+                  <option value="Female">Female</option>
+                  <option value="Other">Other</option>
+                </select>
               </Form.Item>
             </Col>
             <Col span={8}>
@@ -141,8 +144,13 @@ const Registration = () => {
                     message: "Phone number must be in +639XXXXXXXXX format",
                   },
                 ]}
+                getValueProps={(value) => ({ value })}
+                getValueFromEvent={(e) => e.target.value}
               >
-                <Input placeholder="+639XXXXXXXXX" />
+                <input
+                  className="custom-input"
+                  placeholder="+639XXXXXXXXX"
+                />
               </Form.Item>
             </Col>
             <Col span={8}>
@@ -152,8 +160,10 @@ const Registration = () => {
                   { required: true, message: "Email is required" },
                   { type: "email", message: "Invalid email address" },
                 ]}
+                getValueProps={(value) => ({ value })}
+                getValueFromEvent={(e) => e.target.value}
               >
-                <Input placeholder="Enter email" />
+                <input className="custom-input" placeholder="Enter email" />
               </Form.Item>
             </Col>
           </Row>
@@ -164,8 +174,10 @@ const Registration = () => {
               <Form.Item
                 name="username"
                 rules={[{ required: true, message: "Username is required" }]}
+                getValueProps={(value) => ({ value })}
+                getValueFromEvent={(e) => e.target.value}
               >
-                <Input placeholder="Enter username" />
+                <input className="custom-input" placeholder="Enter username" />
               </Form.Item>
             </Col>
             <Col span={8}>
@@ -178,8 +190,14 @@ const Registration = () => {
                     message: "Password must be at least 8 characters long",
                   },
                 ]}
+                getValueProps={(value) => ({ value })}
+                getValueFromEvent={(e) => e.target.value}
               >
-                <Input.Password placeholder="Enter password" />
+                <input
+                  className="custom-input"
+                  type="password"
+                  placeholder="Enter password"
+                />
               </Form.Item>
             </Col>
             <Col span={8}>
@@ -199,16 +217,23 @@ const Registration = () => {
                     },
                   }),
                 ]}
+                getValueProps={(value) => ({ value })}
+                getValueFromEvent={(e) => e.target.value}
               >
-                <Input.Password placeholder="Confirm password" />
+                <input
+                  className="custom-input"
+                  type="password"
+                  placeholder="Confirm password"
+                />
               </Form.Item>
             </Col>
           </Row>
 
+          {/* Submit button (plain HTML <button>) */}
           <Form.Item className="form-submit-container">
-            <Button type="primary" htmlType="submit" className="signup-button">
+            <button type="submit" className="signup-button">
               Sign Up
-            </Button>
+            </button>
           </Form.Item>
         </Form>
       </div>

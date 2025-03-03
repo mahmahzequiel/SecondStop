@@ -26,7 +26,7 @@ class ApiController extends Controller
 
         // Default role_id = 1 => "Customer" or "User"
         $user = User::create([
-            "role_id"  => 1, 
+            "role_id"  => $request->role_id ?? 1, 
             "username" => $request->username,
             "email"    => $request->email,
             "password" => bcrypt($request->password),

@@ -9,10 +9,16 @@
     position: sticky;
     top: 0;
     z-index: 1000; /* Ensures the header stays on top */
+
+    .logo-link {
+      text-decoration: none; /* Remove default link styles if needed */
+      color: white;
+    }
   
     .logo {
       display: flex;
       align-items: center;
+      cursor: pointer;
   
       img {
         height: 70px; /* Adjust the height of the logo */
