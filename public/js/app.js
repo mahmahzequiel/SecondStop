@@ -52701,6 +52701,47 @@ var Logout = function Logout() {
 
 /***/ }),
 
+/***/ "./resources/js/components/Profile/ProfileMain.js":
+/*!********************************************************!*\
+  !*** ./resources/js/components/Profile/ProfileMain.js ***!
+  \********************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _Reusable_Header__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../Reusable/Header */ "./resources/js/components/Reusable/Header.js");
+/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! react/jsx-runtime */ "./node_modules/react/jsx-runtime.js");
+
+ // Import Header component
+
+function ProfileMain(_ref) {
+  var children = _ref.children,
+    onSearch = _ref.onSearch;
+  // ✅ Accept onSearch as a prop
+  return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxs)("div", {
+    children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)(_Reusable_Header__WEBPACK_IMPORTED_MODULE_1__["default"], {
+      onSearch: onSearch
+    }), " ", /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("div", {
+      className: "white-layer",
+      children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("div", {
+        className: "content-wrapper",
+        children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("div", {
+          className: "pink-layer",
+          children: children
+        })
+      })
+    })]
+  });
+}
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (ProfileMain);
+
+/***/ }),
+
 /***/ "./resources/js/components/Profile/Purchases.js":
 /*!******************************************************!*\
   !*** ./resources/js/components/Profile/Purchases.js ***!
@@ -52750,7 +52791,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ });
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var _Reusable_MainPage__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../Reusable/MainPage */ "./resources/js/components/Reusable/MainPage.js");
+/* harmony import */ var _ProfileMain__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./ProfileMain */ "./resources/js/components/Profile/ProfileMain.js");
 /* harmony import */ var antd__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! antd */ "./node_modules/antd/es/form/index.js");
 /* harmony import */ var antd__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! antd */ "./node_modules/antd/es/message/index.js");
 /* harmony import */ var antd__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! antd */ "./node_modules/antd/es/avatar/index.js");
@@ -52782,13 +52823,13 @@ function _arrayLikeToArray(r, a) { (null == a || a > r.length) && (a = r.length)
 function _iterableToArrayLimit(r, l) { var t = null == r ? null : "undefined" != typeof Symbol && r[Symbol.iterator] || r["@@iterator"]; if (null != t) { var e, n, i, u, a = [], f = !0, o = !1; try { if (i = (t = t.call(r)).next, 0 === l) { if (Object(t) !== t) return; f = !1; } else for (; !(f = (e = i.call(t)).done) && (a.push(e.value), a.length !== l); f = !0); } catch (r) { o = !0, n = r; } finally { try { if (!f && null != t["return"] && (u = t["return"](), Object(u) !== u)) return; } finally { if (o) throw n; } } return a; } }
 function _arrayWithHoles(r) { if (Array.isArray(r)) return r; }
 
+ // your layout wrapper
 
 
 
 
 
-
-var profiles = function profiles() {
+var Profiles = function Profiles() {
   var _Form$useForm = antd__WEBPACK_IMPORTED_MODULE_4__["default"].useForm(),
     _Form$useForm2 = _slicedToArray(_Form$useForm, 1),
     form = _Form$useForm2[0];
@@ -52815,40 +52856,37 @@ var profiles = function profiles() {
               return axios__WEBPACK_IMPORTED_MODULE_2___default().get("http://127.0.0.1:8000/api/profile");
             case 4:
               response = _context.sent;
-              console.log("Profile API response:", response.data);
               if (response.data.status) {
                 data = response.data.profile;
-                console.log("Fetched profile data:", data);
                 setProfileData(data);
                 form.setFieldsValue({
                   firstName: data.first_name,
                   middleName: data.middle_name,
-                  // Added middle name
                   lastName: data.last_name,
                   username: data.username,
                   email: data.email,
                   phoneNumber: data.phone_number,
-                  gender: data.sex // Adjust if your API returns a different key for gender
+                  gender: data.sex
                 });
               } else {
                 antd__WEBPACK_IMPORTED_MODULE_5__["default"].error("Failed to load profile.");
               }
-              _context.next = 13;
+              _context.next = 12;
               break;
-            case 9:
-              _context.prev = 9;
+            case 8:
+              _context.prev = 8;
               _context.t0 = _context["catch"](1);
               console.error("Error fetching profile:", _context.t0);
               antd__WEBPACK_IMPORTED_MODULE_5__["default"].error("Error fetching profile.");
-            case 13:
-              _context.prev = 13;
+            case 12:
+              _context.prev = 12;
               setLoadingProfile(false);
-              return _context.finish(13);
-            case 16:
+              return _context.finish(12);
+            case 15:
             case "end":
               return _context.stop();
           }
-        }, _callee, null, [[1, 9, 13, 16]]);
+        }, _callee, null, [[1, 8, 12, 15]]);
       }));
       return function fetchProfile() {
         return _ref.apply(this, arguments);
@@ -52891,133 +52929,87 @@ var profiles = function profiles() {
   var uploadProps = {
     beforeUpload: function beforeUpload(file) {
       console.log("Selected file:", file);
-      return false; // Prevent automatic upload; handle manually if needed
+      return false; // Prevent automatic upload
     }
   };
-  return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)(_Reusable_MainPage__WEBPACK_IMPORTED_MODULE_1__["default"], {
+  return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)(_ProfileMain__WEBPACK_IMPORTED_MODULE_1__["default"], {
     children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)("div", {
-      style: {
-        display: "flex",
-        minHeight: "80vh"
-      },
+      className: "profile-page",
       children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)("div", {
-        style: {
-          width: "250px",
-          backgroundColor: "#fff",
-          borderRadius: "10px",
-          marginRight: "20px",
-          padding: "20px"
-        },
+        className: "profile-sidebar",
         children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)("div", {
-          style: {
-            textAlign: "center",
-            marginBottom: "20px"
-          },
+          className: "avatar-section",
           children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)(antd__WEBPACK_IMPORTED_MODULE_6__["default"], {
             size: 80,
             icon: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)(_ant_design_icons__WEBPACK_IMPORTED_MODULE_7__["default"], {})
           }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("p", {
-            style: {
-              marginTop: "10px",
-              fontWeight: "bold"
-            },
+            className: "user-fullname",
             children: profileData ? "".concat(profileData.first_name, " ").concat(profileData.middle_name, " ").concat(profileData.last_name) : "User Name"
           })]
         }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)("div", {
-          style: {
-            display: "flex",
-            flexDirection: "column",
-            gap: "10px"
-          },
+          className: "nav-links",
           children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)(react_router_dom__WEBPACK_IMPORTED_MODULE_8__.Link, {
             to: "/profile",
             children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)(antd__WEBPACK_IMPORTED_MODULE_9__["default"], {
               type: "text",
-              style: {
-                justifyContent: "flex-start"
-              },
+              className: "nav-button",
               children: "Profile"
             })
           }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)(react_router_dom__WEBPACK_IMPORTED_MODULE_8__.Link, {
             to: "/account",
             children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)(antd__WEBPACK_IMPORTED_MODULE_9__["default"], {
               type: "text",
-              style: {
-                justifyContent: "flex-start"
-              },
+              className: "nav-button",
               children: "Account"
             })
           }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)(react_router_dom__WEBPACK_IMPORTED_MODULE_8__.Link, {
             to: "/change-password",
             children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)(antd__WEBPACK_IMPORTED_MODULE_9__["default"], {
               type: "text",
-              style: {
-                justifyContent: "flex-start"
-              },
+              className: "nav-button",
               children: "Change Password"
             })
           }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)(react_router_dom__WEBPACK_IMPORTED_MODULE_8__.Link, {
             to: "/address",
             children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)(antd__WEBPACK_IMPORTED_MODULE_9__["default"], {
               type: "text",
-              style: {
-                justifyContent: "flex-start"
-              },
+              className: "nav-button",
               children: "Address"
             })
           }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)(react_router_dom__WEBPACK_IMPORTED_MODULE_8__.Link, {
             to: "/purchases",
             children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)(antd__WEBPACK_IMPORTED_MODULE_9__["default"], {
               type: "text",
-              style: {
-                justifyContent: "flex-start"
-              },
+              className: "nav-button",
               children: "Purchases"
             })
           }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)(react_router_dom__WEBPACK_IMPORTED_MODULE_8__.Link, {
             to: "/faq",
             children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)(antd__WEBPACK_IMPORTED_MODULE_9__["default"], {
               type: "text",
-              style: {
-                justifyContent: "flex-start"
-              },
+              className: "nav-button",
               children: "FAQ"
             })
           }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)(react_router_dom__WEBPACK_IMPORTED_MODULE_8__.Link, {
             to: "/logout",
             children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)(antd__WEBPACK_IMPORTED_MODULE_9__["default"], {
               type: "text",
-              style: {
-                justifyContent: "flex-start"
-              },
+              className: "nav-button",
               children: "Logout"
             })
           })]
         })]
       }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)("div", {
-        style: {
-          flex: 1,
-          backgroundColor: "#fff",
-          borderRadius: "10px",
-          padding: "20px"
-        },
+        className: "profile-content",
         children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("h2", {
-          style: {
-            marginBottom: "20px"
-          },
+          className: "profile-title",
           children: "My Profile"
         }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)("div", {
-          style: {
-            display: "flex",
-            alignItems: "center",
-            marginBottom: "20px"
-          },
+          className: "image-upload",
           children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)(antd__WEBPACK_IMPORTED_MODULE_6__["default"], {
             size: 80,
             icon: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)(_ant_design_icons__WEBPACK_IMPORTED_MODULE_7__["default"], {}),
-            style: {
-              marginRight: "20px"
-            }
+            className: "avatar-upload"
           }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)(antd__WEBPACK_IMPORTED_MODULE_10__["default"], _objectSpread(_objectSpread({}, uploadProps), {}, {
             showUploadList: false,
             children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)(antd__WEBPACK_IMPORTED_MODULE_9__["default"], {
@@ -53048,9 +53040,7 @@ var profiles = function profiles() {
               span: 8,
               children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)(antd__WEBPACK_IMPORTED_MODULE_4__["default"].Item, {
                 label: "Middle Name",
-                name: "middleName"
-                // Middle name might be optional, so no required rule here
-                ,
+                name: "middleName",
                 children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)(antd__WEBPACK_IMPORTED_MODULE_14__["default"], {
                   placeholder: "Enter middle name"
                 })
@@ -53125,9 +53115,7 @@ var profiles = function profiles() {
             children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)(antd__WEBPACK_IMPORTED_MODULE_9__["default"], {
               type: "primary",
               htmlType: "submit",
-              style: {
-                marginTop: "10px"
-              },
+              className: "save-button",
               children: "Save"
             })
           })]
@@ -53136,7 +53124,7 @@ var profiles = function profiles() {
     })
   });
 };
-/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (profiles);
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (Profiles);
 
 /***/ }),
 

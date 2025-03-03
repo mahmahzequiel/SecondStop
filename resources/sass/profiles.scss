@@ -1,0 +1,74 @@
+/* Container that holds the sidebar + main content */
+.profile-page {
+    display: flex; /* row layout: sidebar on left, content on right */
+    /* width, min-height, etc. can be set here if you want a fixed size or full width */
+  }
+  
+  /* Sidebar on the left */
+  .profile-sidebar {
+    width: 250px;
+    background-color: #fff;
+    border-radius: 10px;
+    margin-right: 20px;
+    padding: 20px;
+  
+    .avatar-section {
+      text-align: center;
+      margin-bottom: 20px;
+  
+      .user-fullname {
+        margin-top: 10px;
+        font-weight: bold;
+      }
+    }
+  
+    .nav-links {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+  
+      .nav-button {
+        justify-content: flex-start;
+      }
+    }
+  }
+  
+  /* Peach container pinned to the right */
+  .profile-content {
+    flex: 1; /* fill the remaining horizontal space */
+    background-color: #ffd0c1;
+    border-radius: 10px;
+    padding: 20px;
+    height: 50%;
+    width: 100px;
+    margin-left: auto;  /* This pushes the element to the right */
+    margin-right: 0; 
+    /* If you want it pinned more tightly to the right, you can also do margin-left: auto; */
+  
+    .profile-title {
+      margin-bottom: 20px;
+      font-size: 24px;
+    }
+  
+    .image-upload {
+      display: flex;
+      align-items: center;
+      margin-bottom: 20px;
+  
+      .avatar-upload {
+        margin-right: 20px;
+      }
+    }
+  
+    .save-button {
+      margin-top: 10px;
+      background-color: #d84727;
+      border-color: #d84727;
+  
+      &:hover {
+        background-color: #c63c1f;
+        border-color: #c63c1f;
+      }
+    }
+  }
+  

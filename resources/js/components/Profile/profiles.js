@@ -1,11 +1,12 @@
 import React, { useEffect, useState } from "react";
-import MainPage from "../Reusable/MainPage";
+import ProfileMain from "./ProfileMain"; // your layout wrapper
 import { Avatar, Button, Form, Input, Radio, Row, Col, Upload, message } from "antd";
 import { UserOutlined, UploadOutlined } from "@ant-design/icons";
 import axios from "axios";
 import { Link } from "react-router-dom";
 
-const profiles = () => {
+
+const Profiles = () => {
   const [form] = Form.useForm();
   const [loadingProfile, setLoadingProfile] = useState(false);
   const [profileData, setProfileData] = useState(null);
@@ -16,19 +17,17 @@ const profiles = () => {
       setLoadingProfile(true);
       try {
         const response = await axios.get("http://127.0.0.1:8000/api/profile");
-        console.log("Profile API response:", response.data);
         if (response.data.status) {
           const data = response.data.profile;
-          console.log("Fetched profile data:", data);
           setProfileData(data);
           form.setFieldsValue({
             firstName: data.first_name,
-            middleName: data.middle_name, // Added middle name
+            middleName: data.middle_name,
             lastName: data.last_name,
             username: data.username,
             email: data.email,
             phoneNumber: data.phone_number,
-            gender: data.sex, // Adjust if your API returns a different key for gender
+            gender: data.sex,
           });
         } else {
           message.error("Failed to load profile.");
@@ -65,83 +64,57 @@ const profiles = () => {
   const uploadProps = {
     beforeUpload: (file) => {
       console.log("Selected file:", file);
-      return false; // Prevent automatic upload; handle manually if needed
+      return false; // Prevent automatic upload
     },
   };
 
   return (
-    <MainPage>
-      <div style={{ display: "flex", minHeight: "80vh" }}>
+    <ProfileMain>
+      {/* The main container for sidebar + profile content */}
+      <div className="profile-page">
         {/* Sidebar Navigation */}
-        <div
-          style={{
-            width: "250px",
-            backgroundColor: "#fff",
-            borderRadius: "10px",
-            marginRight: "20px",
-            padding: "20px",
-          }}
-        >
-          <div style={{ textAlign: "center", marginBottom: "20px" }}>
+        <div className="profile-sidebar">
+          <div className="avatar-section">
             <Avatar size={80} icon={<UserOutlined />} />
-            <p style={{ marginTop: "10px", fontWeight: "bold" }}>
+            <p className="user-fullname">
               {profileData
                 ? `${profileData.first_name} ${profileData.middle_name} ${profileData.last_name}`
                 : "User Name"}
             </p>
           </div>
-          <div style={{ display: "flex", flexDirection: "column", gap: "10px" }}>
+
+          <div className="nav-links">
             <Link to="/profile">
-              <Button type="text" style={{ justifyContent: "flex-start" }}>
-                Profile
-              </Button>
+              <Button type="text" className="nav-button">Profile</Button>
             </Link>
             <Link to="/account">
-              <Button type="text" style={{ justifyContent: "flex-start" }}>
-                Account
-              </Button>
+              <Button type="text" className="nav-button">Account</Button>
             </Link>
             <Link to="/change-password">
-              <Button type="text" style={{ justifyContent: "flex-start" }}>
-                Change Password
-              </Button>
+              <Button type="text" className="nav-button">Change Password</Button>
             </Link>
             <Link to="/address">
-              <Button type="text" style={{ justifyContent: "flex-start" }}>
-                Address
-              </Button>
+              <Button type="text" className="nav-button">Address</Button>
             </Link>
             <Link to="/purchases">
-              <Button type="text" style={{ justifyContent: "flex-start" }}>
-                Purchases
-              </Button>
+              <Button type="text" className="nav-button">Purchases</Button>
             </Link>
             <Link to="/faq">
-              <Button type="text" style={{ justifyContent: "flex-start" }}>
-                FAQ
-              </Button>
+              <Button type="text" className="nav-button">FAQ</Button>
             </Link>
             <Link to="/logout">
-              <Button type="text" style={{ justifyContent: "flex-start" }}>
-                Logout
-              </Button>
+              <Button type="text" className="nav-button">Logout</Button>
             </Link>
           </div>
         </div>
 
-        {/* Main Profile Form Section */}
-        <div
-          style={{
-            flex: 1,
-            backgroundColor: "#fff",
-            borderRadius: "10px",
-            padding: "20px",
-          }}
-        >
-          <h2 style={{ marginBottom: "20px" }}>My Profile</h2>
+        {/* Peach container pinned to the right */}
+        <div className="profile-content">
+          <h2 className="profile-title">My Profile</h2>
+
           {/* Image Upload Section */}
-          <div style={{ display: "flex", alignItems: "center", marginBottom: "20px" }}>
-            <Avatar size={80} icon={<UserOutlined />} style={{ marginRight: "20px" }} />
+          <div className="image-upload">
+            <Avatar size={80} icon={<UserOutlined />} className="avatar-upload" />
             <Upload {...uploadProps} showUploadList={false}>
               <Button icon={<UploadOutlined />}>Select Image</Button>
             </Upload>
@@ -160,11 +133,7 @@ const profiles = () => {
                 </Form.Item>
               </Col>
               <Col span={8}>
-                <Form.Item
-                  label="Middle Name"
-                  name="middleName"
-                  // Middle name might be optional, so no required rule here
-                >
+                <Form.Item label="Middle Name" name="middleName">
                   <Input placeholder="Enter middle name" />
                 </Form.Item>
               </Col>
@@ -219,15 +188,15 @@ const profiles = () => {
             </Form.Item>
 
             <Form.Item>
-              <Button type="primary" htmlType="submit" style={{ marginTop: "10px" }}>
+              <Button type="primary" htmlType="submit" className="save-button">
                 Save
               </Button>
             </Form.Item>
           </Form>
         </div>
       </div>
-    </MainPage>
+    </ProfileMain>
   );
 };
 
-export default profiles;
+export default Profiles;

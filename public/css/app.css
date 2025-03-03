@@ -13396,3 +13396,105 @@ textarea.form-control-lg {
   background-color: #d36e2f;
   color: #ffffff;
 }
+
+html, body {
+  margin: 0;
+  padding: 0;
+  overflow-x: hidden;
+  background-color: #750139;
+}
+
+.page-container {
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+.content-wrapper {
+  flex: 1;
+  overflow: hidden;
+}
+
+/* Your white-layer and pink-layer inside content-wrapper: */
+.white-layer {
+  /* If header is outside, adjust to: */
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  background-color: #750139;
+}
+
+.pink-layer {
+  background-color: #ffffff;
+  width: 95%;
+  padding: 20px;
+  border-radius: 10px;
+  margin-top: 40px;
+}
+
+/* Container that holds the sidebar + main content */
+.profile-page {
+  display: flex; /* row layout: sidebar on left, content on right */
+  /* width, min-height, etc. can be set here if you want a fixed size or full width */
+}
+
+/* Sidebar on the left */
+.profile-sidebar {
+  width: 250px;
+  background-color: #fff;
+  border-radius: 10px;
+  margin-right: 20px;
+  padding: 20px;
+}
+.profile-sidebar .avatar-section {
+  text-align: center;
+  margin-bottom: 20px;
+}
+.profile-sidebar .avatar-section .user-fullname {
+  margin-top: 10px;
+  font-weight: bold;
+}
+.profile-sidebar .nav-links {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+.profile-sidebar .nav-links .nav-button {
+  justify-content: flex-start;
+}
+
+/* Peach container pinned to the right */
+.profile-content {
+  flex: 1; /* fill the remaining horizontal space */
+  background-color: #ffd0c1;
+  border-radius: 10px;
+  padding: 20px;
+  height: 50%;
+  width: 100px;
+  margin-left: auto; /* This pushes the element to the right */
+  margin-right: 0;
+  /* If you want it pinned more tightly to the right, you can also do margin-left: auto; */
+}
+.profile-content .profile-title {
+  margin-bottom: 20px;
+  font-size: 24px;
+}
+.profile-content .image-upload {
+  display: flex;
+  align-items: center;
+  margin-bottom: 20px;
+}
+.profile-content .image-upload .avatar-upload {
+  margin-right: 20px;
+}
+.profile-content .save-button {
+  margin-top: 10px;
+  background-color: #d84727;
+  border-color: #d84727;
+}
+.profile-content .save-button:hover {
+  background-color: #c63c1f;
+  border-color: #c63c1f;
+}
