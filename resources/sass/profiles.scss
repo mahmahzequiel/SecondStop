@@ -1,74 +1,104 @@
-/* Container that holds the sidebar + main content */
+/* profile.scss */
+
 .profile-page {
-    display: flex; /* row layout: sidebar on left, content on right */
-    /* width, min-height, etc. can be set here if you want a fixed size or full width */
+  display: flex;
+  gap: 10px;
+  padding: 20px;
+  height: 85vh;
+ 
+  margin-right: 50px;
+}
+
+.profile-content {
+  flex: 1;
+  background-color: #ffd0c1;
+  border-radius: 15px;
+  padding: 30px;
+  height: 100%;
+  
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+
+  .profile-title {
+    font-size: 24px;
+    font-weight: 500;
+    margin-bottom: 10px;
+    color: #333;
+    font-family: 'Inria Serif', serif;
   }
-  
-  /* Sidebar on the left */
-  .profile-sidebar {
-    width: 250px;
-    background-color: #fff;
-    border-radius: 10px;
-    margin-right: 20px;
-    padding: 20px;
-  
-    .avatar-section {
-      text-align: center;
-      margin-bottom: 20px;
-  
-      .user-fullname {
-        margin-top: 10px;
-        font-weight: bold;
-      }
+
+  .title-divider {
+    margin-bottom: 30px;
+    border-top: 1px solid #fff;
+  }
+
+  /* Move the avatar+button slightly to the right */
+  .image-upload {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    margin-bottom: 30px;
+    padding-left: 100px; /* or use a smaller number if it's too far */
+
+    .avatar-upload {
+      width: 100px;
+      height: 100px;
+      border-radius: 50%;
     }
-  
-    .nav-links {
-      display: flex;
-      flex-direction: column;
-      gap: 10px;
-  
-      .nav-button {
-        justify-content: flex-start;
+
+    .ant-btn {
+      background-color: #fff;
+      border: 1px solid #d9d9d9;
+      border-radius: 6px;
+      padding: 4px 15px;
+      height: 35px;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+
+      &:hover {
+        border-color: #d84727;
+        color: #d84727;
       }
     }
   }
-  
-  /* Peach container pinned to the right */
-  .profile-content {
-    flex: 1; /* fill the remaining horizontal space */
-    background-color: #ffd0c1;
-    border-radius: 10px;
-    padding: 20px;
-    height: 50%;
-    width: 100px;
-    margin-left: auto;  /* This pushes the element to the right */
-    margin-right: 0; 
-    /* If you want it pinned more tightly to the right, you can also do margin-left: auto; */
-  
-    .profile-title {
+
+  /* Form container styling */
+  .profile-form {
+    /* Shift the entire form slightly to the left and down */
+    margin-left: 0px;
+    margin-top: 40px;
+
+    .ant-form-item {
       margin-bottom: 20px;
-      font-size: 24px;
     }
-  
-    .image-upload {
+
+    .ant-form-item-label > label {
+      font-weight: 600;
+      color: #333;
+    }
+
+    .ant-input {
+      border-radius: 6px;
+      padding: 8px 12px;
+      border: 1px solid #d9d9d9;
+      background-color: #fff;
+    }
+
+    .ant-radio-group {
       display: flex;
-      align-items: center;
-      margin-bottom: 20px;
-  
-      .avatar-upload {
-        margin-right: 20px;
-      }
+      gap: 20px;
     }
-  
+
     .save-button {
-      margin-top: 10px;
       background-color: #d84727;
       border-color: #d84727;
-  
+      border-radius: 6px;
+      height: 40px;
+      padding: 0 30px;
+      font-size: 16px;
+
       &:hover {
         background-color: #c63c1f;
         border-color: #c63c1f;
       }
     }
   }
-  
+}

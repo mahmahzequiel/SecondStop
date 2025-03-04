@@ -1,37 +1,29 @@
+/* profilemain.scss */
 html, body {
-    margin: 0;
-    padding: 0;
-    overflow-x: hidden;
-    background-color: #750139; 
-  }
+  margin: 0;
+  padding: 0;
+ 
+  background-color: #750139;
+  height: 100%;
+}
+
+.content-wrapper {
+  height: 100%;
+  padding: 20px;
   
-  .page-container {
-    height: 100vh;
-    display: flex;
-    flex-direction: column;
-  }
+}
+
+.white-layer {
+  height: calc(100% - 40px); // Subtract content-wrapper padding
+  background-color: #750139;
   
-  .content-wrapper {
-    flex: 1;
-    overflow: hidden;  // prevents overall scrolling
-  }
-  
-  /* Your white-layer and pink-layer inside content-wrapper: */
-  .white-layer {
-    /* If header is outside, adjust to: */
-    height: 100%;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    background-color: #750139;
-  }
-  
-  .pink-layer {
-    background-color: #ffffff;
-    width: 95%;
-    padding: 20px;
-    border-radius: 10px;
-    margin-top: 40px;  // if this margin causes overflow, try reducing it or using overflow on the parent
-  }
-  
+}
+
+.pink-layer {
+  background-color: #ffffff;
+  width: 100%;
+ 
+  margin: 0 auto;
+  border-radius: 15px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}

@@ -1,18 +1,21 @@
+// ProfileMain.js
 import React from "react";
-import Header from "../Reusable/Header"; // Import Header component
+import Header from "../Reusable/Header";
+import ProfileSidebar from "./ProfileSidebar";
 
-
-function ProfileMain({ children, onSearch }) { // ✅ Accept onSearch as a prop
+function ProfileMain({ children, onSearch, profileData }) {
   return (
     <div>
-
-      <Header onSearch={onSearch} /> {/* ✅ Pass onSearch to Header */}
-      {/* First Layer (Magenta) */}
+      <Header onSearch={onSearch} />
       <div className="white-layer">
         <div className="content-wrapper">
-          {/* Second Layer (Pink) */}
-          <div className="pink-layer">{children}</div>
-          
+          <div className="pink-layer">
+            <div className="profile-page">
+              {/* Pass the user's data into the sidebar so it shows the correct name/avatar */}
+              <ProfileSidebar profileData={profileData} />
+              {children}
+            </div>
+          </div>
         </div>
       </div>
     </div>

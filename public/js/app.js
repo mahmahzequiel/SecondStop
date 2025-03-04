@@ -4710,6 +4710,24 @@ var ArrowLeftOutlined = { "icon": { "tag": "svg", "attrs": { "viewBox": "64 64 8
 
 /***/ }),
 
+/***/ "./node_modules/@ant-design/icons-svg/es/asn/BarsOutlined.js":
+/*!*******************************************************************!*\
+  !*** ./node_modules/@ant-design/icons-svg/es/asn/BarsOutlined.js ***!
+  \*******************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+// This icon file is generated automatically.
+var BarsOutlined = { "icon": { "tag": "svg", "attrs": { "viewBox": "0 0 1024 1024", "focusable": "false" }, "children": [{ "tag": "path", "attrs": { "d": "M912 192H328c-4.4 0-8 3.6-8 8v56c0 4.4 3.6 8 8 8h584c4.4 0 8-3.6 8-8v-56c0-4.4-3.6-8-8-8zm0 284H328c-4.4 0-8 3.6-8 8v56c0 4.4 3.6 8 8 8h584c4.4 0 8-3.6 8-8v-56c0-4.4-3.6-8-8-8zm0 284H328c-4.4 0-8 3.6-8 8v56c0 4.4 3.6 8 8 8h584c4.4 0 8-3.6 8-8v-56c0-4.4-3.6-8-8-8zM104 228a56 56 0 10112 0 56 56 0 10-112 0zm0 284a56 56 0 10112 0 56 56 0 10-112 0zm0 284a56 56 0 10112 0 56 56 0 10-112 0z" } }] }, "name": "bars", "theme": "outlined" };
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (BarsOutlined);
+
+
+/***/ }),
+
 /***/ "./node_modules/@ant-design/icons-svg/es/asn/BellOutlined.js":
 /*!*******************************************************************!*\
   !*** ./node_modules/@ant-design/icons-svg/es/asn/BellOutlined.js ***!
@@ -5088,6 +5106,24 @@ var FacebookOutlined = { "icon": { "tag": "svg", "attrs": { "viewBox": "64 64 89
 
 /***/ }),
 
+/***/ "./node_modules/@ant-design/icons-svg/es/asn/FileOutlined.js":
+/*!*******************************************************************!*\
+  !*** ./node_modules/@ant-design/icons-svg/es/asn/FileOutlined.js ***!
+  \*******************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+// This icon file is generated automatically.
+var FileOutlined = { "icon": { "tag": "svg", "attrs": { "viewBox": "64 64 896 896", "focusable": "false" }, "children": [{ "tag": "path", "attrs": { "d": "M854.6 288.6L639.4 73.4c-6-6-14.1-9.4-22.6-9.4H192c-17.7 0-32 14.3-32 32v832c0 17.7 14.3 32 32 32h640c17.7 0 32-14.3 32-32V311.3c0-8.5-3.4-16.7-9.4-22.7zM790.2 326H602V137.8L790.2 326zm1.8 562H232V136h302v216a42 42 0 0042 42h216v494z" } }] }, "name": "file", "theme": "outlined" };
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (FileOutlined);
+
+
+/***/ }),
+
 /***/ "./node_modules/@ant-design/icons-svg/es/asn/FileTextOutlined.js":
 /*!***********************************************************************!*\
   !*** ./node_modules/@ant-design/icons-svg/es/asn/FileTextOutlined.js ***!
@@ -5210,6 +5246,24 @@ __webpack_require__.r(__webpack_exports__);
 // This icon file is generated automatically.
 var LoadingOutlined = { "icon": { "tag": "svg", "attrs": { "viewBox": "0 0 1024 1024", "focusable": "false" }, "children": [{ "tag": "path", "attrs": { "d": "M988 548c-19.9 0-36-16.1-36-36 0-59.4-11.6-117-34.6-171.3a440.45 440.45 0 00-94.3-139.9 437.71 437.71 0 00-139.9-94.3C629 83.6 571.4 72 512 72c-19.9 0-36-16.1-36-36s16.1-36 36-36c69.1 0 136.2 13.5 199.3 40.3C772.3 66 827 103 874 150c47 47 83.9 101.8 109.7 162.7 26.7 63.1 40.2 130.2 40.2 199.3.1 19.9-16 36-35.9 36z" } }] }, "name": "loading", "theme": "outlined" };
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (LoadingOutlined);
+
+
+/***/ }),
+
+/***/ "./node_modules/@ant-design/icons-svg/es/asn/LogoutOutlined.js":
+/*!*********************************************************************!*\
+  !*** ./node_modules/@ant-design/icons-svg/es/asn/LogoutOutlined.js ***!
+  \*********************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+// This icon file is generated automatically.
+var LogoutOutlined = { "icon": { "tag": "svg", "attrs": { "viewBox": "64 64 896 896", "focusable": "false" }, "children": [{ "tag": "path", "attrs": { "d": "M868 732h-70.3c-4.8 0-9.3 2.1-12.3 5.8-7 8.5-14.5 16.7-22.4 24.5a353.84 353.84 0 01-112.7 75.9A352.8 352.8 0 01512.4 866c-47.9 0-94.3-9.4-137.9-27.8a353.84 353.84 0 01-112.7-75.9 353.28 353.28 0 01-76-112.5C167.3 606.2 158 559.9 158 512s9.4-94.2 27.8-137.8c17.8-42.1 43.4-80 76-112.5s70.5-58.1 112.7-75.9c43.6-18.4 90-27.8 137.9-27.8 47.9 0 94.3 9.3 137.9 27.8 42.2 17.8 80.1 43.4 112.7 75.9 7.9 7.9 15.3 16.1 22.4 24.5 3 3.7 7.6 5.8 12.3 5.8H868c6.3 0 10.2-7 6.7-12.3C798 160.5 663.8 81.6 511.3 82 271.7 82.6 79.6 277.1 82 516.4 84.4 751.9 276.2 942 512.4 942c152.1 0 285.7-78.8 362.3-197.7 3.4-5.3-.4-12.3-6.7-12.3zm88.9-226.3L815 393.7c-5.3-4.2-13-.4-13 6.3v76H488c-4.4 0-8 3.6-8 8v56c0 4.4 3.6 8 8 8h314v76c0 6.7 7.8 10.5 13 6.3l141.9-112a8 8 0 000-12.6z" } }] }, "name": "logout", "theme": "outlined" };
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (LogoutOutlined);
 
 
 /***/ }),
@@ -5444,6 +5498,24 @@ __webpack_require__.r(__webpack_exports__);
 // This icon file is generated automatically.
 var SendOutlined = { "icon": { "tag": "svg", "attrs": { "viewBox": "64 64 896 896", "focusable": "false" }, "children": [{ "tag": "defs", "attrs": {}, "children": [{ "tag": "style", "attrs": {} }] }, { "tag": "path", "attrs": { "d": "M931.4 498.9L94.9 79.5c-3.4-1.7-7.3-2.1-11-1.2a15.99 15.99 0 00-11.7 19.3l86.2 352.2c1.3 5.3 5.2 9.6 10.4 11.3l147.7 50.7-147.6 50.7c-5.2 1.8-9.1 6-10.3 11.3L72.2 926.5c-.9 3.7-.5 7.6 1.2 10.9 3.9 7.9 13.5 11.1 21.5 7.2l836.5-417c3.1-1.5 5.6-4.1 7.2-7.1 3.9-8 .7-17.6-7.2-21.6zM170.8 826.3l50.3-205.6 295.2-101.3c2.3-.8 4.2-2.6 5-5 1.4-4.2-.8-8.7-5-10.2L221.1 403 171 198.2l628 314.9-628.2 313.2z" } }] }, "name": "send", "theme": "outlined" };
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (SendOutlined);
+
+
+/***/ }),
+
+/***/ "./node_modules/@ant-design/icons-svg/es/asn/SettingOutlined.js":
+/*!**********************************************************************!*\
+  !*** ./node_modules/@ant-design/icons-svg/es/asn/SettingOutlined.js ***!
+  \**********************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+// This icon file is generated automatically.
+var SettingOutlined = { "icon": { "tag": "svg", "attrs": { "viewBox": "64 64 896 896", "focusable": "false" }, "children": [{ "tag": "path", "attrs": { "d": "M924.8 625.7l-65.5-56c3.1-19 4.7-38.4 4.7-57.8s-1.6-38.8-4.7-57.8l65.5-56a32.03 32.03 0 009.3-35.2l-.9-2.6a443.74 443.74 0 00-79.7-137.9l-1.8-2.1a32.12 32.12 0 00-35.1-9.5l-81.3 28.9c-30-24.6-63.5-44-99.7-57.6l-15.7-85a32.05 32.05 0 00-25.8-25.7l-2.7-.5c-52.1-9.4-106.9-9.4-159 0l-2.7.5a32.05 32.05 0 00-25.8 25.7l-15.8 85.4a351.86 351.86 0 00-99 57.4l-81.9-29.1a32 32 0 00-35.1 9.5l-1.8 2.1a446.02 446.02 0 00-79.7 137.9l-.9 2.6c-4.5 12.5-.8 26.5 9.3 35.2l66.3 56.6c-3.1 18.8-4.6 38-4.6 57.1 0 19.2 1.5 38.4 4.6 57.1L99 625.5a32.03 32.03 0 00-9.3 35.2l.9 2.6c18.1 50.4 44.9 96.9 79.7 137.9l1.8 2.1a32.12 32.12 0 0035.1 9.5l81.9-29.1c29.8 24.5 63.1 43.9 99 57.4l15.8 85.4a32.05 32.05 0 0025.8 25.7l2.7.5a449.4 449.4 0 00159 0l2.7-.5a32.05 32.05 0 0025.8-25.7l15.7-85a350 350 0 0099.7-57.6l81.3 28.9a32 32 0 0035.1-9.5l1.8-2.1c34.8-41.1 61.6-87.5 79.7-137.9l.9-2.6c4.5-12.3.8-26.3-9.3-35zM788.3 465.9c2.5 15.1 3.8 30.6 3.8 46.1s-1.3 31-3.8 46.1l-6.6 40.1 74.7 63.9a370.03 370.03 0 01-42.6 73.6L721 702.8l-31.4 25.8c-23.9 19.6-50.5 35-79.3 45.8l-38.1 14.3-17.9 97a377.5 377.5 0 01-85 0l-17.9-97.2-37.8-14.5c-28.5-10.8-55-26.2-78.7-45.7l-31.4-25.9-93.4 33.2c-17-22.9-31.2-47.6-42.6-73.6l75.5-64.5-6.5-40c-2.4-14.9-3.7-30.3-3.7-45.5 0-15.3 1.2-30.6 3.7-45.5l6.5-40-75.5-64.5c11.3-26.1 25.6-50.7 42.6-73.6l93.4 33.2 31.4-25.9c23.7-19.5 50.2-34.9 78.7-45.7l37.9-14.3 17.9-97.2c28.1-3.2 56.8-3.2 85 0l17.9 97 38.1 14.3c28.7 10.8 55.4 26.2 79.3 45.8l31.4 25.8 92.8-32.9c17 22.9 31.2 47.6 42.6 73.6L781.8 426l6.5 39.9zM512 326c-97.2 0-176 78.8-176 176s78.8 176 176 176 176-78.8 176-176-78.8-176-176-176zm79.2 255.2A111.6 111.6 0 01512 614c-29.9 0-58-11.7-79.2-32.8A111.6 111.6 0 01400 502c0-29.9 11.7-58 32.8-79.2C454 401.6 482.1 390 512 390c29.9 0 58 11.6 79.2 32.8A111.6 111.6 0 01624 502c0 29.9-11.7 58-32.8 79.2z" } }] }, "name": "setting", "theme": "outlined" };
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (SettingOutlined);
 
 
 /***/ }),
@@ -5843,6 +5915,45 @@ var ArrowLeftOutlined = function ArrowLeftOutlined(props, ref) {
 var RefIcon = /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1__.forwardRef(ArrowLeftOutlined);
 if (true) {
   RefIcon.displayName = 'ArrowLeftOutlined';
+}
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (RefIcon);
+
+/***/ }),
+
+/***/ "./node_modules/@ant-design/icons/es/icons/BarsOutlined.js":
+/*!*****************************************************************!*\
+  !*** ./node_modules/@ant-design/icons/es/icons/BarsOutlined.js ***!
+  \*****************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var _babel_runtime_helpers_esm_extends__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @babel/runtime/helpers/esm/extends */ "./node_modules/@babel/runtime/helpers/esm/extends.js");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_1__);
+/* harmony import */ var _ant_design_icons_svg_es_asn_BarsOutlined__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @ant-design/icons-svg/es/asn/BarsOutlined */ "./node_modules/@ant-design/icons-svg/es/asn/BarsOutlined.js");
+/* harmony import */ var _components_AntdIcon__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../components/AntdIcon */ "./node_modules/@ant-design/icons/es/components/AntdIcon.js");
+
+// GENERATE BY ./scripts/generate.ts
+// DON NOT EDIT IT MANUALLY
+
+
+
+
+var BarsOutlined = function BarsOutlined(props, ref) {
+  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1__.createElement(_components_AntdIcon__WEBPACK_IMPORTED_MODULE_2__["default"], (0,_babel_runtime_helpers_esm_extends__WEBPACK_IMPORTED_MODULE_0__["default"])({}, props, {
+    ref: ref,
+    icon: _ant_design_icons_svg_es_asn_BarsOutlined__WEBPACK_IMPORTED_MODULE_3__["default"]
+  }));
+};
+
+/**![bars](data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNTAiIGhlaWdodD0iNTAiIGZpbGw9IiNjYWNhY2EiIHZpZXdCb3g9IjAgMCAxMDI0IDEwMjQiIGZvY3VzYWJsZT0iZmFsc2UiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+PHBhdGggZD0iTTkxMiAxOTJIMzI4Yy00LjQgMC04IDMuNi04IDh2NTZjMCA0LjQgMy42IDggOCA4aDU4NGM0LjQgMCA4LTMuNiA4LTh2LTU2YzAtNC40LTMuNi04LTgtOHptMCAyODRIMzI4Yy00LjQgMC04IDMuNi04IDh2NTZjMCA0LjQgMy42IDggOCA4aDU4NGM0LjQgMCA4LTMuNiA4LTh2LTU2YzAtNC40LTMuNi04LTgtOHptMCAyODRIMzI4Yy00LjQgMC04IDMuNi04IDh2NTZjMCA0LjQgMy42IDggOCA4aDU4NGM0LjQgMCA4LTMuNiA4LTh2LTU2YzAtNC40LTMuNi04LTgtOHpNMTA0IDIyOGE1NiA1NiAwIDEwMTEyIDAgNTYgNTYgMCAxMC0xMTIgMHptMCAyODRhNTYgNTYgMCAxMDExMiAwIDU2IDU2IDAgMTAtMTEyIDB6bTAgMjg0YTU2IDU2IDAgMTAxMTIgMCA1NiA1NiAwIDEwLTExMiAweiIgLz48L3N2Zz4=) */
+var RefIcon = /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1__.forwardRef(BarsOutlined);
+if (true) {
+  RefIcon.displayName = 'BarsOutlined';
 }
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (RefIcon);
 
@@ -6667,6 +6778,45 @@ if (true) {
 
 /***/ }),
 
+/***/ "./node_modules/@ant-design/icons/es/icons/FileOutlined.js":
+/*!*****************************************************************!*\
+  !*** ./node_modules/@ant-design/icons/es/icons/FileOutlined.js ***!
+  \*****************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var _babel_runtime_helpers_esm_extends__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @babel/runtime/helpers/esm/extends */ "./node_modules/@babel/runtime/helpers/esm/extends.js");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_1__);
+/* harmony import */ var _ant_design_icons_svg_es_asn_FileOutlined__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @ant-design/icons-svg/es/asn/FileOutlined */ "./node_modules/@ant-design/icons-svg/es/asn/FileOutlined.js");
+/* harmony import */ var _components_AntdIcon__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../components/AntdIcon */ "./node_modules/@ant-design/icons/es/components/AntdIcon.js");
+
+// GENERATE BY ./scripts/generate.ts
+// DON NOT EDIT IT MANUALLY
+
+
+
+
+var FileOutlined = function FileOutlined(props, ref) {
+  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1__.createElement(_components_AntdIcon__WEBPACK_IMPORTED_MODULE_2__["default"], (0,_babel_runtime_helpers_esm_extends__WEBPACK_IMPORTED_MODULE_0__["default"])({}, props, {
+    ref: ref,
+    icon: _ant_design_icons_svg_es_asn_FileOutlined__WEBPACK_IMPORTED_MODULE_3__["default"]
+  }));
+};
+
+/**![file](data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNTAiIGhlaWdodD0iNTAiIGZpbGw9IiNjYWNhY2EiIHZpZXdCb3g9IjY0IDY0IDg5NiA4OTYiIGZvY3VzYWJsZT0iZmFsc2UiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+PHBhdGggZD0iTTg1NC42IDI4OC42TDYzOS40IDczLjRjLTYtNi0xNC4xLTkuNC0yMi42LTkuNEgxOTJjLTE3LjcgMC0zMiAxNC4zLTMyIDMydjgzMmMwIDE3LjcgMTQuMyAzMiAzMiAzMmg2NDBjMTcuNyAwIDMyLTE0LjMgMzItMzJWMzExLjNjMC04LjUtMy40LTE2LjctOS40LTIyLjd6TTc5MC4yIDMyNkg2MDJWMTM3LjhMNzkwLjIgMzI2em0xLjggNTYySDIzMlYxMzZoMzAydjIxNmE0MiA0MiAwIDAwNDIgNDJoMjE2djQ5NHoiIC8+PC9zdmc+) */
+var RefIcon = /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1__.forwardRef(FileOutlined);
+if (true) {
+  RefIcon.displayName = 'FileOutlined';
+}
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (RefIcon);
+
+/***/ }),
+
 /***/ "./node_modules/@ant-design/icons/es/icons/FileTextOutlined.js":
 /*!*********************************************************************!*\
   !*** ./node_modules/@ant-design/icons/es/icons/FileTextOutlined.js ***!
@@ -6935,6 +7085,45 @@ var LoadingOutlined = function LoadingOutlined(props, ref) {
 var RefIcon = /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1__.forwardRef(LoadingOutlined);
 if (true) {
   RefIcon.displayName = 'LoadingOutlined';
+}
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (RefIcon);
+
+/***/ }),
+
+/***/ "./node_modules/@ant-design/icons/es/icons/LogoutOutlined.js":
+/*!*******************************************************************!*\
+  !*** ./node_modules/@ant-design/icons/es/icons/LogoutOutlined.js ***!
+  \*******************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var _babel_runtime_helpers_esm_extends__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @babel/runtime/helpers/esm/extends */ "./node_modules/@babel/runtime/helpers/esm/extends.js");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_1__);
+/* harmony import */ var _ant_design_icons_svg_es_asn_LogoutOutlined__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @ant-design/icons-svg/es/asn/LogoutOutlined */ "./node_modules/@ant-design/icons-svg/es/asn/LogoutOutlined.js");
+/* harmony import */ var _components_AntdIcon__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../components/AntdIcon */ "./node_modules/@ant-design/icons/es/components/AntdIcon.js");
+
+// GENERATE BY ./scripts/generate.ts
+// DON NOT EDIT IT MANUALLY
+
+
+
+
+var LogoutOutlined = function LogoutOutlined(props, ref) {
+  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1__.createElement(_components_AntdIcon__WEBPACK_IMPORTED_MODULE_2__["default"], (0,_babel_runtime_helpers_esm_extends__WEBPACK_IMPORTED_MODULE_0__["default"])({}, props, {
+    ref: ref,
+    icon: _ant_design_icons_svg_es_asn_LogoutOutlined__WEBPACK_IMPORTED_MODULE_3__["default"]
+  }));
+};
+
+/**![logout](data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNTAiIGhlaWdodD0iNTAiIGZpbGw9IiNjYWNhY2EiIHZpZXdCb3g9IjY0IDY0IDg5NiA4OTYiIGZvY3VzYWJsZT0iZmFsc2UiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+PHBhdGggZD0iTTg2OCA3MzJoLTcwLjNjLTQuOCAwLTkuMyAyLjEtMTIuMyA1LjgtNyA4LjUtMTQuNSAxNi43LTIyLjQgMjQuNWEzNTMuODQgMzUzLjg0IDAgMDEtMTEyLjcgNzUuOUEzNTIuOCAzNTIuOCAwIDAxNTEyLjQgODY2Yy00Ny45IDAtOTQuMy05LjQtMTM3LjktMjcuOGEzNTMuODQgMzUzLjg0IDAgMDEtMTEyLjctNzUuOSAzNTMuMjggMzUzLjI4IDAgMDEtNzYtMTEyLjVDMTY3LjMgNjA2LjIgMTU4IDU1OS45IDE1OCA1MTJzOS40LTk0LjIgMjcuOC0xMzcuOGMxNy44LTQyLjEgNDMuNC04MCA3Ni0xMTIuNXM3MC41LTU4LjEgMTEyLjctNzUuOWM0My42LTE4LjQgOTAtMjcuOCAxMzcuOS0yNy44IDQ3LjkgMCA5NC4zIDkuMyAxMzcuOSAyNy44IDQyLjIgMTcuOCA4MC4xIDQzLjQgMTEyLjcgNzUuOSA3LjkgNy45IDE1LjMgMTYuMSAyMi40IDI0LjUgMyAzLjcgNy42IDUuOCAxMi4zIDUuOEg4NjhjNi4zIDAgMTAuMi03IDYuNy0xMi4zQzc5OCAxNjAuNSA2NjMuOCA4MS42IDUxMS4zIDgyIDI3MS43IDgyLjYgNzkuNiAyNzcuMSA4MiA1MTYuNCA4NC40IDc1MS45IDI3Ni4yIDk0MiA1MTIuNCA5NDJjMTUyLjEgMCAyODUuNy03OC44IDM2Mi4zLTE5Ny43IDMuNC01LjMtLjQtMTIuMy02LjctMTIuM3ptODguOS0yMjYuM0w4MTUgMzkzLjdjLTUuMy00LjItMTMtLjQtMTMgNi4zdjc2SDQ4OGMtNC40IDAtOCAzLjYtOCA4djU2YzAgNC40IDMuNiA4IDggOGgzMTR2NzZjMCA2LjcgNy44IDEwLjUgMTMgNi4zbDE0MS45LTExMmE4IDggMCAwMDAtMTIuNnoiIC8+PC9zdmc+) */
+var RefIcon = /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1__.forwardRef(LogoutOutlined);
+if (true) {
+  RefIcon.displayName = 'LogoutOutlined';
 }
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (RefIcon);
 
@@ -7442,6 +7631,45 @@ var SendOutlined = function SendOutlined(props, ref) {
 var RefIcon = /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1__.forwardRef(SendOutlined);
 if (true) {
   RefIcon.displayName = 'SendOutlined';
+}
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (RefIcon);
+
+/***/ }),
+
+/***/ "./node_modules/@ant-design/icons/es/icons/SettingOutlined.js":
+/*!********************************************************************!*\
+  !*** ./node_modules/@ant-design/icons/es/icons/SettingOutlined.js ***!
+  \********************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var _babel_runtime_helpers_esm_extends__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @babel/runtime/helpers/esm/extends */ "./node_modules/@babel/runtime/helpers/esm/extends.js");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_1__);
+/* harmony import */ var _ant_design_icons_svg_es_asn_SettingOutlined__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @ant-design/icons-svg/es/asn/SettingOutlined */ "./node_modules/@ant-design/icons-svg/es/asn/SettingOutlined.js");
+/* harmony import */ var _components_AntdIcon__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../components/AntdIcon */ "./node_modules/@ant-design/icons/es/components/AntdIcon.js");
+
+// GENERATE BY ./scripts/generate.ts
+// DON NOT EDIT IT MANUALLY
+
+
+
+
+var SettingOutlined = function SettingOutlined(props, ref) {
+  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1__.createElement(_components_AntdIcon__WEBPACK_IMPORTED_MODULE_2__["default"], (0,_babel_runtime_helpers_esm_extends__WEBPACK_IMPORTED_MODULE_0__["default"])({}, props, {
+    ref: ref,
+    icon: _ant_design_icons_svg_es_asn_SettingOutlined__WEBPACK_IMPORTED_MODULE_3__["default"]
+  }));
+};
+
+/**![setting](data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNTAiIGhlaWdodD0iNTAiIGZpbGw9IiNjYWNhY2EiIHZpZXdCb3g9IjY0IDY0IDg5NiA4OTYiIGZvY3VzYWJsZT0iZmFsc2UiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+PHBhdGggZD0iTTkyNC44IDYyNS43bC02NS41LTU2YzMuMS0xOSA0LjctMzguNCA0LjctNTcuOHMtMS42LTM4LjgtNC43LTU3LjhsNjUuNS01NmEzMi4wMyAzMi4wMyAwIDAwOS4zLTM1LjJsLS45LTIuNmE0NDMuNzQgNDQzLjc0IDAgMDAtNzkuNy0xMzcuOWwtMS44LTIuMWEzMi4xMiAzMi4xMiAwIDAwLTM1LjEtOS41bC04MS4zIDI4LjljLTMwLTI0LjYtNjMuNS00NC05OS43LTU3LjZsLTE1LjctODVhMzIuMDUgMzIuMDUgMCAwMC0yNS44LTI1LjdsLTIuNy0uNWMtNTIuMS05LjQtMTA2LjktOS40LTE1OSAwbC0yLjcuNWEzMi4wNSAzMi4wNSAwIDAwLTI1LjggMjUuN2wtMTUuOCA4NS40YTM1MS44NiAzNTEuODYgMCAwMC05OSA1Ny40bC04MS45LTI5LjFhMzIgMzIgMCAwMC0zNS4xIDkuNWwtMS44IDIuMWE0NDYuMDIgNDQ2LjAyIDAgMDAtNzkuNyAxMzcuOWwtLjkgMi42Yy00LjUgMTIuNS0uOCAyNi41IDkuMyAzNS4ybDY2LjMgNTYuNmMtMy4xIDE4LjgtNC42IDM4LTQuNiA1Ny4xIDAgMTkuMiAxLjUgMzguNCA0LjYgNTcuMUw5OSA2MjUuNWEzMi4wMyAzMi4wMyAwIDAwLTkuMyAzNS4ybC45IDIuNmMxOC4xIDUwLjQgNDQuOSA5Ni45IDc5LjcgMTM3LjlsMS44IDIuMWEzMi4xMiAzMi4xMiAwIDAwMzUuMSA5LjVsODEuOS0yOS4xYzI5LjggMjQuNSA2My4xIDQzLjkgOTkgNTcuNGwxNS44IDg1LjRhMzIuMDUgMzIuMDUgMCAwMDI1LjggMjUuN2wyLjcuNWE0NDkuNCA0NDkuNCAwIDAwMTU5IDBsMi43LS41YTMyLjA1IDMyLjA1IDAgMDAyNS44LTI1LjdsMTUuNy04NWEzNTAgMzUwIDAgMDA5OS43LTU3LjZsODEuMyAyOC45YTMyIDMyIDAgMDAzNS4xLTkuNWwxLjgtMi4xYzM0LjgtNDEuMSA2MS42LTg3LjUgNzkuNy0xMzcuOWwuOS0yLjZjNC41LTEyLjMuOC0yNi4zLTkuMy0zNXpNNzg4LjMgNDY1LjljMi41IDE1LjEgMy44IDMwLjYgMy44IDQ2LjFzLTEuMyAzMS0zLjggNDYuMWwtNi42IDQwLjEgNzQuNyA2My45YTM3MC4wMyAzNzAuMDMgMCAwMS00Mi42IDczLjZMNzIxIDcwMi44bC0zMS40IDI1LjhjLTIzLjkgMTkuNi01MC41IDM1LTc5LjMgNDUuOGwtMzguMSAxNC4zLTE3LjkgOTdhMzc3LjUgMzc3LjUgMCAwMS04NSAwbC0xNy45LTk3LjItMzcuOC0xNC41Yy0yOC41LTEwLjgtNTUtMjYuMi03OC43LTQ1LjdsLTMxLjQtMjUuOS05My40IDMzLjJjLTE3LTIyLjktMzEuMi00Ny42LTQyLjYtNzMuNmw3NS41LTY0LjUtNi41LTQwYy0yLjQtMTQuOS0zLjctMzAuMy0zLjctNDUuNSAwLTE1LjMgMS4yLTMwLjYgMy43LTQ1LjVsNi41LTQwLTc1LjUtNjQuNWMxMS4zLTI2LjEgMjUuNi01MC43IDQyLjYtNzMuNmw5My40IDMzLjIgMzEuNC0yNS45YzIzLjctMTkuNSA1MC4yLTM0LjkgNzguNy00NS43bDM3LjktMTQuMyAxNy45LTk3LjJjMjguMS0zLjIgNTYuOC0zLjIgODUgMGwxNy45IDk3IDM4LjEgMTQuM2MyOC43IDEwLjggNTUuNCAyNi4yIDc5LjMgNDUuOGwzMS40IDI1LjggOTIuOC0zMi45YzE3IDIyLjkgMzEuMiA0Ny42IDQyLjYgNzMuNkw3ODEuOCA0MjZsNi41IDM5Ljl6TTUxMiAzMjZjLTk3LjIgMC0xNzYgNzguOC0xNzYgMTc2czc4LjggMTc2IDE3NiAxNzYgMTc2LTc4LjggMTc2LTE3Ni03OC44LTE3Ni0xNzYtMTc2em03OS4yIDI1NS4yQTExMS42IDExMS42IDAgMDE1MTIgNjE0Yy0yOS45IDAtNTgtMTEuNy03OS4yLTMyLjhBMTExLjYgMTExLjYgMCAwMTQwMCA1MDJjMC0yOS45IDExLjctNTggMzIuOC03OS4yQzQ1NCA0MDEuNiA0ODIuMSAzOTAgNTEyIDM5MGMyOS45IDAgNTggMTEuNiA3OS4yIDMyLjhBMTExLjYgMTExLjYgMCAwMTYyNCA1MDJjMCAyOS45LTExLjcgNTgtMzIuOCA3OS4yeiIgLz48L3N2Zz4=) */
+var RefIcon = /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1__.forwardRef(SettingOutlined);
+if (true) {
+  RefIcon.displayName = 'SettingOutlined';
 }
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (RefIcon);
 
@@ -23742,6 +23970,299 @@ const locale = {
 
 /***/ }),
 
+/***/ "./node_modules/antd/es/divider/index.js":
+/*!***********************************************!*\
+  !*** ./node_modules/antd/es/divider/index.js ***!
+  \***********************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var classnames__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! classnames */ "./node_modules/classnames/index.js");
+/* harmony import */ var classnames__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(classnames__WEBPACK_IMPORTED_MODULE_1__);
+/* harmony import */ var _util_warning__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../_util/warning */ "./node_modules/antd/es/_util/warning.js");
+/* harmony import */ var _config_provider_context__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../config-provider/context */ "./node_modules/antd/es/config-provider/context.js");
+/* harmony import */ var _style__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./style */ "./node_modules/antd/es/divider/style/index.js");
+"use client";
+
+var __rest = undefined && undefined.__rest || function (s, e) {
+  var t = {};
+  for (var p in s) if (Object.prototype.hasOwnProperty.call(s, p) && e.indexOf(p) < 0) t[p] = s[p];
+  if (s != null && typeof Object.getOwnPropertySymbols === "function") for (var i = 0, p = Object.getOwnPropertySymbols(s); i < p.length; i++) {
+    if (e.indexOf(p[i]) < 0 && Object.prototype.propertyIsEnumerable.call(s, p[i])) t[p[i]] = s[p[i]];
+  }
+  return t;
+};
+
+
+
+
+
+const Divider = props => {
+  const {
+    getPrefixCls,
+    direction,
+    className: dividerClassName,
+    style: dividerStyle
+  } = (0,_config_provider_context__WEBPACK_IMPORTED_MODULE_2__.useComponentConfig)('divider');
+  const {
+      prefixCls: customizePrefixCls,
+      type = 'horizontal',
+      orientation = 'center',
+      orientationMargin,
+      className,
+      rootClassName,
+      children,
+      dashed,
+      variant = 'solid',
+      plain,
+      style
+    } = props,
+    restProps = __rest(props, ["prefixCls", "type", "orientation", "orientationMargin", "className", "rootClassName", "children", "dashed", "variant", "plain", "style"]);
+  const prefixCls = getPrefixCls('divider', customizePrefixCls);
+  const [wrapCSSVar, hashId, cssVarCls] = (0,_style__WEBPACK_IMPORTED_MODULE_3__["default"])(prefixCls);
+  const hasChildren = !!children;
+  const mergedOrientation = react__WEBPACK_IMPORTED_MODULE_0__.useMemo(() => {
+    if (orientation === 'left') {
+      return direction === 'rtl' ? 'end' : 'start';
+    }
+    if (orientation === 'right') {
+      return direction === 'rtl' ? 'start' : 'end';
+    }
+    return orientation;
+  }, [direction, orientation]);
+  const hasMarginStart = mergedOrientation === 'start' && orientationMargin != null;
+  const hasMarginEnd = mergedOrientation === 'end' && orientationMargin != null;
+  const classString = classnames__WEBPACK_IMPORTED_MODULE_1___default()(prefixCls, dividerClassName, hashId, cssVarCls, `${prefixCls}-${type}`, {
+    [`${prefixCls}-with-text`]: hasChildren,
+    [`${prefixCls}-with-text-${mergedOrientation}`]: hasChildren,
+    [`${prefixCls}-dashed`]: !!dashed,
+    [`${prefixCls}-${variant}`]: variant !== 'solid',
+    [`${prefixCls}-plain`]: !!plain,
+    [`${prefixCls}-rtl`]: direction === 'rtl',
+    [`${prefixCls}-no-default-orientation-margin-start`]: hasMarginStart,
+    [`${prefixCls}-no-default-orientation-margin-end`]: hasMarginEnd
+  }, className, rootClassName);
+  const memoizedOrientationMargin = react__WEBPACK_IMPORTED_MODULE_0__.useMemo(() => {
+    if (typeof orientationMargin === 'number') {
+      return orientationMargin;
+    }
+    if (/^\d+$/.test(orientationMargin)) {
+      return Number(orientationMargin);
+    }
+    return orientationMargin;
+  }, [orientationMargin]);
+  const innerStyle = {
+    marginInlineStart: hasMarginStart ? memoizedOrientationMargin : undefined,
+    marginInlineEnd: hasMarginEnd ? memoizedOrientationMargin : undefined
+  };
+  // Warning children not work in vertical mode
+  if (true) {
+    const warning = (0,_util_warning__WEBPACK_IMPORTED_MODULE_4__.devUseWarning)('Divider');
+     true ? warning(!children || type !== 'vertical', 'usage', '`children` not working in `vertical` mode.') : 0;
+  }
+  return wrapCSSVar(/*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", Object.assign({
+    className: classString,
+    style: Object.assign(Object.assign({}, dividerStyle), style)
+  }, restProps, {
+    role: "separator"
+  }), children && type !== 'vertical' && (/*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("span", {
+    className: `${prefixCls}-inner-text`,
+    style: innerStyle
+  }, children))));
+};
+if (true) {
+  Divider.displayName = 'Divider';
+}
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (Divider);
+
+/***/ }),
+
+/***/ "./node_modules/antd/es/divider/style/index.js":
+/*!*****************************************************!*\
+  !*** ./node_modules/antd/es/divider/style/index.js ***!
+  \*****************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__),
+/* harmony export */   prepareComponentToken: () => (/* binding */ prepareComponentToken)
+/* harmony export */ });
+/* harmony import */ var _ant_design_cssinjs__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @ant-design/cssinjs */ "./node_modules/@ant-design/cssinjs/es/index.js");
+/* harmony import */ var _style__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../style */ "./node_modules/antd/es/style/index.js");
+/* harmony import */ var _theme_internal__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../theme/internal */ "./node_modules/antd/es/theme/util/genStyleUtils.js");
+/* harmony import */ var _theme_internal__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../theme/internal */ "./node_modules/@ant-design/cssinjs-utils/es/index.js");
+
+
+
+// ============================== Shared ==============================
+const genSharedDividerStyle = token => {
+  const {
+    componentCls,
+    sizePaddingEdgeHorizontal,
+    colorSplit,
+    lineWidth,
+    textPaddingInline,
+    orientationMargin,
+    verticalMarginInline
+  } = token;
+  return {
+    [componentCls]: Object.assign(Object.assign({}, (0,_style__WEBPACK_IMPORTED_MODULE_1__.resetComponent)(token)), {
+      borderBlockStart: `${(0,_ant_design_cssinjs__WEBPACK_IMPORTED_MODULE_0__.unit)(lineWidth)} solid ${colorSplit}`,
+      // vertical
+      '&-vertical': {
+        position: 'relative',
+        top: '-0.06em',
+        display: 'inline-block',
+        height: '0.9em',
+        marginInline: verticalMarginInline,
+        marginBlock: 0,
+        verticalAlign: 'middle',
+        borderTop: 0,
+        borderInlineStart: `${(0,_ant_design_cssinjs__WEBPACK_IMPORTED_MODULE_0__.unit)(lineWidth)} solid ${colorSplit}`
+      },
+      '&-horizontal': {
+        display: 'flex',
+        clear: 'both',
+        width: '100%',
+        minWidth: '100%',
+        // Fix https://github.com/ant-design/ant-design/issues/10914
+        margin: `${(0,_ant_design_cssinjs__WEBPACK_IMPORTED_MODULE_0__.unit)(token.dividerHorizontalGutterMargin)} 0`
+      },
+      [`&-horizontal${componentCls}-with-text`]: {
+        display: 'flex',
+        alignItems: 'center',
+        margin: `${(0,_ant_design_cssinjs__WEBPACK_IMPORTED_MODULE_0__.unit)(token.dividerHorizontalWithTextGutterMargin)} 0`,
+        color: token.colorTextHeading,
+        fontWeight: 500,
+        fontSize: token.fontSizeLG,
+        whiteSpace: 'nowrap',
+        textAlign: 'center',
+        borderBlockStart: `0 ${colorSplit}`,
+        '&::before, &::after': {
+          position: 'relative',
+          width: '50%',
+          borderBlockStart: `${(0,_ant_design_cssinjs__WEBPACK_IMPORTED_MODULE_0__.unit)(lineWidth)} solid transparent`,
+          // Chrome not accept `inherit` in `border-top`
+          borderBlockStartColor: 'inherit',
+          borderBlockEnd: 0,
+          transform: 'translateY(50%)',
+          content: "''"
+        }
+      },
+      [`&-horizontal${componentCls}-with-text-start`]: {
+        '&::before': {
+          width: `calc(${orientationMargin} * 100%)`
+        },
+        '&::after': {
+          width: `calc(100% - ${orientationMargin} * 100%)`
+        }
+      },
+      [`&-horizontal${componentCls}-with-text-end`]: {
+        '&::before': {
+          width: `calc(100% - ${orientationMargin} * 100%)`
+        },
+        '&::after': {
+          width: `calc(${orientationMargin} * 100%)`
+        }
+      },
+      [`${componentCls}-inner-text`]: {
+        display: 'inline-block',
+        paddingBlock: 0,
+        paddingInline: textPaddingInline
+      },
+      '&-dashed': {
+        background: 'none',
+        borderColor: colorSplit,
+        borderStyle: 'dashed',
+        borderWidth: `${(0,_ant_design_cssinjs__WEBPACK_IMPORTED_MODULE_0__.unit)(lineWidth)} 0 0`
+      },
+      [`&-horizontal${componentCls}-with-text${componentCls}-dashed`]: {
+        '&::before, &::after': {
+          borderStyle: 'dashed none none'
+        }
+      },
+      [`&-vertical${componentCls}-dashed`]: {
+        borderInlineStartWidth: lineWidth,
+        borderInlineEnd: 0,
+        borderBlockStart: 0,
+        borderBlockEnd: 0
+      },
+      '&-dotted': {
+        background: 'none',
+        borderColor: colorSplit,
+        borderStyle: 'dotted',
+        borderWidth: `${(0,_ant_design_cssinjs__WEBPACK_IMPORTED_MODULE_0__.unit)(lineWidth)} 0 0`
+      },
+      [`&-horizontal${componentCls}-with-text${componentCls}-dotted`]: {
+        '&::before, &::after': {
+          borderStyle: 'dotted none none'
+        }
+      },
+      [`&-vertical${componentCls}-dotted`]: {
+        borderInlineStartWidth: lineWidth,
+        borderInlineEnd: 0,
+        borderBlockStart: 0,
+        borderBlockEnd: 0
+      },
+      [`&-plain${componentCls}-with-text`]: {
+        color: token.colorText,
+        fontWeight: 'normal',
+        fontSize: token.fontSize
+      },
+      [`&-horizontal${componentCls}-with-text-start${componentCls}-no-default-orientation-margin-start`]: {
+        '&::before': {
+          width: 0
+        },
+        '&::after': {
+          width: '100%'
+        },
+        [`${componentCls}-inner-text`]: {
+          paddingInlineStart: sizePaddingEdgeHorizontal
+        }
+      },
+      [`&-horizontal${componentCls}-with-text-end${componentCls}-no-default-orientation-margin-end`]: {
+        '&::before': {
+          width: '100%'
+        },
+        '&::after': {
+          width: 0
+        },
+        [`${componentCls}-inner-text`]: {
+          paddingInlineEnd: sizePaddingEdgeHorizontal
+        }
+      }
+    })
+  };
+};
+const prepareComponentToken = token => ({
+  textPaddingInline: '1em',
+  orientationMargin: 0.05,
+  verticalMarginInline: token.marginXS
+});
+// ============================== Export ==============================
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ((0,_theme_internal__WEBPACK_IMPORTED_MODULE_2__.genStyleHooks)('Divider', token => {
+  const dividerToken = (0,_theme_internal__WEBPACK_IMPORTED_MODULE_3__.mergeToken)(token, {
+    dividerHorizontalWithTextGutterMargin: token.margin,
+    dividerHorizontalGutterMargin: token.marginLG,
+    sizePaddingEdgeHorizontal: 0
+  });
+  return [genSharedDividerStyle(dividerToken)];
+}, prepareComponentToken, {
+  unitless: {
+    orientationMargin: true
+  }
+}));
+
+/***/ }),
+
 /***/ "./node_modules/antd/es/empty/empty.js":
 /*!*********************************************!*\
   !*** ./node_modules/antd/es/empty/empty.js ***!
@@ -30710,6 +31231,496 @@ function hasPrefixSuffix(props) {
 
 /***/ }),
 
+/***/ "./node_modules/antd/es/layout/Sider.js":
+/*!**********************************************!*\
+  !*** ./node_modules/antd/es/layout/Sider.js ***!
+  \**********************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   SiderContext: () => (/* binding */ SiderContext),
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _ant_design_icons_es_icons_BarsOutlined__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! @ant-design/icons/es/icons/BarsOutlined */ "./node_modules/@ant-design/icons/es/icons/BarsOutlined.js");
+/* harmony import */ var _ant_design_icons_es_icons_LeftOutlined__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! @ant-design/icons/es/icons/LeftOutlined */ "./node_modules/@ant-design/icons/es/icons/LeftOutlined.js");
+/* harmony import */ var _ant_design_icons_es_icons_RightOutlined__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! @ant-design/icons/es/icons/RightOutlined */ "./node_modules/@ant-design/icons/es/icons/RightOutlined.js");
+/* harmony import */ var classnames__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! classnames */ "./node_modules/classnames/index.js");
+/* harmony import */ var classnames__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(classnames__WEBPACK_IMPORTED_MODULE_1__);
+/* harmony import */ var rc_util_es_omit__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! rc-util/es/omit */ "./node_modules/rc-util/es/omit.js");
+/* harmony import */ var _config_provider__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../config-provider */ "./node_modules/antd/es/config-provider/context.js");
+/* harmony import */ var _context__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./context */ "./node_modules/antd/es/layout/context.js");
+/* harmony import */ var _style_sider__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./style/sider */ "./node_modules/antd/es/layout/style/sider.js");
+"use client";
+
+var __rest = undefined && undefined.__rest || function (s, e) {
+  var t = {};
+  for (var p in s) if (Object.prototype.hasOwnProperty.call(s, p) && e.indexOf(p) < 0) t[p] = s[p];
+  if (s != null && typeof Object.getOwnPropertySymbols === "function") for (var i = 0, p = Object.getOwnPropertySymbols(s); i < p.length; i++) {
+    if (e.indexOf(p[i]) < 0 && Object.prototype.propertyIsEnumerable.call(s, p[i])) t[p[i]] = s[p[i]];
+  }
+  return t;
+};
+
+
+
+
+
+
+
+
+
+
+const dimensionMaxMap = {
+  xs: '479.98px',
+  sm: '575.98px',
+  md: '767.98px',
+  lg: '991.98px',
+  xl: '1199.98px',
+  xxl: '1599.98px'
+};
+const isNumeric = value => !Number.isNaN(Number.parseFloat(value)) && isFinite(value);
+const SiderContext = /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createContext({});
+const generateId = (() => {
+  let i = 0;
+  return function () {
+    let prefix = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : '';
+    i += 1;
+    return `${prefix}${i}`;
+  };
+})();
+const Sider = /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.forwardRef((props, ref) => {
+  const {
+      prefixCls: customizePrefixCls,
+      className,
+      trigger,
+      children,
+      defaultCollapsed = false,
+      theme = 'dark',
+      style = {},
+      collapsible = false,
+      reverseArrow = false,
+      width = 200,
+      collapsedWidth = 80,
+      zeroWidthTriggerStyle,
+      breakpoint,
+      onCollapse,
+      onBreakpoint
+    } = props,
+    otherProps = __rest(props, ["prefixCls", "className", "trigger", "children", "defaultCollapsed", "theme", "style", "collapsible", "reverseArrow", "width", "collapsedWidth", "zeroWidthTriggerStyle", "breakpoint", "onCollapse", "onBreakpoint"]);
+  const {
+    siderHook
+  } = (0,react__WEBPACK_IMPORTED_MODULE_0__.useContext)(_context__WEBPACK_IMPORTED_MODULE_3__.LayoutContext);
+  const [collapsed, setCollapsed] = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)('collapsed' in props ? props.collapsed : defaultCollapsed);
+  const [below, setBelow] = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(false);
+  (0,react__WEBPACK_IMPORTED_MODULE_0__.useEffect)(() => {
+    if ('collapsed' in props) {
+      setCollapsed(props.collapsed);
+    }
+  }, [props.collapsed]);
+  const handleSetCollapsed = (value, type) => {
+    if (!('collapsed' in props)) {
+      setCollapsed(value);
+    }
+    onCollapse === null || onCollapse === void 0 ? void 0 : onCollapse(value, type);
+  };
+  // =========================== Prefix ===========================
+  const {
+    getPrefixCls,
+    direction
+  } = (0,react__WEBPACK_IMPORTED_MODULE_0__.useContext)(_config_provider__WEBPACK_IMPORTED_MODULE_4__.ConfigContext);
+  const prefixCls = getPrefixCls('layout-sider', customizePrefixCls);
+  const [wrapCSSVar, hashId, cssVarCls] = (0,_style_sider__WEBPACK_IMPORTED_MODULE_5__["default"])(prefixCls);
+  // ========================= Responsive =========================
+  const responsiveHandlerRef = (0,react__WEBPACK_IMPORTED_MODULE_0__.useRef)(null);
+  responsiveHandlerRef.current = mql => {
+    setBelow(mql.matches);
+    onBreakpoint === null || onBreakpoint === void 0 ? void 0 : onBreakpoint(mql.matches);
+    if (collapsed !== mql.matches) {
+      handleSetCollapsed(mql.matches, 'responsive');
+    }
+  };
+  (0,react__WEBPACK_IMPORTED_MODULE_0__.useEffect)(() => {
+    function responsiveHandler(mql) {
+      return responsiveHandlerRef.current(mql);
+    }
+    let mql;
+    if (typeof window !== 'undefined') {
+      const {
+        matchMedia
+      } = window;
+      if (matchMedia && breakpoint && breakpoint in dimensionMaxMap) {
+        mql = matchMedia(`screen and (max-width: ${dimensionMaxMap[breakpoint]})`);
+        try {
+          mql.addEventListener('change', responsiveHandler);
+        } catch (_a) {
+          mql.addListener(responsiveHandler);
+        }
+        responsiveHandler(mql);
+      }
+    }
+    return () => {
+      try {
+        mql === null || mql === void 0 ? void 0 : mql.removeEventListener('change', responsiveHandler);
+      } catch (_a) {
+        mql === null || mql === void 0 ? void 0 : mql.removeListener(responsiveHandler);
+      }
+    };
+  }, [breakpoint]); // in order to accept dynamic 'breakpoint' property, we need to add 'breakpoint' into dependency array.
+  (0,react__WEBPACK_IMPORTED_MODULE_0__.useEffect)(() => {
+    const uniqueId = generateId('ant-sider-');
+    siderHook.addSider(uniqueId);
+    return () => siderHook.removeSider(uniqueId);
+  }, []);
+  const toggle = () => {
+    handleSetCollapsed(!collapsed, 'clickTrigger');
+  };
+  const divProps = (0,rc_util_es_omit__WEBPACK_IMPORTED_MODULE_2__["default"])(otherProps, ['collapsed']);
+  const rawWidth = collapsed ? collapsedWidth : width;
+  // use "px" as fallback unit for width
+  const siderWidth = isNumeric(rawWidth) ? `${rawWidth}px` : String(rawWidth);
+  // special trigger when collapsedWidth == 0
+  const zeroWidthTrigger = parseFloat(String(collapsedWidth || 0)) === 0 ? (/*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("span", {
+    onClick: toggle,
+    className: classnames__WEBPACK_IMPORTED_MODULE_1___default()(`${prefixCls}-zero-width-trigger`, `${prefixCls}-zero-width-trigger-${reverseArrow ? 'right' : 'left'}`),
+    style: zeroWidthTriggerStyle
+  }, trigger || /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_ant_design_icons_es_icons_BarsOutlined__WEBPACK_IMPORTED_MODULE_6__["default"], null))) : null;
+  const reverseIcon = direction === 'rtl' === !reverseArrow;
+  const iconObj = {
+    expanded: reverseIcon ? /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_ant_design_icons_es_icons_RightOutlined__WEBPACK_IMPORTED_MODULE_7__["default"], null) : /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_ant_design_icons_es_icons_LeftOutlined__WEBPACK_IMPORTED_MODULE_8__["default"], null),
+    collapsed: reverseIcon ? /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_ant_design_icons_es_icons_LeftOutlined__WEBPACK_IMPORTED_MODULE_8__["default"], null) : /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_ant_design_icons_es_icons_RightOutlined__WEBPACK_IMPORTED_MODULE_7__["default"], null)
+  };
+  const status = collapsed ? 'collapsed' : 'expanded';
+  const defaultTrigger = iconObj[status];
+  const triggerDom = trigger !== null ? zeroWidthTrigger || (/*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
+    className: `${prefixCls}-trigger`,
+    onClick: toggle,
+    style: {
+      width: siderWidth
+    }
+  }, trigger || defaultTrigger)) : null;
+  const divStyle = Object.assign(Object.assign({}, style), {
+    flex: `0 0 ${siderWidth}`,
+    maxWidth: siderWidth,
+    minWidth: siderWidth,
+    width: siderWidth
+  });
+  const siderCls = classnames__WEBPACK_IMPORTED_MODULE_1___default()(prefixCls, `${prefixCls}-${theme}`, {
+    [`${prefixCls}-collapsed`]: !!collapsed,
+    [`${prefixCls}-has-trigger`]: collapsible && trigger !== null && !zeroWidthTrigger,
+    [`${prefixCls}-below`]: !!below,
+    [`${prefixCls}-zero-width`]: parseFloat(siderWidth) === 0
+  }, className, hashId, cssVarCls);
+  const contextValue = react__WEBPACK_IMPORTED_MODULE_0__.useMemo(() => ({
+    siderCollapsed: collapsed
+  }), [collapsed]);
+  return wrapCSSVar(/*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(SiderContext.Provider, {
+    value: contextValue
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("aside", Object.assign({
+    className: siderCls
+  }, divProps, {
+    style: divStyle,
+    ref: ref
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
+    className: `${prefixCls}-children`
+  }, children), collapsible || below && zeroWidthTrigger ? triggerDom : null)));
+});
+if (true) {
+  Sider.displayName = 'Sider';
+}
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (Sider);
+
+/***/ }),
+
+/***/ "./node_modules/antd/es/layout/context.js":
+/*!************************************************!*\
+  !*** ./node_modules/antd/es/layout/context.js ***!
+  \************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   LayoutContext: () => (/* binding */ LayoutContext)
+/* harmony export */ });
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+
+const LayoutContext = /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createContext({
+  siderHook: {
+    addSider: () => null,
+    removeSider: () => null
+  }
+});
+
+/***/ }),
+
+/***/ "./node_modules/antd/es/layout/style/index.js":
+/*!****************************************************!*\
+  !*** ./node_modules/antd/es/layout/style/index.js ***!
+  \****************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   DEPRECATED_TOKENS: () => (/* binding */ DEPRECATED_TOKENS),
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__),
+/* harmony export */   prepareComponentToken: () => (/* binding */ prepareComponentToken)
+/* harmony export */ });
+/* harmony import */ var _ant_design_cssinjs__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @ant-design/cssinjs */ "./node_modules/@ant-design/cssinjs/es/index.js");
+/* harmony import */ var _theme_internal__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../theme/internal */ "./node_modules/antd/es/theme/util/genStyleUtils.js");
+
+
+const genLayoutStyle = token => {
+  const {
+    antCls,
+    // .ant
+    componentCls,
+    // .ant-layout
+    colorText,
+    footerBg,
+    headerHeight,
+    headerPadding,
+    headerColor,
+    footerPadding,
+    fontSize,
+    bodyBg,
+    headerBg
+  } = token;
+  return {
+    [componentCls]: {
+      display: 'flex',
+      flex: 'auto',
+      flexDirection: 'column',
+      /* fix firefox can't set height smaller than content on flex item */
+      minHeight: 0,
+      background: bodyBg,
+      '&, *': {
+        boxSizing: 'border-box'
+      },
+      [`&${componentCls}-has-sider`]: {
+        flexDirection: 'row',
+        [`> ${componentCls}, > ${componentCls}-content`]: {
+          // https://segmentfault.com/a/1190000019498300
+          width: 0
+        }
+      },
+      [`${componentCls}-header, &${componentCls}-footer`]: {
+        flex: '0 0 auto'
+      },
+      // RTL
+      '&-rtl': {
+        direction: 'rtl'
+      }
+    },
+    // ==================== Header ====================
+    [`${componentCls}-header`]: {
+      height: headerHeight,
+      padding: headerPadding,
+      color: headerColor,
+      lineHeight: (0,_ant_design_cssinjs__WEBPACK_IMPORTED_MODULE_0__.unit)(headerHeight),
+      background: headerBg,
+      // Other components/menu/style/index.less line:686
+      // Integration with header element so menu items have the same height
+      [`${antCls}-menu`]: {
+        lineHeight: 'inherit'
+      }
+    },
+    // ==================== Footer ====================
+    [`${componentCls}-footer`]: {
+      padding: footerPadding,
+      color: colorText,
+      fontSize,
+      background: footerBg
+    },
+    // =================== Content ====================
+    [`${componentCls}-content`]: {
+      flex: 'auto',
+      color: colorText,
+      // fix firefox can't set height smaller than content on flex item
+      minHeight: 0
+    }
+  };
+};
+const prepareComponentToken = token => {
+  const {
+    colorBgLayout,
+    controlHeight,
+    controlHeightLG,
+    colorText,
+    controlHeightSM,
+    marginXXS,
+    colorTextLightSolid,
+    colorBgContainer
+  } = token;
+  const paddingInline = controlHeightLG * 1.25;
+  return {
+    // Deprecated
+    colorBgHeader: '#001529',
+    colorBgBody: colorBgLayout,
+    colorBgTrigger: '#002140',
+    bodyBg: colorBgLayout,
+    headerBg: '#001529',
+    headerHeight: controlHeight * 2,
+    headerPadding: `0 ${paddingInline}px`,
+    headerColor: colorText,
+    footerPadding: `${controlHeightSM}px ${paddingInline}px`,
+    footerBg: colorBgLayout,
+    siderBg: '#001529',
+    triggerHeight: controlHeightLG + marginXXS * 2,
+    triggerBg: '#002140',
+    triggerColor: colorTextLightSolid,
+    zeroTriggerWidth: controlHeightLG,
+    zeroTriggerHeight: controlHeightLG,
+    lightSiderBg: colorBgContainer,
+    lightTriggerBg: colorBgContainer,
+    lightTriggerColor: colorText
+  };
+};
+// ============================== Export ==============================
+const DEPRECATED_TOKENS = [['colorBgBody', 'bodyBg'], ['colorBgHeader', 'headerBg'], ['colorBgTrigger', 'triggerBg']];
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ((0,_theme_internal__WEBPACK_IMPORTED_MODULE_1__.genStyleHooks)('Layout', token => [genLayoutStyle(token)], prepareComponentToken, {
+  deprecatedTokens: DEPRECATED_TOKENS
+}));
+
+/***/ }),
+
+/***/ "./node_modules/antd/es/layout/style/sider.js":
+/*!****************************************************!*\
+  !*** ./node_modules/antd/es/layout/style/sider.js ***!
+  \****************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var _ant_design_cssinjs__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @ant-design/cssinjs */ "./node_modules/@ant-design/cssinjs/es/index.js");
+/* harmony import */ var ___WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! . */ "./node_modules/antd/es/layout/style/index.js");
+/* harmony import */ var _theme_internal__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../theme/internal */ "./node_modules/antd/es/theme/util/genStyleUtils.js");
+
+
+
+const genSiderStyle = token => {
+  const {
+    componentCls,
+    siderBg,
+    motionDurationMid,
+    motionDurationSlow,
+    antCls,
+    triggerHeight,
+    triggerColor,
+    triggerBg,
+    headerHeight,
+    zeroTriggerWidth,
+    zeroTriggerHeight,
+    borderRadiusLG,
+    lightSiderBg,
+    lightTriggerColor,
+    lightTriggerBg,
+    bodyBg
+  } = token;
+  return {
+    [componentCls]: {
+      position: 'relative',
+      // fix firefox can't set width smaller than content on flex item
+      minWidth: 0,
+      background: siderBg,
+      transition: `all ${motionDurationMid}, background 0s`,
+      '&-has-trigger': {
+        paddingBottom: triggerHeight
+      },
+      '&-right': {
+        order: 1
+      },
+      [`${componentCls}-children`]: {
+        height: '100%',
+        // Hack for fixing margin collapse bug
+        // https://github.com/ant-design/ant-design/issues/7967
+        // solution from https://stackoverflow.com/a/33132624/3040605
+        marginTop: -0.1,
+        paddingTop: 0.1,
+        [`${antCls}-menu${antCls}-menu-inline-collapsed`]: {
+          width: 'auto'
+        }
+      },
+      [`${componentCls}-trigger`]: {
+        position: 'fixed',
+        bottom: 0,
+        zIndex: 1,
+        height: triggerHeight,
+        color: triggerColor,
+        lineHeight: (0,_ant_design_cssinjs__WEBPACK_IMPORTED_MODULE_0__.unit)(triggerHeight),
+        textAlign: 'center',
+        background: triggerBg,
+        cursor: 'pointer',
+        transition: `all ${motionDurationMid}`
+      },
+      [`${componentCls}-zero-width`]: {
+        '> *': {
+          overflow: 'hidden'
+        },
+        '&-trigger': {
+          position: 'absolute',
+          top: headerHeight,
+          insetInlineEnd: token.calc(zeroTriggerWidth).mul(-1).equal(),
+          zIndex: 1,
+          width: zeroTriggerWidth,
+          height: zeroTriggerHeight,
+          color: triggerColor,
+          fontSize: token.fontSizeXL,
+          display: 'flex',
+          alignItems: 'center',
+          justifyContent: 'center',
+          background: siderBg,
+          borderRadius: `0 ${(0,_ant_design_cssinjs__WEBPACK_IMPORTED_MODULE_0__.unit)(borderRadiusLG)} ${(0,_ant_design_cssinjs__WEBPACK_IMPORTED_MODULE_0__.unit)(borderRadiusLG)} 0`,
+          cursor: 'pointer',
+          transition: `background ${motionDurationSlow} ease`,
+          '&::after': {
+            position: 'absolute',
+            inset: 0,
+            background: 'transparent',
+            transition: `all ${motionDurationSlow}`,
+            content: '""'
+          },
+          '&:hover::after': {
+            background: `rgba(255, 255, 255, 0.2)`
+          },
+          '&-right': {
+            insetInlineStart: token.calc(zeroTriggerWidth).mul(-1).equal(),
+            borderRadius: `${(0,_ant_design_cssinjs__WEBPACK_IMPORTED_MODULE_0__.unit)(borderRadiusLG)} 0 0 ${(0,_ant_design_cssinjs__WEBPACK_IMPORTED_MODULE_0__.unit)(borderRadiusLG)}`
+          }
+        }
+      },
+      // Light
+      '&-light': {
+        background: lightSiderBg,
+        [`${componentCls}-trigger`]: {
+          color: lightTriggerColor,
+          background: lightTriggerBg
+        },
+        [`${componentCls}-zero-width-trigger`]: {
+          color: lightTriggerColor,
+          background: lightTriggerBg,
+          border: `1px solid ${bodyBg}`,
+          // Safe to modify to any other color
+          borderInlineStart: 0
+        }
+      }
+    }
+  };
+};
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ((0,_theme_internal__WEBPACK_IMPORTED_MODULE_1__.genStyleHooks)(['Layout', 'Sider'], token => [genSiderStyle(token)], ___WEBPACK_IMPORTED_MODULE_2__.prepareComponentToken, {
+  deprecatedTokens: ___WEBPACK_IMPORTED_MODULE_2__.DEPRECATED_TOKENS
+}));
+
+/***/ }),
+
 /***/ "./node_modules/antd/es/list/Item.js":
 /*!*******************************************!*\
   !*** ./node_modules/antd/es/list/Item.js ***!
@@ -31743,6 +32754,1691 @@ const useLocale = (componentName, defaultLocale) => {
   return [getLocale, getLocaleCode];
 };
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (useLocale);
+
+/***/ }),
+
+/***/ "./node_modules/antd/es/menu/MenuContext.js":
+/*!**************************************************!*\
+  !*** ./node_modules/antd/es/menu/MenuContext.js ***!
+  \**************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+"use client";
+
+
+const MenuContext = /*#__PURE__*/(0,react__WEBPACK_IMPORTED_MODULE_0__.createContext)({
+  prefixCls: '',
+  firstLevel: true,
+  inlineCollapsed: false
+});
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (MenuContext);
+
+/***/ }),
+
+/***/ "./node_modules/antd/es/menu/MenuDivider.js":
+/*!**************************************************!*\
+  !*** ./node_modules/antd/es/menu/MenuDivider.js ***!
+  \**************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var classnames__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! classnames */ "./node_modules/classnames/index.js");
+/* harmony import */ var classnames__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(classnames__WEBPACK_IMPORTED_MODULE_1__);
+/* harmony import */ var rc_menu__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! rc-menu */ "./node_modules/rc-menu/es/index.js");
+/* harmony import */ var _config_provider__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../config-provider */ "./node_modules/antd/es/config-provider/context.js");
+"use client";
+
+var __rest = undefined && undefined.__rest || function (s, e) {
+  var t = {};
+  for (var p in s) if (Object.prototype.hasOwnProperty.call(s, p) && e.indexOf(p) < 0) t[p] = s[p];
+  if (s != null && typeof Object.getOwnPropertySymbols === "function") for (var i = 0, p = Object.getOwnPropertySymbols(s); i < p.length; i++) {
+    if (e.indexOf(p[i]) < 0 && Object.prototype.propertyIsEnumerable.call(s, p[i])) t[p[i]] = s[p[i]];
+  }
+  return t;
+};
+
+
+
+
+const MenuDivider = props => {
+  const {
+      prefixCls: customizePrefixCls,
+      className,
+      dashed
+    } = props,
+    restProps = __rest(props, ["prefixCls", "className", "dashed"]);
+  const {
+    getPrefixCls
+  } = react__WEBPACK_IMPORTED_MODULE_0__.useContext(_config_provider__WEBPACK_IMPORTED_MODULE_3__.ConfigContext);
+  const prefixCls = getPrefixCls('menu', customizePrefixCls);
+  const classString = classnames__WEBPACK_IMPORTED_MODULE_1___default()({
+    [`${prefixCls}-item-divider-dashed`]: !!dashed
+  }, className);
+  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(rc_menu__WEBPACK_IMPORTED_MODULE_2__.Divider, Object.assign({
+    className: classString
+  }, restProps));
+};
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (MenuDivider);
+
+/***/ }),
+
+/***/ "./node_modules/antd/es/menu/MenuItem.js":
+/*!***********************************************!*\
+  !*** ./node_modules/antd/es/menu/MenuItem.js ***!
+  \***********************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var classnames__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! classnames */ "./node_modules/classnames/index.js");
+/* harmony import */ var classnames__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(classnames__WEBPACK_IMPORTED_MODULE_1__);
+/* harmony import */ var rc_menu__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! rc-menu */ "./node_modules/rc-menu/es/index.js");
+/* harmony import */ var rc_util_es_Children_toArray__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! rc-util/es/Children/toArray */ "./node_modules/rc-util/es/Children/toArray.js");
+/* harmony import */ var rc_util_es_omit__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! rc-util/es/omit */ "./node_modules/rc-util/es/omit.js");
+/* harmony import */ var _util_reactNode__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ../_util/reactNode */ "./node_modules/antd/es/_util/reactNode.js");
+/* harmony import */ var _layout_Sider__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ../layout/Sider */ "./node_modules/antd/es/layout/Sider.js");
+/* harmony import */ var _tooltip__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ../tooltip */ "./node_modules/antd/es/tooltip/index.js");
+/* harmony import */ var _MenuContext__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./MenuContext */ "./node_modules/antd/es/menu/MenuContext.js");
+"use client";
+
+
+
+
+
+
+
+
+
+
+const MenuItem = props => {
+  var _a;
+  const {
+    className,
+    children,
+    icon,
+    title,
+    danger,
+    extra
+  } = props;
+  const {
+    prefixCls,
+    firstLevel,
+    direction,
+    disableMenuItemTitleTooltip,
+    inlineCollapsed: isInlineCollapsed
+  } = react__WEBPACK_IMPORTED_MODULE_0__.useContext(_MenuContext__WEBPACK_IMPORTED_MODULE_5__["default"]);
+  const renderItemChildren = inlineCollapsed => {
+    const label = children === null || children === void 0 ? void 0 : children[0];
+    const wrapNode = /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("span", {
+      className: classnames__WEBPACK_IMPORTED_MODULE_1___default()(`${prefixCls}-title-content`, {
+        [`${prefixCls}-title-content-with-extra`]: !!extra || extra === 0
+      })
+    }, children);
+    // inline-collapsed.md demo 依赖 span 来隐藏文字,有 icon 属性，则内部包裹一个 span
+    // ref: https://github.com/ant-design/ant-design/pull/23456
+    if (!icon || /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.isValidElement(children) && children.type === 'span') {
+      if (children && inlineCollapsed && firstLevel && typeof label === 'string') {
+        return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
+          className: `${prefixCls}-inline-collapsed-noicon`
+        }, label.charAt(0));
+      }
+    }
+    return wrapNode;
+  };
+  const {
+    siderCollapsed
+  } = react__WEBPACK_IMPORTED_MODULE_0__.useContext(_layout_Sider__WEBPACK_IMPORTED_MODULE_6__.SiderContext);
+  let tooltipTitle = title;
+  if (typeof title === 'undefined') {
+    tooltipTitle = firstLevel ? children : '';
+  } else if (title === false) {
+    tooltipTitle = '';
+  }
+  const tooltipProps = {
+    title: tooltipTitle
+  };
+  if (!siderCollapsed && !isInlineCollapsed) {
+    tooltipProps.title = null;
+    // Reset `open` to fix control mode tooltip display not correct
+    // ref: https://github.com/ant-design/ant-design/issues/16742
+    tooltipProps.open = false;
+  }
+  const childrenLength = (0,rc_util_es_Children_toArray__WEBPACK_IMPORTED_MODULE_3__["default"])(children).length;
+  let returnNode = /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(rc_menu__WEBPACK_IMPORTED_MODULE_2__.Item, Object.assign({}, (0,rc_util_es_omit__WEBPACK_IMPORTED_MODULE_4__["default"])(props, ['title', 'icon', 'danger']), {
+    className: classnames__WEBPACK_IMPORTED_MODULE_1___default()({
+      [`${prefixCls}-item-danger`]: danger,
+      [`${prefixCls}-item-only-child`]: (icon ? childrenLength + 1 : childrenLength) === 1
+    }, className),
+    title: typeof title === 'string' ? title : undefined
+  }), (0,_util_reactNode__WEBPACK_IMPORTED_MODULE_7__.cloneElement)(icon, {
+    className: classnames__WEBPACK_IMPORTED_MODULE_1___default()(/*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.isValidElement(icon) ? (_a = icon.props) === null || _a === void 0 ? void 0 : _a.className : '', `${prefixCls}-item-icon`)
+  }), renderItemChildren(isInlineCollapsed));
+  if (!disableMenuItemTitleTooltip) {
+    returnNode = /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_tooltip__WEBPACK_IMPORTED_MODULE_8__["default"], Object.assign({}, tooltipProps, {
+      placement: direction === 'rtl' ? 'left' : 'right',
+      classNames: {
+        root: `${prefixCls}-inline-collapsed-tooltip`
+      }
+    }), returnNode);
+  }
+  return returnNode;
+};
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (MenuItem);
+
+/***/ }),
+
+/***/ "./node_modules/antd/es/menu/OverrideContext.js":
+/*!******************************************************!*\
+  !*** ./node_modules/antd/es/menu/OverrideContext.js ***!
+  \******************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   OverrideProvider: () => (/* binding */ OverrideProvider),
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var rc_util_es_ref__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! rc-util/es/ref */ "./node_modules/rc-util/es/ref.js");
+/* harmony import */ var _util_ContextIsolator__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../_util/ContextIsolator */ "./node_modules/antd/es/_util/ContextIsolator.js");
+"use client";
+
+var __rest = undefined && undefined.__rest || function (s, e) {
+  var t = {};
+  for (var p in s) if (Object.prototype.hasOwnProperty.call(s, p) && e.indexOf(p) < 0) t[p] = s[p];
+  if (s != null && typeof Object.getOwnPropertySymbols === "function") for (var i = 0, p = Object.getOwnPropertySymbols(s); i < p.length; i++) {
+    if (e.indexOf(p[i]) < 0 && Object.prototype.propertyIsEnumerable.call(s, p[i])) t[p[i]] = s[p[i]];
+  }
+  return t;
+};
+
+
+
+const OverrideContext = /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createContext(null);
+/** @internal Only used for Dropdown component. Do not use this in your production. */
+const OverrideProvider = /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.forwardRef((props, ref) => {
+  const {
+      children
+    } = props,
+    restProps = __rest(props, ["children"]);
+  const override = react__WEBPACK_IMPORTED_MODULE_0__.useContext(OverrideContext);
+  const context = react__WEBPACK_IMPORTED_MODULE_0__.useMemo(() => Object.assign(Object.assign({}, override), restProps), [override, restProps.prefixCls,
+  // restProps.expandIcon, Not mark as deps since this is a ReactNode
+  restProps.mode, restProps.selectable, restProps.rootClassName
+  // restProps.validator, Not mark as deps since this is a function
+  ]);
+  const canRef = (0,rc_util_es_ref__WEBPACK_IMPORTED_MODULE_1__.supportNodeRef)(children);
+  const mergedRef = (0,rc_util_es_ref__WEBPACK_IMPORTED_MODULE_1__.useComposeRef)(ref, canRef ? (0,rc_util_es_ref__WEBPACK_IMPORTED_MODULE_1__.getNodeRef)(children) : null);
+  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(OverrideContext.Provider, {
+    value: context
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_util_ContextIsolator__WEBPACK_IMPORTED_MODULE_2__["default"], {
+    space: true
+  }, canRef ? /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.cloneElement(children, {
+    ref: mergedRef
+  }) : children));
+});
+/** @internal Only used for Dropdown component. Do not use this in your production. */
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (OverrideContext);
+
+/***/ }),
+
+/***/ "./node_modules/antd/es/menu/SubMenu.js":
+/*!**********************************************!*\
+  !*** ./node_modules/antd/es/menu/SubMenu.js ***!
+  \**********************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var classnames__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! classnames */ "./node_modules/classnames/index.js");
+/* harmony import */ var classnames__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(classnames__WEBPACK_IMPORTED_MODULE_1__);
+/* harmony import */ var rc_menu__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! rc-menu */ "./node_modules/rc-menu/es/index.js");
+/* harmony import */ var rc_util_es_omit__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! rc-util/es/omit */ "./node_modules/rc-util/es/omit.js");
+/* harmony import */ var _util_hooks_useZIndex__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ../_util/hooks/useZIndex */ "./node_modules/antd/es/_util/hooks/useZIndex.js");
+/* harmony import */ var _util_reactNode__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../_util/reactNode */ "./node_modules/antd/es/_util/reactNode.js");
+/* harmony import */ var _MenuContext__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./MenuContext */ "./node_modules/antd/es/menu/MenuContext.js");
+"use client";
+
+
+
+
+
+
+
+
+const SubMenu = props => {
+  var _a;
+  const {
+    popupClassName,
+    icon,
+    title,
+    theme: customTheme
+  } = props;
+  const context = react__WEBPACK_IMPORTED_MODULE_0__.useContext(_MenuContext__WEBPACK_IMPORTED_MODULE_4__["default"]);
+  const {
+    prefixCls,
+    inlineCollapsed,
+    theme: contextTheme
+  } = context;
+  const parentPath = (0,rc_menu__WEBPACK_IMPORTED_MODULE_2__.useFullPath)();
+  let titleNode;
+  if (!icon) {
+    titleNode = inlineCollapsed && !parentPath.length && title && typeof title === 'string' ? (/*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
+      className: `${prefixCls}-inline-collapsed-noicon`
+    }, title.charAt(0))) : (/*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("span", {
+      className: `${prefixCls}-title-content`
+    }, title));
+  } else {
+    // inline-collapsed.md demo 依赖 span 来隐藏文字,有 icon 属性，则内部包裹一个 span
+    // ref: https://github.com/ant-design/ant-design/pull/23456
+    const titleIsSpan = /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.isValidElement(title) && title.type === 'span';
+    titleNode = /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(react__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, (0,_util_reactNode__WEBPACK_IMPORTED_MODULE_5__.cloneElement)(icon, {
+      className: classnames__WEBPACK_IMPORTED_MODULE_1___default()(/*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.isValidElement(icon) ? (_a = icon.props) === null || _a === void 0 ? void 0 : _a.className : '', `${prefixCls}-item-icon`)
+    }), titleIsSpan ? title : /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("span", {
+      className: `${prefixCls}-title-content`
+    }, title));
+  }
+  const contextValue = react__WEBPACK_IMPORTED_MODULE_0__.useMemo(() => Object.assign(Object.assign({}, context), {
+    firstLevel: false
+  }), [context]);
+  // ============================ zIndex ============================
+  const [zIndex] = (0,_util_hooks_useZIndex__WEBPACK_IMPORTED_MODULE_6__.useZIndex)('Menu');
+  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_MenuContext__WEBPACK_IMPORTED_MODULE_4__["default"].Provider, {
+    value: contextValue
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(rc_menu__WEBPACK_IMPORTED_MODULE_2__.SubMenu, Object.assign({}, (0,rc_util_es_omit__WEBPACK_IMPORTED_MODULE_3__["default"])(props, ['icon']), {
+    title: titleNode,
+    popupClassName: classnames__WEBPACK_IMPORTED_MODULE_1___default()(prefixCls, popupClassName, `${prefixCls}-${customTheme || contextTheme}`),
+    popupStyle: Object.assign({
+      zIndex
+    }, props.popupStyle)
+  })));
+};
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (SubMenu);
+
+/***/ }),
+
+/***/ "./node_modules/antd/es/menu/index.js":
+/*!********************************************!*\
+  !*** ./node_modules/antd/es/menu/index.js ***!
+  \********************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var rc_menu__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! rc-menu */ "./node_modules/rc-menu/es/index.js");
+/* harmony import */ var _layout_Sider__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../layout/Sider */ "./node_modules/antd/es/layout/Sider.js");
+/* harmony import */ var _menu__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./menu */ "./node_modules/antd/es/menu/menu.js");
+/* harmony import */ var _MenuDivider__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./MenuDivider */ "./node_modules/antd/es/menu/MenuDivider.js");
+/* harmony import */ var _MenuItem__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./MenuItem */ "./node_modules/antd/es/menu/MenuItem.js");
+/* harmony import */ var _SubMenu__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./SubMenu */ "./node_modules/antd/es/menu/SubMenu.js");
+"use client";
+
+
+
+
+
+
+
+
+
+const Menu = /*#__PURE__*/(0,react__WEBPACK_IMPORTED_MODULE_0__.forwardRef)((props, ref) => {
+  const menuRef = (0,react__WEBPACK_IMPORTED_MODULE_0__.useRef)(null);
+  const context = react__WEBPACK_IMPORTED_MODULE_0__.useContext(_layout_Sider__WEBPACK_IMPORTED_MODULE_2__.SiderContext);
+  (0,react__WEBPACK_IMPORTED_MODULE_0__.useImperativeHandle)(ref, () => ({
+    menu: menuRef.current,
+    focus: options => {
+      var _a;
+      (_a = menuRef.current) === null || _a === void 0 ? void 0 : _a.focus(options);
+    }
+  }));
+  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_menu__WEBPACK_IMPORTED_MODULE_3__["default"], Object.assign({
+    ref: menuRef
+  }, props, context));
+});
+Menu.Item = _MenuItem__WEBPACK_IMPORTED_MODULE_4__["default"];
+Menu.SubMenu = _SubMenu__WEBPACK_IMPORTED_MODULE_5__["default"];
+Menu.Divider = _MenuDivider__WEBPACK_IMPORTED_MODULE_6__["default"];
+Menu.ItemGroup = rc_menu__WEBPACK_IMPORTED_MODULE_1__.ItemGroup;
+if (true) {
+  Menu.displayName = 'Menu';
+}
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (Menu);
+
+/***/ }),
+
+/***/ "./node_modules/antd/es/menu/menu.js":
+/*!*******************************************!*\
+  !*** ./node_modules/antd/es/menu/menu.js ***!
+  \*******************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _ant_design_icons_es_icons_EllipsisOutlined__WEBPACK_IMPORTED_MODULE_16__ = __webpack_require__(/*! @ant-design/icons/es/icons/EllipsisOutlined */ "./node_modules/@ant-design/icons/es/icons/EllipsisOutlined.js");
+/* harmony import */ var classnames__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! classnames */ "./node_modules/classnames/index.js");
+/* harmony import */ var classnames__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(classnames__WEBPACK_IMPORTED_MODULE_1__);
+/* harmony import */ var rc_menu__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! rc-menu */ "./node_modules/rc-menu/es/index.js");
+/* harmony import */ var rc_util_es_hooks_useEvent__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! rc-util/es/hooks/useEvent */ "./node_modules/rc-util/es/hooks/useEvent.js");
+/* harmony import */ var rc_util_es_omit__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! rc-util/es/omit */ "./node_modules/rc-util/es/omit.js");
+/* harmony import */ var _util_motion__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! ../_util/motion */ "./node_modules/antd/es/_util/motion.js");
+/* harmony import */ var _util_reactNode__WEBPACK_IMPORTED_MODULE_14__ = __webpack_require__(/*! ../_util/reactNode */ "./node_modules/antd/es/_util/reactNode.js");
+/* harmony import */ var _util_warning__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! ../_util/warning */ "./node_modules/antd/es/_util/warning.js");
+/* harmony import */ var _config_provider__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ../config-provider */ "./node_modules/antd/es/config-provider/context.js");
+/* harmony import */ var _config_provider_hooks_useCSSVarCls__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! ../config-provider/hooks/useCSSVarCls */ "./node_modules/antd/es/config-provider/hooks/useCSSVarCls.js");
+/* harmony import */ var _MenuContext__WEBPACK_IMPORTED_MODULE_15__ = __webpack_require__(/*! ./MenuContext */ "./node_modules/antd/es/menu/MenuContext.js");
+/* harmony import */ var _MenuDivider__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ./MenuDivider */ "./node_modules/antd/es/menu/MenuDivider.js");
+/* harmony import */ var _MenuItem__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./MenuItem */ "./node_modules/antd/es/menu/MenuItem.js");
+/* harmony import */ var _OverrideContext__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ./OverrideContext */ "./node_modules/antd/es/menu/OverrideContext.js");
+/* harmony import */ var _style__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(/*! ./style */ "./node_modules/antd/es/menu/style/index.js");
+/* harmony import */ var _SubMenu__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./SubMenu */ "./node_modules/antd/es/menu/SubMenu.js");
+"use client";
+
+var __rest = undefined && undefined.__rest || function (s, e) {
+  var t = {};
+  for (var p in s) if (Object.prototype.hasOwnProperty.call(s, p) && e.indexOf(p) < 0) t[p] = s[p];
+  if (s != null && typeof Object.getOwnPropertySymbols === "function") for (var i = 0, p = Object.getOwnPropertySymbols(s); i < p.length; i++) {
+    if (e.indexOf(p[i]) < 0 && Object.prototype.propertyIsEnumerable.call(s, p[i])) t[p[i]] = s[p[i]];
+  }
+  return t;
+};
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+function isEmptyIcon(icon) {
+  return icon === null || icon === false;
+}
+const MENU_COMPONENTS = {
+  item: _MenuItem__WEBPACK_IMPORTED_MODULE_5__["default"],
+  submenu: _SubMenu__WEBPACK_IMPORTED_MODULE_6__["default"],
+  divider: _MenuDivider__WEBPACK_IMPORTED_MODULE_7__["default"]
+};
+const InternalMenu = /*#__PURE__*/(0,react__WEBPACK_IMPORTED_MODULE_0__.forwardRef)((props, ref) => {
+  var _a;
+  const override = react__WEBPACK_IMPORTED_MODULE_0__.useContext(_OverrideContext__WEBPACK_IMPORTED_MODULE_8__["default"]);
+  const overrideObj = override || {};
+  const {
+    getPrefixCls,
+    getPopupContainer,
+    direction,
+    menu
+  } = react__WEBPACK_IMPORTED_MODULE_0__.useContext(_config_provider__WEBPACK_IMPORTED_MODULE_9__.ConfigContext);
+  const rootPrefixCls = getPrefixCls();
+  const {
+      prefixCls: customizePrefixCls,
+      className,
+      style,
+      theme = 'light',
+      expandIcon,
+      _internalDisableMenuItemTitleTooltip,
+      inlineCollapsed,
+      siderCollapsed,
+      rootClassName,
+      mode,
+      selectable,
+      onClick,
+      overflowedIndicatorPopupClassName
+    } = props,
+    restProps = __rest(props, ["prefixCls", "className", "style", "theme", "expandIcon", "_internalDisableMenuItemTitleTooltip", "inlineCollapsed", "siderCollapsed", "rootClassName", "mode", "selectable", "onClick", "overflowedIndicatorPopupClassName"]);
+  const passedProps = (0,rc_util_es_omit__WEBPACK_IMPORTED_MODULE_4__["default"])(restProps, ['collapsedWidth']);
+  // ======================== Warning ==========================
+  if (true) {
+    const warning = (0,_util_warning__WEBPACK_IMPORTED_MODULE_10__.devUseWarning)('Menu');
+     true ? warning(!('inlineCollapsed' in props && mode !== 'inline'), 'usage', '`inlineCollapsed` should only be used when `mode` is inline.') : 0;
+    warning.deprecated('items' in props && !props.children, 'children', 'items');
+  }
+  (_a = overrideObj.validator) === null || _a === void 0 ? void 0 : _a.call(overrideObj, {
+    mode
+  });
+  // ========================== Click ==========================
+  // Tell dropdown that item clicked
+  const onItemClick = (0,rc_util_es_hooks_useEvent__WEBPACK_IMPORTED_MODULE_3__["default"])(function () {
+    var _a;
+    onClick === null || onClick === void 0 ? void 0 : onClick.apply(void 0, arguments);
+    (_a = overrideObj.onClick) === null || _a === void 0 ? void 0 : _a.call(overrideObj);
+  });
+  // ========================== Mode ===========================
+  const mergedMode = overrideObj.mode || mode;
+  // ======================= Selectable ========================
+  const mergedSelectable = selectable !== null && selectable !== void 0 ? selectable : overrideObj.selectable;
+  // ======================== Collapsed ========================
+  // Inline Collapsed
+  const mergedInlineCollapsed = inlineCollapsed !== null && inlineCollapsed !== void 0 ? inlineCollapsed : siderCollapsed;
+  const defaultMotions = {
+    horizontal: {
+      motionName: `${rootPrefixCls}-slide-up`
+    },
+    inline: (0,_util_motion__WEBPACK_IMPORTED_MODULE_11__["default"])(rootPrefixCls),
+    other: {
+      motionName: `${rootPrefixCls}-zoom-big`
+    }
+  };
+  const prefixCls = getPrefixCls('menu', customizePrefixCls || overrideObj.prefixCls);
+  const rootCls = (0,_config_provider_hooks_useCSSVarCls__WEBPACK_IMPORTED_MODULE_12__["default"])(prefixCls);
+  const [wrapCSSVar, hashId, cssVarCls] = (0,_style__WEBPACK_IMPORTED_MODULE_13__["default"])(prefixCls, rootCls, !override);
+  const menuClassName = classnames__WEBPACK_IMPORTED_MODULE_1___default()(`${prefixCls}-${theme}`, menu === null || menu === void 0 ? void 0 : menu.className, className);
+  // ====================== ExpandIcon ========================
+  const mergedExpandIcon = react__WEBPACK_IMPORTED_MODULE_0__.useMemo(() => {
+    var _a, _b;
+    if (typeof expandIcon === 'function' || isEmptyIcon(expandIcon)) {
+      return expandIcon || null;
+    }
+    if (typeof overrideObj.expandIcon === 'function' || isEmptyIcon(overrideObj.expandIcon)) {
+      return overrideObj.expandIcon || null;
+    }
+    if (typeof (menu === null || menu === void 0 ? void 0 : menu.expandIcon) === 'function' || isEmptyIcon(menu === null || menu === void 0 ? void 0 : menu.expandIcon)) {
+      return (menu === null || menu === void 0 ? void 0 : menu.expandIcon) || null;
+    }
+    const mergedIcon = (_a = expandIcon !== null && expandIcon !== void 0 ? expandIcon : overrideObj === null || overrideObj === void 0 ? void 0 : overrideObj.expandIcon) !== null && _a !== void 0 ? _a : menu === null || menu === void 0 ? void 0 : menu.expandIcon;
+    return (0,_util_reactNode__WEBPACK_IMPORTED_MODULE_14__.cloneElement)(mergedIcon, {
+      className: classnames__WEBPACK_IMPORTED_MODULE_1___default()(`${prefixCls}-submenu-expand-icon`, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.isValidElement(mergedIcon) ? (_b = mergedIcon.props) === null || _b === void 0 ? void 0 : _b.className : undefined)
+    });
+  }, [expandIcon, overrideObj === null || overrideObj === void 0 ? void 0 : overrideObj.expandIcon, menu === null || menu === void 0 ? void 0 : menu.expandIcon, prefixCls]);
+  // ======================== Context ==========================
+  const contextValue = react__WEBPACK_IMPORTED_MODULE_0__.useMemo(() => ({
+    prefixCls,
+    inlineCollapsed: mergedInlineCollapsed || false,
+    direction,
+    firstLevel: true,
+    theme,
+    mode: mergedMode,
+    disableMenuItemTitleTooltip: _internalDisableMenuItemTitleTooltip
+  }), [prefixCls, mergedInlineCollapsed, direction, _internalDisableMenuItemTitleTooltip, theme]);
+  // ========================= Render ==========================
+  return wrapCSSVar(/*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_OverrideContext__WEBPACK_IMPORTED_MODULE_8__["default"].Provider, {
+    value: null
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_MenuContext__WEBPACK_IMPORTED_MODULE_15__["default"].Provider, {
+    value: contextValue
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(rc_menu__WEBPACK_IMPORTED_MODULE_2__["default"], Object.assign({
+    getPopupContainer: getPopupContainer,
+    overflowedIndicator: /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_ant_design_icons_es_icons_EllipsisOutlined__WEBPACK_IMPORTED_MODULE_16__["default"], null),
+    overflowedIndicatorPopupClassName: classnames__WEBPACK_IMPORTED_MODULE_1___default()(prefixCls, `${prefixCls}-${theme}`, overflowedIndicatorPopupClassName),
+    mode: mergedMode,
+    selectable: mergedSelectable,
+    onClick: onItemClick
+  }, passedProps, {
+    inlineCollapsed: mergedInlineCollapsed,
+    style: Object.assign(Object.assign({}, menu === null || menu === void 0 ? void 0 : menu.style), style),
+    className: menuClassName,
+    prefixCls: prefixCls,
+    direction: direction,
+    defaultMotions: defaultMotions,
+    expandIcon: mergedExpandIcon,
+    ref: ref,
+    rootClassName: classnames__WEBPACK_IMPORTED_MODULE_1___default()(rootClassName, hashId, overrideObj.rootClassName, cssVarCls, rootCls),
+    _internalComponents: MENU_COMPONENTS
+  })))));
+});
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (InternalMenu);
+
+/***/ }),
+
+/***/ "./node_modules/antd/es/menu/style/horizontal.js":
+/*!*******************************************************!*\
+  !*** ./node_modules/antd/es/menu/style/horizontal.js ***!
+  \*******************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var _ant_design_cssinjs__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @ant-design/cssinjs */ "./node_modules/@ant-design/cssinjs/es/index.js");
+
+const getHorizontalStyle = token => {
+  const {
+    componentCls,
+    motionDurationSlow,
+    horizontalLineHeight,
+    colorSplit,
+    lineWidth,
+    lineType,
+    itemPaddingInline
+  } = token;
+  return {
+    [`${componentCls}-horizontal`]: {
+      lineHeight: horizontalLineHeight,
+      border: 0,
+      borderBottom: `${(0,_ant_design_cssinjs__WEBPACK_IMPORTED_MODULE_0__.unit)(lineWidth)} ${lineType} ${colorSplit}`,
+      boxShadow: 'none',
+      '&::after': {
+        display: 'block',
+        clear: 'both',
+        height: 0,
+        content: '"\\20"'
+      },
+      // ======================= Item =======================
+      [`${componentCls}-item, ${componentCls}-submenu`]: {
+        position: 'relative',
+        display: 'inline-block',
+        verticalAlign: 'bottom',
+        paddingInline: itemPaddingInline
+      },
+      [`> ${componentCls}-item:hover,
+        > ${componentCls}-item-active,
+        > ${componentCls}-submenu ${componentCls}-submenu-title:hover`]: {
+        backgroundColor: 'transparent'
+      },
+      [`${componentCls}-item, ${componentCls}-submenu-title`]: {
+        transition: [`border-color ${motionDurationSlow}`, `background ${motionDurationSlow}`].join(',')
+      },
+      // ===================== Sub Menu =====================
+      [`${componentCls}-submenu-arrow`]: {
+        display: 'none'
+      }
+    }
+  };
+};
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (getHorizontalStyle);
+
+/***/ }),
+
+/***/ "./node_modules/antd/es/menu/style/index.js":
+/*!**************************************************!*\
+  !*** ./node_modules/antd/es/menu/style/index.js ***!
+  \**************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__),
+/* harmony export */   prepareComponentToken: () => (/* binding */ prepareComponentToken)
+/* harmony export */ });
+/* harmony import */ var _ant_design_cssinjs__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @ant-design/cssinjs */ "./node_modules/@ant-design/cssinjs/es/index.js");
+/* harmony import */ var _ant_design_fast_color__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @ant-design/fast-color */ "./node_modules/@ant-design/fast-color/es/index.js");
+/* harmony import */ var _style__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../style */ "./node_modules/antd/es/style/index.js");
+/* harmony import */ var _style_motion__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ../../style/motion */ "./node_modules/antd/es/style/motion/collapse.js");
+/* harmony import */ var _style_motion__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! ../../style/motion */ "./node_modules/antd/es/style/motion/slide.js");
+/* harmony import */ var _style_motion__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! ../../style/motion */ "./node_modules/antd/es/style/motion/zoom.js");
+/* harmony import */ var _theme_internal__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../theme/internal */ "./node_modules/antd/es/theme/util/genStyleUtils.js");
+/* harmony import */ var _theme_internal__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../../theme/internal */ "./node_modules/@ant-design/cssinjs-utils/es/index.js");
+/* harmony import */ var _horizontal__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./horizontal */ "./node_modules/antd/es/menu/style/horizontal.js");
+/* harmony import */ var _rtl__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ./rtl */ "./node_modules/antd/es/menu/style/rtl.js");
+/* harmony import */ var _theme__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ./theme */ "./node_modules/antd/es/menu/style/theme.js");
+/* harmony import */ var _vertical__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./vertical */ "./node_modules/antd/es/menu/style/vertical.js");
+
+
+
+
+
+
+
+
+
+const genMenuItemStyle = token => {
+  const {
+    componentCls,
+    motionDurationSlow,
+    motionDurationMid,
+    motionEaseInOut,
+    motionEaseOut,
+    iconCls,
+    iconSize,
+    iconMarginInlineEnd
+  } = token;
+  return {
+    // >>>>> Item
+    [`${componentCls}-item, ${componentCls}-submenu-title`]: {
+      position: 'relative',
+      display: 'block',
+      margin: 0,
+      whiteSpace: 'nowrap',
+      cursor: 'pointer',
+      transition: [`border-color ${motionDurationSlow}`, `background ${motionDurationSlow}`, `padding calc(${motionDurationSlow} + 0.1s) ${motionEaseInOut}`].join(','),
+      [`${componentCls}-item-icon, ${iconCls}`]: {
+        minWidth: iconSize,
+        fontSize: iconSize,
+        transition: [`font-size ${motionDurationMid} ${motionEaseOut}`, `margin ${motionDurationSlow} ${motionEaseInOut}`, `color ${motionDurationSlow}`].join(','),
+        '+ span': {
+          marginInlineStart: iconMarginInlineEnd,
+          opacity: 1,
+          transition: [`opacity ${motionDurationSlow} ${motionEaseInOut}`, `margin ${motionDurationSlow}`, `color ${motionDurationSlow}`].join(',')
+        }
+      },
+      [`${componentCls}-item-icon`]: Object.assign({}, (0,_style__WEBPACK_IMPORTED_MODULE_2__.resetIcon)()),
+      [`&${componentCls}-item-only-child`]: {
+        [`> ${iconCls}, > ${componentCls}-item-icon`]: {
+          marginInlineEnd: 0
+        }
+      }
+    },
+    // Disabled state sets text to gray and nukes hover/tab effects
+    [`${componentCls}-item-disabled, ${componentCls}-submenu-disabled`]: {
+      background: 'none !important',
+      cursor: 'not-allowed',
+      '&::after': {
+        borderColor: 'transparent !important'
+      },
+      a: {
+        color: 'inherit !important',
+        cursor: 'not-allowed',
+        pointerEvents: 'none'
+      },
+      [`> ${componentCls}-submenu-title`]: {
+        color: 'inherit !important',
+        cursor: 'not-allowed'
+      }
+    }
+  };
+};
+const genSubMenuArrowStyle = token => {
+  const {
+    componentCls,
+    motionDurationSlow,
+    motionEaseInOut,
+    borderRadius,
+    menuArrowSize,
+    menuArrowOffset
+  } = token;
+  return {
+    [`${componentCls}-submenu`]: {
+      '&-expand-icon, &-arrow': {
+        position: 'absolute',
+        top: '50%',
+        insetInlineEnd: token.margin,
+        width: menuArrowSize,
+        color: 'currentcolor',
+        transform: 'translateY(-50%)',
+        transition: `transform ${motionDurationSlow} ${motionEaseInOut}, opacity ${motionDurationSlow}`
+      },
+      '&-arrow': {
+        // →
+        '&::before, &::after': {
+          position: 'absolute',
+          width: token.calc(menuArrowSize).mul(0.6).equal(),
+          height: token.calc(menuArrowSize).mul(0.15).equal(),
+          backgroundColor: 'currentcolor',
+          borderRadius,
+          transition: [`background ${motionDurationSlow} ${motionEaseInOut}`, `transform ${motionDurationSlow} ${motionEaseInOut}`, `top ${motionDurationSlow} ${motionEaseInOut}`, `color ${motionDurationSlow} ${motionEaseInOut}`].join(','),
+          content: '""'
+        },
+        '&::before': {
+          transform: `rotate(45deg) translateY(${(0,_ant_design_cssinjs__WEBPACK_IMPORTED_MODULE_0__.unit)(token.calc(menuArrowOffset).mul(-1).equal())})`
+        },
+        '&::after': {
+          transform: `rotate(-45deg) translateY(${(0,_ant_design_cssinjs__WEBPACK_IMPORTED_MODULE_0__.unit)(menuArrowOffset)})`
+        }
+      }
+    }
+  };
+};
+// =============================== Base ===============================
+const getBaseStyle = token => {
+  const {
+    antCls,
+    componentCls,
+    fontSize,
+    motionDurationSlow,
+    motionDurationMid,
+    motionEaseInOut,
+    paddingXS,
+    padding,
+    colorSplit,
+    lineWidth,
+    zIndexPopup,
+    borderRadiusLG,
+    subMenuItemBorderRadius,
+    menuArrowSize,
+    menuArrowOffset,
+    lineType,
+    groupTitleLineHeight,
+    groupTitleFontSize
+  } = token;
+  return [
+  // Misc
+  {
+    '': {
+      [componentCls]: Object.assign(Object.assign({}, (0,_style__WEBPACK_IMPORTED_MODULE_2__.clearFix)()), {
+        // Hidden
+        '&-hidden': {
+          display: 'none'
+        }
+      })
+    },
+    [`${componentCls}-submenu-hidden`]: {
+      display: 'none'
+    }
+  }, {
+    [componentCls]: Object.assign(Object.assign(Object.assign(Object.assign(Object.assign(Object.assign(Object.assign({}, (0,_style__WEBPACK_IMPORTED_MODULE_2__.resetComponent)(token)), (0,_style__WEBPACK_IMPORTED_MODULE_2__.clearFix)()), {
+      marginBottom: 0,
+      paddingInlineStart: 0,
+      // Override default ul/ol
+      fontSize,
+      lineHeight: 0,
+      listStyle: 'none',
+      outline: 'none',
+      // Magic cubic here but smooth transition
+      transition: `width ${motionDurationSlow} cubic-bezier(0.2, 0, 0, 1) 0s`,
+      'ul, ol': {
+        margin: 0,
+        padding: 0,
+        listStyle: 'none'
+      },
+      // Overflow ellipsis
+      '&-overflow': {
+        display: 'flex',
+        [`${componentCls}-item`]: {
+          flex: 'none'
+        }
+      },
+      [`${componentCls}-item, ${componentCls}-submenu, ${componentCls}-submenu-title`]: {
+        borderRadius: token.itemBorderRadius
+      },
+      [`${componentCls}-item-group-title`]: {
+        padding: `${(0,_ant_design_cssinjs__WEBPACK_IMPORTED_MODULE_0__.unit)(paddingXS)} ${(0,_ant_design_cssinjs__WEBPACK_IMPORTED_MODULE_0__.unit)(padding)}`,
+        fontSize: groupTitleFontSize,
+        lineHeight: groupTitleLineHeight,
+        transition: `all ${motionDurationSlow}`
+      },
+      [`&-horizontal ${componentCls}-submenu`]: {
+        transition: [`border-color ${motionDurationSlow} ${motionEaseInOut}`, `background ${motionDurationSlow} ${motionEaseInOut}`].join(',')
+      },
+      [`${componentCls}-submenu, ${componentCls}-submenu-inline`]: {
+        transition: [`border-color ${motionDurationSlow} ${motionEaseInOut}`, `background ${motionDurationSlow} ${motionEaseInOut}`, `padding ${motionDurationMid} ${motionEaseInOut}`].join(',')
+      },
+      [`${componentCls}-submenu ${componentCls}-sub`]: {
+        cursor: 'initial',
+        transition: [`background ${motionDurationSlow} ${motionEaseInOut}`, `padding ${motionDurationSlow} ${motionEaseInOut}`].join(',')
+      },
+      [`${componentCls}-title-content`]: {
+        transition: `color ${motionDurationSlow}`,
+        '&-with-extra': {
+          display: 'inline-flex',
+          alignItems: 'center',
+          width: '100%'
+        },
+        // https://github.com/ant-design/ant-design/issues/41143
+        [`> ${antCls}-typography-ellipsis-single-line`]: {
+          display: 'inline',
+          verticalAlign: 'unset'
+        },
+        [`${componentCls}-item-extra`]: {
+          marginInlineStart: 'auto',
+          paddingInlineStart: token.padding
+        }
+      },
+      [`${componentCls}-item a`]: {
+        '&::before': {
+          position: 'absolute',
+          inset: 0,
+          backgroundColor: 'transparent',
+          content: '""'
+        }
+      },
+      // Removed a Badge related style seems it's safe
+      // https://github.com/ant-design/ant-design/issues/19809
+      // >>>>> Divider
+      [`${componentCls}-item-divider`]: {
+        overflow: 'hidden',
+        lineHeight: 0,
+        borderColor: colorSplit,
+        borderStyle: lineType,
+        borderWidth: 0,
+        borderTopWidth: lineWidth,
+        marginBlock: lineWidth,
+        padding: 0,
+        '&-dashed': {
+          borderStyle: 'dashed'
+        }
+      }
+    }), genMenuItemStyle(token)), {
+      [`${componentCls}-item-group`]: {
+        [`${componentCls}-item-group-list`]: {
+          margin: 0,
+          padding: 0,
+          [`${componentCls}-item, ${componentCls}-submenu-title`]: {
+            paddingInline: `${(0,_ant_design_cssinjs__WEBPACK_IMPORTED_MODULE_0__.unit)(token.calc(fontSize).mul(2).equal())} ${(0,_ant_design_cssinjs__WEBPACK_IMPORTED_MODULE_0__.unit)(padding)}`
+          }
+        }
+      },
+      // ======================= Sub Menu =======================
+      '&-submenu': {
+        '&-popup': {
+          position: 'absolute',
+          zIndex: zIndexPopup,
+          borderRadius: borderRadiusLG,
+          boxShadow: 'none',
+          transformOrigin: '0 0',
+          [`&${componentCls}-submenu`]: {
+            background: 'transparent'
+          },
+          // https://github.com/ant-design/ant-design/issues/13955
+          '&::before': {
+            position: 'absolute',
+            inset: 0,
+            zIndex: -1,
+            width: '100%',
+            height: '100%',
+            opacity: 0,
+            content: '""'
+          },
+          [`> ${componentCls}`]: Object.assign(Object.assign(Object.assign({
+            borderRadius: borderRadiusLG
+          }, genMenuItemStyle(token)), genSubMenuArrowStyle(token)), {
+            [`${componentCls}-item, ${componentCls}-submenu > ${componentCls}-submenu-title`]: {
+              borderRadius: subMenuItemBorderRadius
+            },
+            [`${componentCls}-submenu-title::after`]: {
+              transition: `transform ${motionDurationSlow} ${motionEaseInOut}`
+            }
+          })
+        },
+        [`
+          &-placement-leftTop,
+          &-placement-bottomRight,
+          `]: {
+          transformOrigin: '100% 0'
+        },
+        [`
+          &-placement-leftBottom,
+          &-placement-topRight,
+          `]: {
+          transformOrigin: '100% 100%'
+        },
+        [`
+          &-placement-rightBottom,
+          &-placement-topLeft,
+          `]: {
+          transformOrigin: '0 100%'
+        },
+        [`
+          &-placement-bottomLeft,
+          &-placement-rightTop,
+          `]: {
+          transformOrigin: '0 0'
+        },
+        [`
+          &-placement-leftTop,
+          &-placement-leftBottom
+          `]: {
+          paddingInlineEnd: token.paddingXS
+        },
+        [`
+          &-placement-rightTop,
+          &-placement-rightBottom
+          `]: {
+          paddingInlineStart: token.paddingXS
+        },
+        [`
+          &-placement-topRight,
+          &-placement-topLeft
+          `]: {
+          paddingBottom: token.paddingXS
+        },
+        [`
+          &-placement-bottomRight,
+          &-placement-bottomLeft
+          `]: {
+          paddingTop: token.paddingXS
+        }
+      }
+    }), genSubMenuArrowStyle(token)), {
+      [`&-inline-collapsed ${componentCls}-submenu-arrow,
+        &-inline ${componentCls}-submenu-arrow`]: {
+        // ↓
+        '&::before': {
+          transform: `rotate(-45deg) translateX(${(0,_ant_design_cssinjs__WEBPACK_IMPORTED_MODULE_0__.unit)(menuArrowOffset)})`
+        },
+        '&::after': {
+          transform: `rotate(45deg) translateX(${(0,_ant_design_cssinjs__WEBPACK_IMPORTED_MODULE_0__.unit)(token.calc(menuArrowOffset).mul(-1).equal())})`
+        }
+      },
+      [`${componentCls}-submenu-open${componentCls}-submenu-inline > ${componentCls}-submenu-title > ${componentCls}-submenu-arrow`]: {
+        // ↑
+        transform: `translateY(${(0,_ant_design_cssinjs__WEBPACK_IMPORTED_MODULE_0__.unit)(token.calc(menuArrowSize).mul(0.2).mul(-1).equal())})`,
+        '&::after': {
+          transform: `rotate(-45deg) translateX(${(0,_ant_design_cssinjs__WEBPACK_IMPORTED_MODULE_0__.unit)(token.calc(menuArrowOffset).mul(-1).equal())})`
+        },
+        '&::before': {
+          transform: `rotate(45deg) translateX(${(0,_ant_design_cssinjs__WEBPACK_IMPORTED_MODULE_0__.unit)(menuArrowOffset)})`
+        }
+      }
+    })
+  },
+  // Integration with header element so menu items have the same height
+  {
+    [`${antCls}-layout-header`]: {
+      [componentCls]: {
+        lineHeight: 'inherit'
+      }
+    }
+  }];
+};
+const prepareComponentToken = token => {
+  var _a, _b, _c;
+  const {
+    colorPrimary,
+    colorError,
+    colorTextDisabled,
+    colorErrorBg,
+    colorText,
+    colorTextDescription,
+    colorBgContainer,
+    colorFillAlter,
+    colorFillContent,
+    lineWidth,
+    lineWidthBold,
+    controlItemBgActive,
+    colorBgTextHover,
+    controlHeightLG,
+    lineHeight,
+    colorBgElevated,
+    marginXXS,
+    padding,
+    fontSize,
+    controlHeightSM,
+    fontSizeLG,
+    colorTextLightSolid,
+    colorErrorHover
+  } = token;
+  const activeBarWidth = (_a = token.activeBarWidth) !== null && _a !== void 0 ? _a : 0;
+  const activeBarBorderWidth = (_b = token.activeBarBorderWidth) !== null && _b !== void 0 ? _b : lineWidth;
+  const itemMarginInline = (_c = token.itemMarginInline) !== null && _c !== void 0 ? _c : token.marginXXS;
+  const colorTextDark = new _ant_design_fast_color__WEBPACK_IMPORTED_MODULE_1__.FastColor(colorTextLightSolid).setA(0.65).toRgbString();
+  return {
+    dropdownWidth: 160,
+    zIndexPopup: token.zIndexPopupBase + 50,
+    radiusItem: token.borderRadiusLG,
+    itemBorderRadius: token.borderRadiusLG,
+    radiusSubMenuItem: token.borderRadiusSM,
+    subMenuItemBorderRadius: token.borderRadiusSM,
+    colorItemText: colorText,
+    itemColor: colorText,
+    colorItemTextHover: colorText,
+    itemHoverColor: colorText,
+    colorItemTextHoverHorizontal: colorPrimary,
+    horizontalItemHoverColor: colorPrimary,
+    colorGroupTitle: colorTextDescription,
+    groupTitleColor: colorTextDescription,
+    colorItemTextSelected: colorPrimary,
+    itemSelectedColor: colorPrimary,
+    subMenuItemSelectedColor: colorPrimary,
+    colorItemTextSelectedHorizontal: colorPrimary,
+    horizontalItemSelectedColor: colorPrimary,
+    colorItemBg: colorBgContainer,
+    itemBg: colorBgContainer,
+    colorItemBgHover: colorBgTextHover,
+    itemHoverBg: colorBgTextHover,
+    colorItemBgActive: colorFillContent,
+    itemActiveBg: controlItemBgActive,
+    colorSubItemBg: colorFillAlter,
+    subMenuItemBg: colorFillAlter,
+    colorItemBgSelected: controlItemBgActive,
+    itemSelectedBg: controlItemBgActive,
+    colorItemBgSelectedHorizontal: 'transparent',
+    horizontalItemSelectedBg: 'transparent',
+    colorActiveBarWidth: 0,
+    activeBarWidth,
+    colorActiveBarHeight: lineWidthBold,
+    activeBarHeight: lineWidthBold,
+    colorActiveBarBorderSize: lineWidth,
+    activeBarBorderWidth,
+    // Disabled
+    colorItemTextDisabled: colorTextDisabled,
+    itemDisabledColor: colorTextDisabled,
+    // Danger
+    colorDangerItemText: colorError,
+    dangerItemColor: colorError,
+    colorDangerItemTextHover: colorError,
+    dangerItemHoverColor: colorError,
+    colorDangerItemTextSelected: colorError,
+    dangerItemSelectedColor: colorError,
+    colorDangerItemBgActive: colorErrorBg,
+    dangerItemActiveBg: colorErrorBg,
+    colorDangerItemBgSelected: colorErrorBg,
+    dangerItemSelectedBg: colorErrorBg,
+    itemMarginInline,
+    horizontalItemBorderRadius: 0,
+    horizontalItemHoverBg: 'transparent',
+    itemHeight: controlHeightLG,
+    groupTitleLineHeight: lineHeight,
+    collapsedWidth: controlHeightLG * 2,
+    popupBg: colorBgElevated,
+    itemMarginBlock: marginXXS,
+    itemPaddingInline: padding,
+    horizontalLineHeight: `${controlHeightLG * 1.15}px`,
+    iconSize: fontSize,
+    iconMarginInlineEnd: controlHeightSM - fontSize,
+    collapsedIconSize: fontSizeLG,
+    groupTitleFontSize: fontSize,
+    // Disabled
+    darkItemDisabledColor: new _ant_design_fast_color__WEBPACK_IMPORTED_MODULE_1__.FastColor(colorTextLightSolid).setA(0.25).toRgbString(),
+    // Dark
+    darkItemColor: colorTextDark,
+    darkDangerItemColor: colorError,
+    darkItemBg: '#001529',
+    darkPopupBg: '#001529',
+    darkSubMenuItemBg: '#000c17',
+    darkItemSelectedColor: colorTextLightSolid,
+    darkItemSelectedBg: colorPrimary,
+    darkDangerItemSelectedBg: colorError,
+    darkItemHoverBg: 'transparent',
+    darkGroupTitleColor: colorTextDark,
+    darkItemHoverColor: colorTextLightSolid,
+    darkDangerItemHoverColor: colorErrorHover,
+    darkDangerItemSelectedColor: colorTextLightSolid,
+    darkDangerItemActiveBg: colorError,
+    // internal
+    itemWidth: activeBarWidth ? `calc(100% + ${activeBarBorderWidth}px)` : `calc(100% - ${itemMarginInline * 2}px)`
+  };
+};
+// ============================== Export ==============================
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (function (prefixCls) {
+  let rootCls = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : prefixCls;
+  let injectStyle = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : true;
+  const useStyle = (0,_theme_internal__WEBPACK_IMPORTED_MODULE_3__.genStyleHooks)('Menu', token => {
+    const {
+      colorBgElevated,
+      controlHeightLG,
+      fontSize,
+      darkItemColor,
+      darkDangerItemColor,
+      darkItemBg,
+      darkSubMenuItemBg,
+      darkItemSelectedColor,
+      darkItemSelectedBg,
+      darkDangerItemSelectedBg,
+      darkItemHoverBg,
+      darkGroupTitleColor,
+      darkItemHoverColor,
+      darkItemDisabledColor,
+      darkDangerItemHoverColor,
+      darkDangerItemSelectedColor,
+      darkDangerItemActiveBg,
+      popupBg,
+      darkPopupBg
+    } = token;
+    const menuArrowSize = token.calc(fontSize).div(7).mul(5).equal();
+    // Menu Token
+    const menuToken = (0,_theme_internal__WEBPACK_IMPORTED_MODULE_4__.mergeToken)(token, {
+      menuArrowSize,
+      menuHorizontalHeight: token.calc(controlHeightLG).mul(1.15).equal(),
+      menuArrowOffset: token.calc(menuArrowSize).mul(0.25).equal(),
+      menuSubMenuBg: colorBgElevated,
+      calc: token.calc,
+      popupBg
+    });
+    const menuDarkToken = (0,_theme_internal__WEBPACK_IMPORTED_MODULE_4__.mergeToken)(menuToken, {
+      itemColor: darkItemColor,
+      itemHoverColor: darkItemHoverColor,
+      groupTitleColor: darkGroupTitleColor,
+      itemSelectedColor: darkItemSelectedColor,
+      subMenuItemSelectedColor: darkItemSelectedColor,
+      itemBg: darkItemBg,
+      popupBg: darkPopupBg,
+      subMenuItemBg: darkSubMenuItemBg,
+      itemActiveBg: 'transparent',
+      itemSelectedBg: darkItemSelectedBg,
+      activeBarHeight: 0,
+      activeBarBorderWidth: 0,
+      itemHoverBg: darkItemHoverBg,
+      // Disabled
+      itemDisabledColor: darkItemDisabledColor,
+      // Danger
+      dangerItemColor: darkDangerItemColor,
+      dangerItemHoverColor: darkDangerItemHoverColor,
+      dangerItemSelectedColor: darkDangerItemSelectedColor,
+      dangerItemActiveBg: darkDangerItemActiveBg,
+      dangerItemSelectedBg: darkDangerItemSelectedBg,
+      menuSubMenuBg: darkSubMenuItemBg,
+      // Horizontal
+      horizontalItemSelectedColor: darkItemSelectedColor,
+      horizontalItemSelectedBg: darkItemSelectedBg
+    });
+    return [
+    // Basic
+    getBaseStyle(menuToken),
+    // Horizontal
+    (0,_horizontal__WEBPACK_IMPORTED_MODULE_5__["default"])(menuToken),
+    // Hard code for some light style
+    // Vertical
+    (0,_vertical__WEBPACK_IMPORTED_MODULE_6__["default"])(menuToken),
+    // Hard code for some light style
+    // Theme
+    (0,_theme__WEBPACK_IMPORTED_MODULE_7__["default"])(menuToken, 'light'), (0,_theme__WEBPACK_IMPORTED_MODULE_7__["default"])(menuDarkToken, 'dark'),
+    // RTL
+    (0,_rtl__WEBPACK_IMPORTED_MODULE_8__["default"])(menuToken),
+    // Motion
+    (0,_style_motion__WEBPACK_IMPORTED_MODULE_9__["default"])(menuToken), (0,_style_motion__WEBPACK_IMPORTED_MODULE_10__.initSlideMotion)(menuToken, 'slide-up'), (0,_style_motion__WEBPACK_IMPORTED_MODULE_10__.initSlideMotion)(menuToken, 'slide-down'), (0,_style_motion__WEBPACK_IMPORTED_MODULE_11__.initZoomMotion)(menuToken, 'zoom-big')];
+  }, prepareComponentToken, {
+    deprecatedTokens: [['colorGroupTitle', 'groupTitleColor'], ['radiusItem', 'itemBorderRadius'], ['radiusSubMenuItem', 'subMenuItemBorderRadius'], ['colorItemText', 'itemColor'], ['colorItemTextHover', 'itemHoverColor'], ['colorItemTextHoverHorizontal', 'horizontalItemHoverColor'], ['colorItemTextSelected', 'itemSelectedColor'], ['colorItemTextSelectedHorizontal', 'horizontalItemSelectedColor'], ['colorItemTextDisabled', 'itemDisabledColor'], ['colorDangerItemText', 'dangerItemColor'], ['colorDangerItemTextHover', 'dangerItemHoverColor'], ['colorDangerItemTextSelected', 'dangerItemSelectedColor'], ['colorDangerItemBgActive', 'dangerItemActiveBg'], ['colorDangerItemBgSelected', 'dangerItemSelectedBg'], ['colorItemBg', 'itemBg'], ['colorItemBgHover', 'itemHoverBg'], ['colorSubItemBg', 'subMenuItemBg'], ['colorItemBgActive', 'itemActiveBg'], ['colorItemBgSelectedHorizontal', 'horizontalItemSelectedBg'], ['colorActiveBarWidth', 'activeBarWidth'], ['colorActiveBarHeight', 'activeBarHeight'], ['colorActiveBarBorderSize', 'activeBarBorderWidth'], ['colorItemBgSelected', 'itemSelectedBg']],
+    // Dropdown will handle menu style self. We do not need to handle this.
+    injectStyle,
+    unitless: {
+      groupTitleLineHeight: true
+    }
+  });
+  return useStyle(prefixCls, rootCls);
+});
+
+/***/ }),
+
+/***/ "./node_modules/antd/es/menu/style/rtl.js":
+/*!************************************************!*\
+  !*** ./node_modules/antd/es/menu/style/rtl.js ***!
+  \************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var _ant_design_cssinjs__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @ant-design/cssinjs */ "./node_modules/@ant-design/cssinjs/es/index.js");
+
+const getRTLStyle = _ref => {
+  let {
+    componentCls,
+    menuArrowOffset,
+    calc
+  } = _ref;
+  return {
+    [`${componentCls}-rtl`]: {
+      direction: 'rtl'
+    },
+    [`${componentCls}-submenu-rtl`]: {
+      transformOrigin: '100% 0'
+    },
+    // Vertical Arrow
+    [`${componentCls}-rtl${componentCls}-vertical,
+    ${componentCls}-submenu-rtl ${componentCls}-vertical`]: {
+      [`${componentCls}-submenu-arrow`]: {
+        '&::before': {
+          transform: `rotate(-45deg) translateY(${(0,_ant_design_cssinjs__WEBPACK_IMPORTED_MODULE_0__.unit)(calc(menuArrowOffset).mul(-1).equal())})`
+        },
+        '&::after': {
+          transform: `rotate(45deg) translateY(${(0,_ant_design_cssinjs__WEBPACK_IMPORTED_MODULE_0__.unit)(menuArrowOffset)})`
+        }
+      }
+    }
+  };
+};
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (getRTLStyle);
+
+/***/ }),
+
+/***/ "./node_modules/antd/es/menu/style/theme.js":
+/*!**************************************************!*\
+  !*** ./node_modules/antd/es/menu/style/theme.js ***!
+  \**************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var _ant_design_cssinjs__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @ant-design/cssinjs */ "./node_modules/@ant-design/cssinjs/es/index.js");
+/* harmony import */ var _style__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../style */ "./node_modules/antd/es/style/index.js");
+
+
+const accessibilityFocus = token => Object.assign({}, (0,_style__WEBPACK_IMPORTED_MODULE_1__.genFocusOutline)(token));
+const getThemeStyle = (token, themeSuffix) => {
+  const {
+    componentCls,
+    itemColor,
+    itemSelectedColor,
+    subMenuItemSelectedColor,
+    groupTitleColor,
+    itemBg,
+    subMenuItemBg,
+    itemSelectedBg,
+    activeBarHeight,
+    activeBarWidth,
+    activeBarBorderWidth,
+    motionDurationSlow,
+    motionEaseInOut,
+    motionEaseOut,
+    itemPaddingInline,
+    motionDurationMid,
+    itemHoverColor,
+    lineType,
+    colorSplit,
+    // Disabled
+    itemDisabledColor,
+    // Danger
+    dangerItemColor,
+    dangerItemHoverColor,
+    dangerItemSelectedColor,
+    dangerItemActiveBg,
+    dangerItemSelectedBg,
+    // Bg
+    popupBg,
+    itemHoverBg,
+    itemActiveBg,
+    menuSubMenuBg,
+    // Horizontal
+    horizontalItemSelectedColor,
+    horizontalItemSelectedBg,
+    horizontalItemBorderRadius,
+    horizontalItemHoverBg
+  } = token;
+  return {
+    [`${componentCls}-${themeSuffix}, ${componentCls}-${themeSuffix} > ${componentCls}`]: {
+      color: itemColor,
+      background: itemBg,
+      [`&${componentCls}-root:focus-visible`]: Object.assign({}, accessibilityFocus(token)),
+      // ======================== Item ========================
+      [`${componentCls}-item`]: {
+        '&-group-title, &-extra': {
+          color: groupTitleColor
+        }
+      },
+      [`${componentCls}-submenu-selected > ${componentCls}-submenu-title`]: {
+        color: subMenuItemSelectedColor
+      },
+      [`${componentCls}-item, ${componentCls}-submenu-title`]: {
+        color: itemColor,
+        [`&:not(${componentCls}-item-disabled):focus-visible`]: Object.assign({}, accessibilityFocus(token))
+      },
+      // Disabled
+      [`${componentCls}-item-disabled, ${componentCls}-submenu-disabled`]: {
+        color: `${itemDisabledColor} !important`
+      },
+      // Hover
+      [`${componentCls}-item:not(${componentCls}-item-selected):not(${componentCls}-submenu-selected)`]: {
+        [`&:hover, > ${componentCls}-submenu-title:hover`]: {
+          color: itemHoverColor
+        }
+      },
+      [`&:not(${componentCls}-horizontal)`]: {
+        [`${componentCls}-item:not(${componentCls}-item-selected)`]: {
+          '&:hover': {
+            backgroundColor: itemHoverBg
+          },
+          '&:active': {
+            backgroundColor: itemActiveBg
+          }
+        },
+        [`${componentCls}-submenu-title`]: {
+          '&:hover': {
+            backgroundColor: itemHoverBg
+          },
+          '&:active': {
+            backgroundColor: itemActiveBg
+          }
+        }
+      },
+      // Danger - only Item has
+      [`${componentCls}-item-danger`]: {
+        color: dangerItemColor,
+        [`&${componentCls}-item:hover`]: {
+          [`&:not(${componentCls}-item-selected):not(${componentCls}-submenu-selected)`]: {
+            color: dangerItemHoverColor
+          }
+        },
+        [`&${componentCls}-item:active`]: {
+          background: dangerItemActiveBg
+        }
+      },
+      [`${componentCls}-item a`]: {
+        '&, &:hover': {
+          color: 'inherit'
+        }
+      },
+      [`${componentCls}-item-selected`]: {
+        color: itemSelectedColor,
+        // Danger
+        [`&${componentCls}-item-danger`]: {
+          color: dangerItemSelectedColor
+        },
+        'a, a:hover': {
+          color: 'inherit'
+        }
+      },
+      [`& ${componentCls}-item-selected`]: {
+        backgroundColor: itemSelectedBg,
+        // Danger
+        [`&${componentCls}-item-danger`]: {
+          backgroundColor: dangerItemSelectedBg
+        }
+      },
+      [`&${componentCls}-submenu > ${componentCls}`]: {
+        backgroundColor: menuSubMenuBg
+      },
+      // ===== 设置浮层的颜色 =======
+      // ！dark 模式会被popupBg 会被rest 为 darkPopupBg
+      [`&${componentCls}-popup > ${componentCls}`]: {
+        backgroundColor: popupBg
+      },
+      [`&${componentCls}-submenu-popup > ${componentCls}`]: {
+        backgroundColor: popupBg
+      },
+      // ===== 设置浮层的颜色 end =======
+      // ====================== Horizontal ======================
+      [`&${componentCls}-horizontal`]: Object.assign(Object.assign({}, themeSuffix === 'dark' ? {
+        borderBottom: 0
+      } : {}), {
+        [`> ${componentCls}-item, > ${componentCls}-submenu`]: {
+          top: activeBarBorderWidth,
+          marginTop: token.calc(activeBarBorderWidth).mul(-1).equal(),
+          marginBottom: 0,
+          borderRadius: horizontalItemBorderRadius,
+          '&::after': {
+            position: 'absolute',
+            insetInline: itemPaddingInline,
+            bottom: 0,
+            borderBottom: `${(0,_ant_design_cssinjs__WEBPACK_IMPORTED_MODULE_0__.unit)(activeBarHeight)} solid transparent`,
+            transition: `border-color ${motionDurationSlow} ${motionEaseInOut}`,
+            content: '""'
+          },
+          '&:hover, &-active, &-open': {
+            background: horizontalItemHoverBg,
+            '&::after': {
+              borderBottomWidth: activeBarHeight,
+              borderBottomColor: horizontalItemSelectedColor
+            }
+          },
+          '&-selected': {
+            color: horizontalItemSelectedColor,
+            backgroundColor: horizontalItemSelectedBg,
+            '&:hover': {
+              backgroundColor: horizontalItemSelectedBg
+            },
+            '&::after': {
+              borderBottomWidth: activeBarHeight,
+              borderBottomColor: horizontalItemSelectedColor
+            }
+          }
+        }
+      }),
+      // ================== Inline & Vertical ===================
+      //
+      [`&${componentCls}-root`]: {
+        [`&${componentCls}-inline, &${componentCls}-vertical`]: {
+          borderInlineEnd: `${(0,_ant_design_cssinjs__WEBPACK_IMPORTED_MODULE_0__.unit)(activeBarBorderWidth)} ${lineType} ${colorSplit}`
+        }
+      },
+      // ======================== Inline ========================
+      [`&${componentCls}-inline`]: {
+        // Sub
+        [`${componentCls}-sub${componentCls}-inline`]: {
+          background: subMenuItemBg
+        },
+        [`${componentCls}-item`]: {
+          position: 'relative',
+          '&::after': {
+            position: 'absolute',
+            insetBlock: 0,
+            insetInlineEnd: 0,
+            borderInlineEnd: `${(0,_ant_design_cssinjs__WEBPACK_IMPORTED_MODULE_0__.unit)(activeBarWidth)} solid ${itemSelectedColor}`,
+            transform: 'scaleY(0.0001)',
+            opacity: 0,
+            transition: [`transform ${motionDurationMid} ${motionEaseOut}`, `opacity ${motionDurationMid} ${motionEaseOut}`].join(','),
+            content: '""'
+          },
+          // Danger
+          [`&${componentCls}-item-danger`]: {
+            '&::after': {
+              borderInlineEndColor: dangerItemSelectedColor
+            }
+          }
+        },
+        [`${componentCls}-selected, ${componentCls}-item-selected`]: {
+          '&::after': {
+            transform: 'scaleY(1)',
+            opacity: 1,
+            transition: [`transform ${motionDurationMid} ${motionEaseInOut}`, `opacity ${motionDurationMid} ${motionEaseInOut}`].join(',')
+          }
+        }
+      }
+    }
+  };
+};
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (getThemeStyle);
+
+/***/ }),
+
+/***/ "./node_modules/antd/es/menu/style/vertical.js":
+/*!*****************************************************!*\
+  !*** ./node_modules/antd/es/menu/style/vertical.js ***!
+  \*****************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var _ant_design_cssinjs__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @ant-design/cssinjs */ "./node_modules/@ant-design/cssinjs/es/index.js");
+/* harmony import */ var _style__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../style */ "./node_modules/antd/es/style/index.js");
+
+
+const getVerticalInlineStyle = token => {
+  const {
+    componentCls,
+    itemHeight,
+    itemMarginInline,
+    padding,
+    menuArrowSize,
+    marginXS,
+    itemMarginBlock,
+    itemWidth,
+    itemPaddingInline
+  } = token;
+  const paddingWithArrow = token.calc(menuArrowSize).add(padding).add(marginXS).equal();
+  return {
+    [`${componentCls}-item`]: {
+      position: 'relative',
+      overflow: 'hidden'
+    },
+    [`${componentCls}-item, ${componentCls}-submenu-title`]: {
+      height: itemHeight,
+      lineHeight: (0,_ant_design_cssinjs__WEBPACK_IMPORTED_MODULE_0__.unit)(itemHeight),
+      paddingInline: itemPaddingInline,
+      overflow: 'hidden',
+      textOverflow: 'ellipsis',
+      marginInline: itemMarginInline,
+      marginBlock: itemMarginBlock,
+      width: itemWidth
+    },
+    [`> ${componentCls}-item,
+            > ${componentCls}-submenu > ${componentCls}-submenu-title`]: {
+      height: itemHeight,
+      lineHeight: (0,_ant_design_cssinjs__WEBPACK_IMPORTED_MODULE_0__.unit)(itemHeight)
+    },
+    [`${componentCls}-item-group-list ${componentCls}-submenu-title,
+            ${componentCls}-submenu-title`]: {
+      paddingInlineEnd: paddingWithArrow
+    }
+  };
+};
+const getVerticalStyle = token => {
+  const {
+    componentCls,
+    iconCls,
+    itemHeight,
+    colorTextLightSolid,
+    dropdownWidth,
+    controlHeightLG,
+    motionEaseOut,
+    paddingXL,
+    itemMarginInline,
+    fontSizeLG,
+    motionDurationFast,
+    motionDurationSlow,
+    paddingXS,
+    boxShadowSecondary,
+    collapsedWidth,
+    collapsedIconSize
+  } = token;
+  const inlineItemStyle = {
+    height: itemHeight,
+    lineHeight: (0,_ant_design_cssinjs__WEBPACK_IMPORTED_MODULE_0__.unit)(itemHeight),
+    listStylePosition: 'inside',
+    listStyleType: 'disc'
+  };
+  return [{
+    [componentCls]: {
+      '&-inline, &-vertical': Object.assign({
+        [`&${componentCls}-root`]: {
+          boxShadow: 'none'
+        }
+      }, getVerticalInlineStyle(token))
+    },
+    [`${componentCls}-submenu-popup`]: {
+      [`${componentCls}-vertical`]: Object.assign(Object.assign({}, getVerticalInlineStyle(token)), {
+        boxShadow: boxShadowSecondary
+      })
+    }
+  },
+  // Vertical only
+  {
+    [`${componentCls}-submenu-popup ${componentCls}-vertical${componentCls}-sub`]: {
+      minWidth: dropdownWidth,
+      maxHeight: `calc(100vh - ${(0,_ant_design_cssinjs__WEBPACK_IMPORTED_MODULE_0__.unit)(token.calc(controlHeightLG).mul(2.5).equal())})`,
+      padding: '0',
+      overflow: 'hidden',
+      borderInlineEnd: 0,
+      // https://github.com/ant-design/ant-design/issues/22244
+      // https://github.com/ant-design/ant-design/issues/26812
+      "&:not([class*='-active'])": {
+        overflowX: 'hidden',
+        overflowY: 'auto'
+      }
+    }
+  },
+  // Inline Only
+  {
+    [`${componentCls}-inline`]: {
+      width: '100%',
+      // Motion enhance for first level
+      [`&${componentCls}-root`]: {
+        [`${componentCls}-item, ${componentCls}-submenu-title`]: {
+          display: 'flex',
+          alignItems: 'center',
+          transition: [`border-color ${motionDurationSlow}`, `background ${motionDurationSlow}`, `padding ${motionDurationFast} ${motionEaseOut}`].join(','),
+          [`> ${componentCls}-title-content`]: {
+            flex: 'auto',
+            minWidth: 0,
+            overflow: 'hidden',
+            textOverflow: 'ellipsis'
+          },
+          '> *': {
+            flex: 'none'
+          }
+        }
+      },
+      // >>>>> Sub
+      [`${componentCls}-sub${componentCls}-inline`]: {
+        padding: 0,
+        border: 0,
+        borderRadius: 0,
+        boxShadow: 'none',
+        [`& > ${componentCls}-submenu > ${componentCls}-submenu-title`]: inlineItemStyle,
+        [`& ${componentCls}-item-group-title`]: {
+          paddingInlineStart: paddingXL
+        }
+      },
+      // >>>>> Item
+      [`${componentCls}-item`]: inlineItemStyle
+    }
+  },
+  // Inline Collapse Only
+  {
+    [`${componentCls}-inline-collapsed`]: {
+      width: collapsedWidth,
+      [`&${componentCls}-root`]: {
+        [`${componentCls}-item, ${componentCls}-submenu ${componentCls}-submenu-title`]: {
+          [`> ${componentCls}-inline-collapsed-noicon`]: {
+            fontSize: fontSizeLG,
+            textAlign: 'center'
+          }
+        }
+      },
+      [`> ${componentCls}-item,
+          > ${componentCls}-item-group > ${componentCls}-item-group-list > ${componentCls}-item,
+          > ${componentCls}-item-group > ${componentCls}-item-group-list > ${componentCls}-submenu > ${componentCls}-submenu-title,
+          > ${componentCls}-submenu > ${componentCls}-submenu-title`]: {
+        insetInlineStart: 0,
+        paddingInline: `calc(50% - ${(0,_ant_design_cssinjs__WEBPACK_IMPORTED_MODULE_0__.unit)(token.calc(collapsedIconSize).div(2).equal())} - ${(0,_ant_design_cssinjs__WEBPACK_IMPORTED_MODULE_0__.unit)(itemMarginInline)})`,
+        textOverflow: 'clip',
+        [`
+            ${componentCls}-submenu-arrow,
+            ${componentCls}-submenu-expand-icon
+          `]: {
+          opacity: 0
+        },
+        [`${componentCls}-item-icon, ${iconCls}`]: {
+          margin: 0,
+          fontSize: collapsedIconSize,
+          lineHeight: (0,_ant_design_cssinjs__WEBPACK_IMPORTED_MODULE_0__.unit)(itemHeight),
+          '+ span': {
+            display: 'inline-block',
+            opacity: 0
+          }
+        }
+      },
+      [`${componentCls}-item-icon, ${iconCls}`]: {
+        display: 'inline-block'
+      },
+      '&-tooltip': {
+        pointerEvents: 'none',
+        [`${componentCls}-item-icon, ${iconCls}`]: {
+          display: 'none'
+        },
+        'a, a:hover': {
+          color: colorTextLightSolid
+        }
+      },
+      [`${componentCls}-item-group-title`]: Object.assign(Object.assign({}, _style__WEBPACK_IMPORTED_MODULE_1__.textEllipsis), {
+        paddingInline: paddingXS
+      })
+    }
+  }];
+};
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (getVerticalStyle);
 
 /***/ }),
 
@@ -52715,30 +55411,138 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var _Reusable_Header__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../Reusable/Header */ "./resources/js/components/Reusable/Header.js");
-/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! react/jsx-runtime */ "./node_modules/react/jsx-runtime.js");
+/* harmony import */ var _ProfileSidebar__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./ProfileSidebar */ "./resources/js/components/Profile/ProfileSidebar.js");
+/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! react/jsx-runtime */ "./node_modules/react/jsx-runtime.js");
+// ProfileMain.js
 
- // Import Header component
+
+
 
 function ProfileMain(_ref) {
   var children = _ref.children,
-    onSearch = _ref.onSearch;
-  // ✅ Accept onSearch as a prop
-  return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxs)("div", {
-    children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)(_Reusable_Header__WEBPACK_IMPORTED_MODULE_1__["default"], {
+    onSearch = _ref.onSearch,
+    profileData = _ref.profileData;
+  return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)("div", {
+    children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)(_Reusable_Header__WEBPACK_IMPORTED_MODULE_1__["default"], {
       onSearch: onSearch
-    }), " ", /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("div", {
+    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("div", {
       className: "white-layer",
-      children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("div", {
+      children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("div", {
         className: "content-wrapper",
-        children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("div", {
+        children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("div", {
           className: "pink-layer",
-          children: children
+          children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)("div", {
+            className: "profile-page",
+            children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)(_ProfileSidebar__WEBPACK_IMPORTED_MODULE_2__["default"], {
+              profileData: profileData
+            }), children]
+          })
         })
       })
     })]
   });
 }
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (ProfileMain);
+
+/***/ }),
+
+/***/ "./resources/js/components/Profile/ProfileSidebar.js":
+/*!***********************************************************!*\
+  !*** ./resources/js/components/Profile/ProfileSidebar.js ***!
+  \***********************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var antd__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! antd */ "./node_modules/antd/es/menu/index.js");
+/* harmony import */ var antd__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! antd */ "./node_modules/antd/es/avatar/index.js");
+/* harmony import */ var _ant_design_icons__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! @ant-design/icons */ "./node_modules/@ant-design/icons/es/icons/UserOutlined.js");
+/* harmony import */ var _ant_design_icons__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! @ant-design/icons */ "./node_modules/@ant-design/icons/es/icons/SettingOutlined.js");
+/* harmony import */ var _ant_design_icons__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! @ant-design/icons */ "./node_modules/@ant-design/icons/es/icons/FileOutlined.js");
+/* harmony import */ var _ant_design_icons__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! @ant-design/icons */ "./node_modules/@ant-design/icons/es/icons/QuestionCircleOutlined.js");
+/* harmony import */ var _ant_design_icons__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! @ant-design/icons */ "./node_modules/@ant-design/icons/es/icons/LogoutOutlined.js");
+/* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router/dist/development/chunk-K6AXKMTT.mjs");
+/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react/jsx-runtime */ "./node_modules/react/jsx-runtime.js");
+// ProfileSidebar.js
+
+
+
+
+
+var SubMenu = antd__WEBPACK_IMPORTED_MODULE_2__["default"].SubMenu;
+function ProfileSidebar(_ref) {
+  var profileData = _ref.profileData;
+  // Combine name fields if they exist
+  var fullName = profileData ? "".concat(profileData.first_name, " ").concat(profileData.middle_name, " ").concat(profileData.last_name) : "User Name";
+
+  // If your API ever returns an 'avatar' URL, use it; otherwise, fallback to the icon
+  var avatarSrc = (profileData === null || profileData === void 0 ? void 0 : profileData.avatar) || null;
+  return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)("div", {
+    className: "profile-sidebar",
+    children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)("div", {
+      className: "avatar-section",
+      children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(antd__WEBPACK_IMPORTED_MODULE_3__["default"], {
+        className: "avatar",
+        size: 80,
+        src: avatarSrc,
+        icon: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_ant_design_icons__WEBPACK_IMPORTED_MODULE_4__["default"], {}) // Fallback if no avatar URL
+      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("p", {
+        className: "user-fullname",
+        children: fullName
+      })]
+    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)(antd__WEBPACK_IMPORTED_MODULE_2__["default"], {
+      mode: "inline",
+      style: {
+        border: "none"
+      },
+      defaultOpenKeys: [],
+      children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)(SubMenu, {
+        icon: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_ant_design_icons__WEBPACK_IMPORTED_MODULE_5__["default"], {}),
+        title: "Account",
+        children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(antd__WEBPACK_IMPORTED_MODULE_2__["default"].Item, {
+          children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(react_router_dom__WEBPACK_IMPORTED_MODULE_6__.Link, {
+            to: "/profile",
+            children: "Profile"
+          })
+        }, "profile"), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(antd__WEBPACK_IMPORTED_MODULE_2__["default"].Item, {
+          children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(react_router_dom__WEBPACK_IMPORTED_MODULE_6__.Link, {
+            to: "/change-password",
+            children: "Change Password"
+          })
+        }, "change-password"), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(antd__WEBPACK_IMPORTED_MODULE_2__["default"].Item, {
+          children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(react_router_dom__WEBPACK_IMPORTED_MODULE_6__.Link, {
+            to: "/address",
+            children: "Address"
+          })
+        }, "address")]
+      }, "sub1"), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(antd__WEBPACK_IMPORTED_MODULE_2__["default"].Item, {
+        icon: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_ant_design_icons__WEBPACK_IMPORTED_MODULE_7__["default"], {}),
+        children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(react_router_dom__WEBPACK_IMPORTED_MODULE_6__.Link, {
+          to: "/purchases",
+          children: "Purchases"
+        })
+      }, "purchases"), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(antd__WEBPACK_IMPORTED_MODULE_2__["default"].Item, {
+        icon: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_ant_design_icons__WEBPACK_IMPORTED_MODULE_8__["default"], {}),
+        children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(react_router_dom__WEBPACK_IMPORTED_MODULE_6__.Link, {
+          to: "/faq",
+          children: "FAQ"
+        })
+      }, "faq"), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(antd__WEBPACK_IMPORTED_MODULE_2__["default"].Item, {
+        icon: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_ant_design_icons__WEBPACK_IMPORTED_MODULE_9__["default"], {}),
+        children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(react_router_dom__WEBPACK_IMPORTED_MODULE_6__.Link, {
+          to: "/logout",
+          children: "Logout"
+        })
+      }, "logout")]
+    })]
+  });
+}
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (ProfileSidebar);
 
 /***/ }),
 
@@ -52794,18 +55598,16 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _ProfileMain__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./ProfileMain */ "./resources/js/components/Profile/ProfileMain.js");
 /* harmony import */ var antd__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! antd */ "./node_modules/antd/es/form/index.js");
 /* harmony import */ var antd__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! antd */ "./node_modules/antd/es/message/index.js");
-/* harmony import */ var antd__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! antd */ "./node_modules/antd/es/avatar/index.js");
-/* harmony import */ var antd__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! antd */ "./node_modules/antd/es/button/index.js");
-/* harmony import */ var antd__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! antd */ "./node_modules/antd/es/upload/index.js");
-/* harmony import */ var antd__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! antd */ "./node_modules/antd/es/row/index.js");
-/* harmony import */ var antd__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(/*! antd */ "./node_modules/antd/es/col/index.js");
-/* harmony import */ var antd__WEBPACK_IMPORTED_MODULE_14__ = __webpack_require__(/*! antd */ "./node_modules/antd/es/input/index.js");
-/* harmony import */ var antd__WEBPACK_IMPORTED_MODULE_15__ = __webpack_require__(/*! antd */ "./node_modules/antd/es/radio/index.js");
-/* harmony import */ var _ant_design_icons__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! @ant-design/icons */ "./node_modules/@ant-design/icons/es/icons/UserOutlined.js");
+/* harmony import */ var antd__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! antd */ "./node_modules/antd/es/divider/index.js");
+/* harmony import */ var antd__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! antd */ "./node_modules/antd/es/avatar/index.js");
+/* harmony import */ var antd__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! antd */ "./node_modules/antd/es/upload/index.js");
+/* harmony import */ var antd__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! antd */ "./node_modules/antd/es/button/index.js");
+/* harmony import */ var antd__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! antd */ "./node_modules/antd/es/input/index.js");
+/* harmony import */ var antd__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(/*! antd */ "./node_modules/antd/es/radio/index.js");
+/* harmony import */ var _ant_design_icons__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! @ant-design/icons */ "./node_modules/@ant-design/icons/es/icons/UserOutlined.js");
 /* harmony import */ var _ant_design_icons__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! @ant-design/icons */ "./node_modules/@ant-design/icons/es/icons/UploadOutlined.js");
 /* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
 /* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_2__);
-/* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router/dist/development/chunk-K6AXKMTT.mjs");
 /* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! react/jsx-runtime */ "./node_modules/react/jsx-runtime.js");
 function _typeof(o) { "@babel/helpers - typeof"; return _typeof = "function" == typeof Symbol && "symbol" == typeof Symbol.iterator ? function (o) { return typeof o; } : function (o) { return o && "function" == typeof Symbol && o.constructor === Symbol && o !== Symbol.prototype ? "symbol" : typeof o; }, _typeof(o); }
 function ownKeys(e, r) { var t = Object.keys(e); if (Object.getOwnPropertySymbols) { var o = Object.getOwnPropertySymbols(e); r && (o = o.filter(function (r) { return Object.getOwnPropertyDescriptor(e, r).enumerable; })), t.push.apply(t, o); } return t; }
@@ -52823,7 +55625,6 @@ function _arrayLikeToArray(r, a) { (null == a || a > r.length) && (a = r.length)
 function _iterableToArrayLimit(r, l) { var t = null == r ? null : "undefined" != typeof Symbol && r[Symbol.iterator] || r["@@iterator"]; if (null != t) { var e, n, i, u, a = [], f = !0, o = !1; try { if (i = (t = t.call(r)).next, 0 === l) { if (Object(t) !== t) return; f = !1; } else for (; !(f = (e = i.call(t)).done) && (a.push(e.value), a.length !== l); f = !0); } catch (r) { o = !0, n = r; } finally { try { if (!f && null != t["return"] && (u = t["return"](), Object(u) !== u)) return; } finally { if (o) throw n; } } return a; } }
 function _arrayWithHoles(r) { if (Array.isArray(r)) return r; }
 
- // your layout wrapper
 
 
 
@@ -52841,8 +55642,6 @@ var Profiles = function Profiles() {
     _useState4 = _slicedToArray(_useState3, 2),
     profileData = _useState4[0],
     setProfileData = _useState4[1];
-
-  // Fetch profile data on mount and pre-fill the form fields
   (0,react__WEBPACK_IMPORTED_MODULE_0__.useEffect)(function () {
     var fetchProfile = /*#__PURE__*/function () {
       var _ref = _asyncToGenerator(/*#__PURE__*/_regeneratorRuntime().mark(function _callee() {
@@ -52894,15 +55693,13 @@ var Profiles = function Profiles() {
     }();
     fetchProfile();
   }, [form]);
-
-  // Handle form submission (profile update)
   var onFinish = /*#__PURE__*/function () {
     var _ref2 = _asyncToGenerator(/*#__PURE__*/_regeneratorRuntime().mark(function _callee2(values) {
       return _regeneratorRuntime().wrap(function _callee2$(_context2) {
         while (1) switch (_context2.prev = _context2.next) {
           case 0:
             console.log("Updated profile values:", values);
-            // Example: PUT request to update profile
+            // Example PUT request:
             // try {
             //   const res = await axios.put("http://127.0.0.1:8000/api/profile/update", values);
             //   if (res.data.status) {
@@ -52924,201 +55721,131 @@ var Profiles = function Profiles() {
       return _ref2.apply(this, arguments);
     };
   }();
-
-  // Upload properties for handling a profile image
   var uploadProps = {
     beforeUpload: function beforeUpload(file) {
       console.log("Selected file:", file);
-      return false; // Prevent automatic upload
+      return false;
     }
   };
   return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)(_ProfileMain__WEBPACK_IMPORTED_MODULE_1__["default"], {
+    profileData: profileData,
     children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)("div", {
-      className: "profile-page",
-      children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)("div", {
-        className: "profile-sidebar",
-        children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)("div", {
-          className: "avatar-section",
-          children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)(antd__WEBPACK_IMPORTED_MODULE_6__["default"], {
-            size: 80,
-            icon: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)(_ant_design_icons__WEBPACK_IMPORTED_MODULE_7__["default"], {})
-          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("p", {
-            className: "user-fullname",
-            children: profileData ? "".concat(profileData.first_name, " ").concat(profileData.middle_name, " ").concat(profileData.last_name) : "User Name"
-          })]
-        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)("div", {
-          className: "nav-links",
-          children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)(react_router_dom__WEBPACK_IMPORTED_MODULE_8__.Link, {
-            to: "/profile",
-            children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)(antd__WEBPACK_IMPORTED_MODULE_9__["default"], {
-              type: "text",
-              className: "nav-button",
-              children: "Profile"
-            })
-          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)(react_router_dom__WEBPACK_IMPORTED_MODULE_8__.Link, {
-            to: "/account",
-            children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)(antd__WEBPACK_IMPORTED_MODULE_9__["default"], {
-              type: "text",
-              className: "nav-button",
-              children: "Account"
-            })
-          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)(react_router_dom__WEBPACK_IMPORTED_MODULE_8__.Link, {
-            to: "/change-password",
-            children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)(antd__WEBPACK_IMPORTED_MODULE_9__["default"], {
-              type: "text",
-              className: "nav-button",
-              children: "Change Password"
-            })
-          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)(react_router_dom__WEBPACK_IMPORTED_MODULE_8__.Link, {
-            to: "/address",
-            children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)(antd__WEBPACK_IMPORTED_MODULE_9__["default"], {
-              type: "text",
-              className: "nav-button",
-              children: "Address"
-            })
-          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)(react_router_dom__WEBPACK_IMPORTED_MODULE_8__.Link, {
-            to: "/purchases",
-            children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)(antd__WEBPACK_IMPORTED_MODULE_9__["default"], {
-              type: "text",
-              className: "nav-button",
-              children: "Purchases"
-            })
-          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)(react_router_dom__WEBPACK_IMPORTED_MODULE_8__.Link, {
-            to: "/faq",
-            children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)(antd__WEBPACK_IMPORTED_MODULE_9__["default"], {
-              type: "text",
-              className: "nav-button",
-              children: "FAQ"
-            })
-          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)(react_router_dom__WEBPACK_IMPORTED_MODULE_8__.Link, {
-            to: "/logout",
-            children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)(antd__WEBPACK_IMPORTED_MODULE_9__["default"], {
-              type: "text",
-              className: "nav-button",
-              children: "Logout"
-            })
-          })]
-        })]
+      className: "profile-content",
+      children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("h2", {
+        className: "profile-title",
+        children: "My Profile"
+      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)(antd__WEBPACK_IMPORTED_MODULE_6__["default"], {
+        className: "title-divider"
       }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)("div", {
-        className: "profile-content",
-        children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("h2", {
-          className: "profile-title",
-          children: "My Profile"
-        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)("div", {
-          className: "image-upload",
-          children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)(antd__WEBPACK_IMPORTED_MODULE_6__["default"], {
-            size: 80,
-            icon: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)(_ant_design_icons__WEBPACK_IMPORTED_MODULE_7__["default"], {}),
-            className: "avatar-upload"
-          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)(antd__WEBPACK_IMPORTED_MODULE_10__["default"], _objectSpread(_objectSpread({}, uploadProps), {}, {
-            showUploadList: false,
-            children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)(antd__WEBPACK_IMPORTED_MODULE_9__["default"], {
-              icon: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)(_ant_design_icons__WEBPACK_IMPORTED_MODULE_11__["default"], {}),
-              children: "Select Image"
-            })
-          }))]
-        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)(antd__WEBPACK_IMPORTED_MODULE_4__["default"], {
-          form: form,
-          layout: "vertical",
-          onFinish: onFinish,
-          children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)(antd__WEBPACK_IMPORTED_MODULE_12__["default"], {
-            gutter: 16,
+        className: "image-upload",
+        children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)(antd__WEBPACK_IMPORTED_MODULE_7__["default"], {
+          size: 80,
+          icon: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)(_ant_design_icons__WEBPACK_IMPORTED_MODULE_8__["default"], {}),
+          className: "avatar-upload"
+        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)(antd__WEBPACK_IMPORTED_MODULE_9__["default"], _objectSpread(_objectSpread({}, uploadProps), {}, {
+          showUploadList: false,
+          children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)(antd__WEBPACK_IMPORTED_MODULE_10__["default"], {
+            icon: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)(_ant_design_icons__WEBPACK_IMPORTED_MODULE_11__["default"], {}),
+            children: "Select Image"
+          })
+        }))]
+      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)(antd__WEBPACK_IMPORTED_MODULE_4__["default"], {
+        className: "profile-form",
+        form: form,
+        layout: "horizontal",
+        labelCol: {
+          span: 6
+        },
+        wrapperCol: {
+          span: 18
+        },
+        requiredMark: false // Removes the "*" on required fields
+        ,
+        onFinish: onFinish,
+        children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)(antd__WEBPACK_IMPORTED_MODULE_4__["default"].Item, {
+          label: "First Name",
+          name: "firstName",
+          rules: [{
+            required: true,
+            message: "Please input your first name!"
+          }],
+          children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)(antd__WEBPACK_IMPORTED_MODULE_12__["default"], {})
+        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)(antd__WEBPACK_IMPORTED_MODULE_4__["default"].Item, {
+          label: "Middle Name",
+          name: "middleName",
+          rules: [{
+            required: true,
+            message: "Please input your middle name!"
+          }],
+          children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)(antd__WEBPACK_IMPORTED_MODULE_12__["default"], {})
+        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)(antd__WEBPACK_IMPORTED_MODULE_4__["default"].Item, {
+          label: "Last Name",
+          name: "lastName",
+          rules: [{
+            required: true,
+            message: "Please input your last name!"
+          }],
+          children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)(antd__WEBPACK_IMPORTED_MODULE_12__["default"], {})
+        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)(antd__WEBPACK_IMPORTED_MODULE_4__["default"].Item, {
+          label: "Username",
+          name: "username",
+          rules: [{
+            required: true,
+            message: "Please input your username!"
+          }],
+          children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)(antd__WEBPACK_IMPORTED_MODULE_12__["default"], {})
+        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)(antd__WEBPACK_IMPORTED_MODULE_4__["default"].Item, {
+          label: "Email",
+          name: "email",
+          rules: [{
+            required: true,
+            message: "Please input your email!"
+          }, {
+            type: "email",
+            message: "Invalid email format"
+          }],
+          children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)(antd__WEBPACK_IMPORTED_MODULE_12__["default"], {})
+        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)(antd__WEBPACK_IMPORTED_MODULE_4__["default"].Item, {
+          label: "Phone Number",
+          name: "phoneNumber",
+          rules: [{
+            required: true,
+            message: "Please input your phone number!"
+          }],
+          children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)(antd__WEBPACK_IMPORTED_MODULE_12__["default"], {})
+        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)(antd__WEBPACK_IMPORTED_MODULE_4__["default"].Item, {
+          label: "Gender",
+          name: "gender",
+          rules: [{
+            required: true,
+            message: "Please select your gender!"
+          }],
+          children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)(antd__WEBPACK_IMPORTED_MODULE_13__["default"].Group, {
             children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)(antd__WEBPACK_IMPORTED_MODULE_13__["default"], {
-              span: 8,
-              children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)(antd__WEBPACK_IMPORTED_MODULE_4__["default"].Item, {
-                label: "First Name",
-                name: "firstName",
-                rules: [{
-                  required: true,
-                  message: "Please input your first name!"
-                }],
-                children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)(antd__WEBPACK_IMPORTED_MODULE_14__["default"], {
-                  placeholder: "Enter first name"
-                })
-              })
+              value: "Male",
+              children: "Male"
             }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)(antd__WEBPACK_IMPORTED_MODULE_13__["default"], {
-              span: 8,
-              children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)(antd__WEBPACK_IMPORTED_MODULE_4__["default"].Item, {
-                label: "Middle Name",
-                name: "middleName",
-                children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)(antd__WEBPACK_IMPORTED_MODULE_14__["default"], {
-                  placeholder: "Enter middle name"
-                })
-              })
+              value: "Female",
+              children: "Female"
             }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)(antd__WEBPACK_IMPORTED_MODULE_13__["default"], {
-              span: 8,
-              children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)(antd__WEBPACK_IMPORTED_MODULE_4__["default"].Item, {
-                label: "Last Name",
-                name: "lastName",
-                rules: [{
-                  required: true,
-                  message: "Please input your last name!"
-                }],
-                children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)(antd__WEBPACK_IMPORTED_MODULE_14__["default"], {
-                  placeholder: "Enter last name"
-                })
-              })
+              value: "Other",
+              children: "Other"
             })]
-          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)(antd__WEBPACK_IMPORTED_MODULE_4__["default"].Item, {
-            label: "Username",
-            name: "username",
-            rules: [{
-              required: true,
-              message: "Please input your username!"
-            }],
-            children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)(antd__WEBPACK_IMPORTED_MODULE_14__["default"], {
-              placeholder: "Enter username"
-            })
-          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)(antd__WEBPACK_IMPORTED_MODULE_4__["default"].Item, {
-            label: "Email",
-            name: "email",
-            rules: [{
-              required: true,
-              message: "Please input your email!"
-            }, {
-              type: "email",
-              message: "Invalid email format"
-            }],
-            children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)(antd__WEBPACK_IMPORTED_MODULE_14__["default"], {
-              placeholder: "Enter email"
-            })
-          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)(antd__WEBPACK_IMPORTED_MODULE_4__["default"].Item, {
-            label: "Phone Number",
-            name: "phoneNumber",
-            rules: [{
-              required: true,
-              message: "Please input your phone number!"
-            }],
-            children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)(antd__WEBPACK_IMPORTED_MODULE_14__["default"], {
-              placeholder: "09********"
-            })
-          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)(antd__WEBPACK_IMPORTED_MODULE_4__["default"].Item, {
-            label: "Gender",
-            name: "gender",
-            rules: [{
-              required: true,
-              message: "Please select your gender!"
-            }],
-            children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)(antd__WEBPACK_IMPORTED_MODULE_15__["default"].Group, {
-              children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)(antd__WEBPACK_IMPORTED_MODULE_15__["default"], {
-                value: "Male",
-                children: "Male"
-              }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)(antd__WEBPACK_IMPORTED_MODULE_15__["default"], {
-                value: "Female",
-                children: "Female"
-              }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)(antd__WEBPACK_IMPORTED_MODULE_15__["default"], {
-                value: "Other",
-                children: "Other"
-              })]
-            })
-          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)(antd__WEBPACK_IMPORTED_MODULE_4__["default"].Item, {
-            children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)(antd__WEBPACK_IMPORTED_MODULE_9__["default"], {
-              type: "primary",
-              htmlType: "submit",
-              className: "save-button",
-              children: "Save"
-            })
-          })]
+          })
+        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)(antd__WEBPACK_IMPORTED_MODULE_4__["default"].Item, {
+          wrapperCol: {
+            span: 24
+          },
+          style: {
+            textAlign: "center"
+          },
+          children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)(antd__WEBPACK_IMPORTED_MODULE_10__["default"], {
+            type: "primary",
+            htmlType: "submit",
+            className: "save-button",
+            loading: loadingProfile,
+            children: "Save"
+          })
         })]
       })]
     })
@@ -53795,7 +56522,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var react_dom_client__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react-dom/client */ "./node_modules/react-dom/client.js");
-/* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_28__ = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router/dist/development/chunk-K6AXKMTT.mjs");
+/* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_29__ = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router/dist/development/chunk-K6AXKMTT.mjs");
 /* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
 /* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_2__);
 /* harmony import */ var _Reusable_MainPage__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./Reusable/MainPage */ "./resources/js/components/Reusable/MainPage.js");
@@ -53822,7 +56549,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _Shipping_Confirmation__WEBPACK_IMPORTED_MODULE_24__ = __webpack_require__(/*! ./Shipping/Confirmation */ "./resources/js/components/Shipping/Confirmation.js");
 /* harmony import */ var _Admin_AdminChat__WEBPACK_IMPORTED_MODULE_25__ = __webpack_require__(/*! ./Admin/AdminChat */ "./resources/js/components/Admin/AdminChat.js");
 /* harmony import */ var _Admin_AddUserModal__WEBPACK_IMPORTED_MODULE_26__ = __webpack_require__(/*! ./Admin/AddUserModal */ "./resources/js/components/Admin/AddUserModal.js");
-/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_27__ = __webpack_require__(/*! react/jsx-runtime */ "./node_modules/react/jsx-runtime.js");
+/* harmony import */ var _Profile_ProfileSidebar__WEBPACK_IMPORTED_MODULE_27__ = __webpack_require__(/*! ./Profile/ProfileSidebar */ "./resources/js/components/Profile/ProfileSidebar.js");
+/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_28__ = __webpack_require__(/*! react/jsx-runtime */ "./node_modules/react/jsx-runtime.js");
 // Routers.js
 
 
@@ -53861,103 +56589,107 @@ if (token) {
 
 
 
+
 function AppContent() {
-  var location = (0,react_router_dom__WEBPACK_IMPORTED_MODULE_28__.useLocation)();
+  var location = (0,react_router_dom__WEBPACK_IMPORTED_MODULE_29__.useLocation)();
 
   // We hide the Chatbot on these paths
   var hideChatbotPaths = ["/LogIn", "/register", "/admin", "/adminprofile", "/admindashboard", "/allusers", "/adminchat"];
-  return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_27__.jsxs)(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_27__.Fragment, {
-    children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_27__.jsxs)(react_router_dom__WEBPACK_IMPORTED_MODULE_28__.Routes, {
-      children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_27__.jsx)(react_router_dom__WEBPACK_IMPORTED_MODULE_28__.Route, {
+  return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_28__.jsxs)(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_28__.Fragment, {
+    children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_28__.jsxs)(react_router_dom__WEBPACK_IMPORTED_MODULE_29__.Routes, {
+      children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_28__.jsx)(react_router_dom__WEBPACK_IMPORTED_MODULE_29__.Route, {
         path: "/",
-        element: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_27__.jsx)(_Products_DisplayProducts__WEBPACK_IMPORTED_MODULE_5__["default"], {})
-      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_27__.jsx)(react_router_dom__WEBPACK_IMPORTED_MODULE_28__.Route, {
+        element: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_28__.jsx)(_Products_DisplayProducts__WEBPACK_IMPORTED_MODULE_5__["default"], {})
+      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_28__.jsx)(react_router_dom__WEBPACK_IMPORTED_MODULE_29__.Route, {
         path: "/login",
-        element: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_27__.jsx)(_LogIn_LogIn__WEBPACK_IMPORTED_MODULE_4__["default"], {})
-      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_27__.jsx)(react_router_dom__WEBPACK_IMPORTED_MODULE_28__.Route, {
+        element: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_28__.jsx)(_LogIn_LogIn__WEBPACK_IMPORTED_MODULE_4__["default"], {})
+      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_28__.jsx)(react_router_dom__WEBPACK_IMPORTED_MODULE_29__.Route, {
         path: "/products",
-        element: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_27__.jsx)(_Products_DisplayProducts__WEBPACK_IMPORTED_MODULE_5__["default"], {})
-      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_27__.jsx)(react_router_dom__WEBPACK_IMPORTED_MODULE_28__.Route, {
+        element: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_28__.jsx)(_Products_DisplayProducts__WEBPACK_IMPORTED_MODULE_5__["default"], {})
+      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_28__.jsx)(react_router_dom__WEBPACK_IMPORTED_MODULE_29__.Route, {
         path: "/register",
-        element: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_27__.jsx)(_Registration_Register__WEBPACK_IMPORTED_MODULE_6__["default"], {})
-      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_27__.jsx)(react_router_dom__WEBPACK_IMPORTED_MODULE_28__.Route, {
+        element: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_28__.jsx)(_Registration_Register__WEBPACK_IMPORTED_MODULE_6__["default"], {})
+      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_28__.jsx)(react_router_dom__WEBPACK_IMPORTED_MODULE_29__.Route, {
         path: "/logout",
-        element: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_27__.jsx)(_Profile_Logout__WEBPACK_IMPORTED_MODULE_9__["default"], {})
-      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_27__.jsx)(react_router_dom__WEBPACK_IMPORTED_MODULE_28__.Route, {
+        element: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_28__.jsx)(_Profile_Logout__WEBPACK_IMPORTED_MODULE_9__["default"], {})
+      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_28__.jsx)(react_router_dom__WEBPACK_IMPORTED_MODULE_29__.Route, {
+        path: "/profilesidebar",
+        element: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_28__.jsx)(_Profile_ProfileSidebar__WEBPACK_IMPORTED_MODULE_27__["default"], {})
+      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_28__.jsx)(react_router_dom__WEBPACK_IMPORTED_MODULE_29__.Route, {
         path: "/purchases",
-        element: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_27__.jsx)(_Profile_Purchases__WEBPACK_IMPORTED_MODULE_11__["default"], {})
-      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_27__.jsx)(react_router_dom__WEBPACK_IMPORTED_MODULE_28__.Route, {
+        element: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_28__.jsx)(_Profile_Purchases__WEBPACK_IMPORTED_MODULE_11__["default"], {})
+      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_28__.jsx)(react_router_dom__WEBPACK_IMPORTED_MODULE_29__.Route, {
         path: "/address",
-        element: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_27__.jsx)(_Profile_Address__WEBPACK_IMPORTED_MODULE_12__["default"], {})
-      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_27__.jsx)(react_router_dom__WEBPACK_IMPORTED_MODULE_28__.Route, {
+        element: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_28__.jsx)(_Profile_Address__WEBPACK_IMPORTED_MODULE_12__["default"], {})
+      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_28__.jsx)(react_router_dom__WEBPACK_IMPORTED_MODULE_29__.Route, {
         path: "/change-password",
-        element: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_27__.jsx)(_Profile_ChangePassword__WEBPACK_IMPORTED_MODULE_13__["default"], {})
-      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_27__.jsx)(react_router_dom__WEBPACK_IMPORTED_MODULE_28__.Route, {
+        element: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_28__.jsx)(_Profile_ChangePassword__WEBPACK_IMPORTED_MODULE_13__["default"], {})
+      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_28__.jsx)(react_router_dom__WEBPACK_IMPORTED_MODULE_29__.Route, {
         path: "/faq",
-        element: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_27__.jsx)(_Profile_Faq__WEBPACK_IMPORTED_MODULE_14__["default"], {})
-      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_27__.jsx)(react_router_dom__WEBPACK_IMPORTED_MODULE_28__.Route, {
+        element: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_28__.jsx)(_Profile_Faq__WEBPACK_IMPORTED_MODULE_14__["default"], {})
+      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_28__.jsx)(react_router_dom__WEBPACK_IMPORTED_MODULE_29__.Route, {
         path: "/product/:id",
-        element: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_27__.jsx)(_Products_ProductDetails__WEBPACK_IMPORTED_MODULE_15__["default"], {})
-      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_27__.jsx)(react_router_dom__WEBPACK_IMPORTED_MODULE_28__.Route, {
+        element: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_28__.jsx)(_Products_ProductDetails__WEBPACK_IMPORTED_MODULE_15__["default"], {})
+      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_28__.jsx)(react_router_dom__WEBPACK_IMPORTED_MODULE_29__.Route, {
         path: "/cart",
-        element: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_27__.jsx)(_Cart_Carts__WEBPACK_IMPORTED_MODULE_16__["default"], {})
-      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_27__.jsx)(react_router_dom__WEBPACK_IMPORTED_MODULE_28__.Route, {
+        element: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_28__.jsx)(_Cart_Carts__WEBPACK_IMPORTED_MODULE_16__["default"], {})
+      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_28__.jsx)(react_router_dom__WEBPACK_IMPORTED_MODULE_29__.Route, {
         path: "/checkout",
-        element: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_27__.jsx)(_Shipping_Checkout__WEBPACK_IMPORTED_MODULE_19__["default"], {})
-      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_27__.jsx)(react_router_dom__WEBPACK_IMPORTED_MODULE_28__.Route, {
+        element: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_28__.jsx)(_Shipping_Checkout__WEBPACK_IMPORTED_MODULE_19__["default"], {})
+      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_28__.jsx)(react_router_dom__WEBPACK_IMPORTED_MODULE_29__.Route, {
         path: "/payment",
-        element: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_27__.jsx)(_Shipping_Payment__WEBPACK_IMPORTED_MODULE_23__["default"], {})
-      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_27__.jsx)(react_router_dom__WEBPACK_IMPORTED_MODULE_28__.Route, {
+        element: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_28__.jsx)(_Shipping_Payment__WEBPACK_IMPORTED_MODULE_23__["default"], {})
+      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_28__.jsx)(react_router_dom__WEBPACK_IMPORTED_MODULE_29__.Route, {
         path: "/confirmation",
-        element: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_27__.jsx)(_Shipping_Confirmation__WEBPACK_IMPORTED_MODULE_24__["default"], {})
-      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_27__.jsx)(react_router_dom__WEBPACK_IMPORTED_MODULE_28__.Route, {
+        element: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_28__.jsx)(_Shipping_Confirmation__WEBPACK_IMPORTED_MODULE_24__["default"], {})
+      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_28__.jsx)(react_router_dom__WEBPACK_IMPORTED_MODULE_29__.Route, {
         path: "/adminlogout",
-        element: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_27__.jsx)(_Admin_AdminLogout__WEBPACK_IMPORTED_MODULE_10__["default"], {})
-      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_27__.jsx)(react_router_dom__WEBPACK_IMPORTED_MODULE_28__.Route, {
+        element: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_28__.jsx)(_Admin_AdminLogout__WEBPACK_IMPORTED_MODULE_10__["default"], {})
+      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_28__.jsx)(react_router_dom__WEBPACK_IMPORTED_MODULE_29__.Route, {
         path: "/admindashboard",
-        element: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_27__.jsx)(_Admin_AdminDashboard__WEBPACK_IMPORTED_MODULE_21__["default"], {})
-      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_27__.jsx)(react_router_dom__WEBPACK_IMPORTED_MODULE_28__.Route, {
+        element: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_28__.jsx)(_Admin_AdminDashboard__WEBPACK_IMPORTED_MODULE_21__["default"], {})
+      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_28__.jsx)(react_router_dom__WEBPACK_IMPORTED_MODULE_29__.Route, {
         path: "/allusers",
-        element: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_27__.jsx)(_Admin_AllUsers__WEBPACK_IMPORTED_MODULE_22__["default"], {})
-      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_27__.jsx)(react_router_dom__WEBPACK_IMPORTED_MODULE_28__.Route, {
+        element: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_28__.jsx)(_Admin_AllUsers__WEBPACK_IMPORTED_MODULE_22__["default"], {})
+      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_28__.jsx)(react_router_dom__WEBPACK_IMPORTED_MODULE_29__.Route, {
         path: "/addusermodal",
-        element: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_27__.jsx)(_Admin_AddUserModal__WEBPACK_IMPORTED_MODULE_26__["default"], {})
-      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_27__.jsx)(react_router_dom__WEBPACK_IMPORTED_MODULE_28__.Route, {
+        element: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_28__.jsx)(_Admin_AddUserModal__WEBPACK_IMPORTED_MODULE_26__["default"], {})
+      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_28__.jsx)(react_router_dom__WEBPACK_IMPORTED_MODULE_29__.Route, {
         path: "/profile",
-        element: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_27__.jsxs)(_RoleBasedRoute__WEBPACK_IMPORTED_MODULE_20__["default"], {
+        element: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_28__.jsxs)(_RoleBasedRoute__WEBPACK_IMPORTED_MODULE_20__["default"], {
           allowedRoles: [1],
-          children: [" ", /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_27__.jsx)(_Profile_profiles__WEBPACK_IMPORTED_MODULE_7__["default"], {}), " "]
+          children: [" ", /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_28__.jsx)(_Profile_profiles__WEBPACK_IMPORTED_MODULE_7__["default"], {}), " "]
         })
-      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_27__.jsx)(react_router_dom__WEBPACK_IMPORTED_MODULE_28__.Route, {
+      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_28__.jsx)(react_router_dom__WEBPACK_IMPORTED_MODULE_29__.Route, {
         path: "/admin",
-        element: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_27__.jsxs)(_RoleBasedRoute__WEBPACK_IMPORTED_MODULE_20__["default"], {
+        element: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_28__.jsxs)(_RoleBasedRoute__WEBPACK_IMPORTED_MODULE_20__["default"], {
           allowedRoles: [2],
-          children: [" ", /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_27__.jsx)(_Admin_AdminDashboard__WEBPACK_IMPORTED_MODULE_21__["default"], {})]
+          children: [" ", /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_28__.jsx)(_Admin_AdminDashboard__WEBPACK_IMPORTED_MODULE_21__["default"], {})]
         })
-      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_27__.jsx)(react_router_dom__WEBPACK_IMPORTED_MODULE_28__.Route, {
+      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_28__.jsx)(react_router_dom__WEBPACK_IMPORTED_MODULE_29__.Route, {
         path: "/adminprofile",
-        element: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_27__.jsxs)(_RoleBasedRoute__WEBPACK_IMPORTED_MODULE_20__["default"], {
+        element: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_28__.jsxs)(_RoleBasedRoute__WEBPACK_IMPORTED_MODULE_20__["default"], {
           allowedRoles: [2],
-          children: [" ", /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_27__.jsx)(_Admin_AdminProfile__WEBPACK_IMPORTED_MODULE_8__["default"], {})]
+          children: [" ", /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_28__.jsx)(_Admin_AdminProfile__WEBPACK_IMPORTED_MODULE_8__["default"], {})]
         })
-      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_27__.jsx)(react_router_dom__WEBPACK_IMPORTED_MODULE_28__.Route, {
+      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_28__.jsx)(react_router_dom__WEBPACK_IMPORTED_MODULE_29__.Route, {
         path: "/adminchat",
-        element: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_27__.jsxs)(_RoleBasedRoute__WEBPACK_IMPORTED_MODULE_20__["default"], {
+        element: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_28__.jsxs)(_RoleBasedRoute__WEBPACK_IMPORTED_MODULE_20__["default"], {
           allowedRoles: [2],
-          children: [" ", /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_27__.jsx)(_Admin_AdminChat__WEBPACK_IMPORTED_MODULE_25__["default"], {})]
+          children: [" ", /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_28__.jsx)(_Admin_AdminChat__WEBPACK_IMPORTED_MODULE_25__["default"], {})]
         })
       })]
-    }), !hideChatbotPaths.includes(location.pathname) && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_27__.jsx)(_Chat_Chatbot__WEBPACK_IMPORTED_MODULE_17__["default"], {})]
+    }), !hideChatbotPaths.includes(location.pathname) && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_28__.jsx)(_Chat_Chatbot__WEBPACK_IMPORTED_MODULE_17__["default"], {})]
   });
 }
 function Routers() {
-  return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_27__.jsx)(react_router_dom__WEBPACK_IMPORTED_MODULE_28__.BrowserRouter, {
-    children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_27__.jsx)(AppContent, {})
+  return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_28__.jsx)(react_router_dom__WEBPACK_IMPORTED_MODULE_29__.BrowserRouter, {
+    children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_28__.jsx)(AppContent, {})
   });
 }
 var container = document.getElementById("root");
 var root = react_dom_client__WEBPACK_IMPORTED_MODULE_1__.createRoot(container);
-root.render(/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_27__.jsx)(Routers, {}));
+root.render(/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_28__.jsx)(Routers, {}));
 
 /***/ }),
 

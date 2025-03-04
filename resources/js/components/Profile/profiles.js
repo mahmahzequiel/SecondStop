@@ -1,17 +1,14 @@
 import React, { useEffect, useState } from "react";
-import ProfileMain from "./ProfileMain"; // your layout wrapper
-import { Avatar, Button, Form, Input, Radio, Row, Col, Upload, message } from "antd";
+import ProfileMain from "./ProfileMain";
+import { Avatar, Button, Form, Input, Radio, Upload, message, Divider } from "antd";
 import { UserOutlined, UploadOutlined } from "@ant-design/icons";
 import axios from "axios";
-import { Link } from "react-router-dom";
-
 
 const Profiles = () => {
   const [form] = Form.useForm();
   const [loadingProfile, setLoadingProfile] = useState(false);
   const [profileData, setProfileData] = useState(null);
 
-  // Fetch profile data on mount and pre-fill the form fields
   useEffect(() => {
     const fetchProfile = async () => {
       setLoadingProfile(true);
@@ -43,10 +40,9 @@ const Profiles = () => {
     fetchProfile();
   }, [form]);
 
-  // Handle form submission (profile update)
   const onFinish = async (values) => {
     console.log("Updated profile values:", values);
-    // Example: PUT request to update profile
+    // Example PUT request:
     // try {
     //   const res = await axios.put("http://127.0.0.1:8000/api/profile/update", values);
     //   if (res.data.status) {
@@ -60,140 +56,113 @@ const Profiles = () => {
     // }
   };
 
-  // Upload properties for handling a profile image
   const uploadProps = {
     beforeUpload: (file) => {
       console.log("Selected file:", file);
-      return false; // Prevent automatic upload
+      return false;
     },
   };
 
   return (
-    <ProfileMain>
-      {/* The main container for sidebar + profile content */}
-      <div className="profile-page">
-        {/* Sidebar Navigation */}
-        <div className="profile-sidebar">
-          <div className="avatar-section">
-            <Avatar size={80} icon={<UserOutlined />} />
-            <p className="user-fullname">
-              {profileData
-                ? `${profileData.first_name} ${profileData.middle_name} ${profileData.last_name}`
-                : "User Name"}
-            </p>
-          </div>
+    <ProfileMain profileData={profileData}>
+      <div className="profile-content">
+        <h2 className="profile-title">My Profile</h2>
+        <Divider className="title-divider" />
 
-          <div className="nav-links">
-            <Link to="/profile">
-              <Button type="text" className="nav-button">Profile</Button>
-            </Link>
-            <Link to="/account">
-              <Button type="text" className="nav-button">Account</Button>
-            </Link>
-            <Link to="/change-password">
-              <Button type="text" className="nav-button">Change Password</Button>
-            </Link>
-            <Link to="/address">
-              <Button type="text" className="nav-button">Address</Button>
-            </Link>
-            <Link to="/purchases">
-              <Button type="text" className="nav-button">Purchases</Button>
-            </Link>
-            <Link to="/faq">
-              <Button type="text" className="nav-button">FAQ</Button>
-            </Link>
-            <Link to="/logout">
-              <Button type="text" className="nav-button">Logout</Button>
-            </Link>
-          </div>
+        <div className="image-upload">
+          <Avatar
+            size={80}
+            icon={<UserOutlined />}
+            className="avatar-upload"
+          />
+          <Upload {...uploadProps} showUploadList={false}>
+            <Button icon={<UploadOutlined />}>Select Image</Button>
+          </Upload>
         </div>
 
-        {/* Peach container pinned to the right */}
-        <div className="profile-content">
-          <h2 className="profile-title">My Profile</h2>
+        <Form
+          className="profile-form"
+          form={form}
+          layout="horizontal"
+          labelCol={{ span: 6 }}
+          wrapperCol={{ span: 18 }}
+          requiredMark={false}  // Removes the "*" on required fields
+          onFinish={onFinish}
+        >
+          <Form.Item
+            label="First Name"
+            name="firstName"
+            rules={[{ required: true, message: "Please input your first name!" }]}
+          >
+            <Input />
+          </Form.Item>
 
-          {/* Image Upload Section */}
-          <div className="image-upload">
-            <Avatar size={80} icon={<UserOutlined />} className="avatar-upload" />
-            <Upload {...uploadProps} showUploadList={false}>
-              <Button icon={<UploadOutlined />}>Select Image</Button>
-            </Upload>
-          </div>
+          <Form.Item
+            label="Middle Name"
+            name="middleName"
+            rules={[{ required: true, message: "Please input your middle name!" }]}
+          >
+            <Input />
+          </Form.Item>
 
-          {/* Profile Form */}
-          <Form form={form} layout="vertical" onFinish={onFinish}>
-            <Row gutter={16}>
-              <Col span={8}>
-                <Form.Item
-                  label="First Name"
-                  name="firstName"
-                  rules={[{ required: true, message: "Please input your first name!" }]}
-                >
-                  <Input placeholder="Enter first name" />
-                </Form.Item>
-              </Col>
-              <Col span={8}>
-                <Form.Item label="Middle Name" name="middleName">
-                  <Input placeholder="Enter middle name" />
-                </Form.Item>
-              </Col>
-              <Col span={8}>
-                <Form.Item
-                  label="Last Name"
-                  name="lastName"
-                  rules={[{ required: true, message: "Please input your last name!" }]}
-                >
-                  <Input placeholder="Enter last name" />
-                </Form.Item>
-              </Col>
-            </Row>
+          <Form.Item
+            label="Last Name"
+            name="lastName"
+            rules={[{ required: true, message: "Please input your last name!" }]}
+          >
+            <Input />
+          </Form.Item>
 
-            <Form.Item
-              label="Username"
-              name="username"
-              rules={[{ required: true, message: "Please input your username!" }]}
+          <Form.Item
+            label="Username"
+            name="username"
+            rules={[{ required: true, message: "Please input your username!" }]}
+          >
+            <Input />
+          </Form.Item>
+
+          <Form.Item
+            label="Email"
+            name="email"
+            rules={[
+              { required: true, message: "Please input your email!" },
+              { type: "email", message: "Invalid email format" },
+            ]}
+          >
+            <Input />
+          </Form.Item>
+
+          <Form.Item
+            label="Phone Number"
+            name="phoneNumber"
+            rules={[{ required: true, message: "Please input your phone number!" }]}
+          >
+            <Input />
+          </Form.Item>
+
+          <Form.Item
+            label="Gender"
+            name="gender"
+            rules={[{ required: true, message: "Please select your gender!" }]}
+          >
+            <Radio.Group>
+              <Radio value="Male">Male</Radio>
+              <Radio value="Female">Female</Radio>
+              <Radio value="Other">Other</Radio>
+            </Radio.Group>
+          </Form.Item>
+
+          <Form.Item wrapperCol={{ span: 24 }} style={{ textAlign: "center" }}>
+            <Button
+              type="primary"
+              htmlType="submit"
+              className="save-button"
+              loading={loadingProfile}
             >
-              <Input placeholder="Enter username" />
-            </Form.Item>
-
-            <Form.Item
-              label="Email"
-              name="email"
-              rules={[
-                { required: true, message: "Please input your email!" },
-                { type: "email", message: "Invalid email format" },
-              ]}
-            >
-              <Input placeholder="Enter email" />
-            </Form.Item>
-
-            <Form.Item
-              label="Phone Number"
-              name="phoneNumber"
-              rules={[{ required: true, message: "Please input your phone number!" }]}
-            >
-              <Input placeholder="09********" />
-            </Form.Item>
-
-            <Form.Item
-              label="Gender"
-              name="gender"
-              rules={[{ required: true, message: "Please select your gender!" }]}
-            >
-              <Radio.Group>
-                <Radio value="Male">Male</Radio>
-                <Radio value="Female">Female</Radio>
-                <Radio value="Other">Other</Radio>
-              </Radio.Group>
-            </Form.Item>
-
-            <Form.Item>
-              <Button type="primary" htmlType="submit" className="save-button">
-                Save
-              </Button>
-            </Form.Item>
-          </Form>
-        </div>
+              Save
+            </Button>
+          </Form.Item>
+        </Form>
       </div>
     </ProfileMain>
   );

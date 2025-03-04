@@ -13397,104 +13397,217 @@ textarea.form-control-lg {
   color: #ffffff;
 }
 
+/* profilemain.scss */
 html, body {
   margin: 0;
   padding: 0;
-  overflow-x: hidden;
   background-color: #750139;
-}
-
-.page-container {
-  height: 100vh;
-  display: flex;
-  flex-direction: column;
+  height: 100%;
 }
 
 .content-wrapper {
-  flex: 1;
-  overflow: hidden;
+  height: 100%;
+  padding: 20px;
 }
 
-/* Your white-layer and pink-layer inside content-wrapper: */
 .white-layer {
-  /* If header is outside, adjust to: */
-  height: 100%;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
+  height: calc(100% - 40px);
   background-color: #750139;
 }
 
 .pink-layer {
   background-color: #ffffff;
-  width: 95%;
-  padding: 20px;
-  border-radius: 10px;
-  margin-top: 40px;
+  width: 100%;
+  margin: 0 auto;
+  border-radius: 15px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
 }
 
-/* Container that holds the sidebar + main content */
+/* profile.scss */
 .profile-page {
-  display: flex; /* row layout: sidebar on left, content on right */
-  /* width, min-height, etc. can be set here if you want a fixed size or full width */
-}
-
-/* Sidebar on the left */
-.profile-sidebar {
-  width: 250px;
-  background-color: #fff;
-  border-radius: 10px;
-  margin-right: 20px;
-  padding: 20px;
-}
-.profile-sidebar .avatar-section {
-  text-align: center;
-  margin-bottom: 20px;
-}
-.profile-sidebar .avatar-section .user-fullname {
-  margin-top: 10px;
-  font-weight: bold;
-}
-.profile-sidebar .nav-links {
   display: flex;
-  flex-direction: column;
   gap: 10px;
-}
-.profile-sidebar .nav-links .nav-button {
-  justify-content: flex-start;
+  padding: 20px;
+  height: 85vh;
+  margin-right: 50px;
 }
 
-/* Peach container pinned to the right */
 .profile-content {
-  flex: 1; /* fill the remaining horizontal space */
+  flex: 1;
   background-color: #ffd0c1;
-  border-radius: 10px;
-  padding: 20px;
-  height: 50%;
-  width: 100px;
-  margin-left: auto; /* This pushes the element to the right */
-  margin-right: 0;
-  /* If you want it pinned more tightly to the right, you can also do margin-left: auto; */
+  border-radius: 15px;
+  padding: 30px;
+  height: 100%;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  /* Move the avatar+button slightly to the right */
+  /* Form container styling */
 }
 .profile-content .profile-title {
-  margin-bottom: 20px;
   font-size: 24px;
+  font-weight: 500;
+  margin-bottom: 10px;
+  color: #333;
+  font-family: "Inria Serif", serif;
+}
+.profile-content .title-divider {
+  margin-bottom: 30px;
+  border-top: 1px solid #fff;
 }
 .profile-content .image-upload {
   display: flex;
   align-items: center;
-  margin-bottom: 20px;
+  gap: 20px;
+  margin-bottom: 30px;
+  padding-left: 100px; /* or use a smaller number if it's too far */
 }
 .profile-content .image-upload .avatar-upload {
-  margin-right: 20px;
+  width: 100px;
+  height: 100px;
+  border-radius: 50%;
 }
-.profile-content .save-button {
-  margin-top: 10px;
+.profile-content .image-upload .ant-btn {
+  background-color: #fff;
+  border: 1px solid #d9d9d9;
+  border-radius: 6px;
+  padding: 4px 15px;
+  height: 35px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+.profile-content .image-upload .ant-btn:hover {
+  border-color: #d84727;
+  color: #d84727;
+}
+.profile-content .profile-form {
+  /* Shift the entire form slightly to the left and down */
+  margin-left: 0px;
+  margin-top: 40px;
+}
+.profile-content .profile-form .ant-form-item {
+  margin-bottom: 20px;
+}
+.profile-content .profile-form .ant-form-item-label > label {
+  font-weight: 600;
+  color: #333;
+}
+.profile-content .profile-form .ant-input {
+  border-radius: 6px;
+  padding: 8px 12px;
+  border: 1px solid #d9d9d9;
+  background-color: #fff;
+}
+.profile-content .profile-form .ant-radio-group {
+  display: flex;
+  gap: 20px;
+}
+.profile-content .profile-form .save-button {
   background-color: #d84727;
   border-color: #d84727;
+  border-radius: 6px;
+  height: 40px;
+  padding: 0 30px;
+  font-size: 16px;
 }
-.profile-content .save-button:hover {
+.profile-content .profile-form .save-button:hover {
   background-color: #c63c1f;
   border-color: #c63c1f;
+}
+
+.profile-sidebar {
+  width: 550px;
+  padding: 30px;
+  height: 100%;
+}
+.profile-sidebar .avatar-section {
+  align-items: center;
+  display: flex;
+  margin-bottom: 30px;
+}
+.profile-sidebar .avatar-section .avatar {
+  width: 100px;
+  height: 100px;
+  border-radius: 50%;
+  margin-bottom: 0;
+  margin-right: 20px;
+}
+.profile-sidebar .avatar-section .user-fullname {
+  font-size: 30px;
+  font-weight: bold;
+  margin: 0;
+  color: #333;
+}
+.profile-sidebar .ant-menu {
+  margin-top: 70px; /* Moves the entire menu down from the avatar section */
+  font-family: "Inria Serif", serif;
+}
+.profile-sidebar .ant-menu a {
+  text-decoration: none;
+}
+.profile-sidebar .ant-menu a:hover {
+  text-decoration: underline;
+}
+.profile-sidebar .ant-menu .ant-menu-submenu-title,
+.profile-sidebar .ant-menu .ant-menu-item {
+  font-size: 25px;
+  margin-bottom: 20px;
+}
+.profile-sidebar .ant-menu .ant-menu-submenu-title .ant-menu-item-icon,
+.profile-sidebar .ant-menu .ant-menu-submenu-title .ant-menu-submenu-title .ant-menu-item-icon,
+.profile-sidebar .ant-menu .ant-menu-item .ant-menu-item-icon,
+.profile-sidebar .ant-menu .ant-menu-item .ant-menu-submenu-title .ant-menu-item-icon {
+  display: inline-flex;
+  align-items: center;
+  margin-right: 10px;
+}
+.profile-sidebar .ant-menu .ant-menu-submenu-title .anticon,
+.profile-sidebar .ant-menu .ant-menu-item .anticon {
+  width: 25px;
+  height: 25px;
+  font-size: 25px;
+  line-height: 1;
+}
+.profile-sidebar .ant-menu .ant-menu-submenu-title .ant-menu-title-content,
+.profile-sidebar .ant-menu .ant-menu-item .ant-menu-title-content {
+  margin-left: 0 !important;
+}
+
+/* 
+  1) Removes top margin/padding from inline submenus 
+     so "Profile" is flush with "Account." 
+  2) Also resets any inline positioning or transform 
+     that might be pushing it down.
+*/
+.ant-menu-inline .ant-menu-sub {
+  margin: 0 !important;
+  padding: 0 !important;
+  top: auto !important;
+  left: auto !important;
+  transform: none !important;
+}
+
+/* 
+  In some AntD versions, the submenu is rendered with 
+  these classes during open. Overriding them as well. 
+*/
+.ant-menu-submenu-popup.ant-menu-sub.ant-menu-inline,
+.ant-menu-submenu-placement-bottomLeft {
+  margin: 0 !important;
+  padding: 0 !important;
+  top: auto !important;
+  left: auto !important;
+  transform: none !important;
+}
+
+/* 
+  Place the expand arrow directly after "Account" text 
+  with some left margin, so it won't push far to the right 
+*/
+.ant-menu-inline .ant-menu-submenu-title {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+}
+.ant-menu-inline .ant-menu-submenu-title .ant-menu-submenu-expand-icon,
+.ant-menu-inline .ant-menu-submenu-title .ant-menu-submenu-arrow {
+  margin-right: 60% !important; /* spacing between text and arrow */
+  position: static !important; /* override default absolute positioning */
 }

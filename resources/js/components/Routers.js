@@ -40,6 +40,7 @@ import Payment from "./Shipping/Payment";
 import Confirmation from "./Shipping/Confirmation";
 import AdminChat from "./Admin/AdminChat";
 import AddUserModal from "./Admin/AddUserModal";
+import ProfileSidebar from "./Profile/ProfileSidebar";
 
 function AppContent() {
   const location = useLocation();
@@ -56,6 +57,7 @@ function AppContent() {
         <Route path="/products" element={<DisplayProducts />} />
         <Route path="/register" element={<Register />} />
         <Route path="/logout" element={<Logout />} />
+        <Route path="/profilesidebar" element={<ProfileSidebar />} />
         <Route path="/purchases" element={<Purchases />} />
         <Route path="/address" element={<Address />} />
         <Route path="/change-password" element={<ChangePassword />} />
