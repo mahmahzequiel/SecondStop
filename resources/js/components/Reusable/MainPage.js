@@ -6,12 +6,10 @@ function MainPage({ children, onSearch }) { // ✅ Accept onSearch as a prop
   return (
     <div>
       <Header onSearch={onSearch} /> {/* ✅ Pass onSearch to Header */}
-      {/* First Layer (Magenta) */}
+
       <div className="first-layer">
         <div className="content-wrapper">
-          {/* Second Layer (Pink) */}
           <div className="second-layer">{children}</div>
-          {/* Footer positioned at the bottom */}
           <Footer />
         </div>
       </div>

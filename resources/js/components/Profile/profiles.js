@@ -8,6 +8,7 @@ const Profiles = () => {
   const [form] = Form.useForm();
   const [loadingProfile, setLoadingProfile] = useState(false);
   const [profileData, setProfileData] = useState(null);
+  const [selectedFile, setSelectedFile] = useState(null);
 
   useEffect(() => {
     const fetchProfile = async () => {
@@ -42,7 +43,7 @@ const Profiles = () => {
 
   const onFinish = async (values) => {
     console.log("Updated profile values:", values);
-    // Example PUT request:
+    // Example PUT request (update as needed)
     // try {
     //   const res = await axios.put("http://127.0.0.1:8000/api/profile/update", values);
     //   if (res.data.status) {
@@ -59,6 +60,7 @@ const Profiles = () => {
   const uploadProps = {
     beforeUpload: (file) => {
       console.log("Selected file:", file);
+      setSelectedFile(file);
       return false;
     },
   };
@@ -70,11 +72,7 @@ const Profiles = () => {
         <Divider className="title-divider" />
 
         <div className="image-upload">
-          <Avatar
-            size={80}
-            icon={<UserOutlined />}
-            className="avatar-upload"
-          />
+          <Avatar size={80} icon={<UserOutlined />} className="avatar-upload" />
           <Upload {...uploadProps} showUploadList={false}>
             <Button icon={<UploadOutlined />}>Select Image</Button>
           </Upload>
@@ -86,7 +84,7 @@ const Profiles = () => {
           layout="horizontal"
           labelCol={{ span: 6 }}
           wrapperCol={{ span: 18 }}
-          requiredMark={false}  // Removes the "*" on required fields
+          requiredMark={false} // Removes the "*" on required fields
           onFinish={onFinish}
         >
           <Form.Item

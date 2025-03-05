@@ -1,12 +1,14 @@
 import React from "react";
-import MainPage from "../Reusable/MainPage";
+import ProfileMain from "./ProfileMain";
 import { Form, Input, Button, message } from "antd";
 import axios from "axios";
+
+
 
 const ChangePassword = () => {
   const onFinish = async (values) => {
     console.log("Change Password values:", values);
-    // Replace with your actual API endpoint and logic
+    // Example API call
     try {
       const res = await axios.put("http://127.0.0.1:8000/api/change-password", values);
       if (res.data.status) {
@@ -21,17 +23,21 @@ const ChangePassword = () => {
   };
 
   return (
-    <MainPage>
-      <div style={{ padding: "20px" }}>
-        <h2>Change Password</h2>
+    <ProfileMain>
+      {/* The peach “card” area, styled by changePassword.scss */}
+      <div className="change-password-content">
+        <h2 className="profile-title">Change Password</h2>
+        <div className="title-divider" />
+
         <Form layout="vertical" onFinish={onFinish}>
           <Form.Item
-            label="Current Password"
+            label="Old Password"
             name="currentPassword"
             rules={[{ required: true, message: "Please input your current password!" }]}
           >
             <Input.Password placeholder="Current Password" />
           </Form.Item>
+
           <Form.Item
             label="New Password"
             name="newPassword"
@@ -39,8 +45,9 @@ const ChangePassword = () => {
           >
             <Input.Password placeholder="New Password" />
           </Form.Item>
+
           <Form.Item
-            label="Confirm New Password"
+            label="Confirm Password"
             name="confirmNewPassword"
             dependencies={["newPassword"]}
             rules={[
@@ -57,6 +64,7 @@ const ChangePassword = () => {
           >
             <Input.Password placeholder="Confirm New Password" />
           </Form.Item>
+
           <Form.Item>
             <Button type="primary" htmlType="submit">
               Change Password
@@ -64,7 +72,7 @@ const ChangePassword = () => {
           </Form.Item>
         </Form>
       </div>
-    </MainPage>
+    </ProfileMain>
   );
 };
 

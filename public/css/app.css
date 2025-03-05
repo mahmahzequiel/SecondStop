@@ -13397,117 +13397,124 @@ textarea.form-control-lg {
   color: #ffffff;
 }
 
-/* profilemain.scss */
 html, body {
   margin: 0;
   padding: 0;
-  background-color: #750139;
-  height: 100%;
+  height: 100vh;
+  /* Remove overflow: hidden; if present */
 }
 
-.content-wrapper {
-  height: 100%;
-  padding: 20px;
+/* Lock the viewport by fixing the main container */
+.pink-layer {
+  position: fixed; /* Fix the pink-layer to the viewport */
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100vh; /* Always exactly the viewport height */
+  background-color: #750139;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+/* Other containers remain the same */
+.content-design {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
 }
 
 .white-layer {
-  height: calc(100% - 40px);
-  background-color: #750139;
-}
-
-.pink-layer {
   background-color: #ffffff;
-  width: 100%;
-  margin: 0 auto;
-  border-radius: 15px;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-}
-
-/* profile.scss */
-.profile-page {
-  display: flex;
-  gap: 10px;
+  width: 95%;
   padding: 20px;
-  height: 85vh;
-  margin-right: 50px;
+  border-radius: 10px;
+  margin-top: 100px;
+  display: flex;
+  gap: 20px;
+  max-height: calc(100vh - 150px); /* Adjust 150px based on your header and margins */
 }
 
-.profile-content {
-  flex: 1;
-  background-color: #ffd0c1;
-  border-radius: 15px;
-  padding: 30px;
-  height: 100%;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-  /* Move the avatar+button slightly to the right */
-  /* Form container styling */
+.profile-sidebar {
+  width: 280px;
+  padding: 20px;
 }
-.profile-content .profile-title {
+
+.main-layer {
+  background-color: #FFD0C1;
+  flex: 1;
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+/* Profile content area - these styles only affect the content inside the main-layer */
+.profile-content {
+  font-family: "Inria Serif", serif;
+  padding: 20px;
+}
+
+.profile-title {
   font-size: 24px;
   font-weight: 500;
   margin-bottom: 10px;
   color: #333;
-  font-family: "Inria Serif", serif;
 }
-.profile-content .title-divider {
+
+.title-divider {
   margin-bottom: 30px;
   border-top: 1px solid #fff;
 }
-.profile-content .image-upload {
+
+/* Image upload section positioning */
+.image-upload {
   display: flex;
   align-items: center;
   gap: 20px;
   margin-bottom: 30px;
-  padding-left: 100px; /* or use a smaller number if it's too far */
+  /* Adjust if needed for precise positioning */
+  padding-left: 50px;
 }
-.profile-content .image-upload .avatar-upload {
-  width: 100px;
-  height: 100px;
+
+.avatar-upload {
+  width: 80px; /* Ensure it matches the Avatar size */
+  height: 80px;
   border-radius: 50%;
 }
-.profile-content .image-upload .ant-btn {
-  background-color: #fff;
-  border: 1px solid #d9d9d9;
-  border-radius: 6px;
-  padding: 4px 15px;
-  height: 35px;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-}
-.profile-content .image-upload .ant-btn:hover {
-  border-color: #d84727;
-  color: #d84727;
-}
-.profile-content .profile-form {
-  /* Shift the entire form slightly to the left and down */
-  margin-left: 0px;
-  margin-top: 40px;
-}
-.profile-content .profile-form .ant-form-item {
-  margin-bottom: 20px;
-}
-.profile-content .profile-form .ant-form-item-label > label {
+
+/* Form styling */
+.profile-form .ant-form-item-label > label {
   font-weight: 600;
   color: #333;
+  font-size: 16px;
 }
-.profile-content .profile-form .ant-input {
+
+.profile-form .ant-input {
   border-radius: 6px;
   padding: 8px 12px;
   border: 1px solid #d9d9d9;
   background-color: #fff;
+  font-size: 16px;
 }
-.profile-content .profile-form .ant-radio-group {
+
+.profile-form .ant-radio-group {
   display: flex;
   gap: 20px;
 }
-.profile-content .profile-form .save-button {
+
+.save-button {
   background-color: #d84727;
   border-color: #d84727;
   border-radius: 6px;
   height: 40px;
   padding: 0 30px;
   font-size: 16px;
+  font-family: "Inria Serif", serif;
+  margin-top: 20px;
 }
-.profile-content .profile-form .save-button:hover {
+.save-button:hover {
   background-color: #c63c1f;
   border-color: #c63c1f;
 }
@@ -13536,7 +13543,7 @@ html, body {
   color: #333;
 }
 .profile-sidebar .ant-menu {
-  margin-top: 70px; /* Moves the entire menu down from the avatar section */
+  margin-top: 10px; /* Moves the entire menu down from the avatar section */
   font-family: "Inria Serif", serif;
 }
 .profile-sidebar .ant-menu a {
@@ -13610,4 +13617,59 @@ html, body {
 .ant-menu-inline .ant-menu-submenu-title .ant-menu-submenu-arrow {
   margin-right: 60% !important; /* spacing between text and arrow */
   position: static !important; /* override default absolute positioning */
+}
+
+/* changePassword.scss */
+/* Main container for the peach “card” */
+.change-password-content {
+  padding: 30px;
+  height: 100%; /* or auto, depending on your layout */
+  /* Title styling */
+  /* Now uses the .profile-title class */
+  /* Divider styling */
+  /* Now uses the .title-divider class */
+  /* Form styling */
+}
+.change-password-content .profile-title {
+  font-size: 24px;
+  font-weight: 500;
+  margin-bottom: 10px;
+  color: #333;
+}
+.change-password-content .title-divider {
+  margin-bottom: 30px;
+  border-top: 1px solid #fff;
+}
+.change-password-content .ant-form {
+  margin-top: 20px;
+}
+.change-password-content .ant-form .ant-form-item {
+  margin-bottom: 20px;
+}
+.change-password-content .ant-form .ant-form-item-label > label {
+  font-weight: 600;
+  color: #333;
+  font-size: 16px;
+  font-family: "Inria Serif", serif;
+}
+.change-password-content .ant-form .ant-input-password {
+  border-radius: 6px;
+  padding: 8px 12px;
+  border: 1px solid #d9d9d9;
+  background-color: #fff;
+  font-size: 16px;
+}
+.change-password-content .ant-form button[type=primary] {
+  background-color: #d84727;
+  border-color: #d84727;
+  border-radius: 6px;
+  height: 40px;
+  padding: 0 30px;
+  font-size: 16px;
+  font-family: "Inria Serif", serif;
+  margin-top: 20px;
+}
+.change-password-content .ant-form button[type=primary]:hover {
+  background-color: #c63c1f;
+  border-color: #c63c1f;
 }

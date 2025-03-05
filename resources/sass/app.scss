@@ -23,8 +23,9 @@
 @import 'Shipping/Payment';
 @import 'Shipping/Confirmation';
 @import 'AddUserModal';
-@import 'ProfileMain.scss';
-@import 'profiles.scss';
-@import 'ProfileSidebar';
+@import 'Profile/ProfileMain.scss';
+@import 'Profile/profiles.scss';
+@import 'Profile/ProfileSidebar';
+@import 'Profile/ChangePassword';
 // @import 'PaymentMethods/GcashPayment.scss';
 

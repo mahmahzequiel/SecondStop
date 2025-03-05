@@ -41,6 +41,7 @@ import Confirmation from "./Shipping/Confirmation";
 import AdminChat from "./Admin/AdminChat";
 import AddUserModal from "./Admin/AddUserModal";
 import ProfileSidebar from "./Profile/ProfileSidebar";
+import ProfileMain from "./Profile/ProfileMain";
 
 function AppContent() {
   const location = useLocation();
@@ -54,9 +55,11 @@ function AppContent() {
         {/* Public / Common Routes */}
         <Route path="/" element={<DisplayProducts />} />
         <Route path="/login" element={<Login />} />
+        <Route path="/mainpage" element={<MainPage />} />
         <Route path="/products" element={<DisplayProducts />} />
         <Route path="/register" element={<Register />} />
         <Route path="/logout" element={<Logout />} />
+        <Route path="/profilemain" element={<ProfileMain />} />
         <Route path="/profilesidebar" element={<ProfileSidebar />} />
         <Route path="/purchases" element={<Purchases />} />
         <Route path="/address" element={<Address />} />

@@ -1,4 +1,3 @@
-// ProfileMain.js
 import React from "react";
 import Header from "../Reusable/Header";
 import ProfileSidebar from "./ProfileSidebar";
@@ -7,12 +6,14 @@ function ProfileMain({ children, onSearch, profileData }) {
   return (
     <div>
       <Header onSearch={onSearch} />
-      <div className="white-layer">
-        <div className="content-wrapper">
-          <div className="pink-layer">
-            <div className="profile-page">
-              {/* Pass the user's data into the sidebar so it shows the correct name/avatar */}
-              <ProfileSidebar profileData={profileData} />
+
+      {/* Pink background fills the screen */}
+      <div className="pink-layer">
+        <div className="content-design">
+          {/* White container that holds both sidebar (white) + main content (peach) */}
+          <div className="white-layer">
+            <ProfileSidebar profileData={profileData} />
+            <div className="main-layer">
               {children}
             </div>
           </div>

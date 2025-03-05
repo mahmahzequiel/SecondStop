@@ -13,12 +13,10 @@ import { Link } from "react-router-dom";
 const { SubMenu } = Menu;
 
 function ProfileSidebar({ profileData }) {
-  // Combine name fields if they exist
   const fullName = profileData
     ? `${profileData.first_name} ${profileData.middle_name} ${profileData.last_name}`
     : "User Name";
 
-  // If your API ever returns an 'avatar' URL, use it; otherwise, fallback to the icon
   const avatarSrc = profileData?.avatar || null;
 
   return (
@@ -28,12 +26,17 @@ function ProfileSidebar({ profileData }) {
           className="avatar"
           size={80}
           src={avatarSrc}
-          icon={<UserOutlined />} // Fallback if no avatar URL
+          icon={<UserOutlined />}
         />
         <p className="user-fullname">{fullName}</p>
       </div>
 
-      <Menu mode="inline" style={{ border: "none" }} defaultOpenKeys={[]}>
+      {/* Make the SubMenu open by default: */}
+      <Menu
+        mode="inline"
+        style={{ border: "none" }}
+        defaultOpenKeys={['sub1']}  // <--- expanded by default
+      >
         <SubMenu key="sub1" icon={<SettingOutlined />} title="Account">
           <Menu.Item key="profile">
             <Link to="/profile">Profile</Link>
