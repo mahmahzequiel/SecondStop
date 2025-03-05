@@ -48,6 +48,6 @@ class Product extends Model // Renamed from Products to Product
      */
     public function carts()
     {
-        return $this->hasMany(Cart::class, 'product_id');
+        return $this->hasMany(Cart::class);
     }
 }

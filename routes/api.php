@@ -25,10 +25,12 @@ Route::get("category-types", [CategoryTypeController::class, "index"]);
 Route::get("/products-by-category-type", [ProductsController::class, "getProductsByCategoryType"]);
 Route::resource('brands', BrandController::class);
 
-// Address Routes
+//purchase
+Route::get('/purchases/status/{status}', [PurchaseController::class, 'getPurchasesByStatus']);
 
 
-// Order and Payment Routes
+// Order and Payment Routes getOrdersByStatus
+Route::get('/orders/status/{status}', [OrderController::class, 'getOrdersByStatus']);
 Route::apiResource('orders', OrderController::class);
 Route::apiResource('payments', PaymentController::class);
 
@@ -64,4 +66,6 @@ Route::post('/address', [AddressController::class, 'storeOrUpdate']);
 
     Route::get("users", [ApiController::class, "getAllUsers"]);
 
+    Route::get('/orders/status/{status}', [OrderController::class, 'getOrdersByStatus']);
+    Route::get('/user/orders', [OrderController::class, 'getUserOrders']);
 });

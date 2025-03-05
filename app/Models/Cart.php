@@ -26,8 +26,14 @@ class Cart extends Model
     /**
      * Relationship with Product model.
      */
-    public function product() // ✅ Should be 'product', not 'products'
+    public function product()
+{
+    return $this->belongsTo(Product::class, 'product_id');
+}
+
+
+    public function orders()
     {
-        return $this->belongsTo(Product::class, 'product_id');
+        return $this->belongsToMany(Order::class, 'order_cart', 'cart_id', 'order_id');
     }
 }

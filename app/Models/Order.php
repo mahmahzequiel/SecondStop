@@ -10,25 +10,29 @@ class Order extends Model
 {
     use HasFactory, SoftDeletes;
 
-    protected $table = 'orders';
-
     protected $fillable = [
-        'cart_id',
-        'payment_id',
-        'address_id',
-        'order_number',
-        'subtotal',
-        'shipping_cost',
-        'total_amount',
-        'status',
-        'purchase_date',
-        'date_time',
+        'payment_id', 'address_id', 'order_number', 
+        'subtotal', 'shipping_cost', 'total_amount', 'status', 'purchase_date'
     ];
 
-    protected $dates = ['deleted_at', 'purchase_date', 'date_time'];
+    protected $casts = [
+        'purchase_date' => 'datetime',
+    ];
 
     /**
-     * Define a relationship with the Payment model.
+     * Define relationship with carts (Pivot Table)
+     */
+    public function carts()
+    {
+        return $this->belongsToMany(Cart::class, 'order_cart', 'order_id', 'cart_id')
+                    ->with('product'); // Eager load the product relationship
+    }
+
+    
+
+
+    /**
+     * Define relationship with payment.
      */
     public function payment()
     {
@@ -36,18 +40,18 @@ class Order extends Model
     }
 
     /**
-     * Define a relationship with the Cart model.
-     */
-    public function cart()
-    {
-        return $this->belongsTo(Cart::class);
-    }
-
-    /**
-     * Define a relationship with the Address model.
+     * Define relationship with address.
      */
     public function address()
     {
         return $this->belongsTo(Address::class);
+    }
+
+    /**
+     * Define relationship with purchases.
+     */
+    public function purchases()
+    {
+        return $this->hasMany(Purchase::class, 'order_id');
     }
 }

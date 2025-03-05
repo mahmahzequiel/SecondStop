@@ -182,24 +182,20 @@ const [address, setAddress] = useState(receivedAddress || {
     
             console.log("🔍 Sending Order Data:", orderData);
     
-            let cartIds = orderData.items.map(item => item.cart_id).filter(id => id !== undefined && id !== null);
-    
-            // If only one cart ID, send it as a single integer
-            if (cartIds.length === 1) {
-                cartIds = cartIds[0];
-            }
+            // Ensure cartIds is always an array
+            const cartIds = orderData.items.map(item => item.cart_id).filter(id => id !== undefined && id !== null);
     
             console.log("📌 Processed cart_id:", cartIds, "Type:", typeof cartIds); // Debugging
     
             const response = await axios.post(
                 "http://127.0.0.1:8000/api/orders",
                 {
-                    cart_id: cartIds, // Try cart_id: String(cartIds) if needed
+                    cart_id: cartIds, // Always send cart_id as an array
                     payment_id: orderData.paymentId,
                     address_id: orderData.addressId || null,
-                    subtotal: totalPrice,
+                    subtotal: orderData.totalPrice, // Fix variable usage
                     shipping_cost: 70,
-                    total_amount: totalPrice + 70,
+                    total_amount: orderData.totalPrice + 70,
                     status: "pending",
                     purchase_date: new Date().toISOString().split("T")[0],
                 },
@@ -213,6 +209,7 @@ const [address, setAddress] = useState(receivedAddress || {
             throw error;
         }
     };
+    
     
 
     const [isGcashModalVisible, setIsGcashModalVisible] = useState(false);
