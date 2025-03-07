@@ -1,15 +1,9 @@
 // Routers.js
 import React from "react";
 import ReactDOM from "react-dom/client";
-import {
-  BrowserRouter as Router,
-  Routes,
-  Route,
-  useLocation
-} from "react-router-dom";
+import { BrowserRouter as Router, Routes, Route, useLocation } from "react-router-dom";
 import axios from "axios";
 
-// If a token is in localStorage, set the Axios authorization header
 const token = localStorage.getItem("userToken");
 if (token) {
   axios.defaults.headers.common["Authorization"] = `Bearer ${token}`;
@@ -20,8 +14,8 @@ import MainPage from "./Reusable/MainPage";
 import Login from "./LogIn/LogIn";
 import DisplayProducts from "./Products/DisplayProducts";
 import Register from "./Registration/Register";
-import Profiles from "./Profile/profiles";           
-import AdminProfile from "./Admin/AdminProfile";    
+import Profiles from "./Profile/profiles";
+import AdminProfile from "./Admin/AdminProfile";
 import Logout from "./Profile/Logout";
 import AdminLogout from "./Admin/AdminLogout";
 import Purchases from "./Profile/Purchases";
@@ -33,7 +27,7 @@ import Carts from "./Cart/Carts";
 import Chatbot from "./Chat/Chatbot";
 import AdminPage from "./AdminReusable/AdminPage";
 import Checkout from "./Shipping/Checkout";
-import RoleBasedRoute from "./RoleBasedRoute";    
+import RoleBasedRoute from "./RoleBasedRoute";
 import AdminDashboard from "./Admin/AdminDashboard";
 import AllUsers from "./Admin/AllUsers";
 import Payment from "./Shipping/Payment";
@@ -45,20 +39,16 @@ import ProfileMain from "./Profile/ProfileMain";
 
 function AppContent() {
   const location = useLocation();
-
-  // We hide the Chatbot on these paths
   const hideChatbotPaths = ["/LogIn", "/register", "/admin", "/adminprofile", "/admindashboard", "/allusers", "/adminchat"];
 
   return (
     <>
       <Routes>
-        {/* Public / Common Routes */}
         <Route path="/" element={<DisplayProducts />} />
         <Route path="/login" element={<Login />} />
         <Route path="/mainpage" element={<MainPage />} />
         <Route path="/products" element={<DisplayProducts />} />
         <Route path="/register" element={<Register />} />
-       
         <Route path="/logout" element={<Logout />} />
         <Route path="/profilemain" element={<ProfileMain />} />
         <Route path="/profilesidebar" element={<ProfileSidebar />} />
@@ -75,16 +65,11 @@ function AppContent() {
         <Route path="/admindashboard" element={<AdminDashboard />} />
         <Route path="/allusers" element={<AllUsers />} />
         <Route path="/addusermodal" element={<AddUserModal />} />
-        {/* Customer-Only Routes (role_id = 1) */}
-        <Route path="/profile" element={<RoleBasedRoute allowedRoles={[1]}> <Profiles /> </RoleBasedRoute>}/>
-        {/* Admin-Only Routes (role_id = 2) */}
-        <Route path="/admin" element={<RoleBasedRoute allowedRoles={[2]}> <AdminDashboard /></RoleBasedRoute>}/>
-        <Route path="/adminprofile" element={<RoleBasedRoute allowedRoles={[2]}> <AdminProfile /></RoleBasedRoute>}/>
-        <Route path="/adminchat" element={<RoleBasedRoute allowedRoles={[2]}> <AdminChat /></RoleBasedRoute>}/>
-      
+        <Route path="/profile" element={<RoleBasedRoute allowedRoles={[1]}><Profiles /></RoleBasedRoute>} />
+        <Route path="/admin" element={<RoleBasedRoute allowedRoles={[2]}><AdminDashboard /></RoleBasedRoute>} />
+        <Route path="/adminprofile" element={<RoleBasedRoute allowedRoles={[2]}><AdminProfile /></RoleBasedRoute>} />
+        <Route path="/adminchat" element={<RoleBasedRoute allowedRoles={[2]}><AdminChat /></RoleBasedRoute>} />
       </Routes>
-
-      {/* Conditionally Render Chatbot */}
       {!hideChatbotPaths.includes(location.pathname) && <Chatbot />}
     </>
   );

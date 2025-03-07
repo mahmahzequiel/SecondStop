@@ -12117,7 +12117,7 @@ textarea.form-control-lg {
   text-align: center;
 }
 
-/* Header Styles */
+/* header.scss */
 .header-layer {
   background-color: #E8AB99;
   color: white;
@@ -12127,10 +12127,10 @@ textarea.form-control-lg {
   padding: 10px 20px;
   position: sticky;
   top: 0;
-  z-index: 1000; /* Ensures the header stays on top */
+  z-index: 1000;
 }
 .header-layer .logo-link {
-  text-decoration: none; /* Remove default link styles if needed */
+  text-decoration: none;
   color: white;
 }
 .header-layer .logo {
@@ -12139,7 +12139,7 @@ textarea.form-control-lg {
   cursor: pointer;
 }
 .header-layer .logo img {
-  height: 70px; /* Adjust the height of the logo */
+  height: 70px;
   width: 70px;
 }
 .header-layer .logo .icon {
@@ -12162,21 +12162,71 @@ textarea.form-control-lg {
 }
 .header-layer .search-bar .search-icon {
   color: #333;
-  font-size: 24px; /* Increased size for the search icon */
+  font-size: 24px;
   cursor: pointer;
-  margin-left: 10px; /* Add spacing between input and icon */
+  margin-left: 10px;
 }
 .header-layer .navbar-icons {
   display: flex;
   gap: 20px;
+  /* Notification Styles */
 }
 .header-layer .navbar-icons .icon {
-  font-size: 32px; /* Increased size for the icons */
+  font-size: 32px;
   cursor: pointer;
   color: white;
 }
 .header-layer .navbar-icons .icon:hover {
-  color: #ddd; /* Light gray on hover */
+  color: #ddd;
+}
+.header-layer .navbar-icons .notification-container {
+  position: relative;
+  cursor: pointer;
+}
+.header-layer .navbar-icons .notification-icon {
+  font-size: 32px;
+  color: white;
+}
+.header-layer .navbar-icons .notification-badge {
+  position: absolute;
+  top: -8px;
+  right: -8px;
+  background-color: red;
+  color: black;
+  border-radius: 50%;
+  padding: 2px 6px;
+  font-size: 0.8rem;
+}
+.header-layer .navbar-icons .notification-dropdown {
+  position: absolute;
+  top: 60px;
+  right: 20px;
+  width: 320px;
+  max-height: 400px;
+  overflow-y: auto;
+  background-color: #fff;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+  z-index: 9999;
+  padding: 8px;
+  color: black;
+}
+.header-layer .navbar-icons .notification-dropdown .dropdown-header {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 8px;
+}
+.header-layer .navbar-icons .notification-dropdown .notification-item {
+  border-bottom: 1px solid #eee;
+  padding: 8px 0;
+}
+.header-layer .navbar-icons .notification-dropdown .notification-item:last-child {
+  border-bottom: none;
+}
+.header-layer .navbar-icons .notification-dropdown .dropdown-footer {
+  margin-top: 8px;
+  text-align: right;
 }
 
 /* Category Section - Positioned at the Top */

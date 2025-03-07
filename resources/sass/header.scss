@@ -1,72 +1,130 @@
-/* Header Styles */
-.header-layer {
-    background-color: #E8AB99;
-    color: white;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 10px 20px;
-    position: sticky;
-    top: 0;
-    z-index: 1000; /* Ensures the header stays on top */
+/* header.scss */
 
-    .logo-link {
-      text-decoration: none; /* Remove default link styles if needed */
+.header-layer {
+  background-color: #E8AB99;
+  color: white;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px 20px;
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+
+  .logo-link {
+    text-decoration: none;
+    color: white;
+  }
+
+  .logo {
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+
+    img {
+      height: 70px;
+      width: 70px;
+    }
+
+    .icon {
+      margin-left: 10px;
+      font-size: 30px;
+      font-family: 'Inria Serif', serif;
+    }
+  }
+
+  .search-bar {
+    display: flex;
+    align-items: center;
+    background-color: white;
+    border-radius: 5px;
+    padding: 5px;
+
+    input {
+      padding: 8px;
+      border: none;
+      outline: none;
+      width: 700px;
+    }
+
+    .search-icon {
+      color: #333;
+      font-size: 24px;
+      cursor: pointer;
+      margin-left: 10px;
+    }
+  }
+
+  .navbar-icons {
+    display: flex;
+    gap: 20px;
+
+    .icon {
+      font-size: 32px;
+      cursor: pointer;
+      color: white;
+
+      &:hover {
+        color: #ddd;
+      }
+    }
+
+    /* Notification Styles */
+    .notification-container {
+      position: relative;
+      cursor: pointer;
+    }
+
+    .notification-icon {
+      font-size: 32px;
       color: white;
     }
-  
-    .logo {
-      display: flex;
-      align-items: center;
-      cursor: pointer;
-  
-      img {
-        height: 70px; /* Adjust the height of the logo */
-        width: 70px;
-      }
-  
-      .icon {
-        margin-left: 10px;
-        font-size: 30px;
-        font-family: 'Inria Serif', serif;
-      }
+
+    .notification-badge {
+      position: absolute;
+      top: -8px;
+      right: -8px;
+      background-color: red;
+      color: black; // Changed badge text color to black
+      border-radius: 50%;
+      padding: 2px 6px;
+      font-size: 0.8rem;
     }
-  
-    .search-bar {
-      display: flex;
-      align-items: center;
-      background-color: white;
-      border-radius: 5px;
-      padding: 5px;
-  
-      input {
-        padding: 8px;
-        border: none;
-        outline: none;
-        width: 700px;
+
+    .notification-dropdown {
+      position: absolute;
+      top: 60px;
+      right: 20px;
+      width: 320px;
+      max-height: 400px;
+      overflow-y: auto;
+      background-color: #fff;
+      border: 1px solid #ccc;
+      border-radius: 4px;
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+      z-index: 9999;
+      padding: 8px;
+      color: black; // Set text color inside dropdown to black
+
+      .dropdown-header {
+        display: flex;
+        justify-content: space-between;
+        margin-bottom: 8px;
       }
-  
-      .search-icon {
-        color: #333;
-        font-size: 24px; /* Increased size for the search icon */
-        cursor: pointer;
-        margin-left: 10px; /* Add spacing between input and icon */
-      }
-    }
-  
-    .navbar-icons {
-      display: flex;
-      gap: 20px;
-  
-      .icon {
-        font-size: 32px; /* Increased size for the icons */
-        cursor: pointer;
-        color: white;
-  
-        &:hover {
-          color: #ddd; /* Light gray on hover */
+
+      .notification-item {
+        border-bottom: 1px solid #eee;
+        padding: 8px 0;
+
+        &:last-child {
+          border-bottom: none;
         }
+      }
+
+      .dropdown-footer {
+        margin-top: 8px;
+        text-align: right;
       }
     }
   }
-  
+}
