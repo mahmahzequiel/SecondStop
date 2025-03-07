@@ -54700,10 +54700,10 @@ var DisplayProducts = function DisplayProducts() {
     setFilteredProducts(filtered);
   }, [selectedFilters, selectedBrand, products, selectedCategory]);
 
-  // Add to Cart Functionality
+  // Add to Cart Functionality with Duplicate Check
   var handleAddToCart = /*#__PURE__*/function () {
     var _ref4 = _asyncToGenerator(/*#__PURE__*/_regeneratorRuntime().mark(function _callee2(product) {
-      var userToken, userId, currentCount, _error$response, _error$response2, _error$response3;
+      var userToken, userId, cartResponse, currentCartItems, productAlreadyInCart, currentCount, _error$response, _error$response2, _error$response3;
       return _regeneratorRuntime().wrap(function _callee2$(_context2) {
         while (1) switch (_context2.prev = _context2.next) {
           case 0:
@@ -54724,11 +54724,27 @@ var DisplayProducts = function DisplayProducts() {
             return _context2.abrupt("return");
           case 8:
             _context2.prev = 8;
-            console.log("Adding to cart:", {
-              userId: userId,
-              productId: product.id
+            _context2.next = 11;
+            return axios__WEBPACK_IMPORTED_MODULE_4___default().get("http://127.0.0.1:8000/api/carts", {
+              headers: {
+                Authorization: "Bearer ".concat(userToken)
+              }
             });
-            _context2.next = 12;
+          case 11:
+            cartResponse = _context2.sent;
+            currentCartItems = Array.isArray(cartResponse.data) ? cartResponse.data : [];
+            productAlreadyInCart = currentCartItems.some(function (item) {
+              var _item$product;
+              return ((_item$product = item.product) === null || _item$product === void 0 ? void 0 : _item$product.id) === product.id;
+            });
+            if (!productAlreadyInCart) {
+              _context2.next = 17;
+              break;
+            }
+            alert("Item is already in the cart!");
+            return _context2.abrupt("return");
+          case 17:
+            _context2.next = 19;
             return axios__WEBPACK_IMPORTED_MODULE_4___default().post("http://127.0.0.1:8000/api/carts", {
               user_id: userId,
               product_id: product.id
@@ -54738,25 +54754,25 @@ var DisplayProducts = function DisplayProducts() {
                 "Content-Type": "application/json"
               }
             });
-          case 12:
+          case 19:
             alert("".concat(product.product_name, " added to cart!"));
 
             // Update the user-specific cart count
             currentCount = parseInt(localStorage.getItem("cartCount_".concat(userId))) || 0;
             localStorage.setItem("cartCount_".concat(userId), (currentCount + 1).toString());
             window.dispatchEvent(new Event("cartCountUpdated"));
-            _context2.next = 22;
+            _context2.next = 29;
             break;
-          case 18:
-            _context2.prev = 18;
+          case 25:
+            _context2.prev = 25;
             _context2.t0 = _context2["catch"](8);
             console.error("Error adding to cart:", ((_error$response = _context2.t0.response) === null || _error$response === void 0 ? void 0 : _error$response.data) || _context2.t0);
             alert("Error: " + JSON.stringify(((_error$response2 = _context2.t0.response) === null || _error$response2 === void 0 ? void 0 : _error$response2.data.errors) || ((_error$response3 = _context2.t0.response) === null || _error$response3 === void 0 ? void 0 : _error$response3.data) || _context2.t0));
-          case 22:
+          case 29:
           case "end":
             return _context2.stop();
         }
-      }, _callee2, null, [[8, 18]]);
+      }, _callee2, null, [[8, 25]]);
     }));
     return function handleAddToCart(_x) {
       return _ref4.apply(this, arguments);

@@ -82,7 +82,7 @@ const DisplayProducts = () => {
     setFilteredProducts(filtered);
   }, [selectedFilters, selectedBrand, products, selectedCategory]);
 
-  // Add to Cart Functionality
+  // Add to Cart Functionality with Duplicate Check
   const handleAddToCart = async (product) => {
     const userToken = localStorage.getItem("userToken");
     const userId = localStorage.getItem("userId");
@@ -98,8 +98,23 @@ const DisplayProducts = () => {
     }
 
     try {
-      console.log("Adding to cart:", { userId, productId: product.id });
+      // Fetch current cart items to check for duplicates
+      const cartResponse = await axios.get("http://127.0.0.1:8000/api/carts", {
+        headers: { Authorization: `Bearer ${userToken}` }
+      });
+      const currentCartItems = Array.isArray(cartResponse.data)
+        ? cartResponse.data
+        : [];
+      const productAlreadyInCart = currentCartItems.some(
+        (item) => item.product?.id === product.id
+      );
 
+      if (productAlreadyInCart) {
+        alert("Item is already in the cart!");
+        return;
+      }
+
+      // If not a duplicate, proceed to add
       await axios.post(
         "http://127.0.0.1:8000/api/carts",
         { 
@@ -179,6 +194,7 @@ const DisplayProducts = () => {
                   </div>
                   <div className="description-container">
                     <p>{product.description}</p>
+                    {/* Add to Cart Button */}
                     <button className="cart-button" onClick={() => handleAddToCart(product)}>
                       <ShoppingCartOutlined className="cart-icon" />
                     </button>
