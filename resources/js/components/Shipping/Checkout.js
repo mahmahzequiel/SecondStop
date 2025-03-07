@@ -9,6 +9,9 @@ const Checkout = () => {
   const location = useLocation();
   const { selectedItems, totalPrice } = location.state || { selectedItems: [], totalPrice: 0 };
 
+  // Convert totalPrice to a number safely
+  const numericTotalPrice = !isNaN(parseFloat(totalPrice)) ? parseFloat(totalPrice) : 0;
+
   const [address, setAddress] = useState({
     fullname: "",
     phone: "",
@@ -87,7 +90,7 @@ const Checkout = () => {
       }
   
       const addressData = { 
-        user_id: userId, // Ensure user_id is included
+        user_id: userId,
         street: address.street,
         barangay: address.barangay,
         city: address.city,
@@ -98,7 +101,7 @@ const Checkout = () => {
         is_default: true,
       };
   
-      console.log("Sending address data:", addressData); // ✅ Log request payload
+      console.log("Sending address data:", addressData);
   
       const response = await axios.post("http://127.0.0.1:8000/api/address", addressData, {
         headers: {
@@ -107,7 +110,7 @@ const Checkout = () => {
         },
       });
   
-      console.log("Address saved successfully:", response.data); // ✅ Log success response
+      console.log("Address saved successfully:", response.data);
       alert("Address saved successfully!");
       setIsEditing(false);
     } catch (error) {
@@ -120,9 +123,6 @@ const Checkout = () => {
       alert("Failed to update address. Please check the console for details.");
     }
   };
-  
-
-
 
   return (
     <MainPage>
@@ -160,7 +160,7 @@ const Checkout = () => {
                 ))}
                 <tr>
                   <td><strong>Subtotal</strong></td>
-                  <td>PHP {totalPrice.toFixed(2)}</td>
+                  <td>PHP {numericTotalPrice.toFixed(2)}</td>
                 </tr>
                 <tr>
                   <td><strong>Shipping</strong></td>
@@ -168,7 +168,7 @@ const Checkout = () => {
                 </tr>
                 <tr>
                   <td><strong>Grand Total</strong></td>
-                  <td>PHP {(totalPrice + 70).toFixed(2)}</td>
+                  <td>PHP {(numericTotalPrice + 70).toFixed(2)}</td>
                 </tr>
               </tbody>
             </table>
@@ -197,16 +197,15 @@ const Checkout = () => {
 
         {/* Checkout Buttons */}
         <div className="checkout-actions">
-        <button
-  className="proceed-btn"
-  onClick={() => {
-    const updatedAddress = { ...address }; // Ensure you pass the latest state
-    navigate("/payment", { state: { selectedItems, totalPrice, address: updatedAddress } });
-  }}
->
-  Proceed to Payment
-</button>
-
+          <button
+            className="proceed-btn"
+            onClick={() => {
+              const updatedAddress = { ...address };
+              navigate("/payment", { state: { selectedItems, totalPrice: numericTotalPrice, address: updatedAddress } });
+            }}
+          >
+            Proceed to Payment
+          </button>
         </div>
       </div>
     </MainPage>

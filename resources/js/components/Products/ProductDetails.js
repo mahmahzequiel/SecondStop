@@ -27,31 +27,85 @@ const ProductDetails = () => {
     fetchProduct();
   }, [id]);
 
-  const handleAddToCart = () => {
+  const handleAddToCart = async () => {
     if (!product) return;
 
-    const cart = JSON.parse(localStorage.getItem("cart")) || [];
-    const newItem = {
-      id: product.id,
-      name: product.product_name,
-      brand: product.brand ? product.brand.name : "N/A",
-      price: product.price,
-    };
+    const userToken = localStorage.getItem("userToken");
+    const userId = localStorage.getItem("userId");
 
-    const isItemInCart = cart.some((item) => item.id === newItem.id);
-    if (!isItemInCart) {
-      cart.push(newItem);
-      localStorage.setItem("cart", JSON.stringify(cart));
-      alert("Item added to cart!");
-      
-      const userId = localStorage.getItem("userId");
-      if (userId) {
-        localStorage.setItem(`cartCount_${userId}`, cart.length.toString());
-        window.dispatchEvent(new Event("cartCountUpdated"));
-      }
-    } else {
-      alert("Item is already in the cart.");
+    if (!userToken) {
+      alert("Please log in to add items to the cart.");
+      return;
     }
+
+    if (!userId) {
+      alert("User ID is missing. Please log in again.");
+      return;
+    }
+
+    try {
+      // Fetch current cart items to check for duplicates
+      const cartResponse = await axios.get("http://127.0.0.1:8000/api/carts", {
+        headers: { Authorization: `Bearer ${userToken}` },
+      });
+      const currentCartItems = Array.isArray(cartResponse.data)
+        ? cartResponse.data
+        : [];
+
+      // Check if the product is already in the cart
+      const isItemInCart = currentCartItems.some(
+        (item) => item.product?.id === product.id
+      );
+
+      if (isItemInCart) {
+        alert("Item is already in the cart.");
+        return;
+      }
+
+      // Add product to the cart via API
+      await axios.post(
+        "http://127.0.0.1:8000/api/carts",
+        {
+          user_id: userId,
+          product_id: product.id,
+        },
+        {
+          headers: { Authorization: `Bearer ${userToken}`, "Content-Type": "application/json" },
+        }
+      );
+
+      alert("Item added to cart!");
+
+      // Update the user-specific cart count
+      const newCount = currentCartItems.length + 1;
+      localStorage.setItem(`cartCount_${userId}`, newCount.toString());
+      window.dispatchEvent(new Event("cartCountUpdated"));
+    } catch (error) {
+      console.error("Error adding to cart:", error.response?.data || error);
+      alert("Error adding to cart. Please try again.");
+    }
+  };
+
+  const handleBuyNow = () => {
+    if (!product) return;
+    // Ensure product.price is a number
+    const price = Number(product.price);
+    const numericPrice = isNaN(price) ? 0 : price;
+
+    // Navigate directly to checkout with the current product as the only selected item.
+    navigate("/checkout", {
+      state: {
+        selectedItems: [
+          {
+            product_id: product.id,
+            product_name: product.product_name,
+            price: numericPrice,
+            brand: product.brand ? product.brand.name : "N/A",
+          },
+        ],
+        totalPrice: numericPrice,
+      },
+    });
   };
 
   if (loading) return <h2>Loading...</h2>;
@@ -86,7 +140,9 @@ const ProductDetails = () => {
               <button className="add-to-cart" onClick={handleAddToCart}>
                 🛒 Add to Cart
               </button>
-              <button className="buy-now">Buy Now</button>
+              <button className="buy-now" onClick={handleBuyNow}>
+                Buy Now
+              </button>
             </div>
           </div>
         </div>

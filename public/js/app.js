@@ -55126,30 +55126,107 @@ var ProductDetails = function ProductDetails() {
     }();
     fetchProduct();
   }, [id]);
-  var handleAddToCart = function handleAddToCart() {
-    if (!product) return;
-    var cart = JSON.parse(localStorage.getItem("cart")) || [];
-    var newItem = {
-      id: product.id,
-      name: product.product_name,
-      brand: product.brand ? product.brand.name : "N/A",
-      price: product.price
+  var handleAddToCart = /*#__PURE__*/function () {
+    var _ref2 = _asyncToGenerator(/*#__PURE__*/_regeneratorRuntime().mark(function _callee2() {
+      var userToken, userId, cartResponse, currentCartItems, isItemInCart, newCount, _error$response;
+      return _regeneratorRuntime().wrap(function _callee2$(_context2) {
+        while (1) switch (_context2.prev = _context2.next) {
+          case 0:
+            if (product) {
+              _context2.next = 2;
+              break;
+            }
+            return _context2.abrupt("return");
+          case 2:
+            userToken = localStorage.getItem("userToken");
+            userId = localStorage.getItem("userId");
+            if (userToken) {
+              _context2.next = 7;
+              break;
+            }
+            alert("Please log in to add items to the cart.");
+            return _context2.abrupt("return");
+          case 7:
+            if (userId) {
+              _context2.next = 10;
+              break;
+            }
+            alert("User ID is missing. Please log in again.");
+            return _context2.abrupt("return");
+          case 10:
+            _context2.prev = 10;
+            _context2.next = 13;
+            return axios__WEBPACK_IMPORTED_MODULE_1___default().get("http://127.0.0.1:8000/api/carts", {
+              headers: {
+                Authorization: "Bearer ".concat(userToken)
+              }
+            });
+          case 13:
+            cartResponse = _context2.sent;
+            currentCartItems = Array.isArray(cartResponse.data) ? cartResponse.data : []; // Check if the product is already in the cart
+            isItemInCart = currentCartItems.some(function (item) {
+              var _item$product;
+              return ((_item$product = item.product) === null || _item$product === void 0 ? void 0 : _item$product.id) === product.id;
+            });
+            if (!isItemInCart) {
+              _context2.next = 19;
+              break;
+            }
+            alert("Item is already in the cart.");
+            return _context2.abrupt("return");
+          case 19:
+            _context2.next = 21;
+            return axios__WEBPACK_IMPORTED_MODULE_1___default().post("http://127.0.0.1:8000/api/carts", {
+              user_id: userId,
+              product_id: product.id
+            }, {
+              headers: {
+                Authorization: "Bearer ".concat(userToken),
+                "Content-Type": "application/json"
+              }
+            });
+          case 21:
+            alert("Item added to cart!");
+
+            // Update the user-specific cart count
+            newCount = currentCartItems.length + 1;
+            localStorage.setItem("cartCount_".concat(userId), newCount.toString());
+            window.dispatchEvent(new Event("cartCountUpdated"));
+            _context2.next = 31;
+            break;
+          case 27:
+            _context2.prev = 27;
+            _context2.t0 = _context2["catch"](10);
+            console.error("Error adding to cart:", ((_error$response = _context2.t0.response) === null || _error$response === void 0 ? void 0 : _error$response.data) || _context2.t0);
+            alert("Error adding to cart. Please try again.");
+          case 31:
+          case "end":
+            return _context2.stop();
+        }
+      }, _callee2, null, [[10, 27]]);
+    }));
+    return function handleAddToCart() {
+      return _ref2.apply(this, arguments);
     };
-    var isItemInCart = cart.some(function (item) {
-      return item.id === newItem.id;
-    });
-    if (!isItemInCart) {
-      cart.push(newItem);
-      localStorage.setItem("cart", JSON.stringify(cart));
-      alert("Item added to cart!");
-      var userId = localStorage.getItem("userId");
-      if (userId) {
-        localStorage.setItem("cartCount_".concat(userId), cart.length.toString());
-        window.dispatchEvent(new Event("cartCountUpdated"));
+  }();
+  var handleBuyNow = function handleBuyNow() {
+    if (!product) return;
+    // Ensure product.price is a number
+    var price = Number(product.price);
+    var numericPrice = isNaN(price) ? 0 : price;
+
+    // Navigate directly to checkout with the current product as the only selected item.
+    navigate("/checkout", {
+      state: {
+        selectedItems: [{
+          product_id: product.id,
+          product_name: product.product_name,
+          price: numericPrice,
+          brand: product.brand ? product.brand.name : "N/A"
+        }],
+        totalPrice: numericPrice
       }
-    } else {
-      alert("Item is already in the cart.");
-    }
+    });
   };
   if (loading) return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("h2", {
     children: "Loading..."
@@ -55203,6 +55280,7 @@ var ProductDetails = function ProductDetails() {
               children: "\uD83D\uDED2 Add to Cart"
             }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("button", {
               className: "buy-now",
+              onClick: handleBuyNow,
               children: "Buy Now"
             })]
           })]
@@ -57050,6 +57128,9 @@ var Checkout = function Checkout() {
     },
     selectedItems = _ref.selectedItems,
     totalPrice = _ref.totalPrice;
+
+  // Convert totalPrice to a number safely
+  var numericTotalPrice = !isNaN(parseFloat(totalPrice)) ? parseFloat(totalPrice) : 0;
   var _useState = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)({
       fullname: "",
       phone: "",
@@ -57174,7 +57255,6 @@ var Checkout = function Checkout() {
           case 5:
             addressData = {
               user_id: userId,
-              // Ensure user_id is included
               street: address.street,
               barangay: address.barangay,
               city: address.city,
@@ -57184,7 +57264,7 @@ var Checkout = function Checkout() {
               postal_code: address.postalCode,
               is_default: true
             };
-            console.log("Sending address data:", addressData); // ✅ Log request payload
+            console.log("Sending address data:", addressData);
             _context2.next = 9;
             return axios__WEBPACK_IMPORTED_MODULE_2___default().post("http://127.0.0.1:8000/api/address", addressData, {
               headers: {
@@ -57194,7 +57274,7 @@ var Checkout = function Checkout() {
             });
           case 9:
             response = _context2.sent;
-            console.log("Address saved successfully:", response.data); // ✅ Log success response
+            console.log("Address saved successfully:", response.data);
             alert("Address saved successfully!");
             setIsEditing(false);
             _context2.next = 20;
@@ -57281,7 +57361,7 @@ var Checkout = function Checkout() {
                     children: "Subtotal"
                   })
                 }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)("td", {
-                  children: ["PHP ", totalPrice.toFixed(2)]
+                  children: ["PHP ", numericTotalPrice.toFixed(2)]
                 })]
               }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)("tr", {
                 children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("td", {
@@ -57297,7 +57377,7 @@ var Checkout = function Checkout() {
                     children: "Grand Total"
                   })
                 }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)("td", {
-                  children: ["PHP ", (totalPrice + 70).toFixed(2)]
+                  children: ["PHP ", (numericTotalPrice + 70).toFixed(2)]
                 })]
               })]
             })
@@ -57335,11 +57415,11 @@ var Checkout = function Checkout() {
         children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("button", {
           className: "proceed-btn",
           onClick: function onClick() {
-            var updatedAddress = _objectSpread({}, address); // Ensure you pass the latest state
+            var updatedAddress = _objectSpread({}, address);
             navigate("/payment", {
               state: {
                 selectedItems: selectedItems,
-                totalPrice: totalPrice,
+                totalPrice: numericTotalPrice,
                 address: updatedAddress
               }
             });
