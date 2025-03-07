@@ -25,43 +25,37 @@ Route::get("category-types", [CategoryTypeController::class, "index"]);
 Route::get("/products-by-category-type", [ProductsController::class, "getProductsByCategoryType"]);
 Route::resource('brands', BrandController::class);
 
-// Address Routes
-
-
-// Order and Payment Routes
+// Public Order and Payment Routes
 Route::apiResource('orders', OrderController::class);
 Route::apiResource('payments', PaymentController::class);
-
 Route::apiResource('shippings', ShippingController::class);
 Route::apiResource('purchases', PurchaseController::class);
 
+// Public Address Routes
 Route::get('address', [AddressController::class, 'index']);
 Route::get('address/user/{userId}', [AddressController::class, 'getByUser']);
 Route::post('address/{id}', [AddressController::class, 'update']);
 
 // Protected Routes (Require auth:api)
 Route::group(["middleware" => ["auth:api"]], function() {
+    // User Profile Routes
     Route::get("profile", [ApiController::class, "profile"]);
     Route::put("profile/update", [ApiController::class, "updateProfile"]);
     Route::post("logout", [ApiController::class, "logout"]);
 
+    // Cart Routes
     Route::post('carts', [CartController::class, 'addToCart']);
     Route::get('carts', [CartController::class, 'index']);
     Route::post('/carts/delete', [CartController::class, 'bulkDestroy']);
 
-    // Address Routes
-Route::get('address', [AddressController::class, 'index']);
-// Route::post('/address', [AddressController::class, 'store']);
-Route::get('address/user/{userId}', [AddressController::class, 'getByUser']);
-// Route::put('address/{id}', [AddressController::class, 'update']); 
-Route::post('/address', [AddressController::class, 'storeOrUpdate']);
+    // Protected Address Routes
+    Route::post('/address', [AddressController::class, 'storeOrUpdate']);
 
-
-    // ✅ NEW: Only admins can fetch all users
+    // Chat Routes
     Route::get('chat/{otherUserId}', [ChatController::class, 'getMessages']);
     Route::post('chat/send', [ChatController::class, 'sendMessage']);
     Route::get('chat/customer-chats', [ChatController::class, 'getAllCustomerChats']);
 
+    // Admin Routes
     Route::get("users", [ApiController::class, "getAllUsers"]);
-
 });
