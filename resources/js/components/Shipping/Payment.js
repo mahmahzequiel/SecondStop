@@ -68,25 +68,36 @@ const [address, setAddress] = useState(receivedAddress || {
     }, []);
 
     const removePurchasedItemsFromCart = async (cartIds) => {
-        try {
-            if (!Array.isArray(cartIds) || cartIds.length === 0) {
-                console.warn("⚠ No valid cart items to remove.");
-                return;
-            }
-    
-            const userToken = localStorage.getItem("userToken");
-    
-            await axios.post(
-                "http://127.0.0.1:8000/api/carts/delete",
-                { cart_ids: cartIds },  // Ensure cart_ids is an array
-                { headers: { Authorization: `Bearer ${userToken}` } }
-            );
-    
-            console.log("✅ Purchased items removed from cart:", cartIds);
-        } catch (error) {
-            console.error("❌ Failed to remove purchased items:", error.response?.data || error);
+      try {
+        if (!Array.isArray(cartIds) || cartIds.length === 0) {
+          console.warn("⚠ No valid cart items to remove.");
+          return;
         }
+    
+        const userToken = localStorage.getItem("userToken");
+    
+        await axios.post(
+          "http://127.0.0.1:8000/api/carts/delete",
+          { cart_ids: cartIds },
+          { headers: { Authorization: `Bearer ${userToken}` } }
+        );
+    
+        console.log("✅ Purchased items removed from cart:", cartIds);
+    
+        // Update the user-specific cart count
+        const userId = localStorage.getItem("userId");
+        if (userId) {
+          let currentCount = parseInt(localStorage.getItem(`cartCount_${userId}`)) || 0;
+          const newCount = Math.max(0, currentCount - cartIds.length);
+          localStorage.setItem(`cartCount_${userId}`, newCount.toString());
+          // Dispatch the custom event so Header updates immediately
+          window.dispatchEvent(new Event("cartCountUpdated"));
+        }
+      } catch (error) {
+        console.error("❌ Failed to remove purchased items:", error.response?.data || error);
+      }
     };
+    
     
 
     const handlePaymentSuccess = async (details) => {

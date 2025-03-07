@@ -1,4 +1,5 @@
-import React, { useState } from "react";
+// Header.js
+import React, { useState, useEffect } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import {
   BellOutlined,
@@ -6,16 +7,35 @@ import {
   UserOutlined,
   SearchOutlined,
 } from "@ant-design/icons";
-import { message } from "antd"; // Import message for notifications
+import { message } from "antd";
 
-function Header({ onSearch = () => {} }) { 
+function Header({ onSearch = () => {} }) {
   const [searchQuery, setSearchQuery] = useState("");
   const navigate = useNavigate();
-  const isAuthenticated = localStorage.getItem("userToken"); // Check if user is logged in
+  const isAuthenticated = localStorage.getItem("userToken");
+  const userId = localStorage.getItem("userId");
+
+  // Initialize from localStorage using a user-specific key
+  const [cartCount, setCartCount] = useState(
+    parseInt(localStorage.getItem(`cartCount_${userId}`)) || 0
+  );
+
+  useEffect(() => {
+    const handleCartCountUpdate = () => {
+      const storedCount = parseInt(localStorage.getItem(`cartCount_${userId}`)) || 0;
+      setCartCount(storedCount);
+    };
+
+    window.addEventListener("cartCountUpdated", handleCartCountUpdate);
+
+    return () => {
+      window.removeEventListener("cartCountUpdated", handleCartCountUpdate);
+    };
+  }, [userId]);
 
   const handleProfileClick = (e) => {
     if (!isAuthenticated) {
-      e.preventDefault(); // Prevent navigation
+      e.preventDefault();
       message.warning("You must log in or sign up first!");
     }
   };
@@ -41,9 +61,28 @@ function Header({ onSearch = () => {} }) {
 
       <div className="navbar-icons">
         <BellOutlined className="icon" />
-        <Link to="/cart">
+
+        {/* CART ICON WITH BADGE */}
+        <Link to="/cart" style={{ position: "relative" }}>
           <ShoppingCartOutlined className="icon" />
+          {cartCount > 0 && (
+            <span
+              style={{
+                position: "absolute",
+                top: "-8px",
+                right: "-8px",
+                backgroundColor: "red",
+                color: "#fff",
+                borderRadius: "50%",
+                padding: "2px 6px",
+                fontSize: "0.8rem",
+              }}
+            >
+              {cartCount}
+            </span>
+          )}
         </Link>
+
         <Link to={isAuthenticated ? "/profile" : "#"} onClick={handleProfileClick}>
           <UserOutlined className="icon" />
         </Link>

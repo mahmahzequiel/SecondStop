@@ -1,3 +1,4 @@
+// logout.js
 import React, { useEffect } from "react";
 import { message } from "antd";
 import axios from "axios";
@@ -21,12 +22,16 @@ const Logout = () => {
         console.error("Logout error:", error);
         message.error("Logout error. Please try again.");
       } finally {
+        // Remove user-specific cart count if it exists
+        const userId = localStorage.getItem("userId");
+        if (userId) {
+          localStorage.removeItem("cartCount_" + userId);
+        }
         localStorage.removeItem("userToken");
-        localStorage.removeItem("userId"); // ✅ Ensure userId is also removed
+        localStorage.removeItem("userId");
         delete axios.defaults.headers.common["Authorization"];
         navigate("/LogIn");
       }
-      
     };
 
     performLogout();

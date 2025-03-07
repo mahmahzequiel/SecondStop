@@ -1,3 +1,4 @@
+// login.js
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
@@ -13,15 +14,32 @@ export default function Login() {
 
   const togglePasswordState = () => setShowPassword((prev) => !prev);
 
+  // Helper function to fetch the current user's cart count
+  const fetchCartCountForUser = async (userId) => {
+    const token = localStorage.getItem("userToken");
+    try {
+      const response = await axios.get("http://127.0.0.1:8000/api/carts", {
+        headers: { Authorization: `Bearer ${token}` },
+      });
+      const items = Array.isArray(response.data) ? response.data : [];
+      const count = items.length;
+      localStorage.setItem(`cartCount_${userId}`, count.toString());
+      // Dispatch custom event so Header updates immediately
+      window.dispatchEvent(new Event("cartCountUpdated"));
+    } catch (error) {
+      console.error("Error fetching cart count", error);
+    }
+  };
+
   const handleLogin = async (e) => {
     e.preventDefault();
     setError("");
-  
+
     if (!email || !password) {
       setError("Please enter both email and password.");
       return;
     }
-  
+
     setLoading(true);
     try {
       const response = await axios.post(
@@ -29,15 +47,16 @@ export default function Login() {
         { email, password },
         { headers: { "Content-Type": "application/json" } }
       );
-  
+
       const { access_token, user } = response.data;
       if (access_token) {
         // Store token and userId separately
         localStorage.setItem("userToken", access_token);
-        localStorage.setItem("userId", user.id); // ✅ Store userId separately
+        localStorage.setItem("userId", user.id);
         axios.defaults.headers.common["Authorization"] = `Bearer ${access_token}`;
         localStorage.setItem("user", JSON.stringify(user));
-  
+        // Fetch and update the cart count for the logged-in user
+        await fetchCartCountForUser(user.id);
         if (user.role_id === 2) {
           navigate("/admin");
         } else {
@@ -53,7 +72,6 @@ export default function Login() {
       setLoading(false);
     }
   };
-  
 
   return (
     <div className="login-container">
@@ -91,9 +109,7 @@ export default function Login() {
                   onChange={(e) => setPassword(e.target.value)}
                 />
                 <i
-                  className={`bx ${
-                    showPassword ? "bx-show" : "bx-low-vision"
-                  } bx-sm icon-right`}
+                  className={`bx ${showPassword ? "bx-show" : "bx-low-vision"} bx-sm icon-right`}
                   onClick={togglePasswordState}
                 ></i>
               </div>

@@ -1,8 +1,9 @@
+// ProductDetails.js
 import { useEffect, useState } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import axios from "axios";
-import MainPage from "../Reusable/MainPage"; // Import MainPage
-import { ArrowLeftOutlined } from "@ant-design/icons"; // Import Ant Design back icon
+import MainPage from "../Reusable/MainPage";
+import { ArrowLeftOutlined } from "@ant-design/icons";
 
 const ProductDetails = () => {
   const { id } = useParams();
@@ -37,12 +38,17 @@ const ProductDetails = () => {
       price: product.price,
     };
 
-    // Prevent duplicate entries
     const isItemInCart = cart.some((item) => item.id === newItem.id);
     if (!isItemInCart) {
       cart.push(newItem);
       localStorage.setItem("cart", JSON.stringify(cart));
       alert("Item added to cart!");
+      
+      const userId = localStorage.getItem("userId");
+      if (userId) {
+        localStorage.setItem(`cartCount_${userId}`, cart.length.toString());
+        window.dispatchEvent(new Event("cartCountUpdated"));
+      }
     } else {
       alert("Item is already in the cart.");
     }
@@ -55,7 +61,6 @@ const ProductDetails = () => {
   return (
     <MainPage>
       <div className="product-details-container">
-        {/* Back Button with Ant Design Icon */}
         <button className="back-button" onClick={() => navigate(-1)}>
           <ArrowLeftOutlined /> Back
         </button>
@@ -71,12 +76,16 @@ const ProductDetails = () => {
 
           <div className="product-info">
             <h1>{product.product_name}</h1>
-            <p className="price">Price: <span>PHP {product.price}</span></p>
+            <p className="price">
+              Price: <span>PHP {product.price}</span>
+            </p>
             <p><strong>Description:</strong> {product.description}</p>
             <p><strong>Brand:</strong> {product.brand ? product.brand.name : "N/A"}</p>
 
             <div className="buttons">
-              <button className="add-to-cart" onClick={handleAddToCart}>🛒 Add to Cart</button>
+              <button className="add-to-cart" onClick={handleAddToCart}>
+                🛒 Add to Cart
+              </button>
               <button className="buy-now">Buy Now</button>
             </div>
           </div>

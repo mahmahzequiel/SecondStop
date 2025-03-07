@@ -1,3 +1,4 @@
+// Carts.js
 import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { DeleteOutlined } from "@ant-design/icons";
@@ -9,32 +10,39 @@ const Carts = () => {
   const [selectedItems, setSelectedItems] = useState([]);
   const [selectAll, setSelectAll] = useState(false);
   const navigate = useNavigate();
+  const userId = localStorage.getItem("userId");
 
   useEffect(() => {
     const fetchCartItems = async () => {
-        try {
-            const userToken = localStorage.getItem("userToken");
-            if (!userToken) {
-                alert("Please log in to view your cart.");
-                navigate("/login");
-                return;
-            }
-
-            const response = await axios.get("http://127.0.0.1:8000/api/carts", {
-                headers: { Authorization: `Bearer ${userToken}` },
-            });
-
-            console.log("🔄 Updated cart items:", response.data);
-            setCartItems(Array.isArray(response.data) ? response.data : []);
-        } catch (error) {
-            console.error("Error fetching cart items:", error);
+      try {
+        const userToken = localStorage.getItem("userToken");
+        if (!userToken) {
+          alert("Please log in to view your cart.");
+          navigate("/login");
+          return;
         }
+
+        const response = await axios.get("http://127.0.0.1:8000/api/carts", {
+          headers: { Authorization: `Bearer ${userToken}` },
+        });
+
+        const fetchedItems = Array.isArray(response.data) ? response.data : [];
+        setCartItems(fetchedItems);
+
+        // Update user-specific cart count
+        if (userId) {
+          localStorage.setItem(`cartCount_${userId}`, fetchedItems.length.toString());
+          window.dispatchEvent(new Event("cartCountUpdated"));
+        }
+      } catch (error) {
+        console.error("Error fetching cart items:", error);
+      }
     };
 
-    fetchCartItems(); // Fetch updated cart after checkout
-}, []); // Run once on page load
+    fetchCartItems();
+  }, [navigate, userId]);
 
-
+  // Handle select item
   const handleSelectItem = (productId) => {
     setSelectedItems((prevSelected) =>
       prevSelected.includes(productId)
@@ -43,12 +51,14 @@ const Carts = () => {
     );
   };
 
+  // Handle select all
   const handleSelectAll = () => {
     setSelectedItems(selectAll ? [] : cartItems.map((item) => item.id));
     setSelectAll(!selectAll);
   };
 
-  const handleDeleteSelected = () => {
+  // Delete selected items
+  const handleDeleteSelected = async () => {
     const userToken = localStorage.getItem("userToken");
     if (!userToken) {
       alert("Please log in to delete items.");
@@ -56,25 +66,32 @@ const Carts = () => {
       return;
     }
 
-    axios
-      .post(
+    try {
+      await axios.post(
         "http://127.0.0.1:8000/api/carts/delete",
         { cart_ids: selectedItems },
         { headers: { Authorization: `Bearer ${userToken}` } }
-      )
-      .then(() => {
-        setCartItems(cartItems.filter((item) => !selectedItems.includes(item.id)));
-        setSelectedItems([]);
-        setSelectAll(false);
-      })
-      .catch((error) => {
-        console.error("Error deleting cart items:", error);
-      });
+      );
+
+      const updatedCart = cartItems.filter((item) => !selectedItems.includes(item.id));
+      setCartItems(updatedCart);
+      setSelectedItems([]);
+      setSelectAll(false);
+
+      if (userId) {
+        localStorage.setItem(`cartCount_${userId}`, updatedCart.length.toString());
+        window.dispatchEvent(new Event("cartCountUpdated"));
+      }
+    } catch (error) {
+      console.error("Error deleting cart items:", error);
+    }
   };
 
   const selectedCartItems = cartItems.filter((item) => selectedItems.includes(item.id));
-  const totalPrice = selectedCartItems.reduce((acc, item) => acc + parseFloat(item.product?.price || 0), 0);
-
+  const totalPrice = selectedCartItems.reduce(
+    (acc, item) => acc + parseFloat(item.product?.price || 0),
+    0
+  );
 
   const handleCheckout = () => {
     const userToken = localStorage.getItem("userToken");
@@ -90,15 +107,17 @@ const Carts = () => {
     }
 
     navigate("/checkout", {
-      state: { selectedItems: selectedCartItems.map(item => ({ 
-        cart_id: item.id, 
-        product_name: item.product?.product_name, 
-        price: item.product?.price, 
-        brand: item.product?.brand 
-      })), totalPrice: totalPrice },
+      state: {
+        selectedItems: selectedCartItems.map((item) => ({
+          cart_id: item.id,
+          product_name: item.product?.product_name,
+          price: item.product?.price,
+          brand: item.product?.brand,
+        })),
+        totalPrice,
+      },
     });
-  }
-    
+  };
 
   return (
     <MainPage>
@@ -114,38 +133,39 @@ const Carts = () => {
                   <th></th>
                   <th>Product</th>
                   <th>Image</th>
-                  <th>Brand</th>
+                  <th>Description</th>
                   <th>Total Price</th>
                 </tr>
               </thead>
               <tbody>
-  {cartItems.map((item) => (
-    <tr key={item.id}>
-      <td>
-        <input
-          type="checkbox"
-          checked={selectedItems.includes(item.id)}
-          onChange={() => handleSelectItem(item.id)}
-        />
-      </td>
-      <td>{item.product?.product_name || "Unknown Product"}</td>
-      <td>
-        <img
-          src={
-            item.product?.product_image
-              ? `http://127.0.0.1:8000/storage/${item.product.product_image}`
-              : "/placeholder.jpg"
-          }
-          alt={item.product?.product_name || "Product Image"}
-          className="cart-image"
-        />
-      </td>
-      <td className="description">{item.product?.description || "No Description"}</td>
-      <td className="price">PHP {item.product?.price || "0"}.00</td>
-    </tr>
-  ))}
-</tbody>
-
+                {cartItems.map((item) => (
+                  <tr key={item.id}>
+                    <td>
+                      <input
+                        type="checkbox"
+                        checked={selectedItems.includes(item.id)}
+                        onChange={() => handleSelectItem(item.id)}
+                      />
+                    </td>
+                    <td>{item.product?.product_name || "Unknown Product"}</td>
+                    <td>
+                      <img
+                        src={
+                          item.product?.product_image
+                            ? `http://127.0.0.1:8000/storage/${item.product.product_image}`
+                            : "/placeholder.jpg"
+                        }
+                        alt={item.product?.product_name || "Product Image"}
+                        className="cart-image"
+                      />
+                    </td>
+                    <td className="description">
+                      {item.product?.description || "No Description"}
+                    </td>
+                    <td className="price">PHP {item.product?.price || "0"}.00</td>
+                  </tr>
+                ))}
+              </tbody>
             </table>
 
             <div className="cart-actions">
@@ -160,7 +180,9 @@ const Carts = () => {
 
               <span className="total-price">Total: PHP {totalPrice.toFixed(2)}</span>
 
-              <button className="checkout-btn" onClick={handleCheckout}>Checkout</button>
+              <button className="checkout-btn" onClick={handleCheckout}>
+                Checkout
+              </button>
             </div>
           </div>
         )}

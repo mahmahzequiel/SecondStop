@@ -58,6 +58,7 @@ function AppContent() {
         <Route path="/mainpage" element={<MainPage />} />
         <Route path="/products" element={<DisplayProducts />} />
         <Route path="/register" element={<Register />} />
+       
         <Route path="/logout" element={<Logout />} />
         <Route path="/profilemain" element={<ProfileMain />} />
         <Route path="/profilesidebar" element={<ProfileSidebar />} />

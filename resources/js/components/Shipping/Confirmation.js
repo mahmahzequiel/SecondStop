@@ -19,6 +19,11 @@ const Confirmation = () => {
     }
   }, [location.state]);
 
+  useEffect(() => {
+    // Ensure the header picks up the updated cart count
+    window.dispatchEvent(new Event("cartCountUpdated"));
+  }, []);
+
   if (!orderDetails) {
     return <p>Loading order details...</p>;
   }

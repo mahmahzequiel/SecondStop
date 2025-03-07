@@ -1,3 +1,4 @@
+// DisplayProducts.js
 import React, { useEffect, useState } from "react";
 import MainPage from "../Reusable/MainPage";
 import { ShoppingCartOutlined } from "@ant-design/icons";
@@ -5,7 +6,6 @@ import { useNavigate } from "react-router-dom";
 import categories from "../Categories/Categories";
 import Filters from "./Filters";
 import axios from "axios";
-
 
 const DisplayProducts = () => {
   const [products, setProducts] = useState([]);
@@ -47,7 +47,7 @@ const DisplayProducts = () => {
     fetchProducts();
   }, [selectedCategoryType]);
 
-  // ✅ Search Filtering
+  // Search Filtering
   const handleSearch = (query) => {
     if (!query.trim()) {
       setFilteredProducts(products);
@@ -62,7 +62,7 @@ const DisplayProducts = () => {
     setFilteredProducts(filtered);
   };
 
-  // ✅ Apply Filters
+  // Apply Filters
   useEffect(() => {
     let filtered = products;
     if (selectedCategory) {
@@ -82,51 +82,52 @@ const DisplayProducts = () => {
     setFilteredProducts(filtered);
   }, [selectedFilters, selectedBrand, products, selectedCategory]);
 
-  // ✅ Add to Cart Functionality
-
-const handleAddToCart = async (product) => {
+  // Add to Cart Functionality
+  const handleAddToCart = async (product) => {
     const userToken = localStorage.getItem("userToken");
-    const userId = localStorage.getItem("userId"); // ✅ Get userId from localStorage
+    const userId = localStorage.getItem("userId");
 
     if (!userToken) {
-        alert("Please log in to add items to the cart.");
-        return;
+      alert("Please log in to add items to the cart.");
+      return;
     }
 
     if (!userId) {
-        alert("User ID is missing. Please log in again.");
-        return;
+      alert("User ID is missing. Please log in again.");
+      return;
     }
 
     try {
-        console.log("Adding to cart:", { userId, productId: product.id });
+      console.log("Adding to cart:", { userId, productId: product.id });
 
-        const response = await axios.post(
-            "http://127.0.0.1:8000/api/carts",
-            { 
-                user_id: userId,  // ✅ Ensure the correct user ID is sent
-                product_id: product.id 
-            },
-            { 
-                headers: { Authorization: `Bearer ${userToken}`, "Content-Type": "application/json" }
-            }
-        );
+      await axios.post(
+        "http://127.0.0.1:8000/api/carts",
+        { 
+          user_id: userId,  
+          product_id: product.id 
+        },
+        { 
+          headers: { Authorization: `Bearer ${userToken}`, "Content-Type": "application/json" }
+        }
+      );
 
-        alert(`${product.product_name} added to cart!`);
+      alert(`${product.product_name} added to cart!`);
+
+      // Update the user-specific cart count
+      let currentCount = parseInt(localStorage.getItem(`cartCount_${userId}`)) || 0;
+      localStorage.setItem(`cartCount_${userId}`, (currentCount + 1).toString());
+      window.dispatchEvent(new Event("cartCountUpdated"));
     } catch (error) {
-        console.error("Error adding to cart:", error.response?.data || error);
-        alert("Error: " + JSON.stringify(error.response?.data.errors || error.response?.data || error));
+      console.error("Error adding to cart:", error.response?.data || error);
+      alert("Error: " + JSON.stringify(error.response?.data.errors || error.response?.data || error));
     }
-};
-
-
-
+  };
 
   if (loading) return <div>Loading...</div>;
   if (error) return <div>Error: {error}</div>;
 
   return (
-    <MainPage onSearch={handleSearch}> {/* ✅ Pass handleSearch to MainPage */}
+    <MainPage onSearch={handleSearch}>
       <div className="display-products">
         {/* Categories at the top */}
         <div className="category-container">
@@ -178,7 +179,6 @@ const handleAddToCart = async (product) => {
                   </div>
                   <div className="description-container">
                     <p>{product.description}</p>
-                    {/* ✅ Add to Cart Button */}
                     <button className="cart-button" onClick={() => handleAddToCart(product)}>
                       <ShoppingCartOutlined className="cart-icon" />
                     </button>
