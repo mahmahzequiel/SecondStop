@@ -20,6 +20,7 @@ Route::post("register", [ApiController::class, "register"]);
 Route::post("login", [ApiController::class, "login"]);
 
 // Public Product API
+Route::put('/products/{id}/restore', [ProductsController::class, 'restore']);
 Route::resource("products", ProductsController::class);
 Route::resource('categories', CategoryController::class);
 Route::get("category-types", [CategoryTypeController::class, "index"]);

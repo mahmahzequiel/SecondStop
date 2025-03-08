@@ -11,10 +11,24 @@ class ProductsController extends Controller
     /**
      * Display a listing of the products.
      */
-    public function index()
+    public function index(Request $request)
     {
-        // Load category, category type, and brand relationships
-        $products = Product::with(['category', 'categoryType', 'brand'])->get();
+        // Get the status filter from the request
+        $status = $request->query('status', 'active'); // Default to 'active'
+
+        // Fetch products based on the status filter
+        $query = Product::with(['category', 'categoryType', 'brand']);
+
+        if ($status === 'archived') {
+            $query->onlyTrashed(); // Fetch only archived (soft deleted) products
+        } elseif ($status === 'all') {
+            $query->withTrashed(); // Fetch all products (including archived)
+        } else {
+            // Default: fetch only active products
+        }
+
+        $products = $query->get();
+
         return response()->json($products);
     }
 
@@ -26,7 +40,7 @@ class ProductsController extends Controller
         $request->validate([
             'category_id' => 'required|exists:categories,id',
             'category_type_id' => 'required|exists:category_types,id',
-            'brand_id' => 'required|exists:brands,id', // Ensure brand_id is valid
+            'brand_id' => 'required|exists:brands,id',
             'product_name' => 'required|string|max:100',
             'description' => 'nullable|string',
             'price' => 'required|numeric',
@@ -98,43 +112,44 @@ class ProductsController extends Controller
     }
 
     /**
-     * Remove the specified product from the database.
+     * Archive the specified product (soft delete).
      */
     public function destroy($id)
-{
-    $product = Product::findOrFail($id);
-    $product->delete(); // Soft delete instead of hard delete
+    {
+        $product = Product::findOrFail($id);
+        $product->delete(); // Soft delete
 
-    return response()->json(['message' => 'Product archived successfully']);
-}
+        return response()->json(['message' => 'Product archived successfully']);
+    }
 
-public function restore($id)
-{
-    $product = Product::withTrashed()->findOrFail($id);
-    $product->restore();
+    /**
+     * Restore the specified archived product.
+     */
+    public function restore($id)
+    {
+        $product = Product::withTrashed()->findOrFail($id);
+        $product->restore();
 
-    return response()->json(['message' => 'Product restored successfully']);
-}
+        return response()->json(['message' => 'Product restored successfully']);
+    }
 
-
-
+    /**
+     * Get products by category type.
+     */
     public function getProductsByCategoryType(Request $request)
-{
-    $categoryTypeId = $request->query('category_type_id'); // Get from query params
+    {
+        $categoryTypeId = $request->query('category_type_id');
 
-    if (!$categoryTypeId) {
-        return response()->json(['error' => 'category_type_id is required'], 400);
+        if (!$categoryTypeId) {
+            return response()->json(['error' => 'category_type_id is required'], 400);
+        }
+
+        if (!\App\Models\CategoryType::where('id', $categoryTypeId)->exists()) {
+            return response()->json(['error' => 'Invalid category_type_id'], 404);
+        }
+
+        $products = Product::where('category_type_id', $categoryTypeId)->get();
+
+        return response()->json($products);
     }
-
-    // Check if the category type exists before querying
-    if (!\App\Models\CategoryType::where('id', $categoryTypeId)->exists()) {
-        return response()->json(['error' => 'Invalid category_type_id'], 404);
-    }
-
-    // Fetch products that belong to the given category type
-    $products = Product::where('category_type_id', $categoryTypeId)->get();
-
-    return response()->json($products);
-}
-
 }

@@ -4,10 +4,11 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\SoftDeletes; // Add this line
 
-class Product extends Model // Renamed from Products to Product
+class Product extends Model
 {
-    use HasFactory;
+    use HasFactory, SoftDeletes; // Enable SoftDeletes
 
     protected $fillable = [
         'category_id',
@@ -18,6 +19,8 @@ class Product extends Model // Renamed from Products to Product
         'price',
         'product_image',
     ];
+
+    protected $dates = ['deleted_at']; // Ensure this is present
 
     /**
      * Get the category that owns the product.
