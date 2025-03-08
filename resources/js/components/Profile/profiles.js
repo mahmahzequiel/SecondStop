@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react"; //hello
+import React, { useEffect, useState } from "react";
 import ProfileMain from "./ProfileMain";
 import { Avatar, Button, Form, Input, Radio, Upload, message, Divider } from "antd";
 import { UserOutlined, UploadOutlined } from "@ant-design/icons";
@@ -10,6 +10,7 @@ const Profiles = () => {
   const [profileData, setProfileData] = useState(null);
   const [selectedFile, setSelectedFile] = useState(null);
   const [uploading, setUploading] = useState(false);
+  const [isEditing, setIsEditing] = useState(false);
 
   // Fetch existing profile on mount and prefill form values
   useEffect(() => {
@@ -63,7 +64,6 @@ const Profiles = () => {
 
     try {
       const token = localStorage.getItem("userToken");
-      // Changed to POST request with proper headers
       const res = await axios.post("http://127.0.0.1:8000/api/profile/update", formData, {
         headers: {
           Authorization: `Bearer ${token}`,
@@ -75,12 +75,14 @@ const Profiles = () => {
         message.success("Profile updated successfully!");
         setProfileData(res.data.profile);
         setSelectedFile(null);
+        setIsEditing(false);
         // Refresh profile data
         const refreshRes = await axios.get("http://127.0.0.1:8000/api/profile", {
           headers: { Authorization: `Bearer ${token}` }
         });
         if (refreshRes.data.status) {
           setProfileData(refreshRes.data.profile);
+          form.setFieldsValue(refreshRes.data.profile);
         }
       } else {
         message.error("Profile update failed.");
@@ -138,12 +140,12 @@ const Profiles = () => {
                 : null
             }
           />
-          <Upload {...uploadProps}>
-            <Button icon={<UploadOutlined />}>
+          <Upload {...uploadProps} showUploadList={false} disabled={!isEditing}>
+            <Button icon={<UploadOutlined />} disabled={!isEditing}>
               {selectedFile ? selectedFile.name : "Select Image"}
             </Button>
           </Upload>
-          {selectedFile && (
+          {selectedFile && isEditing && (
             <Button
               type="link"
               danger
@@ -164,17 +166,16 @@ const Profiles = () => {
           requiredMark={false}
           onFinish={onFinish}
         >
-          {/* Form items remain unchanged */}
           <Form.Item
             label="First Name"
             name="first_name"
             rules={[{ required: true, message: "Please input your first name!" }]}
           >
-            <Input />
+            <Input disabled={!isEditing} />
           </Form.Item>
 
           <Form.Item label="Middle Name" name="middle_name">
-            <Input />
+            <Input disabled={!isEditing} />
           </Form.Item>
 
           <Form.Item
@@ -182,7 +183,7 @@ const Profiles = () => {
             name="last_name"
             rules={[{ required: true, message: "Please input your last name!" }]}
           >
-            <Input />
+            <Input disabled={!isEditing} />
           </Form.Item>
 
           <Form.Item
@@ -190,7 +191,7 @@ const Profiles = () => {
             name="username"
             rules={[{ required: true, message: "Please input your username!" }]}
           >
-            <Input />
+            <Input disabled={!isEditing} />
           </Form.Item>
 
           <Form.Item
@@ -201,7 +202,7 @@ const Profiles = () => {
               { type: "email", message: "Invalid email format" },
             ]}
           >
-            <Input />
+            <Input disabled={!isEditing} />
           </Form.Item>
 
           <Form.Item
@@ -209,7 +210,7 @@ const Profiles = () => {
             name="phone_number"
             rules={[{ required: true, message: "Please input your phone number!" }]}
           >
-            <Input />
+            <Input disabled={!isEditing} />
           </Form.Item>
 
           <Form.Item
@@ -217,23 +218,48 @@ const Profiles = () => {
             name="sex"
             rules={[{ required: true, message: "Please select your gender!" }]}
           >
-            <Radio.Group>
+            <Radio.Group disabled={!isEditing}>
               <Radio value="Male">Male</Radio>
               <Radio value="Female">Female</Radio>
               <Radio value="Other">Other</Radio>
             </Radio.Group>
           </Form.Item>
 
-          <Form.Item wrapperCol={{ span: 24 }} style={{ textAlign: "center" }}>
-            <Button 
-              type="primary" 
-              htmlType="submit" 
-              className="save-button" 
-              loading={uploading || loadingProfile}
-              disabled={uploading}
-            >
-              {uploading ? "Uploading..." : "Save"}
-            </Button>
+          <Form.Item wrapperCol={{ span: 24 }}>
+            <div className="form-actions">
+              {!isEditing ? (
+                <Button 
+                  type="primary" 
+                  onClick={() => setIsEditing(true)}
+                  className="edit-button"
+                >
+                  Edit Profile
+                </Button>
+              ) : (
+                <div className="edit-mode-buttons">
+                  <Button 
+                    type="default" 
+                    onClick={() => {
+                      setIsEditing(false);
+                      form.setFieldsValue(profileData);
+                      setSelectedFile(null);
+                    }}
+                    className="cancel-button"
+                  >
+                    Cancel
+                  </Button>
+                  <Button 
+                    type="primary" 
+                    htmlType="submit" 
+                    className="save-button" 
+                    loading={uploading}
+                    disabled={uploading}
+                  >
+                    {uploading ? "Saving..." : "Save Changes"}
+                  </Button>
+                </div>
+              )}
+            </div>
           </Form.Item>
         </Form>
       </div>

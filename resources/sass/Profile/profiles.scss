@@ -53,18 +53,57 @@
   gap: 20px;
 }
 
-.save-button {
-  background-color: #d84727;
-  border-color: #d84727;
-  border-radius: 6px;
-  height: 40px;
-  padding: 0 30px;
-  font-size: 16px;
-  font-family: 'Inria Serif', serif;
-  margin-top: 20px;
-  
-  &:hover {
-    background-color: #c63c1f;
-    border-color: #c63c1f;
+.form-actions {
+  display: flex;
+  justify-content: flex-end;
+  margin-top: 24px;
+
+  .edit-button {
+    padding: 0 32px;
+    height: 40px;
+    font-size: 16px;
+    border-radius: 6px;
+    background-color: #d84727;
+    border-color: #d84727;
+    
+    &:hover {
+      background-color: #c63c1f !important;
+      border-color: #c63c1f !important;
+    }
+  }
+
+  .edit-mode-buttons {
+    display: flex;
+    gap: 16px; // Added spacing between buttons
+    align-items: center;
+
+    .cancel-button {
+      padding: 0 24px;
+      height: 40px;
+      font-size: 16px;
+      border-radius: 6px;
+      border: 1px solid #d9d9d9;
+      color: #333;
+      
+      &:hover {
+        color: #d84727 !important;
+        border-color: #d84727 !important;
+        background: transparent !important;
+      }
+    }
+
+    .save-button {
+      padding: 0 24px;
+      height: 40px;
+      font-size: 16px;
+      border-radius: 6px;
+      background-color: #d84727;
+      border-color: #d84727;
+      
+      &:hover {
+        background-color: #c63c1f !important;
+        border-color: #c63c1f !important;
+      }
+    }
   }
 }

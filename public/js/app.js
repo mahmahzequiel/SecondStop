@@ -65388,7 +65388,7 @@ function _unsupportedIterableToArray(r, a) { if (r) { if ("string" == typeof r) 
 function _arrayLikeToArray(r, a) { (null == a || a > r.length) && (a = r.length); for (var e = 0, n = Array(a); e < a; e++) n[e] = r[e]; return n; }
 function _iterableToArrayLimit(r, l) { var t = null == r ? null : "undefined" != typeof Symbol && r[Symbol.iterator] || r["@@iterator"]; if (null != t) { var e, n, i, u, a = [], f = !0, o = !1; try { if (i = (t = t.call(r)).next, 0 === l) { if (Object(t) !== t) return; f = !1; } else for (; !(f = (e = i.call(t)).done) && (a.push(e.value), a.length !== l); f = !0); } catch (r) { o = !0, n = r; } finally { try { if (!f && null != t["return"] && (u = t["return"](), Object(u) !== u)) return; } finally { if (o) throw n; } } return a; } }
 function _arrayWithHoles(r) { if (Array.isArray(r)) return r; }
- //hello
+
 
 
 
@@ -65414,6 +65414,10 @@ var Profiles = function Profiles() {
     _useState8 = _slicedToArray(_useState7, 2),
     uploading = _useState8[0],
     setUploading = _useState8[1];
+  var _useState9 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(false),
+    _useState10 = _slicedToArray(_useState9, 2),
+    isEditing = _useState10[0],
+    setIsEditing = _useState10[1];
 
   // Fetch existing profile on mount and prefill form values
   (0,react__WEBPACK_IMPORTED_MODULE_0__.useEffect)(function () {
@@ -65488,7 +65492,7 @@ var Profiles = function Profiles() {
               formData.append("profile_image", selectedFile);
             }
             _context2.prev = 10;
-            token = localStorage.getItem("userToken"); // Changed to POST request with proper headers
+            token = localStorage.getItem("userToken");
             _context2.next = 14;
             return axios__WEBPACK_IMPORTED_MODULE_2___default().post("http://127.0.0.1:8000/api/profile/update", formData, {
               headers: {
@@ -65499,33 +65503,35 @@ var Profiles = function Profiles() {
           case 14:
             res = _context2.sent;
             if (!res.data.status) {
-              _context2.next = 25;
+              _context2.next = 26;
               break;
             }
             antd__WEBPACK_IMPORTED_MODULE_5__["default"].success("Profile updated successfully!");
             setProfileData(res.data.profile);
             setSelectedFile(null);
+            setIsEditing(false);
             // Refresh profile data
-            _context2.next = 21;
+            _context2.next = 22;
             return axios__WEBPACK_IMPORTED_MODULE_2___default().get("http://127.0.0.1:8000/api/profile", {
               headers: {
                 Authorization: "Bearer ".concat(token)
               }
             });
-          case 21:
+          case 22:
             refreshRes = _context2.sent;
             if (refreshRes.data.status) {
               setProfileData(refreshRes.data.profile);
+              form.setFieldsValue(refreshRes.data.profile);
             }
-            _context2.next = 26;
+            _context2.next = 27;
             break;
-          case 25:
-            antd__WEBPACK_IMPORTED_MODULE_5__["default"].error("Profile update failed.");
           case 26:
-            _context2.next = 32;
+            antd__WEBPACK_IMPORTED_MODULE_5__["default"].error("Profile update failed.");
+          case 27:
+            _context2.next = 33;
             break;
-          case 28:
-            _context2.prev = 28;
+          case 29:
+            _context2.prev = 29;
             _context2.t0 = _context2["catch"](10);
             console.error("Update error:", ((_error$response = _context2.t0.response) === null || _error$response === void 0 ? void 0 : _error$response.data) || _context2.t0);
             if ((_error$response2 = _context2.t0.response) !== null && _error$response2 !== void 0 && (_error$response2 = _error$response2.data) !== null && _error$response2 !== void 0 && _error$response2.errors) {
@@ -65534,15 +65540,15 @@ var Profiles = function Profiles() {
             } else {
               antd__WEBPACK_IMPORTED_MODULE_5__["default"].error("Error updating profile. Check console for details.");
             }
-          case 32:
-            _context2.prev = 32;
+          case 33:
+            _context2.prev = 33;
             setUploading(false);
-            return _context2.finish(32);
-          case 35:
+            return _context2.finish(33);
+          case 36:
           case "end":
             return _context2.stop();
         }
-      }, _callee2, null, [[10, 28, 32, 35]]);
+      }, _callee2, null, [[10, 29, 33, 36]]);
     }));
     return function onFinish(_x) {
       return _ref2.apply(this, arguments);
@@ -65587,11 +65593,14 @@ var Profiles = function Profiles() {
           className: "avatar-upload",
           src: profileData !== null && profileData !== void 0 && profileData.profile_image ? "http://127.0.0.1:8000/storage/".concat(profileData.profile_image) : null
         }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)(antd__WEBPACK_IMPORTED_MODULE_9__["default"], _objectSpread(_objectSpread({}, uploadProps), {}, {
+          showUploadList: false,
+          disabled: !isEditing,
           children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)(antd__WEBPACK_IMPORTED_MODULE_10__["default"], {
             icon: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)(_ant_design_icons__WEBPACK_IMPORTED_MODULE_11__["default"], {}),
+            disabled: !isEditing,
             children: selectedFile ? selectedFile.name : "Select Image"
           })
-        })), selectedFile && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)(antd__WEBPACK_IMPORTED_MODULE_10__["default"], {
+        })), selectedFile && isEditing && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)(antd__WEBPACK_IMPORTED_MODULE_10__["default"], {
           type: "link",
           danger: true,
           onClick: function onClick() {
@@ -65621,11 +65630,15 @@ var Profiles = function Profiles() {
             required: true,
             message: "Please input your first name!"
           }],
-          children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)(antd__WEBPACK_IMPORTED_MODULE_12__["default"], {})
+          children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)(antd__WEBPACK_IMPORTED_MODULE_12__["default"], {
+            disabled: !isEditing
+          })
         }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)(antd__WEBPACK_IMPORTED_MODULE_4__["default"].Item, {
           label: "Middle Name",
           name: "middle_name",
-          children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)(antd__WEBPACK_IMPORTED_MODULE_12__["default"], {})
+          children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)(antd__WEBPACK_IMPORTED_MODULE_12__["default"], {
+            disabled: !isEditing
+          })
         }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)(antd__WEBPACK_IMPORTED_MODULE_4__["default"].Item, {
           label: "Last Name",
           name: "last_name",
@@ -65633,7 +65646,9 @@ var Profiles = function Profiles() {
             required: true,
             message: "Please input your last name!"
           }],
-          children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)(antd__WEBPACK_IMPORTED_MODULE_12__["default"], {})
+          children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)(antd__WEBPACK_IMPORTED_MODULE_12__["default"], {
+            disabled: !isEditing
+          })
         }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)(antd__WEBPACK_IMPORTED_MODULE_4__["default"].Item, {
           label: "Username",
           name: "username",
@@ -65641,7 +65656,9 @@ var Profiles = function Profiles() {
             required: true,
             message: "Please input your username!"
           }],
-          children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)(antd__WEBPACK_IMPORTED_MODULE_12__["default"], {})
+          children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)(antd__WEBPACK_IMPORTED_MODULE_12__["default"], {
+            disabled: !isEditing
+          })
         }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)(antd__WEBPACK_IMPORTED_MODULE_4__["default"].Item, {
           label: "Email",
           name: "email",
@@ -65652,7 +65669,9 @@ var Profiles = function Profiles() {
             type: "email",
             message: "Invalid email format"
           }],
-          children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)(antd__WEBPACK_IMPORTED_MODULE_12__["default"], {})
+          children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)(antd__WEBPACK_IMPORTED_MODULE_12__["default"], {
+            disabled: !isEditing
+          })
         }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)(antd__WEBPACK_IMPORTED_MODULE_4__["default"].Item, {
           label: "Phone Number",
           name: "phone_number",
@@ -65660,7 +65679,9 @@ var Profiles = function Profiles() {
             required: true,
             message: "Please input your phone number!"
           }],
-          children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)(antd__WEBPACK_IMPORTED_MODULE_12__["default"], {})
+          children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)(antd__WEBPACK_IMPORTED_MODULE_12__["default"], {
+            disabled: !isEditing
+          })
         }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)(antd__WEBPACK_IMPORTED_MODULE_4__["default"].Item, {
           label: "Gender",
           name: "sex",
@@ -65669,6 +65690,7 @@ var Profiles = function Profiles() {
             message: "Please select your gender!"
           }],
           children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)(antd__WEBPACK_IMPORTED_MODULE_13__["default"].Group, {
+            disabled: !isEditing,
             children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)(antd__WEBPACK_IMPORTED_MODULE_13__["default"], {
               value: "Male",
               children: "Male"
@@ -65684,16 +65706,35 @@ var Profiles = function Profiles() {
           wrapperCol: {
             span: 24
           },
-          style: {
-            textAlign: "center"
-          },
-          children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)(antd__WEBPACK_IMPORTED_MODULE_10__["default"], {
-            type: "primary",
-            htmlType: "submit",
-            className: "save-button",
-            loading: uploading || loadingProfile,
-            disabled: uploading,
-            children: uploading ? "Uploading..." : "Save"
+          children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("div", {
+            className: "form-actions",
+            children: !isEditing ? /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)(antd__WEBPACK_IMPORTED_MODULE_10__["default"], {
+              type: "primary",
+              onClick: function onClick() {
+                return setIsEditing(true);
+              },
+              className: "edit-button",
+              children: "Edit Profile"
+            }) : /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)("div", {
+              className: "edit-mode-buttons",
+              children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)(antd__WEBPACK_IMPORTED_MODULE_10__["default"], {
+                type: "default",
+                onClick: function onClick() {
+                  setIsEditing(false);
+                  form.setFieldsValue(profileData);
+                  setSelectedFile(null);
+                },
+                className: "cancel-button",
+                children: "Cancel"
+              }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)(antd__WEBPACK_IMPORTED_MODULE_10__["default"], {
+                type: "primary",
+                htmlType: "submit",
+                className: "save-button",
+                loading: uploading,
+                disabled: uploading,
+                children: uploading ? "Saving..." : "Save Changes"
+              })]
+            })
           })
         })]
       })]
