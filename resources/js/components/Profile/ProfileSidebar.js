@@ -14,10 +14,13 @@ const { SubMenu } = Menu;
 
 function ProfileSidebar({ profileData }) {
   const fullName = profileData
-    ? `${profileData.first_name} ${profileData.middle_name} ${profileData.last_name}`
+    ? `${profileData.first_name} ${profileData.middle_name || ""} ${profileData.last_name}`
     : "User Name";
 
-  const avatarSrc = profileData?.avatar || null;
+  // Get the profile image URL from the updated profile data
+  const avatarSrc = profileData?.profile_image 
+    ? `http://127.0.0.1:8000/storage/${profileData.profile_image}`
+    : null;
 
   return (
     <div className="profile-sidebar">
@@ -28,14 +31,13 @@ function ProfileSidebar({ profileData }) {
           src={avatarSrc}
           icon={<UserOutlined />}
         />
-        <p className="user-fullname">{fullName}</p>
+        <p className="user-fullname">{fullName.trim()}</p>
       </div>
 
-      {/* Make the SubMenu open by default: */}
       <Menu
         mode="inline"
         style={{ border: "none" }}
-        defaultOpenKeys={['sub1']}  // <--- expanded by default
+        defaultOpenKeys={['sub1']}
       >
         <SubMenu key="sub1" icon={<SettingOutlined />} title="Account">
           <Menu.Item key="profile">

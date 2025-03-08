@@ -45,8 +45,8 @@ Route::post('address/{id}', [AddressController::class, 'update']);
 Route::group(["middleware" => ["auth:api"]], function() {
     // User Profile Routes
     Route::get("profile", [ApiController::class, "profile"]);
-    Route::put("profile/update", [ApiController::class, "updateProfile"]);
     Route::post("logout", [ApiController::class, "logout"]);
+    Route::post("profile/update", [ApiController::class, "updateProfile"]);
 
     // Cart Routes
     Route::post('carts', [CartController::class, 'addToCart']);

@@ -13607,6 +13607,7 @@ html, body {
   width: 80px; /* Ensure it matches the Avatar size */
   height: 80px;
   border-radius: 50%;
+  border: 1px solid #333;
 }
 
 /* Form styling */
@@ -13660,6 +13661,7 @@ html, body {
   border-radius: 50%;
   margin-bottom: 0;
   margin-right: 20px;
+  border: 1px solid #333;
 }
 .profile-sidebar .avatar-section .user-fullname {
   font-size: 30px;

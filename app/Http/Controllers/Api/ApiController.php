@@ -7,6 +7,7 @@ use App\Models\Profile;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Storage;
 
 class ApiController extends Controller
 {
@@ -106,60 +107,68 @@ class ApiController extends Controller
 
     // Update profile (must be logged in)
     public function updateProfile(Request $request)
-    {
-        $user = Auth::user();
-        if (!$user) {
-            return response()->json([
-                'status' => false,
-                'message' => 'Unauthorized access',
-            ], 401);
-        }
-
-        $request->validate([
-            'first_name'   => 'required|string|max:255',
-            'last_name'    => 'required|string|max:255',
-            'email'        => 'required|email|max:255|unique:profiles,email,' . $user->id,
-            'phone_number' => 'required|string|max:15|unique:profiles,phone_number,' . $user->id,
-            'address'      => 'nullable|string|max:500',
-            'middle_name'  => 'nullable|string|max:255',
-        ]);
-
-        try {
-            $profile = $user->profile; 
-            if ($profile) {
-                $profile->update([
-                    'first_name'   => $request->first_name,
-                    'middle_name'  => $request->middle_name,
-                    'last_name'    => $request->last_name,
-                    'address'      => $request->address,
-                    'phone_number' => $request->phone_number,
-                    'email'        => $request->email,
-                ]);
-            } else {
-                $profile = Profile::create([
-                    'user_id'      => $user->id,
-                    'first_name'   => $request->first_name,
-                    'middle_name'  => $request->middle_name,
-                    'last_name'    => $request->last_name,
-                    'address'      => $request->address,
-                    'phone_number' => $request->phone_number,
-                    'email'        => $request->email,
-                ]);
-            }
-
-            return response()->json([
-                'status'  => true,
-                'message' => 'Profile updated successfully',
-                'profile' => $profile
-            ]);
-        } catch (\Exception $e) {
-            return response()->json([
-                'status'  => false,
-                'message' => 'Profile update failed',
-                'error'   => $e->getMessage()
-            ], 500);
-        }
+{
+    $user = Auth::user();
+    if (!$user) {
+        return response()->json([
+            'status'  => false,
+            'message' => 'Unauthorized access',
+        ], 401);
     }
+
+    // Get the profile or create if doesn't exist
+    $profile = $user->profile ?? new Profile(['user_id' => $user->id]);
+
+    // Validation rules
+    $request->validate([
+        'first_name'   => 'required|string|max:255',
+        'middle_name'  => 'nullable|string|max:255',
+        'last_name'    => 'required|string|max:255',
+        'email'        => 'required|email|max:255|unique:profiles,email,' . $profile->id,
+        'phone_number' => 'required|string|max:15|unique:profiles,phone_number,' . $profile->id,
+        'sex'          => 'required|in:Male,Female,Other',
+        'profile_image' => 'nullable|file|image|max:2048',
+    ]);
+
+    try {
+        // Update profile fields
+        $profile->first_name = $request->first_name;
+        $profile->middle_name = $request->middle_name;
+        $profile->last_name = $request->last_name;
+        $profile->email = $request->email;
+        $profile->phone_number = $request->phone_number;
+        $profile->sex = $request->sex;
+
+        // Handle file upload
+        if ($request->hasFile('profile_image')) {
+            // Delete old image if exists
+            if ($profile->profile_image) {
+                Storage::disk('public')->delete($profile->profile_image);
+            }
+            
+            $file = $request->file('profile_image');
+            $path = $file->store('profiles', 'public');
+            $profile->profile_image = $path;
+        }
+
+        $profile->save();
+
+        return response()->json([
+            'status'  => true,
+            'message' => 'Profile updated successfully',
+            'profile' => $profile,
+        ]);
+    } catch (\Exception $e) {
+        return response()->json([
+            'status'  => false,
+            'message' => 'Profile update failed',
+            'error'   => $e->getMessage(),
+        ], 500);
+    }
+}
+    
+
+
 
     // Logout
     public function logout()
