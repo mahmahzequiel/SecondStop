@@ -124,6 +124,7 @@ class ApiController extends Controller
         'first_name'   => 'required|string|max:255',
         'middle_name'  => 'nullable|string|max:255',
         'last_name'    => 'required|string|max:255',
+        'username'     => 'required|string|max:255|unique:profiles,username,'.$profile->id,
         'email'        => 'required|email|max:255|unique:profiles,email,' . $profile->id,
         'phone_number' => 'required|string|max:15|unique:profiles,phone_number,' . $profile->id,
         'sex'          => 'required|in:Male,Female,Other',
@@ -135,6 +136,7 @@ class ApiController extends Controller
         $profile->first_name = $request->first_name;
         $profile->middle_name = $request->middle_name;
         $profile->last_name = $request->last_name;
+        $profile->username = $request->username;
         $profile->email = $request->email;
         $profile->phone_number = $request->phone_number;
         $profile->sex = $request->sex;
