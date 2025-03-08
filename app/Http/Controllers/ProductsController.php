@@ -78,39 +78,54 @@ class ProductsController extends Controller
      * Update the specified product in the database.
      */
     public function update(Request $request, $id)
-    {
-        $request->validate([
-            'category_id' => 'required|exists:categories,id',
-            'category_type_id' => 'required|exists:category_types,id',
-            'brand_id' => 'required|exists:brands,id',
-            'product_name' => 'required|string|max:100',
-            'description' => 'nullable|string',
-            'price' => 'required|numeric',
-            'product_image' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
-        ]);
+{
+    // Log the Content-Type header
+    \Log::info('Content-Type:', [$request->header('Content-Type')]);
 
-        $product = Product::findOrFail($id);
-        $product->category_id = $request->category_id;
-        $product->category_type_id = $request->category_type_id;
-        $product->brand_id = $request->brand_id;
-        $product->product_name = $request->product_name;
-        $product->description = $request->description;
-        $product->price = $request->price;
+    // Log all request data (ensure the second argument is always an array)
+    \Log::info('Update Request Data:', $request->all() ?? []);
 
-        if ($request->hasFile('product_image')) {
-            // Delete old image if exists
-            if ($product->product_image) {
-                Storage::disk('public')->delete($product->product_image);
-            }
-            $imagePath = $request->file('product_image')->store('products', 'public');
-            $product->product_image = $imagePath;
+    // Log the uploaded file (if any)
+    \Log::info('Uploaded File:', $request->hasFile('product_image') ? ['file' => $request->file('product_image')->getClientOriginalName()] : ['file' => 'No file uploaded']);
+
+    // Validate the request
+    $request->validate([
+        'category_id' => 'required|exists:categories,id',
+        'category_type_id' => 'required|exists:category_types,id',
+        'brand_id' => 'required|exists:brands,id',
+        'product_name' => 'required|string|max:100',
+        'description' => 'nullable|string',
+        'price' => 'required|numeric',
+        'product_image' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
+    ]);
+
+    // Find the product
+    $product = Product::findOrFail($id);
+
+    // Update product fields
+    $product->category_id = $request->category_id;
+    $product->category_type_id = $request->category_type_id;
+    $product->brand_id = $request->brand_id;
+    $product->product_name = $request->product_name;
+    $product->description = $request->description;
+    $product->price = $request->price;
+
+    // Handle file upload
+    if ($request->hasFile('product_image')) {
+        // Delete old image if exists
+        if ($product->product_image) {
+            Storage::disk('public')->delete($product->product_image);
         }
-
-        $product->save();
-
-        return response()->json($product);
+        // Store new image
+        $imagePath = $request->file('product_image')->store('products', 'public');
+        $product->product_image = $imagePath;
     }
 
+    // Save the product
+    $product->save();
+
+    return response()->json($product);
+}
     /**
      * Archive the specified product (soft delete).
      */

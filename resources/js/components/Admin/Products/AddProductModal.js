@@ -1,6 +1,7 @@
 import React, { useState } from "react";
-import { Modal, Form, Input, Select, Button, message } from "antd";
+import { Modal, Form, Input, Select, Button, message, Upload } from "antd";
 import axios from "axios";
+import { UploadOutlined } from "@ant-design/icons";
 
 const { Option } = Select;
 
@@ -8,6 +9,7 @@ const AddProductModal = ({ visible, setVisible, setProducts, setFilteredProducts
   const [form] = Form.useForm();
   const [confirmVisible, setConfirmVisible] = useState(false);
   const [formValues, setFormValues] = useState(null);
+  const [fileList, setFileList] = useState([]);
 
   const handleFormSubmit = (values) => {
     setFormValues(values); // Store the form values temporarily
@@ -18,7 +20,19 @@ const AddProductModal = ({ visible, setVisible, setProducts, setFilteredProducts
     setConfirmVisible(false);
   
     try {
-      const response = await axios.post("http://127.0.0.1:8000/api/products", formValues);
+      const formData = new FormData();
+      Object.keys(formValues).forEach(key => {
+        formData.append(key, formValues[key]);
+      });
+      if (fileList.length > 0) {
+        formData.append('product_image', fileList[0].originFileObj);
+      }
+
+      const response = await axios.post("http://127.0.0.1:8000/api/products", formData, {
+        headers: {
+          'Content-Type': 'multipart/form-data'
+        }
+      });
   
       if (response.status === 201) {
         let newProduct = response.data;
@@ -42,6 +56,7 @@ const AddProductModal = ({ visible, setVisible, setProducts, setFilteredProducts
   
         message.success("Product added successfully!");
         form.resetFields();
+        setFileList([]);
         setVisible(false);
       }
     } catch (error) {
@@ -49,7 +64,10 @@ const AddProductModal = ({ visible, setVisible, setProducts, setFilteredProducts
       message.error("Failed to add product.");
     }
   };
-  
+
+  const handleFileChange = ({ fileList }) => {
+    setFileList(fileList);
+  };
 
   return (
     <>
@@ -107,6 +125,25 @@ const AddProductModal = ({ visible, setVisible, setProducts, setFilteredProducts
             rules={[{ required: true, message: "Please enter the price!" }]}
           >
             <Input type="number" placeholder="Enter price" />
+          </Form.Item>
+          <Form.Item
+            label="Description"
+            name="description"
+            rules={[{ required: true, message: "Please enter the description!" }]}
+          >
+            <Input.TextArea placeholder="Enter product description" />
+          </Form.Item>
+          <Form.Item
+            label="Product Image"
+            name="product_image"
+          >
+            <Upload
+              fileList={fileList}
+              onChange={handleFileChange}
+              beforeUpload={() => false} // Prevent automatic upload
+            >
+              <Button icon={<UploadOutlined />}>Upload Image</Button>
+            </Upload>
           </Form.Item>
           <Form.Item>
             <Button type="primary" htmlType="submit">
