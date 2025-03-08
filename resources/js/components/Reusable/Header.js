@@ -72,7 +72,7 @@ function Header({ onSearch = () => {} }) {
     };
   }, []);
 
-  // Toggle dropdown when bell icon is clicked (only on bell icon)
+  // Toggle dropdown when bell icon is clicked
   const handleNotificationsClick = (e) => {
     e.stopPropagation();
     setShowNotifications(!showNotifications);
@@ -139,71 +139,43 @@ function Header({ onSearch = () => {} }) {
       <div className="navbar-icons">
         {/* Notification Section */}
         <div className="notification-container" ref={notifRef}>
-          <BellOutlined
-            className="notification-icon icon"
-            onClick={handleNotificationsClick}
-          />
+          <BellOutlined className="notification-icon icon" onClick={handleNotificationsClick} />
           {notificationCount > 0 && (
-            <span
-              className="notification-badge"
-              style={{
-                backgroundColor: "red",
-                color: "#fff", // White text
-                borderRadius: "50%",
-                padding: "2px 6px",
-                fontSize: "0.8rem",
-              }}
-            >
-              {notificationCount}
-            </span>
+            <span className="notification-badge">{notificationCount}</span>
           )}
           {showNotifications && (
             <div className="notification-dropdown">
               <div className="dropdown-header">
-                <h4 style={{ margin: 0 }}>Notifications</h4>
+                <h4>Notifications</h4>
               </div>
               <hr />
               {notifications.length === 0 && (
-                <p style={{ textAlign: "center" }}>No notifications found.</p>
+                <p className="no-notifications">No notifications found.</p>
               )}
               {notifications.map((notif) => (
-                <div
-                  key={notif.id}
-                  className="notification-item"
-                  style={{
-                    display: "flex",
-                    alignItems: "center",
-                    gap: "8px",
-                    marginBottom: "8px",
-                  }}
-                >
+                <div key={notif.id} className="notification-item">
                   {notif.product_image && (
                     <img
+                      className="notification-image"
                       src={
                         notif.product_image.startsWith("http")
                           ? notif.product_image
                           : `http://127.0.0.1:8000/${notif.product_image}`
                       }
                       alt="Product"
-                      style={{
-                        width: "50px",
-                        height: "50px",
-                        objectFit: "cover",
-                      }}
                     />
                   )}
-                  <div>
+                  <div className="notification-details">
                     <strong>{notif.title}</strong>
-                    <div>{notif.description}</div>
-                    <div style={{ fontSize: "0.9em", color: "#888" }}>
+                    <div
+                      className="notification-description"
+                      dangerouslySetInnerHTML={{ __html: notif.description }}
+                    />
+                    <div className="notification-status">
                       Status: {notif.is_read === 0 ? "Unread" : "Read"}
                     </div>
                     {notif.is_read === 0 && (
-                      <button
-                        onClick={() => markAsRead(notif.id)}
-                        className="mark-read-btn"
-                        style={{ marginTop: "4px" }}
-                      >
+                      <button onClick={() => markAsRead(notif.id)} className="mark-read-btn">
                         Mark as Read
                       </button>
                     )}
@@ -220,28 +192,13 @@ function Header({ onSearch = () => {} }) {
         </div>
 
         {/* Cart Icon */}
-        <Link to="/cart" style={{ position: "relative" }}>
+        <Link to="/cart" className="cart-link">
           <ShoppingCartOutlined className="icon" />
-          {cartCount > 0 && (
-            <span
-              style={{
-                position: "absolute",
-                top: "-8px",
-                right: "-8px",
-                backgroundColor: "red",
-                color: "#fff",
-                borderRadius: "50%",
-                padding: "2px 6px",
-                fontSize: "0.8rem",
-              }}
-            >
-              {cartCount}
-            </span>
-          )}
+          {cartCount > 0 && <span className="cart-badge">{cartCount}</span>}
         </Link>
 
         {/* Profile Icon */}
-        <Link to={isAuthenticated ? "/profile" : "#"} onClick={handleProfileClick}>
+        <Link to={isAuthenticated ? "/profile" : "#"} onClick={handleProfileClick} className="profile-link">
           <UserOutlined className="icon" />
         </Link>
       </div>

@@ -12170,6 +12170,7 @@ textarea.form-control-lg {
   display: flex;
   gap: 20px;
   /* Notification Styles */
+  /* Cart Icon */
 }
 .header-layer .navbar-icons .icon {
   font-size: 32px;
@@ -12192,7 +12193,7 @@ textarea.form-control-lg {
   top: -8px;
   right: -8px;
   background-color: red;
-  color: black;
+  color: #fff; /* White text for the count */
   border-radius: 50%;
   padding: 2px 6px;
   font-size: 0.8rem;
@@ -12200,8 +12201,8 @@ textarea.form-control-lg {
 .header-layer .navbar-icons .notification-dropdown {
   position: absolute;
   top: 60px;
-  right: 20px;
-  width: 320px;
+  right: 0;
+  width: 400px;
   max-height: 400px;
   overflow-y: auto;
   background-color: #fff;
@@ -12209,7 +12210,7 @@ textarea.form-control-lg {
   border-radius: 4px;
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
   z-index: 9999;
-  padding: 8px;
+  padding: 12px;
   color: black;
 }
 .header-layer .navbar-icons .notification-dropdown .dropdown-header {
@@ -12217,16 +12218,90 @@ textarea.form-control-lg {
   justify-content: space-between;
   margin-bottom: 8px;
 }
+.header-layer .navbar-icons .notification-dropdown .dropdown-header h4, .header-layer .navbar-icons .notification-dropdown .dropdown-header .h4 {
+  margin: 0;
+}
+.header-layer .navbar-icons .notification-dropdown hr {
+  margin: 8px 0;
+  border: none;
+  border-top: 1px solid #eee;
+}
+.header-layer .navbar-icons .notification-dropdown .no-notifications {
+  text-align: center;
+  margin: 16px 0;
+  color: #888;
+}
 .header-layer .navbar-icons .notification-dropdown .notification-item {
+  display: flex;
+  align-items: flex-start;
+  gap: 16px;
+  margin-bottom: 16px;
   border-bottom: 1px solid #eee;
-  padding: 8px 0;
+  padding-bottom: 8px;
 }
 .header-layer .navbar-icons .notification-dropdown .notification-item:last-child {
   border-bottom: none;
+  margin-bottom: 0;
+}
+.header-layer .navbar-icons .notification-dropdown .notification-item .notification-image {
+  width: 60px;
+  height: 60px;
+  -o-object-fit: cover;
+     object-fit: cover;
+  border-radius: 4px;
+}
+.header-layer .navbar-icons .notification-dropdown .notification-item .notification-details strong {
+  display: block;
+  margin-bottom: 4px;
+}
+.header-layer .navbar-icons .notification-dropdown .notification-item .notification-details .notification-description {
+  white-space: pre-wrap; /* Preserves newlines if needed */
+}
+.header-layer .navbar-icons .notification-dropdown .notification-item .notification-details .notification-status {
+  font-size: 0.9em;
+  color: #888;
+  margin-top: 4px;
+}
+.header-layer .navbar-icons .notification-dropdown .notification-item .notification-details .mark-read-btn {
+  margin-top: 6px;
+  background-color: #f0f0f0;
+  border: none;
+  border-radius: 3px;
+  padding: 4px 8px;
+  cursor: pointer;
+}
+.header-layer .navbar-icons .notification-dropdown .notification-item .notification-details .mark-read-btn:hover {
+  background-color: #e0e0e0;
 }
 .header-layer .navbar-icons .notification-dropdown .dropdown-footer {
   margin-top: 8px;
   text-align: right;
+}
+.header-layer .navbar-icons .notification-dropdown .dropdown-footer button {
+  background-color: #f0f0f0;
+  border: none;
+  border-radius: 3px;
+  padding: 4px 8px;
+  cursor: pointer;
+}
+.header-layer .navbar-icons .notification-dropdown .dropdown-footer button:hover {
+  background-color: #e0e0e0;
+}
+.header-layer .navbar-icons .cart-link {
+  position: relative;
+}
+.header-layer .navbar-icons .cart-link .cart-badge {
+  position: absolute;
+  top: -8px;
+  right: -8px;
+  background-color: red;
+  color: #fff;
+  border-radius: 50%;
+  padding: 2px 6px;
+  font-size: 0.8rem;
+}
+.header-layer .navbar-icons .profile-link {
+  color: white;
 }
 
 /* Category Section - Positioned at the Top */

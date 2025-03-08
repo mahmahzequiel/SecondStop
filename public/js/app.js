@@ -66235,7 +66235,7 @@ function Header(_ref) {
     };
   }, []);
 
-  // Toggle dropdown when bell icon is clicked (only on bell icon)
+  // Toggle dropdown when bell icon is clicked
   var handleNotificationsClick = function handleNotificationsClick(e) {
     e.stopPropagation();
     setShowNotifications(!showNotifications);
@@ -66356,66 +66356,41 @@ function Header(_ref) {
           onClick: handleNotificationsClick
         }), notificationCount > 0 && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("span", {
           className: "notification-badge",
-          style: {
-            backgroundColor: "red",
-            color: "#fff",
-            // White text
-            borderRadius: "50%",
-            padding: "2px 6px",
-            fontSize: "0.8rem"
-          },
           children: notificationCount
         }), showNotifications && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxs)("div", {
           className: "notification-dropdown",
           children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("div", {
             className: "dropdown-header",
             children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("h4", {
-              style: {
-                margin: 0
-              },
               children: "Notifications"
             })
           }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("hr", {}), notifications.length === 0 && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("p", {
-            style: {
-              textAlign: "center"
-            },
+            className: "no-notifications",
             children: "No notifications found."
           }), notifications.map(function (notif) {
             return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxs)("div", {
               className: "notification-item",
-              style: {
-                display: "flex",
-                alignItems: "center",
-                gap: "8px",
-                marginBottom: "8px"
-              },
               children: [notif.product_image && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("img", {
+                className: "notification-image",
                 src: notif.product_image.startsWith("http") ? notif.product_image : "http://127.0.0.1:8000/".concat(notif.product_image),
-                alt: "Product",
-                style: {
-                  width: "50px",
-                  height: "50px",
-                  objectFit: "cover"
-                }
+                alt: "Product"
               }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxs)("div", {
+                className: "notification-details",
                 children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("strong", {
                   children: notif.title
                 }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("div", {
-                  children: notif.description
+                  className: "notification-description",
+                  dangerouslySetInnerHTML: {
+                    __html: notif.description
+                  }
                 }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxs)("div", {
-                  style: {
-                    fontSize: "0.9em",
-                    color: "#888"
-                  },
+                  className: "notification-status",
                   children: ["Status: ", notif.is_read === 0 ? "Unread" : "Read"]
                 }), notif.is_read === 0 && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("button", {
                   onClick: function onClick() {
                     return markAsRead(notif.id);
                   },
                   className: "mark-read-btn",
-                  style: {
-                    marginTop: "4px"
-                  },
                   children: "Mark as Read"
                 })]
               })]
@@ -66430,27 +66405,17 @@ function Header(_ref) {
         })]
       }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxs)(react_router_dom__WEBPACK_IMPORTED_MODULE_3__.Link, {
         to: "/cart",
-        style: {
-          position: "relative"
-        },
+        className: "cart-link",
         children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)(_ant_design_icons__WEBPACK_IMPORTED_MODULE_7__["default"], {
           className: "icon"
         }), cartCount > 0 && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("span", {
-          style: {
-            position: "absolute",
-            top: "-8px",
-            right: "-8px",
-            backgroundColor: "red",
-            color: "#fff",
-            borderRadius: "50%",
-            padding: "2px 6px",
-            fontSize: "0.8rem"
-          },
+          className: "cart-badge",
           children: cartCount
         })]
       }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)(react_router_dom__WEBPACK_IMPORTED_MODULE_3__.Link, {
         to: isAuthenticated ? "/profile" : "#",
         onClick: handleProfileClick,
+        className: "profile-link",
         children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)(_ant_design_icons__WEBPACK_IMPORTED_MODULE_8__["default"], {
           className: "icon"
         })
