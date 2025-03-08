@@ -1,4 +1,3 @@
-// AdminSidebar.js
 import React from "react";
 import { Link } from "react-router-dom";
 import {
@@ -30,14 +29,32 @@ function AdminSidebar() {
         </Link>
       </div>
       <div className="nav-item">
-        <Link to="/allusers" style={{ display: "flex", alignItems: "center", color: "inherit", textDecoration: "none" }}>
+        <Link
+          to="/allusers"
+          style={{
+            display: "flex",
+            alignItems: "center",
+            color: "inherit",
+            textDecoration: "none",
+          }}
+        >
           <UserOutlined className="nav-icon" />
           <span>Users</span>
         </Link>
       </div>
       <div className="nav-item">
-        <AppstoreOutlined className="nav-icon" />
-        <span>Products</span>
+        <Link
+          to="/adminproducts"
+          style={{
+            display: "flex",
+            alignItems: "center",
+            color: "inherit",
+            textDecoration: "none",
+          }}
+        >
+          <AppstoreOutlined className="nav-icon" />
+          <span>Products</span>
+        </Link> {/* Fix: Added the closing </Link> tag here */}
       </div>
       <div className="nav-item">
         <ShoppingCartOutlined className="nav-icon" />
@@ -48,10 +65,18 @@ function AdminSidebar() {
         <span>Customers</span>
       </div>
       <div className="nav-item">
-      <Link to="/adminchat" style={{ display: "flex", alignItems: "center", color: "inherit", textDecoration: "none" }}>
-        <MessageOutlined className="nav-icon" />
-        <span>Messages</span>
-      </Link>
+        <Link
+          to="/adminchat"
+          style={{
+            display: "flex",
+            alignItems: "center",
+            color: "inherit",
+            textDecoration: "none",
+          }}
+        >
+          <MessageOutlined className="nav-icon" />
+          <span>Messages</span>
+        </Link>
       </div>
       <div className="nav-item">
         <Link

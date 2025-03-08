@@ -42,6 +42,7 @@ import AdminChat from "./Admin/AdminChat";
 import AddUserModal from "./Admin/AddUserModal";
 import ProfileSidebar from "./Profile/ProfileSidebar";
 import ProfileMain from "./Profile/ProfileMain";
+import AdminProducts from "./Admin/Products/AdminProducts";
 
 function AppContent() {
   const location = useLocation();
@@ -71,6 +72,7 @@ function AppContent() {
         <Route path="/payment" element={<Payment />} />
         <Route path="/confirmation" element={<Confirmation />} />
         <Route path="/adminlogout" element={<AdminLogout />} />
+        <Route path="/adminproducts" element={<AdminProducts />} />
         <Route path="/admindashboard" element={<AdminDashboard />} />
         <Route path="/allusers" element={<AllUsers />} />
         <Route path="/addusermodal" element={<AddUserModal />} />

@@ -101,15 +101,22 @@ class ProductsController extends Controller
      * Remove the specified product from the database.
      */
     public function destroy($id)
-    {
-        $product = Product::findOrFail($id);
-        if ($product->product_image) {
-            Storage::disk('public')->delete($product->product_image);
-        }
-        $product->delete();
+{
+    $product = Product::findOrFail($id);
+    $product->delete(); // Soft delete instead of hard delete
 
-        return response()->json(['message' => 'Product deleted successfully'], 204);
-    }
+    return response()->json(['message' => 'Product archived successfully']);
+}
+
+public function restore($id)
+{
+    $product = Product::withTrashed()->findOrFail($id);
+    $product->restore();
+
+    return response()->json(['message' => 'Product restored successfully']);
+}
+
+
 
     public function getProductsByCategoryType(Request $request)
 {
