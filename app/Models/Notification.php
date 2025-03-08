@@ -15,6 +15,7 @@ class Notification extends Model
         'title',
         'description',
         'is_read',
+        'product_image', 
     ];
 
     public function user()

@@ -36,8 +36,10 @@ class CreateNotificationsTable extends Migration
             // Actual text/message of the notification
             $table->text('description')->nullable();
 
+            // New column: product_image (stores the image URL or path)
+            $table->string('product_image')->nullable();
+
             // Read/unread status: 0 => unread, 1 => read
-            // Alternatively, you could use $table->boolean('is_read')->default(false);
             $table->tinyInteger('is_read')->default(0);
 
             // Timestamps for created_at, updated_at

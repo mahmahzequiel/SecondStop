@@ -117,11 +117,11 @@ const DisplayProducts = () => {
       // If not a duplicate, proceed to add
       await axios.post(
         "http://127.0.0.1:8000/api/carts",
-        { 
-          user_id: userId,  
-          product_id: product.id 
+        {
+          user_id: userId,
+          product_id: product.id
         },
-        { 
+        {
           headers: { Authorization: `Bearer ${userToken}`, "Content-Type": "application/json" }
         }
       );
@@ -182,10 +182,16 @@ const DisplayProducts = () => {
               filteredProducts.map((product) => (
                 <div key={product.id} className="product-item">
                   <div onClick={() => navigate(`/product/${product.id}`)}>
-                    {product.product_image && (
+                    {product.product_image ? (
                       <img
                         src={`http://127.0.0.1:8000/${product.product_image}`}
                         alt={product.product_name}
+                        className="product-image"
+                      />
+                    ) : (
+                      <img
+                        src="/placeholder.jpg"
+                        alt="Placeholder"
                         className="product-image"
                       />
                     )}

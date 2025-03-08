@@ -10,7 +10,6 @@ import {
 import { message } from "antd";
 import axios from "axios";
 
-
 function Header({ onSearch = () => {} }) {
   const [notificationCount, setNotificationCount] = useState(0);
   const [notifications, setNotifications] = useState([]);
@@ -75,7 +74,6 @@ function Header({ onSearch = () => {} }) {
 
   // Toggle dropdown when bell icon is clicked (only on bell icon)
   const handleNotificationsClick = (e) => {
-    // Prevent event bubbling so clicking inside dropdown doesn't trigger bell's onClick
     e.stopPropagation();
     setShowNotifications(!showNotifications);
   };
@@ -146,7 +144,18 @@ function Header({ onSearch = () => {} }) {
             onClick={handleNotificationsClick}
           />
           {notificationCount > 0 && (
-            <span className="notification-badge">{notificationCount}</span>
+            <span
+              className="notification-badge"
+              style={{
+                backgroundColor: "red",
+                color: "#fff", // White text
+                borderRadius: "50%",
+                padding: "2px 6px",
+                fontSize: "0.8rem",
+              }}
+            >
+              {notificationCount}
+            </span>
           )}
           {showNotifications && (
             <div className="notification-dropdown">
@@ -158,21 +167,47 @@ function Header({ onSearch = () => {} }) {
                 <p style={{ textAlign: "center" }}>No notifications found.</p>
               )}
               {notifications.map((notif) => (
-                <div key={notif.id} className="notification-item">
-                  <strong>{notif.title}</strong>
-                  <div>{notif.description}</div>
-                  <div style={{ fontSize: "0.9em", color: "#888" }}>
-                    Status: {notif.is_read === 0 ? "Unread" : "Read"}
-                  </div>
-                  {notif.is_read === 0 && (
-                    <button
-                      onClick={() => markAsRead(notif.id)}
-                      className="mark-read-btn"
-                      style={{ marginTop: "4px" }}
-                    >
-                      Mark as Read
-                    </button>
+                <div
+                  key={notif.id}
+                  className="notification-item"
+                  style={{
+                    display: "flex",
+                    alignItems: "center",
+                    gap: "8px",
+                    marginBottom: "8px",
+                  }}
+                >
+                  {notif.product_image && (
+                    <img
+                      src={
+                        notif.product_image.startsWith("http")
+                          ? notif.product_image
+                          : `http://127.0.0.1:8000/${notif.product_image}`
+                      }
+                      alt="Product"
+                      style={{
+                        width: "50px",
+                        height: "50px",
+                        objectFit: "cover",
+                      }}
+                    />
                   )}
+                  <div>
+                    <strong>{notif.title}</strong>
+                    <div>{notif.description}</div>
+                    <div style={{ fontSize: "0.9em", color: "#888" }}>
+                      Status: {notif.is_read === 0 ? "Unread" : "Read"}
+                    </div>
+                    {notif.is_read === 0 && (
+                      <button
+                        onClick={() => markAsRead(notif.id)}
+                        className="mark-read-btn"
+                        style={{ marginTop: "4px" }}
+                      >
+                        Mark as Read
+                      </button>
+                    )}
+                  </div>
                 </div>
               ))}
               {notifications.length > 0 && (
