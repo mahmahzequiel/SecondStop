@@ -61627,6 +61627,22 @@ var AdminProducts = function AdminProducts() {
       return "$".concat(parseFloat(price).toFixed(2));
     }
   }, {
+    title: "Image",
+    dataIndex: "product_image",
+    key: "product_image",
+    render: function render(image) {
+      return image ? /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("img", {
+        src: "http://127.0.0.1:8000/storage/".concat(image),
+        alt: "Product",
+        style: {
+          width: 50,
+          height: 50,
+          objectFit: "cover",
+          borderRadius: 5
+        }
+      }) : "No Image";
+    }
+  }, {
     title: "Status",
     dataIndex: "is_archived",
     key: "is_archived",
@@ -62278,7 +62294,7 @@ var Carts = function Carts() {
                   children: ((_item$product5 = item.product) === null || _item$product5 === void 0 ? void 0 : _item$product5.product_name) || "Unknown Product"
                 }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("td", {
                   children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("img", {
-                    src: (_item$product6 = item.product) !== null && _item$product6 !== void 0 && _item$product6.product_image ? "http://127.0.0.1:8000/".concat(item.product.product_image) : "/placeholder.jpg",
+                    src: (_item$product6 = item.product) !== null && _item$product6 !== void 0 && _item$product6.product_image ? "http://127.0.0.1:8000/storage/".concat(item.product.product_image) : "/placeholder.jpg",
                     alt: ((_item$product7 = item.product) === null || _item$product7 === void 0 ? void 0 : _item$product7.product_name) || "Product Image",
                     className: "cart-image"
                   })
@@ -63353,7 +63369,7 @@ var DisplayProducts = function DisplayProducts() {
                   return navigate("/product/".concat(product.id));
                 },
                 children: [product.product_image ? /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("img", {
-                  src: "http://127.0.0.1:8000/".concat(product.product_image),
+                  src: "http://127.0.0.1:8000/storage/".concat(product.product_image),
                   alt: product.product_name,
                   className: "product-image"
                 }) : /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("img", {

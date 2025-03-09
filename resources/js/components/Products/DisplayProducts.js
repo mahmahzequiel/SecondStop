@@ -184,7 +184,7 @@ const DisplayProducts = () => {
                   <div onClick={() => navigate(`/product/${product.id}`)}>
                     {product.product_image ? (
                       <img
-                        src={`http://127.0.0.1:8000/${product.product_image}`}
+                      src={`http://127.0.0.1:8000/storage/${product.product_image}`}
                         alt={product.product_name}
                         className="product-image"
                       />

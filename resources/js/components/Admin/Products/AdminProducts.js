@@ -246,6 +246,15 @@ const AdminProducts = () => {
       render: (price) => `$${parseFloat(price).toFixed(2)}`,
     },
     {
+      title: "Image",
+      dataIndex: "product_image",
+      key: "product_image",
+      render: (image) => image ? (
+        <img src={`http://127.0.0.1:8000/storage/${image}`} alt="Product" style={{ width: 50, height: 50, objectFit: "cover", borderRadius: 5 }} />
+      ) : "No Image",
+    },
+    
+    {
       title: "Status",
       dataIndex: "is_archived",
       key: "is_archived",

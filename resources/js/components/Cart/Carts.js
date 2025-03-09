@@ -152,7 +152,7 @@ const Carts = () => {
                       <img
                         src={
                           item.product?.product_image
-                            ? `http://127.0.0.1:8000/${item.product.product_image}`
+                            ? `http://127.0.0.1:8000/storage/${item.product.product_image}`
                             : "/placeholder.jpg"
                         }
                         alt={item.product?.product_name || "Product Image"}
