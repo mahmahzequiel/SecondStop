@@ -1,4 +1,3 @@
-// ProfileSidebar.js
 import React from "react";
 import { Avatar, Menu } from "antd";
 import {
@@ -10,17 +9,51 @@ import {
 } from "@ant-design/icons";
 import { Link } from "react-router-dom";
 
-const { SubMenu } = Menu;
-
 function ProfileSidebar({ profileData }) {
   const fullName = profileData
     ? `${profileData.first_name} ${profileData.middle_name || ""} ${profileData.last_name}`
     : "User Name";
 
-  // Get the profile image URL from the updated profile data
   const avatarSrc = profileData?.profile_image 
     ? `http://127.0.0.1:8000/storage/${profileData.profile_image}`
     : null;
+
+  const menuItems = [
+    {
+      key: "sub1",
+      icon: <SettingOutlined />,
+      label: "Account",
+      children: [
+        {
+          key: "profile",
+          label: <Link to="/profile">Profile</Link>
+        },
+        {
+          key: "change-password",
+          label: <Link to="/change-password">Change Password</Link>
+        },
+        {
+          key: "address",
+          label: <Link to="/address">Address</Link>
+        }
+      ]
+    },
+    {
+      key: "purchases",
+      icon: <FileOutlined />,
+      label: <Link to="/purchases">Purchases</Link>
+    },
+    {
+      key: "faq",
+      icon: <QuestionCircleOutlined />,
+      label: <Link to="/faq">FAQ</Link>
+    },
+    {
+      key: "logout",
+      icon: <LogoutOutlined />,
+      label: <Link to="/logout">Logout</Link>
+    }
+  ];
 
   return (
     <div className="profile-sidebar">
@@ -38,29 +71,8 @@ function ProfileSidebar({ profileData }) {
         mode="inline"
         style={{ border: "none" }}
         defaultOpenKeys={['sub1']}
-      >
-        <SubMenu key="sub1" icon={<SettingOutlined />} title="Account">
-          <Menu.Item key="profile">
-            <Link to="/profile">Profile</Link>
-          </Menu.Item>
-          <Menu.Item key="change-password">
-            <Link to="/change-password">Change Password</Link>
-          </Menu.Item>
-          <Menu.Item key="address">
-            <Link to="/address">Address</Link>
-          </Menu.Item>
-        </SubMenu>
-
-        <Menu.Item key="purchases" icon={<FileOutlined />}>
-          <Link to="/purchases">Purchases</Link>
-        </Menu.Item>
-        <Menu.Item key="faq" icon={<QuestionCircleOutlined />}>
-          <Link to="/faq">FAQ</Link>
-        </Menu.Item>
-        <Menu.Item key="logout" icon={<LogoutOutlined />}>
-          <Link to="/logout">Logout</Link>
-        </Menu.Item>
-      </Menu>
+        items={menuItems}
+      />
     </div>
   );
 }

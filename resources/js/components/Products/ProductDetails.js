@@ -122,7 +122,7 @@ const ProductDetails = () => {
         <div className="product-details">
           <div className="product-image-container">
             <img
-              src={`http://127.0.0.1:8000/${product.product_image}`}
+              src={`http://127.0.0.1:8000/storage/${product.product_image}`}
               alt={product.product_name}
               className="product-image"
             />

@@ -44,6 +44,9 @@ Route::post('address/{id}', [AddressController::class, 'update']);
 
 // Protected Routes (Require auth:api)
 Route::group(["middleware" => ["auth:api"]], function() {
+
+    Route::post('change-password', [ApiController::class, 'changePassword']);
+
     // User Profile Routes
     Route::get("profile", [ApiController::class, "profile"]);
     Route::post("logout", [ApiController::class, "logout"]);

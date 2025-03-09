@@ -9,6 +9,9 @@ const AdminProfile = () => {
   const [form] = Form.useForm();
   const [loadingProfile, setLoadingProfile] = useState(false);
   const [profileData, setProfileData] = useState(null);
+  const [selectedFile, setSelectedFile] = useState(null);
+  const [uploading, setUploading] = useState(false);
+  const [isEditing, setIsEditing] = useState(false);
 
   useEffect(() => {
     const fetchProfile = async () => {
@@ -42,27 +45,117 @@ const AdminProfile = () => {
   }, [form]);
 
   const onFinish = async (values) => {
-    console.log("Updated admin profile values:", values);
-    // Perform your PUT request to update admin profile here
+    setUploading(true);
+    const formData = new FormData();
+    
+    // Convert camelCase to snake_case for backend compatibility
+    formData.append("first_name", values.firstName);
+    formData.append("middle_name", values.middleName || "");
+    formData.append("last_name", values.lastName);
+    formData.append("username", values.username);
+    formData.append("email", values.email);
+    formData.append("phone_number", values.phoneNumber);
+    formData.append("sex", values.gender);
+    
+    if (selectedFile) {
+      formData.append("profile_image", selectedFile);
+    }
+
+    try {
+      const token = localStorage.getItem("userToken");
+      const res = await axios.post("http://127.0.0.1:8000/api/profile/update", formData, {
+        headers: {
+          Authorization: `Bearer ${token}`,
+          "Content-Type": "multipart/form-data",
+        },
+      });
+
+      if (res.data.status) {
+        message.success("Profile updated successfully!");
+        setProfileData(res.data.profile);
+        setSelectedFile(null);
+        setIsEditing(false);
+        // Refresh profile data
+        const refreshRes = await axios.get("http://127.0.0.1:8000/api/profile", {
+          headers: { Authorization: `Bearer ${token}` }
+        });
+        if (refreshRes.data.status) {
+          setProfileData(refreshRes.data.profile);
+          form.setFieldsValue({
+            firstName: refreshRes.data.profile.first_name,
+            middleName: refreshRes.data.profile.middle_name,
+            lastName: refreshRes.data.profile.last_name,
+            username: refreshRes.data.profile.username,
+            email: refreshRes.data.profile.email,
+            phoneNumber: refreshRes.data.profile.phone_number,
+            gender: refreshRes.data.profile.sex,
+          });
+        }
+      } else {
+        message.error("Profile update failed.");
+      }
+    } catch (error) {
+      console.error("Update error:", error.response?.data || error);
+      if (error.response?.data?.errors) {
+        const errors = Object.values(error.response.data.errors).flat();
+        message.error(`Update failed: ${errors.join(", ")}`);
+      } else {
+        message.error("Error updating profile. Check console for details.");
+      }
+    } finally {
+      setUploading(false);
+    }
   };
 
   const uploadProps = {
     beforeUpload: (file) => {
-      // Prevent auto upload
+      const isImage = file.type.startsWith("image/");
+      if (!isImage) {
+        message.error("You can only upload image files!");
+        return false;
+      }
+      const isLt2M = file.size / 1024 / 1024 < 2;
+      if (!isLt2M) {
+        message.error("Image must be smaller than 2MB!");
+        return false;
+      }
+      setSelectedFile(file);
       return false;
     },
+    onChange: (info) => {
+      if (info.file.status === "removed") {
+        setSelectedFile(null);
+      }
+    },
+    showUploadList: false
   };
 
   return (
     <AdminPage>
-      {/* Everything inside here goes into AdminPage’s admin-content area */}
       <div style={{ padding: "20px", background: "#fff", borderRadius: "10px" }}>
         <h2>Admin Profile</h2>
         <div style={{ display: "flex", alignItems: "center", marginBottom: "20px" }}>
-          <Avatar size={80} icon={<UserOutlined />} style={{ marginRight: "20px" }} />
-          <Upload {...uploadProps} showUploadList={false}>
-            <Button icon={<UploadOutlined />}>Select Image</Button>
+          <Avatar 
+            size={80} 
+            icon={<UserOutlined />} 
+            src={profileData?.profile_image && `http://127.0.0.1:8000/storage/${profileData.profile_image}`}
+            style={{ marginRight: "20px" }} 
+          />
+          <Upload {...uploadProps} disabled={!isEditing}>
+            <Button icon={<UploadOutlined />} disabled={!isEditing}>
+              {selectedFile ? selectedFile.name : "Select Image"}
+            </Button>
           </Upload>
+          {selectedFile && isEditing && (
+            <Button
+              type="link"
+              danger
+              onClick={() => setSelectedFile(null)}
+              style={{ marginLeft: 8 }}
+            >
+              Remove
+            </Button>
+          )}
         </div>
 
         <Form form={form} layout="vertical" onFinish={onFinish}>
@@ -73,12 +166,12 @@ const AdminProfile = () => {
                 name="firstName"
                 rules={[{ required: true, message: "Please input your first name!" }]}
               >
-                <Input placeholder="Enter first name" />
+                <Input disabled={!isEditing} />
               </Form.Item>
             </Col>
             <Col span={8}>
               <Form.Item label="Middle Name" name="middleName">
-                <Input placeholder="Enter middle name" />
+                <Input disabled={!isEditing} />
               </Form.Item>
             </Col>
             <Col span={8}>
@@ -87,7 +180,7 @@ const AdminProfile = () => {
                 name="lastName"
                 rules={[{ required: true, message: "Please input your last name!" }]}
               >
-                <Input placeholder="Enter last name" />
+                <Input disabled={!isEditing} />
               </Form.Item>
             </Col>
           </Row>
@@ -97,7 +190,7 @@ const AdminProfile = () => {
             name="username"
             rules={[{ required: true, message: "Please input your username!" }]}
           >
-            <Input placeholder="Enter username" />
+            <Input disabled={!isEditing} />
           </Form.Item>
 
           <Form.Item
@@ -108,7 +201,7 @@ const AdminProfile = () => {
               { type: "email", message: "Invalid email format" },
             ]}
           >
-            <Input placeholder="Enter email" />
+            <Input disabled={!isEditing} />
           </Form.Item>
 
           <Form.Item
@@ -116,7 +209,7 @@ const AdminProfile = () => {
             name="phoneNumber"
             rules={[{ required: true, message: "Please input your phone number!" }]}
           >
-            <Input placeholder="09********" />
+            <Input disabled={!isEditing} />
           </Form.Item>
 
           <Form.Item
@@ -124,7 +217,7 @@ const AdminProfile = () => {
             name="gender"
             rules={[{ required: true, message: "Please select your gender!" }]}
           >
-            <Radio.Group>
+            <Radio.Group disabled={!isEditing}>
               <Radio value="Male">Male</Radio>
               <Radio value="Female">Female</Radio>
               <Radio value="Other">Other</Radio>
@@ -132,13 +225,48 @@ const AdminProfile = () => {
           </Form.Item>
 
           <Form.Item>
-            <Button type="primary" htmlType="submit" style={{ marginRight: "10px" }}>
-              Save
-            </Button>
-            {/* Link to /adminlogout route */}
-            <Link to="/adminlogout">
-              <Button danger>Logout</Button>
-            </Link>
+            <div style={{ display: 'flex', gap: '16px' }}>
+              {!isEditing ? (
+                <Button 
+                  type="primary" 
+                  onClick={() => setIsEditing(true)}
+                >
+                  Edit Profile
+                </Button>
+              ) : (
+                <>
+                  <Button 
+                    type="default" 
+                    onClick={() => {
+                      setIsEditing(false);
+                      form.setFieldsValue({
+                        firstName: profileData.first_name,
+                        middleName: profileData.middle_name,
+                        lastName: profileData.last_name,
+                        username: profileData.username,
+                        email: profileData.email,
+                        phoneNumber: profileData.phone_number,
+                        gender: profileData.sex,
+                      });
+                      setSelectedFile(null);
+                    }}
+                  >
+                    Cancel
+                  </Button>
+                  <Button 
+                    type="primary" 
+                    htmlType="submit" 
+                    loading={uploading}
+                    disabled={uploading}
+                  >
+                    {uploading ? "Saving..." : "Save Changes"}
+                  </Button>
+                </>
+              )}
+              <Link to="/adminlogout">
+                <Button danger>Logout</Button>
+              </Link>
+            </div>
           </Form.Item>
         </Form>
       </div>

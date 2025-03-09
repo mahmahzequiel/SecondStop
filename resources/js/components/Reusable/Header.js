@@ -160,7 +160,7 @@ function Header({ onSearch = () => {} }) {
                       src={
                         notif.product_image.startsWith("http")
                           ? notif.product_image
-                          : `http://127.0.0.1:8000/${notif.product_image}`
+                          : `http://127.0.0.1:8000/storage/${notif.product_image}`
                       }
                       alt="Product"
                     />
