@@ -4872,6 +4872,24 @@ var CloseCircleFilled = { "icon": { "tag": "svg", "attrs": { "fill-rule": "eveno
 
 /***/ }),
 
+/***/ "./node_modules/@ant-design/icons-svg/es/asn/CloseCircleOutlined.js":
+/*!**************************************************************************!*\
+  !*** ./node_modules/@ant-design/icons-svg/es/asn/CloseCircleOutlined.js ***!
+  \**************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+// This icon file is generated automatically.
+var CloseCircleOutlined = { "icon": { "tag": "svg", "attrs": { "fill-rule": "evenodd", "viewBox": "64 64 896 896", "focusable": "false" }, "children": [{ "tag": "path", "attrs": { "d": "M512 64c247.4 0 448 200.6 448 448S759.4 960 512 960 64 759.4 64 512 264.6 64 512 64zm0 76c-205.4 0-372 166.6-372 372s166.6 372 372 372 372-166.6 372-372-166.6-372-372-372zm128.01 198.83c.03 0 .05.01.09.06l45.02 45.01a.2.2 0 01.05.09.12.12 0 010 .07c0 .02-.01.04-.05.08L557.25 512l127.87 127.86a.27.27 0 01.05.06v.02a.12.12 0 010 .07c0 .03-.01.05-.05.09l-45.02 45.02a.2.2 0 01-.09.05.12.12 0 01-.07 0c-.02 0-.04-.01-.08-.05L512 557.25 384.14 685.12c-.04.04-.06.05-.08.05a.12.12 0 01-.07 0c-.03 0-.05-.01-.09-.05l-45.02-45.02a.2.2 0 01-.05-.09.12.12 0 010-.07c0-.02.01-.04.06-.08L466.75 512 338.88 384.14a.27.27 0 01-.05-.06l-.01-.02a.12.12 0 010-.07c0-.03.01-.05.05-.09l45.02-45.02a.2.2 0 01.09-.05.12.12 0 01.07 0c.02 0 .04.01.08.06L512 466.75l127.86-127.86c.04-.05.06-.06.08-.06a.12.12 0 01.07 0z" } }] }, "name": "close-circle", "theme": "outlined" };
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (CloseCircleOutlined);
+
+
+/***/ }),
+
 /***/ "./node_modules/@ant-design/icons-svg/es/asn/CloseOutlined.js":
 /*!********************************************************************!*\
   !*** ./node_modules/@ant-design/icons-svg/es/asn/CloseOutlined.js ***!
@@ -6428,6 +6446,45 @@ var CloseCircleFilled = function CloseCircleFilled(props, ref) {
 var RefIcon = /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1__.forwardRef(CloseCircleFilled);
 if (true) {
   RefIcon.displayName = 'CloseCircleFilled';
+}
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (RefIcon);
+
+/***/ }),
+
+/***/ "./node_modules/@ant-design/icons/es/icons/CloseCircleOutlined.js":
+/*!************************************************************************!*\
+  !*** ./node_modules/@ant-design/icons/es/icons/CloseCircleOutlined.js ***!
+  \************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var _babel_runtime_helpers_esm_extends__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @babel/runtime/helpers/esm/extends */ "./node_modules/@babel/runtime/helpers/esm/extends.js");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_1__);
+/* harmony import */ var _ant_design_icons_svg_es_asn_CloseCircleOutlined__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @ant-design/icons-svg/es/asn/CloseCircleOutlined */ "./node_modules/@ant-design/icons-svg/es/asn/CloseCircleOutlined.js");
+/* harmony import */ var _components_AntdIcon__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../components/AntdIcon */ "./node_modules/@ant-design/icons/es/components/AntdIcon.js");
+
+// GENERATE BY ./scripts/generate.ts
+// DON NOT EDIT IT MANUALLY
+
+
+
+
+var CloseCircleOutlined = function CloseCircleOutlined(props, ref) {
+  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1__.createElement(_components_AntdIcon__WEBPACK_IMPORTED_MODULE_2__["default"], (0,_babel_runtime_helpers_esm_extends__WEBPACK_IMPORTED_MODULE_0__["default"])({}, props, {
+    ref: ref,
+    icon: _ant_design_icons_svg_es_asn_CloseCircleOutlined__WEBPACK_IMPORTED_MODULE_3__["default"]
+  }));
+};
+
+/**![close-circle](data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNTAiIGhlaWdodD0iNTAiIGZpbGw9IiNjYWNhY2EiIGZpbGwtcnVsZT0iZXZlbm9kZCIgdmlld0JveD0iNjQgNjQgODk2IDg5NiIgZm9jdXNhYmxlPSJmYWxzZSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48cGF0aCBkPSJNNTEyIDY0YzI0Ny40IDAgNDQ4IDIwMC42IDQ0OCA0NDhTNzU5LjQgOTYwIDUxMiA5NjAgNjQgNzU5LjQgNjQgNTEyIDI2NC42IDY0IDUxMiA2NHptMCA3NmMtMjA1LjQgMC0zNzIgMTY2LjYtMzcyIDM3MnMxNjYuNiAzNzIgMzcyIDM3MiAzNzItMTY2LjYgMzcyLTM3Mi0xNjYuNi0zNzItMzcyLTM3MnptMTI4LjAxIDE5OC44M2MuMDMgMCAuMDUuMDEuMDkuMDZsNDUuMDIgNDUuMDFhLjIuMiAwIDAxLjA1LjA5LjEyLjEyIDAgMDEwIC4wN2MwIC4wMi0uMDEuMDQtLjA1LjA4TDU1Ny4yNSA1MTJsMTI3Ljg3IDEyNy44NmEuMjcuMjcgMCAwMS4wNS4wNnYuMDJhLjEyLjEyIDAgMDEwIC4wN2MwIC4wMy0uMDEuMDUtLjA1LjA5bC00NS4wMiA0NS4wMmEuMi4yIDAgMDEtLjA5LjA1LjEyLjEyIDAgMDEtLjA3IDBjLS4wMiAwLS4wNC0uMDEtLjA4LS4wNUw1MTIgNTU3LjI1IDM4NC4xNCA2ODUuMTJjLS4wNC4wNC0uMDYuMDUtLjA4LjA1YS4xMi4xMiAwIDAxLS4wNyAwYy0uMDMgMC0uMDUtLjAxLS4wOS0uMDVsLTQ1LjAyLTQ1LjAyYS4yLjIgMCAwMS0uMDUtLjA5LjEyLjEyIDAgMDEwLS4wN2MwLS4wMi4wMS0uMDQuMDYtLjA4TDQ2Ni43NSA1MTIgMzM4Ljg4IDM4NC4xNGEuMjcuMjcgMCAwMS0uMDUtLjA2bC0uMDEtLjAyYS4xMi4xMiAwIDAxMC0uMDdjMC0uMDMuMDEtLjA1LjA1LS4wOWw0NS4wMi00NS4wMmEuMi4yIDAgMDEuMDktLjA1LjEyLjEyIDAgMDEuMDcgMGMuMDIgMCAuMDQuMDEuMDguMDZMNTEyIDQ2Ni43NWwxMjcuODYtMTI3Ljg2Yy4wNC0uMDUuMDYtLjA2LjA4LS4wNmEuMTIuMTIgMCAwMS4wNyAweiIgLz48L3N2Zz4=) */
+var RefIcon = /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1__.forwardRef(CloseCircleOutlined);
+if (true) {
+  RefIcon.displayName = 'CloseCircleOutlined';
 }
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (RefIcon);
 
@@ -16998,6 +17055,27 @@ const genPurePanel = (Component, alignPropName, postProps, defaultPrefixCls, get
   return withPureRenderTheme(PurePanel);
 };
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (genPurePanel);
+
+/***/ }),
+
+/***/ "./node_modules/antd/es/_util/capitalize.js":
+/*!**************************************************!*\
+  !*** ./node_modules/antd/es/_util/capitalize.js ***!
+  \**************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (/* binding */ capitalize)
+/* harmony export */ });
+function capitalize(str) {
+  if (typeof str !== 'string') {
+    return str;
+  }
+  const ret = str.charAt(0).toUpperCase() + str.slice(1);
+  return ret;
+}
 
 /***/ }),
 
@@ -52502,6 +52580,447 @@ const genMotionStyle = token => {
 
 /***/ }),
 
+/***/ "./node_modules/antd/es/tag/CheckableTag.js":
+/*!**************************************************!*\
+  !*** ./node_modules/antd/es/tag/CheckableTag.js ***!
+  \**************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var classnames__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! classnames */ "./node_modules/classnames/index.js");
+/* harmony import */ var classnames__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(classnames__WEBPACK_IMPORTED_MODULE_1__);
+/* harmony import */ var _config_provider__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../config-provider */ "./node_modules/antd/es/config-provider/context.js");
+/* harmony import */ var _style__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./style */ "./node_modules/antd/es/tag/style/index.js");
+"use client";
+
+var __rest = undefined && undefined.__rest || function (s, e) {
+  var t = {};
+  for (var p in s) if (Object.prototype.hasOwnProperty.call(s, p) && e.indexOf(p) < 0) t[p] = s[p];
+  if (s != null && typeof Object.getOwnPropertySymbols === "function") for (var i = 0, p = Object.getOwnPropertySymbols(s); i < p.length; i++) {
+    if (e.indexOf(p[i]) < 0 && Object.prototype.propertyIsEnumerable.call(s, p[i])) t[p[i]] = s[p[i]];
+  }
+  return t;
+};
+
+
+
+
+const CheckableTag = /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.forwardRef((props, ref) => {
+  const {
+      prefixCls: customizePrefixCls,
+      style,
+      className,
+      checked,
+      onChange,
+      onClick
+    } = props,
+    restProps = __rest(props, ["prefixCls", "style", "className", "checked", "onChange", "onClick"]);
+  const {
+    getPrefixCls,
+    tag
+  } = react__WEBPACK_IMPORTED_MODULE_0__.useContext(_config_provider__WEBPACK_IMPORTED_MODULE_2__.ConfigContext);
+  const handleClick = e => {
+    onChange === null || onChange === void 0 ? void 0 : onChange(!checked);
+    onClick === null || onClick === void 0 ? void 0 : onClick(e);
+  };
+  const prefixCls = getPrefixCls('tag', customizePrefixCls);
+  // Style
+  const [wrapCSSVar, hashId, cssVarCls] = (0,_style__WEBPACK_IMPORTED_MODULE_3__["default"])(prefixCls);
+  const cls = classnames__WEBPACK_IMPORTED_MODULE_1___default()(prefixCls, `${prefixCls}-checkable`, {
+    [`${prefixCls}-checkable-checked`]: checked
+  }, tag === null || tag === void 0 ? void 0 : tag.className, className, hashId, cssVarCls);
+  return wrapCSSVar(/*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("span", Object.assign({}, restProps, {
+    ref: ref,
+    style: Object.assign(Object.assign({}, style), tag === null || tag === void 0 ? void 0 : tag.style),
+    className: cls,
+    onClick: handleClick
+  })));
+});
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (CheckableTag);
+
+/***/ }),
+
+/***/ "./node_modules/antd/es/tag/index.js":
+/*!*******************************************!*\
+  !*** ./node_modules/antd/es/tag/index.js ***!
+  \*******************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var classnames__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! classnames */ "./node_modules/classnames/index.js");
+/* harmony import */ var classnames__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(classnames__WEBPACK_IMPORTED_MODULE_1__);
+/* harmony import */ var rc_util_es_omit__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! rc-util/es/omit */ "./node_modules/rc-util/es/omit.js");
+/* harmony import */ var _util_colors__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../_util/colors */ "./node_modules/antd/es/_util/colors.js");
+/* harmony import */ var _util_hooks_useClosable__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ../_util/hooks/useClosable */ "./node_modules/antd/es/_util/hooks/useClosable.js");
+/* harmony import */ var _util_reactNode__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ../_util/reactNode */ "./node_modules/antd/es/_util/reactNode.js");
+/* harmony import */ var _util_warning__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../_util/warning */ "./node_modules/antd/es/_util/warning.js");
+/* harmony import */ var _util_wave__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! ../_util/wave */ "./node_modules/antd/es/_util/wave/index.js");
+/* harmony import */ var _config_provider__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../config-provider */ "./node_modules/antd/es/config-provider/context.js");
+/* harmony import */ var _CheckableTag__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! ./CheckableTag */ "./node_modules/antd/es/tag/CheckableTag.js");
+/* harmony import */ var _style__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./style */ "./node_modules/antd/es/tag/style/index.js");
+/* harmony import */ var _style_presetCmp__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ./style/presetCmp */ "./node_modules/antd/es/tag/style/presetCmp.js");
+/* harmony import */ var _style_statusCmp__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! ./style/statusCmp */ "./node_modules/antd/es/tag/style/statusCmp.js");
+"use client";
+
+var __rest = undefined && undefined.__rest || function (s, e) {
+  var t = {};
+  for (var p in s) if (Object.prototype.hasOwnProperty.call(s, p) && e.indexOf(p) < 0) t[p] = s[p];
+  if (s != null && typeof Object.getOwnPropertySymbols === "function") for (var i = 0, p = Object.getOwnPropertySymbols(s); i < p.length; i++) {
+    if (e.indexOf(p[i]) < 0 && Object.prototype.propertyIsEnumerable.call(s, p[i])) t[p[i]] = s[p[i]];
+  }
+  return t;
+};
+
+
+
+
+
+
+
+
+
+
+
+
+
+const InternalTag = /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.forwardRef((tagProps, ref) => {
+  const {
+      prefixCls: customizePrefixCls,
+      className,
+      rootClassName,
+      style,
+      children,
+      icon,
+      color,
+      onClose,
+      bordered = true,
+      visible: deprecatedVisible
+    } = tagProps,
+    props = __rest(tagProps, ["prefixCls", "className", "rootClassName", "style", "children", "icon", "color", "onClose", "bordered", "visible"]);
+  const {
+    getPrefixCls,
+    direction,
+    tag: tagContext
+  } = react__WEBPACK_IMPORTED_MODULE_0__.useContext(_config_provider__WEBPACK_IMPORTED_MODULE_3__.ConfigContext);
+  const [visible, setVisible] = react__WEBPACK_IMPORTED_MODULE_0__.useState(true);
+  const domProps = (0,rc_util_es_omit__WEBPACK_IMPORTED_MODULE_2__["default"])(props, ['closeIcon', 'closable']);
+  // Warning for deprecated usage
+  if (true) {
+    const warning = (0,_util_warning__WEBPACK_IMPORTED_MODULE_4__.devUseWarning)('Tag');
+    warning.deprecated(!('visible' in tagProps), 'visible', 'visible && <Tag />');
+  }
+  react__WEBPACK_IMPORTED_MODULE_0__.useEffect(() => {
+    if (deprecatedVisible !== undefined) {
+      setVisible(deprecatedVisible);
+    }
+  }, [deprecatedVisible]);
+  const isPreset = (0,_util_colors__WEBPACK_IMPORTED_MODULE_5__.isPresetColor)(color);
+  const isStatus = (0,_util_colors__WEBPACK_IMPORTED_MODULE_5__.isPresetStatusColor)(color);
+  const isInternalColor = isPreset || isStatus;
+  const tagStyle = Object.assign(Object.assign({
+    backgroundColor: color && !isInternalColor ? color : undefined
+  }, tagContext === null || tagContext === void 0 ? void 0 : tagContext.style), style);
+  const prefixCls = getPrefixCls('tag', customizePrefixCls);
+  const [wrapCSSVar, hashId, cssVarCls] = (0,_style__WEBPACK_IMPORTED_MODULE_6__["default"])(prefixCls);
+  // Style
+  const tagClassName = classnames__WEBPACK_IMPORTED_MODULE_1___default()(prefixCls, tagContext === null || tagContext === void 0 ? void 0 : tagContext.className, {
+    [`${prefixCls}-${color}`]: isInternalColor,
+    [`${prefixCls}-has-color`]: color && !isInternalColor,
+    [`${prefixCls}-hidden`]: !visible,
+    [`${prefixCls}-rtl`]: direction === 'rtl',
+    [`${prefixCls}-borderless`]: !bordered
+  }, className, rootClassName, hashId, cssVarCls);
+  const handleCloseClick = e => {
+    e.stopPropagation();
+    onClose === null || onClose === void 0 ? void 0 : onClose(e);
+    if (e.defaultPrevented) {
+      return;
+    }
+    setVisible(false);
+  };
+  const [, mergedCloseIcon] = (0,_util_hooks_useClosable__WEBPACK_IMPORTED_MODULE_7__["default"])((0,_util_hooks_useClosable__WEBPACK_IMPORTED_MODULE_7__.pickClosable)(tagProps), (0,_util_hooks_useClosable__WEBPACK_IMPORTED_MODULE_7__.pickClosable)(tagContext), {
+    closable: false,
+    closeIconRender: iconNode => {
+      const replacement = /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("span", {
+        className: `${prefixCls}-close-icon`,
+        onClick: handleCloseClick
+      }, iconNode);
+      return (0,_util_reactNode__WEBPACK_IMPORTED_MODULE_8__.replaceElement)(iconNode, replacement, originProps => ({
+        onClick: e => {
+          var _a;
+          (_a = originProps === null || originProps === void 0 ? void 0 : originProps.onClick) === null || _a === void 0 ? void 0 : _a.call(originProps, e);
+          handleCloseClick(e);
+        },
+        className: classnames__WEBPACK_IMPORTED_MODULE_1___default()(originProps === null || originProps === void 0 ? void 0 : originProps.className, `${prefixCls}-close-icon`)
+      }));
+    }
+  });
+  const isNeedWave = typeof props.onClick === 'function' || children && children.type === 'a';
+  const iconNode = icon || null;
+  const kids = iconNode ? (/*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(react__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, iconNode, children && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("span", null, children))) : children;
+  const tagNode = /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("span", Object.assign({}, domProps, {
+    ref: ref,
+    className: tagClassName,
+    style: tagStyle
+  }), kids, mergedCloseIcon, isPreset && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_style_presetCmp__WEBPACK_IMPORTED_MODULE_9__["default"], {
+    key: "preset",
+    prefixCls: prefixCls
+  }), isStatus && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_style_statusCmp__WEBPACK_IMPORTED_MODULE_10__["default"], {
+    key: "status",
+    prefixCls: prefixCls
+  }));
+  return wrapCSSVar(isNeedWave ? /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_util_wave__WEBPACK_IMPORTED_MODULE_11__["default"], {
+    component: "Tag"
+  }, tagNode) : tagNode);
+});
+const Tag = InternalTag;
+if (true) {
+  Tag.displayName = 'Tag';
+}
+Tag.CheckableTag = _CheckableTag__WEBPACK_IMPORTED_MODULE_12__["default"];
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (Tag);
+
+/***/ }),
+
+/***/ "./node_modules/antd/es/tag/style/index.js":
+/*!*************************************************!*\
+  !*** ./node_modules/antd/es/tag/style/index.js ***!
+  \*************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__),
+/* harmony export */   prepareComponentToken: () => (/* binding */ prepareComponentToken),
+/* harmony export */   prepareToken: () => (/* binding */ prepareToken)
+/* harmony export */ });
+/* harmony import */ var _ant_design_cssinjs__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @ant-design/cssinjs */ "./node_modules/@ant-design/cssinjs/es/index.js");
+/* harmony import */ var _ant_design_fast_color__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @ant-design/fast-color */ "./node_modules/@ant-design/fast-color/es/index.js");
+/* harmony import */ var _style__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../style */ "./node_modules/antd/es/style/index.js");
+/* harmony import */ var _theme_internal__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../theme/internal */ "./node_modules/@ant-design/cssinjs-utils/es/index.js");
+/* harmony import */ var _theme_internal__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../../theme/internal */ "./node_modules/antd/es/theme/util/genStyleUtils.js");
+
+
+
+
+// ============================== Styles ==============================
+const genBaseStyle = token => {
+  const {
+    paddingXXS,
+    lineWidth,
+    tagPaddingHorizontal,
+    componentCls,
+    calc
+  } = token;
+  const paddingInline = calc(tagPaddingHorizontal).sub(lineWidth).equal();
+  const iconMarginInline = calc(paddingXXS).sub(lineWidth).equal();
+  return {
+    // Result
+    [componentCls]: Object.assign(Object.assign({}, (0,_style__WEBPACK_IMPORTED_MODULE_2__.resetComponent)(token)), {
+      display: 'inline-block',
+      height: 'auto',
+      // https://github.com/ant-design/ant-design/pull/47504
+      marginInlineEnd: token.marginXS,
+      paddingInline,
+      fontSize: token.tagFontSize,
+      lineHeight: token.tagLineHeight,
+      whiteSpace: 'nowrap',
+      background: token.defaultBg,
+      border: `${(0,_ant_design_cssinjs__WEBPACK_IMPORTED_MODULE_0__.unit)(token.lineWidth)} ${token.lineType} ${token.colorBorder}`,
+      borderRadius: token.borderRadiusSM,
+      opacity: 1,
+      transition: `all ${token.motionDurationMid}`,
+      textAlign: 'start',
+      position: 'relative',
+      // RTL
+      [`&${componentCls}-rtl`]: {
+        direction: 'rtl'
+      },
+      '&, a, a:hover': {
+        color: token.defaultColor
+      },
+      [`${componentCls}-close-icon`]: {
+        marginInlineStart: iconMarginInline,
+        fontSize: token.tagIconSize,
+        color: token.colorTextDescription,
+        cursor: 'pointer',
+        transition: `all ${token.motionDurationMid}`,
+        '&:hover': {
+          color: token.colorTextHeading
+        }
+      },
+      [`&${componentCls}-has-color`]: {
+        borderColor: 'transparent',
+        [`&, a, a:hover, ${token.iconCls}-close, ${token.iconCls}-close:hover`]: {
+          color: token.colorTextLightSolid
+        }
+      },
+      '&-checkable': {
+        backgroundColor: 'transparent',
+        borderColor: 'transparent',
+        cursor: 'pointer',
+        [`&:not(${componentCls}-checkable-checked):hover`]: {
+          color: token.colorPrimary,
+          backgroundColor: token.colorFillSecondary
+        },
+        '&:active, &-checked': {
+          color: token.colorTextLightSolid
+        },
+        '&-checked': {
+          backgroundColor: token.colorPrimary,
+          '&:hover': {
+            backgroundColor: token.colorPrimaryHover
+          }
+        },
+        '&:active': {
+          backgroundColor: token.colorPrimaryActive
+        }
+      },
+      '&-hidden': {
+        display: 'none'
+      },
+      // To ensure that a space will be placed between character and `Icon`.
+      [`> ${token.iconCls} + span, > span + ${token.iconCls}`]: {
+        marginInlineStart: paddingInline
+      }
+    }),
+    [`${componentCls}-borderless`]: {
+      borderColor: 'transparent',
+      background: token.tagBorderlessBg
+    }
+  };
+};
+// ============================== Export ==============================
+const prepareToken = token => {
+  const {
+    lineWidth,
+    fontSizeIcon,
+    calc
+  } = token;
+  const tagFontSize = token.fontSizeSM;
+  const tagToken = (0,_theme_internal__WEBPACK_IMPORTED_MODULE_3__.mergeToken)(token, {
+    tagFontSize,
+    tagLineHeight: (0,_ant_design_cssinjs__WEBPACK_IMPORTED_MODULE_0__.unit)(calc(token.lineHeightSM).mul(tagFontSize).equal()),
+    tagIconSize: calc(fontSizeIcon).sub(calc(lineWidth).mul(2)).equal(),
+    // Tag icon is much smaller
+    tagPaddingHorizontal: 8,
+    // Fixed padding.
+    tagBorderlessBg: token.defaultBg
+  });
+  return tagToken;
+};
+const prepareComponentToken = token => ({
+  defaultBg: new _ant_design_fast_color__WEBPACK_IMPORTED_MODULE_1__.FastColor(token.colorFillQuaternary).onBackground(token.colorBgContainer).toHexString(),
+  defaultColor: token.colorText
+});
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ((0,_theme_internal__WEBPACK_IMPORTED_MODULE_4__.genStyleHooks)('Tag', token => {
+  const tagToken = prepareToken(token);
+  return genBaseStyle(tagToken);
+}, prepareComponentToken));
+
+/***/ }),
+
+/***/ "./node_modules/antd/es/tag/style/presetCmp.js":
+/*!*****************************************************!*\
+  !*** ./node_modules/antd/es/tag/style/presetCmp.js ***!
+  \*****************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var ___WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! . */ "./node_modules/antd/es/tag/style/index.js");
+/* harmony import */ var _theme_internal__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../../theme/internal */ "./node_modules/antd/es/theme/util/genPresetColor.js");
+/* harmony import */ var _theme_internal__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../theme/internal */ "./node_modules/antd/es/theme/util/genStyleUtils.js");
+// Style as status component
+
+
+// ============================== Preset ==============================
+const genPresetStyle = token => (0,_theme_internal__WEBPACK_IMPORTED_MODULE_0__["default"])(token, (colorKey, _ref) => {
+  let {
+    textColor,
+    lightBorderColor,
+    lightColor,
+    darkColor
+  } = _ref;
+  return {
+    [`${token.componentCls}${token.componentCls}-${colorKey}`]: {
+      color: textColor,
+      background: lightColor,
+      borderColor: lightBorderColor,
+      // Inverse color
+      '&-inverse': {
+        color: token.colorTextLightSolid,
+        background: darkColor,
+        borderColor: darkColor
+      },
+      [`&${token.componentCls}-borderless`]: {
+        borderColor: 'transparent'
+      }
+    }
+  };
+});
+// ============================== Export ==============================
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ((0,_theme_internal__WEBPACK_IMPORTED_MODULE_1__.genSubStyleComponent)(['Tag', 'preset'], token => {
+  const tagToken = (0,___WEBPACK_IMPORTED_MODULE_2__.prepareToken)(token);
+  return genPresetStyle(tagToken);
+}, ___WEBPACK_IMPORTED_MODULE_2__.prepareComponentToken));
+
+/***/ }),
+
+/***/ "./node_modules/antd/es/tag/style/statusCmp.js":
+/*!*****************************************************!*\
+  !*** ./node_modules/antd/es/tag/style/statusCmp.js ***!
+  \*****************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var ___WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! . */ "./node_modules/antd/es/tag/style/index.js");
+/* harmony import */ var _util_capitalize__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../../_util/capitalize */ "./node_modules/antd/es/_util/capitalize.js");
+/* harmony import */ var _theme_internal__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../theme/internal */ "./node_modules/antd/es/theme/util/genStyleUtils.js");
+
+
+
+const genTagStatusStyle = (token, status, cssVariableType) => {
+  const capitalizedCssVariableType = (0,_util_capitalize__WEBPACK_IMPORTED_MODULE_0__["default"])(cssVariableType);
+  return {
+    [`${token.componentCls}${token.componentCls}-${status}`]: {
+      color: token[`color${cssVariableType}`],
+      background: token[`color${capitalizedCssVariableType}Bg`],
+      borderColor: token[`color${capitalizedCssVariableType}Border`],
+      [`&${token.componentCls}-borderless`]: {
+        borderColor: 'transparent'
+      }
+    }
+  };
+};
+// ============================== Export ==============================
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ((0,_theme_internal__WEBPACK_IMPORTED_MODULE_1__.genSubStyleComponent)(['Tag', 'status'], token => {
+  const tagToken = (0,___WEBPACK_IMPORTED_MODULE_2__.prepareToken)(token);
+  return [genTagStatusStyle(tagToken, 'success', 'Success'), genTagStatusStyle(tagToken, 'processing', 'Info'), genTagStatusStyle(tagToken, 'error', 'Error'), genTagStatusStyle(tagToken, 'warning', 'Warning')];
+}, ___WEBPACK_IMPORTED_MODULE_2__.prepareComponentToken));
+
+/***/ }),
+
 /***/ "./node_modules/antd/es/theme/context.js":
 /*!***********************************************!*\
   !*** ./node_modules/antd/es/theme/context.js ***!
@@ -59233,6 +59752,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _ant_design_icons__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! @ant-design/icons */ "./node_modules/@ant-design/icons/es/icons/ContactsOutlined.js");
 /* harmony import */ var _ant_design_icons__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! @ant-design/icons */ "./node_modules/@ant-design/icons/es/icons/MessageOutlined.js");
 /* harmony import */ var _ant_design_icons__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! @ant-design/icons */ "./node_modules/@ant-design/icons/es/icons/ProfileOutlined.js");
+/* harmony import */ var _ant_design_icons__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! @ant-design/icons */ "./node_modules/@ant-design/icons/es/icons/SettingOutlined.js");
 /* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react/jsx-runtime */ "./node_modules/react/jsx-runtime.js");
 
 
@@ -59245,13 +59765,6 @@ function AdminSidebar() {
       className: "nav-item",
       children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)(react_router_dom__WEBPACK_IMPORTED_MODULE_2__.Link, {
         to: "/admindashboard",
-        style: {
-          display: "flex",
-          alignItems: "center",
-          color: "inherit",
-          textDecoration: "none",
-          width: "100%"
-        },
         children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_ant_design_icons__WEBPACK_IMPORTED_MODULE_3__["default"], {
           className: "nav-icon"
         }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("span", {
@@ -59262,34 +59775,22 @@ function AdminSidebar() {
       className: "nav-item",
       children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)(react_router_dom__WEBPACK_IMPORTED_MODULE_2__.Link, {
         to: "/allusers",
-        style: {
-          display: "flex",
-          alignItems: "center",
-          color: "inherit",
-          textDecoration: "none"
-        },
         children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_ant_design_icons__WEBPACK_IMPORTED_MODULE_4__["default"], {
           className: "nav-icon"
         }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("span", {
           children: "Users"
         })]
       })
-    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)("div", {
+    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("div", {
       className: "nav-item",
-      children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)(react_router_dom__WEBPACK_IMPORTED_MODULE_2__.Link, {
+      children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)(react_router_dom__WEBPACK_IMPORTED_MODULE_2__.Link, {
         to: "/adminproducts",
-        style: {
-          display: "flex",
-          alignItems: "center",
-          color: "inherit",
-          textDecoration: "none"
-        },
         children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_ant_design_icons__WEBPACK_IMPORTED_MODULE_5__["default"], {
           className: "nav-icon"
         }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("span", {
           children: "Products"
         })]
-      }), " "]
+      })
     }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)("div", {
       className: "nav-item",
       children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_ant_design_icons__WEBPACK_IMPORTED_MODULE_6__["default"], {
@@ -59297,23 +59798,20 @@ function AdminSidebar() {
       }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("span", {
         children: "Orders"
       })]
-    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)("div", {
+    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("div", {
       className: "nav-item",
-      children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_ant_design_icons__WEBPACK_IMPORTED_MODULE_7__["default"], {
-        className: "nav-icon"
-      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("span", {
-        children: "Customers"
-      })]
+      children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)(react_router_dom__WEBPACK_IMPORTED_MODULE_2__.Link, {
+        to: "/customers",
+        children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_ant_design_icons__WEBPACK_IMPORTED_MODULE_7__["default"], {
+          className: "nav-icon"
+        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("span", {
+          children: "Customers"
+        })]
+      })
     }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("div", {
       className: "nav-item",
       children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)(react_router_dom__WEBPACK_IMPORTED_MODULE_2__.Link, {
         to: "/adminchat",
-        style: {
-          display: "flex",
-          alignItems: "center",
-          color: "inherit",
-          textDecoration: "none"
-        },
         children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_ant_design_icons__WEBPACK_IMPORTED_MODULE_8__["default"], {
           className: "nav-icon"
         }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("span", {
@@ -59324,17 +59822,20 @@ function AdminSidebar() {
       className: "nav-item",
       children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)(react_router_dom__WEBPACK_IMPORTED_MODULE_2__.Link, {
         to: "/adminprofile",
-        style: {
-          display: "flex",
-          alignItems: "center",
-          color: "inherit",
-          textDecoration: "none",
-          width: "100%"
-        },
         children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_ant_design_icons__WEBPACK_IMPORTED_MODULE_9__["default"], {
           className: "nav-icon"
         }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("span", {
           children: "Profile"
+        })]
+      })
+    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("div", {
+      className: "nav-item",
+      children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)(react_router_dom__WEBPACK_IMPORTED_MODULE_2__.Link, {
+        to: "/adminsettings",
+        children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_ant_design_icons__WEBPACK_IMPORTED_MODULE_10__["default"], {
+          className: "nav-icon"
+        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("span", {
+          children: "Settings"
         })]
       })
     })]
@@ -60534,11 +61035,25 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
 /* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_1__);
 /* harmony import */ var _AdminReusable_AdminPage__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../AdminReusable/AdminPage */ "./resources/js/components/AdminReusable/AdminPage.js");
-/* harmony import */ var _ant_design_icons__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! @ant-design/icons */ "./node_modules/@ant-design/icons/es/icons/SearchOutlined.js");
-/* harmony import */ var _ant_design_icons__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! @ant-design/icons */ "./node_modules/@ant-design/icons/es/icons/EditOutlined.js");
-/* harmony import */ var _ant_design_icons__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! @ant-design/icons */ "./node_modules/@ant-design/icons/es/icons/InboxOutlined.js");
+/* harmony import */ var antd__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! antd */ "./node_modules/antd/es/select/index.js");
+/* harmony import */ var antd__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! antd */ "./node_modules/antd/es/modal/index.js");
+/* harmony import */ var antd__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! antd */ "./node_modules/antd/es/tag/index.js");
+/* harmony import */ var antd__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! antd */ "./node_modules/antd/es/space/index.js");
+/* harmony import */ var antd__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! antd */ "./node_modules/antd/es/input/index.js");
+/* harmony import */ var antd__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(/*! antd */ "./node_modules/antd/es/button/index.js");
+/* harmony import */ var antd__WEBPACK_IMPORTED_MODULE_15__ = __webpack_require__(/*! antd */ "./node_modules/antd/es/table/index.js");
+/* harmony import */ var _ant_design_icons__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! @ant-design/icons */ "./node_modules/@ant-design/icons/es/icons/EditOutlined.js");
+/* harmony import */ var _ant_design_icons__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! @ant-design/icons */ "./node_modules/@ant-design/icons/es/icons/InboxOutlined.js");
+/* harmony import */ var _ant_design_icons__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! @ant-design/icons */ "./node_modules/@ant-design/icons/es/icons/SearchOutlined.js");
+/* harmony import */ var _ant_design_icons__WEBPACK_IMPORTED_MODULE_14__ = __webpack_require__(/*! @ant-design/icons */ "./node_modules/@ant-design/icons/es/icons/PlusOutlined.js");
 /* harmony import */ var _AddUserModal__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./AddUserModal */ "./resources/js/components/Admin/AddUserModal.js");
 /* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! react/jsx-runtime */ "./node_modules/react/jsx-runtime.js");
+function _typeof(o) { "@babel/helpers - typeof"; return _typeof = "function" == typeof Symbol && "symbol" == typeof Symbol.iterator ? function (o) { return typeof o; } : function (o) { return o && "function" == typeof Symbol && o.constructor === Symbol && o !== Symbol.prototype ? "symbol" : typeof o; }, _typeof(o); }
+function ownKeys(e, r) { var t = Object.keys(e); if (Object.getOwnPropertySymbols) { var o = Object.getOwnPropertySymbols(e); r && (o = o.filter(function (r) { return Object.getOwnPropertyDescriptor(e, r).enumerable; })), t.push.apply(t, o); } return t; }
+function _objectSpread(e) { for (var r = 1; r < arguments.length; r++) { var t = null != arguments[r] ? arguments[r] : {}; r % 2 ? ownKeys(Object(t), !0).forEach(function (r) { _defineProperty(e, r, t[r]); }) : Object.getOwnPropertyDescriptors ? Object.defineProperties(e, Object.getOwnPropertyDescriptors(t)) : ownKeys(Object(t)).forEach(function (r) { Object.defineProperty(e, r, Object.getOwnPropertyDescriptor(t, r)); }); } return e; }
+function _defineProperty(e, r, t) { return (r = _toPropertyKey(r)) in e ? Object.defineProperty(e, r, { value: t, enumerable: !0, configurable: !0, writable: !0 }) : e[r] = t, e; }
+function _toPropertyKey(t) { var i = _toPrimitive(t, "string"); return "symbol" == _typeof(i) ? i : i + ""; }
+function _toPrimitive(t, r) { if ("object" != _typeof(t) || !t) return t; var e = t[Symbol.toPrimitive]; if (void 0 !== e) { var i = e.call(t, r || "default"); if ("object" != _typeof(i)) return i; throw new TypeError("@@toPrimitive must return a primitive value."); } return ("string" === r ? String : Number)(t); }
 function _slicedToArray(r, e) { return _arrayWithHoles(r) || _iterableToArrayLimit(r, e) || _unsupportedIterableToArray(r, e) || _nonIterableRest(); }
 function _nonIterableRest() { throw new TypeError("Invalid attempt to destructure non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
 function _unsupportedIterableToArray(r, a) { if (r) { if ("string" == typeof r) return _arrayLikeToArray(r, a); var t = {}.toString.call(r).slice(8, -1); return "Object" === t && r.constructor && (t = r.constructor.name), "Map" === t || "Set" === t ? Array.from(r) : "Arguments" === t || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(t) ? _arrayLikeToArray(r, a) : void 0; } }
@@ -60549,66 +61064,209 @@ function _arrayWithHoles(r) { if (Array.isArray(r)) return r; }
 
 
 
- // import the modal component
 
+
+
+var Option = antd__WEBPACK_IMPORTED_MODULE_5__["default"].Option;
 var USERS_API = "http://127.0.0.1:8000/api/users";
 function AllUsers() {
   var _useState = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)([]),
     _useState2 = _slicedToArray(_useState, 2),
     users = _useState2[0],
     setUsers = _useState2[1];
-  var _useState3 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(""),
+  var _useState3 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(false),
     _useState4 = _slicedToArray(_useState3, 2),
-    search = _useState4[0],
-    setSearch = _useState4[1];
+    loading = _useState4[0],
+    setLoading = _useState4[1];
   var _useState5 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(""),
     _useState6 = _slicedToArray(_useState5, 2),
-    roleFilter = _useState6[0],
-    setRoleFilter = _useState6[1];
+    search = _useState6[0],
+    setSearch = _useState6[1];
   var _useState7 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(""),
     _useState8 = _slicedToArray(_useState7, 2),
-    statusFilter = _useState8[0],
-    setStatusFilter = _useState8[1];
-  var _useState9 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(false),
+    roleFilter = _useState8[0],
+    setRoleFilter = _useState8[1];
+  var _useState9 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(""),
     _useState10 = _slicedToArray(_useState9, 2),
-    isModalVisible = _useState10[0],
-    setIsModalVisible = _useState10[1]; // control modal visibility
-
+    statusFilter = _useState10[0],
+    setStatusFilter = _useState10[1];
+  var _useState11 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(false),
+    _useState12 = _slicedToArray(_useState11, 2),
+    isModalVisible = _useState12[0],
+    setIsModalVisible = _useState12[1];
+  var _useState13 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)([]),
+    _useState14 = _slicedToArray(_useState13, 2),
+    selectedRowKeys = _useState14[0],
+    setSelectedRowKeys = _useState14[1];
   (0,react__WEBPACK_IMPORTED_MODULE_0__.useEffect)(function () {
+    fetchUsers();
+  }, []);
+  var fetchUsers = function fetchUsers() {
+    setLoading(true);
     axios__WEBPACK_IMPORTED_MODULE_1___default().get(USERS_API).then(function (res) {
+      var _res$data, _res$data2;
       console.log("All users response:", res.data);
-      if (res.data && res.data.status && res.data.data && res.data.data.users) {
+      if ((_res$data = res.data) !== null && _res$data !== void 0 && _res$data.status && (_res$data2 = res.data) !== null && _res$data2 !== void 0 && (_res$data2 = _res$data2.data) !== null && _res$data2 !== void 0 && _res$data2.users) {
         setUsers(res.data.data.users);
       } else {
         console.error("Invalid users structure:", res.data);
       }
     })["catch"](function (err) {
       console.error("Error fetching users:", err);
+    })["finally"](function () {
+      setLoading(false);
     });
-  }, []);
+  };
 
-  // Example filtering
-  var filteredUsers = users.filter(function (user) {
-    var name = user.profile ? user.profile.full_name.toLowerCase() : "";
-    var email = (user.email || "").toLowerCase();
-    var combinedString = name + " " + email;
-    var matchesSearch = combinedString.includes(search.toLowerCase());
-    var userRole = user.role_id === 2 ? "Admin" : "Customer";
-    var matchesRole = roleFilter ? userRole === roleFilter : true;
-    var matchesStatus = statusFilter ? user.status === statusFilter : true;
-    return matchesSearch && matchesRole && matchesStatus;
-  });
-
-  // Modal handlers
+  // Handle modal functions
   var handleOpenModal = function handleOpenModal() {
-    setIsModalVisible(true);
+    return setIsModalVisible(true);
   };
   var handleCancelModal = function handleCancelModal() {
-    setIsModalVisible(false);
+    return setIsModalVisible(false);
   };
   var handleSaveModal = function handleSaveModal() {
-    // Insert saving logic here (e.g., form validation, API call, etc.)
     setIsModalVisible(false);
+    fetchUsers(); // Refresh users after adding a new one
+  };
+
+  // Archive/Unarchive single user
+  var toggleUserArchiveStatus = function toggleUserArchiveStatus(userId, currentStatus) {
+    var newStatus = currentStatus === "Archived" ? "Active" : "Archived";
+    var endpoint = newStatus === "Archived" ? "".concat(USERS_API, "/").concat(userId, "/archive") : "".concat(USERS_API, "/").concat(userId, "/restore");
+    antd__WEBPACK_IMPORTED_MODULE_6__["default"].confirm({
+      title: "Are you sure you want to ".concat(newStatus === "Archived" ? "archive" : "unarchive", " this user?"),
+      content: "This will change their status to ".concat(newStatus, "."),
+      onOk: function onOk() {
+        setLoading(true);
+        axios__WEBPACK_IMPORTED_MODULE_1___default().put(endpoint).then(function () {
+          setUsers(function (prevUsers) {
+            return prevUsers.map(function (user) {
+              return user.id === userId ? _objectSpread(_objectSpread({}, user), {}, {
+                status: newStatus
+              }) : user;
+            });
+          });
+        })["catch"](function (err) {
+          return console.error("Error updating user status:", err);
+        })["finally"](function () {
+          return setLoading(false);
+        });
+      }
+    });
+  };
+
+  // Bulk archive/unarchive selected users
+  var handleBulkStatusChange = function handleBulkStatusChange() {
+    if (selectedRowKeys.length === 0) {
+      antd__WEBPACK_IMPORTED_MODULE_6__["default"].info({
+        title: 'No users selected',
+        content: 'Please select at least one user to continue.'
+      });
+      return;
+    }
+    var newStatus = statusFilter === "Archived" ? "Active" : "Archived";
+    antd__WEBPACK_IMPORTED_MODULE_6__["default"].confirm({
+      title: "Are you sure you want to ".concat(newStatus === "Archived" ? "archive" : "unarchive", " ").concat(selectedRowKeys.length, " users?"),
+      content: "This will change their status to ".concat(newStatus, "."),
+      onOk: function onOk() {
+        setLoading(true);
+        axios__WEBPACK_IMPORTED_MODULE_1___default().put("".concat(USERS_API, "/bulk-archive-restore"), {
+          user_ids: selectedRowKeys,
+          status: newStatus
+        }).then(function () {
+          setUsers(function (prevUsers) {
+            return prevUsers.map(function (user) {
+              return selectedRowKeys.includes(user.id) ? _objectSpread(_objectSpread({}, user), {}, {
+                status: newStatus
+              }) : user;
+            });
+          });
+          setSelectedRowKeys([]); // Clear selection
+        })["catch"](function (err) {
+          return console.error("Error updating users:", err);
+        })["finally"](function () {
+          return setLoading(false);
+        });
+      }
+    });
+  };
+
+  // Define table columns
+  var columns = [{
+    title: "Full Name",
+    dataIndex: ["profile", "full_name"],
+    key: "name",
+    render: function render(text) {
+      return text || "No Name";
+    }
+  }, {
+    title: "Email",
+    dataIndex: "email",
+    key: "email"
+  }, {
+    title: "Role",
+    dataIndex: "role_id",
+    key: "role",
+    render: function render(role_id) {
+      return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)(antd__WEBPACK_IMPORTED_MODULE_7__["default"], {
+        color: role_id === 2 ? "purple" : "blue",
+        children: role_id === 2 ? "Admin" : "Customer"
+      });
+    }
+  }, {
+    title: "Status",
+    dataIndex: "status",
+    key: "status",
+    render: function render(status) {
+      return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)(antd__WEBPACK_IMPORTED_MODULE_7__["default"], {
+        color: status === "Archived" ? "default" : "success",
+        children: status || "Active"
+      });
+    }
+  }, {
+    title: "Actions",
+    key: "actions",
+    render: function render(_, record) {
+      return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsxs)(antd__WEBPACK_IMPORTED_MODULE_8__["default"], {
+        size: "small",
+        children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)(_ant_design_icons__WEBPACK_IMPORTED_MODULE_9__["default"], {
+          style: {
+            cursor: "pointer"
+          },
+          onClick: function onClick() {
+            // Edit functionality would go here
+            console.log("Edit user:", record.id);
+          }
+        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)(_ant_design_icons__WEBPACK_IMPORTED_MODULE_10__["default"], {
+          style: {
+            cursor: "pointer"
+          },
+          title: record.status === "Archived" ? "Unarchive" : "Archive",
+          onClick: function onClick() {
+            return toggleUserArchiveStatus(record.id, record.status || "Active");
+          }
+        })]
+      });
+    }
+  }];
+
+  // Filter users based on search, role, and status
+  var filteredUsers = users.filter(function (user) {
+    var _user$profile, _user$email;
+    var name = ((_user$profile = user.profile) === null || _user$profile === void 0 || (_user$profile = _user$profile.full_name) === null || _user$profile === void 0 ? void 0 : _user$profile.toLowerCase()) || "";
+    var email = ((_user$email = user.email) === null || _user$email === void 0 ? void 0 : _user$email.toLowerCase()) || "";
+    var matchesSearch = (name + " " + email).includes(search.toLowerCase());
+    var userRole = user.role_id === 2 ? "Admin" : "Customer";
+    var matchesRole = !roleFilter || userRole === roleFilter;
+    var matchesStatus = !statusFilter || statusFilter === "Active" && (!user.status || user.status === "Active") || statusFilter === "Archived" && user.status === "Archived";
+    return matchesSearch && matchesRole && matchesStatus;
+  });
+  var rowSelection = {
+    selectedRowKeys: selectedRowKeys,
+    onChange: function onChange(keys) {
+      return setSelectedRowKeys(keys);
+    }
   };
   return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsxs)(_AdminReusable_AdminPage__WEBPACK_IMPORTED_MODULE_2__["default"], {
     children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsxs)("div", {
@@ -60623,218 +61281,88 @@ function AllUsers() {
       }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsxs)("div", {
         style: {
           display: "flex",
-          alignItems: "center",
           justifyContent: "space-between",
           marginBottom: "20px"
         },
-        children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsxs)("div", {
-          style: {
-            display: "flex",
-            alignItems: "center",
-            gap: "10px"
-          },
-          children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsxs)("div", {
-            style: {
-              backgroundColor: "#F8C6B6",
-              padding: "6px 8px",
-              borderRadius: "8px",
-              display: "flex",
-              alignItems: "center"
-            },
-            children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("input", {
-              type: "text",
-              placeholder: "Search",
-              value: search,
-              onChange: function onChange(e) {
-                return setSearch(e.target.value);
-              },
-              style: {
-                border: "none",
-                background: "transparent",
-                outline: "none",
-                marginRight: "6px"
-              }
-            }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)(_ant_design_icons__WEBPACK_IMPORTED_MODULE_5__["default"], {})]
-          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsxs)("select", {
-            value: roleFilter,
+        children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsxs)(antd__WEBPACK_IMPORTED_MODULE_8__["default"], {
+          children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)(antd__WEBPACK_IMPORTED_MODULE_11__["default"], {
+            placeholder: "Search",
+            prefix: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)(_ant_design_icons__WEBPACK_IMPORTED_MODULE_12__["default"], {}),
+            value: search,
             onChange: function onChange(e) {
-              return setRoleFilter(e.target.value);
+              return setSearch(e.target.value);
             },
             style: {
-              padding: "6px",
-              borderRadius: "4px"
+              width: 200,
+              backgroundColor: "#FFFFFF"
+            }
+          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsxs)(antd__WEBPACK_IMPORTED_MODULE_5__["default"], {
+            placeholder: "Roles",
+            value: roleFilter,
+            onChange: setRoleFilter,
+            style: {
+              width: 120
             },
-            children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("option", {
+            children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)(Option, {
               value: "",
-              children: "Roles"
-            }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("option", {
+              children: "All Roles"
+            }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)(Option, {
               value: "Admin",
               children: "Admin"
-            }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("option", {
+            }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)(Option, {
               value: "Customer",
               children: "Customer"
             })]
-          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsxs)("select", {
+          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsxs)(antd__WEBPACK_IMPORTED_MODULE_5__["default"], {
+            placeholder: "Status",
             value: statusFilter,
-            onChange: function onChange(e) {
-              return setStatusFilter(e.target.value);
-            },
+            onChange: setStatusFilter,
             style: {
-              padding: "6px",
-              borderRadius: "4px"
+              width: 120
             },
-            children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("option", {
+            children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)(Option, {
               value: "",
-              children: "Status"
-            }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("option", {
+              children: "All Status"
+            }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)(Option, {
               value: "Active",
               children: "Active"
-            }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("option", {
+            }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)(Option, {
               value: "Archived",
               children: "Archived"
             })]
           })]
-        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsxs)("div", {
-          style: {
-            display: "flex",
-            gap: "10px"
-          },
-          children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("button", {
-            style: {
-              backgroundColor: "#A63F3F",
-              color: "#fff",
-              padding: "8px 16px",
-              borderRadius: "4px",
-              border: "none",
-              cursor: "pointer"
-            },
+        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsxs)(antd__WEBPACK_IMPORTED_MODULE_8__["default"], {
+          children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)(antd__WEBPACK_IMPORTED_MODULE_13__["default"], {
+            type: "primary",
             onClick: handleOpenModal,
-            children: "+ Add Users"
-          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("button", {
+            icon: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)(_ant_design_icons__WEBPACK_IMPORTED_MODULE_14__["default"], {}),
             style: {
-              backgroundColor: "#A63F3F",
-              color: "#fff",
-              padding: "8px 16px",
-              borderRadius: "4px",
-              border: "none",
-              cursor: "pointer"
+              backgroundColor: "#A63F3F"
             },
-            children: "Archive"
+            children: "Add Users"
+          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)(antd__WEBPACK_IMPORTED_MODULE_13__["default"], {
+            type: "primary",
+            onClick: handleBulkStatusChange,
+            style: {
+              backgroundColor: "#A63F3F"
+            },
+            children: statusFilter === "Archived" ? "Unarchive" : "Archive"
           })]
         })]
-      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("div", {
-        style: {
-          backgroundColor: "#F8C6B6",
-          padding: "16px",
-          borderRadius: "8px"
+      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)(antd__WEBPACK_IMPORTED_MODULE_15__["default"], {
+        rowSelection: rowSelection,
+        columns: columns,
+        dataSource: filteredUsers,
+        rowKey: function rowKey(record) {
+          return record.id || Math.random().toString();
         },
-        children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsxs)("table", {
-          style: {
-            width: "100%",
-            borderCollapse: "collapse",
-            backgroundColor: "#F8C6B6"
-          },
-          children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("thead", {
-            children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsxs)("tr", {
-              style: {
-                textAlign: "left"
-              },
-              children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("th", {
-                style: {
-                  width: "40px"
-                },
-                children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("input", {
-                  type: "checkbox"
-                })
-              }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("th", {
-                style: {
-                  padding: "8px"
-                },
-                children: "Full Name"
-              }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("th", {
-                style: {
-                  padding: "8px"
-                },
-                children: "Email"
-              }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("th", {
-                style: {
-                  padding: "8px"
-                },
-                children: "Role"
-              }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("th", {
-                style: {
-                  padding: "8px"
-                },
-                children: "Status"
-              }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("th", {
-                style: {
-                  padding: "8px"
-                },
-                children: "Actions"
-              })]
-            })
-          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsxs)("tbody", {
-            children: [filteredUsers.map(function (user, index) {
-              return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsxs)("tr", {
-                style: {
-                  borderTop: "1px solid #eee"
-                },
-                children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("td", {
-                  style: {
-                    padding: "8px"
-                  },
-                  children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("input", {
-                    type: "checkbox"
-                  })
-                }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("td", {
-                  style: {
-                    padding: "8px"
-                  },
-                  children: user.profile ? user.profile.full_name : "No Name"
-                }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("td", {
-                  style: {
-                    padding: "8px"
-                  },
-                  children: user.email
-                }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("td", {
-                  style: {
-                    padding: "8px"
-                  },
-                  children: user.role_id === 2 ? "Admin" : "Customer"
-                }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("td", {
-                  style: {
-                    padding: "8px"
-                  },
-                  children: user.status || "Active"
-                }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsxs)("td", {
-                  style: {
-                    padding: "8px",
-                    display: "flex",
-                    gap: "8px"
-                  },
-                  children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)(_ant_design_icons__WEBPACK_IMPORTED_MODULE_6__["default"], {
-                    style: {
-                      cursor: "pointer"
-                    }
-                  }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)(_ant_design_icons__WEBPACK_IMPORTED_MODULE_7__["default"], {
-                    style: {
-                      cursor: "pointer"
-                    }
-                  })]
-                })]
-              }, user.id || index);
-            }), filteredUsers.length === 0 && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("tr", {
-              children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("td", {
-                colSpan: 6,
-                style: {
-                  textAlign: "center",
-                  padding: "12px"
-                },
-                children: "No users found."
-              })
-            })]
-          })]
-        })
+        pagination: {
+          pageSize: 10
+        },
+        loading: loading,
+        locale: {
+          emptyText: 'No users found matching the current filters'
+        }
       })]
     }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)(_AddUserModal__WEBPACK_IMPORTED_MODULE_3__["default"], {
       visible: isModalVisible,
@@ -60844,6 +61372,252 @@ function AllUsers() {
   });
 }
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (AllUsers);
+
+/***/ }),
+
+/***/ "./resources/js/components/Admin/Customer.js":
+/*!***************************************************!*\
+  !*** ./resources/js/components/Admin/Customer.js ***!
+  \***************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
+/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_1__);
+/* harmony import */ var _AdminReusable_AdminPage__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../AdminReusable/AdminPage */ "./resources/js/components/AdminReusable/AdminPage.js");
+/* harmony import */ var antd__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! antd */ "./node_modules/antd/es/select/index.js");
+/* harmony import */ var antd__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! antd */ "./node_modules/antd/es/space/index.js");
+/* harmony import */ var antd__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! antd */ "./node_modules/antd/es/tag/index.js");
+/* harmony import */ var antd__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! antd */ "./node_modules/antd/es/input/index.js");
+/* harmony import */ var antd__WEBPACK_IMPORTED_MODULE_14__ = __webpack_require__(/*! antd */ "./node_modules/antd/es/button/index.js");
+/* harmony import */ var antd__WEBPACK_IMPORTED_MODULE_16__ = __webpack_require__(/*! antd */ "./node_modules/antd/es/table/index.js");
+/* harmony import */ var _ant_design_icons__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! @ant-design/icons */ "./node_modules/@ant-design/icons/es/icons/EditOutlined.js");
+/* harmony import */ var _ant_design_icons__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! @ant-design/icons */ "./node_modules/@ant-design/icons/es/icons/InboxOutlined.js");
+/* harmony import */ var _ant_design_icons__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! @ant-design/icons */ "./node_modules/@ant-design/icons/es/icons/SearchOutlined.js");
+/* harmony import */ var _ant_design_icons__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(/*! @ant-design/icons */ "./node_modules/@ant-design/icons/es/icons/CloseCircleOutlined.js");
+/* harmony import */ var _ant_design_icons__WEBPACK_IMPORTED_MODULE_15__ = __webpack_require__(/*! @ant-design/icons */ "./node_modules/@ant-design/icons/es/icons/PlusOutlined.js");
+/* harmony import */ var _AddUserModal__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./AddUserModal */ "./resources/js/components/Admin/AddUserModal.js");
+/* harmony import */ var lodash__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! lodash */ "./node_modules/lodash/lodash.js");
+/* harmony import */ var lodash__WEBPACK_IMPORTED_MODULE_4___default = /*#__PURE__*/__webpack_require__.n(lodash__WEBPACK_IMPORTED_MODULE_4__);
+/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! react/jsx-runtime */ "./node_modules/react/jsx-runtime.js");
+function _slicedToArray(r, e) { return _arrayWithHoles(r) || _iterableToArrayLimit(r, e) || _unsupportedIterableToArray(r, e) || _nonIterableRest(); }
+function _nonIterableRest() { throw new TypeError("Invalid attempt to destructure non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
+function _unsupportedIterableToArray(r, a) { if (r) { if ("string" == typeof r) return _arrayLikeToArray(r, a); var t = {}.toString.call(r).slice(8, -1); return "Object" === t && r.constructor && (t = r.constructor.name), "Map" === t || "Set" === t ? Array.from(r) : "Arguments" === t || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(t) ? _arrayLikeToArray(r, a) : void 0; } }
+function _arrayLikeToArray(r, a) { (null == a || a > r.length) && (a = r.length); for (var e = 0, n = Array(a); e < a; e++) n[e] = r[e]; return n; }
+function _iterableToArrayLimit(r, l) { var t = null == r ? null : "undefined" != typeof Symbol && r[Symbol.iterator] || r["@@iterator"]; if (null != t) { var e, n, i, u, a = [], f = !0, o = !1; try { if (i = (t = t.call(r)).next, 0 === l) { if (Object(t) !== t) return; f = !1; } else for (; !(f = (e = i.call(t)).done) && (a.push(e.value), a.length !== l); f = !0); } catch (r) { o = !0, n = r; } finally { try { if (!f && null != t["return"] && (u = t["return"](), Object(u) !== u)) return; } finally { if (o) throw n; } } return a; } }
+function _arrayWithHoles(r) { if (Array.isArray(r)) return r; }
+
+
+
+
+
+
+
+
+var Option = antd__WEBPACK_IMPORTED_MODULE_6__["default"].Option;
+var USERS_API = "http://127.0.0.1:8000/api/users";
+function AllCustomers() {
+  var _useState = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)([]),
+    _useState2 = _slicedToArray(_useState, 2),
+    customers = _useState2[0],
+    setCustomers = _useState2[1];
+  var _useState3 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(false),
+    _useState4 = _slicedToArray(_useState3, 2),
+    loading = _useState4[0],
+    setLoading = _useState4[1];
+  var _useState5 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(""),
+    _useState6 = _slicedToArray(_useState5, 2),
+    search = _useState6[0],
+    setSearch = _useState6[1];
+  var _useState7 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(""),
+    _useState8 = _slicedToArray(_useState7, 2),
+    statusFilter = _useState8[0],
+    setStatusFilter = _useState8[1];
+  var _useState9 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(false),
+    _useState10 = _slicedToArray(_useState9, 2),
+    isModalVisible = _useState10[0],
+    setIsModalVisible = _useState10[1];
+  (0,react__WEBPACK_IMPORTED_MODULE_0__.useEffect)(function () {
+    fetchCustomers();
+  }, []);
+  var fetchCustomers = function fetchCustomers() {
+    setLoading(true);
+    axios__WEBPACK_IMPORTED_MODULE_1___default().get(USERS_API).then(function (res) {
+      var _res$data, _res$data2;
+      if ((_res$data = res.data) !== null && _res$data !== void 0 && _res$data.status && (_res$data2 = res.data) !== null && _res$data2 !== void 0 && (_res$data2 = _res$data2.data) !== null && _res$data2 !== void 0 && _res$data2.users) {
+        var customersList = res.data.data.users.filter(function (user) {
+          return user.role_id === 1;
+        });
+        setCustomers(customersList);
+      } else {
+        console.error("Invalid users structure:", res.data);
+      }
+    })["catch"](function (err) {
+      return console.error("Error fetching users:", err);
+    })["finally"](function () {
+      return setLoading(false);
+    });
+  };
+
+  // Debounced search function
+  var handleSearchChange = (0,lodash__WEBPACK_IMPORTED_MODULE_4__.debounce)(function (value) {
+    setSearch(value.toLowerCase());
+  }, 300);
+
+  // Handle clearing search input
+  var clearSearch = function clearSearch() {
+    setSearch("");
+  };
+  var filteredCustomers = customers.filter(function (customer) {
+    var _customer$profile, _customer$email;
+    var name = ((_customer$profile = customer.profile) === null || _customer$profile === void 0 || (_customer$profile = _customer$profile.full_name) === null || _customer$profile === void 0 ? void 0 : _customer$profile.toLowerCase()) || "";
+    var email = ((_customer$email = customer.email) === null || _customer$email === void 0 ? void 0 : _customer$email.toLowerCase()) || "";
+    var matchesSearch = (name + " " + email).includes(search);
+    var matchesStatus = !statusFilter || statusFilter === "Active" && (!customer.status || customer.status === "Active") || statusFilter === "Archived" && customer.status === "Archived";
+    return matchesSearch && matchesStatus;
+  });
+  var handleOpenModal = function handleOpenModal() {
+    return setIsModalVisible(true);
+  };
+  var handleCancelModal = function handleCancelModal() {
+    return setIsModalVisible(false);
+  };
+  var handleSaveModal = function handleSaveModal() {
+    return setIsModalVisible(false);
+  };
+  var columns = [{
+    title: "Actions",
+    key: "actions",
+    render: function render(_, record) {
+      return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsxs)(antd__WEBPACK_IMPORTED_MODULE_7__["default"], {
+        size: "small",
+        children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)(_ant_design_icons__WEBPACK_IMPORTED_MODULE_8__["default"], {
+          style: {
+            cursor: "pointer"
+          }
+        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)(_ant_design_icons__WEBPACK_IMPORTED_MODULE_9__["default"], {
+          style: {
+            cursor: "pointer"
+          },
+          title: record.status === "Archived" ? "Unarchive" : "Archive"
+        })]
+      });
+    }
+  }, {
+    title: "Full Name",
+    dataIndex: ["profile", "full_name"],
+    key: "name",
+    render: function render(text) {
+      return text || "No Name";
+    }
+  }, {
+    title: "Email",
+    dataIndex: "email",
+    key: "email"
+  }, {
+    title: "Status",
+    dataIndex: "status",
+    key: "status",
+    render: function render(status) {
+      return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)(antd__WEBPACK_IMPORTED_MODULE_10__["default"], {
+        color: status === "Archived" ? "default" : "success",
+        children: status || "Active"
+      });
+    }
+  }];
+  return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsxs)(_AdminReusable_AdminPage__WEBPACK_IMPORTED_MODULE_2__["default"], {
+    children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsxs)("div", {
+      style: {
+        padding: "20px"
+      },
+      children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("h2", {
+        style: {
+          marginBottom: "20px"
+        },
+        children: "Customer Management"
+      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsxs)("div", {
+        style: {
+          display: "flex",
+          justifyContent: "space-between",
+          marginBottom: "20px"
+        },
+        children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsxs)(antd__WEBPACK_IMPORTED_MODULE_7__["default"], {
+          children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)(antd__WEBPACK_IMPORTED_MODULE_11__["default"], {
+            placeholder: "Search customers",
+            prefix: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)(_ant_design_icons__WEBPACK_IMPORTED_MODULE_12__["default"], {}),
+            value: search,
+            onChange: function onChange(e) {
+              return handleSearchChange(e.target.value);
+            },
+            allowClear: {
+              clearIcon: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)(_ant_design_icons__WEBPACK_IMPORTED_MODULE_13__["default"], {
+                onClick: clearSearch
+              })
+            },
+            style: {
+              width: 250
+            }
+          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsxs)(antd__WEBPACK_IMPORTED_MODULE_6__["default"], {
+            placeholder: "Status",
+            value: statusFilter,
+            onChange: setStatusFilter,
+            style: {
+              width: 120
+            },
+            children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)(Option, {
+              value: "",
+              children: "All Status"
+            }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)(Option, {
+              value: "Active",
+              children: "Active"
+            }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)(Option, {
+              value: "Archived",
+              children: "Archived"
+            })]
+          })]
+        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsxs)(antd__WEBPACK_IMPORTED_MODULE_7__["default"], {
+          children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)(antd__WEBPACK_IMPORTED_MODULE_14__["default"], {
+            type: "primary",
+            onClick: handleOpenModal,
+            icon: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)(_ant_design_icons__WEBPACK_IMPORTED_MODULE_15__["default"], {}),
+            children: "Add Customer"
+          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)(antd__WEBPACK_IMPORTED_MODULE_14__["default"], {
+            type: "primary",
+            children: statusFilter === "Archived" ? "Unarchive" : "Archive"
+          })]
+        })]
+      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)(antd__WEBPACK_IMPORTED_MODULE_16__["default"], {
+        rowSelection: {
+          type: "checkbox"
+        },
+        columns: columns,
+        dataSource: filteredCustomers,
+        rowKey: function rowKey(record) {
+          return record.id || Math.random().toString();
+        },
+        pagination: {
+          pageSize: 10
+        },
+        loading: loading,
+        locale: {
+          emptyText: "No customers found matching the current filters"
+        }
+      })]
+    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)(_AddUserModal__WEBPACK_IMPORTED_MODULE_3__["default"], {
+      visible: isModalVisible,
+      onCancel: handleCancelModal,
+      onSave: handleSaveModal,
+      userType: "customer"
+    })]
+  });
+}
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (AllCustomers);
 
 /***/ }),
 
@@ -65780,7 +66554,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var react_dom_client__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react-dom/client */ "./node_modules/react-dom/client.js");
-/* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_31__ = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router/dist/development/chunk-K6AXKMTT.mjs");
+/* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_32__ = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router/dist/development/chunk-K6AXKMTT.mjs");
 /* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
 /* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_2__);
 /* harmony import */ var _Reusable_MainPage__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./Reusable/MainPage */ "./resources/js/components/Reusable/MainPage.js");
@@ -65810,7 +66584,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _Profile_ProfileSidebar__WEBPACK_IMPORTED_MODULE_27__ = __webpack_require__(/*! ./Profile/ProfileSidebar */ "./resources/js/components/Profile/ProfileSidebar.js");
 /* harmony import */ var _Profile_ProfileMain__WEBPACK_IMPORTED_MODULE_28__ = __webpack_require__(/*! ./Profile/ProfileMain */ "./resources/js/components/Profile/ProfileMain.js");
 /* harmony import */ var _Admin_Products_AdminProducts__WEBPACK_IMPORTED_MODULE_29__ = __webpack_require__(/*! ./Admin/Products/AdminProducts */ "./resources/js/components/Admin/Products/AdminProducts.js");
-/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_30__ = __webpack_require__(/*! react/jsx-runtime */ "./node_modules/react/jsx-runtime.js");
+/* harmony import */ var _Admin_Customer__WEBPACK_IMPORTED_MODULE_30__ = __webpack_require__(/*! ./Admin/Customer */ "./resources/js/components/Admin/Customer.js");
+/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_31__ = __webpack_require__(/*! react/jsx-runtime */ "./node_modules/react/jsx-runtime.js");
 // Routers.js
 
 
@@ -65852,115 +66627,120 @@ if (token) {
 
 
 
+
+
 function AppContent() {
-  var location = (0,react_router_dom__WEBPACK_IMPORTED_MODULE_31__.useLocation)();
+  var location = (0,react_router_dom__WEBPACK_IMPORTED_MODULE_32__.useLocation)();
 
   // We hide the Chatbot on these paths
   var hideChatbotPaths = ["/LogIn", "/register", "/admin", "/adminprofile", "/admindashboard", "/allusers", "/adminchat"];
-  return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_30__.jsxs)(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_30__.Fragment, {
-    children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_30__.jsxs)(react_router_dom__WEBPACK_IMPORTED_MODULE_31__.Routes, {
-      children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_30__.jsx)(react_router_dom__WEBPACK_IMPORTED_MODULE_31__.Route, {
+  return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_31__.jsxs)(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_31__.Fragment, {
+    children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_31__.jsxs)(react_router_dom__WEBPACK_IMPORTED_MODULE_32__.Routes, {
+      children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_31__.jsx)(react_router_dom__WEBPACK_IMPORTED_MODULE_32__.Route, {
         path: "/",
-        element: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_30__.jsx)(_Products_DisplayProducts__WEBPACK_IMPORTED_MODULE_5__["default"], {})
-      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_30__.jsx)(react_router_dom__WEBPACK_IMPORTED_MODULE_31__.Route, {
+        element: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_31__.jsx)(_Products_DisplayProducts__WEBPACK_IMPORTED_MODULE_5__["default"], {})
+      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_31__.jsx)(react_router_dom__WEBPACK_IMPORTED_MODULE_32__.Route, {
         path: "/login",
-        element: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_30__.jsx)(_LogIn_LogIn__WEBPACK_IMPORTED_MODULE_4__["default"], {})
-      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_30__.jsx)(react_router_dom__WEBPACK_IMPORTED_MODULE_31__.Route, {
+        element: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_31__.jsx)(_LogIn_LogIn__WEBPACK_IMPORTED_MODULE_4__["default"], {})
+      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_31__.jsx)(react_router_dom__WEBPACK_IMPORTED_MODULE_32__.Route, {
         path: "/mainpage",
-        element: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_30__.jsx)(_Reusable_MainPage__WEBPACK_IMPORTED_MODULE_3__["default"], {})
-      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_30__.jsx)(react_router_dom__WEBPACK_IMPORTED_MODULE_31__.Route, {
+        element: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_31__.jsx)(_Reusable_MainPage__WEBPACK_IMPORTED_MODULE_3__["default"], {})
+      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_31__.jsx)(react_router_dom__WEBPACK_IMPORTED_MODULE_32__.Route, {
         path: "/products",
-        element: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_30__.jsx)(_Products_DisplayProducts__WEBPACK_IMPORTED_MODULE_5__["default"], {})
-      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_30__.jsx)(react_router_dom__WEBPACK_IMPORTED_MODULE_31__.Route, {
+        element: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_31__.jsx)(_Products_DisplayProducts__WEBPACK_IMPORTED_MODULE_5__["default"], {})
+      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_31__.jsx)(react_router_dom__WEBPACK_IMPORTED_MODULE_32__.Route, {
         path: "/register",
-        element: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_30__.jsx)(_Registration_Register__WEBPACK_IMPORTED_MODULE_6__["default"], {})
-      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_30__.jsx)(react_router_dom__WEBPACK_IMPORTED_MODULE_31__.Route, {
+        element: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_31__.jsx)(_Registration_Register__WEBPACK_IMPORTED_MODULE_6__["default"], {})
+      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_31__.jsx)(react_router_dom__WEBPACK_IMPORTED_MODULE_32__.Route, {
         path: "/logout",
-        element: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_30__.jsx)(_Profile_Logout__WEBPACK_IMPORTED_MODULE_9__["default"], {})
-      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_30__.jsx)(react_router_dom__WEBPACK_IMPORTED_MODULE_31__.Route, {
+        element: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_31__.jsx)(_Profile_Logout__WEBPACK_IMPORTED_MODULE_9__["default"], {})
+      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_31__.jsx)(react_router_dom__WEBPACK_IMPORTED_MODULE_32__.Route, {
         path: "/profilemain",
-        element: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_30__.jsx)(_Profile_ProfileMain__WEBPACK_IMPORTED_MODULE_28__["default"], {})
-      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_30__.jsx)(react_router_dom__WEBPACK_IMPORTED_MODULE_31__.Route, {
+        element: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_31__.jsx)(_Profile_ProfileMain__WEBPACK_IMPORTED_MODULE_28__["default"], {})
+      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_31__.jsx)(react_router_dom__WEBPACK_IMPORTED_MODULE_32__.Route, {
         path: "/profilesidebar",
-        element: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_30__.jsx)(_Profile_ProfileSidebar__WEBPACK_IMPORTED_MODULE_27__["default"], {})
-      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_30__.jsx)(react_router_dom__WEBPACK_IMPORTED_MODULE_31__.Route, {
+        element: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_31__.jsx)(_Profile_ProfileSidebar__WEBPACK_IMPORTED_MODULE_27__["default"], {})
+      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_31__.jsx)(react_router_dom__WEBPACK_IMPORTED_MODULE_32__.Route, {
         path: "/purchases",
-        element: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_30__.jsx)(_Profile_Purchases__WEBPACK_IMPORTED_MODULE_11__["default"], {})
-      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_30__.jsx)(react_router_dom__WEBPACK_IMPORTED_MODULE_31__.Route, {
+        element: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_31__.jsx)(_Profile_Purchases__WEBPACK_IMPORTED_MODULE_11__["default"], {})
+      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_31__.jsx)(react_router_dom__WEBPACK_IMPORTED_MODULE_32__.Route, {
         path: "/address",
-        element: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_30__.jsx)(_Profile_Address__WEBPACK_IMPORTED_MODULE_12__["default"], {})
-      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_30__.jsx)(react_router_dom__WEBPACK_IMPORTED_MODULE_31__.Route, {
+        element: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_31__.jsx)(_Profile_Address__WEBPACK_IMPORTED_MODULE_12__["default"], {})
+      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_31__.jsx)(react_router_dom__WEBPACK_IMPORTED_MODULE_32__.Route, {
         path: "/change-password",
-        element: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_30__.jsx)(_Profile_ChangePassword__WEBPACK_IMPORTED_MODULE_13__["default"], {})
-      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_30__.jsx)(react_router_dom__WEBPACK_IMPORTED_MODULE_31__.Route, {
+        element: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_31__.jsx)(_Profile_ChangePassword__WEBPACK_IMPORTED_MODULE_13__["default"], {})
+      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_31__.jsx)(react_router_dom__WEBPACK_IMPORTED_MODULE_32__.Route, {
         path: "/faq",
-        element: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_30__.jsx)(_Profile_Faq__WEBPACK_IMPORTED_MODULE_14__["default"], {})
-      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_30__.jsx)(react_router_dom__WEBPACK_IMPORTED_MODULE_31__.Route, {
+        element: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_31__.jsx)(_Profile_Faq__WEBPACK_IMPORTED_MODULE_14__["default"], {})
+      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_31__.jsx)(react_router_dom__WEBPACK_IMPORTED_MODULE_32__.Route, {
         path: "/product/:id",
-        element: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_30__.jsx)(_Products_ProductDetails__WEBPACK_IMPORTED_MODULE_15__["default"], {})
-      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_30__.jsx)(react_router_dom__WEBPACK_IMPORTED_MODULE_31__.Route, {
+        element: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_31__.jsx)(_Products_ProductDetails__WEBPACK_IMPORTED_MODULE_15__["default"], {})
+      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_31__.jsx)(react_router_dom__WEBPACK_IMPORTED_MODULE_32__.Route, {
         path: "/cart",
-        element: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_30__.jsx)(_Cart_Carts__WEBPACK_IMPORTED_MODULE_16__["default"], {})
-      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_30__.jsx)(react_router_dom__WEBPACK_IMPORTED_MODULE_31__.Route, {
+        element: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_31__.jsx)(_Cart_Carts__WEBPACK_IMPORTED_MODULE_16__["default"], {})
+      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_31__.jsx)(react_router_dom__WEBPACK_IMPORTED_MODULE_32__.Route, {
         path: "/checkout",
-        element: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_30__.jsx)(_Shipping_Checkout__WEBPACK_IMPORTED_MODULE_19__["default"], {})
-      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_30__.jsx)(react_router_dom__WEBPACK_IMPORTED_MODULE_31__.Route, {
+        element: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_31__.jsx)(_Shipping_Checkout__WEBPACK_IMPORTED_MODULE_19__["default"], {})
+      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_31__.jsx)(react_router_dom__WEBPACK_IMPORTED_MODULE_32__.Route, {
         path: "/payment",
-        element: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_30__.jsx)(_Shipping_Payment__WEBPACK_IMPORTED_MODULE_23__["default"], {})
-      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_30__.jsx)(react_router_dom__WEBPACK_IMPORTED_MODULE_31__.Route, {
+        element: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_31__.jsx)(_Shipping_Payment__WEBPACK_IMPORTED_MODULE_23__["default"], {})
+      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_31__.jsx)(react_router_dom__WEBPACK_IMPORTED_MODULE_32__.Route, {
         path: "/confirmation",
-        element: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_30__.jsx)(_Shipping_Confirmation__WEBPACK_IMPORTED_MODULE_24__["default"], {})
-      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_30__.jsx)(react_router_dom__WEBPACK_IMPORTED_MODULE_31__.Route, {
+        element: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_31__.jsx)(_Shipping_Confirmation__WEBPACK_IMPORTED_MODULE_24__["default"], {})
+      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_31__.jsx)(react_router_dom__WEBPACK_IMPORTED_MODULE_32__.Route, {
         path: "/adminlogout",
-        element: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_30__.jsx)(_Admin_AdminLogout__WEBPACK_IMPORTED_MODULE_10__["default"], {})
-      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_30__.jsx)(react_router_dom__WEBPACK_IMPORTED_MODULE_31__.Route, {
+        element: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_31__.jsx)(_Admin_AdminLogout__WEBPACK_IMPORTED_MODULE_10__["default"], {})
+      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_31__.jsx)(react_router_dom__WEBPACK_IMPORTED_MODULE_32__.Route, {
         path: "/adminproducts",
-        element: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_30__.jsx)(_Admin_Products_AdminProducts__WEBPACK_IMPORTED_MODULE_29__["default"], {})
-      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_30__.jsx)(react_router_dom__WEBPACK_IMPORTED_MODULE_31__.Route, {
+        element: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_31__.jsx)(_Admin_Products_AdminProducts__WEBPACK_IMPORTED_MODULE_29__["default"], {})
+      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_31__.jsx)(react_router_dom__WEBPACK_IMPORTED_MODULE_32__.Route, {
         path: "/admindashboard",
-        element: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_30__.jsx)(_Admin_AdminDashboard__WEBPACK_IMPORTED_MODULE_21__["default"], {})
-      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_30__.jsx)(react_router_dom__WEBPACK_IMPORTED_MODULE_31__.Route, {
+        element: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_31__.jsx)(_Admin_AdminDashboard__WEBPACK_IMPORTED_MODULE_21__["default"], {})
+      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_31__.jsx)(react_router_dom__WEBPACK_IMPORTED_MODULE_32__.Route, {
         path: "/allusers",
-        element: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_30__.jsx)(_Admin_AllUsers__WEBPACK_IMPORTED_MODULE_22__["default"], {})
-      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_30__.jsx)(react_router_dom__WEBPACK_IMPORTED_MODULE_31__.Route, {
+        element: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_31__.jsx)(_Admin_AllUsers__WEBPACK_IMPORTED_MODULE_22__["default"], {})
+      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_31__.jsx)(react_router_dom__WEBPACK_IMPORTED_MODULE_32__.Route, {
         path: "/addusermodal",
-        element: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_30__.jsx)(_Admin_AddUserModal__WEBPACK_IMPORTED_MODULE_26__["default"], {})
-      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_30__.jsx)(react_router_dom__WEBPACK_IMPORTED_MODULE_31__.Route, {
+        element: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_31__.jsx)(_Admin_AddUserModal__WEBPACK_IMPORTED_MODULE_26__["default"], {})
+      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_31__.jsx)(react_router_dom__WEBPACK_IMPORTED_MODULE_32__.Route, {
+        path: "/customers",
+        element: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_31__.jsx)(_Admin_Customer__WEBPACK_IMPORTED_MODULE_30__["default"], {})
+      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_31__.jsx)(react_router_dom__WEBPACK_IMPORTED_MODULE_32__.Route, {
         path: "/profile",
-        element: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_30__.jsxs)(_RoleBasedRoute__WEBPACK_IMPORTED_MODULE_20__["default"], {
+        element: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_31__.jsxs)(_RoleBasedRoute__WEBPACK_IMPORTED_MODULE_20__["default"], {
           allowedRoles: [1],
-          children: [" ", /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_30__.jsx)(_Profile_profiles__WEBPACK_IMPORTED_MODULE_7__["default"], {}), " "]
+          children: [" ", /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_31__.jsx)(_Profile_profiles__WEBPACK_IMPORTED_MODULE_7__["default"], {}), " "]
         })
-      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_30__.jsx)(react_router_dom__WEBPACK_IMPORTED_MODULE_31__.Route, {
+      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_31__.jsx)(react_router_dom__WEBPACK_IMPORTED_MODULE_32__.Route, {
         path: "/admin",
-        element: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_30__.jsxs)(_RoleBasedRoute__WEBPACK_IMPORTED_MODULE_20__["default"], {
+        element: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_31__.jsxs)(_RoleBasedRoute__WEBPACK_IMPORTED_MODULE_20__["default"], {
           allowedRoles: [2],
-          children: [" ", /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_30__.jsx)(_Admin_AdminDashboard__WEBPACK_IMPORTED_MODULE_21__["default"], {})]
+          children: [" ", /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_31__.jsx)(_Admin_AdminDashboard__WEBPACK_IMPORTED_MODULE_21__["default"], {})]
         })
-      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_30__.jsx)(react_router_dom__WEBPACK_IMPORTED_MODULE_31__.Route, {
+      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_31__.jsx)(react_router_dom__WEBPACK_IMPORTED_MODULE_32__.Route, {
         path: "/adminprofile",
-        element: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_30__.jsxs)(_RoleBasedRoute__WEBPACK_IMPORTED_MODULE_20__["default"], {
+        element: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_31__.jsxs)(_RoleBasedRoute__WEBPACK_IMPORTED_MODULE_20__["default"], {
           allowedRoles: [2],
-          children: [" ", /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_30__.jsx)(_Admin_AdminProfile__WEBPACK_IMPORTED_MODULE_8__["default"], {})]
+          children: [" ", /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_31__.jsx)(_Admin_AdminProfile__WEBPACK_IMPORTED_MODULE_8__["default"], {})]
         })
-      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_30__.jsx)(react_router_dom__WEBPACK_IMPORTED_MODULE_31__.Route, {
+      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_31__.jsx)(react_router_dom__WEBPACK_IMPORTED_MODULE_32__.Route, {
         path: "/adminchat",
-        element: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_30__.jsxs)(_RoleBasedRoute__WEBPACK_IMPORTED_MODULE_20__["default"], {
+        element: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_31__.jsxs)(_RoleBasedRoute__WEBPACK_IMPORTED_MODULE_20__["default"], {
           allowedRoles: [2],
-          children: [" ", /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_30__.jsx)(_Admin_AdminChat__WEBPACK_IMPORTED_MODULE_25__["default"], {})]
+          children: [" ", /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_31__.jsx)(_Admin_AdminChat__WEBPACK_IMPORTED_MODULE_25__["default"], {})]
         })
       })]
-    }), !hideChatbotPaths.includes(location.pathname) && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_30__.jsx)(_Chat_Chatbot__WEBPACK_IMPORTED_MODULE_17__["default"], {})]
+    }), !hideChatbotPaths.includes(location.pathname) && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_31__.jsx)(_Chat_Chatbot__WEBPACK_IMPORTED_MODULE_17__["default"], {})]
   });
 }
 function Routers() {
-  return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_30__.jsx)(react_router_dom__WEBPACK_IMPORTED_MODULE_31__.BrowserRouter, {
-    children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_30__.jsx)(AppContent, {})
+  return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_31__.jsx)(react_router_dom__WEBPACK_IMPORTED_MODULE_32__.BrowserRouter, {
+    children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_31__.jsx)(AppContent, {})
   });
 }
 var container = document.getElementById("root");
 var root = react_dom_client__WEBPACK_IMPORTED_MODULE_1__.createRoot(container);
-root.render(/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_30__.jsx)(Routers, {}));
+root.render(/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_31__.jsx)(Routers, {}));
 
 /***/ }),
 

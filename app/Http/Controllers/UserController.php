@@ -46,4 +46,49 @@ class UserController extends Controller
         // ❌ Login failed
         return back()->withErrors(['login' => 'Invalid username/email or password.']);
     }
+
+    // Archive user
+public function archive($id)
+{
+    $user = User::find($id);
+    if (!$user) {
+        return response()->json(['status' => 'error', 'message' => 'User not found.'], 404);
+    }
+
+    $user->status = 'Archived';
+    $user->save();
+
+    return response()->json(['status' => 'success', 'message' => 'User archived successfully.', 'data' => $user]);
+}
+
+// Restore user
+public function restore($id)
+{
+    $user = User::find($id);
+    if (!$user) {
+        return response()->json(['status' => 'error', 'message' => 'User not found.'], 404);
+    }
+
+    $user->status = 'Active';
+    $user->save();
+
+    return response()->json(['status' => 'success', 'message' => 'User restored successfully.', 'data' => $user]);
+}
+
+
+public function bulkArchiveRestore(Request $request)
+{
+    $ids = $request->input('user_ids');
+    $newStatus = $request->input('status');
+
+    if (!in_array($newStatus, ['Active', 'Archived'])) {
+        return response()->json(['status' => 'error', 'message' => 'Invalid status.'], 400);
+    }
+
+    User::whereIn('id', $ids)->update(['status' => $newStatus]);
+
+    return response()->json(['status' => 'success', 'message' => 'Users updated successfully.']);
+}
+
+    
 }

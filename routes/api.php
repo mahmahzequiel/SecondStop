@@ -62,6 +62,9 @@ Route::group(["middleware" => ["auth:api"]], function() {
     Route::get('chat/customer-chats', [ChatController::class, 'getAllCustomerChats']);
 
     // Admin Routes
+    Route::put('/users/{id}/archive', [UserController::class, 'archive']);
+Route::put('/users/{id}/restore', [UserController::class, 'restore']);
+Route::put('/users/bulk-archive-restore', [UserController::class, 'bulkArchiveRestore']);
     Route::get("users", [ApiController::class, "getAllUsers"]);
 
     // Order Routes (Now Protected)

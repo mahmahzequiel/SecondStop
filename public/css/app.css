@@ -12926,11 +12926,12 @@ textarea.form-control-lg {
   display: flex;
   align-items: center;
   padding: 12px 24px;
-  font-size: 26px;
+  font-size: 20px;
   font-family: "Inria Serif", serif;
   color: black;
   cursor: pointer;
   transition: background 0.3s ease;
+  margin-bottom: 10px;
 }
 .admin-sidebar .nav-item .nav-icon {
   margin-right: 10px;

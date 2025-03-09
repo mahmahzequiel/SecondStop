@@ -43,6 +43,8 @@ import AddUserModal from "./Admin/AddUserModal";
 import ProfileSidebar from "./Profile/ProfileSidebar";
 import ProfileMain from "./Profile/ProfileMain";
 import AdminProducts from "./Admin/Products/AdminProducts";
+import Customers from "./Admin/Customer";
+import AllCustomers from "./Admin/Customer";
 
 function AppContent() {
   const location = useLocation();
@@ -76,6 +78,7 @@ function AppContent() {
         <Route path="/admindashboard" element={<AdminDashboard />} />
         <Route path="/allusers" element={<AllUsers />} />
         <Route path="/addusermodal" element={<AddUserModal />} />
+        <Route path="/customers" element={<AllCustomers />} />
         {/* Customer-Only Routes (role_id = 1) */}
         <Route path="/profile" element={<RoleBasedRoute allowedRoles={[1]}> <Profiles /> </RoleBasedRoute>}/>
         {/* Admin-Only Routes (role_id = 2) */}

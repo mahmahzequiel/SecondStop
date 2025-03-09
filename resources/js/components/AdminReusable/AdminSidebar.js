@@ -8,89 +8,57 @@ import {
   ContactsOutlined,
   MessageOutlined,
   ProfileOutlined,
+  SettingOutlined,
 } from "@ant-design/icons";
+
 
 function AdminSidebar() {
   return (
     <aside className="admin-sidebar">
       <div className="nav-item">
-        <Link
-          to="/admindashboard"
-          style={{
-            display: "flex",
-            alignItems: "center",
-            color: "inherit",
-            textDecoration: "none",
-            width: "100%",
-          }}
-        >
+        <Link to="/admindashboard">
           <DashboardOutlined className="nav-icon" />
           <span>Dashboard</span>
         </Link>
       </div>
       <div className="nav-item">
-        <Link
-          to="/allusers"
-          style={{
-            display: "flex",
-            alignItems: "center",
-            color: "inherit",
-            textDecoration: "none",
-          }}
-        >
+        <Link to="/allusers">
           <UserOutlined className="nav-icon" />
           <span>Users</span>
         </Link>
       </div>
       <div className="nav-item">
-        <Link
-          to="/adminproducts"
-          style={{
-            display: "flex",
-            alignItems: "center",
-            color: "inherit",
-            textDecoration: "none",
-          }}
-        >
+        <Link to="/adminproducts">
           <AppstoreOutlined className="nav-icon" />
           <span>Products</span>
-        </Link> {/* Fix: Added the closing </Link> tag here */}
+        </Link>
       </div>
       <div className="nav-item">
         <ShoppingCartOutlined className="nav-icon" />
         <span>Orders</span>
       </div>
       <div className="nav-item">
+        <Link to="/customers">
         <ContactsOutlined className="nav-icon" />
         <span>Customers</span>
+        </Link>
       </div>
       <div className="nav-item">
-        <Link
-          to="/adminchat"
-          style={{
-            display: "flex",
-            alignItems: "center",
-            color: "inherit",
-            textDecoration: "none",
-          }}
-        >
+        <Link to="/adminchat">
           <MessageOutlined className="nav-icon" />
           <span>Messages</span>
         </Link>
       </div>
       <div className="nav-item">
-        <Link
-          to="/adminprofile"
-          style={{
-            display: "flex",
-            alignItems: "center",
-            color: "inherit",
-            textDecoration: "none",
-            width: "100%",
-          }}
-        >
+        <Link to="/adminprofile">
           <ProfileOutlined className="nav-icon" />
           <span>Profile</span>
+        </Link>
+      </div>
+      <div className="nav-item">
+        <Link to="/adminsettings">
+          <SettingOutlined className="nav-icon" />
+          <span>Settings</span>
         </Link>
       </div>
     </aside>
