@@ -61035,25 +61035,20 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
 /* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_1__);
 /* harmony import */ var _AdminReusable_AdminPage__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../AdminReusable/AdminPage */ "./resources/js/components/AdminReusable/AdminPage.js");
-/* harmony import */ var antd__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! antd */ "./node_modules/antd/es/select/index.js");
-/* harmony import */ var antd__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! antd */ "./node_modules/antd/es/modal/index.js");
-/* harmony import */ var antd__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! antd */ "./node_modules/antd/es/tag/index.js");
-/* harmony import */ var antd__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! antd */ "./node_modules/antd/es/space/index.js");
-/* harmony import */ var antd__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! antd */ "./node_modules/antd/es/input/index.js");
-/* harmony import */ var antd__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(/*! antd */ "./node_modules/antd/es/button/index.js");
-/* harmony import */ var antd__WEBPACK_IMPORTED_MODULE_15__ = __webpack_require__(/*! antd */ "./node_modules/antd/es/table/index.js");
-/* harmony import */ var _ant_design_icons__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! @ant-design/icons */ "./node_modules/@ant-design/icons/es/icons/EditOutlined.js");
-/* harmony import */ var _ant_design_icons__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! @ant-design/icons */ "./node_modules/@ant-design/icons/es/icons/InboxOutlined.js");
-/* harmony import */ var _ant_design_icons__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! @ant-design/icons */ "./node_modules/@ant-design/icons/es/icons/SearchOutlined.js");
-/* harmony import */ var _ant_design_icons__WEBPACK_IMPORTED_MODULE_14__ = __webpack_require__(/*! @ant-design/icons */ "./node_modules/@ant-design/icons/es/icons/PlusOutlined.js");
+/* harmony import */ var antd__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! antd */ "./node_modules/antd/es/select/index.js");
+/* harmony import */ var antd__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! antd */ "./node_modules/antd/es/modal/index.js");
+/* harmony import */ var antd__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! antd */ "./node_modules/antd/es/tag/index.js");
+/* harmony import */ var antd__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! antd */ "./node_modules/antd/es/space/index.js");
+/* harmony import */ var antd__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! antd */ "./node_modules/antd/es/input/index.js");
+/* harmony import */ var antd__WEBPACK_IMPORTED_MODULE_14__ = __webpack_require__(/*! antd */ "./node_modules/antd/es/button/index.js");
+/* harmony import */ var antd__WEBPACK_IMPORTED_MODULE_16__ = __webpack_require__(/*! antd */ "./node_modules/antd/es/table/index.js");
+/* harmony import */ var _ant_design_icons__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! @ant-design/icons */ "./node_modules/@ant-design/icons/es/icons/EditOutlined.js");
+/* harmony import */ var _ant_design_icons__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! @ant-design/icons */ "./node_modules/@ant-design/icons/es/icons/InboxOutlined.js");
+/* harmony import */ var _ant_design_icons__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(/*! @ant-design/icons */ "./node_modules/@ant-design/icons/es/icons/SearchOutlined.js");
+/* harmony import */ var _ant_design_icons__WEBPACK_IMPORTED_MODULE_15__ = __webpack_require__(/*! @ant-design/icons */ "./node_modules/@ant-design/icons/es/icons/PlusOutlined.js");
 /* harmony import */ var _AddUserModal__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./AddUserModal */ "./resources/js/components/Admin/AddUserModal.js");
-/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! react/jsx-runtime */ "./node_modules/react/jsx-runtime.js");
-function _typeof(o) { "@babel/helpers - typeof"; return _typeof = "function" == typeof Symbol && "symbol" == typeof Symbol.iterator ? function (o) { return typeof o; } : function (o) { return o && "function" == typeof Symbol && o.constructor === Symbol && o !== Symbol.prototype ? "symbol" : typeof o; }, _typeof(o); }
-function ownKeys(e, r) { var t = Object.keys(e); if (Object.getOwnPropertySymbols) { var o = Object.getOwnPropertySymbols(e); r && (o = o.filter(function (r) { return Object.getOwnPropertyDescriptor(e, r).enumerable; })), t.push.apply(t, o); } return t; }
-function _objectSpread(e) { for (var r = 1; r < arguments.length; r++) { var t = null != arguments[r] ? arguments[r] : {}; r % 2 ? ownKeys(Object(t), !0).forEach(function (r) { _defineProperty(e, r, t[r]); }) : Object.getOwnPropertyDescriptors ? Object.defineProperties(e, Object.getOwnPropertyDescriptors(t)) : ownKeys(Object(t)).forEach(function (r) { Object.defineProperty(e, r, Object.getOwnPropertyDescriptor(t, r)); }); } return e; }
-function _defineProperty(e, r, t) { return (r = _toPropertyKey(r)) in e ? Object.defineProperty(e, r, { value: t, enumerable: !0, configurable: !0, writable: !0 }) : e[r] = t, e; }
-function _toPropertyKey(t) { var i = _toPrimitive(t, "string"); return "symbol" == _typeof(i) ? i : i + ""; }
-function _toPrimitive(t, r) { if ("object" != _typeof(t) || !t) return t; var e = t[Symbol.toPrimitive]; if (void 0 !== e) { var i = e.call(t, r || "default"); if ("object" != _typeof(i)) return i; throw new TypeError("@@toPrimitive must return a primitive value."); } return ("string" === r ? String : Number)(t); }
+/* harmony import */ var _EditUserModal__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./EditUserModal */ "./resources/js/components/Admin/EditUserModal.js");
+/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! react/jsx-runtime */ "./node_modules/react/jsx-runtime.js");
 function _slicedToArray(r, e) { return _arrayWithHoles(r) || _iterableToArrayLimit(r, e) || _unsupportedIterableToArray(r, e) || _nonIterableRest(); }
 function _nonIterableRest() { throw new TypeError("Invalid attempt to destructure non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
 function _unsupportedIterableToArray(r, a) { if (r) { if ("string" == typeof r) return _arrayLikeToArray(r, a); var t = {}.toString.call(r).slice(8, -1); return "Object" === t && r.constructor && (t = r.constructor.name), "Map" === t || "Set" === t ? Array.from(r) : "Arguments" === t || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(t) ? _arrayLikeToArray(r, a) : void 0; } }
@@ -61067,7 +61062,8 @@ function _arrayWithHoles(r) { if (Array.isArray(r)) return r; }
 
 
 
-var Option = antd__WEBPACK_IMPORTED_MODULE_5__["default"].Option;
+
+var Option = antd__WEBPACK_IMPORTED_MODULE_6__["default"].Option;
 var USERS_API = "http://127.0.0.1:8000/api/users";
 function AllUsers() {
   var _useState = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)([]),
@@ -61092,18 +61088,35 @@ function AllUsers() {
     setStatusFilter = _useState10[1];
   var _useState11 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(false),
     _useState12 = _slicedToArray(_useState11, 2),
-    isModalVisible = _useState12[0],
-    setIsModalVisible = _useState12[1];
-  var _useState13 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)([]),
+    isAddModalVisible = _useState12[0],
+    setIsAddModalVisible = _useState12[1];
+  var _useState13 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(false),
     _useState14 = _slicedToArray(_useState13, 2),
-    selectedRowKeys = _useState14[0],
-    setSelectedRowKeys = _useState14[1];
+    isEditModalVisible = _useState14[0],
+    setIsEditModalVisible = _useState14[1];
+  var _useState15 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(null),
+    _useState16 = _slicedToArray(_useState15, 2),
+    selectedUser = _useState16[0],
+    setSelectedUser = _useState16[1];
+  var _useState17 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)([]),
+    _useState18 = _slicedToArray(_useState17, 2),
+    selectedRowKeys = _useState18[0],
+    setSelectedRowKeys = _useState18[1];
   (0,react__WEBPACK_IMPORTED_MODULE_0__.useEffect)(function () {
     fetchUsers();
-  }, []);
+  }, [statusFilter]);
   var fetchUsers = function fetchUsers() {
     setLoading(true);
-    axios__WEBPACK_IMPORTED_MODULE_1___default().get(USERS_API).then(function (res) {
+
+    // Convert frontend status values to match backend expectations
+    var backendStatus = "all";
+    if (statusFilter === "Active") backendStatus = "active";
+    if (statusFilter === "Archived") backendStatus = "archived";
+    axios__WEBPACK_IMPORTED_MODULE_1___default().get(USERS_API, {
+      params: {
+        status: backendStatus
+      }
+    }).then(function (res) {
       var _res$data, _res$data2;
       console.log("All users response:", res.data);
       if ((_res$data = res.data) !== null && _res$data !== void 0 && _res$data.status && (_res$data2 = res.data) !== null && _res$data2 !== void 0 && (_res$data2 = _res$data2.data) !== null && _res$data2 !== void 0 && _res$data2.users) {
@@ -61118,35 +61131,44 @@ function AllUsers() {
     });
   };
 
-  // Handle modal functions
-  var handleOpenModal = function handleOpenModal() {
-    return setIsModalVisible(true);
+  // Handle add modal functions
+  var handleOpenAddModal = function handleOpenAddModal() {
+    return setIsAddModalVisible(true);
   };
-  var handleCancelModal = function handleCancelModal() {
-    return setIsModalVisible(false);
+  var handleCancelAddModal = function handleCancelAddModal() {
+    return setIsAddModalVisible(false);
   };
-  var handleSaveModal = function handleSaveModal() {
-    setIsModalVisible(false);
+  var handleSaveAddModal = function handleSaveAddModal() {
+    setIsAddModalVisible(false);
     fetchUsers(); // Refresh users after adding a new one
+  };
+
+  // Handle edit modal functions
+  var handleOpenEditModal = function handleOpenEditModal(user) {
+    setSelectedUser(user);
+    setIsEditModalVisible(true);
+  };
+  var handleCancelEditModal = function handleCancelEditModal() {
+    setSelectedUser(null);
+    setIsEditModalVisible(false);
+  };
+  var handleSaveEditModal = function handleSaveEditModal() {
+    setIsEditModalVisible(false);
+    setSelectedUser(null);
+    fetchUsers(); // Refresh users after editing
   };
 
   // Archive/Unarchive single user
   var toggleUserArchiveStatus = function toggleUserArchiveStatus(userId, currentStatus) {
-    var newStatus = currentStatus === "Archived" ? "Active" : "Archived";
-    var endpoint = newStatus === "Archived" ? "".concat(USERS_API, "/").concat(userId, "/archive") : "".concat(USERS_API, "/").concat(userId, "/restore");
-    antd__WEBPACK_IMPORTED_MODULE_6__["default"].confirm({
-      title: "Are you sure you want to ".concat(newStatus === "Archived" ? "archive" : "unarchive", " this user?"),
-      content: "This will change their status to ".concat(newStatus, "."),
+    var isArchived = currentStatus === "Archived";
+    var endpoint = isArchived ? "".concat(USERS_API, "/").concat(userId, "/restore") : "".concat(USERS_API, "/").concat(userId, "/archive");
+    antd__WEBPACK_IMPORTED_MODULE_7__["default"].confirm({
+      title: "Are you sure you want to ".concat(isArchived ? "restore" : "archive", " this user?"),
+      content: "This will change their status to ".concat(isArchived ? "active" : "archived", "."),
       onOk: function onOk() {
         setLoading(true);
         axios__WEBPACK_IMPORTED_MODULE_1___default().put(endpoint).then(function () {
-          setUsers(function (prevUsers) {
-            return prevUsers.map(function (user) {
-              return user.id === userId ? _objectSpread(_objectSpread({}, user), {}, {
-                status: newStatus
-              }) : user;
-            });
-          });
+          fetchUsers(); // Refresh the list to show updated statuses
         })["catch"](function (err) {
           return console.error("Error updating user status:", err);
         })["finally"](function () {
@@ -61159,29 +61181,23 @@ function AllUsers() {
   // Bulk archive/unarchive selected users
   var handleBulkStatusChange = function handleBulkStatusChange() {
     if (selectedRowKeys.length === 0) {
-      antd__WEBPACK_IMPORTED_MODULE_6__["default"].info({
+      antd__WEBPACK_IMPORTED_MODULE_7__["default"].info({
         title: 'No users selected',
         content: 'Please select at least one user to continue.'
       });
       return;
     }
-    var newStatus = statusFilter === "Archived" ? "Active" : "Archived";
-    antd__WEBPACK_IMPORTED_MODULE_6__["default"].confirm({
-      title: "Are you sure you want to ".concat(newStatus === "Archived" ? "archive" : "unarchive", " ").concat(selectedRowKeys.length, " users?"),
-      content: "This will change their status to ".concat(newStatus, "."),
+    var action = statusFilter === "Archived" ? "restore" : "archive";
+    antd__WEBPACK_IMPORTED_MODULE_7__["default"].confirm({
+      title: "Are you sure you want to ".concat(action, " ").concat(selectedRowKeys.length, " users?"),
+      content: "This will change their status to ".concat(action === "archive" ? "archived" : "active", "."),
       onOk: function onOk() {
         setLoading(true);
         axios__WEBPACK_IMPORTED_MODULE_1___default().put("".concat(USERS_API, "/bulk-archive-restore"), {
           user_ids: selectedRowKeys,
-          status: newStatus
+          action: action
         }).then(function () {
-          setUsers(function (prevUsers) {
-            return prevUsers.map(function (user) {
-              return selectedRowKeys.includes(user.id) ? _objectSpread(_objectSpread({}, user), {}, {
-                status: newStatus
-              }) : user;
-            });
-          });
+          fetchUsers(); // Refresh the list to show updated statuses
           setSelectedRowKeys([]); // Clear selection
         })["catch"](function (err) {
           return console.error("Error updating users:", err);
@@ -61209,58 +61225,58 @@ function AllUsers() {
     dataIndex: "role_id",
     key: "role",
     render: function render(role_id) {
-      return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)(antd__WEBPACK_IMPORTED_MODULE_7__["default"], {
+      return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)(antd__WEBPACK_IMPORTED_MODULE_8__["default"], {
         color: role_id === 2 ? "purple" : "blue",
         children: role_id === 2 ? "Admin" : "Customer"
       });
     }
   }, {
     title: "Status",
-    dataIndex: "status",
     key: "status",
-    render: function render(status) {
-      return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)(antd__WEBPACK_IMPORTED_MODULE_7__["default"], {
-        color: status === "Archived" ? "default" : "success",
-        children: status || "Active"
+    render: function render(_, record) {
+      var isArchived = record.deleted_at !== null;
+      return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)(antd__WEBPACK_IMPORTED_MODULE_8__["default"], {
+        color: isArchived ? "default" : "success",
+        children: isArchived ? "Archived" : "Active"
       });
     }
   }, {
     title: "Actions",
     key: "actions",
     render: function render(_, record) {
-      return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsxs)(antd__WEBPACK_IMPORTED_MODULE_8__["default"], {
+      var isArchived = record.deleted_at !== null;
+      var status = isArchived ? "Archived" : "Active";
+      return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsxs)(antd__WEBPACK_IMPORTED_MODULE_9__["default"], {
         size: "small",
-        children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)(_ant_design_icons__WEBPACK_IMPORTED_MODULE_9__["default"], {
+        children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)(_ant_design_icons__WEBPACK_IMPORTED_MODULE_10__["default"], {
           style: {
             cursor: "pointer"
           },
           onClick: function onClick() {
-            // Edit functionality would go here
-            console.log("Edit user:", record.id);
+            return handleOpenEditModal(record);
           }
-        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)(_ant_design_icons__WEBPACK_IMPORTED_MODULE_10__["default"], {
+        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)(_ant_design_icons__WEBPACK_IMPORTED_MODULE_11__["default"], {
           style: {
             cursor: "pointer"
           },
-          title: record.status === "Archived" ? "Unarchive" : "Archive",
+          title: isArchived ? "Unarchive" : "Archive",
           onClick: function onClick() {
-            return toggleUserArchiveStatus(record.id, record.status || "Active");
+            return toggleUserArchiveStatus(record.id, status);
           }
         })]
       });
     }
   }];
 
-  // Filter users based on search, role, and status
+  // Filter users based on search and role (status filtering is handled by API)
   var filteredUsers = users.filter(function (user) {
-    var _user$profile, _user$email;
-    var name = ((_user$profile = user.profile) === null || _user$profile === void 0 || (_user$profile = _user$profile.full_name) === null || _user$profile === void 0 ? void 0 : _user$profile.toLowerCase()) || "";
-    var email = ((_user$email = user.email) === null || _user$email === void 0 ? void 0 : _user$email.toLowerCase()) || "";
-    var matchesSearch = (name + " " + email).includes(search.toLowerCase());
+    var name = user.profile ? user.profile.full_name.toLowerCase() : "";
+    var email = (user.email || "").toLowerCase();
+    var combinedString = name + " " + email;
+    var matchesSearch = combinedString.includes(search.toLowerCase());
     var userRole = user.role_id === 2 ? "Admin" : "Customer";
-    var matchesRole = !roleFilter || userRole === roleFilter;
-    var matchesStatus = !statusFilter || statusFilter === "Active" && (!user.status || user.status === "Active") || statusFilter === "Archived" && user.status === "Archived";
-    return matchesSearch && matchesRole && matchesStatus;
+    var matchesRole = roleFilter ? userRole === roleFilter : true;
+    return matchesSearch && matchesRole;
   });
   var rowSelection = {
     selectedRowKeys: selectedRowKeys,
@@ -61268,26 +61284,26 @@ function AllUsers() {
       return setSelectedRowKeys(keys);
     }
   };
-  return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsxs)(_AdminReusable_AdminPage__WEBPACK_IMPORTED_MODULE_2__["default"], {
-    children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsxs)("div", {
+  return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsxs)(_AdminReusable_AdminPage__WEBPACK_IMPORTED_MODULE_2__["default"], {
+    children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsxs)("div", {
       style: {
         padding: "20px"
       },
-      children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("h2", {
+      children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("h2", {
         style: {
           marginBottom: "20px"
         },
         children: "Users Management"
-      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsxs)("div", {
+      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsxs)("div", {
         style: {
           display: "flex",
           justifyContent: "space-between",
           marginBottom: "20px"
         },
-        children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsxs)(antd__WEBPACK_IMPORTED_MODULE_8__["default"], {
-          children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)(antd__WEBPACK_IMPORTED_MODULE_11__["default"], {
+        children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsxs)(antd__WEBPACK_IMPORTED_MODULE_9__["default"], {
+          children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)(antd__WEBPACK_IMPORTED_MODULE_12__["default"], {
             placeholder: "Search",
-            prefix: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)(_ant_design_icons__WEBPACK_IMPORTED_MODULE_12__["default"], {}),
+            prefix: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)(_ant_design_icons__WEBPACK_IMPORTED_MODULE_13__["default"], {}),
             value: search,
             onChange: function onChange(e) {
               return setSearch(e.target.value);
@@ -61296,60 +61312,61 @@ function AllUsers() {
               width: 200,
               backgroundColor: "#FFFFFF"
             }
-          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsxs)(antd__WEBPACK_IMPORTED_MODULE_5__["default"], {
+          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsxs)(antd__WEBPACK_IMPORTED_MODULE_6__["default"], {
             placeholder: "Roles",
             value: roleFilter,
             onChange: setRoleFilter,
             style: {
               width: 120
             },
-            children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)(Option, {
+            children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)(Option, {
               value: "",
               children: "All Roles"
-            }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)(Option, {
+            }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)(Option, {
               value: "Admin",
               children: "Admin"
-            }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)(Option, {
+            }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)(Option, {
               value: "Customer",
               children: "Customer"
             })]
-          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsxs)(antd__WEBPACK_IMPORTED_MODULE_5__["default"], {
+          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsxs)(antd__WEBPACK_IMPORTED_MODULE_6__["default"], {
             placeholder: "Status",
             value: statusFilter,
             onChange: setStatusFilter,
             style: {
               width: 120
             },
-            children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)(Option, {
+            children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)(Option, {
               value: "",
               children: "All Status"
-            }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)(Option, {
+            }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)(Option, {
               value: "Active",
               children: "Active"
-            }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)(Option, {
+            }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)(Option, {
               value: "Archived",
               children: "Archived"
             })]
           })]
-        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsxs)(antd__WEBPACK_IMPORTED_MODULE_8__["default"], {
-          children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)(antd__WEBPACK_IMPORTED_MODULE_13__["default"], {
+        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsxs)(antd__WEBPACK_IMPORTED_MODULE_9__["default"], {
+          children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)(antd__WEBPACK_IMPORTED_MODULE_14__["default"], {
             type: "primary",
-            onClick: handleOpenModal,
-            icon: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)(_ant_design_icons__WEBPACK_IMPORTED_MODULE_14__["default"], {}),
+            onClick: handleOpenAddModal,
+            icon: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)(_ant_design_icons__WEBPACK_IMPORTED_MODULE_15__["default"], {}),
             style: {
               backgroundColor: "#A63F3F"
             },
             children: "Add Users"
-          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)(antd__WEBPACK_IMPORTED_MODULE_13__["default"], {
+          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsxs)(antd__WEBPACK_IMPORTED_MODULE_14__["default"], {
             type: "primary",
             onClick: handleBulkStatusChange,
             style: {
               backgroundColor: "#A63F3F"
             },
-            children: statusFilter === "Archived" ? "Unarchive" : "Archive"
+            disabled: selectedRowKeys.length === 0,
+            children: [statusFilter === "Archived" ? "Restore" : "Archive", " Selected"]
           })]
         })]
-      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)(antd__WEBPACK_IMPORTED_MODULE_15__["default"], {
+      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)(antd__WEBPACK_IMPORTED_MODULE_16__["default"], {
         rowSelection: rowSelection,
         columns: columns,
         dataSource: filteredUsers,
@@ -61364,10 +61381,15 @@ function AllUsers() {
           emptyText: 'No users found matching the current filters'
         }
       })]
-    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)(_AddUserModal__WEBPACK_IMPORTED_MODULE_3__["default"], {
-      visible: isModalVisible,
-      onCancel: handleCancelModal,
-      onSave: handleSaveModal
+    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)(_AddUserModal__WEBPACK_IMPORTED_MODULE_3__["default"], {
+      visible: isAddModalVisible,
+      onCancel: handleCancelAddModal,
+      onSave: handleSaveAddModal
+    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)(_EditUserModal__WEBPACK_IMPORTED_MODULE_4__["default"], {
+      visible: isEditModalVisible,
+      onCancel: handleCancelEditModal,
+      onSave: handleSaveEditModal,
+      user: selectedUser
     })]
   });
 }
@@ -61391,21 +61413,23 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
 /* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_1__);
 /* harmony import */ var _AdminReusable_AdminPage__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../AdminReusable/AdminPage */ "./resources/js/components/AdminReusable/AdminPage.js");
-/* harmony import */ var antd__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! antd */ "./node_modules/antd/es/select/index.js");
-/* harmony import */ var antd__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! antd */ "./node_modules/antd/es/space/index.js");
-/* harmony import */ var antd__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! antd */ "./node_modules/antd/es/tag/index.js");
-/* harmony import */ var antd__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! antd */ "./node_modules/antd/es/input/index.js");
-/* harmony import */ var antd__WEBPACK_IMPORTED_MODULE_14__ = __webpack_require__(/*! antd */ "./node_modules/antd/es/button/index.js");
-/* harmony import */ var antd__WEBPACK_IMPORTED_MODULE_16__ = __webpack_require__(/*! antd */ "./node_modules/antd/es/table/index.js");
-/* harmony import */ var _ant_design_icons__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! @ant-design/icons */ "./node_modules/@ant-design/icons/es/icons/EditOutlined.js");
-/* harmony import */ var _ant_design_icons__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! @ant-design/icons */ "./node_modules/@ant-design/icons/es/icons/InboxOutlined.js");
-/* harmony import */ var _ant_design_icons__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! @ant-design/icons */ "./node_modules/@ant-design/icons/es/icons/SearchOutlined.js");
-/* harmony import */ var _ant_design_icons__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(/*! @ant-design/icons */ "./node_modules/@ant-design/icons/es/icons/CloseCircleOutlined.js");
-/* harmony import */ var _ant_design_icons__WEBPACK_IMPORTED_MODULE_15__ = __webpack_require__(/*! @ant-design/icons */ "./node_modules/@ant-design/icons/es/icons/PlusOutlined.js");
+/* harmony import */ var antd__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! antd */ "./node_modules/antd/es/select/index.js");
+/* harmony import */ var antd__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! antd */ "./node_modules/antd/es/modal/index.js");
+/* harmony import */ var antd__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! antd */ "./node_modules/antd/es/space/index.js");
+/* harmony import */ var antd__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! antd */ "./node_modules/antd/es/tag/index.js");
+/* harmony import */ var antd__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(/*! antd */ "./node_modules/antd/es/input/index.js");
+/* harmony import */ var antd__WEBPACK_IMPORTED_MODULE_16__ = __webpack_require__(/*! antd */ "./node_modules/antd/es/button/index.js");
+/* harmony import */ var antd__WEBPACK_IMPORTED_MODULE_18__ = __webpack_require__(/*! antd */ "./node_modules/antd/es/table/index.js");
+/* harmony import */ var _ant_design_icons__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! @ant-design/icons */ "./node_modules/@ant-design/icons/es/icons/EditOutlined.js");
+/* harmony import */ var _ant_design_icons__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! @ant-design/icons */ "./node_modules/@ant-design/icons/es/icons/InboxOutlined.js");
+/* harmony import */ var _ant_design_icons__WEBPACK_IMPORTED_MODULE_14__ = __webpack_require__(/*! @ant-design/icons */ "./node_modules/@ant-design/icons/es/icons/SearchOutlined.js");
+/* harmony import */ var _ant_design_icons__WEBPACK_IMPORTED_MODULE_15__ = __webpack_require__(/*! @ant-design/icons */ "./node_modules/@ant-design/icons/es/icons/CloseCircleOutlined.js");
+/* harmony import */ var _ant_design_icons__WEBPACK_IMPORTED_MODULE_17__ = __webpack_require__(/*! @ant-design/icons */ "./node_modules/@ant-design/icons/es/icons/PlusOutlined.js");
 /* harmony import */ var _AddUserModal__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./AddUserModal */ "./resources/js/components/Admin/AddUserModal.js");
-/* harmony import */ var lodash__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! lodash */ "./node_modules/lodash/lodash.js");
-/* harmony import */ var lodash__WEBPACK_IMPORTED_MODULE_4___default = /*#__PURE__*/__webpack_require__.n(lodash__WEBPACK_IMPORTED_MODULE_4__);
-/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! react/jsx-runtime */ "./node_modules/react/jsx-runtime.js");
+/* harmony import */ var _EditUserModal__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./EditUserModal */ "./resources/js/components/Admin/EditUserModal.js");
+/* harmony import */ var lodash__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! lodash */ "./node_modules/lodash/lodash.js");
+/* harmony import */ var lodash__WEBPACK_IMPORTED_MODULE_5___default = /*#__PURE__*/__webpack_require__.n(lodash__WEBPACK_IMPORTED_MODULE_5__);
+/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! react/jsx-runtime */ "./node_modules/react/jsx-runtime.js");
 function _slicedToArray(r, e) { return _arrayWithHoles(r) || _iterableToArrayLimit(r, e) || _unsupportedIterableToArray(r, e) || _nonIterableRest(); }
 function _nonIterableRest() { throw new TypeError("Invalid attempt to destructure non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
 function _unsupportedIterableToArray(r, a) { if (r) { if ("string" == typeof r) return _arrayLikeToArray(r, a); var t = {}.toString.call(r).slice(8, -1); return "Object" === t && r.constructor && (t = r.constructor.name), "Map" === t || "Set" === t ? Array.from(r) : "Arguments" === t || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(t) ? _arrayLikeToArray(r, a) : void 0; } }
@@ -61420,7 +61444,8 @@ function _arrayWithHoles(r) { if (Array.isArray(r)) return r; }
 
 
 
-var Option = antd__WEBPACK_IMPORTED_MODULE_6__["default"].Option;
+
+var Option = antd__WEBPACK_IMPORTED_MODULE_7__["default"].Option;
 var USERS_API = "http://127.0.0.1:8000/api/users";
 function AllCustomers() {
   var _useState = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)([]),
@@ -61441,14 +61466,35 @@ function AllCustomers() {
     setStatusFilter = _useState8[1];
   var _useState9 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(false),
     _useState10 = _slicedToArray(_useState9, 2),
-    isModalVisible = _useState10[0],
-    setIsModalVisible = _useState10[1];
+    isAddModalVisible = _useState10[0],
+    setIsAddModalVisible = _useState10[1];
+  var _useState11 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(false),
+    _useState12 = _slicedToArray(_useState11, 2),
+    isEditModalVisible = _useState12[0],
+    setIsEditModalVisible = _useState12[1];
+  var _useState13 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(null),
+    _useState14 = _slicedToArray(_useState13, 2),
+    selectedCustomer = _useState14[0],
+    setSelectedCustomer = _useState14[1];
+  var _useState15 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)([]),
+    _useState16 = _slicedToArray(_useState15, 2),
+    selectedRowKeys = _useState16[0],
+    setSelectedRowKeys = _useState16[1];
   (0,react__WEBPACK_IMPORTED_MODULE_0__.useEffect)(function () {
     fetchCustomers();
-  }, []);
+  }, [statusFilter]);
   var fetchCustomers = function fetchCustomers() {
     setLoading(true);
-    axios__WEBPACK_IMPORTED_MODULE_1___default().get(USERS_API).then(function (res) {
+
+    // Convert frontend status values to match backend expectations
+    var backendStatus = "all";
+    if (statusFilter === "Active") backendStatus = "active";
+    if (statusFilter === "Archived") backendStatus = "archived";
+    axios__WEBPACK_IMPORTED_MODULE_1___default().get(USERS_API, {
+      params: {
+        status: backendStatus
+      }
+    }).then(function (res) {
       var _res$data, _res$data2;
       if ((_res$data = res.data) !== null && _res$data !== void 0 && _res$data.status && (_res$data2 = res.data) !== null && _res$data2 !== void 0 && (_res$data2 = _res$data2.data) !== null && _res$data2 !== void 0 && _res$data2.users) {
         var customersList = res.data.data.users.filter(function (user) {
@@ -61466,7 +61512,7 @@ function AllCustomers() {
   };
 
   // Debounced search function
-  var handleSearchChange = (0,lodash__WEBPACK_IMPORTED_MODULE_4__.debounce)(function (value) {
+  var handleSearchChange = (0,lodash__WEBPACK_IMPORTED_MODULE_5__.debounce)(function (value) {
     setSearch(value.toLowerCase());
   }, 300);
 
@@ -61474,38 +61520,115 @@ function AllCustomers() {
   var clearSearch = function clearSearch() {
     setSearch("");
   };
+
+  // Handle add modal functions
+  var handleOpenAddModal = function handleOpenAddModal() {
+    return setIsAddModalVisible(true);
+  };
+  var handleCancelAddModal = function handleCancelAddModal() {
+    return setIsAddModalVisible(false);
+  };
+  var handleSaveAddModal = function handleSaveAddModal() {
+    setIsAddModalVisible(false);
+    fetchCustomers(); // Refresh customers after adding a new one
+  };
+
+  // Handle edit modal functions
+  var handleOpenEditModal = function handleOpenEditModal(customer) {
+    setSelectedCustomer(customer);
+    setIsEditModalVisible(true);
+  };
+  var handleCancelEditModal = function handleCancelEditModal() {
+    setSelectedCustomer(null);
+    setIsEditModalVisible(false);
+  };
+  var handleSaveEditModal = function handleSaveEditModal() {
+    setIsEditModalVisible(false);
+    setSelectedCustomer(null);
+    fetchCustomers(); // Refresh customers after editing
+  };
+
+  // Archive/Unarchive single customer
+  var toggleCustomerArchiveStatus = function toggleCustomerArchiveStatus(userId, currentStatus) {
+    var isArchived = currentStatus === "Archived";
+    var endpoint = isArchived ? "".concat(USERS_API, "/").concat(userId, "/restore") : "".concat(USERS_API, "/").concat(userId, "/archive");
+    antd__WEBPACK_IMPORTED_MODULE_8__["default"].confirm({
+      title: "Are you sure you want to ".concat(isArchived ? "restore" : "archive", " this customer?"),
+      content: "This will change their status to ".concat(isArchived ? "active" : "archived", "."),
+      onOk: function onOk() {
+        setLoading(true);
+        axios__WEBPACK_IMPORTED_MODULE_1___default().put(endpoint).then(function () {
+          fetchCustomers(); // Refresh the list to show updated statuses
+        })["catch"](function (err) {
+          return console.error("Error updating customer status:", err);
+        })["finally"](function () {
+          return setLoading(false);
+        });
+      }
+    });
+  };
+
+  // Bulk archive/unarchive selected customers
+  var handleBulkStatusChange = function handleBulkStatusChange() {
+    if (selectedRowKeys.length === 0) {
+      antd__WEBPACK_IMPORTED_MODULE_8__["default"].info({
+        title: 'No customers selected',
+        content: 'Please select at least one customer to continue.'
+      });
+      return;
+    }
+    var action = statusFilter === "Archived" ? "restore" : "archive";
+    antd__WEBPACK_IMPORTED_MODULE_8__["default"].confirm({
+      title: "Are you sure you want to ".concat(action, " ").concat(selectedRowKeys.length, " customers?"),
+      content: "This will change their status to ".concat(action === "archive" ? "archived" : "active", "."),
+      onOk: function onOk() {
+        setLoading(true);
+        axios__WEBPACK_IMPORTED_MODULE_1___default().put("".concat(USERS_API, "/bulk-archive-restore"), {
+          user_ids: selectedRowKeys,
+          action: action
+        }).then(function () {
+          fetchCustomers(); // Refresh the list to show updated statuses
+          setSelectedRowKeys([]); // Clear selection
+        })["catch"](function (err) {
+          return console.error("Error updating customers:", err);
+        })["finally"](function () {
+          return setLoading(false);
+        });
+      }
+    });
+  };
+
+  // Filter customers based on search
   var filteredCustomers = customers.filter(function (customer) {
     var _customer$profile, _customer$email;
     var name = ((_customer$profile = customer.profile) === null || _customer$profile === void 0 || (_customer$profile = _customer$profile.full_name) === null || _customer$profile === void 0 ? void 0 : _customer$profile.toLowerCase()) || "";
     var email = ((_customer$email = customer.email) === null || _customer$email === void 0 ? void 0 : _customer$email.toLowerCase()) || "";
     var matchesSearch = (name + " " + email).includes(search);
-    var matchesStatus = !statusFilter || statusFilter === "Active" && (!customer.status || customer.status === "Active") || statusFilter === "Archived" && customer.status === "Archived";
-    return matchesSearch && matchesStatus;
+    return matchesSearch;
   });
-  var handleOpenModal = function handleOpenModal() {
-    return setIsModalVisible(true);
-  };
-  var handleCancelModal = function handleCancelModal() {
-    return setIsModalVisible(false);
-  };
-  var handleSaveModal = function handleSaveModal() {
-    return setIsModalVisible(false);
-  };
   var columns = [{
     title: "Actions",
     key: "actions",
     render: function render(_, record) {
-      return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsxs)(antd__WEBPACK_IMPORTED_MODULE_7__["default"], {
+      var isArchived = record.deleted_at !== null;
+      var status = isArchived ? "Archived" : "Active";
+      return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsxs)(antd__WEBPACK_IMPORTED_MODULE_9__["default"], {
         size: "small",
-        children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)(_ant_design_icons__WEBPACK_IMPORTED_MODULE_8__["default"], {
-          style: {
-            cursor: "pointer"
-          }
-        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)(_ant_design_icons__WEBPACK_IMPORTED_MODULE_9__["default"], {
+        children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)(_ant_design_icons__WEBPACK_IMPORTED_MODULE_10__["default"], {
           style: {
             cursor: "pointer"
           },
-          title: record.status === "Archived" ? "Unarchive" : "Archive"
+          onClick: function onClick() {
+            return handleOpenEditModal(record);
+          }
+        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)(_ant_design_icons__WEBPACK_IMPORTED_MODULE_11__["default"], {
+          style: {
+            cursor: "pointer"
+          },
+          title: isArchived ? "Restore" : "Archive",
+          onClick: function onClick() {
+            return toggleCustomerArchiveStatus(record.id, status);
+          }
         })]
       });
     }
@@ -61522,80 +61645,92 @@ function AllCustomers() {
     key: "email"
   }, {
     title: "Status",
-    dataIndex: "status",
     key: "status",
-    render: function render(status) {
-      return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)(antd__WEBPACK_IMPORTED_MODULE_10__["default"], {
-        color: status === "Archived" ? "default" : "success",
-        children: status || "Active"
+    render: function render(_, record) {
+      var isArchived = record.deleted_at !== null;
+      return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)(antd__WEBPACK_IMPORTED_MODULE_12__["default"], {
+        color: isArchived ? "default" : "success",
+        children: isArchived ? "Archived" : "Active"
       });
     }
   }];
-  return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsxs)(_AdminReusable_AdminPage__WEBPACK_IMPORTED_MODULE_2__["default"], {
-    children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsxs)("div", {
+  var rowSelection = {
+    selectedRowKeys: selectedRowKeys,
+    onChange: function onChange(keys) {
+      return setSelectedRowKeys(keys);
+    }
+  };
+  return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsxs)(_AdminReusable_AdminPage__WEBPACK_IMPORTED_MODULE_2__["default"], {
+    children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsxs)("div", {
       style: {
         padding: "20px"
       },
-      children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("h2", {
+      children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("h2", {
         style: {
           marginBottom: "20px"
         },
         children: "Customer Management"
-      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsxs)("div", {
+      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsxs)("div", {
         style: {
           display: "flex",
           justifyContent: "space-between",
           marginBottom: "20px"
         },
-        children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsxs)(antd__WEBPACK_IMPORTED_MODULE_7__["default"], {
-          children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)(antd__WEBPACK_IMPORTED_MODULE_11__["default"], {
+        children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsxs)(antd__WEBPACK_IMPORTED_MODULE_9__["default"], {
+          children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)(antd__WEBPACK_IMPORTED_MODULE_13__["default"], {
             placeholder: "Search customers",
-            prefix: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)(_ant_design_icons__WEBPACK_IMPORTED_MODULE_12__["default"], {}),
+            prefix: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)(_ant_design_icons__WEBPACK_IMPORTED_MODULE_14__["default"], {}),
             value: search,
             onChange: function onChange(e) {
               return handleSearchChange(e.target.value);
             },
             allowClear: {
-              clearIcon: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)(_ant_design_icons__WEBPACK_IMPORTED_MODULE_13__["default"], {
+              clearIcon: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)(_ant_design_icons__WEBPACK_IMPORTED_MODULE_15__["default"], {
                 onClick: clearSearch
               })
             },
             style: {
               width: 250
             }
-          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsxs)(antd__WEBPACK_IMPORTED_MODULE_6__["default"], {
+          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsxs)(antd__WEBPACK_IMPORTED_MODULE_7__["default"], {
             placeholder: "Status",
             value: statusFilter,
             onChange: setStatusFilter,
             style: {
               width: 120
             },
-            children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)(Option, {
+            children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)(Option, {
               value: "",
               children: "All Status"
-            }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)(Option, {
+            }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)(Option, {
               value: "Active",
               children: "Active"
-            }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)(Option, {
+            }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)(Option, {
               value: "Archived",
               children: "Archived"
             })]
           })]
-        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsxs)(antd__WEBPACK_IMPORTED_MODULE_7__["default"], {
-          children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)(antd__WEBPACK_IMPORTED_MODULE_14__["default"], {
+        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsxs)(antd__WEBPACK_IMPORTED_MODULE_9__["default"], {
+          children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)(antd__WEBPACK_IMPORTED_MODULE_16__["default"], {
             type: "primary",
-            onClick: handleOpenModal,
-            icon: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)(_ant_design_icons__WEBPACK_IMPORTED_MODULE_15__["default"], {}),
+            onClick: handleOpenAddModal,
+            icon: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)(_ant_design_icons__WEBPACK_IMPORTED_MODULE_17__["default"], {}),
+            style: {
+              backgroundColor: "#A63F3F"
+            },
             children: "Add Customer"
-          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)(antd__WEBPACK_IMPORTED_MODULE_14__["default"], {
+          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsxs)(antd__WEBPACK_IMPORTED_MODULE_16__["default"], {
             type: "primary",
-            children: statusFilter === "Archived" ? "Unarchive" : "Archive"
+            onClick: handleBulkStatusChange,
+            disabled: selectedRowKeys.length === 0,
+            style: {
+              backgroundColor: "#A63F3F"
+            },
+            children: [statusFilter === "Archived" ? "Restore" : "Archive", " Selected"]
           })]
         })]
-      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)(antd__WEBPACK_IMPORTED_MODULE_16__["default"], {
-        rowSelection: {
-          type: "checkbox"
-        },
+      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)(antd__WEBPACK_IMPORTED_MODULE_18__["default"], {
+        rowSelection: rowSelection,
         columns: columns,
         dataSource: filteredCustomers,
         rowKey: function rowKey(record) {
@@ -61609,15 +61744,356 @@ function AllCustomers() {
           emptyText: "No customers found matching the current filters"
         }
       })]
-    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)(_AddUserModal__WEBPACK_IMPORTED_MODULE_3__["default"], {
-      visible: isModalVisible,
-      onCancel: handleCancelModal,
-      onSave: handleSaveModal,
+    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)(_AddUserModal__WEBPACK_IMPORTED_MODULE_3__["default"], {
+      visible: isAddModalVisible,
+      onCancel: handleCancelAddModal,
+      onSave: handleSaveAddModal,
       userType: "customer"
+    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)(_EditUserModal__WEBPACK_IMPORTED_MODULE_4__["default"], {
+      visible: isEditModalVisible,
+      onCancel: handleCancelEditModal,
+      onSave: handleSaveEditModal,
+      user: selectedCustomer
     })]
   });
 }
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (AllCustomers);
+
+/***/ }),
+
+/***/ "./resources/js/components/Admin/EditUserModal.js":
+/*!********************************************************!*\
+  !*** ./resources/js/components/Admin/EditUserModal.js ***!
+  \********************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var antd__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! antd */ "./node_modules/antd/es/select/index.js");
+/* harmony import */ var antd__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! antd */ "./node_modules/antd/es/form/index.js");
+/* harmony import */ var antd__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! antd */ "./node_modules/antd/es/message/index.js");
+/* harmony import */ var antd__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! antd */ "./node_modules/antd/es/modal/index.js");
+/* harmony import */ var antd__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! antd */ "./node_modules/antd/es/button/index.js");
+/* harmony import */ var antd__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! antd */ "./node_modules/antd/es/row/index.js");
+/* harmony import */ var antd__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! antd */ "./node_modules/antd/es/col/index.js");
+/* harmony import */ var antd__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! antd */ "./node_modules/antd/es/input/index.js");
+/* harmony import */ var antd__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! antd */ "./node_modules/antd/es/upload/index.js");
+/* harmony import */ var _ant_design_icons__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! @ant-design/icons */ "./node_modules/@ant-design/icons/es/icons/UploadOutlined.js");
+/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
+/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_1__);
+/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! react/jsx-runtime */ "./node_modules/react/jsx-runtime.js");
+function _slicedToArray(r, e) { return _arrayWithHoles(r) || _iterableToArrayLimit(r, e) || _unsupportedIterableToArray(r, e) || _nonIterableRest(); }
+function _nonIterableRest() { throw new TypeError("Invalid attempt to destructure non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
+function _unsupportedIterableToArray(r, a) { if (r) { if ("string" == typeof r) return _arrayLikeToArray(r, a); var t = {}.toString.call(r).slice(8, -1); return "Object" === t && r.constructor && (t = r.constructor.name), "Map" === t || "Set" === t ? Array.from(r) : "Arguments" === t || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(t) ? _arrayLikeToArray(r, a) : void 0; } }
+function _arrayLikeToArray(r, a) { (null == a || a > r.length) && (a = r.length); for (var e = 0, n = Array(a); e < a; e++) n[e] = r[e]; return n; }
+function _iterableToArrayLimit(r, l) { var t = null == r ? null : "undefined" != typeof Symbol && r[Symbol.iterator] || r["@@iterator"]; if (null != t) { var e, n, i, u, a = [], f = !0, o = !1; try { if (i = (t = t.call(r)).next, 0 === l) { if (Object(t) !== t) return; f = !1; } else for (; !(f = (e = i.call(t)).done) && (a.push(e.value), a.length !== l); f = !0); } catch (r) { o = !0, n = r; } finally { try { if (!f && null != t["return"] && (u = t["return"](), Object(u) !== u)) return; } finally { if (o) throw n; } } return a; } }
+function _arrayWithHoles(r) { if (Array.isArray(r)) return r; }
+
+
+
+
+
+var Option = antd__WEBPACK_IMPORTED_MODULE_3__["default"].Option;
+var PROFILE_UPDATE_API = "http://127.0.0.1:8000/api/profile/update";
+var EditProfileModal = function EditProfileModal(_ref) {
+  var visible = _ref.visible,
+    onCancel = _ref.onCancel,
+    onSave = _ref.onSave,
+    user = _ref.user;
+  var _Form$useForm = antd__WEBPACK_IMPORTED_MODULE_4__["default"].useForm(),
+    _Form$useForm2 = _slicedToArray(_Form$useForm, 1),
+    form = _Form$useForm2[0];
+  var _useState = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(false),
+    _useState2 = _slicedToArray(_useState, 2),
+    loading = _useState2[0],
+    setLoading = _useState2[1];
+  var _useState3 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(''),
+    _useState4 = _slicedToArray(_useState3, 2),
+    imageUrl = _useState4[0],
+    setImageUrl = _useState4[1];
+  var _useState5 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)([]),
+    _useState6 = _slicedToArray(_useState5, 2),
+    fileList = _useState6[0],
+    setFileList = _useState6[1];
+
+  // Reset form and populate with user data when modal opens or user changes
+  (0,react__WEBPACK_IMPORTED_MODULE_0__.useEffect)(function () {
+    if (visible && user && user.profile) {
+      // Set all form fields to ensure complete data submission
+      form.setFieldsValue({
+        first_name: user.profile.first_name || '',
+        middle_name: user.profile.middle_name || '',
+        last_name: user.profile.last_name || '',
+        username: user.profile.username || '',
+        email: user.profile.email || '',
+        phone_number: user.profile.phone_number || '',
+        sex: user.profile.sex || 'Male'
+      });
+      if (user.profile.profile_image && user.profile.profile_image !== 'default.jpg') {
+        setImageUrl("/storage/".concat(user.profile.profile_image));
+      } else {
+        setImageUrl('');
+      }
+      setFileList([]);
+    }
+  }, [visible, user, form]);
+  var normFile = function normFile(e) {
+    if (Array.isArray(e)) {
+      return e;
+    }
+    return e === null || e === void 0 ? void 0 : e.fileList;
+  };
+  var beforeUpload = function beforeUpload(file) {
+    var isImage = file.type.startsWith('image/');
+    if (!isImage) {
+      antd__WEBPACK_IMPORTED_MODULE_5__["default"].error('You can only upload image files!');
+    }
+    var isLt2M = file.size / 1024 / 1024 < 2;
+    if (!isLt2M) {
+      antd__WEBPACK_IMPORTED_MODULE_5__["default"].error('Image must be smaller than 2MB!');
+    }
+    return false; // Prevent automatic upload
+  };
+  var handleChange = function handleChange(_ref2) {
+    var fileList = _ref2.fileList;
+    setFileList(fileList);
+  };
+  var handleSubmit = function handleSubmit() {
+    form.validateFields().then(function (values) {
+      setLoading(true);
+
+      // Create FormData for file upload and include ALL fields
+      var formData = new FormData();
+
+      // Always include all fields, even if unmodified
+      formData.append('first_name', values.first_name);
+      formData.append('middle_name', values.middle_name || '');
+      formData.append('last_name', values.last_name);
+      formData.append('username', values.username);
+      formData.append('email', values.email);
+      formData.append('phone_number', values.phone_number);
+      formData.append('sex', values.sex);
+
+      // Only append file if a new one is selected
+      if (fileList.length > 0 && fileList[0].originFileObj) {
+        formData.append('profile_image', fileList[0].originFileObj);
+      }
+
+      // Make API request to update profile
+      axios__WEBPACK_IMPORTED_MODULE_1___default().post(PROFILE_UPDATE_API, formData, {
+        headers: {
+          'Content-Type': 'multipart/form-data'
+        },
+        withCredentials: true // Include cookies for authentication
+      }).then(function (response) {
+        var _response$data;
+        if ((_response$data = response.data) !== null && _response$data !== void 0 && _response$data.status) {
+          antd__WEBPACK_IMPORTED_MODULE_5__["default"].success(response.data.message || 'Profile updated successfully');
+
+          // Call onSave with complete updated profile
+          if (onSave && response.data.profile) {
+            onSave(response.data.profile);
+          }
+        } else {
+          antd__WEBPACK_IMPORTED_MODULE_5__["default"].error(response.data.message || 'Failed to update profile');
+        }
+      })["catch"](function (error) {
+        var _error$response;
+        console.error('Error updating profile:', error);
+
+        // Handle validation errors from the backend
+        if ((_error$response = error.response) !== null && _error$response !== void 0 && (_error$response = _error$response.data) !== null && _error$response !== void 0 && _error$response.errors) {
+          var backendErrors = error.response.data.errors;
+          form.setFields(Object.keys(backendErrors).map(function (name) {
+            return {
+              name: name,
+              errors: [backendErrors[name][0]]
+            };
+          }));
+        } else {
+          var _error$response2;
+          antd__WEBPACK_IMPORTED_MODULE_5__["default"].error(((_error$response2 = error.response) === null || _error$response2 === void 0 || (_error$response2 = _error$response2.data) === null || _error$response2 === void 0 ? void 0 : _error$response2.message) || 'An error occurred while updating the profile');
+        }
+      })["finally"](function () {
+        setLoading(false);
+      });
+    })["catch"](function (info) {
+      console.log('Validate Failed:', info);
+    });
+  };
+  return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)(antd__WEBPACK_IMPORTED_MODULE_6__["default"], {
+    title: "Edit Profile",
+    open: visible,
+    onCancel: onCancel,
+    width: 1000,
+    footer: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)(antd__WEBPACK_IMPORTED_MODULE_7__["default"], {
+      onClick: onCancel,
+      children: "Cancel"
+    }, "cancel"), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)(antd__WEBPACK_IMPORTED_MODULE_7__["default"], {
+      type: "primary",
+      loading: loading,
+      onClick: handleSubmit,
+      style: {
+        backgroundColor: "#A63F3F"
+      },
+      children: "Save Changes"
+    }, "submit")],
+    maskClosable: false,
+    destroyOnClose: true,
+    children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)(antd__WEBPACK_IMPORTED_MODULE_4__["default"], {
+      form: form,
+      layout: "vertical",
+      initialValues: {
+        sex: 'Male' // Default value
+      },
+      preserve: false // Don't preserve form data when unmounted
+      ,
+      children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxs)(antd__WEBPACK_IMPORTED_MODULE_8__["default"], {
+        gutter: 16,
+        children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)(antd__WEBPACK_IMPORTED_MODULE_9__["default"], {
+          span: 4.8,
+          children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)(antd__WEBPACK_IMPORTED_MODULE_4__["default"].Item, {
+            name: "first_name",
+            label: "First Name",
+            rules: [{
+              required: true,
+              message: 'Please enter first name'
+            }],
+            children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)(antd__WEBPACK_IMPORTED_MODULE_10__["default"], {
+              placeholder: "First Name"
+            })
+          })
+        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)(antd__WEBPACK_IMPORTED_MODULE_9__["default"], {
+          span: 4.8,
+          children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)(antd__WEBPACK_IMPORTED_MODULE_4__["default"].Item, {
+            name: "middle_name",
+            label: "Middle Name",
+            children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)(antd__WEBPACK_IMPORTED_MODULE_10__["default"], {
+              placeholder: "Middle Name"
+            })
+          })
+        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)(antd__WEBPACK_IMPORTED_MODULE_9__["default"], {
+          span: 4.8,
+          children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)(antd__WEBPACK_IMPORTED_MODULE_4__["default"].Item, {
+            name: "last_name",
+            label: "Last Name",
+            rules: [{
+              required: true,
+              message: 'Please enter last name'
+            }],
+            children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)(antd__WEBPACK_IMPORTED_MODULE_10__["default"], {
+              placeholder: "Last Name"
+            })
+          })
+        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)(antd__WEBPACK_IMPORTED_MODULE_9__["default"], {
+          span: 4.8,
+          children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)(antd__WEBPACK_IMPORTED_MODULE_4__["default"].Item, {
+            name: "username",
+            label: "Username",
+            rules: [{
+              required: true,
+              message: 'Please enter username'
+            }],
+            children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)(antd__WEBPACK_IMPORTED_MODULE_10__["default"], {
+              placeholder: "Username"
+            })
+          })
+        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)(antd__WEBPACK_IMPORTED_MODULE_9__["default"], {
+          span: 4.8,
+          children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)(antd__WEBPACK_IMPORTED_MODULE_4__["default"].Item, {
+            name: "email",
+            label: "Email",
+            rules: [{
+              required: true,
+              message: 'Please enter email'
+            }, {
+              type: 'email',
+              message: 'Please enter a valid email'
+            }],
+            children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)(antd__WEBPACK_IMPORTED_MODULE_10__["default"], {
+              placeholder: "Email"
+            })
+          })
+        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)(antd__WEBPACK_IMPORTED_MODULE_9__["default"], {
+          span: 4.8,
+          children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)(antd__WEBPACK_IMPORTED_MODULE_4__["default"].Item, {
+            name: "phone_number",
+            label: "Phone Number",
+            rules: [{
+              required: true,
+              message: 'Please enter phone number'
+            }],
+            children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)(antd__WEBPACK_IMPORTED_MODULE_10__["default"], {
+              placeholder: "Phone Number"
+            })
+          })
+        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)(antd__WEBPACK_IMPORTED_MODULE_9__["default"], {
+          span: 4.8,
+          children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)(antd__WEBPACK_IMPORTED_MODULE_4__["default"].Item, {
+            name: "sex",
+            label: "Sex",
+            rules: [{
+              required: true,
+              message: 'Please select sex'
+            }],
+            children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxs)(antd__WEBPACK_IMPORTED_MODULE_3__["default"], {
+              placeholder: "Select sex",
+              children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)(Option, {
+                value: "Male",
+                children: "Male"
+              }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)(Option, {
+                value: "Female",
+                children: "Female"
+              }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)(Option, {
+                value: "Other",
+                children: "Other"
+              })]
+            })
+          })
+        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxs)(antd__WEBPACK_IMPORTED_MODULE_9__["default"], {
+          span: 14.4,
+          children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)(antd__WEBPACK_IMPORTED_MODULE_4__["default"].Item, {
+            name: "profile_image",
+            label: "Profile Image",
+            valuePropName: "fileList",
+            getValueFromEvent: normFile,
+            children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)(antd__WEBPACK_IMPORTED_MODULE_11__["default"], {
+              listType: "picture",
+              fileList: fileList,
+              beforeUpload: beforeUpload,
+              onChange: handleChange,
+              maxCount: 1,
+              children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)(antd__WEBPACK_IMPORTED_MODULE_7__["default"], {
+                icon: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)(_ant_design_icons__WEBPACK_IMPORTED_MODULE_12__["default"], {}),
+                children: "Select Image"
+              })
+            })
+          }), imageUrl && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxs)("div", {
+            style: {
+              marginTop: 8
+            },
+            children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("p", {
+              children: "Current profile image:"
+            }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("img", {
+              src: imageUrl,
+              alt: "profile",
+              style: {
+                maxWidth: '100%',
+                maxHeight: 200
+              }
+            })]
+          })]
+        })]
+      })
+    })
+  });
+};
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (EditProfileModal);
 
 /***/ }),
 

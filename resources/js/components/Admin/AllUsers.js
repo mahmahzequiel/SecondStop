@@ -4,6 +4,7 @@ import AdminPage from "../AdminReusable/AdminPage";
 import { Table, Button, Input, Select, Tag, Space, Modal } from "antd";
 import { SearchOutlined, EditOutlined, InboxOutlined, PlusOutlined } from "@ant-design/icons";
 import AddUserModal from "./AddUserModal";
+import EditUserModal from "./EditUserModal";
 
 const { Option } = Select;
 
@@ -15,17 +16,25 @@ function AllUsers() {
   const [search, setSearch] = useState("");
   const [roleFilter, setRoleFilter] = useState("");
   const [statusFilter, setStatusFilter] = useState("");
-  const [isModalVisible, setIsModalVisible] = useState(false);
+  const [isAddModalVisible, setIsAddModalVisible] = useState(false);
+  const [isEditModalVisible, setIsEditModalVisible] = useState(false);
+  const [selectedUser, setSelectedUser] = useState(null);
   const [selectedRowKeys, setSelectedRowKeys] = useState([]);
 
   useEffect(() => {
     fetchUsers();
-  }, []);
-
+  }, [statusFilter]);
+  
   const fetchUsers = () => {
     setLoading(true);
+  
+    // Convert frontend status values to match backend expectations
+    let backendStatus = "all";
+    if (statusFilter === "Active") backendStatus = "active";
+    if (statusFilter === "Archived") backendStatus = "archived";
+  
     axios
-      .get(USERS_API)
+      .get(USERS_API, { params: { status: backendStatus } })
       .then((res) => {
         console.log("All users response:", res.data);
         if (res.data?.status && res.data?.data?.users) {
@@ -41,35 +50,48 @@ function AllUsers() {
         setLoading(false);
       });
   };
-
-  // Handle modal functions
-  const handleOpenModal = () => setIsModalVisible(true);
-  const handleCancelModal = () => setIsModalVisible(false);
-  const handleSaveModal = () => {
-    setIsModalVisible(false);
+  
+  // Handle add modal functions
+  const handleOpenAddModal = () => setIsAddModalVisible(true);
+  const handleCancelAddModal = () => setIsAddModalVisible(false);
+  const handleSaveAddModal = () => {
+    setIsAddModalVisible(false);
     fetchUsers(); // Refresh users after adding a new one
+  };
+
+  // Handle edit modal functions
+  const handleOpenEditModal = (user) => {
+    setSelectedUser(user);
+    setIsEditModalVisible(true);
+  };
+  
+  const handleCancelEditModal = () => {
+    setSelectedUser(null);
+    setIsEditModalVisible(false);
+  };
+  
+  const handleSaveEditModal = () => {
+    setIsEditModalVisible(false);
+    setSelectedUser(null);
+    fetchUsers(); // Refresh users after editing
   };
 
   // Archive/Unarchive single user
   const toggleUserArchiveStatus = (userId, currentStatus) => {
-    const newStatus = currentStatus === "Archived" ? "Active" : "Archived";
-    const endpoint = newStatus === "Archived"
-      ? `${USERS_API}/${userId}/archive`
-      : `${USERS_API}/${userId}/restore`;
+    const isArchived = currentStatus === "Archived";
+    const endpoint = isArchived
+      ? `${USERS_API}/${userId}/restore`
+      : `${USERS_API}/${userId}/archive`;
   
     Modal.confirm({
-      title: `Are you sure you want to ${newStatus === "Archived" ? "archive" : "unarchive"} this user?`,
-      content: `This will change their status to ${newStatus}.`,
+      title: `Are you sure you want to ${isArchived ? "restore" : "archive"} this user?`,
+      content: `This will change their status to ${isArchived ? "active" : "archived"}.`,
       onOk: () => {
         setLoading(true);
         axios
           .put(endpoint)
           .then(() => {
-            setUsers(prevUsers =>
-              prevUsers.map(user =>
-                user.id === userId ? { ...user, status: newStatus } : user
-              )
-            );
+            fetchUsers(); // Refresh the list to show updated statuses
           })
           .catch(err => console.error(`Error updating user status:`, err))
           .finally(() => setLoading(false));
@@ -77,7 +99,6 @@ function AllUsers() {
     });
   };
   
-
   // Bulk archive/unarchive selected users
   const handleBulkStatusChange = () => {
     if (selectedRowKeys.length === 0) {
@@ -85,18 +106,17 @@ function AllUsers() {
       return;
     }
   
-    const newStatus = statusFilter === "Archived" ? "Active" : "Archived";
-    
+    const action = statusFilter === "Archived" ? "restore" : "archive";
+  
     Modal.confirm({
-      title: `Are you sure you want to ${newStatus === "Archived" ? "archive" : "unarchive"} ${selectedRowKeys.length} users?`,
-      content: `This will change their status to ${newStatus}.`,
+      title: `Are you sure you want to ${action} ${selectedRowKeys.length} users?`,
+      content: `This will change their status to ${action === "archive" ? "archived" : "active"}.`,
       onOk: () => {
         setLoading(true);
-        axios.put(`${USERS_API}/bulk-archive-restore`, { user_ids: selectedRowKeys, status: newStatus })
+        axios
+          .put(`${USERS_API}/bulk-archive-restore`, { user_ids: selectedRowKeys, action })
           .then(() => {
-            setUsers(prevUsers => prevUsers.map(user =>
-              selectedRowKeys.includes(user.id) ? { ...user, status: newStatus } : user
-            ));
+            fetchUsers(); // Refresh the list to show updated statuses
             setSelectedRowKeys([]); // Clear selection
           })
           .catch(err => console.error(`Error updating users:`, err))
@@ -105,7 +125,6 @@ function AllUsers() {
     });
   };
   
-
   // Define table columns
   const columns = [
     {
@@ -131,50 +150,50 @@ function AllUsers() {
     },
     {
       title: "Status",
-      dataIndex: "status",
       key: "status",
-      render: (status) => (
-        <Tag color={status === "Archived" ? "default" : "success"}>
-          {status || "Active"}
-        </Tag>
-      ),
+      render: (_, record) => {
+        const isArchived = record.deleted_at !== null;
+        return (
+          <Tag color={isArchived ? "default" : "success"}>
+            {isArchived ? "Archived" : "Active"}
+          </Tag>
+        );
+      },
     },
     {
       title: "Actions",
       key: "actions",
-      render: (_, record) => (
-        <Space size="small">
-          <EditOutlined 
-            style={{ cursor: "pointer" }} 
-            onClick={() => {
-              // Edit functionality would go here
-              console.log("Edit user:", record.id);
-            }}
-          />
-          <InboxOutlined 
-            style={{ cursor: "pointer" }} 
-            title={record.status === "Archived" ? "Unarchive" : "Archive"} 
-            onClick={() => toggleUserArchiveStatus(record.id, record.status || "Active")}
-          />
-        </Space>
-      ),
+      render: (_, record) => {
+        const isArchived = record.deleted_at !== null;
+        const status = isArchived ? "Archived" : "Active";
+        
+        return (
+          <Space size="small">
+            <EditOutlined 
+              style={{ cursor: "pointer" }} 
+              onClick={() => handleOpenEditModal(record)}
+            />
+            <InboxOutlined 
+              style={{ cursor: "pointer" }} 
+              title={isArchived ? "Unarchive" : "Archive"} 
+              onClick={() => toggleUserArchiveStatus(record.id, status)}
+            />
+          </Space>
+        );
+      },
     },
   ];
 
-  // Filter users based on search, role, and status
+  // Filter users based on search and role (status filtering is handled by API)
   const filteredUsers = users.filter((user) => {
-    const name = user.profile?.full_name?.toLowerCase() || "";
-    const email = user.email?.toLowerCase() || "";
-    const matchesSearch = (name + " " + email).includes(search.toLowerCase());
-    
+    const name = user.profile ? user.profile.full_name.toLowerCase() : "";
+    const email = (user.email || "").toLowerCase();
+    const combinedString = name + " " + email;
+    const matchesSearch = combinedString.includes(search.toLowerCase());
     const userRole = user.role_id === 2 ? "Admin" : "Customer";
-    const matchesRole = !roleFilter || userRole === roleFilter;
-    
-    const matchesStatus = !statusFilter || 
-      (statusFilter === "Active" && (!user.status || user.status === "Active")) ||
-      (statusFilter === "Archived" && user.status === "Archived");
+    const matchesRole = roleFilter ? userRole === roleFilter : true;
 
-    return matchesSearch && matchesRole && matchesStatus;
+    return matchesSearch && matchesRole;
   });
 
   const rowSelection = {
@@ -221,7 +240,7 @@ function AllUsers() {
           <Space>
             <Button 
               type="primary" 
-              onClick={handleOpenModal}
+              onClick={handleOpenAddModal}
               icon={<PlusOutlined />}
               style={{ backgroundColor: "#A63F3F" }}
             >
@@ -231,8 +250,9 @@ function AllUsers() {
               type="primary"
               onClick={handleBulkStatusChange}
               style={{ backgroundColor: "#A63F3F" }}
+              disabled={selectedRowKeys.length === 0}
             >
-              {statusFilter === "Archived" ? "Unarchive" : "Archive"}
+              {statusFilter === "Archived" ? "Restore" : "Archive"} Selected
             </Button>
           </Space>
         </div>
@@ -249,9 +269,16 @@ function AllUsers() {
       </div>
 
       <AddUserModal
-        visible={isModalVisible}
-        onCancel={handleCancelModal}
-        onSave={handleSaveModal}
+        visible={isAddModalVisible}
+        onCancel={handleCancelAddModal}
+        onSave={handleSaveAddModal}
+      />
+      
+      <EditUserModal
+        visible={isEditModalVisible}
+        onCancel={handleCancelEditModal}
+        onSave={handleSaveEditModal}
+        user={selectedUser}
       />
     </AdminPage>
   );

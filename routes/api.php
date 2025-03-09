@@ -14,6 +14,7 @@ use App\Http\Controllers\CartController;
 use App\Http\Controllers\ShippingController;
 use App\Http\Controllers\PurchaseController;
 use App\Http\Controllers\NotificationController;
+use App\Http\Controllers\UserController;
 
 /*
 |--------------------------------------------------------------------------
@@ -47,6 +48,7 @@ Route::group(["middleware" => ["auth:api"]], function() {
     Route::get("profile", [ApiController::class, "profile"]);
     Route::post("logout", [ApiController::class, "logout"]);
     Route::post("profile/update", [ApiController::class, "updateProfile"]);
+    Route::put("profile/update", [ApiController::class, "updateProfile"]);
 
     // Cart Routes
     Route::post('carts', [CartController::class, 'addToCart']);
@@ -66,6 +68,7 @@ Route::group(["middleware" => ["auth:api"]], function() {
 Route::put('/users/{id}/restore', [UserController::class, 'restore']);
 Route::put('/users/bulk-archive-restore', [UserController::class, 'bulkArchiveRestore']);
     Route::get("users", [ApiController::class, "getAllUsers"]);
+    Route::get('/users', [UserController::class, 'index']);
 
     // Order Routes (Now Protected)
     Route::apiResource('orders', OrderController::class);

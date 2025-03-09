@@ -32,6 +32,7 @@ class User extends Authenticatable
     protected $casts = [
         "email_verified_at" => "datetime",
     ];
+    protected $dates = ['deleted_at']; 
 
     /**
      * A User belongs to a Role (one Role can have many Users).

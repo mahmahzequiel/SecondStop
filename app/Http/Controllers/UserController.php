@@ -8,11 +8,29 @@ use Illuminate\Support\Facades\Auth;
 
 class UserController extends Controller
 {
-    public function index()
-    {
-        $users = User::with('profile')->get();
-        return view('users.index', compact('users'));
+    public function index(Request $request)
+{
+    $status = $request->query('status', 'active');
+
+    $query = User::with('profile'); // Include profile relationship
+
+    if ($status === 'archived') {
+        $query->onlyTrashed();
+    } elseif ($status === 'all') {
+        $query->withTrashed();
     }
+
+    $users = $query->get();
+
+    return response()->json([
+        'status' => 'success',
+        'data' => [
+            'users' => $users
+        ]
+    ]);
+}
+
+
 
     public function create()
     {
@@ -48,44 +66,43 @@ class UserController extends Controller
     }
 
     // Archive user
-public function archive($id)
-{
-    $user = User::find($id);
-    if (!$user) {
-        return response()->json(['status' => 'error', 'message' => 'User not found.'], 404);
+    public function archive($id)
+    {
+        $user = User::find($id);
+        if (!$user) {
+            return response()->json(['status' => 'error', 'message' => 'User not found.'], 404);
+        }
+    
+        $user->delete(); // Soft delete the user
+        return response()->json(['status' => 'success', 'message' => 'User archived successfully.', 'data' => $user]);
     }
-
-    $user->status = 'Archived';
-    $user->save();
-
-    return response()->json(['status' => 'success', 'message' => 'User archived successfully.', 'data' => $user]);
-}
 
 // Restore user
 public function restore($id)
 {
-    $user = User::find($id);
+    $user = User::withTrashed()->find($id); // Find the user including soft-deleted ones
     if (!$user) {
         return response()->json(['status' => 'error', 'message' => 'User not found.'], 404);
     }
 
-    $user->status = 'Active';
-    $user->save();
-
+    $user->restore(); // Restore the user
     return response()->json(['status' => 'success', 'message' => 'User restored successfully.', 'data' => $user]);
 }
-
 
 public function bulkArchiveRestore(Request $request)
 {
     $ids = $request->input('user_ids');
-    $newStatus = $request->input('status');
+    $action = $request->input('action'); // 'archive' or 'restore'
 
-    if (!in_array($newStatus, ['Active', 'Archived'])) {
-        return response()->json(['status' => 'error', 'message' => 'Invalid status.'], 400);
+    if (!in_array($action, ['archive', 'restore'])) {
+        return response()->json(['status' => 'error', 'message' => 'Invalid action.'], 400);
     }
 
-    User::whereIn('id', $ids)->update(['status' => $newStatus]);
+    if ($action === 'archive') {
+        User::whereIn('id', $ids)->delete(); // Soft delete users
+    } else {
+        User::withTrashed()->whereIn('id', $ids)->restore(); // Restore users
+    }
 
     return response()->json(['status' => 'success', 'message' => 'Users updated successfully.']);
 }
