@@ -79,16 +79,15 @@ class ProductsController extends Controller
      */
     public function update(Request $request, $id)
 {
-    // Log the Content-Type header
-    \Log::info('Content-Type:', [$request->header('Content-Type')]);
+    // Log request content
+    \Log::info('Request Data:', $request->all());
 
-    // Log all request data (ensure the second argument is always an array)
-    \Log::info('Update Request Data:', $request->all() ?? []);
+    // Convert PUT request to POST if `_method=PUT` is detected
+    if ($request->isMethod('post') && $request->input('_method') === 'PUT') {
+        $request->setMethod('PUT');
+    }
 
-    // Log the uploaded file (if any)
-    \Log::info('Uploaded File:', $request->hasFile('product_image') ? ['file' => $request->file('product_image')->getClientOriginalName()] : ['file' => 'No file uploaded']);
-
-    // Validate the request
+    // Validate input
     $request->validate([
         'category_id' => 'required|exists:categories,id',
         'category_type_id' => 'required|exists:category_types,id',
@@ -99,18 +98,9 @@ class ProductsController extends Controller
         'product_image' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
     ]);
 
-    // Find the product
     $product = Product::findOrFail($id);
+    $product->update($request->except('product_image'));
 
-    // Update product fields
-    $product->category_id = $request->category_id;
-    $product->category_type_id = $request->category_type_id;
-    $product->brand_id = $request->brand_id;
-    $product->product_name = $request->product_name;
-    $product->description = $request->description;
-    $product->price = $request->price;
-
-    // Handle file upload
     if ($request->hasFile('product_image')) {
         // Delete old image if exists
         if ($product->product_image) {
@@ -119,13 +109,12 @@ class ProductsController extends Controller
         // Store new image
         $imagePath = $request->file('product_image')->store('products', 'public');
         $product->product_image = $imagePath;
+        $product->save();
     }
-
-    // Save the product
-    $product->save();
 
     return response()->json($product);
 }
+
     /**
      * Archive the specified product (soft delete).
      */

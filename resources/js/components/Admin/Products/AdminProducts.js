@@ -153,14 +153,23 @@ const AdminProducts = () => {
     setIsEditProductModalVisible(true); // Open the edit modal
   };
 
-  const handleSaveEdit = async (values) => {
+  const handleSaveEdit = async (formData) => {
     try {
-      await axios.put(`http://127.0.0.1:8000/api/products/${selectedProduct.id}`, values);
-      fetchProducts(); // Refresh the product list
-      setIsEditProductModalVisible(false); // Close the modal
+      // Append the _method=PUT field for Laravel to recognize it as an update request
+      formData.append("_method", "PUT");
+
+      const response = await axios.post(
+        `http://127.0.0.1:8000/api/products/${selectedProduct.id}`,
+        formData,
+        { headers: { "Content-Type": "multipart/form-data" } }
+      );
+
+      // Refetch products to update the UI
+      fetchProducts();
+      setIsEditProductModalVisible(false);
       message.success("Product updated successfully!");
     } catch (error) {
-      console.error("Error updating product:", error);
+      console.error("Error updating product:", error.response?.data);
       message.error("Failed to update product.");
     }
   };

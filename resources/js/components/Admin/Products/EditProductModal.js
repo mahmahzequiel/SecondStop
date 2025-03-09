@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
-import { Modal, Form, Input, Select, message } from "antd";
+import { Modal, Form, Input, Select, Upload, Button, message } from "antd";
+import { UploadOutlined } from "@ant-design/icons";
 
 const { Option } = Select;
 
@@ -14,27 +15,67 @@ const EditProductModal = ({
 }) => {
   const [form] = Form.useForm();
   const [loading, setLoading] = useState(false);
+  const [fileList, setFileList] = useState([]);
 
-  // Initialize form values when the product changes
   useEffect(() => {
     if (product) {
       form.setFieldsValue({
         product_name: product.product_name,
         description: product.description,
         price: product.price,
-        category_id: product.category?.id,
-        category_type_id: product.category_type?.id,
-        brand_id: product.brand?.id,
+        category_id: product.category_id,
+        category_type_id: product.category_type_id,
+        brand_id: product.brand_id,
       });
+      
+      // Set product image if available
+      if (product.product_image) {
+        setFileList([
+          {
+            uid: "-1",
+            name: "Existing Image",
+            status: "done",
+            url: product.product_image,
+          },
+        ]);
+      } else {
+        setFileList([]);
+      }
     }
   }, [product, form]);
+
+  const handleFileChange = ({ fileList }) => {
+    setFileList(fileList);
+  };
 
   const handleSave = async () => {
     try {
       setLoading(true);
       const values = await form.validateFields();
-      onSave(values); // Pass the updated values to the parent component
+      const formData = new FormData();
+      
+      // Append all fields to FormData, including unchanged ones
+      Object.keys(values).forEach((key) => {
+        formData.append(key, values[key] || ''); // Ensure no undefined values
+      });
+      
+      // Append the image file if a new one is uploaded
+      if (fileList.length > 0 && fileList[0].originFileObj) {
+        formData.append("product_image", fileList[0].originFileObj);
+      } else if (product.product_image) {
+        // If no new image is uploaded, append the existing image URL
+        formData.append("product_image", product.product_image);
+      }
+      
+      // Log FormData for debugging
+      for (let [key, value] of formData.entries()) {
+        console.log(key, value);
+      }
+      
+      // Call the onSave function with the FormData
+      onSave(formData);
       message.success("Product updated successfully!");
+      onCancel();
     } catch (error) {
       console.error("Error updating product:", error);
       message.error("Failed to update product.");
@@ -46,7 +87,7 @@ const EditProductModal = ({
   return (
     <Modal
       title="Edit Product"
-      visible={visible}
+      open={visible}
       onCancel={onCancel}
       onOk={handleSave}
       confirmLoading={loading}
@@ -60,18 +101,17 @@ const EditProductModal = ({
           <Input placeholder="Enter product name" />
         </Form.Item>
         <Form.Item
-          name="description"
-          label="Description"
-          rules={[{ required: true, message: "Please enter the description" }]}
+          name="brand_id"
+          label="Brand"
+          rules={[{ required: true, message: "Please select a brand" }]}
         >
-          <Input.TextArea placeholder="Enter description" />
-        </Form.Item>
-        <Form.Item
-          name="price"
-          label="Price"
-          rules={[{ required: true, message: "Please enter the price" }]}
-        >
-          <Input type="number" placeholder="Enter price" />
+          <Select placeholder="Select brand">
+            {brands.map((brand) => (
+              <Option key={brand.id} value={brand.id}>
+                {brand.name}
+              </Option>
+            ))}
+          </Select>
         </Form.Item>
         <Form.Item
           name="category_id"
@@ -100,17 +140,28 @@ const EditProductModal = ({
           </Select>
         </Form.Item>
         <Form.Item
-          name="brand_id"
-          label="Brand"
-          rules={[{ required: true, message: "Please select a brand" }]}
+          name="price"
+          label="Price"
+          rules={[{ required: true, message: "Please enter the price" }]}
         >
-          <Select placeholder="Select brand">
-            {brands.map((brand) => (
-              <Option key={brand.id} value={brand.id}>
-                {brand.name}
-              </Option>
-            ))}
-          </Select>
+          <Input type="number" placeholder="Enter price" />
+        </Form.Item>
+        <Form.Item
+          name="description"
+          label="Description"
+          rules={[{ required: true, message: "Please enter the description" }]}
+        >
+          <Input.TextArea placeholder="Enter description" />
+        </Form.Item>
+        <Form.Item label="Product Image" name="product_image">
+          <Upload
+            fileList={fileList}
+            onChange={handleFileChange}
+            beforeUpload={() => false} // Prevent automatic upload
+            listType="picture"
+          >
+            <Button icon={<UploadOutlined />}>Upload Image</Button>
+          </Upload>
         </Form.Item>
       </Form>
     </Modal>
