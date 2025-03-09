@@ -1,9 +1,9 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
 import AdminPage from "../../AdminReusable/AdminPage";
-import { Table, Button, Input, Select, message, Space, Image } from "antd";
+import { Table, Button, Input, Select, message, Space } from "antd";
 import AddProductModal from "./AddProductModal";
-import EditProductModal from "./EditProductModal";
+import EditProductModal from "./EditProductModal"; // Import the EditProductModal
 import { EditOutlined, DeleteOutlined } from "@ant-design/icons";
 
 const { Search } = Input;
@@ -26,7 +26,7 @@ const AdminProducts = () => {
   );
   const [isAddProductModalVisible, setIsAddProductModalVisible] = useState(false);
   const [isEditProductModalVisible, setIsEditProductModalVisible] = useState(false);
-  const [selectedProduct, setSelectedProduct] = useState(null);
+  const [selectedProduct, setSelectedProduct] = useState(null); // Track the selected product for editing
   const [selectedRowKeys, setSelectedRowKeys] = useState([]);
 
   const fetchProducts = async () => {
@@ -149,38 +149,21 @@ const AdminProducts = () => {
   };
 
   const handleEdit = (product) => {
-    setSelectedProduct(product);
-    setIsEditProductModalVisible(true);
+    setSelectedProduct(product); // Set the selected product for editing
+    setIsEditProductModalVisible(true); // Open the edit modal
   };
 
-  const handleSaveEdit = async (formData) => {
-  try {
-    // Log FormData for debugging
-    for (let [key, value] of formData.entries()) {
-      console.log(key, value);
+  const handleSaveEdit = async (values) => {
+    try {
+      await axios.put(`http://127.0.0.1:8000/api/products/${selectedProduct.id}`, values);
+      fetchProducts(); // Refresh the product list
+      setIsEditProductModalVisible(false); // Close the modal
+      message.success("Product updated successfully!");
+    } catch (error) {
+      console.error("Error updating product:", error);
+      message.error("Failed to update product.");
     }
-
-    const response = await axios.put(
-      `http://127.0.0.1:8000/api/products/${selectedProduct.id}`,
-      formData,
-      {
-        headers: {
-          "Content-Type": "multipart/form-data",
-        },
-      }
-    );
-    fetchProducts();
-    setIsEditProductModalVisible(false);
-    message.success("Product updated successfully!");
-  } catch (error) {
-    console.error("Error updating product:", error.response?.data || error.message);
-    if (error.response?.data?.errors) {
-      message.error(Object.values(error.response.data.errors).flat().join(", "));
-    } else {
-      message.error("Failed to update product. Please try again.");
-    }
-  }
-};
+  };
 
   const onSelectChange = (selectedRowKeys) => {
     setSelectedRowKeys(selectedRowKeys);
@@ -204,7 +187,7 @@ const AdminProducts = () => {
             type="primary"
             icon={<EditOutlined />}
             style={{ marginRight: "8px" }}
-            onClick={() => handleEdit(record)}
+            onClick={() => handleEdit(record)} // Open the edit modal
           />
           {record.is_archived ? (
             <Button
@@ -230,11 +213,6 @@ const AdminProducts = () => {
       key: "product_name",
     },
     {
-      title: "Description",
-      dataIndex: "description",
-      key: "description",
-    },
-    {
       title: "Brand",
       dataIndex: "brand",
       key: "brand",
@@ -257,14 +235,6 @@ const AdminProducts = () => {
       dataIndex: "price",
       key: "price",
       render: (price) => `$${parseFloat(price).toFixed(2)}`,
-    },
-    {
-      title: "Product Image",
-      dataIndex: "product_image",
-      key: "product_image",
-      render: (image) => (
-        image ? <Image src={image} width={50} /> : "No Image"
-      ),
     },
     {
       title: "Status",
