@@ -4,21 +4,30 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Purchase extends Model
 {
-    use HasFactory, SoftDeletes;
+    use HasFactory;
 
     protected $fillable = [
         'order_id',
+        'cart_id',
+        'status',
     ];
 
     /**
-     * Relationship with Order model.
+     * Get the order associated with this purchase.
      */
     public function order()
     {
         return $this->belongsTo(Order::class);
+    }
+
+    /**
+     * Get the cart associated with this purchase.
+     */
+    public function cart()
+    {
+        return $this->belongsTo(Cart::class);
     }
 }

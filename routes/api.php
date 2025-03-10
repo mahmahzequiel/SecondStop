@@ -53,6 +53,9 @@ Route::group(["middleware" => ["auth:api"]], function() {
     Route::post("profile/update", [ApiController::class, "updateProfile"]);
     Route::put("profile/update", [ApiController::class, "updateProfile"]);
 
+    Route::get('user/purchases', [PurchaseController::class, 'getUserPurchases']);
+    Route::get('user/purchases/{id}', [PurchaseController::class, 'getPurchaseDetails']);
+
     // Cart Routes
     Route::post('carts', [CartController::class, 'addToCart']);
     Route::get('carts', [CartController::class, 'index']);

@@ -45,6 +45,7 @@ import ProfileMain from "./Profile/ProfileMain";
 import AdminProducts from "./Admin/Products/AdminProducts";
 import Customers from "./Admin/Customer";
 import AllCustomers from "./Admin/Customer";
+import OrderTracking from "./Shipping/OrderTracking";
 
 function AppContent() {
   const location = useLocation();
@@ -79,6 +80,7 @@ function AppContent() {
         <Route path="/allusers" element={<AllUsers />} />
         <Route path="/addusermodal" element={<AddUserModal />} />
         <Route path="/customers" element={<AllCustomers />} />
+        <Route path="/orders/tracking" element={<OrderTracking />} />
         {/* Customer-Only Routes (role_id = 1) */}
         <Route path="/profile" element={<RoleBasedRoute allowedRoles={[1]}> <Profiles /> </RoleBasedRoute>}/>
         {/* Admin-Only Routes (role_id = 2) */}
