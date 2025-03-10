@@ -2,152 +2,137 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Controllers\Controller;
+use Illuminate\Http\Request;
 use App\Models\Chat;
 use App\Models\User;
-use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\Log;
 use App\Events\NewMessage;
+use Illuminate\Support\Facades\Auth;
 
 class ChatController extends Controller
 {
     /**
-     * Retrieve conversation messages between the authenticated user and another user.
+     * Get messages for a conversation with a specific user.
      */
-    public function getMessages(Request $request, $otherUserId)
+    public function getMessages($userId)
     {
-        $user = Auth::user();
-        if (!$user) {
-            Log::error("Unauthorized access in getMessages");
-            return response()->json(['message' => 'Unauthorized'], 401);
-        }
-
-        if ($user->role_id == 2) {
-            // For admin: messages between admin (receiver_id = admin's id) and the customer.
-            $messages = Chat::where(function ($query) use ($otherUserId, $user) {
-                    $query->where('sender_id', $otherUserId)
-                          ->where('receiver_id', $user->id);
-                })->orWhere(function ($query) use ($otherUserId, $user) {
-                    $query->where('sender_id', $user->id)
-                          ->where('receiver_id', $otherUserId);
-                })
-                ->orderBy('created_at', 'asc')
-                ->get();
-        } else {
-            // For customer: one-on-one conversation.
-            $messages = Chat::where(function ($query) use ($user, $otherUserId) {
-                    $query->where('sender_id', $user->id)
-                          ->where('receiver_id', $otherUserId);
-                })->orWhere(function ($query) use ($user, $otherUserId) {
-                    $query->where('sender_id', $otherUserId)
-                          ->where('receiver_id', $user->id);
-                })
-                ->orderBy('created_at', 'asc')
-                ->get();
-        }
-
-        Log::info("Fetched messages between user {$user->id} and {$otherUserId}", $messages->toArray());
+        $currentUserId = Auth::id();
+        
+        // Get messages in the conversation
+        $messages = Chat::with(['sender.profile'])
+            ->where(function($query) use ($currentUserId, $userId) {
+                $query->where('sender_id', $currentUserId)
+                      ->where('receiver_id', $userId);
+            })
+            ->orWhere(function($query) use ($currentUserId, $userId) {
+                $query->where('sender_id', $userId)
+                      ->where('receiver_id', $currentUserId);
+            })
+            ->orderBy('created_at')
+            ->get();
+            
+        // Mark messages as read
+        Chat::where('sender_id', $userId)
+            ->where('receiver_id', $currentUserId)
+            ->where('is_read', 0)
+            ->update(['is_read' => 1]);
+              
         return response()->json(['messages' => $messages]);
     }
-
+    
     /**
-     * Send a message from the authenticated user.
-     * - For a customer (role_id ≠ 2), duplicate the message for every admin.
-     * - For an admin (role_id === 2), require a receiver_id (customer's id).
+     * Send a new message.
      */
     public function sendMessage(Request $request)
     {
-        $user = Auth::user();
-        if (!$user) {
-            Log::error("Unauthorized access in sendMessage");
-            return response()->json(['message' => 'Unauthorized'], 401);
-        }
-
-        $validatedData = $request->validate([
-            'message' => 'required|string',
-        ]);
-
-        if ($user->role_id !== 2) {
-            // Customer: duplicate the message for all admins.
-            $admins = User::withTrashed()->where('role_id', 2)->get();
-            Log::debug("Admins count: " . $admins->count());
-            if ($admins->isEmpty()) {
-                Log::error("No admin found in database");
-                return response()->json(['message' => 'No admin found'], 500);
-            }
-
-            $createdChats = [];
-            foreach ($admins as $admin) {
-                try {
-                    $chat = Chat::create([
-                        'sender_id'   => $user->id,
-                        'receiver_id' => $admin->id,
-                        'message'     => $validatedData['message'],
-                        'date_time'   => now(),
-                        'is_read'     => false,
-                    ]);
-                    $createdChats[] = $chat;
-                    Log::info("Chat created for admin (ID: {$admin->id})", $chat->toArray());
-                } catch (\Exception $e) {
-                    Log::error("Error creating chat for admin (ID: {$admin->id}): " . $e->getMessage());
-                }
-            }
-            // Return one of the created chats as a reference.
-            return response()->json([
-                'message' => 'Message sent successfully',
-                'data'    => $createdChats[0],
-            ], 201);
-        } else {
-            // Admin: require a receiver_id.
-            $request->validate([
-                'receiver_id' => 'required|exists:users,id',
+        try {
+            $user = Auth::user();
+            $validated = $request->validate([
+                'message' => 'required|string',
+                'receiver_id' => 'sometimes|exists:users,id',
             ]);
-            $receiverId = $request->receiver_id;
-            try {
-                $chat = Chat::create([
-                    'sender_id'   => $user->id,
-                    'receiver_id' => $receiverId,
-                    'message'     => $validatedData['message'],
-                    'date_time'   => now(),
-                    'is_read'     => false,
-                ]);
-                Log::info("Chat created by admin", $chat->toArray());
-            } catch (\Exception $e) {
-                Log::error("Error creating chat: " . $e->getMessage());
-                return response()->json(['message' => 'Failed to send message'], 500);
-            }
+            
+            // Determine receiver_id based on user role
+            $receiver_id = isset($validated['receiver_id']) 
+                ? $validated['receiver_id'] 
+                : $this->getDefaultReceiverId(); // Method to get default admin
+                
+            // Create and save the chat message
+            $chat = new Chat([
+                'sender_id' => $user->id,
+                'receiver_id' => $receiver_id,
+                'message' => $validated['message'],
+                'date_time' => now(),
+                'is_read' => 0,
+            ]);
+            $chat->save();
+            
+            // Load the sender relation for the event
+            $chat->load('sender.profile');
+            
+            // Broadcast the new message event
+            broadcast(new NewMessage($chat))->toOthers();
+            
             return response()->json([
-                'message' => 'Message sent successfully',
-                'data'    => $chat,
-            ], 201);
+                'success' => true,
+                'data' => $chat
+            ]);
+        } catch (\Exception $e) {
+            return response()->json([
+                'message' => $e->getMessage(),
+                'exception' => get_class($e),
+                'file' => $e->getFile(),
+                'line' => $e->getLine(),
+                'trace' => $e->getTrace()
+            ], 500);
         }
     }
-
+    
     /**
-     * For admin: Retrieve all customer messages sent to them.
-     * This version returns the raw messages (without grouping) for debugging.
+     * Mark messages as read.
      */
-    public function getAllCustomerChats()
+    public function markAsRead(Request $request)
     {
-        $user = Auth::user();
-        if (!$user || $user->role_id != 2) {
-            Log::warning("Unauthorized access to customer chats", ['user_id' => $user ? $user->id : null]);
-            return response()->json(['message' => 'Forbidden'], 403);
+        $request->validate([
+            'sender_id' => 'required|exists:users,id',
+        ]);
+        
+        $currentUserId = Auth::id();
+        $senderId = $request->sender_id;
+        
+        Chat::where('sender_id', $senderId)
+            ->where('receiver_id', $currentUserId)
+            ->where('is_read', 0)
+            ->update(['is_read' => 1]);
+              
+        return response()->json(['success' => true]);
+    }
+    
+    /**
+     * Get a default admin to receive messages from regular users.
+     */
+    private function getDefaultReceiverId()
+    {
+        // For simple implementation, just get the first admin (role_id = 2)
+        $admin = User::where('role_id', 2)->first();
+        
+        if (!$admin) {
+            throw new \Exception('No admin found to receive messages');
         }
-
-        Log::debug("getAllCustomerChats called by admin with ID: " . $user->id);
-
-        // Retrieve all chats where receiver_id equals the admin's id (including soft-deleted records)
-        $messages = Chat::withTrashed()->where('receiver_id', $user->id)
-                        ->with('sender')
-                        ->orderBy('created_at', 'desc')
-                        ->get();
-
-        Log::debug("Found " . $messages->count() . " messages for admin ID " . $user->id);
-        Log::debug("Raw messages:", $messages->toArray());
-
-        // For debugging, return raw messages.
-        return response()->json(['customer_chats' => $messages]);
+        
+        return $admin->id;
+    }
+    
+    /**
+     * Get unread message count for current user.
+     */
+    public function getUnreadCount()
+    {
+        $currentUserId = Auth::id();
+        
+        $count = Chat::where('receiver_id', $currentUserId)
+                     ->where('is_read', 0)
+                     ->count();
+                        
+        return response()->json(['unread_count' => $count]);
     }
 }

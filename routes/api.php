@@ -15,6 +15,7 @@ use App\Http\Controllers\ShippingController;
 use App\Http\Controllers\PurchaseController;
 use App\Http\Controllers\NotificationController;
 use App\Http\Controllers\UserController;
+use Illuminate\Http\Request;
 
 /*
 |--------------------------------------------------------------------------
@@ -59,9 +60,10 @@ Route::group(["middleware" => ["auth:api"]], function() {
     Route::post('/address', [AddressController::class, 'storeOrUpdate']);
 
     // Chat Routes
-    Route::get('chat/{otherUserId}', [ChatController::class, 'getMessages']);
-    Route::post('chat/send', [ChatController::class, 'sendMessage']);
-    Route::get('chat/customer-chats', [ChatController::class, 'getAllCustomerChats']);
+    Route::get('/chat/{otherUserId}', [ChatController::class, 'getMessages']);
+    Route::post('/chat/send', [ChatController::class, 'sendMessage']);
+    Route::get('/chat/customers', [ChatController::class, 'getAllCustomerChats']);
+    Route::post('/chat/read', [ChatController::class, 'markAsRead']);
 
     // Admin Routes
     Route::put('/users/{id}/archive', [UserController::class, 'archive']);
@@ -80,4 +82,9 @@ Route::put('/users/bulk-archive-restore', [UserController::class, 'bulkArchiveRe
     Route::post('notification', [NotificationController::class, 'store']);
     Route::get('notification', [NotificationController::class, 'index']);
     Route::patch('notification/{id}/mark-read', [NotificationController::class, 'markAsRead']);
+
+    
+});
+Route::middleware('auth:api')->post('/broadcasting/auth', function (Request $request) {
+    return broadcast()->auth($request);
 });

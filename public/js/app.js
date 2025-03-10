@@ -60220,22 +60220,38 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var _AdminReusable_AdminPage__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../AdminReusable/AdminPage */ "./resources/js/components/AdminReusable/AdminPage.js");
-/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
-/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_2__);
-/* harmony import */ var antd__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! antd */ "./node_modules/antd/es/input/index.js");
-/* harmony import */ var antd__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! antd */ "./node_modules/antd/es/list/index.js");
-/* harmony import */ var antd__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! antd */ "./node_modules/antd/es/avatar/index.js");
-/* harmony import */ var antd__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! antd */ "./node_modules/antd/es/card/index.js");
-/* harmony import */ var antd__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! antd */ "./node_modules/antd/es/button/index.js");
-/* harmony import */ var _ant_design_icons__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! @ant-design/icons */ "./node_modules/@ant-design/icons/es/icons/UserOutlined.js");
-/* harmony import */ var laravel_echo__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! laravel-echo */ "./node_modules/laravel-echo/dist/echo.js");
+/* harmony import */ var antd__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! antd */ "./node_modules/antd/es/message/index.js");
+/* harmony import */ var antd__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! antd */ "./node_modules/antd/es/input/index.js");
+/* harmony import */ var antd__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! antd */ "./node_modules/antd/es/spin/index.js");
+/* harmony import */ var antd__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! antd */ "./node_modules/antd/es/empty/index.js");
+/* harmony import */ var antd__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! antd */ "./node_modules/antd/es/list/index.js");
+/* harmony import */ var antd__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! antd */ "./node_modules/antd/es/badge/index.js");
+/* harmony import */ var antd__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(/*! antd */ "./node_modules/antd/es/avatar/index.js");
+/* harmony import */ var antd__WEBPACK_IMPORTED_MODULE_15__ = __webpack_require__(/*! antd */ "./node_modules/antd/es/card/index.js");
+/* harmony import */ var antd__WEBPACK_IMPORTED_MODULE_16__ = __webpack_require__(/*! antd */ "./node_modules/antd/es/button/index.js");
+/* harmony import */ var _ant_design_icons__WEBPACK_IMPORTED_MODULE_14__ = __webpack_require__(/*! @ant-design/icons */ "./node_modules/@ant-design/icons/es/icons/UserOutlined.js");
+/* harmony import */ var _ant_design_icons__WEBPACK_IMPORTED_MODULE_17__ = __webpack_require__(/*! @ant-design/icons */ "./node_modules/@ant-design/icons/es/icons/SendOutlined.js");
+/* harmony import */ var lodash__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! lodash */ "./node_modules/lodash/lodash.js");
+/* harmony import */ var lodash__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(lodash__WEBPACK_IMPORTED_MODULE_2__);
+/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
+/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_3__);
 /* harmony import */ var pusher_js__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! pusher-js */ "./node_modules/pusher-js/dist/web/pusher.js");
 /* harmony import */ var pusher_js__WEBPACK_IMPORTED_MODULE_4___default = /*#__PURE__*/__webpack_require__.n(pusher_js__WEBPACK_IMPORTED_MODULE_4__);
-/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! react/jsx-runtime */ "./node_modules/react/jsx-runtime.js");
+/* harmony import */ var laravel_echo__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! laravel-echo */ "./node_modules/laravel-echo/dist/echo.js");
+/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! react/jsx-runtime */ "./node_modules/react/jsx-runtime.js");
+function _typeof(o) { "@babel/helpers - typeof"; return _typeof = "function" == typeof Symbol && "symbol" == typeof Symbol.iterator ? function (o) { return typeof o; } : function (o) { return o && "function" == typeof Symbol && o.constructor === Symbol && o !== Symbol.prototype ? "symbol" : typeof o; }, _typeof(o); }
 function _toConsumableArray(r) { return _arrayWithoutHoles(r) || _iterableToArray(r) || _unsupportedIterableToArray(r) || _nonIterableSpread(); }
 function _nonIterableSpread() { throw new TypeError("Invalid attempt to spread non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
 function _iterableToArray(r) { if ("undefined" != typeof Symbol && null != r[Symbol.iterator] || null != r["@@iterator"]) return Array.from(r); }
 function _arrayWithoutHoles(r) { if (Array.isArray(r)) return _arrayLikeToArray(r); }
+function _regeneratorRuntime() { "use strict"; /*! regenerator-runtime -- Copyright (c) 2014-present, Facebook, Inc. -- license (MIT): https://github.com/facebook/regenerator/blob/main/LICENSE */ _regeneratorRuntime = function _regeneratorRuntime() { return e; }; var t, e = {}, r = Object.prototype, n = r.hasOwnProperty, o = Object.defineProperty || function (t, e, r) { t[e] = r.value; }, i = "function" == typeof Symbol ? Symbol : {}, a = i.iterator || "@@iterator", c = i.asyncIterator || "@@asyncIterator", u = i.toStringTag || "@@toStringTag"; function define(t, e, r) { return Object.defineProperty(t, e, { value: r, enumerable: !0, configurable: !0, writable: !0 }), t[e]; } try { define({}, ""); } catch (t) { define = function define(t, e, r) { return t[e] = r; }; } function wrap(t, e, r, n) { var i = e && e.prototype instanceof Generator ? e : Generator, a = Object.create(i.prototype), c = new Context(n || []); return o(a, "_invoke", { value: makeInvokeMethod(t, r, c) }), a; } function tryCatch(t, e, r) { try { return { type: "normal", arg: t.call(e, r) }; } catch (t) { return { type: "throw", arg: t }; } } e.wrap = wrap; var h = "suspendedStart", l = "suspendedYield", f = "executing", s = "completed", y = {}; function Generator() {} function GeneratorFunction() {} function GeneratorFunctionPrototype() {} var p = {}; define(p, a, function () { return this; }); var d = Object.getPrototypeOf, v = d && d(d(values([]))); v && v !== r && n.call(v, a) && (p = v); var g = GeneratorFunctionPrototype.prototype = Generator.prototype = Object.create(p); function defineIteratorMethods(t) { ["next", "throw", "return"].forEach(function (e) { define(t, e, function (t) { return this._invoke(e, t); }); }); } function AsyncIterator(t, e) { function invoke(r, o, i, a) { var c = tryCatch(t[r], t, o); if ("throw" !== c.type) { var u = c.arg, h = u.value; return h && "object" == _typeof(h) && n.call(h, "__await") ? e.resolve(h.__await).then(function (t) { invoke("next", t, i, a); }, function (t) { invoke("throw", t, i, a); }) : e.resolve(h).then(function (t) { u.value = t, i(u); }, function (t) { return invoke("throw", t, i, a); }); } a(c.arg); } var r; o(this, "_invoke", { value: function value(t, n) { function callInvokeWithMethodAndArg() { return new e(function (e, r) { invoke(t, n, e, r); }); } return r = r ? r.then(callInvokeWithMethodAndArg, callInvokeWithMethodAndArg) : callInvokeWithMethodAndArg(); } }); } function makeInvokeMethod(e, r, n) { var o = h; return function (i, a) { if (o === f) throw Error("Generator is already running"); if (o === s) { if ("throw" === i) throw a; return { value: t, done: !0 }; } for (n.method = i, n.arg = a;;) { var c = n.delegate; if (c) { var u = maybeInvokeDelegate(c, n); if (u) { if (u === y) continue; return u; } } if ("next" === n.method) n.sent = n._sent = n.arg;else if ("throw" === n.method) { if (o === h) throw o = s, n.arg; n.dispatchException(n.arg); } else "return" === n.method && n.abrupt("return", n.arg); o = f; var p = tryCatch(e, r, n); if ("normal" === p.type) { if (o = n.done ? s : l, p.arg === y) continue; return { value: p.arg, done: n.done }; } "throw" === p.type && (o = s, n.method = "throw", n.arg = p.arg); } }; } function maybeInvokeDelegate(e, r) { var n = r.method, o = e.iterator[n]; if (o === t) return r.delegate = null, "throw" === n && e.iterator["return"] && (r.method = "return", r.arg = t, maybeInvokeDelegate(e, r), "throw" === r.method) || "return" !== n && (r.method = "throw", r.arg = new TypeError("The iterator does not provide a '" + n + "' method")), y; var i = tryCatch(o, e.iterator, r.arg); if ("throw" === i.type) return r.method = "throw", r.arg = i.arg, r.delegate = null, y; var a = i.arg; return a ? a.done ? (r[e.resultName] = a.value, r.next = e.nextLoc, "return" !== r.method && (r.method = "next", r.arg = t), r.delegate = null, y) : a : (r.method = "throw", r.arg = new TypeError("iterator result is not an object"), r.delegate = null, y); } function pushTryEntry(t) { var e = { tryLoc: t[0] }; 1 in t && (e.catchLoc = t[1]), 2 in t && (e.finallyLoc = t[2], e.afterLoc = t[3]), this.tryEntries.push(e); } function resetTryEntry(t) { var e = t.completion || {}; e.type = "normal", delete e.arg, t.completion = e; } function Context(t) { this.tryEntries = [{ tryLoc: "root" }], t.forEach(pushTryEntry, this), this.reset(!0); } function values(e) { if (e || "" === e) { var r = e[a]; if (r) return r.call(e); if ("function" == typeof e.next) return e; if (!isNaN(e.length)) { var o = -1, i = function next() { for (; ++o < e.length;) if (n.call(e, o)) return next.value = e[o], next.done = !1, next; return next.value = t, next.done = !0, next; }; return i.next = i; } } throw new TypeError(_typeof(e) + " is not iterable"); } return GeneratorFunction.prototype = GeneratorFunctionPrototype, o(g, "constructor", { value: GeneratorFunctionPrototype, configurable: !0 }), o(GeneratorFunctionPrototype, "constructor", { value: GeneratorFunction, configurable: !0 }), GeneratorFunction.displayName = define(GeneratorFunctionPrototype, u, "GeneratorFunction"), e.isGeneratorFunction = function (t) { var e = "function" == typeof t && t.constructor; return !!e && (e === GeneratorFunction || "GeneratorFunction" === (e.displayName || e.name)); }, e.mark = function (t) { return Object.setPrototypeOf ? Object.setPrototypeOf(t, GeneratorFunctionPrototype) : (t.__proto__ = GeneratorFunctionPrototype, define(t, u, "GeneratorFunction")), t.prototype = Object.create(g), t; }, e.awrap = function (t) { return { __await: t }; }, defineIteratorMethods(AsyncIterator.prototype), define(AsyncIterator.prototype, c, function () { return this; }), e.AsyncIterator = AsyncIterator, e.async = function (t, r, n, o, i) { void 0 === i && (i = Promise); var a = new AsyncIterator(wrap(t, r, n, o), i); return e.isGeneratorFunction(r) ? a : a.next().then(function (t) { return t.done ? t.value : a.next(); }); }, defineIteratorMethods(g), define(g, u, "Generator"), define(g, a, function () { return this; }), define(g, "toString", function () { return "[object Generator]"; }), e.keys = function (t) { var e = Object(t), r = []; for (var n in e) r.push(n); return r.reverse(), function next() { for (; r.length;) { var t = r.pop(); if (t in e) return next.value = t, next.done = !1, next; } return next.done = !0, next; }; }, e.values = values, Context.prototype = { constructor: Context, reset: function reset(e) { if (this.prev = 0, this.next = 0, this.sent = this._sent = t, this.done = !1, this.delegate = null, this.method = "next", this.arg = t, this.tryEntries.forEach(resetTryEntry), !e) for (var r in this) "t" === r.charAt(0) && n.call(this, r) && !isNaN(+r.slice(1)) && (this[r] = t); }, stop: function stop() { this.done = !0; var t = this.tryEntries[0].completion; if ("throw" === t.type) throw t.arg; return this.rval; }, dispatchException: function dispatchException(e) { if (this.done) throw e; var r = this; function handle(n, o) { return a.type = "throw", a.arg = e, r.next = n, o && (r.method = "next", r.arg = t), !!o; } for (var o = this.tryEntries.length - 1; o >= 0; --o) { var i = this.tryEntries[o], a = i.completion; if ("root" === i.tryLoc) return handle("end"); if (i.tryLoc <= this.prev) { var c = n.call(i, "catchLoc"), u = n.call(i, "finallyLoc"); if (c && u) { if (this.prev < i.catchLoc) return handle(i.catchLoc, !0); if (this.prev < i.finallyLoc) return handle(i.finallyLoc); } else if (c) { if (this.prev < i.catchLoc) return handle(i.catchLoc, !0); } else { if (!u) throw Error("try statement without catch or finally"); if (this.prev < i.finallyLoc) return handle(i.finallyLoc); } } } }, abrupt: function abrupt(t, e) { for (var r = this.tryEntries.length - 1; r >= 0; --r) { var o = this.tryEntries[r]; if (o.tryLoc <= this.prev && n.call(o, "finallyLoc") && this.prev < o.finallyLoc) { var i = o; break; } } i && ("break" === t || "continue" === t) && i.tryLoc <= e && e <= i.finallyLoc && (i = null); var a = i ? i.completion : {}; return a.type = t, a.arg = e, i ? (this.method = "next", this.next = i.finallyLoc, y) : this.complete(a); }, complete: function complete(t, e) { if ("throw" === t.type) throw t.arg; return "break" === t.type || "continue" === t.type ? this.next = t.arg : "return" === t.type ? (this.rval = this.arg = t.arg, this.method = "return", this.next = "end") : "normal" === t.type && e && (this.next = e), y; }, finish: function finish(t) { for (var e = this.tryEntries.length - 1; e >= 0; --e) { var r = this.tryEntries[e]; if (r.finallyLoc === t) return this.complete(r.completion, r.afterLoc), resetTryEntry(r), y; } }, "catch": function _catch(t) { for (var e = this.tryEntries.length - 1; e >= 0; --e) { var r = this.tryEntries[e]; if (r.tryLoc === t) { var n = r.completion; if ("throw" === n.type) { var o = n.arg; resetTryEntry(r); } return o; } } throw Error("illegal catch attempt"); }, delegateYield: function delegateYield(e, r, n) { return this.delegate = { iterator: values(e), resultName: r, nextLoc: n }, "next" === this.method && (this.arg = t), y; } }, e; }
+function ownKeys(e, r) { var t = Object.keys(e); if (Object.getOwnPropertySymbols) { var o = Object.getOwnPropertySymbols(e); r && (o = o.filter(function (r) { return Object.getOwnPropertyDescriptor(e, r).enumerable; })), t.push.apply(t, o); } return t; }
+function _objectSpread(e) { for (var r = 1; r < arguments.length; r++) { var t = null != arguments[r] ? arguments[r] : {}; r % 2 ? ownKeys(Object(t), !0).forEach(function (r) { _defineProperty(e, r, t[r]); }) : Object.getOwnPropertyDescriptors ? Object.defineProperties(e, Object.getOwnPropertyDescriptors(t)) : ownKeys(Object(t)).forEach(function (r) { Object.defineProperty(e, r, Object.getOwnPropertyDescriptor(t, r)); }); } return e; }
+function _defineProperty(e, r, t) { return (r = _toPropertyKey(r)) in e ? Object.defineProperty(e, r, { value: t, enumerable: !0, configurable: !0, writable: !0 }) : e[r] = t, e; }
+function _toPropertyKey(t) { var i = _toPrimitive(t, "string"); return "symbol" == _typeof(i) ? i : i + ""; }
+function _toPrimitive(t, r) { if ("object" != _typeof(t) || !t) return t; var e = t[Symbol.toPrimitive]; if (void 0 !== e) { var i = e.call(t, r || "default"); if ("object" != _typeof(i)) return i; throw new TypeError("@@toPrimitive must return a primitive value."); } return ("string" === r ? String : Number)(t); }
+function asyncGeneratorStep(n, t, e, r, o, a, c) { try { var i = n[a](c), u = i.value; } catch (n) { return void e(n); } i.done ? t(u) : Promise.resolve(u).then(r, o); }
+function _asyncToGenerator(n) { return function () { var t = this, e = arguments; return new Promise(function (r, o) { var a = n.apply(t, e); function _next(n) { asyncGeneratorStep(a, r, o, _next, _throw, "next", n); } function _throw(n) { asyncGeneratorStep(a, r, o, _next, _throw, "throw", n); } _next(void 0); }); }; }
 function _slicedToArray(r, e) { return _arrayWithHoles(r) || _iterableToArrayLimit(r, e) || _unsupportedIterableToArray(r, e) || _nonIterableRest(); }
 function _nonIterableRest() { throw new TypeError("Invalid attempt to destructure non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
 function _unsupportedIterableToArray(r, a) { if (r) { if ("string" == typeof r) return _arrayLikeToArray(r, a); var t = {}.toString.call(r).slice(8, -1); return "Object" === t && r.constructor && (t = r.constructor.name), "Map" === t || "Set" === t ? Array.from(r) : "Arguments" === t || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(t) ? _arrayLikeToArray(r, a) : void 0; } }
@@ -60247,11 +60263,82 @@ function _arrayWithHoles(r) { if (Array.isArray(r)) return r; }
 
 
 
+ // Add this import
+ // Import Pusher directly
+ // Import Echo directly
 
+// Create an axios instance with rate limiting and retry logic
 
+var api = function () {
+  var instance = axios__WEBPACK_IMPORTED_MODULE_3___default().create({
+    baseURL: 'http://127.0.0.1:8000/api',
+    timeout: 10000
+  });
 
-var TextArea = antd__WEBPACK_IMPORTED_MODULE_6__["default"].TextArea;
+  // Add request throttling
+  instance.interceptors.request.use(function (config) {
+    return new Promise(function (resolve) {
+      setTimeout(function () {
+        return resolve(config);
+      }, 300); // Add a 300ms delay between requests
+    });
+  });
+
+  // Add response interceptor for handling rate limiting
+  instance.interceptors.response.use(function (response) {
+    return response;
+  }, function (error) {
+    var response = error.response;
+    if (response && response.status === 429) {
+      antd__WEBPACK_IMPORTED_MODULE_7__["default"].error('Too many requests. Please wait before trying again.');
+
+      // Extract retry-after header if available
+      var retryAfter = response.headers['retry-after'] ? parseInt(response.headers['retry-after']) * 1000 : 5000;
+      return new Promise(function (resolve) {
+        setTimeout(function () {
+          resolve(instance(error.config));
+        }, retryAfter);
+      });
+    }
+    return Promise.reject(error);
+  });
+  return instance;
+}();
+
+// Configure Echo properly
+var setupEcho = function setupEcho(userToken) {
+  // No need to use require() here
+  window.Pusher = (pusher_js__WEBPACK_IMPORTED_MODULE_4___default());
+  return new laravel_echo__WEBPACK_IMPORTED_MODULE_5__["default"]({
+    broadcaster: "pusher",
+    key: "450508915178ad069fcf",
+    // Replace with your actual PUSHER_APP_KEY
+    cluster: "ap1",
+    // Replace with your actual PUSHER_APP_CLUSTER
+    forceTLS: true,
+    authorizer: function authorizer(channel) {
+      return {
+        authorize: function authorize(socketId, callback) {
+          api.post('/broadcasting/auth', {
+            socket_id: socketId,
+            channel_name: channel.name
+          }, {
+            headers: {
+              Authorization: "Bearer ".concat(userToken)
+            }
+          }).then(function (response) {
+            callback(false, response.data);
+          })["catch"](function (error) {
+            callback(true, error);
+          });
+        }
+      };
+    }
+  });
+};
+var TextArea = antd__WEBPACK_IMPORTED_MODULE_8__["default"].TextArea;
 function AdminChat() {
+  var _conversations$find;
   var _useState = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)([]),
     _useState2 = _slicedToArray(_useState, 2),
     conversations = _useState2[0],
@@ -60268,199 +60355,594 @@ function AdminChat() {
     _useState8 = _slicedToArray(_useState7, 2),
     newMessage = _useState8[0],
     setNewMessage = _useState8[1];
+  var _useState9 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(false),
+    _useState10 = _slicedToArray(_useState9, 2),
+    loading = _useState10[0],
+    setLoading = _useState10[1];
+  var _useState11 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(false),
+    _useState12 = _slicedToArray(_useState11, 2),
+    customersLoading = _useState12[0],
+    setCustomersLoading = _useState12[1];
+  var _useState13 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)({}),
+    _useState14 = _slicedToArray(_useState13, 2),
+    unreadMessages = _useState14[0],
+    setUnreadMessages = _useState14[1];
+  var _useState15 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(null),
+    _useState16 = _slicedToArray(_useState15, 2),
+    adminProfile = _useState16[0],
+    setAdminProfile = _useState16[1];
+  var _useState17 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(false),
+    _useState18 = _slicedToArray(_useState17, 2),
+    isSubmitting = _useState18[0],
+    setIsSubmitting = _useState18[1];
+  var messagesEndRef = (0,react__WEBPACK_IMPORTED_MODULE_0__.useRef)(null);
+  var lastFetchRef = (0,react__WEBPACK_IMPORTED_MODULE_0__.useRef)(null);
+  var echoRef = (0,react__WEBPACK_IMPORTED_MODULE_0__.useRef)(null);
   var userToken = localStorage.getItem("userToken");
 
-  // (Optional) Fetch admin's profile to verify the logged-in user.
+  // Debounced fetch messages function to prevent rapid multiple calls
+  var debouncedFetchMessages = (0,react__WEBPACK_IMPORTED_MODULE_0__.useRef)((0,lodash__WEBPACK_IMPORTED_MODULE_2__.debounce)(/*#__PURE__*/_asyncToGenerator(/*#__PURE__*/_regeneratorRuntime().mark(function _callee() {
+    var now, response, _error$response;
+    return _regeneratorRuntime().wrap(function _callee$(_context) {
+      while (1) switch (_context.prev = _context.next) {
+        case 0:
+          // Prevent multiple fetches within a short timeframe
+          now = Date.now();
+          if (!(lastFetchRef.current && now - lastFetchRef.current < 2000)) {
+            _context.next = 3;
+            break;
+          }
+          return _context.abrupt("return");
+        case 3:
+          lastFetchRef.current = now;
+          if (selectedCustomer) {
+            _context.next = 6;
+            break;
+          }
+          return _context.abrupt("return");
+        case 6:
+          setLoading(true);
+          _context.prev = 7;
+          _context.next = 10;
+          return api.get("/chat/".concat(selectedCustomer), {
+            headers: {
+              Authorization: "Bearer ".concat(userToken)
+            }
+          });
+        case 10:
+          response = _context.sent;
+          setMessages(response.data.messages || []);
+
+          // Mark messages as read for this customer
+          if (!unreadMessages[selectedCustomer]) {
+            _context.next = 22;
+            break;
+          }
+          setUnreadMessages(function (prev) {
+            return _objectSpread(_objectSpread({}, prev), {}, _defineProperty({}, selectedCustomer, 0));
+          });
+          _context.prev = 14;
+          _context.next = 17;
+          return api.post('/chat/read', {
+            sender_id: selectedCustomer
+          }, {
+            headers: {
+              Authorization: "Bearer ".concat(userToken)
+            }
+          });
+        case 17:
+          _context.next = 22;
+          break;
+        case 19:
+          _context.prev = 19;
+          _context.t0 = _context["catch"](14);
+          console.error("Error marking messages as read:", _context.t0);
+        case 22:
+          _context.next = 27;
+          break;
+        case 24:
+          _context.prev = 24;
+          _context.t1 = _context["catch"](7);
+          if (((_error$response = _context.t1.response) === null || _error$response === void 0 ? void 0 : _error$response.status) !== 429) {
+            console.error("Error fetching conversation:", _context.t1);
+            antd__WEBPACK_IMPORTED_MODULE_7__["default"].error('Failed to load messages');
+          }
+        case 27:
+          _context.prev = 27;
+          setLoading(false);
+          return _context.finish(27);
+        case 30:
+        case "end":
+          return _context.stop();
+      }
+    }, _callee, null, [[7, 24, 27, 30], [14, 19]]);
+  })), 1000)).current;
+
+  // Auto-scroll to bottom when messages change
   (0,react__WEBPACK_IMPORTED_MODULE_0__.useEffect)(function () {
-    axios__WEBPACK_IMPORTED_MODULE_2___default().get("http://127.0.0.1:8000/api/profile", {
+    var _messagesEndRef$curre;
+    (_messagesEndRef$curre = messagesEndRef.current) === null || _messagesEndRef$curre === void 0 || _messagesEndRef$curre.scrollIntoView({
+      behavior: "smooth"
+    });
+  }, [messages]);
+
+  // Fetch admin's profile
+  (0,react__WEBPACK_IMPORTED_MODULE_0__.useEffect)(function () {
+    if (!userToken) return;
+    api.get("/profile", {
       headers: {
         Authorization: "Bearer ".concat(userToken)
       }
     }).then(function (res) {
-      console.log("Admin profile:", res.data);
+      setAdminProfile(res.data);
     })["catch"](function (err) {
-      return console.error("Error fetching profile:", err.response ? err.response.data : err);
+      console.error("Error fetching profile:", err.response ? err.response.data : err);
+      antd__WEBPACK_IMPORTED_MODULE_7__["default"].error("Failed to load admin profile");
     });
   }, [userToken]);
 
-  // Fetch all customer chats for admin (raw messages returned for debugging).
+  // Fetch all customer chats for admin with throttling
   (0,react__WEBPACK_IMPORTED_MODULE_0__.useEffect)(function () {
-    axios__WEBPACK_IMPORTED_MODULE_2___default().get("http://127.0.0.1:8000/api/chat/customer-chats", {
-      headers: {
-        Authorization: "Bearer ".concat(userToken)
-      }
-    }).then(function (res) {
-      console.log("Customer chats:", res.data);
-      // For now, we treat the response as a raw array.
-      var chats = res.data.customer_chats || [];
-      setConversations(chats);
-    })["catch"](function (err) {
-      return console.error("Error fetching customer chats:", err);
-    });
+    if (!userToken) return;
+    var fetchCustomerChats = /*#__PURE__*/function () {
+      var _ref2 = _asyncToGenerator(/*#__PURE__*/_regeneratorRuntime().mark(function _callee2() {
+        var response, chats, chatsBySender, unreadCounts, _error$response2;
+        return _regeneratorRuntime().wrap(function _callee2$(_context2) {
+          while (1) switch (_context2.prev = _context2.next) {
+            case 0:
+              setCustomersLoading(true);
+              _context2.prev = 1;
+              _context2.next = 4;
+              return api.get("/chat/customer-chats", {
+                headers: {
+                  Authorization: "Bearer ".concat(userToken)
+                }
+              });
+            case 4:
+              response = _context2.sent;
+              chats = response.data.customer_chats || []; // Group chats by sender and count unread messages
+              chatsBySender = {};
+              unreadCounts = {};
+              chats.forEach(function (chat) {
+                var senderId = chat.sender_id.toString();
+                if (!chatsBySender[senderId]) {
+                  var _chat$sender, _chat$sender2;
+                  chatsBySender[senderId] = {
+                    id: senderId,
+                    sender_id: chat.sender_id,
+                    username: ((_chat$sender = chat.sender) === null || _chat$sender === void 0 ? void 0 : _chat$sender.username) || "Customer ".concat(senderId),
+                    profile_image: (_chat$sender2 = chat.sender) === null || _chat$sender2 === void 0 || (_chat$sender2 = _chat$sender2.profile) === null || _chat$sender2 === void 0 ? void 0 : _chat$sender2.profile_image,
+                    last_message: chat.message,
+                    last_message_time: chat.created_at,
+                    is_read: chat.is_read
+                  };
+                }
+
+                // Update with more recent message if applicable
+                if (new Date(chat.created_at) > new Date(chatsBySender[senderId].last_message_time)) {
+                  chatsBySender[senderId].last_message = chat.message;
+                  chatsBySender[senderId].last_message_time = chat.created_at;
+                  chatsBySender[senderId].is_read = chat.is_read;
+                }
+
+                // Count unread messages
+                if (!chat.is_read) {
+                  unreadCounts[senderId] = (unreadCounts[senderId] || 0) + 1;
+                }
+              });
+              setConversations(Object.values(chatsBySender));
+              setUnreadMessages(unreadCounts);
+              _context2.next = 16;
+              break;
+            case 13:
+              _context2.prev = 13;
+              _context2.t0 = _context2["catch"](1);
+              if (((_error$response2 = _context2.t0.response) === null || _error$response2 === void 0 ? void 0 : _error$response2.status) !== 429) {
+                console.error("Error fetching customer chats:", _context2.t0);
+                antd__WEBPACK_IMPORTED_MODULE_7__["default"].error("Failed to load customer conversations");
+              }
+            case 16:
+              _context2.prev = 16;
+              setCustomersLoading(false);
+              return _context2.finish(16);
+            case 19:
+            case "end":
+              return _context2.stop();
+          }
+        }, _callee2, null, [[1, 13, 16, 19]]);
+      }));
+      return function fetchCustomerChats() {
+        return _ref2.apply(this, arguments);
+      };
+    }();
+    fetchCustomerChats();
+
+    // Set up an interval to periodically refresh the customer list (every 30 seconds)
+    var intervalId = setInterval(fetchCustomerChats, 30000);
+    return function () {
+      return clearInterval(intervalId);
+    };
   }, [userToken]);
 
-  // Fetch conversation messages for the selected customer.
+  // Fetch conversation messages when customer is selected
   (0,react__WEBPACK_IMPORTED_MODULE_0__.useEffect)(function () {
     if (selectedCustomer) {
-      axios__WEBPACK_IMPORTED_MODULE_2___default().get("http://127.0.0.1:8000/api/chat/".concat(selectedCustomer), {
-        headers: {
-          Authorization: "Bearer ".concat(userToken)
-        }
-      }).then(function (res) {
-        console.log("Conversation messages:", res.data);
-        setMessages(res.data.messages);
-      })["catch"](function (err) {
-        return console.error("Error fetching conversation:", err);
-      });
+      debouncedFetchMessages();
     }
-  }, [selectedCustomer, userToken]);
+  }, [selectedCustomer, debouncedFetchMessages]);
 
-  // Setup real-time updates using Laravel Echo and Pusher.
+  // Setup real-time updates using Laravel Echo and Pusher
   (0,react__WEBPACK_IMPORTED_MODULE_0__.useEffect)(function () {
-    window.Pusher = (pusher_js__WEBPACK_IMPORTED_MODULE_4___default());
-    var echo = new laravel_echo__WEBPACK_IMPORTED_MODULE_3__["default"]({
-      broadcaster: "pusher",
-      key: "450508915178ad069fcf",
-      // Replace with your actual PUSHER_APP_KEY
-      cluster: "ap1",
-      // Replace with your actual PUSHER_APP_CLUSTER
-      forceTLS: true
-    });
-    echo.channel("chat").listen(".new.message", function (e) {
-      console.log("New message received:", e.chat);
-      if (selectedCustomer && (e.chat.sender_id.toString() === selectedCustomer || e.chat.receiver_id.toString() === selectedCustomer)) {
+    if (!userToken || !adminProfile) return;
+
+    // Initialize Echo only once
+    if (!echoRef.current) {
+      echoRef.current = setupEcho(userToken);
+    }
+
+    // Listen to admin's private channel
+    var adminChannel = echoRef.current["private"]("chat.admin.".concat(adminProfile.id));
+    adminChannel.listen('NewMessage', function (e) {
+      console.log("New message received:", e);
+      var senderId = e.sender_id.toString();
+
+      // If this sender is currently selected, add message to the conversation
+      if (selectedCustomer === senderId) {
         setMessages(function (prev) {
-          return [].concat(_toConsumableArray(prev), [e.chat]);
+          // Avoid duplicates
+          if (prev.some(function (m) {
+            return m.id === e.id;
+          })) return prev;
+          return [].concat(_toConsumableArray(prev), [e]);
+        });
+      } else {
+        // Otherwise, increment unread count for this sender
+        setUnreadMessages(function (prev) {
+          return _objectSpread(_objectSpread({}, prev), {}, _defineProperty({}, senderId, (prev[senderId] || 0) + 1));
+        });
+
+        // Update conversations list with this new message
+        setConversations(function (prev) {
+          var existingSenderIndex = prev.findIndex(function (c) {
+            return c.sender_id.toString() === senderId;
+          });
+          if (existingSenderIndex >= 0) {
+            // Update existing conversation
+            var updatedConversations = _toConsumableArray(prev);
+            updatedConversations[existingSenderIndex] = _objectSpread(_objectSpread({}, updatedConversations[existingSenderIndex]), {}, {
+              last_message: e.message,
+              last_message_time: e.created_at,
+              is_read: false
+            });
+            return updatedConversations;
+          } else {
+            var _e$sender, _e$sender2;
+            // Add new conversation
+            return [].concat(_toConsumableArray(prev), [{
+              id: senderId,
+              sender_id: e.sender_id,
+              username: ((_e$sender = e.sender) === null || _e$sender === void 0 ? void 0 : _e$sender.username) || "Customer ".concat(senderId),
+              profile_image: (_e$sender2 = e.sender) === null || _e$sender2 === void 0 || (_e$sender2 = _e$sender2.profile) === null || _e$sender2 === void 0 ? void 0 : _e$sender2.profile_image,
+              last_message: e.message,
+              last_message_time: e.created_at,
+              is_read: false
+            }]);
+          }
         });
       }
     });
     return function () {
-      echo.disconnect();
+      adminChannel.stopListening('NewMessage');
     };
-  }, [selectedCustomer]);
-  var sendMessage = function sendMessage() {
-    if (newMessage.trim() === "" || !selectedCustomer) return;
-    console.log("Attempting to send message to API:", newMessage);
-    axios__WEBPACK_IMPORTED_MODULE_2___default().post("http://127.0.0.1:8000/api/chat/send", {
-      receiver_id: selectedCustomer,
-      // For admin replies, use the customer's id.
-      message: newMessage
-    }, {
-      headers: {
-        Authorization: "Bearer ".concat(userToken)
-      }
-    }).then(function (res) {
-      console.log("Message sent:", res.data.data);
-      setMessages(function (prev) {
-        return [].concat(_toConsumableArray(prev), [res.data.data]);
-      });
-      setNewMessage("");
-    })["catch"](function (err) {
-      console.error("Error sending message:", err.response ? err.response.data : err);
-    });
+  }, [userToken, adminProfile, selectedCustomer]);
+  var sendMessage = /*#__PURE__*/function () {
+    var _ref3 = _asyncToGenerator(/*#__PURE__*/_regeneratorRuntime().mark(function _callee3() {
+      var tempMessage, currentMessage, response;
+      return _regeneratorRuntime().wrap(function _callee3$(_context3) {
+        while (1) switch (_context3.prev = _context3.next) {
+          case 0:
+            if (!(newMessage.trim() === "" || !selectedCustomer || isSubmitting)) {
+              _context3.next = 2;
+              break;
+            }
+            return _context3.abrupt("return");
+          case 2:
+            setIsSubmitting(true);
+
+            // Optimistic UI update with a temporary message
+            tempMessage = {
+              id: "temp-".concat(Date.now()),
+              message: newMessage,
+              sender_id: adminProfile === null || adminProfile === void 0 ? void 0 : adminProfile.id,
+              receiver_id: selectedCustomer,
+              created_at: new Date().toISOString(),
+              pending: true
+            };
+            setMessages(function (prev) {
+              return [].concat(_toConsumableArray(prev), [tempMessage]);
+            });
+            currentMessage = newMessage;
+            setNewMessage("");
+            _context3.prev = 7;
+            _context3.next = 10;
+            return api.post("/chat/send", {
+              receiver_id: selectedCustomer,
+              message: currentMessage
+            }, {
+              headers: {
+                Authorization: "Bearer ".concat(userToken)
+              }
+            });
+          case 10:
+            response = _context3.sent;
+            // Replace the temporary message with the real one
+            setMessages(function (prev) {
+              return prev.map(function (msg) {
+                return msg.id === tempMessage.id ? response.data.data : msg;
+              });
+            });
+
+            // Update the conversations list
+            setConversations(function (prev) {
+              var existingIndex = prev.findIndex(function (c) {
+                return c.sender_id.toString() === selectedCustomer;
+              });
+              if (existingIndex >= 0) {
+                var updatedConversations = _toConsumableArray(prev);
+                updatedConversations[existingIndex] = _objectSpread(_objectSpread({}, updatedConversations[existingIndex]), {}, {
+                  last_message: currentMessage,
+                  last_message_time: new Date().toISOString()
+                });
+                return updatedConversations;
+              }
+              return prev;
+            });
+            _context3.next = 21;
+            break;
+          case 15:
+            _context3.prev = 15;
+            _context3.t0 = _context3["catch"](7);
+            console.error("Error sending message:", _context3.t0.response ? _context3.t0.response.data : _context3.t0);
+
+            // Restore the message in the input field on error
+            setNewMessage(currentMessage);
+
+            // Remove the temporary message
+            setMessages(function (prev) {
+              return prev.filter(function (msg) {
+                return msg.id !== tempMessage.id;
+              });
+            });
+            antd__WEBPACK_IMPORTED_MODULE_7__["default"].error("Failed to send message");
+          case 21:
+            _context3.prev = 21;
+            setIsSubmitting(false);
+            return _context3.finish(21);
+          case 24:
+          case "end":
+            return _context3.stop();
+        }
+      }, _callee3, null, [[7, 15, 21, 24]]);
+    }));
+    return function sendMessage() {
+      return _ref3.apply(this, arguments);
+    };
+  }();
+  var handleKeyPress = function handleKeyPress(e) {
+    if (e.key === 'Enter' && !e.shiftKey) {
+      e.preventDefault();
+      sendMessage();
+    }
   };
-  return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)(_AdminReusable_AdminPage__WEBPACK_IMPORTED_MODULE_1__["default"], {
-    children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsxs)("div", {
+
+  // Sort conversations by latest message first
+  var sortedConversations = _toConsumableArray(conversations).sort(function (a, b) {
+    return new Date(b.last_message_time) - new Date(a.last_message_time);
+  });
+  return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)(_AdminReusable_AdminPage__WEBPACK_IMPORTED_MODULE_1__["default"], {
+    children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsxs)("div", {
       style: {
         display: "flex",
         height: "calc(100vh - 60px)"
       },
-      children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsxs)("div", {
+      children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsxs)("div", {
         style: {
           width: "300px",
           borderRight: "1px solid #ccc",
           overflowY: "auto",
           padding: "10px"
         },
-        children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("h3", {
+        children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("h3", {
           children: "Conversations"
-        }), conversations.length === 0 ? /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("p", {
-          children: "No customer messages found."
-        }) : /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)(antd__WEBPACK_IMPORTED_MODULE_7__["default"], {
-          dataSource: conversations,
+        }), customersLoading ? /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("div", {
+          style: {
+            display: 'flex',
+            justifyContent: 'center',
+            padding: '20px'
+          },
+          children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)(antd__WEBPACK_IMPORTED_MODULE_9__["default"], {})
+        }) : sortedConversations.length === 0 ? /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)(antd__WEBPACK_IMPORTED_MODULE_10__["default"], {
+          description: "No customer messages"
+        }) : /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)(antd__WEBPACK_IMPORTED_MODULE_11__["default"], {
+          dataSource: sortedConversations,
           renderItem: function renderItem(chat) {
-            return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsxs)(antd__WEBPACK_IMPORTED_MODULE_7__["default"].Item, {
+            return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)(antd__WEBPACK_IMPORTED_MODULE_11__["default"].Item, {
               style: {
                 cursor: "pointer",
                 padding: "8px",
-                marginBottom: "4px"
+                marginBottom: "4px",
+                backgroundColor: selectedCustomer === chat.sender_id.toString() ? "#f0f0f0" : "transparent",
+                borderRadius: "4px"
               },
               onClick: function onClick() {
                 return setSelectedCustomer(chat.sender_id.toString());
               },
-              children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)(antd__WEBPACK_IMPORTED_MODULE_8__["default"], {
-                icon: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)(_ant_design_icons__WEBPACK_IMPORTED_MODULE_9__["default"], {}),
-                style: {
-                  marginRight: "10px"
-                }
-              }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsxs)("span", {
-                children: ["Customer ", chat.sender_id]
-              })]
+              children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)(antd__WEBPACK_IMPORTED_MODULE_11__["default"].Item.Meta, {
+                avatar: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)(antd__WEBPACK_IMPORTED_MODULE_12__["default"], {
+                  count: unreadMessages[chat.sender_id.toString()] || 0,
+                  offset: [-5, 5],
+                  children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)(antd__WEBPACK_IMPORTED_MODULE_13__["default"], {
+                    icon: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)(_ant_design_icons__WEBPACK_IMPORTED_MODULE_14__["default"], {}),
+                    src: chat.profile_image ? "/storage/".concat(chat.profile_image) : null
+                  })
+                }),
+                title: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("span", {
+                  style: {
+                    fontWeight: unreadMessages[chat.sender_id.toString()] ? 'bold' : 'normal'
+                  },
+                  children: chat.username || "Customer ".concat(chat.sender_id)
+                }),
+                description: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsxs)("div", {
+                  children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("div", {
+                    style: {
+                      whiteSpace: 'nowrap',
+                      overflow: 'hidden',
+                      textOverflow: 'ellipsis',
+                      maxWidth: '200px',
+                      fontWeight: unreadMessages[chat.sender_id.toString()] ? 'bold' : 'normal'
+                    },
+                    children: chat.last_message
+                  }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("small", {
+                    children: new Date(chat.last_message_time).toLocaleString([], {
+                      month: 'short',
+                      day: 'numeric',
+                      hour: '2-digit',
+                      minute: '2-digit'
+                    })
+                  })]
+                })
+              })
             });
           }
         })]
-      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsxs)("div", {
+      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("div", {
         style: {
           flex: 1,
           display: "flex",
           flexDirection: "column",
           padding: "10px"
         },
-        children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsxs)("h3", {
-          children: ["Chat with Customer ", selectedCustomer]
-        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)(antd__WEBPACK_IMPORTED_MODULE_10__["default"], {
-          style: {
-            flex: 1,
-            overflowY: "auto",
-            marginBottom: "10px"
-          },
-          children: messages.map(function (msg) {
-            return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsxs)("div", {
+        children: selectedCustomer ? /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsxs)(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.Fragment, {
+          children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsxs)("h3", {
+            children: ["Chat with ", ((_conversations$find = conversations.find(function (c) {
+              return c.sender_id.toString() === selectedCustomer;
+            })) === null || _conversations$find === void 0 ? void 0 : _conversations$find.username) || "Customer ".concat(selectedCustomer)]
+          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsxs)(antd__WEBPACK_IMPORTED_MODULE_15__["default"], {
+            style: {
+              flex: 1,
+              overflowY: "auto",
+              marginBottom: "10px",
+              padding: 0,
+              display: "flex",
+              flexDirection: "column"
+            },
+            bodyStyle: {
+              flex: 1,
+              overflowY: "auto",
+              padding: "12px"
+            },
+            children: [loading ? /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("div", {
               style: {
-                marginBottom: "8px",
-                textAlign: msg.sender_id.toString() === selectedCustomer ? "left" : "right"
+                display: 'flex',
+                justifyContent: 'center',
+                alignItems: 'center',
+                height: '100%'
               },
-              children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("span", {
+              children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)(antd__WEBPACK_IMPORTED_MODULE_9__["default"], {
+                size: "large"
+              })
+            }) : messages.length === 0 ? /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)(antd__WEBPACK_IMPORTED_MODULE_10__["default"], {
+              description: "No messages yet"
+            }) : messages.map(function (msg) {
+              return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsxs)("div", {
                 style: {
-                  backgroundColor: msg.sender_id.toString() === selectedCustomer ? "#f1f1f1" : "#1890ff",
-                  color: msg.sender_id.toString() === selectedCustomer ? "#000" : "#fff",
-                  padding: "6px 10px",
-                  borderRadius: "8px"
+                  marginBottom: "12px",
+                  display: 'flex',
+                  flexDirection: 'column',
+                  alignItems: msg.sender_id.toString() === selectedCustomer ? "flex-start" : "flex-end",
+                  opacity: msg.pending ? 0.7 : 1
                 },
-                children: msg.message
-              }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("br", {}), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("small", {
-                children: new Date(msg.created_at).toLocaleTimeString([], {
-                  hour: "2-digit",
-                  minute: "2-digit"
-                })
-              })]
-            }, msg.id);
-          })
-        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsxs)("div", {
-          style: {
-            display: "flex"
-          },
-          children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)(TextArea, {
-            rows: 2,
-            value: newMessage,
-            onChange: function onChange(e) {
-              return setNewMessage(e.target.value);
-            },
-            placeholder: "Type your message...",
+                children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsxs)("div", {
+                  style: {
+                    backgroundColor: msg.sender_id.toString() === selectedCustomer ? "#f1f1f1" : "#1890ff",
+                    color: msg.sender_id.toString() === selectedCustomer ? "#000" : "#fff",
+                    padding: "8px 12px",
+                    borderRadius: "12px",
+                    maxWidth: "70%",
+                    wordBreak: "break-word"
+                  },
+                  children: [msg.message, msg.pending && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("span", {
+                    style: {
+                      marginLeft: 8,
+                      fontSize: 11
+                    },
+                    children: "(sending...)"
+                  })]
+                }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("div", {
+                  style: {
+                    fontSize: '11px',
+                    color: '#999',
+                    marginTop: '4px'
+                  },
+                  children: msg.created_at && new Date(msg.created_at).toLocaleTimeString([], {
+                    hour: "2-digit",
+                    minute: "2-digit"
+                  })
+                })]
+              }, msg.id);
+            }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("div", {
+              ref: messagesEndRef
+            })]
+          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsxs)("div", {
             style: {
-              width: "80%",
-              padding: "8px"
-            }
-          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)(antd__WEBPACK_IMPORTED_MODULE_11__["default"], {
-            type: "primary",
-            onClick: sendMessage,
-            style: {
-              marginLeft: "10px",
-              padding: "8px 16px"
+              display: "flex"
             },
-            children: "Send"
+            children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)(TextArea, {
+              rows: 2,
+              value: newMessage,
+              onChange: function onChange(e) {
+                return setNewMessage(e.target.value);
+              },
+              onKeyPress: handleKeyPress,
+              placeholder: "Type your message...",
+              style: {
+                width: "80%",
+                padding: "8px",
+                resize: 'none'
+              },
+              disabled: isSubmitting
+            }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)(antd__WEBPACK_IMPORTED_MODULE_16__["default"], {
+              type: "primary",
+              icon: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)(_ant_design_icons__WEBPACK_IMPORTED_MODULE_17__["default"], {}),
+              onClick: sendMessage,
+              style: {
+                marginLeft: "10px",
+                padding: "8px 16px",
+                height: 'auto'
+              },
+              disabled: isSubmitting,
+              loading: isSubmitting,
+              children: "Send"
+            })]
           })]
-        })]
+        }) : /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsxs)("div", {
+          style: {
+            display: 'flex',
+            justifyContent: 'center',
+            alignItems: 'center',
+            height: '100%',
+            flexDirection: 'column',
+            color: '#999'
+          },
+          children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)(_ant_design_icons__WEBPACK_IMPORTED_MODULE_14__["default"], {
+            style: {
+              fontSize: '48px',
+              marginBottom: '16px'
+            }
+          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("p", {
+            children: "Select a conversation to start chatting"
+          })]
+        })
       })]
     })
   });
@@ -63628,20 +64110,32 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ });
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var antd__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! antd */ "./node_modules/antd/es/float-button/index.js");
-/* harmony import */ var antd__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! antd */ "./node_modules/antd/es/card/index.js");
-/* harmony import */ var antd__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! antd */ "./node_modules/antd/es/input/index.js");
-/* harmony import */ var antd__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! antd */ "./node_modules/antd/es/button/index.js");
-/* harmony import */ var _ant_design_icons__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! @ant-design/icons */ "./node_modules/@ant-design/icons/es/icons/MessageOutlined.js");
-/* harmony import */ var _ant_design_icons__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! @ant-design/icons */ "./node_modules/@ant-design/icons/es/icons/CloseOutlined.js");
-/* harmony import */ var _ant_design_icons__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! @ant-design/icons */ "./node_modules/@ant-design/icons/es/icons/SendOutlined.js");
+/* harmony import */ var antd__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! antd */ "./node_modules/antd/es/message/index.js");
+/* harmony import */ var antd__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! antd */ "./node_modules/antd/es/badge/index.js");
+/* harmony import */ var antd__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! antd */ "./node_modules/antd/es/float-button/index.js");
+/* harmony import */ var antd__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! antd */ "./node_modules/antd/es/card/index.js");
+/* harmony import */ var antd__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! antd */ "./node_modules/antd/es/spin/index.js");
+/* harmony import */ var antd__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! antd */ "./node_modules/antd/es/empty/index.js");
+/* harmony import */ var antd__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(/*! antd */ "./node_modules/antd/es/avatar/index.js");
+/* harmony import */ var antd__WEBPACK_IMPORTED_MODULE_14__ = __webpack_require__(/*! antd */ "./node_modules/antd/es/input/index.js");
+/* harmony import */ var antd__WEBPACK_IMPORTED_MODULE_15__ = __webpack_require__(/*! antd */ "./node_modules/antd/es/button/index.js");
+/* harmony import */ var _ant_design_icons__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! @ant-design/icons */ "./node_modules/@ant-design/icons/es/icons/MessageOutlined.js");
+/* harmony import */ var _ant_design_icons__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! @ant-design/icons */ "./node_modules/@ant-design/icons/es/icons/CloseOutlined.js");
+/* harmony import */ var _ant_design_icons__WEBPACK_IMPORTED_MODULE_16__ = __webpack_require__(/*! @ant-design/icons */ "./node_modules/@ant-design/icons/es/icons/SendOutlined.js");
 /* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
 /* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_1__);
-/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! react/jsx-runtime */ "./node_modules/react/jsx-runtime.js");
+/* harmony import */ var _echo_setup__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./echo-setup */ "./resources/js/components/Chat/echo-setup.js");
+/* harmony import */ var lodash__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! lodash */ "./node_modules/lodash/lodash.js");
+/* harmony import */ var lodash__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(lodash__WEBPACK_IMPORTED_MODULE_3__);
+/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! react/jsx-runtime */ "./node_modules/react/jsx-runtime.js");
+function _typeof(o) { "@babel/helpers - typeof"; return _typeof = "function" == typeof Symbol && "symbol" == typeof Symbol.iterator ? function (o) { return typeof o; } : function (o) { return o && "function" == typeof Symbol && o.constructor === Symbol && o !== Symbol.prototype ? "symbol" : typeof o; }, _typeof(o); }
 function _toConsumableArray(r) { return _arrayWithoutHoles(r) || _iterableToArray(r) || _unsupportedIterableToArray(r) || _nonIterableSpread(); }
 function _nonIterableSpread() { throw new TypeError("Invalid attempt to spread non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
 function _iterableToArray(r) { if ("undefined" != typeof Symbol && null != r[Symbol.iterator] || null != r["@@iterator"]) return Array.from(r); }
 function _arrayWithoutHoles(r) { if (Array.isArray(r)) return _arrayLikeToArray(r); }
+function _regeneratorRuntime() { "use strict"; /*! regenerator-runtime -- Copyright (c) 2014-present, Facebook, Inc. -- license (MIT): https://github.com/facebook/regenerator/blob/main/LICENSE */ _regeneratorRuntime = function _regeneratorRuntime() { return e; }; var t, e = {}, r = Object.prototype, n = r.hasOwnProperty, o = Object.defineProperty || function (t, e, r) { t[e] = r.value; }, i = "function" == typeof Symbol ? Symbol : {}, a = i.iterator || "@@iterator", c = i.asyncIterator || "@@asyncIterator", u = i.toStringTag || "@@toStringTag"; function define(t, e, r) { return Object.defineProperty(t, e, { value: r, enumerable: !0, configurable: !0, writable: !0 }), t[e]; } try { define({}, ""); } catch (t) { define = function define(t, e, r) { return t[e] = r; }; } function wrap(t, e, r, n) { var i = e && e.prototype instanceof Generator ? e : Generator, a = Object.create(i.prototype), c = new Context(n || []); return o(a, "_invoke", { value: makeInvokeMethod(t, r, c) }), a; } function tryCatch(t, e, r) { try { return { type: "normal", arg: t.call(e, r) }; } catch (t) { return { type: "throw", arg: t }; } } e.wrap = wrap; var h = "suspendedStart", l = "suspendedYield", f = "executing", s = "completed", y = {}; function Generator() {} function GeneratorFunction() {} function GeneratorFunctionPrototype() {} var p = {}; define(p, a, function () { return this; }); var d = Object.getPrototypeOf, v = d && d(d(values([]))); v && v !== r && n.call(v, a) && (p = v); var g = GeneratorFunctionPrototype.prototype = Generator.prototype = Object.create(p); function defineIteratorMethods(t) { ["next", "throw", "return"].forEach(function (e) { define(t, e, function (t) { return this._invoke(e, t); }); }); } function AsyncIterator(t, e) { function invoke(r, o, i, a) { var c = tryCatch(t[r], t, o); if ("throw" !== c.type) { var u = c.arg, h = u.value; return h && "object" == _typeof(h) && n.call(h, "__await") ? e.resolve(h.__await).then(function (t) { invoke("next", t, i, a); }, function (t) { invoke("throw", t, i, a); }) : e.resolve(h).then(function (t) { u.value = t, i(u); }, function (t) { return invoke("throw", t, i, a); }); } a(c.arg); } var r; o(this, "_invoke", { value: function value(t, n) { function callInvokeWithMethodAndArg() { return new e(function (e, r) { invoke(t, n, e, r); }); } return r = r ? r.then(callInvokeWithMethodAndArg, callInvokeWithMethodAndArg) : callInvokeWithMethodAndArg(); } }); } function makeInvokeMethod(e, r, n) { var o = h; return function (i, a) { if (o === f) throw Error("Generator is already running"); if (o === s) { if ("throw" === i) throw a; return { value: t, done: !0 }; } for (n.method = i, n.arg = a;;) { var c = n.delegate; if (c) { var u = maybeInvokeDelegate(c, n); if (u) { if (u === y) continue; return u; } } if ("next" === n.method) n.sent = n._sent = n.arg;else if ("throw" === n.method) { if (o === h) throw o = s, n.arg; n.dispatchException(n.arg); } else "return" === n.method && n.abrupt("return", n.arg); o = f; var p = tryCatch(e, r, n); if ("normal" === p.type) { if (o = n.done ? s : l, p.arg === y) continue; return { value: p.arg, done: n.done }; } "throw" === p.type && (o = s, n.method = "throw", n.arg = p.arg); } }; } function maybeInvokeDelegate(e, r) { var n = r.method, o = e.iterator[n]; if (o === t) return r.delegate = null, "throw" === n && e.iterator["return"] && (r.method = "return", r.arg = t, maybeInvokeDelegate(e, r), "throw" === r.method) || "return" !== n && (r.method = "throw", r.arg = new TypeError("The iterator does not provide a '" + n + "' method")), y; var i = tryCatch(o, e.iterator, r.arg); if ("throw" === i.type) return r.method = "throw", r.arg = i.arg, r.delegate = null, y; var a = i.arg; return a ? a.done ? (r[e.resultName] = a.value, r.next = e.nextLoc, "return" !== r.method && (r.method = "next", r.arg = t), r.delegate = null, y) : a : (r.method = "throw", r.arg = new TypeError("iterator result is not an object"), r.delegate = null, y); } function pushTryEntry(t) { var e = { tryLoc: t[0] }; 1 in t && (e.catchLoc = t[1]), 2 in t && (e.finallyLoc = t[2], e.afterLoc = t[3]), this.tryEntries.push(e); } function resetTryEntry(t) { var e = t.completion || {}; e.type = "normal", delete e.arg, t.completion = e; } function Context(t) { this.tryEntries = [{ tryLoc: "root" }], t.forEach(pushTryEntry, this), this.reset(!0); } function values(e) { if (e || "" === e) { var r = e[a]; if (r) return r.call(e); if ("function" == typeof e.next) return e; if (!isNaN(e.length)) { var o = -1, i = function next() { for (; ++o < e.length;) if (n.call(e, o)) return next.value = e[o], next.done = !1, next; return next.value = t, next.done = !0, next; }; return i.next = i; } } throw new TypeError(_typeof(e) + " is not iterable"); } return GeneratorFunction.prototype = GeneratorFunctionPrototype, o(g, "constructor", { value: GeneratorFunctionPrototype, configurable: !0 }), o(GeneratorFunctionPrototype, "constructor", { value: GeneratorFunction, configurable: !0 }), GeneratorFunction.displayName = define(GeneratorFunctionPrototype, u, "GeneratorFunction"), e.isGeneratorFunction = function (t) { var e = "function" == typeof t && t.constructor; return !!e && (e === GeneratorFunction || "GeneratorFunction" === (e.displayName || e.name)); }, e.mark = function (t) { return Object.setPrototypeOf ? Object.setPrototypeOf(t, GeneratorFunctionPrototype) : (t.__proto__ = GeneratorFunctionPrototype, define(t, u, "GeneratorFunction")), t.prototype = Object.create(g), t; }, e.awrap = function (t) { return { __await: t }; }, defineIteratorMethods(AsyncIterator.prototype), define(AsyncIterator.prototype, c, function () { return this; }), e.AsyncIterator = AsyncIterator, e.async = function (t, r, n, o, i) { void 0 === i && (i = Promise); var a = new AsyncIterator(wrap(t, r, n, o), i); return e.isGeneratorFunction(r) ? a : a.next().then(function (t) { return t.done ? t.value : a.next(); }); }, defineIteratorMethods(g), define(g, u, "Generator"), define(g, a, function () { return this; }), define(g, "toString", function () { return "[object Generator]"; }), e.keys = function (t) { var e = Object(t), r = []; for (var n in e) r.push(n); return r.reverse(), function next() { for (; r.length;) { var t = r.pop(); if (t in e) return next.value = t, next.done = !1, next; } return next.done = !0, next; }; }, e.values = values, Context.prototype = { constructor: Context, reset: function reset(e) { if (this.prev = 0, this.next = 0, this.sent = this._sent = t, this.done = !1, this.delegate = null, this.method = "next", this.arg = t, this.tryEntries.forEach(resetTryEntry), !e) for (var r in this) "t" === r.charAt(0) && n.call(this, r) && !isNaN(+r.slice(1)) && (this[r] = t); }, stop: function stop() { this.done = !0; var t = this.tryEntries[0].completion; if ("throw" === t.type) throw t.arg; return this.rval; }, dispatchException: function dispatchException(e) { if (this.done) throw e; var r = this; function handle(n, o) { return a.type = "throw", a.arg = e, r.next = n, o && (r.method = "next", r.arg = t), !!o; } for (var o = this.tryEntries.length - 1; o >= 0; --o) { var i = this.tryEntries[o], a = i.completion; if ("root" === i.tryLoc) return handle("end"); if (i.tryLoc <= this.prev) { var c = n.call(i, "catchLoc"), u = n.call(i, "finallyLoc"); if (c && u) { if (this.prev < i.catchLoc) return handle(i.catchLoc, !0); if (this.prev < i.finallyLoc) return handle(i.finallyLoc); } else if (c) { if (this.prev < i.catchLoc) return handle(i.catchLoc, !0); } else { if (!u) throw Error("try statement without catch or finally"); if (this.prev < i.finallyLoc) return handle(i.finallyLoc); } } } }, abrupt: function abrupt(t, e) { for (var r = this.tryEntries.length - 1; r >= 0; --r) { var o = this.tryEntries[r]; if (o.tryLoc <= this.prev && n.call(o, "finallyLoc") && this.prev < o.finallyLoc) { var i = o; break; } } i && ("break" === t || "continue" === t) && i.tryLoc <= e && e <= i.finallyLoc && (i = null); var a = i ? i.completion : {}; return a.type = t, a.arg = e, i ? (this.method = "next", this.next = i.finallyLoc, y) : this.complete(a); }, complete: function complete(t, e) { if ("throw" === t.type) throw t.arg; return "break" === t.type || "continue" === t.type ? this.next = t.arg : "return" === t.type ? (this.rval = this.arg = t.arg, this.method = "return", this.next = "end") : "normal" === t.type && e && (this.next = e), y; }, finish: function finish(t) { for (var e = this.tryEntries.length - 1; e >= 0; --e) { var r = this.tryEntries[e]; if (r.finallyLoc === t) return this.complete(r.completion, r.afterLoc), resetTryEntry(r), y; } }, "catch": function _catch(t) { for (var e = this.tryEntries.length - 1; e >= 0; --e) { var r = this.tryEntries[e]; if (r.tryLoc === t) { var n = r.completion; if ("throw" === n.type) { var o = n.arg; resetTryEntry(r); } return o; } } throw Error("illegal catch attempt"); }, delegateYield: function delegateYield(e, r, n) { return this.delegate = { iterator: values(e), resultName: r, nextLoc: n }, "next" === this.method && (this.arg = t), y; } }, e; }
+function asyncGeneratorStep(n, t, e, r, o, a, c) { try { var i = n[a](c), u = i.value; } catch (n) { return void e(n); } i.done ? t(u) : Promise.resolve(u).then(r, o); }
+function _asyncToGenerator(n) { return function () { var t = this, e = arguments; return new Promise(function (r, o) { var a = n.apply(t, e); function _next(n) { asyncGeneratorStep(a, r, o, _next, _throw, "next", n); } function _throw(n) { asyncGeneratorStep(a, r, o, _next, _throw, "throw", n); } _next(void 0); }); }; }
 function _slicedToArray(r, e) { return _arrayWithHoles(r) || _iterableToArrayLimit(r, e) || _unsupportedIterableToArray(r, e) || _nonIterableRest(); }
 function _nonIterableRest() { throw new TypeError("Invalid attempt to destructure non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
 function _unsupportedIterableToArray(r, a) { if (r) { if ("string" == typeof r) return _arrayLikeToArray(r, a); var t = {}.toString.call(r).slice(8, -1); return "Object" === t && r.constructor && (t = r.constructor.name), "Map" === t || "Set" === t ? Array.from(r) : "Arguments" === t || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(t) ? _arrayLikeToArray(r, a) : void 0; } }
@@ -63652,7 +64146,43 @@ function _arrayWithHoles(r) { if (Array.isArray(r)) return r; }
 
 
 
+ // Import the Echo instance
+ // Import debounce utility
 
+// Create an axios instance with retry logic
+
+var api = axios__WEBPACK_IMPORTED_MODULE_1___default().create({
+  baseURL: 'http://127.0.0.1:8000/api',
+  timeout: 10000
+});
+
+// Add request throttling
+api.interceptors.request.use(function (config) {
+  return new Promise(function (resolve) {
+    setTimeout(function () {
+      return resolve(config);
+    }, 300); // Add a 300ms delay between requests
+  });
+});
+
+// Add response interceptor for handling rate limiting
+api.interceptors.response.use(function (response) {
+  return response;
+}, function (error) {
+  var response = error.response;
+  if (response && response.status === 429) {
+    antd__WEBPACK_IMPORTED_MODULE_5__["default"].error('Too many requests. Please wait before trying again.');
+
+    // Extract retry-after header if available
+    var retryAfter = response.headers['retry-after'] ? parseInt(response.headers['retry-after']) * 1000 : 5000;
+    return new Promise(function (resolve) {
+      setTimeout(function () {
+        resolve(api(error.config));
+      }, retryAfter);
+    });
+  }
+  return Promise.reject(error);
+});
 function Chatbot() {
   var _useState = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(false),
     _useState2 = _slicedToArray(_useState, 2),
@@ -63662,56 +64192,351 @@ function Chatbot() {
     _useState4 = _slicedToArray(_useState3, 2),
     message = _useState4[0],
     setMessage = _useState4[1];
-  var _useState5 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)([{
-      text: "Hello! How can we help you?",
-      sender: "bot"
-    }]),
+  var _useState5 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)([]),
     _useState6 = _slicedToArray(_useState5, 2),
     messages = _useState6[0],
     setMessages = _useState6[1];
+  var _useState7 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(false),
+    _useState8 = _slicedToArray(_useState7, 2),
+    loading = _useState8[0],
+    setLoading = _useState8[1];
+  var _useState9 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(null),
+    _useState10 = _slicedToArray(_useState9, 2),
+    adminId = _useState10[0],
+    setAdminId = _useState10[1];
+  var _useState11 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(0),
+    _useState12 = _slicedToArray(_useState11, 2),
+    unreadCount = _useState12[0],
+    setUnreadCount = _useState12[1];
+  var _useState13 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(false),
+    _useState14 = _slicedToArray(_useState13, 2),
+    isSubmitting = _useState14[0],
+    setIsSubmitting = _useState14[1];
+  var messagesEndRef = (0,react__WEBPACK_IMPORTED_MODULE_0__.useRef)(null);
+  var lastFetchRef = (0,react__WEBPACK_IMPORTED_MODULE_0__.useRef)(null);
   var userToken = localStorage.getItem("userToken");
-  var sendMessage = function sendMessage() {
-    if (message.trim() === "") return;
-    console.log("Attempting to send message to API:", message);
-    axios__WEBPACK_IMPORTED_MODULE_1___default().post("http://127.0.0.1:8000/api/chat/send", {
-      message: message
-    }, {
-      headers: {
-        Authorization: "Bearer ".concat(userToken)
+  var user = localStorage.getItem("user") ? JSON.parse(localStorage.getItem("user")) : null;
+
+  // Get user role from local storage
+  var userRole = user ? user.role_id : null;
+
+  // Check if user is admin (role_id === 2)
+  var isAdmin = userRole === 2;
+
+  // Debounced fetch messages function to prevent rapid multiple calls
+  var debouncedFetchMessages = (0,react__WEBPACK_IMPORTED_MODULE_0__.useRef)((0,lodash__WEBPACK_IMPORTED_MODULE_3__.debounce)(/*#__PURE__*/_asyncToGenerator(/*#__PURE__*/_regeneratorRuntime().mark(function _callee() {
+    var now;
+    return _regeneratorRuntime().wrap(function _callee$(_context) {
+      while (1) switch (_context.prev = _context.next) {
+        case 0:
+          // Prevent multiple fetches within a short timeframe
+          now = Date.now();
+          if (!(lastFetchRef.current && now - lastFetchRef.current < 2000)) {
+            _context.next = 3;
+            break;
+          }
+          return _context.abrupt("return");
+        case 3:
+          lastFetchRef.current = now;
+          _context.next = 6;
+          return fetchMessages();
+        case 6:
+        case "end":
+          return _context.stop();
       }
-    }).then(function (res) {
-      console.log("Message sent from customer:", res.data.data);
-      setMessages(function (prev) {
-        return [].concat(_toConsumableArray(prev), [{
-          text: res.data.data.message,
-          sender: "user"
-        }]);
+    }, _callee);
+  })), 1000)).current;
+
+  // Get initial messages and set up Echo listeners
+  (0,react__WEBPACK_IMPORTED_MODULE_0__.useEffect)(function () {
+    if (openChat && adminId) {
+      debouncedFetchMessages();
+    }
+
+    // Set up Echo listeners based on user role
+    if (user) {
+      var channel = isAdmin ? _echo_setup__WEBPACK_IMPORTED_MODULE_2__["default"]["private"]("chat.admin.".concat(user.id)) : _echo_setup__WEBPACK_IMPORTED_MODULE_2__["default"]["private"]("chat.user.".concat(user.id));
+      channel.listen('NewMessage', function (e) {
+        console.log('New message received:', e);
+        // Add message only if it doesn't already exist in the messages array
+        setMessages(function (prevMessages) {
+          var _e$sender$profile;
+          if (prevMessages.some(function (m) {
+            return m.id === e.id;
+          })) return prevMessages;
+          return [].concat(_toConsumableArray(prevMessages), [{
+            id: e.id,
+            text: e.message,
+            sender: e.sender_id === user.id ? "user" : "other",
+            sender_name: e.sender.username,
+            sender_image: (_e$sender$profile = e.sender.profile) === null || _e$sender$profile === void 0 ? void 0 : _e$sender$profile.profile_image,
+            timestamp: e.created_at
+          }]);
+        });
+
+        // If chat is not open, increment unread count
+        if (!openChat) {
+          setUnreadCount(function (prev) {
+            return prev + 1;
+          });
+        }
       });
-      setMessage("");
-    })["catch"](function (err) {
-      console.error("Error sending message:", err.response ? err.response.data : err);
+      return function () {
+        channel.stopListening('NewMessage');
+      };
+    }
+  }, [openChat, user, isAdmin, adminId, debouncedFetchMessages]);
+
+  // Auto-scroll to bottom when messages change
+  (0,react__WEBPACK_IMPORTED_MODULE_0__.useEffect)(function () {
+    scrollToBottom();
+  }, [messages]);
+
+  // Clear unread count when opening chat
+  (0,react__WEBPACK_IMPORTED_MODULE_0__.useEffect)(function () {
+    if (openChat) {
+      setUnreadCount(0);
+      // Mark messages as read if we have a selected admin/customer
+      if (adminId && userToken) {
+        // Use a throttled approach for marking as read
+        var markAsRead = /*#__PURE__*/function () {
+          var _ref2 = _asyncToGenerator(/*#__PURE__*/_regeneratorRuntime().mark(function _callee2() {
+            return _regeneratorRuntime().wrap(function _callee2$(_context2) {
+              while (1) switch (_context2.prev = _context2.next) {
+                case 0:
+                  _context2.prev = 0;
+                  _context2.next = 3;
+                  return api.post('/chat/read', {
+                    sender_id: adminId
+                  }, {
+                    headers: {
+                      Authorization: "Bearer ".concat(userToken)
+                    }
+                  });
+                case 3:
+                  _context2.next = 8;
+                  break;
+                case 5:
+                  _context2.prev = 5;
+                  _context2.t0 = _context2["catch"](0);
+                  console.error("Error marking messages as read:", _context2.t0);
+                case 8:
+                case "end":
+                  return _context2.stop();
+              }
+            }, _callee2, null, [[0, 5]]);
+          }));
+          return function markAsRead() {
+            return _ref2.apply(this, arguments);
+          };
+        }();
+        markAsRead();
+      }
+    }
+  }, [openChat, adminId, userToken]);
+  var fetchMessages = /*#__PURE__*/function () {
+    var _ref3 = _asyncToGenerator(/*#__PURE__*/_regeneratorRuntime().mark(function _callee3() {
+      var response, formattedMessages, _error$response;
+      return _regeneratorRuntime().wrap(function _callee3$(_context3) {
+        while (1) switch (_context3.prev = _context3.next) {
+          case 0:
+            if (!(!userToken || !adminId)) {
+              _context3.next = 2;
+              break;
+            }
+            return _context3.abrupt("return");
+          case 2:
+            setLoading(true);
+            _context3.prev = 3;
+            _context3.next = 6;
+            return api.get("/chat/".concat(adminId), {
+              headers: {
+                Authorization: "Bearer ".concat(userToken)
+              }
+            });
+          case 6:
+            response = _context3.sent;
+            // Format messages for display
+            formattedMessages = response.data.messages.map(function (msg) {
+              var _msg$sender$profile;
+              return {
+                id: msg.id,
+                text: msg.message,
+                sender: msg.sender_id === user.id ? "user" : "other",
+                sender_name: msg.sender.username || 'User',
+                sender_image: (_msg$sender$profile = msg.sender.profile) === null || _msg$sender$profile === void 0 ? void 0 : _msg$sender$profile.profile_image,
+                timestamp: msg.created_at
+              };
+            });
+            setMessages(formattedMessages);
+            _context3.next = 14;
+            break;
+          case 11:
+            _context3.prev = 11;
+            _context3.t0 = _context3["catch"](3);
+            if (((_error$response = _context3.t0.response) === null || _error$response === void 0 ? void 0 : _error$response.status) !== 429) {
+              // Already handled 429 in interceptor
+              console.error("Error fetching messages:", _context3.t0);
+              antd__WEBPACK_IMPORTED_MODULE_5__["default"].error('Failed to load messages. Please try again.');
+            }
+          case 14:
+            _context3.prev = 14;
+            setLoading(false);
+            return _context3.finish(14);
+          case 17:
+          case "end":
+            return _context3.stop();
+        }
+      }, _callee3, null, [[3, 11, 14, 17]]);
+    }));
+    return function fetchMessages() {
+      return _ref3.apply(this, arguments);
+    };
+  }();
+  var scrollToBottom = function scrollToBottom() {
+    var _messagesEndRef$curre;
+    (_messagesEndRef$curre = messagesEndRef.current) === null || _messagesEndRef$curre === void 0 || _messagesEndRef$curre.scrollIntoView({
+      behavior: "smooth"
     });
   };
-  return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxs)(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.Fragment, {
-    children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)(antd__WEBPACK_IMPORTED_MODULE_3__["default"], {
-      icon: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)(_ant_design_icons__WEBPACK_IMPORTED_MODULE_4__["default"], {
-        style: {
-          fontSize: "22px"
+  var sendMessage = /*#__PURE__*/function () {
+    var _ref4 = _asyncToGenerator(/*#__PURE__*/_regeneratorRuntime().mark(function _callee4() {
+      var _user$profile;
+      var tempMessage, currentMessage, requestData, res;
+      return _regeneratorRuntime().wrap(function _callee4$(_context4) {
+        while (1) switch (_context4.prev = _context4.next) {
+          case 0:
+            if (!(message.trim() === "" || !userToken || isSubmitting || !adminId)) {
+              _context4.next = 2;
+              break;
+            }
+            return _context4.abrupt("return");
+          case 2:
+            setIsSubmitting(true);
+
+            // Store message for optimistic UI update
+            tempMessage = {
+              id: "temp-".concat(Date.now()),
+              text: message,
+              sender: "user",
+              sender_name: user.username,
+              sender_image: (_user$profile = user.profile) === null || _user$profile === void 0 ? void 0 : _user$profile.profile_image,
+              timestamp: new Date().toISOString(),
+              pending: true
+            }; // Optimistic update
+            setMessages(function (prev) {
+              return [].concat(_toConsumableArray(prev), [tempMessage]);
+            });
+            currentMessage = message;
+            setMessage("");
+
+            // Prepare request data based on user role
+            requestData = isAdmin ? {
+              message: currentMessage,
+              receiver_id: adminId
+            } : {
+              message: currentMessage,
+              receiver_id: adminId
+            }; // Include adminId for non-admin users too
+            _context4.prev = 8;
+            _context4.next = 11;
+            return api.post("/chat/send", requestData, {
+              headers: {
+                Authorization: "Bearer ".concat(userToken)
+              }
+            });
+          case 11:
+            res = _context4.sent;
+            console.log("Message sent:", res.data.data);
+
+            // Replace temporary message with confirmed one
+            setMessages(function (prev) {
+              return prev.map(function (msg) {
+                var _user$profile2;
+                return msg.id === tempMessage.id ? {
+                  id: res.data.data.id,
+                  text: res.data.data.message,
+                  sender: "user",
+                  sender_name: user.username,
+                  sender_image: (_user$profile2 = user.profile) === null || _user$profile2 === void 0 ? void 0 : _user$profile2.profile_image,
+                  timestamp: res.data.data.created_at,
+                  pending: false
+                } : msg;
+              });
+            });
+            _context4.next = 22;
+            break;
+          case 16:
+            _context4.prev = 16;
+            _context4.t0 = _context4["catch"](8);
+            console.error("Error sending message:", _context4.t0.response ? _context4.t0.response.data : _context4.t0);
+
+            // Remove the temporary message on error
+            setMessages(function (prev) {
+              return prev.filter(function (msg) {
+                return msg.id !== tempMessage.id;
+              });
+            });
+
+            // Restore the message in the input field
+            setMessage(currentMessage);
+
+            // Show error to user
+            antd__WEBPACK_IMPORTED_MODULE_5__["default"].error('Failed to send message. Please try again.');
+          case 22:
+            _context4.prev = 22;
+            setIsSubmitting(false);
+            return _context4.finish(22);
+          case 25:
+          case "end":
+            return _context4.stop();
         }
-      }),
-      type: "primary",
-      size: "large",
-      style: {
-        right: 24,
-        bottom: 24,
-        width: 60,
-        height: 60,
-        fontSize: "20px"
-      },
-      onClick: function onClick() {
-        return setOpenChat(!openChat);
-      }
-    }), openChat && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxs)(antd__WEBPACK_IMPORTED_MODULE_5__["default"], {
+      }, _callee4, null, [[8, 16, 22, 25]]);
+    }));
+    return function sendMessage() {
+      return _ref4.apply(this, arguments);
+    };
+  }();
+  var handleKeyPress = function handleKeyPress(e) {
+    if (e.key === 'Enter' && !e.shiftKey) {
+      e.preventDefault();
+      sendMessage();
+    }
+  };
+
+  // For demo purposes, set a default admin ID if user is not admin
+  (0,react__WEBPACK_IMPORTED_MODULE_0__.useEffect)(function () {
+    // In a real app, you'd get the admin ID from your backend
+    if (!isAdmin && !adminId) {
+      // Assuming admin ID is 1 for demo
+      setAdminId(1);
+    }
+  }, [isAdmin, adminId]);
+  return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsxs)(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.Fragment, {
+    children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)(antd__WEBPACK_IMPORTED_MODULE_6__["default"], {
+      count: unreadCount,
+      overflowCount: 99,
+      offset: [-5, 5],
+      children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)(antd__WEBPACK_IMPORTED_MODULE_7__["default"], {
+        icon: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)(_ant_design_icons__WEBPACK_IMPORTED_MODULE_8__["default"], {
+          style: {
+            fontSize: "22px"
+          }
+        }),
+        type: "primary",
+        size: "large",
+        style: {
+          right: 24,
+          bottom: 24,
+          width: 60,
+          height: 60,
+          fontSize: "20px"
+        },
+        onClick: function onClick() {
+          return setOpenChat(!openChat);
+        }
+      })
+    }), openChat && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsxs)(antd__WEBPACK_IMPORTED_MODULE_9__["default"], {
       style: {
         position: "fixed",
         bottom: 80,
@@ -63722,10 +64547,11 @@ function Chatbot() {
         borderRadius: 10,
         display: "flex",
         flexDirection: "column",
-        justifyContent: "space-between"
+        justifyContent: "space-between",
+        zIndex: 1000
       },
-      title: "Conversation",
-      extra: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)(_ant_design_icons__WEBPACK_IMPORTED_MODULE_6__["default"], {
+      title: adminId ? "Conversation" : "Support Chat",
+      extra: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)(_ant_design_icons__WEBPACK_IMPORTED_MODULE_10__["default"], {
         onClick: function onClick() {
           return setOpenChat(false);
         },
@@ -63733,7 +64559,7 @@ function Chatbot() {
           cursor: "pointer"
         }
       }),
-      children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("div", {
+      children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsxs)("div", {
         style: {
           flex: 1,
           overflowY: "auto",
@@ -63741,41 +64567,104 @@ function Chatbot() {
           display: "flex",
           flexDirection: "column"
         },
-        children: messages.map(function (msg, index) {
-          return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("div", {
+        children: [loading ? /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("div", {
+          style: {
+            display: 'flex',
+            justifyContent: 'center',
+            alignItems: 'center',
+            height: '100%'
+          },
+          children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)(antd__WEBPACK_IMPORTED_MODULE_11__["default"], {
+            size: "large"
+          })
+        }) : messages.length === 0 ? /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)(antd__WEBPACK_IMPORTED_MODULE_12__["default"], {
+          description: "No messages yet"
+        }) : messages.map(function (msg, index) {
+          var _msg$sender_name;
+          return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsxs)("div", {
             style: {
-              alignSelf: msg.sender === "user" ? "flex-end" : "flex-start",
-              background: msg.sender === "user" ? "#1890ff" : "#f1f1f1",
-              color: msg.sender === "user" ? "#fff" : "#000",
-              padding: "8px 12px",
-              borderRadius: "10px",
-              margin: "5px",
-              maxWidth: "70%",
-              textAlign: msg.sender === "user" ? "right" : "left"
+              display: 'flex',
+              flexDirection: 'column',
+              alignItems: msg.sender === "user" ? "flex-end" : "flex-start",
+              margin: "8px 16px",
+              opacity: msg.pending ? 0.7 : 1
             },
-            children: msg.text
-          }, index);
-        })
-      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxs)("div", {
+            children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsxs)("div", {
+              style: {
+                display: 'flex',
+                alignItems: 'flex-start',
+                flexDirection: msg.sender === "user" ? 'row-reverse' : 'row',
+                gap: '8px'
+              },
+              children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)(antd__WEBPACK_IMPORTED_MODULE_13__["default"], {
+                src: msg.sender_image ? "/storage/".concat(msg.sender_image) : null,
+                style: {
+                  marginTop: '4px'
+                },
+                children: !msg.sender_image && (((_msg$sender_name = msg.sender_name) === null || _msg$sender_name === void 0 ? void 0 : _msg$sender_name[0]) || 'U')
+              }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsxs)("div", {
+                style: {
+                  background: msg.sender === "user" ? "#1890ff" : "#f1f1f1",
+                  color: msg.sender === "user" ? "#fff" : "#000",
+                  padding: "10px 14px",
+                  borderRadius: "12px",
+                  maxWidth: "70%",
+                  wordBreak: "break-word",
+                  boxShadow: "0 1px 2px rgba(0, 0, 0, 0.1)"
+                },
+                children: [msg.text, msg.pending && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("span", {
+                  style: {
+                    marginLeft: 8,
+                    fontSize: 11
+                  },
+                  children: "(sending...)"
+                })]
+              })]
+            }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("div", {
+              style: {
+                fontSize: '11px',
+                color: '#999',
+                marginTop: '4px',
+                alignSelf: msg.sender === "user" ? "flex-end" : "flex-start",
+                paddingLeft: msg.sender === "user" ? 0 : '40px',
+                paddingRight: msg.sender === "user" ? '40px' : 0
+              },
+              children: msg.timestamp && new Date(msg.timestamp).toLocaleTimeString([], {
+                hour: '2-digit',
+                minute: '2-digit'
+              })
+            })]
+          }, msg.id || index);
+        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("div", {
+          ref: messagesEndRef
+        })]
+      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsxs)("div", {
         style: {
           borderTop: "1px solid #f0f0f0",
-          padding: "10px"
+          padding: "16px"
         },
-        children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)(antd__WEBPACK_IMPORTED_MODULE_7__["default"].TextArea, {
-          rows: 2,
+        children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)(antd__WEBPACK_IMPORTED_MODULE_14__["default"].TextArea, {
+          rows: 3,
           placeholder: "Type a message...",
           value: message,
           onChange: function onChange(e) {
             return setMessage(e.target.value);
-          }
-        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)(antd__WEBPACK_IMPORTED_MODULE_8__["default"], {
-          type: "primary",
-          icon: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)(_ant_design_icons__WEBPACK_IMPORTED_MODULE_9__["default"], {}),
+          },
+          onKeyPress: handleKeyPress,
           style: {
-            marginTop: 10,
+            resize: 'none'
+          },
+          disabled: isSubmitting
+        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)(antd__WEBPACK_IMPORTED_MODULE_15__["default"], {
+          type: "primary",
+          icon: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)(_ant_design_icons__WEBPACK_IMPORTED_MODULE_16__["default"], {}),
+          style: {
+            marginTop: 12,
             width: "100%"
           },
           onClick: sendMessage,
+          disabled: !adminId || isSubmitting,
+          loading: isSubmitting,
           children: "Send"
         })]
       })]
@@ -63783,6 +64672,63 @@ function Chatbot() {
   });
 }
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (Chatbot);
+
+/***/ }),
+
+/***/ "./resources/js/components/Chat/echo-setup.js":
+/*!****************************************************!*\
+  !*** ./resources/js/components/Chat/echo-setup.js ***!
+  \****************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var laravel_echo__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! laravel-echo */ "./node_modules/laravel-echo/dist/echo.js");
+/* harmony import */ var pusher_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! pusher-js */ "./node_modules/pusher-js/dist/web/pusher.js");
+/* harmony import */ var pusher_js__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(pusher_js__WEBPACK_IMPORTED_MODULE_1__);
+
+
+
+// Initialize Pusher with your credentials
+window.Pusher = (pusher_js__WEBPACK_IMPORTED_MODULE_1___default());
+
+// Initialize Laravel Echo
+var echo = new laravel_echo__WEBPACK_IMPORTED_MODULE_0__["default"]({
+  broadcaster: "pusher",
+  key: "44ca65ad05a98d3cd6b9" || 0,
+  // Use your Pusher key
+  cluster: "ap1" || 0,
+  // Use your Pusher cluster
+  forceTLS: true,
+  authEndpoint: '/broadcasting/auth',
+  authorizer: function authorizer(channel, options) {
+    return {
+      authorize: function authorize(socketId, callback) {
+        var userToken = localStorage.getItem("userToken");
+        if (!userToken) {
+          callback(true, {});
+          return;
+        }
+        axios.post("http://127.0.0.1:8000/api/broadcasting/auth", {
+          socket_id: socketId,
+          channel_name: channel.name
+        }, {
+          headers: {
+            Authorization: "Bearer ".concat(userToken)
+          }
+        }).then(function (response) {
+          callback(false, response.data);
+        })["catch"](function (error) {
+          callback(true, error);
+        });
+      }
+    };
+  }
+});
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (echo);
 
 /***/ }),
 
