@@ -40,7 +40,8 @@ Route::resource('brands', BrandController::class);
 // Public Address Routes
 Route::get('address', [AddressController::class, 'index']);
 Route::get('address/user/{userId}', [AddressController::class, 'getByUser']);
-Route::post('address/{id}', [AddressController::class, 'update']);
+// If needed publicly, you can update an address via PUT (though typically updating is protected)
+// Route::put('address/{id}', [AddressController::class, 'update']);
 
 // Protected Routes (Require auth:api)
 Route::group(["middleware" => ["auth:api"]], function() {
@@ -59,7 +60,12 @@ Route::group(["middleware" => ["auth:api"]], function() {
     Route::post('/carts/delete', [CartController::class, 'bulkDestroy']);
 
     // Protected Address Routes
-    Route::post('/address', [AddressController::class, 'storeOrUpdate']);
+    // Use POST to create a new address (store)
+    Route::post('/address', [AddressController::class, 'store']);
+    // Use PUT to update an existing address
+    Route::put('/address/{id}', [AddressController::class, 'update']);
+    // Use DELETE to remove an address
+    Route::delete('/address/{id}', [AddressController::class, 'destroy']);
 
     // Chat Routes
     Route::get('chat/{otherUserId}', [ChatController::class, 'getMessages']);
@@ -68,8 +74,8 @@ Route::group(["middleware" => ["auth:api"]], function() {
 
     // Admin Routes
     Route::put('/users/{id}/archive', [UserController::class, 'archive']);
-Route::put('/users/{id}/restore', [UserController::class, 'restore']);
-Route::put('/users/bulk-archive-restore', [UserController::class, 'bulkArchiveRestore']);
+    Route::put('/users/{id}/restore', [UserController::class, 'restore']);
+    Route::put('/users/bulk-archive-restore', [UserController::class, 'bulkArchiveRestore']);
     Route::get("users", [ApiController::class, "getAllUsers"]);
     Route::get('/users', [UserController::class, 'index']);
 

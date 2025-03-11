@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Address;
-use App\Models\Profile; // Make sure to import the Profile model
+use App\Models\Profile;
 use Illuminate\Http\Response;
 use Illuminate\Support\Facades\Auth;
 
@@ -23,7 +23,6 @@ class AddressController extends Controller
      */
     public function getByUser($userId)
     {
-        // Fetch user profile details
         $profile = Profile::where('user_id', $userId)->first();
 
         // If profile does not exist, return a default response
@@ -50,6 +49,7 @@ class AddressController extends Controller
             ],
             'addresses' => $addresses->map(function ($address) {
                 return [
+                    'id' => $address->id,
                     'street' => $address->street,
                     'barangay' => $address->barangay,
                     'city' => $address->city,
@@ -66,18 +66,22 @@ class AddressController extends Controller
     }
 
     /**
-     * Store a new address for a user.
+     * Store a new address for a user. Only one default address per user.
      */
     public function store(Request $request)
     {
         $user = auth()->user(); // Get the authenticated user
-
         if (!$user) {
             return response()->json(['message' => 'Unauthorized'], 401);
         }
 
+        // If this address is to be default, unset default for all other addresses
+        if ($request->is_default) {
+            Address::where('user_id', $user->id)->update(['is_default' => 0]);
+        }
+
         $address = Address::create([
-            'user_id' => $user->id, // Assign the authenticated user's ID
+            'user_id' => $user->id,
             'street' => $request->street,
             'barangay' => $request->barangay,
             'city' => $request->city,
@@ -85,23 +89,26 @@ class AddressController extends Controller
             'country' => $request->country,
             'region' => $request->region,
             'postal_code' => $request->postal_code,
-            'is_default' => $request->is_default ?? 0,
+            'is_default' => $request->is_default ? 1 : 0, // convert true/false to 1/0
         ]);
 
-        return response()->json($address, 201);
+        // Return the newly created address under "address"
+        return response()->json([
+            'address' => $address
+        ], 201);
     }
 
     /**
-     * Update an existing address.
+     * Update an existing address. Unset old default if a new default is chosen.
      */
     public function update(Request $request, $id)
     {
         $address = Address::find($id);
-
         if (!$address) {
             return response()->json(['message' => 'Address not found'], Response::HTTP_NOT_FOUND);
         }
 
+        // Validate incoming data
         $validatedData = $request->validate([
             'street' => 'sometimes|string|max:255',
             'barangay' => 'sometimes|string|max:100',
@@ -112,6 +119,14 @@ class AddressController extends Controller
             'postal_code' => 'sometimes|string|max:20',
             'is_default' => 'sometimes|boolean',
         ]);
+
+        // If user sets this address to default, unset all others
+        if (isset($validatedData['is_default']) && $validatedData['is_default'] == true) {
+            Address::where('user_id', $address->user_id)->update(['is_default' => 0]);
+            $validatedData['is_default'] = 1;
+        } else if (isset($validatedData['is_default']) && $validatedData['is_default'] == false) {
+            $validatedData['is_default'] = 0;
+        }
 
         $address->update($validatedData);
 
@@ -127,7 +142,6 @@ class AddressController extends Controller
     public function destroy($id)
     {
         $address = Address::find($id);
-
         if (!$address) {
             return response()->json(['message' => 'Address not found'], Response::HTTP_NOT_FOUND);
         }
@@ -138,48 +152,14 @@ class AddressController extends Controller
     }
 
     /**
-     * Delete all addresses for a user.
+     * Delete all addresses for a user (optional).
      */
     public function deleteByUser($userId)
     {
         $deleted = Address::where('user_id', $userId)->delete();
-
         if ($deleted) {
             return response()->json(['message' => 'All addresses deleted successfully'], Response::HTTP_OK);
         }
-
         return response()->json(['message' => 'No addresses found'], Response::HTTP_NOT_FOUND);
-    }
-
-    public function storeOrUpdate(Request $request)
-    {
-        \Log::info('storeOrUpdate method called'); // Log the method call
-        $user = Auth::user(); // Get the authenticated user
-
-        if (!$user) {
-            return response()->json(['message' => 'Unauthorized'], 401);
-        }
-
-        // Check if the user already has an address
-        $address = Address::where('user_id', $user->id)->first();
-
-        if ($address) {
-            // Update existing address
-            $address->update($request->all());
-            return response()->json(['message' => 'Address updated successfully', 'address' => $address]);
-        } else {
-            // Create a new address
-            $newAddress = Address::create([
-                'user_id' => $user->id,
-                'street' => $request->street,
-                'barangay' => $request->barangay,
-                'city' => $request->city,
-                'state' => $request->state,
-                'country' => $request->country,
-                'region' => $request->region,
-                'postal_code' => $request->postal_code,
-            ]);
-            return response()->json(['message' => 'Address created successfully', 'address' => $newAddress]);
-        }
     }
 }

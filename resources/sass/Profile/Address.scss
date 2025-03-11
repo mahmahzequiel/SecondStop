@@ -1,0 +1,244 @@
+.address-container {
+  padding: 20px;
+  font-family: 'Inria Serif', serif;
+  width: 100%;
+
+  .address-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 10px;
+    padding: 0 20px;
+
+    h2 {
+      margin: 0;
+      font-size: 24px;
+      font-weight: 500;
+      margin-bottom: 10px;
+      color: #333;
+    }
+
+    .add-button {
+      background-color: #d84727;
+      border: none;
+      color: white;
+      padding: 8px 16px;
+      border-radius: 4px;
+      cursor: pointer;
+      font-size: 14px;
+      margin-right: 20px;
+
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+
+      &:hover {
+        background-color: #c63c1f;
+      }
+    }
+  }
+
+  .title-divider {
+    margin: 0 20px 30px;
+    border-top: 1px solid #fff;
+  }
+
+  .address-content {
+    padding: 0 20px;
+  }
+
+  .address-card {
+    background-color: #fff8f6;
+    border: 1px solid #f3d5d1;
+    border-radius: 8px;
+    padding: 16px;
+    margin-bottom: 16px;
+
+    .name-phone {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 8px;
+      font-weight: 500;
+      font-size: 16px;
+    }
+
+    .address-text {
+      color: #666;
+      margin-bottom: 8px;
+    }
+
+    .default-badge {
+      background-color: #f0f0f0;
+      padding: 4px 8px;
+      border-radius: 4px;
+      font-size: 12px;
+      display: inline-block;
+    }
+  }
+
+  .action-icons {
+    display: flex;
+    gap: 16px;
+    margin-left: auto;
+    padding-left: 20px;
+
+    .anticon {
+      font-size: 16px;
+      color: #999;
+      transition: all 0.2s ease;
+      cursor: pointer;
+
+      &:hover {
+        color: #d84727;
+      }
+    }
+
+    .icon-edit:hover {
+      color: #1890ff;
+    }
+
+    .icon-archive:hover {
+      color: #ff4d4f;
+    }
+  }
+
+  .set-default-button {
+    color: black;
+    background-color: white;
+    border: 1px solid black;
+    border-radius: 4px;
+    padding: 4px 8px;
+    cursor: pointer;
+
+    &:hover {
+      background-color: #f2f2f2;
+    }
+  }
+}
+
+/* CUSTOM MODAL STYLES (replaces AntD Modal) */
+.custom-modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.45);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 9999;
+}
+
+.custom-modal {
+  background: #fff;
+  border-radius: 4px;
+  width: 500px;
+  max-width: 90%;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+}
+
+.custom-modal-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 16px;
+  border-bottom: 1px solid #f0f0f0;
+
+  h3 {
+    margin: 0;
+    font-size: 18px;
+  }
+
+  .custom-modal-close {
+    background: transparent;
+    border: none;
+    font-size: 24px;
+    cursor: pointer;
+    line-height: 1;
+
+    &:hover {
+      color: #d84727;
+    }
+  }
+}
+
+.custom-modal-body {
+  padding: 16px;
+}
+
+.custom-modal-footer {
+  padding: 10px 16px;
+  border-top: 1px solid #f0f0f0;
+  text-align: right;
+
+  button {
+    border: 1px solid #d9d9d9;
+    padding: 6px 16px;
+    border-radius: 4px;
+    margin-left: 8px;
+    cursor: pointer;
+    font-size: 14px;
+  }
+
+  .custom-modal-cancel-btn {
+    background: #fff;
+
+    &:hover {
+      border-color: #1890ff;
+      color: #1890ff;
+    }
+  }
+
+  .custom-modal-ok-btn {
+    background-color: #1890ff;
+    border-color: #1890ff;
+    color: #fff;
+
+    &:hover {
+      background-color: #40a9ff;
+      border-color: #40a9ff;
+    }
+  }
+}
+
+/* CUSTOM FORM STYLES (replaces AntD Form) */
+.custom-form {
+  .custom-form-item {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 16px;
+
+    label {
+      margin-bottom: 4px;
+      font-weight: 500;
+      font-size: 14px;
+    }
+
+    input[type="text"] {
+      padding: 8px;
+      border: 1px solid #d9d9d9;
+      border-radius: 4px;
+      font-size: 14px;
+
+      &:focus {
+        outline: none;
+        border-color: #1890ff;
+        box-shadow: 0 0 0 2px rgba(24, 144, 255, 0.2);
+      }
+    }
+  }
+
+  .checkbox-item {
+    flex-direction: row;
+    align-items: center;
+
+    input[type="checkbox"] {
+      margin-right: 8px;
+      width: 16px;
+      height: 16px;
+      cursor: pointer;
+    }
+  }
+}
