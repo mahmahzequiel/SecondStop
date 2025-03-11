@@ -34,7 +34,8 @@ const Confirmation = () => {
     purchaseDate, 
     address, 
     selectedItems, 
-    totalPrice, 
+    totalPrice,
+    subtotal,
     paymentMethod 
   } = orderDetails;
 
@@ -102,9 +103,9 @@ const Confirmation = () => {
 
           <h3>Order Summary</h3>
           <div className="summary">
-            <p><strong>Subtotal:</strong> PHP{totalPrice}.00</p>
+          <p><strong>Subtotal:</strong> PHP{subtotal ? Number(subtotal).toFixed(2) : "0.00"}</p>
             <p><strong>Shipping Cost:</strong> PHP70.00</p>
-            <p><strong>Grand Total:</strong> PHP{(totalPrice + 70).toFixed(2)}</p>
+            <p><strong>Grand Total:</strong> PHP{(totalPrice).toFixed(2)}</p>
           </div>
         </div>
       </div>

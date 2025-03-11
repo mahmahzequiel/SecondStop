@@ -12,21 +12,26 @@ import CODPayment from "../PaymentMethods/CODPayment";
 const Payment = () => {
     const navigate = useNavigate();
     const location = useLocation();
-    const { selectedItems = [], totalPrice = 0, address: receivedAddress } = location.state || {};
+    const { selectedItems: initialSelectedItems = [], totalPrice: initialTotalPrice = 0, address: receivedAddress, directPurchase = false, productData } = location.state || {};
 
-const [address, setAddress] = useState(receivedAddress || {
-    fullname: "",
-    phone: "",
-    country: "",
-    region: "",
-    state: "",
-    city: "",
-    barangay: "",
-    street: ""
+    const [selectedItems, setSelectedItems] = useState(initialSelectedItems);
+    const [totalPrice, setTotalPrice] = useState(initialTotalPrice);
+    const [address, setAddress] = useState(receivedAddress || {
+        fullname: "",
+        phone: "",
+        country: "",
+        region: "",
+        state: "",
+        city: "",
+        barangay: "",
+        street: ""
     });
 
     const [selectedPaymentMethod, setSelectedPaymentMethod] = useState("");
     const [paymentDetails, setPaymentDetails] = useState(null);
+    const [isGcashModalVisible, setIsGcashModalVisible] = useState(false);
+    const [isPaypalVisible, setIsPaypalVisible] = useState(false);
+    const [tempCartId, setTempCartId] = useState(null);
 
     useEffect(() => {
         const fetchProfileAndAddress = async () => {
@@ -65,41 +70,91 @@ const [address, setAddress] = useState(receivedAddress || {
         };
 
         fetchProfileAndAddress();
-    }, []);
+
+        // Handle "Buy Now" direct purchase by creating a temporary cart entry
+        if (directPurchase && productData) {
+            createTemporaryCartEntry(productData);
+        }
+    }, [directPurchase, productData]);
+
+    // Function to create a temporary cart entry for "Buy Now" purchases
+    const createTemporaryCartEntry = async (productData) => {
+        try {
+            const token = localStorage.getItem("userToken");
+            const userId = localStorage.getItem("userId");
+            
+            if (!token) {
+                console.error("User not logged in");
+                return;
+            }
+            
+            if (!userId) {
+                console.error("User ID not found in localStorage");
+                return;
+            }
+    
+            // Create a temporary cart entry
+            const response = await axios.post(
+                "http://127.0.0.1:8000/api/carts",
+                {
+                    product_id: productData.product_id,
+                    quantity: productData.quantity || 1,
+                    is_temporary: true,
+                    user_id: userId
+                },
+                { headers: { Authorization: `Bearer ${token}` } }
+            );
+    
+            console.log("✅ Temporary cart entry created:", response.data);
+            
+            // Get the cart_id from the response
+            const cartId = response.data.cart.id;
+            setTempCartId(cartId);
+            
+            // Update selectedItems with the cart_id
+            const updatedItem = { ...productData, cart_id: cartId };
+            setSelectedItems([updatedItem]);
+            
+            console.log("Updated selected items with cart_id:", [updatedItem]);
+        } catch (error) {
+            console.error("❌ Failed to create temporary cart entry:", error.response?.data || error);
+        }
+    };
 
     const removePurchasedItemsFromCart = async (cartIds) => {
-      try {
-        if (!Array.isArray(cartIds) || cartIds.length === 0) {
-          console.warn("⚠ No valid cart items to remove.");
-          return;
+        try {
+            if (!Array.isArray(cartIds) || cartIds.length === 0) {
+                console.warn("⚠ No valid cart items to remove.");
+                return;
+            }
+        
+            const userToken = localStorage.getItem("userToken");
+        
+            await axios.post(
+                "http://127.0.0.1:8000/api/carts/delete",
+                { cart_ids: cartIds },
+                { headers: { Authorization: `Bearer ${userToken}` } }
+            );
+        
+            console.log("✅ Purchased items removed from cart:", cartIds);
+        
+            // Only update cart count for non-temporary items
+            if (!directPurchase) {
+                // Update the user-specific cart count
+                const userId = localStorage.getItem("userId");
+                if (userId) {
+                    let currentCount = parseInt(localStorage.getItem(`cartCount_${userId}`)) || 0;
+                    const newCount = Math.max(0, currentCount - cartIds.length);
+                    localStorage.setItem(`cartCount_${userId}`, newCount.toString());
+                    // Dispatch the custom event so Header updates immediately
+                    window.dispatchEvent(new Event("cartCountUpdated"));
+                }
+            }
+        } catch (error) {
+            console.error("❌ Failed to remove purchased items:", error.response?.data || error);
         }
-    
-        const userToken = localStorage.getItem("userToken");
-    
-        await axios.post(
-          "http://127.0.0.1:8000/api/carts/delete",
-          { cart_ids: cartIds },
-          { headers: { Authorization: `Bearer ${userToken}` } }
-        );
-    
-        console.log("✅ Purchased items removed from cart:", cartIds);
-    
-        // Update the user-specific cart count
-        const userId = localStorage.getItem("userId");
-        if (userId) {
-          let currentCount = parseInt(localStorage.getItem(`cartCount_${userId}`)) || 0;
-          const newCount = Math.max(0, currentCount - cartIds.length);
-          localStorage.setItem(`cartCount_${userId}`, newCount.toString());
-          // Dispatch the custom event so Header updates immediately
-          window.dispatchEvent(new Event("cartCountUpdated"));
-        }
-      } catch (error) {
-        console.error("❌ Failed to remove purchased items:", error.response?.data || error);
-      }
     };
     
-    
-
     const handlePaymentSuccess = async (details) => {
         try {
             setPaymentDetails(details);
@@ -124,6 +179,7 @@ const [address, setAddress] = useState(receivedAddress || {
                     price: item.price,
                     brand: item.brand
                 })),
+                subtotal: totalPrice,
                 totalPrice: totalPrice + 70,
                 paymentMethod: details.method,
                 shippingAddress: `${address.country}, ${address.region}, ${address.state}, ${address.city}, ${address.barangay}, ${address.street}`,
@@ -134,7 +190,7 @@ const [address, setAddress] = useState(receivedAddress || {
             const orderId = await saveOrderDetails(orderData);
     
             // Step 5: Remove Purchased Items from Cart
-            const cartIds = selectedItems.map(item => item.cart_id);
+            const cartIds = selectedItems.map(item => item.cart_id).filter(id => id !== undefined && id !== null);
             if (cartIds.length > 0) {
                 await removePurchasedItemsFromCart(cartIds);
             }
@@ -146,7 +202,8 @@ const [address, setAddress] = useState(receivedAddress || {
                     purchaseDate: orderData.purchaseDate,
                     address,
                     selectedItems,
-                    totalPrice: totalPrice + 70,
+                    subtotal: totalPrice,
+                    totalPrice: totalPrice+70,
                     paymentMethod: details.method
                 },
             });
@@ -157,11 +214,6 @@ const [address, setAddress] = useState(receivedAddress || {
         }
     };
     
-    
-    
-    
-    
-
     const savePaymentDetails = async (details) => {
         try {
             const token = localStorage.getItem("userToken");
@@ -186,26 +238,35 @@ const [address, setAddress] = useState(receivedAddress || {
         }
     };
     
-
     const saveOrderDetails = async (orderData) => {
         try {
             const token = localStorage.getItem("userToken");
-    
+            
             console.log("🔍 Sending Order Data:", orderData);
-    
+            
+            // Extract cart_ids from items
             let cartIds = orderData.items.map(item => item.cart_id).filter(id => id !== undefined && id !== null);
-    
-            // If only one cart ID, send it as a single integer
-            if (cartIds.length === 1) {
-                cartIds = cartIds[0];
+            
+            // Check if we have valid cart IDs
+            if (cartIds.length === 0) {
+                console.error("❌ No valid cart IDs found in orderData.items");
+                throw new Error("No valid cart IDs available");
             }
-    
-            console.log("📌 Processed cart_id:", cartIds, "Type:", typeof cartIds); // Debugging
-    
+            
+            // If we have only one cart ID, use it directly
+            const cartIdParam = cartIds.length === 1 ? cartIds[0] : cartIds;
+            
+            console.log("📌 Processed cart_id:", cartIdParam, "Type:", typeof cartIdParam);
+            
+            // Make sure we're sending a valid cart_id
+            if (!cartIdParam) {
+                throw new Error("Cart ID is required");
+            }
+            
             const response = await axios.post(
                 "http://127.0.0.1:8000/api/orders",
                 {
-                    cart_id: cartIds, // Try cart_id: String(cartIds) if needed
+                    cart_id: cartIdParam, // This is the key part - ensure it's not empty
                     payment_id: orderData.paymentId,
                     address_id: orderData.addressId || null,
                     subtotal: totalPrice,
@@ -216,7 +277,7 @@ const [address, setAddress] = useState(receivedAddress || {
                 },
                 { headers: { Authorization: `Bearer ${token}` } }
             );
-    
+            
             console.log("✅ Order details saved:", response.data);
             return response.data.order.id;
         } catch (error) {
@@ -225,11 +286,6 @@ const [address, setAddress] = useState(receivedAddress || {
         }
     };
     
-
-    const [isGcashModalVisible, setIsGcashModalVisible] = useState(false);
-    const [isPaypalVisible, setIsPaypalVisible] = useState(false);
-    
-
     const renderPaymentForm = () => {
         switch (selectedPaymentMethod) {
             case "Paypal":
@@ -255,9 +311,6 @@ const [address, setAddress] = useState(receivedAddress || {
         }
     };
     
-    
-    
-    
     const handlePaymentMethodChange = (e) => {
         const method = e.target.value;
         setSelectedPaymentMethod(method);
@@ -267,8 +320,6 @@ const [address, setAddress] = useState(receivedAddress || {
         setIsGcashModalVisible(method === "Gcash");
     };
     
-    
-
     return (
         <MainPage>
             <div className="payment-container">
@@ -308,27 +359,30 @@ const [address, setAddress] = useState(receivedAddress || {
                 <h3>Payment Method</h3>
                 <div className="payment-method">
                     <label>
-                    <input 
-    type="radio" 
-    name="payment" 
-    value="Paypal" 
-    onChange={handlePaymentMethodChange} 
-/>
-<PayCircleOutlined /> Paypal
-
+                        <input 
+                            type="radio" 
+                            name="payment" 
+                            value="Paypal" 
+                            onChange={handlePaymentMethodChange} 
+                        />
+                        <PayCircleOutlined /> Paypal
                     </label>
                     <label>
-                    <input 
-    type="radio" 
-    name="payment" 
-    value="Gcash" 
-    onChange={handlePaymentMethodChange} 
-/>
-<MobileOutlined /> Gcash
-
+                        <input 
+                            type="radio" 
+                            name="payment" 
+                            value="Gcash" 
+                            onChange={handlePaymentMethodChange} 
+                        />
+                        <MobileOutlined /> Gcash
                     </label>
                     <label>
-                        <input type="radio" name="payment" value="COD" onChange={(e) => setSelectedPaymentMethod(e.target.value)} />
+                        <input 
+                            type="radio" 
+                            name="payment" 
+                            value="COD" 
+                            onChange={(e) => setSelectedPaymentMethod(e.target.value)} 
+                        />
                         <ShoppingOutlined /> Cash On Delivery
                     </label>
                 </div>

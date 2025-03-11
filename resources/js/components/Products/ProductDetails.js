@@ -88,23 +88,34 @@ const ProductDetails = () => {
 
   const handleBuyNow = () => {
     if (!product) return;
+    
+    const userToken = localStorage.getItem("userToken");
+    if (!userToken) {
+      alert("Please log in to purchase items.");
+      return;
+    }
+    
     // Ensure product.price is a number
     const price = Number(product.price);
     const numericPrice = isNaN(price) ? 0 : price;
 
-    // Navigate directly to checkout with the current product as the only selected item.
-    navigate("/checkout", {
+    // Create product data object with all necessary information
+    const productData = {
+      product_id: product.id,
+      product_name: product.product_name,
+      price: numericPrice,
+      brand: product.brand ? product.brand.name : "N/A",
+      quantity: 1  // Default quantity for direct purchase
+    };
+
+    // Navigate directly to payment page with directPurchase flag
+    navigate("/payment", {
       state: {
-        selectedItems: [
-          {
-            product_id: product.id,
-            product_name: product.product_name,
-            price: numericPrice,
-            brand: product.brand ? product.brand.name : "N/A",
-          },
-        ],
+        directPurchase: true,
+        productData: productData,
         totalPrice: numericPrice,
-      },
+        selectedItems: [productData]  // Include selectedItems for initial rendering
+      }
     });
   };
 
