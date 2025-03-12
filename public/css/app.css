@@ -12582,14 +12582,16 @@ textarea.form-control-lg {
   Custom input fields
   (replaces .ant-input)
 */
+/* Custom input fields */
 .custom-input {
   width: 100%;
   height: 60px;
-  font-size: 24px;
+  font-size: 20px;
   line-height: 48px;
-  border: 1px solid #707070;
+  border: 1px solid #000000;
   border-radius: 10px;
-  color: #707070;
+  color: #000000; /* Change text color to black */
+  font-weight: bold; /* Make text bold */
   font-family: "Inria Serif", serif;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
   padding: 0 16px;
@@ -12600,30 +12602,34 @@ textarea.form-control-lg {
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
 
-/* 
-  Custom select
-  (replaces .ant-select, .ant-select-selector, etc.)
-*/
+/* Custom select dropdown */
 .custom-select {
   width: 100%;
   height: 60px;
-  font-size: 24px;
+  font-size: 20px;
   line-height: 48px;
   border: 1px solid #707070;
   border-radius: 10px;
-  color: #707070;
+  color: #707070; /* Default gray when unselected */
+  font-weight: normal; /* Default normal weight */
   font-family: "Inria Serif", serif;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
   padding: 0 16px;
   -webkit-appearance: none;
      -moz-appearance: none;
-          appearance: none; /* remove default arrow if you want a custom arrow */
-  background: url("data:image/svg+xml,%3Csvg ... %3C/svg%3E") no-repeat right 16px center/12px 12px; /* optional custom arrow icon */
+          appearance: none; /* Remove default dropdown arrow */
+  background: url("data:image/svg+xml,%3Csvg ... %3C/svg%3E") no-repeat right 16px center/12px 12px;
 }
 .custom-select:focus {
   outline: none;
   border-color: #707070;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+/* When a valid option is selected, change text color to black and make it bold */
+.custom-select:valid {
+  color: #000000 !important; /* Black */
+  font-weight: bold !important; /* Bold */
 }
 
 /* Sign Up button (no shadow) */
@@ -12642,6 +12648,85 @@ textarea.form-control-lg {
   border-color: #d36e2f;
   outline: none;
   color: #ffffff;
+}
+
+/* Container for phone input to position +63 */
+.phone-container {
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+
+/* +63 prefix styling - Moved slightly to the left */
+.phone-container::before {
+  content: "+63";
+  position: absolute;
+  left: 7px; /* Adjusted from 16px to 10px */
+  font-size: 24px;
+  font-weight: bold;
+  color: #000;
+  font-family: "Inria Serif", serif;
+}
+
+/* Vertical line between +63 and input */
+.phone-container::after {
+  content: "";
+  position: absolute;
+  left: 55px; /* Keeps the line in place */
+  height: 100%; /* Adjust height as needed */
+  width: 1px;
+  background-color: #000000;
+}
+
+/* Move input text to the right so it doesn't overlap +63 */
+.custom-input.phone-input {
+  padding-left: 70px !important; /* Keeps text aligned properly */
+}
+
+/* Password requirements styling */
+.password-requirements {
+  font-size: 14px;
+  color: #707070;
+  margin-top: 8px;
+}
+
+.password-requirements p {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  margin: 5px 0;
+}
+
+/* When requirement is met, change text color */
+.password-requirements .valid {
+  color: green;
+  font-weight: bold;
+}
+
+/* Password Strength Bar */
+.password-strength-bar {
+  margin-top: 8px;
+  width: 100%;
+}
+
+/* Password requirements styling */
+.password-requirements {
+  font-size: 14px;
+  color: #707070;
+  margin-top: 8px;
+}
+
+.password-requirements p {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  margin: 5px 0;
+}
+
+/* When requirement is met, change text color */
+.password-requirements .valid {
+  color: green;
+  font-weight: bold;
 }
 
 .filters-container {

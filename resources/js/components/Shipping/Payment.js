@@ -8,7 +8,7 @@ import { PayCircleOutlined, MobileOutlined, ShoppingOutlined, ShoppingCartOutlin
 import PaypalPayment from "../PaymentMethods/PaypalPayment";
 import GcashPayment from "../PaymentMethods/GcashPayment";
 import CODPayment from "../PaymentMethods/CODPayment";
-
+import logo from "/images/gcash.png";
 const Payment = () => {
     const navigate = useNavigate();
     const location = useLocation();
@@ -271,7 +271,28 @@ const [address, setAddress] = useState(receivedAddress || {
 
     return (
         <MainPage>
+             
+            
             <div className="payment-container">
+                {/* ✅ Progress Bar */}
+             <div className="progress-bar">
+                    <div className="step active">
+                        <ShoppingCartOutlined className="progress-icon" />
+                        <span>Checkout</span>
+                    </div>
+                    <div className="line"></div>
+                    <div className="step active">
+                        <CreditCardOutlined className="progress-icon" />
+                        <span>Payment</span>
+                    </div>
+                    <div className="line"></div>
+                    <div className="step">
+                        <CheckCircleOutlined className="progress-icon" />
+                        <span>Confirmation</span>
+                    </div>
+                </div>
+                
+                
                 <h2>Order Summary</h2>
                 <div className="order-summary">
                     <h3>Customer Information</h3>
@@ -314,7 +335,12 @@ const [address, setAddress] = useState(receivedAddress || {
     value="Paypal" 
     onChange={handlePaymentMethodChange} 
 />
-<PayCircleOutlined /> Paypal
+<img 
+                            src="https://upload.wikimedia.org/wikipedia/commons/b/b5/PayPal.svg" 
+                            alt="PayPal" 
+                            style={{ height: "20px", marginRight: "5px" }} 
+                        />
+
 
                     </label>
                     <label>
@@ -324,7 +350,12 @@ const [address, setAddress] = useState(receivedAddress || {
     value="Gcash" 
     onChange={handlePaymentMethodChange} 
 />
-<MobileOutlined /> Gcash
+<img 
+                            src={logo} 
+                            alt="GCash" 
+                            style={{ height: "20px", marginRight: "5px" }} 
+                        />
+ Gcash
 
                     </label>
                     <label>
