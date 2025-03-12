@@ -34,8 +34,10 @@ function AdminSidebar() {
         </Link>
       </div>
       <div className="nav-item">
+      <Link to="/orderlist">
         <ShoppingCartOutlined className="nav-icon" />
         <span>Orders</span>
+        </Link>
       </div>
       <div className="nav-item">
         <Link to="/customers">

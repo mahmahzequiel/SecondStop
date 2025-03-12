@@ -11,15 +11,26 @@ class BrandController extends Controller
     /**
      * Display a listing of the brands.
      */
-    public function index()
-    {
-        $brands = Brand::all();
+    public function index(Request $request)
+{
+    $query = Brand::query();
 
-        return response()->json([
-            'success' => true,
-            'data' => $brands
-        ]);
+    // Filter by status
+    if ($request->has('trashed')) {
+        if ($request->trashed === 'only') {
+            $query->onlyTrashed(); // Fetch only archived (soft-deleted) brands
+        } elseif ($request->trashed === 'with') {
+            $query->withTrashed(); // Fetch all brands, including archived ones
+        }
     }
+
+    $brands = $query->get();
+
+    return response()->json([
+        'success' => true,
+        'data' => $brands
+    ]);
+}
 
     /**
      * Store a newly created brand in storage.
@@ -116,4 +127,24 @@ class BrandController extends Controller
             ], 500);
         }
     }
+
+    public function restore($id)
+{
+    try {
+        $brand = Brand::onlyTrashed()->findOrFail($id);
+        $brand->restore();
+
+        return response()->json([
+            'success' => true,
+            'message' => 'Brand restored successfully!',
+            'data' => $brand
+        ]);
+    } catch (\Exception $e) {
+        return response()->json([
+            'success' => false,
+            'message' => 'Failed to restore brand!',
+            'error' => $e->getMessage()
+        ], 500);
+    }
+}
 }

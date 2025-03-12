@@ -15,6 +15,7 @@ use App\Http\Controllers\ShippingController;
 use App\Http\Controllers\PurchaseController;
 use App\Http\Controllers\NotificationController;
 use App\Http\Controllers\UserController;
+use App\Http\Controllers\RoleController;
 
 /*
 |--------------------------------------------------------------------------
@@ -30,12 +31,23 @@ Route::post("register", [ApiController::class, "register"]);
 Route::post("login", [ApiController::class, "login"]);
 
 // Public Product API Routes
+Route::get('/roles', [RoleController::class, 'index']);
+
 Route::put('/products/{id}/restore', [ProductsController::class, 'restore']);
 Route::resource("products", ProductsController::class);
+
 Route::resource('categories', CategoryController::class);
+Route::post('/categories/{id}/restore', [CategoryController::class, 'restore']);
+
 Route::get("category-types", [CategoryTypeController::class, "index"]);
+Route::put("category-types/{categoryType}", [CategoryTypeController::class, "update"]);
+Route::post("category-types", [CategoryTypeController::class, "store"]);
+Route::delete("category-types/{categoryType}", [CategoryTypeController::class, "destroy"]);
+Route::post("category-types/{id}/restore", [CategoryTypeController::class, "restore"]);
 Route::get("/products-by-category-type", [ProductsController::class, "getProductsByCategoryType"]);
+
 Route::resource('brands', BrandController::class);
+Route::post('/brands/{id}/restore', [BrandController::class, 'restore']);
 
 // Public Address Routes
 Route::get('address', [AddressController::class, 'index']);
