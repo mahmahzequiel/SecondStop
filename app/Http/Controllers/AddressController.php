@@ -25,7 +25,6 @@ class AddressController extends Controller
     {
         $profile = Profile::where('user_id', $userId)->first();
 
-        // If profile does not exist, return a default response
         if (!$profile) {
             return response()->json([
                 'user' => [
@@ -37,19 +36,20 @@ class AddressController extends Controller
             ], Response::HTTP_OK);
         }
 
-        // Fetch addresses
         $addresses = Address::where('user_id', $userId)->get();
 
-        // Prepare response
         $response = [
             'user' => [
                 'first_name' => $profile->first_name,
-                'last_name' => $profile->last_name,
+                'last_name'  => $profile->last_name,
                 'phone_number' => $profile->phone_number,
             ],
             'addresses' => $addresses->map(function ($address) {
                 return [
                     'id' => $address->id,
+                    'receiver_fullname' => $address->receiver_fullname,
+                    'contact_number' => $address->contact_number,
+                    'house_number' => $address->house_number,
                     'street' => $address->street,
                     'barangay' => $address->barangay,
                     'city' => $address->city,
@@ -70,18 +70,20 @@ class AddressController extends Controller
      */
     public function store(Request $request)
     {
-        $user = auth()->user(); // Get the authenticated user
+        $user = auth()->user();
         if (!$user) {
             return response()->json(['message' => 'Unauthorized'], 401);
         }
 
-        // If this address is to be default, unset default for all other addresses
         if ($request->is_default) {
             Address::where('user_id', $user->id)->update(['is_default' => 0]);
         }
 
         $address = Address::create([
             'user_id' => $user->id,
+            'receiver_fullname' => $request->receiver_fullname,
+            'contact_number' => $request->contact_number,
+            'house_number' => $request->house_number,
             'street' => $request->street,
             'barangay' => $request->barangay,
             'city' => $request->city,
@@ -89,13 +91,12 @@ class AddressController extends Controller
             'country' => $request->country,
             'region' => $request->region,
             'postal_code' => $request->postal_code,
-            'is_default' => $request->is_default ? 1 : 0, // convert true/false to 1/0
+            'is_default' => $request->is_default ? 1 : 0,
         ]);
 
-        // Return the newly created address under "address"
         return response()->json([
             'address' => $address
-        ], 201);
+        ], Response::HTTP_CREATED);
     }
 
     /**
@@ -108,8 +109,10 @@ class AddressController extends Controller
             return response()->json(['message' => 'Address not found'], Response::HTTP_NOT_FOUND);
         }
 
-        // Validate incoming data
         $validatedData = $request->validate([
+            'receiver_fullname' => 'sometimes|string|max:255',
+            'phone_number'      => 'sometimes|string|max:50',
+            'house_number' => 'sometimes|string|max:50',
             'street' => 'sometimes|string|max:255',
             'barangay' => 'sometimes|string|max:100',
             'city' => 'sometimes|string|max:100',
@@ -120,7 +123,6 @@ class AddressController extends Controller
             'is_default' => 'sometimes|boolean',
         ]);
 
-        // If user sets this address to default, unset all others
         if (isset($validatedData['is_default']) && $validatedData['is_default'] == true) {
             Address::where('user_id', $address->user_id)->update(['is_default' => 0]);
             $validatedData['is_default'] = 1;
@@ -137,7 +139,7 @@ class AddressController extends Controller
     }
 
     /**
-     * Delete a single address by ID.
+     * Delete (soft-delete) a single address by ID.
      */
     public function destroy($id)
     {
@@ -146,20 +148,44 @@ class AddressController extends Controller
             return response()->json(['message' => 'Address not found'], Response::HTTP_NOT_FOUND);
         }
 
-        $address->delete();
+        // Unset default if it's currently default
+        if ($address->is_default == 1) {
+            $address->is_default = 0;
+            $address->save();
+    }
 
-        return response()->json(['message' => 'Address deleted successfully'], Response::HTTP_OK);
+    $address->delete();
+
+    return response()->json(['message' => 'Address archived successfully'], Response::HTTP_OK);
     }
 
     /**
-     * Delete all addresses for a user (optional).
+     * Get archived (soft-deleted) addresses for the authenticated user.
      */
-    public function deleteByUser($userId)
+    public function archived(Request $request)
     {
-        $deleted = Address::where('user_id', $userId)->delete();
-        if ($deleted) {
-            return response()->json(['message' => 'All addresses deleted successfully'], Response::HTTP_OK);
+        $user = Auth::user();
+        if (!$user) {
+            return response()->json(['message' => 'Unauthorized'], 401);
         }
-        return response()->json(['message' => 'No addresses found'], Response::HTTP_NOT_FOUND);
+
+        $archived = Address::onlyTrashed()->where('user_id', $user->id)->get();
+
+        return response()->json([
+            'archived' => $archived
+        ], Response::HTTP_OK);
+    }
+
+    /**
+     * Restore an archived address.
+     */
+    public function restore($id)
+    {
+        $address = Address::withTrashed()->find($id);
+        if (!$address) {
+            return response()->json(['message' => 'Address not found'], Response::HTTP_NOT_FOUND);
+        }
+        $address->restore();
+        return response()->json(['address' => $address], Response::HTTP_OK);
     }
 }

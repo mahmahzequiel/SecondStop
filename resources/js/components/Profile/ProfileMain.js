@@ -15,7 +15,7 @@ function ProfileMain({ children, onSearch }) {
         const response = await axios.get("http://127.0.0.1:8000/api/profile", {
           headers: { Authorization: `Bearer ${token}` },
         });
-        setProfileData(response.data.profile); // Assuming the backend returns { profile: {...} }
+        setProfileData(response.data.profile);
       } catch (error) {
         setError(error.message || "Failed to fetch profile data");
         console.error("Error fetching profile data:", error);
@@ -34,13 +34,12 @@ function ProfileMain({ children, onSearch }) {
     <div>
       <Header onSearch={onSearch} />
 
-      {/* Pink background fills the screen */}
-      <div className="pink-layer">
-        <div className="content-design">
-          {/* White container that holds both sidebar (white) + main content (peach) */}
+      {/* Match MainPage structure */}
+      <div className="first-layer">
+        <div className="content-wrapper">
           <div className="white-layer">
             <ProfileSidebar profileData={profileData} />
-            <div className="main-layer">
+            <div className="second-layer">
               {children}
             </div>
           </div>

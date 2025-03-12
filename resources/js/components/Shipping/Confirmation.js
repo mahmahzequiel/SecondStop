@@ -29,29 +29,58 @@ const Confirmation = () => {
   }
 
   // Destructure the properties (adjust keys based on what Payment sends)
-  const { 
-    orderNumber, 
-    purchaseDate, 
-    address, 
-    selectedItems, 
-    totalPrice, 
-    paymentMethod 
+  const {
+    orderNumber,
+    purchaseDate,
+    address,
+    selectedItems,
+    totalPrice,
+    paymentMethod
   } = orderDetails;
 
-  // Handle address display if it's an object
-  const addressDisplay =
-    typeof address === "object" ? (
+  /**
+   * Safely build a shipping address string if `address` is an object
+   * filtering out undefined or empty strings.
+   */
+  const buildAddressString = (addrObj) => {
+    const parts = [
+      addrObj.house_number,
+      addrObj.street,
+      addrObj.barangay,
+      addrObj.city,
+      addrObj.state,
+      addrObj.region,
+      addrObj.country,
+      addrObj.postal_code,
+    ].filter(Boolean); // removes falsy (undefined, "", etc.)
+    return parts.join(", ");
+  };
+
+  let addressDisplay;
+
+  // If `address` is an object, build a string from its fields
+  if (typeof address === "object") {
+    addressDisplay = (
       <>
-        <p><strong>Name:</strong> {address.fullname}</p>
-        <p><strong>Phone:</strong> {address.phone}</p>
         <p>
-          <strong>Address:</strong>{" "}
-          {`${address.country}, ${address.region}, ${address.state}, ${address.city}, ${address.barangay}, ${address.street}`}
+          <strong>Name:</strong> {address.receiver_fullname || ""}
+        </p>
+        <p>
+          <strong>Phone:</strong> {address.contact_number || ""}
+        </p>
+        <p>
+          <strong>Address:</strong> {buildAddressString(address)}
         </p>
       </>
-    ) : (
-      <p><strong>Address:</strong> {address}</p>
     );
+  } else {
+    // If it's just a string, display it directly
+    addressDisplay = (
+      <p>
+        <strong>Address:</strong> {address}
+      </p>
+    );
+  }
 
   return (
     <MainPage>
@@ -84,8 +113,12 @@ const Confirmation = () => {
         {/* Order Details Container */}
         <div className="order-details">
           <h2>Order Confirmation</h2>
-          <p><strong>Order Number:</strong> {orderNumber}</p>
-          <p><strong>Purchase Date:</strong> {purchaseDate}</p>
+          <p>
+            <strong>Order Number:</strong> {orderNumber}
+          </p>
+          <p>
+            <strong>Purchase Date:</strong> {purchaseDate}
+          </p>
 
           <h3>Customer Information</h3>
           {addressDisplay}
@@ -102,9 +135,15 @@ const Confirmation = () => {
 
           <h3>Order Summary</h3>
           <div className="summary">
-            <p><strong>Subtotal:</strong> PHP{totalPrice}.00</p>
-            <p><strong>Shipping Cost:</strong> PHP70.00</p>
-            <p><strong>Grand Total:</strong> PHP{(totalPrice + 70).toFixed(2)}</p>
+            <p>
+              <strong>Subtotal:</strong> PHP{totalPrice}.00
+            </p>
+            <p>
+              <strong>Shipping Cost:</strong> PHP70.00
+            </p>
+            <p>
+              <strong>Grand Total:</strong> PHP{(totalPrice + 70).toFixed(2)}
+            </p>
           </div>
         </div>
       </div>

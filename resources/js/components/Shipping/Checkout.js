@@ -7,16 +7,16 @@ import { ShoppingCartOutlined, CreditCardOutlined, CheckCircleOutlined } from "@
 const Checkout = () => {
   const navigate = useNavigate();
   const location = useLocation();
-  const { selectedItems, totalPrice } = location.state || { selectedItems: [], totalPrice: 0 };
 
-  // Convert totalPrice to a number safely
+  const { selectedItems, totalPrice } = location.state || { selectedItems: [], totalPrice: 0 };
+  // Safely convert totalPrice to a number
   const numericTotalPrice = !isNaN(parseFloat(totalPrice)) ? parseFloat(totalPrice) : 0;
 
-  // Address state now includes an "id" field if one exists
+  // Include `is_default` in local state to track whether this address is default.
   const [address, setAddress] = useState({
     id: null,
-    fullname: "",
-    phone: "",
+    receiver_fullname: "",
+    contact_number: "",
     country: "",
     region: "",
     state: "",
@@ -24,7 +24,8 @@ const Checkout = () => {
     barangay: "",
     postalCode: "",
     street: "",
-    houseNo: "",
+    house_number: "",
+    is_default: false, // track the default status
   });
 
   const [isEditing, setIsEditing] = useState(false);
@@ -36,67 +37,106 @@ const Checkout = () => {
         const token = localStorage.getItem("userToken");
         if (!token) return;
 
-        // Fetch user profile
-        const profileResponse = await axios.get(`http://127.0.0.1:8000/api/profile`, {
+        // 1) Fetch user profile
+        const profileResponse = await axios.get("http://127.0.0.1:8000/api/profile", {
           headers: { Authorization: `Bearer ${token}` },
         });
+        if (!profileResponse.data || !profileResponse.data.profile) {
+          return;
+        }
+        const profile = profileResponse.data.profile;
+        setUserId(profile.user_id);
 
-        if (profileResponse.data && profileResponse.data.profile) {
-          const profile = profileResponse.data.profile;
-          setUserId(profile.user_id);
+        // 2) Fetch user addresses
+        const addressResponse = await axios.get(
+          `http://127.0.0.1:8000/api/address/user/${profile.user_id}`,
+          { headers: { Authorization: `Bearer ${token}` } }
+        );
 
-          // Fetch user addresses
-          const addressResponse = await axios.get(`http://127.0.0.1:8000/api/address/user/${profile.user_id}`, {
-            headers: { Authorization: `Bearer ${token}` },
-          });
+        // Check for default address
+        const addressesData = addressResponse.data.addresses || [];
+        const defaultAddress = addressesData.find((a) => a.is_default === 1);
 
-          // Choose the default address if available, else choose the first address
-          const addressesData = addressResponse.data.addresses || [];
-          const defaultAddressData = addressesData.find(addr => addr.is_default === 1) || addressesData[0] || {};
-
+        if (defaultAddress) {
+          // Fill from the default address
           setAddress({
-            id: defaultAddressData.id || null,
-            fullname: `${profile.first_name || ""} ${profile.middle_name ? profile.middle_name + " " : ""}${profile.last_name || ""}`,
-            phone: profile.phone_number || "",
-            country: defaultAddressData.country || "",
-            region: defaultAddressData.region || "",
-            state: defaultAddressData.state || "",
-            city: defaultAddressData.city || "",
-            barangay: defaultAddressData.barangay || "",
-            postalCode: defaultAddressData.postal_code || "",
-            street: defaultAddressData.street || "",
-            houseNo: defaultAddressData.house_no || "",
+            id: defaultAddress.id,
+            receiver_fullname: defaultAddress.receiver_fullname || "",
+            contact_number: defaultAddress.contact_number || "",
+            country: defaultAddress.country || "",
+            region: defaultAddress.region || "",
+            state: defaultAddress.state || "",
+            city: defaultAddress.city || "",
+            barangay: defaultAddress.barangay || "",
+            postalCode: defaultAddress.postal_code || "",
+            street: defaultAddress.street || "",
+            house_number: defaultAddress.house_number || "",
+            // Convert 1/0 to true/false
+            is_default: defaultAddress.is_default === 1,
           });
-
-          // If there's no saved address (i.e. no street), enable editing.
-          if (!defaultAddressData.street) {
-            setIsEditing(true);
-          }
+          setIsEditing(false);
+        } else {
+          // No default address: create empty fields
+          setAddress({
+            id: null,
+            receiver_fullname: "",
+            contact_number: "",
+            country: "",
+            region: "",
+            state: "",
+            city: "",
+            barangay: "",
+            postalCode: "",
+            street: "",
+            house_number: "",
+            is_default: false,
+          });
+          setIsEditing(true);
         }
       } catch (error) {
-        console.error("Failed to fetch profile or address", error);
+        console.error("Failed to fetch profile/address", error);
       }
     };
 
     fetchProfileAndAddress();
   }, []);
 
+  // Handle form changes
   const handleChange = (e) => {
     const { name, value } = e.target;
-    setAddress(prev => ({ ...prev, [name]: value }));
+    setAddress((prev) => ({ ...prev, [name]: value }));
   };
 
+  // Save or update address
   const handleSaveAddress = async () => {
     try {
       const token = localStorage.getItem("userToken");
       if (!token || !userId) {
-        alert("Authentication token is missing. Please log in again.");
+        alert("Missing auth token or userId.");
         return;
       }
 
-      // Prepare address data for saving
-      const addressData = { 
+      // Basic required fields check
+      if (
+        !address.receiver_fullname ||
+        !address.contact_number ||
+        !address.house_number ||
+        !address.street ||
+        !address.barangay ||
+        !address.city
+      ) {
+        alert(
+          "Please fill out required fields (Fullname, Contact, House Number, Street, Barangay, City)."
+        );
+        return;
+      }
+
+      // Build data for saving
+      const addressData = {
         user_id: userId,
+        receiver_fullname: address.receiver_fullname,
+        contact_number: address.contact_number,
+        house_number: address.house_number,
         street: address.street,
         barangay: address.barangay,
         city: address.city,
@@ -104,43 +144,52 @@ const Checkout = () => {
         country: address.country,
         region: address.region,
         postal_code: address.postalCode,
-        is_default: true, // Always save this as default in checkout
       };
 
-      let response;
-      // If address.id exists, update the address instead of creating a new one.
+      // If editing an existing address, preserve its current is_default value.
+      // If creating a new address, set it to default = true (per your original code).
       if (address.id) {
-        response = await axios.put(`http://127.0.0.1:8000/api/address/${address.id}`, addressData, {
-          headers: { Authorization: `Bearer ${token}`, "Content-Type": "application/json" },
-        });
+        addressData.is_default = address.is_default ? 1 : 0; 
+        // Update existing
+      } else {
+        addressData.is_default = 1; // new addresses in checkout are default
+      }
+
+      let response;
+      if (address.id) {
+        response = await axios.put(
+          `http://127.0.0.1:8000/api/address/${address.id}`,
+          addressData,
+          { headers: { Authorization: `Bearer ${token}` } }
+        );
       } else {
         response = await axios.post("http://127.0.0.1:8000/api/address", addressData, {
-          headers: { Authorization: `Bearer ${token}`, "Content-Type": "application/json" },
+          headers: { Authorization: `Bearer ${token}` },
         });
       }
 
-      console.log("Address saved successfully:", response.data);
       alert("Address saved successfully!");
       setIsEditing(false);
 
-      // Optionally, update the address state with the returned data
-      const savedAddress = response.data.address || addressData;
-      setAddress(prev => ({ ...prev, id: savedAddress.id }));
-    } catch (error) {
-      console.error("Failed to update address", error);
-      if (error.response) {
-        console.error("Response data:", error.response.data);
-        console.error("Response status:", error.response.status);
-        console.error("Response headers:", error.response.headers);
+      // If successful, update local state with the final 'id' and is_default
+      const savedAddress = response.data.address;
+      if (savedAddress) {
+        setAddress((prev) => ({
+          ...prev,
+          id: savedAddress.id,
+          is_default: savedAddress.is_default === 1,
+        }));
       }
-      alert("Failed to update address. Please check the console for details.");
+    } catch (error) {
+      console.error("Failed to save address", error);
+      alert("Failed to save address. Check console for details.");
     }
   };
 
   return (
     <MainPage>
       <div className="checkout-container">
-        {/* Progress Bar with Icons */}
+        {/* Progress Bar */}
         <div className="progress-bar">
           <div className="step active">
             <ShoppingCartOutlined style={{ fontSize: "24px", marginBottom: "8px" }} />
@@ -172,15 +221,21 @@ const Checkout = () => {
                   </tr>
                 ))}
                 <tr>
-                  <td><strong>Subtotal</strong></td>
+                  <td>
+                    <strong>Subtotal</strong>
+                  </td>
                   <td>PHP {numericTotalPrice.toFixed(2)}</td>
                 </tr>
                 <tr>
-                  <td><strong>Shipping</strong></td>
+                  <td>
+                    <strong>Shipping</strong>
+                  </td>
                   <td>PHP 70.00</td>
                 </tr>
                 <tr>
-                  <td><strong>Grand Total</strong></td>
+                  <td>
+                    <strong>Grand Total</strong>
+                  </td>
                   <td>PHP {(numericTotalPrice + 70).toFixed(2)}</td>
                 </tr>
               </tbody>
@@ -191,22 +246,115 @@ const Checkout = () => {
           <div className="billing-address">
             <h3>Billing Address</h3>
             <form>
-              {Object.keys(address).map((key) => {
-                // Skip rendering the "id" field
-                if (key === "id") return null;
-                return (
-                  <div key={key}>
-                    <label>{key.replace(/([A-Z])/g, " $1")}</label>
-                    <input
-                      type="text"
-                      name={key}
-                      value={address[key]}
-                      onChange={handleChange}
-                      disabled={!isEditing}
-                    />
-                  </div>
-                );
-              })}
+              <div>
+                <label>Receiver Fullname</label>
+                <input
+                  type="text"
+                  name="receiver_fullname"
+                  value={address.receiver_fullname}
+                  onChange={handleChange}
+                  disabled={!isEditing}
+                />
+              </div>
+
+              <div>
+                <label>Phone Number</label>
+                <input
+                  type="text"
+                  name="contact_number"
+                  value={address.contact_number}
+                  onChange={handleChange}
+                  disabled={!isEditing}
+                />
+              </div>
+
+              <div>
+                <label>House Number</label>
+                <input
+                  type="text"
+                  name="house_number"
+                  value={address.house_number}
+                  onChange={handleChange}
+                  disabled={!isEditing}
+                />
+              </div>
+
+              <div>
+                <label>Street</label>
+                <input
+                  type="text"
+                  name="street"
+                  value={address.street}
+                  onChange={handleChange}
+                  disabled={!isEditing}
+                />
+              </div>
+
+              <div>
+                <label>Barangay</label>
+                <input
+                  type="text"
+                  name="barangay"
+                  value={address.barangay}
+                  onChange={handleChange}
+                  disabled={!isEditing}
+                />
+              </div>
+
+              <div>
+                <label>City</label>
+                <input
+                  type="text"
+                  name="city"
+                  value={address.city}
+                  onChange={handleChange}
+                  disabled={!isEditing}
+                />
+              </div>
+
+              <div>
+                <label>Region</label>
+                <input
+                  type="text"
+                  name="region"
+                  value={address.region}
+                  onChange={handleChange}
+                  disabled={!isEditing}
+                />
+              </div>
+
+              <div>
+                <label>State</label>
+                <input
+                  type="text"
+                  name="state"
+                  value={address.state}
+                  onChange={handleChange}
+                  disabled={!isEditing}
+                />
+              </div>
+
+              <div>
+                <label>Country</label>
+                <input
+                  type="text"
+                  name="country"
+                  value={address.country}
+                  onChange={handleChange}
+                  disabled={!isEditing}
+                />
+              </div>
+
+              <div>
+                <label>Postal Code</label>
+                <input
+                  type="text"
+                  name="postalCode"
+                  value={address.postalCode}
+                  onChange={handleChange}
+                  disabled={!isEditing}
+                />
+              </div>
             </form>
 
             {!isEditing ? (
@@ -222,7 +370,9 @@ const Checkout = () => {
           <button
             className="proceed-btn"
             onClick={() => {
-              navigate("/payment", { state: { selectedItems, totalPrice: numericTotalPrice, address } });
+              navigate("/payment", {
+                state: { selectedItems, totalPrice: numericTotalPrice, address },
+              });
             }}
           >
             Proceed to Payment

@@ -46,7 +46,7 @@ const ChangePassword = () => {
   return (
     <ProfileMain>
       <div className="change-password-content">
-        <h2 className="profile-title">Change Password</h2>
+        <h2 className="password-title">Change Password</h2>
         <div className="title-divider" />
 
         <Form form={form} layout="vertical" onFinish={onFinish}>

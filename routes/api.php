@@ -16,15 +16,6 @@ use App\Http\Controllers\PurchaseController;
 use App\Http\Controllers\NotificationController;
 use App\Http\Controllers\UserController;
 
-/*
-|--------------------------------------------------------------------------
-| API Routes
-|--------------------------------------------------------------------------
-|
-| Here is where you can register API routes for your application.
-|
-*/
-
 // Open Routes: Registration and Login
 Route::post("register", [ApiController::class, "register"]);
 Route::post("login", [ApiController::class, "login"]);
@@ -40,8 +31,6 @@ Route::resource('brands', BrandController::class);
 // Public Address Routes
 Route::get('address', [AddressController::class, 'index']);
 Route::get('address/user/{userId}', [AddressController::class, 'getByUser']);
-// If needed publicly, you can update an address via PUT (though typically updating is protected)
-// Route::put('address/{id}', [AddressController::class, 'update']);
 
 // Protected Routes (Require auth:api)
 Route::group(["middleware" => ["auth:api"]], function() {
@@ -60,12 +49,12 @@ Route::group(["middleware" => ["auth:api"]], function() {
     Route::post('/carts/delete', [CartController::class, 'bulkDestroy']);
 
     // Protected Address Routes
-    // Use POST to create a new address (store)
+    Route::get('address', [AddressController::class, 'index']);
     Route::post('/address', [AddressController::class, 'store']);
-    // Use PUT to update an existing address
     Route::put('/address/{id}', [AddressController::class, 'update']);
-    // Use DELETE to remove an address
     Route::delete('/address/{id}', [AddressController::class, 'destroy']);
+    Route::get('/address/archived', [AddressController::class, 'archived']);
+    Route::put('/address/restore/{id}', [AddressController::class, 'restore']);
 
     // Chat Routes
     Route::get('chat/{otherUserId}', [ChatController::class, 'getMessages']);

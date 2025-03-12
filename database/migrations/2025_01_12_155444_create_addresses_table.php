@@ -16,13 +16,16 @@ class CreateAddressesTable extends Migration
         Schema::create('addresses', function (Blueprint $table) {
             $table->id();
             $table->unsignedBigInteger('user_id'); // Foreign key to users table
-            $table->string('street');
-            $table->string('barangay'); // ✅ Added barangay
-            $table->string('city');
-            $table->string('state');
-            $table->string('country');
-            $table->string('region'); // ✅ Added region
-            $table->string('postal_code');
+            $table->string('receiver_fullname')->nullable();
+            $table->string('contact_number')->nullable();
+            $table->string('street')->nullable();
+            $table->string('barangay')->nullable();
+            $table->string('city')->nullable();
+            $table->string('state')->nullable();
+            $table->string('country')->nullable();
+            $table->string('region')->nullable();
+            $table->string('postal_code')->nullable();
+            $table->string('house_number')->nullable();
             $table->boolean('is_default')->default(false); // Mark default address
             $table->timestamps();
             $table->softDeletes(); // Adds `deleted_at` column
