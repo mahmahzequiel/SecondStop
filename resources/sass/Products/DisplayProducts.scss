@@ -5,6 +5,7 @@
   gap: 20px;
   margin-bottom: 40px;
   padding: 0 20px;
+  flex-wrap: wrap; // Allow categories to wrap on smaller screens
 
   .category-item {
     display: flex;
@@ -43,7 +44,7 @@
 
 /* Filters Section - Left Sidebar */
 .filters-container {
-  padding: 10px 15px; // Reduced padding to move it higher
+  padding: 10px 15px;
   border-radius: 10px;
   min-height: 400px;
   position: relative;
@@ -73,66 +74,66 @@
   align-items: start; // Ensures filters start higher
 }
 
-
 /* Product List Section */
-/* Product List Section */
-.product-list-container {
-  display: flex;
-  justify-content: center; // Center products initially
-  width: 100%; // Ensure full width to dynamically adjust when filters are shown
-  transition: all 0.3s ease-in-out;
-}
-
-/* When filters are visible */
-.with-filters {
-  justify-content: flex-start; // Align left when filters appear
-  margin-left: 0; // Avoid unnecessary shifting
-}
-
-/* Ensure the product list stays centered when filters are hidden */
 .product-list {
   display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  gap: 20px;
-  max-width: 800px; // Limit width for better centering effect
-  width: 100%;
-
+  grid-template-columns: repeat(5, 1fr); // 5 products in a row
+  gap: 15px; // Reduced gap to fit 5 products
+  width: 70%;
+  justify-content: center;
+  margin: 0 auto; // Center the grid
 
   .product-item {
     background: #fff;
-    padding: 10px; // Reduce padding to decrease overall height
+    padding: 8px; // Reduce padding to fit 5 products
     border-radius: 8px;
     text-align: center;
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
     transition: transform 0.2s;
-    max-height: 250px; // Adjust maximum height
+    max-height: 250px;
+    display: flex;
+    flex-direction: column;
 
     &:hover {
       transform: scale(1.05);
     }
 
     .product-image {
-      width: 120px; // Reduce image size
-      height: 120px;
+      width: 100px; // Reduce image size to fit 5 products
+      height: 100px;
       object-fit: cover;
       border-radius: 5px;
+      margin: 0 auto; // Center the image
     }
 
     h2 {
       margin: 5px 0;
-      font-size: 16px; // Reduce font size slightly
+      font-size: 14px; // Smaller font for 5 products
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+
+    p {
+      font-size: 12px;
+      margin: 2px 0;
     }
 
     .description-container {
       display: flex;
       align-items: center;
       justify-content: space-between;
-      margin-top: 5px; // Reduce margin to shrink height
+      margin-top: 3px;
 
       p {
-        font-size: 14px;
+        font-size: 12px;
         margin: 0;
         flex: 1;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        display: -webkit-box;
+        // -webkit-line-clamp: 2;
+        -webkit-box-orient: vertical;
       }
 
       .cart-button {
@@ -140,11 +141,11 @@
         border: none;
         cursor: pointer;
         padding: 0;
-        margin-left: 5px;
+        margin-left: 3px;
 
         .cart-icon {
-          width: 20px; // Reduce icon size
-          height: 20px;
+          width: 18px; // Reduce icon size
+          height: 18px;
           transition: transform 0.2s;
 
           &:hover {
@@ -156,8 +157,20 @@
   }
 }
 
-/* Responsive Design */
-@media (max-width: 1024px) {
+/* Responsive Design - Adjust number of products per row based on screen size */
+@media (max-width: 1400px) {
+  .product-list {
+    grid-template-columns: repeat(4, 1fr); // 4 products on smaller screens
+  }
+}
+
+@media (max-width: 1100px) {
+  .product-list {
+    grid-template-columns: repeat(3, 1fr); // 3 products on medium screens
+  }
+}
+
+@media (max-width: 768px) {
   .content-grid {
     grid-template-columns: 1fr; // Stack filters & products on small screens
   }
@@ -165,5 +178,16 @@
   .filters-container {
     width: 100%;
     padding: 10px;
+    top: 0; // Reset the top position on mobile
+  }
+
+  .product-list {
+    grid-template-columns: repeat(2, 1fr); // 2 products on mobile
+  }
+}
+
+@media (max-width: 480px) {
+  .product-list {
+    grid-template-columns: 1fr; // 1 product on very small screens
   }
 }
