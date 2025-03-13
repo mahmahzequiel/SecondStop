@@ -15,8 +15,9 @@ const EditProfileModal = ({ visible, onCancel, onSave, user }) => {
   // Reset form and populate with user data when modal opens or user changes
   useEffect(() => {
     if (visible && user && user.profile) {
-      // Set all form fields to ensure complete data submission
+      // Set all form fields (include user_id so that admin updates send the correct target id)
       form.setFieldsValue({
+        user_id: user.id, // hidden field for identifying the customer
         first_name: user.profile.first_name || '',
         middle_name: user.profile.middle_name || '',
         last_name: user.profile.last_name || '',
@@ -63,10 +64,8 @@ const EditProfileModal = ({ visible, onCancel, onSave, user }) => {
       .then(values => {
         setLoading(true);
         
-        // Create FormData for file upload and include ALL fields
+        // Create FormData and include all fields
         const formData = new FormData();
-        
-        // Always include all fields, even if unmodified
         formData.append('first_name', values.first_name);
         formData.append('middle_name', values.middle_name || '');
         formData.append('last_name', values.last_name);
@@ -75,6 +74,11 @@ const EditProfileModal = ({ visible, onCancel, onSave, user }) => {
         formData.append('phone_number', values.phone_number);
         formData.append('sex', values.sex);
         
+        // Append user_id if present (for admin editing a customer)
+        if (values.user_id) {
+          formData.append('user_id', values.user_id);
+        }
+
         // Only append file if a new one is selected
         if (fileList.length > 0 && fileList[0].originFileObj) {
           formData.append('profile_image', fileList[0].originFileObj);
@@ -91,7 +95,7 @@ const EditProfileModal = ({ visible, onCancel, onSave, user }) => {
             if (response.data?.status) {
               message.success(response.data.message || 'Profile updated successfully');
               
-              // Call onSave with complete updated profile
+              // Call onSave with the updated profile
               if (onSave && response.data.profile) {
                 onSave(response.data.profile);
               }
@@ -156,6 +160,10 @@ const EditProfileModal = ({ visible, onCancel, onSave, user }) => {
         }}
         preserve={false} // Don't preserve form data when unmounted
       >
+        {/* Hidden field for user_id */}
+        <Form.Item name="user_id" hidden>
+          <Input />
+        </Form.Item>
         <Row gutter={16}>
           {/* First Row */}
           <Col span={4.8}>

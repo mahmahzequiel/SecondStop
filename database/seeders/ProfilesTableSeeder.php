@@ -10,18 +10,6 @@ class ProfilesTableSeeder extends Seeder
 {
     public function run()
     {
-        Profile::create([
-            'user_id' => 1, // Assuming user_id 1 exists
-            'profile_image' => 'default.jpg',
-            'first_name' => 'John',
-            'last_name' => 'Doe',
-            'middle_name' => 'A',
-            'username' => 'johndoe',
-            'email' => 'johndoe#=@gmail.com',
-            'sex' => 'Male',
-            'phone_number' => '1234567890',
-        ]);
-
-        // Add more profiles as needed
+       
     }
 }
