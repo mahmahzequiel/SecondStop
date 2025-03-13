@@ -311,12 +311,12 @@ const Payment = () => {
       <div className="payment-container">
         {/* Progress Bar */}
         <div className="progress-bar">
-          <div className="step active">
+          <div className="step">
             <ShoppingCartOutlined style={{ fontSize: "24px", marginBottom: "8px" }} />
             <span>Checkout</span>
           </div>
           <div className="line"></div>
-          <div className="step">
+          <div className="step active">
             <CreditCardOutlined style={{ fontSize: "24px", marginBottom: "8px" }} />
             <span>Payment</span>
           </div>

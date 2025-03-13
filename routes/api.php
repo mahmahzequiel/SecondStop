@@ -15,6 +15,8 @@ use App\Http\Controllers\ShippingController;
 use App\Http\Controllers\PurchaseController;
 use App\Http\Controllers\NotificationController;
 use App\Http\Controllers\UserController;
+use App\Http\Controllers\RoleController;
+
 
 // Open Routes: Registration and Login
 Route::post("register", [ApiController::class, "register"]);

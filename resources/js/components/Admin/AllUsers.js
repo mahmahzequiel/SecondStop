@@ -128,6 +128,28 @@ function AllUsers() {
   // Define table columns
   const columns = [
     {
+      title: "Actions",
+      key: "actions",
+      render: (_, record) => {
+        const isArchived = record.deleted_at !== null;
+        const status = isArchived ? "Archived" : "Active";
+        
+        return (
+          <Space size="small">
+            <EditOutlined 
+              style={{ cursor: "pointer" }} 
+              onClick={() => handleOpenEditModal(record)}
+            />
+            <InboxOutlined 
+              style={{ cursor: "pointer" }} 
+              title={isArchived ? "Unarchive" : "Archive"} 
+              onClick={() => toggleUserArchiveStatus(record.id, status)}
+            />
+          </Space>
+        );
+      },
+    },
+    {
       title: "Full Name",
       dataIndex: ["profile", "full_name"],
       key: "name",
@@ -157,28 +179,6 @@ function AllUsers() {
           <Tag color={isArchived ? "default" : "success"}>
             {isArchived ? "Archived" : "Active"}
           </Tag>
-        );
-      },
-    },
-    {
-      title: "Actions",
-      key: "actions",
-      render: (_, record) => {
-        const isArchived = record.deleted_at !== null;
-        const status = isArchived ? "Archived" : "Active";
-        
-        return (
-          <Space size="small">
-            <EditOutlined 
-              style={{ cursor: "pointer" }} 
-              onClick={() => handleOpenEditModal(record)}
-            />
-            <InboxOutlined 
-              style={{ cursor: "pointer" }} 
-              title={isArchived ? "Unarchive" : "Archive"} 
-              onClick={() => toggleUserArchiveStatus(record.id, status)}
-            />
-          </Space>
         );
       },
     },

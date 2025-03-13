@@ -86,27 +86,82 @@ const ProductDetails = () => {
     }
   };
 
-  const handleBuyNow = () => {
+  const handleBuyNow = async () => {
     if (!product) return;
-    // Ensure product.price is a number
-    const price = Number(product.price);
-    const numericPrice = isNaN(price) ? 0 : price;
-
-    // Navigate directly to checkout with the current product as the only selected item.
-    navigate("/checkout", {
-      state: {
-        selectedItems: [
+  
+    const userToken = localStorage.getItem("userToken");
+    const userId = localStorage.getItem("userId");
+  
+    if (!userToken) {
+      alert("Please log in to purchase items.");
+      return;
+    }
+  
+    if (!userId) {
+      alert("User ID is missing. Please log in again.");
+      return;
+    }
+  
+    try {
+      // Fetch current cart items
+      const cartResponse = await axios.get("http://127.0.0.1:8000/api/carts", {
+        headers: { Authorization: `Bearer ${userToken}` },
+      });
+      const currentCartItems = Array.isArray(cartResponse.data)
+        ? cartResponse.data
+        : [];
+  
+      // Check if product is already in the cart
+      const isItemInCart = currentCartItems.some(
+        (item) => item.product?.id === product.id
+      );
+  
+      if (!isItemInCart) {
+        // Add product to the cart via API
+        await axios.post(
+          "http://127.0.0.1:8000/api/carts",
           {
+            user_id: userId,
             product_id: product.id,
-            product_name: product.product_name,
-            price: numericPrice,
-            brand: product.brand ? product.brand.name : "N/A",
           },
-        ],
-        totalPrice: numericPrice,
-      },
-    });
+          {
+            headers: { Authorization: `Bearer ${userToken}`, "Content-Type": "application/json" },
+          }
+        );
+        // Update localStorage and dispatch event for cart count update
+        const newCount = currentCartItems.length + 1;
+        localStorage.setItem(`cartCount_${userId}`, newCount.toString());
+        window.dispatchEvent(new Event("cartCountUpdated"));
+      } else {
+        
+      }
+  
+      // Prepare product data for direct purchase navigation
+      const price = Number(product.price);
+      const numericPrice = isNaN(price) ? 0 : price;
+      const productData = {
+        product_id: product.id,
+        product_name: product.product_name,
+        price: numericPrice,
+        brand: product.brand ? product.brand.name : "N/A",
+        quantity: 1,
+      };
+  
+      // Navigate to /cart with directPurchase flag and product data
+      navigate("/cart", {
+        state: {
+          directPurchase: true,
+          productData: productData,
+          totalPrice: numericPrice,
+          selectedItems: [productData],
+        },
+      });
+    } catch (error) {
+      console.error("Error processing Buy Now:", error.response?.data || error);
+      alert("Error processing your purchase. Please try again.");
+    }
   };
+  
 
   if (loading) return <h2>Loading...</h2>;
   if (error) return <h2>{error}</h2>;

@@ -254,12 +254,6 @@ const AdminProducts = () => {
       ) : "No Image",
     },
     
-    {
-      title: "Status",
-      dataIndex: "is_archived",
-      key: "is_archived",
-      render: (isArchived) => (isArchived ? "Archived" : "Active"),
-    },
   ];
 
   return (

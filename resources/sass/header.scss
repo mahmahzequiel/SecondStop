@@ -69,129 +69,210 @@
       }
     }
 
-    /* Notification Styles */
+    /* Enhanced Notification Styles */
     .notification-container {
       position: relative;
       cursor: pointer;
-    }
 
-    .notification-icon {
-      font-size: 32px;
-      color: white;
-    }
+      .notification-icon {
+        font-size: 32px;
+        color: white;
+        transition: transform 0.2s ease;
 
-    .notification-badge {
-      position: absolute;
-      top: -8px;
-      right: -8px;
-      background-color: red;
-      color: #fff; /* White text for the count */
-      border-radius: 50%;
-      padding: 2px 6px;
-      font-size: 0.8rem;
-    }
-
-    .notification-dropdown {
-      position: absolute;
-      top: 60px;
-      right: 0;
-      width: 400px;
-      max-height: 400px;
-      overflow-y: auto;
-      background-color: #fff;
-      border: 1px solid #ccc;
-      border-radius: 4px;
-      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
-      z-index: 9999;
-      padding: 12px;
-      color: black;
-
-      .dropdown-header {
-        display: flex;
-        justify-content: space-between;
-        margin-bottom: 8px;
-
-        h4 {
-          margin: 0;
+        &:hover {
+          transform: scale(1.1);
         }
       }
 
-      hr {
-        margin: 8px 0;
-        border: none;
-        border-top: 1px solid #eee;
+      .notification-badge {
+        position: absolute;
+        top: -8px;
+        right: -8px;
+        background-color: #e74c3c;
+        color: white;
+        border-radius: 50%;
+        padding: 4px 8px;
+        font-size: 0.75rem;
+        font-weight: bold;
+        box-shadow: 0 2px 4px rgba(0,0,0,0.1);
       }
 
-      .no-notifications {
-        text-align: center;
-        margin: 16px 0;
-        color: #888;
-      }
+      .notification-dropdown {
+        position: absolute;
+        top: 60px;
+        right: 0;
+        width: 450px;
+        max-height: 70vh;
+        overflow-y: auto;
+        background-color: #fff;
+        border: 1px solid #eee;
+        border-radius: 12px;
+        box-shadow: 0 8px 24px rgba(0,0,0,0.12);
+        z-index: 9999;
+        padding: 16px;
+        color: #2c3e50;
+        font-family: 'Segoe UI', system-ui, sans-serif;
 
-      .notification-item {
-        display: flex;
-        align-items: flex-start;
-        gap: 16px;
-        margin-bottom: 16px;
-        border-bottom: 1px solid #eee;
-        padding-bottom: 8px;
+        .dropdown-header {
+          display: flex;
+          justify-content: space-between;
+          align-items: center;
+          margin-bottom: 16px;
 
-        &:last-child {
-          border-bottom: none;
-          margin-bottom: 0;
-        }
-
-        .notification-image {
-          width: 60px;
-          height: 60px;
-          object-fit: cover;
-          border-radius: 4px;
-        }
-
-        .notification-details {
-          strong {
-            display: block;
-            margin-bottom: 4px;
+          h4 {
+            margin: 0;
+            font-size: 1.25rem;
+            font-weight: 600;
           }
 
-          .notification-description {
-            white-space: pre-wrap; /* Preserves newlines if needed */
-          }
-
-          .notification-status {
-            font-size: 0.9em;
-            color: #888;
-            margin-top: 4px;
-          }
-
-          .mark-read-btn {
-            margin-top: 6px;
-            background-color: #f0f0f0;
+          .mark-all-read {
+            background: none;
             border: none;
-            border-radius: 3px;
-            padding: 4px 8px;
+            color: #E8AB99;
+            font-weight: 500;
             cursor: pointer;
+            padding: 6px 12px;
+            border-radius: 6px;
+            transition: all 0.2s ease;
 
             &:hover {
-              background-color: #e0e0e0;
+              background-color: rgba(232, 171, 153, 0.1);
             }
           }
         }
-      }
 
-      .dropdown-footer {
-        margin-top: 8px;
-        text-align: right;
-
-        button {
-          background-color: #f0f0f0;
+        hr {
+          margin: 12px 0;
           border: none;
-          border-radius: 3px;
-          padding: 4px 8px;
-          cursor: pointer;
+          border-top: 1px solid #f0f0f0;
+        }
+
+        .no-notifications {
+          text-align: center;
+          padding: 24px 0;
+          color: #95a5a6;
+          font-size: 0.9rem;
+
+          &::before {
+            content: "🎉";
+            font-size: 2rem;
+            display: block;
+            margin-bottom: 8px;
+          }
+        }
+
+        .notification-item {
+          display: flex;
+          align-items: flex-start;
+          gap: 16px;
+          padding: 12px;
+          margin-bottom: 8px;
+          border-radius: 8px;
+          transition: all 0.2s ease;
+          animation: notificationEntry 0.3s ease-out;
+          background-color: #fff;
+          position: relative;
 
           &:hover {
-            background-color: #e0e0e0;
+            background-color: #f9f9f9;
+            transform: translateX(4px);
+          }
+
+          &::before {
+            content: "";
+            position: absolute;
+            left: 0;
+            top: 0;
+            bottom: 0;
+            width: 3px;
+            background-color: #E8AB99;
+            border-radius: 2px;
+            opacity: 0;
+            transition: opacity 0.2s ease;
+          }
+
+          &.unread {
+            background-color: #fff8f6;
+            
+            &::before {
+              opacity: 1;
+            }
+
+            .notification-meta .status {
+              color: #e74c3c;
+            }
+          }
+
+          .notification-image {
+            width: 50px;
+            height: 50px;
+            object-fit: cover;
+            border-radius: 8px;
+            flex-shrink: 0;
+            border: 1px solid #eee;
+          }
+
+          .notification-content {
+            flex-grow: 1;
+            min-width: 0;
+
+            h5 {
+              margin: 0 0 6px 0;
+              font-size: 0.95rem;
+              font-weight: 600;
+            }
+
+            div[class*="notification-description"] {
+              font-size: 0.9rem;
+              color: #7f8c8d;
+              line-height: 1.4;
+              margin-bottom: 8px;
+            }
+
+            .notification-meta {
+              display: flex;
+              align-items: center;
+              justify-content: space-between;
+              font-size: 0.8rem;
+
+              .status {
+                color: #2ecc71;
+                font-weight: 500;
+                display: flex;
+                align-items: center;
+                gap: 4px;
+
+                &::before {
+                  content: "";
+                  width: 8px;
+                  height: 8px;
+                  border-radius: 50%;
+                  background-color: currentColor;
+                }
+              }
+
+              .mark-read-btn {
+                background: none;
+                border: 1px solid #eee;
+                border-radius: 6px;
+                padding: 4px 12px;
+                font-size: 0.75rem;
+                color: #7f8c8d;
+                cursor: pointer;
+                transition: all 0.2s ease;
+
+                &:hover {
+                  border-color: #E8AB99;
+                  color: #E8AB99;
+                  background-color: rgba(232, 171, 153, 0.05);
+                }
+              }
+
+              .timestamp {
+                color: #95a5a6;
+                font-size: 0.75rem;
+              }
+            }
           }
         }
       }
@@ -200,21 +281,44 @@
     /* Cart Icon */
     .cart-link {
       position: relative;
+      transition: transform 0.2s ease;
+
+      &:hover {
+        transform: scale(1.1);
+      }
 
       .cart-badge {
         position: absolute;
         top: -8px;
         right: -8px;
-        background-color: red;
-        color: #fff;
+        background-color: #e74c3c;
+        color: white;
         border-radius: 50%;
-        padding: 2px 6px;
-        font-size: 0.8rem;
+        padding: 4px 8px;
+        font-size: 0.75rem;
+        font-weight: bold;
+        box-shadow: 0 2px 4px rgba(0,0,0,0.1);
       }
     }
 
     .profile-link {
       color: white;
+      transition: transform 0.2s ease;
+
+      &:hover {
+        transform: scale(1.1);
+      }
     }
+  }
+}
+
+@keyframes notificationEntry {
+  from {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
   }
 }

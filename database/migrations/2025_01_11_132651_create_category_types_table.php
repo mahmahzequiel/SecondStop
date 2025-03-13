@@ -17,6 +17,7 @@ class CreateCategoryTypesTable extends Migration
             $table->id(); // Primary key
             $table->string('category_type'); // Category type name (e.g., Tops, Bottoms, Brands)
             $table->timestamps(); // Created_at and updated_at timestamps
+            $table->softDeletes();
         });
     }
 

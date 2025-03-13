@@ -45,6 +45,9 @@ import ProfileMain from "./Profile/ProfileMain";
 import AdminProducts from "./Admin/Products/AdminProducts";
 import Customers from "./Admin/Customer";
 import AllCustomers from "./Admin/Customer";
+import OrderTracking from "./Shipping/OrderTracking";
+import OrdersList from "./Admin/Orders/AdminOrders";
+import AdminSettings from "./Admin/AdminSettings/AdminSettingsPage";
 
 
 function AppContent() {
@@ -80,6 +83,9 @@ function AppContent() {
         <Route path="/allusers" element={<AllUsers />} />
         <Route path="/addusermodal" element={<AddUserModal />} />
         <Route path="/customers" element={<AllCustomers />} />
+        <Route path="/orderlist" element={<OrdersList />} />
+        <Route path="/adminsettings" element={<AdminSettings />} />
+        <Route path="/orders/tracking" element={<OrderTracking />} />
         {/* Customer-Only Routes (role_id = 1) */}
         <Route path="/profile" element={<RoleBasedRoute allowedRoles={[1]}> <Profiles /> </RoleBasedRoute>}/>
         {/* Admin-Only Routes (role_id = 2) */}

@@ -10,11 +10,23 @@ class CategoryController extends Controller
     /**
      * Display a listing of categories.
      */
-    public function index()
-    {
-        $categories = Category::all();
-        return response()->json($categories); // Return JSON instead of a view
+    /**
+ * Display a listing of the categories.
+ */
+public function index(Request $request)
+{
+    $trashed = $request->query('trashed');
+    
+    if ($trashed === 'only') {
+        // Return only trashed (archived) categories
+        $categories = Category::onlyTrashed()->get();
+    } else {
+        // Return only non-trashed (active) categories
+        $categories = Category::get();
     }
+    
+    return response()->json($categories);
+}
 
     /**
      * Store a newly created category.

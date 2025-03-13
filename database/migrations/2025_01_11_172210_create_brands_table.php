@@ -17,6 +17,7 @@ class CreateBrandsTable extends Migration
             $table->id(); // Primary key
             $table->string('name'); // Brand name (e.g., Nike, Adidas)
             $table->timestamps(); // Created_at and updated_at timestamps
+            $table->softDeletes();
         });
     }
 
