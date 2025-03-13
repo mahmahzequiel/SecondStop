@@ -70,12 +70,9 @@
         }
   
         &.active {
-          color: #E8AB99;
-          font-weight: bold;
-  
           .anticon {
             color: white;
-            background: #E8AB99;
+            background: #ff6600;  // Warmer, more vibrant accent color
             transform: scale(1.1);
           }
         }
@@ -102,7 +99,7 @@
   
       .track-order {
         margin-top: 20px;
-        background: #E8AB99;
+        background: #ff6600;
         color: white;
         padding: 8px 16px;
         border-radius: 5px;

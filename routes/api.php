@@ -23,6 +23,8 @@ Route::post("register", [ApiController::class, "register"]);
 Route::post("login", [ApiController::class, "login"]);
 
 // Public Product API Routes
+Route::get('/roles', [RoleController::class, 'index']);
+
 Route::put('/products/{id}/restore', [ProductsController::class, 'restore']);
 Route::resource("products", ProductsController::class);
 Route::resource('categories', CategoryController::class);

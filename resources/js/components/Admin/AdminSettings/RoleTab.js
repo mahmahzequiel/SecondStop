@@ -41,30 +41,24 @@ function RoleTab() {
   );
 
   return (
-    <div style={{ padding: "20px" }}>
-      <h2 style={{ marginBottom: "20px" }}>Roles Management</h2>
-
-      <Space style={{ marginBottom: "20px" }}>
+    <div className="roles-container">
+      <h2>Roles Management</h2>
+      <Space style={{ marginBottom: 16 }}>
         <Input
-          placeholder="Search by name"
+          placeholder="Search roles"
           prefix={<SearchOutlined />}
           value={search}
           onChange={(e) => setSearch(e.target.value)}
           style={{ width: 200 }}
         />
       </Space>
-
       <Table
         columns={[
-          {
-            title: "ID",
-            dataIndex: "id",
-            key: "id",
-          },
           {
             title: "Role Name",
             dataIndex: "role_name",
             key: "role_name",
+            sorter: (a, b) => a.role_name.localeCompare(b.role_name),
           },
           {
             title: "Created At",

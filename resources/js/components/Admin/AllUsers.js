@@ -150,10 +150,10 @@ function AllUsers() {
       },
     },
     {
-      title: "Full Name",
-      dataIndex: ["profile", "full_name"],
-      key: "name",
-      render: (text) => text || "No Name",
+      title: "Username",
+      dataIndex: "username",
+      key: "username",
+      render: (text) => text || "No Username",
     },
     {
       title: "Email",
@@ -186,9 +186,9 @@ function AllUsers() {
 
   // Filter users based on search and role (status filtering is handled by API)
   const filteredUsers = users.filter((user) => {
-    const name = user.profile ? user.profile.full_name.toLowerCase() : "";
+    const username = (user.username || "").toLowerCase();
     const email = (user.email || "").toLowerCase();
-    const combinedString = name + " " + email;
+    const combinedString = username + " " + email;
     const matchesSearch = combinedString.includes(search.toLowerCase());
     const userRole = user.role_id === 2 ? "Admin" : "Customer";
     const matchesRole = roleFilter ? userRole === roleFilter : true;

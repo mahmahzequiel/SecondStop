@@ -2,15 +2,15 @@
   max-width: 900px;
   margin: 2rem auto;
   padding: 2rem;
-  background: #fff;
+  background: #f8f9fa;  // Softer background
   border-radius: 16px;
-  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.08);
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.05);  // Softer shadow
 
   h2 {
     font-size: 1.8rem;
     font-weight: 600;
     margin-bottom: 1.5rem;
-    color: #2c3e50;
+    color: #1a365d;  // Deeper, richer blue
     text-align: center;
     position: relative;
     
@@ -19,7 +19,7 @@
       display: block;
       width: 60px;
       height: 3px;
-      background: #E8AB99;
+      background: #F08A5D;  // Matching accent color
       margin: 8px auto 0;
     }
   }
@@ -42,7 +42,7 @@
       left: 0;
       right: 0;
       height: 3px;
-      background-color: #f0f0f0;
+      background-color: #e6e9f0;  // Softer background color
       z-index: 0;
     }
 
@@ -57,30 +57,30 @@
       .anticon {
         font-size: 28px;
         margin-bottom: 12px;
-        background: white;
+        background: #f8f9fa;  // Softer background
         padding: 12px;
         border-radius: 50%;
-        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.06);  // Lighter shadow
         transition: all 0.3s ease;
       }
 
       span {
         font-size: 1rem;
         font-weight: 500;
-        color: #666;
-        background: white;
+        color: #4a5568;  // Warmer gray
+        background: #f8f9fa;  // Matching background
         padding: 0 8px;
       }
 
       &.active {
         .anticon {
           color: white;
-          background: #E8AB99;
+          background: #ff6600;  // Warmer, more vibrant accent color
           transform: scale(1.1);
         }
         
         span {
-          color: #E8AB99;
+          color: #F08A5D;  // Matching accent color
           font-weight: 600;
         }
       }
@@ -100,24 +100,32 @@
 
     .order-details,
     .billing-address {
-      padding: 1rem;
-      background: #fff;
-      border: 1px solid #eee;
+      padding: 1.5rem;
+      background: #ffffff;  // White background for contrast
+      border: 1px solid #edf2f7;  // Softer border
       border-radius: 12px;
-      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.03);  // Subtle shadow
     }
 
     // Order Details Section
     .order-details {
       max-height: 400px;
       overflow-y: auto;
-      padding: 1rem;
 
       h3 {
         text-align: center;
-        margin-bottom: 1rem;
+        margin-bottom: 1.2rem;
         font-size: 1.5rem;
-        color: #2c3e50;
+        color: #1a365d;  // Deeper, richer blue
+        
+        &::after {
+          content: '';
+          display: block;
+          width: 40px;
+          height: 2px;
+          background: #F08A5D;  // Matching accent color
+          margin: 8px auto 0;
+        }
       }
 
       table {
@@ -126,9 +134,9 @@
 
         td {
           padding: 0.8rem;
-          border-bottom: 1px solid #ddd;
+          border-bottom: 1px solid #edf2f7;  // Softer border
           font-size: 1rem;
-          color: #34495e;
+          color: #2d3748;  // Warmer dark color
         }
 
         tr:last-child td {
@@ -140,13 +148,13 @@
         }
 
         tr:nth-last-child(2) td {
-          border-bottom: 2px solid #eee;
+          border-bottom: 2px solid #edf2f7;  // Softer border
           padding: 1rem 0;
         }
 
         strong {
           font-weight: 600;
-          color: #2c3e50;
+          color: #2d3748;  // Warmer dark color
         }
       }
     }
@@ -162,55 +170,61 @@
         font-size: 0.9rem;
         font-weight: 500;
         margin: 0.5rem 0;
+        color: #4a5568;  // Warmer gray
       }
 
       input {
-        padding: 0.7rem;
+        padding: 0.8rem;
         font-size: 1rem;
-        border: 1px solid #ccc;
-        border-radius: 5px;
-        margin-bottom: 0.8rem;
+        border: 1px solid #e2e8f0;  // Softer border
+        border-radius: 6px;
+        margin-bottom: 1rem;
         width: 100%;
         transition: all 0.2s ease-in-out;
+        background: #f8f9fa;  // Softer background
 
         &:focus {
-          border-color: #E8AB99;
+          border-color: #F08A5D;  // Matching accent color
           outline: none;
-          box-shadow: 0 0 5px rgba(232, 171, 153, 0.5);
+          box-shadow: 0 0 5px rgba(240, 138, 93, 0.3);  // Matching accent shadow
+          background: #ffffff;  // White when focused
         }
 
         &:disabled {
-          background: #f8f8f8;
+          background: #edf2f7;  // Softer disabled background
           cursor: not-allowed;
         }
       }
     }
 
     button {
-      margin-top: 1rem;
-      padding: 0.7rem 1.2rem;
+      margin-top: 1.2rem;
+      padding: 0.8rem 1.2rem;
       font-size: 1rem;
       font-weight: 500;
       border: none;
-      border-radius: 5px;
+      border-radius: 6px;
       cursor: pointer;
-      transition: background 0.3s ease-in-out;
+      transition: all 0.3s ease-in-out;
 
       &:first-of-type {
-        background: #ccc;
-        color: #333;
+        background: #e2e8f0;  // Softer background
+        color: #4a5568;  // Warmer gray
 
         &:hover {
-          background: #bbb;
+          background: #cbd5e0;  // Slightly darker on hover
+          transform: translateY(-1px);
         }
       }
 
       &:last-of-type {
-        background: #E8AB99;
+        background: #F08A5D;  // Matching accent color
         color: #fff;
 
         &:hover {
-          background: #d9998f;
+          background: #e67e4e;  // Slightly darker on hover
+          transform: translateY(-1px);
+          box-shadow: 0 4px 12px rgba(240, 138, 93, 0.2);  // Subtle shadow on hover
         }
       }
     }
@@ -229,31 +243,36 @@
     }
 
     button {
-      padding: 0.8rem 1.5rem;
+      padding: 0.9rem 1.8rem;
+      margin-left: 620px;
       font-size: 1rem;
       font-weight: 500;
       border: none;
-      border-radius: 5px;
+      border-radius: 6px;
       cursor: pointer;
-      transition: background 0.3s ease-in-out;
+      transition: all 0.3s ease-in-out;
 
       &:first-child {
-        background: #ccc;
-        color: #333;
+        background: #ff6600;  // Softer background
+        color: white;  // Warmer gray
 
         &:hover {
-          background: #bbb;
+          background: #cbd5e0;  // Slightly darker on hover
+          transform: translateY(-1px);
         }
       }
     }
 
     .proceed-btn {
-      background: #E8AB99;
+      background: #F08A5D;  // Matching accent color
       color: #fff;
-      padding: 0.8rem 1.5rem;
+      padding: 0.9rem 1.8rem;
+      box-shadow: 0 4px 12px rgba(240, 138, 93, 0.15);  // Subtle shadow
 
       &:hover {
-        background: #d9998f;
+        background: #e67e4e;  // Slightly darker on hover
+        transform: translateY(-1px);
+        box-shadow: 0 6px 16px rgba(240, 138, 93, 0.25);  // Enhanced shadow on hover
       }
     }
   }
@@ -272,5 +291,11 @@
 
   > * {
     animation: fadeInUp 0.6s ease-out;
+    animation-fill-mode: both;
   }
+  
+  // Staggered animations for child elements
+  > *:nth-child(1) { animation-delay: 0.1s; }
+  > *:nth-child(2) { animation-delay: 0.2s; }
+  > *:nth-child(3) { animation-delay: 0.3s; }
 }

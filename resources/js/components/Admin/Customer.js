@@ -135,7 +135,8 @@ function AllCustomers() {
   const filteredCustomers = customers.filter((customer) => {
     const name = customer.profile?.full_name?.toLowerCase() || "";
     const email = customer.email?.toLowerCase() || "";
-    const matchesSearch = (name + " " + email).includes(search);
+    const phone = customer.profile?.phone_number?.toLowerCase() || "";
+    const matchesSearch = (name + " " + email + " " + phone).includes(search);
     
     return matchesSearch;
   });
@@ -173,6 +174,18 @@ function AllCustomers() {
       title: "Email",
       dataIndex: "email",
       key: "email",
+    },
+    {
+      title: "Phone Number",
+      dataIndex: ["profile", "phone_number"],
+      key: "phone_number",
+      render: (text) => text || "N/A",
+    },
+    {
+      title: "Sex",
+      dataIndex: ["profile", "sex"],
+      key: "sex",
+      render: (text) => text || "N/A",
     },
     {
       title: "Status",
