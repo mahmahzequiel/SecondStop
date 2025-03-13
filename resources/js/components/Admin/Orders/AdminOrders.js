@@ -94,10 +94,12 @@ const OrdersList = () => {
     setStatusLoading(prev => ({ ...prev, [orderId]: true }));
     
     try {
-      // Make API call to update the order
+      const orderToUpdate = orders.find(order => order.id === orderId);
+      
+      // Reverse the spread order so that status: newStatus is applied last
       await axios.put(`/api/orders/${orderId}`, { 
+        ...orderToUpdate,
         status: newStatus,
-        ...orders.find(order => order.id === orderId)
       });
       
       // Update local state
@@ -109,7 +111,7 @@ const OrdersList = () => {
       });
       
       setOrders(updatedOrders);
-      message.success(`Order #${orders.find(order => order.id === orderId)?.order_number} status updated to ${newStatus}`);
+      message.success(`Order #${orderToUpdate?.order_number} status updated to ${newStatus}`);
     } catch (error) {
       console.error('Error updating order status:', error);
       message.error('Failed to update order status');
@@ -118,13 +120,13 @@ const OrdersList = () => {
     }
   };
 
-  // Initial fetch on component mount
+  // Initial fetch on component mount and when searchText changes
   useEffect(() => {
     fetchOrders({
       current: pagination.current,
       pageSize: pagination.pageSize
     });
-  }, [searchText]); // Refetch when searchText changes
+  }, [searchText]);
 
   // Handle table change (pagination, filters, sorter)
   const handleTableChange = (pagination, filters, sorter) => {
@@ -139,7 +141,6 @@ const OrdersList = () => {
     setSorter(sorter);
   };
   
-
   // Handle search input change
   const handleSearch = (e) => {
     setSearchText(e.target.value);

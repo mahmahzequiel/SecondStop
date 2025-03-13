@@ -243,7 +243,7 @@ const AdminProducts = () => {
       title: "Price",
       dataIndex: "price",
       key: "price",
-      render: (price) => `$${parseFloat(price).toFixed(2)}`,
+      render: (price) => `PHP${parseFloat(price).toFixed(2)}`,
     },
     {
       title: "Image",

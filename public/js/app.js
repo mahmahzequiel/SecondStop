@@ -68727,9 +68727,9 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var antd__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! antd */ "./node_modules/antd/es/message/index.js");
 /* harmony import */ var antd__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! antd */ "./node_modules/antd/es/modal/index.js");
 /* harmony import */ var antd__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! antd */ "./node_modules/antd/es/button/index.js");
-/* harmony import */ var antd__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! antd */ "./node_modules/antd/es/row/index.js");
-/* harmony import */ var antd__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! antd */ "./node_modules/antd/es/col/index.js");
-/* harmony import */ var antd__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! antd */ "./node_modules/antd/es/input/index.js");
+/* harmony import */ var antd__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! antd */ "./node_modules/antd/es/input/index.js");
+/* harmony import */ var antd__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! antd */ "./node_modules/antd/es/row/index.js");
+/* harmony import */ var antd__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! antd */ "./node_modules/antd/es/col/index.js");
 /* harmony import */ var antd__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! antd */ "./node_modules/antd/es/upload/index.js");
 /* harmony import */ var _ant_design_icons__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! @ant-design/icons */ "./node_modules/@ant-design/icons/es/icons/UploadOutlined.js");
 /* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
@@ -68772,8 +68772,10 @@ var EditProfileModal = function EditProfileModal(_ref) {
   // Reset form and populate with user data when modal opens or user changes
   (0,react__WEBPACK_IMPORTED_MODULE_0__.useEffect)(function () {
     if (visible && user && user.profile) {
-      // Set all form fields to ensure complete data submission
+      // Set all form fields (include user_id so that admin updates send the correct target id)
       form.setFieldsValue({
+        user_id: user.id,
+        // hidden field for identifying the customer
         first_name: user.profile.first_name || '',
         middle_name: user.profile.middle_name || '',
         last_name: user.profile.last_name || '',
@@ -68815,10 +68817,8 @@ var EditProfileModal = function EditProfileModal(_ref) {
     form.validateFields().then(function (values) {
       setLoading(true);
 
-      // Create FormData for file upload and include ALL fields
+      // Create FormData and include all fields
       var formData = new FormData();
-
-      // Always include all fields, even if unmodified
       formData.append('first_name', values.first_name);
       formData.append('middle_name', values.middle_name || '');
       formData.append('last_name', values.last_name);
@@ -68826,6 +68826,11 @@ var EditProfileModal = function EditProfileModal(_ref) {
       formData.append('email', values.email);
       formData.append('phone_number', values.phone_number);
       formData.append('sex', values.sex);
+
+      // Append user_id if present (for admin editing a customer)
+      if (values.user_id) {
+        formData.append('user_id', values.user_id);
+      }
 
       // Only append file if a new one is selected
       if (fileList.length > 0 && fileList[0].originFileObj) {
@@ -68843,7 +68848,7 @@ var EditProfileModal = function EditProfileModal(_ref) {
         if ((_response$data = response.data) !== null && _response$data !== void 0 && _response$data.status) {
           antd__WEBPACK_IMPORTED_MODULE_5__["default"].success(response.data.message || 'Profile updated successfully');
 
-          // Call onSave with complete updated profile
+          // Call onSave with the updated profile
           if (onSave && response.data.profile) {
             onSave(response.data.profile);
           }
@@ -68893,7 +68898,7 @@ var EditProfileModal = function EditProfileModal(_ref) {
     }, "submit")],
     maskClosable: false,
     destroyOnClose: true,
-    children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)(antd__WEBPACK_IMPORTED_MODULE_4__["default"], {
+    children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxs)(antd__WEBPACK_IMPORTED_MODULE_4__["default"], {
       form: form,
       layout: "vertical",
       initialValues: {
@@ -68901,9 +68906,13 @@ var EditProfileModal = function EditProfileModal(_ref) {
       },
       preserve: false // Don't preserve form data when unmounted
       ,
-      children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxs)(antd__WEBPACK_IMPORTED_MODULE_8__["default"], {
+      children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)(antd__WEBPACK_IMPORTED_MODULE_4__["default"].Item, {
+        name: "user_id",
+        hidden: true,
+        children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)(antd__WEBPACK_IMPORTED_MODULE_8__["default"], {})
+      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxs)(antd__WEBPACK_IMPORTED_MODULE_9__["default"], {
         gutter: 16,
-        children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)(antd__WEBPACK_IMPORTED_MODULE_9__["default"], {
+        children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)(antd__WEBPACK_IMPORTED_MODULE_10__["default"], {
           span: 4.8,
           children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)(antd__WEBPACK_IMPORTED_MODULE_4__["default"].Item, {
             name: "first_name",
@@ -68912,20 +68921,20 @@ var EditProfileModal = function EditProfileModal(_ref) {
               required: true,
               message: 'Please enter first name'
             }],
-            children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)(antd__WEBPACK_IMPORTED_MODULE_10__["default"], {
+            children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)(antd__WEBPACK_IMPORTED_MODULE_8__["default"], {
               placeholder: "First Name"
             })
           })
-        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)(antd__WEBPACK_IMPORTED_MODULE_9__["default"], {
+        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)(antd__WEBPACK_IMPORTED_MODULE_10__["default"], {
           span: 4.8,
           children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)(antd__WEBPACK_IMPORTED_MODULE_4__["default"].Item, {
             name: "middle_name",
             label: "Middle Name",
-            children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)(antd__WEBPACK_IMPORTED_MODULE_10__["default"], {
+            children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)(antd__WEBPACK_IMPORTED_MODULE_8__["default"], {
               placeholder: "Middle Name"
             })
           })
-        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)(antd__WEBPACK_IMPORTED_MODULE_9__["default"], {
+        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)(antd__WEBPACK_IMPORTED_MODULE_10__["default"], {
           span: 4.8,
           children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)(antd__WEBPACK_IMPORTED_MODULE_4__["default"].Item, {
             name: "last_name",
@@ -68934,11 +68943,11 @@ var EditProfileModal = function EditProfileModal(_ref) {
               required: true,
               message: 'Please enter last name'
             }],
-            children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)(antd__WEBPACK_IMPORTED_MODULE_10__["default"], {
+            children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)(antd__WEBPACK_IMPORTED_MODULE_8__["default"], {
               placeholder: "Last Name"
             })
           })
-        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)(antd__WEBPACK_IMPORTED_MODULE_9__["default"], {
+        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)(antd__WEBPACK_IMPORTED_MODULE_10__["default"], {
           span: 4.8,
           children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)(antd__WEBPACK_IMPORTED_MODULE_4__["default"].Item, {
             name: "username",
@@ -68947,11 +68956,11 @@ var EditProfileModal = function EditProfileModal(_ref) {
               required: true,
               message: 'Please enter username'
             }],
-            children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)(antd__WEBPACK_IMPORTED_MODULE_10__["default"], {
+            children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)(antd__WEBPACK_IMPORTED_MODULE_8__["default"], {
               placeholder: "Username"
             })
           })
-        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)(antd__WEBPACK_IMPORTED_MODULE_9__["default"], {
+        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)(antd__WEBPACK_IMPORTED_MODULE_10__["default"], {
           span: 4.8,
           children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)(antd__WEBPACK_IMPORTED_MODULE_4__["default"].Item, {
             name: "email",
@@ -68963,11 +68972,11 @@ var EditProfileModal = function EditProfileModal(_ref) {
               type: 'email',
               message: 'Please enter a valid email'
             }],
-            children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)(antd__WEBPACK_IMPORTED_MODULE_10__["default"], {
+            children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)(antd__WEBPACK_IMPORTED_MODULE_8__["default"], {
               placeholder: "Email"
             })
           })
-        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)(antd__WEBPACK_IMPORTED_MODULE_9__["default"], {
+        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)(antd__WEBPACK_IMPORTED_MODULE_10__["default"], {
           span: 4.8,
           children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)(antd__WEBPACK_IMPORTED_MODULE_4__["default"].Item, {
             name: "phone_number",
@@ -68976,11 +68985,11 @@ var EditProfileModal = function EditProfileModal(_ref) {
               required: true,
               message: 'Please enter phone number'
             }],
-            children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)(antd__WEBPACK_IMPORTED_MODULE_10__["default"], {
+            children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)(antd__WEBPACK_IMPORTED_MODULE_8__["default"], {
               placeholder: "Phone Number"
             })
           })
-        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)(antd__WEBPACK_IMPORTED_MODULE_9__["default"], {
+        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)(antd__WEBPACK_IMPORTED_MODULE_10__["default"], {
           span: 4.8,
           children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)(antd__WEBPACK_IMPORTED_MODULE_4__["default"].Item, {
             name: "sex",
@@ -69003,7 +69012,7 @@ var EditProfileModal = function EditProfileModal(_ref) {
               })]
             })
           })
-        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxs)(antd__WEBPACK_IMPORTED_MODULE_9__["default"], {
+        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxs)(antd__WEBPACK_IMPORTED_MODULE_10__["default"], {
           span: 14.4,
           children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)(antd__WEBPACK_IMPORTED_MODULE_4__["default"].Item, {
             name: "profile_image",
@@ -69037,7 +69046,7 @@ var EditProfileModal = function EditProfileModal(_ref) {
             })]
           })]
         })]
-      })
+      })]
     })
   });
 };
@@ -69257,7 +69266,7 @@ var OrdersList = function OrdersList() {
   // Update order status
   var updateOrderStatus = /*#__PURE__*/function () {
     var _ref3 = _asyncToGenerator(/*#__PURE__*/_regeneratorRuntime().mark(function _callee2(orderId, newStatus) {
-      var _orders$find, updatedOrders;
+      var orderToUpdate, updatedOrders;
       return _regeneratorRuntime().wrap(function _callee2$(_context2) {
         while (1) switch (_context2.prev = _context2.next) {
           case 0:
@@ -69265,13 +69274,14 @@ var OrdersList = function OrdersList() {
               return _objectSpread(_objectSpread({}, prev), {}, _defineProperty({}, orderId, true));
             });
             _context2.prev = 1;
-            _context2.next = 4;
-            return axios__WEBPACK_IMPORTED_MODULE_1___default().put("/api/orders/".concat(orderId), _objectSpread({
-              status: newStatus
-            }, orders.find(function (order) {
+            orderToUpdate = orders.find(function (order) {
               return order.id === orderId;
-            })));
-          case 4:
+            }); // Reverse the spread order so that status: newStatus is applied last
+            _context2.next = 5;
+            return axios__WEBPACK_IMPORTED_MODULE_1___default().put("/api/orders/".concat(orderId), _objectSpread(_objectSpread({}, orderToUpdate), {}, {
+              status: newStatus
+            }));
+          case 5:
             // Update local state
             updatedOrders = orders.map(function (order) {
               if (order.id === orderId) {
@@ -69282,40 +69292,38 @@ var OrdersList = function OrdersList() {
               return order;
             });
             setOrders(updatedOrders);
-            antd__WEBPACK_IMPORTED_MODULE_8__["default"].success("Order #".concat((_orders$find = orders.find(function (order) {
-              return order.id === orderId;
-            })) === null || _orders$find === void 0 ? void 0 : _orders$find.order_number, " status updated to ").concat(newStatus));
-            _context2.next = 13;
+            antd__WEBPACK_IMPORTED_MODULE_8__["default"].success("Order #".concat(orderToUpdate === null || orderToUpdate === void 0 ? void 0 : orderToUpdate.order_number, " status updated to ").concat(newStatus));
+            _context2.next = 14;
             break;
-          case 9:
-            _context2.prev = 9;
+          case 10:
+            _context2.prev = 10;
             _context2.t0 = _context2["catch"](1);
             console.error('Error updating order status:', _context2.t0);
             antd__WEBPACK_IMPORTED_MODULE_8__["default"].error('Failed to update order status');
-          case 13:
-            _context2.prev = 13;
+          case 14:
+            _context2.prev = 14;
             setStatusLoading(function (prev) {
               return _objectSpread(_objectSpread({}, prev), {}, _defineProperty({}, orderId, false));
             });
-            return _context2.finish(13);
-          case 16:
+            return _context2.finish(14);
+          case 17:
           case "end":
             return _context2.stop();
         }
-      }, _callee2, null, [[1, 9, 13, 16]]);
+      }, _callee2, null, [[1, 10, 14, 17]]);
     }));
     return function updateOrderStatus(_x, _x2) {
       return _ref3.apply(this, arguments);
     };
   }();
 
-  // Initial fetch on component mount
+  // Initial fetch on component mount and when searchText changes
   (0,react__WEBPACK_IMPORTED_MODULE_0__.useEffect)(function () {
     fetchOrders({
       current: pagination.current,
       pageSize: pagination.pageSize
     });
-  }, [searchText]); // Refetch when searchText changes
+  }, [searchText]);
 
   // Handle table change (pagination, filters, sorter)
   var handleTableChange = function handleTableChange(pagination, filters, sorter) {
@@ -70275,7 +70283,7 @@ var AdminProducts = function AdminProducts() {
     dataIndex: "price",
     key: "price",
     render: function render(price) {
-      return "$".concat(parseFloat(price).toFixed(2));
+      return "PHP".concat(parseFloat(price).toFixed(2));
     }
   }, {
     title: "Image",
@@ -75667,7 +75675,7 @@ function AppContent() {
   var location = (0,react_router_dom__WEBPACK_IMPORTED_MODULE_35__.useLocation)();
 
   // We hide the Chatbot on these paths
-  var hideChatbotPaths = ["/LogIn", "/register", "/admin", "/adminprofile", "/admindashboard", "/allusers", "/adminchat"];
+  var hideChatbotPaths = ["/LogIn", "/register", "/admin", "/adminprofile", "/admindashboard", "/allusers", "/adminchat", "/adminproducts", "/orderlist", "/customers", "/adminsettings"];
   return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_34__.jsxs)(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_34__.Fragment, {
     children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_34__.jsxs)(react_router_dom__WEBPACK_IMPORTED_MODULE_35__.Routes, {
       children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_34__.jsx)(react_router_dom__WEBPACK_IMPORTED_MODULE_35__.Route, {

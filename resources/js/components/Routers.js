@@ -54,7 +54,7 @@ function AppContent() {
   const location = useLocation();
 
   // We hide the Chatbot on these paths
-  const hideChatbotPaths = ["/LogIn", "/register", "/admin", "/adminprofile", "/admindashboard", "/allusers", "/adminchat"];
+  const hideChatbotPaths = ["/LogIn", "/register", "/admin", "/adminprofile", "/admindashboard", "/allusers", "/adminchat", "/adminproducts", "/orderlist", "/customers", "/adminsettings"];
 
   return (
     <>
