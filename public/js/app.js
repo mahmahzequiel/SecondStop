@@ -69266,7 +69266,7 @@ var OrdersList = function OrdersList() {
   // Update order status
   var updateOrderStatus = /*#__PURE__*/function () {
     var _ref3 = _asyncToGenerator(/*#__PURE__*/_regeneratorRuntime().mark(function _callee2(orderId, newStatus) {
-      var _orders$find, updatedOrders;
+      var orderToUpdate, updatedOrders;
       return _regeneratorRuntime().wrap(function _callee2$(_context2) {
         while (1) switch (_context2.prev = _context2.next) {
           case 0:
@@ -69274,13 +69274,14 @@ var OrdersList = function OrdersList() {
               return _objectSpread(_objectSpread({}, prev), {}, _defineProperty({}, orderId, true));
             });
             _context2.prev = 1;
-            _context2.next = 4;
-            return axios__WEBPACK_IMPORTED_MODULE_1___default().put("/api/orders/".concat(orderId), _objectSpread({
-              status: newStatus
-            }, orders.find(function (order) {
+            orderToUpdate = orders.find(function (order) {
               return order.id === orderId;
-            })));
-          case 4:
+            }); // Reverse the spread order so that status: newStatus is applied last
+            _context2.next = 5;
+            return axios__WEBPACK_IMPORTED_MODULE_1___default().put("/api/orders/".concat(orderId), _objectSpread(_objectSpread({}, orderToUpdate), {}, {
+              status: newStatus
+            }));
+          case 5:
             // Update local state
             updatedOrders = orders.map(function (order) {
               if (order.id === orderId) {
@@ -69291,40 +69292,38 @@ var OrdersList = function OrdersList() {
               return order;
             });
             setOrders(updatedOrders);
-            antd__WEBPACK_IMPORTED_MODULE_8__["default"].success("Order #".concat((_orders$find = orders.find(function (order) {
-              return order.id === orderId;
-            })) === null || _orders$find === void 0 ? void 0 : _orders$find.order_number, " status updated to ").concat(newStatus));
-            _context2.next = 13;
+            antd__WEBPACK_IMPORTED_MODULE_8__["default"].success("Order #".concat(orderToUpdate === null || orderToUpdate === void 0 ? void 0 : orderToUpdate.order_number, " status updated to ").concat(newStatus));
+            _context2.next = 14;
             break;
-          case 9:
-            _context2.prev = 9;
+          case 10:
+            _context2.prev = 10;
             _context2.t0 = _context2["catch"](1);
             console.error('Error updating order status:', _context2.t0);
             antd__WEBPACK_IMPORTED_MODULE_8__["default"].error('Failed to update order status');
-          case 13:
-            _context2.prev = 13;
+          case 14:
+            _context2.prev = 14;
             setStatusLoading(function (prev) {
               return _objectSpread(_objectSpread({}, prev), {}, _defineProperty({}, orderId, false));
             });
-            return _context2.finish(13);
-          case 16:
+            return _context2.finish(14);
+          case 17:
           case "end":
             return _context2.stop();
         }
-      }, _callee2, null, [[1, 9, 13, 16]]);
+      }, _callee2, null, [[1, 10, 14, 17]]);
     }));
     return function updateOrderStatus(_x, _x2) {
       return _ref3.apply(this, arguments);
     };
   }();
 
-  // Initial fetch on component mount
+  // Initial fetch on component mount and when searchText changes
   (0,react__WEBPACK_IMPORTED_MODULE_0__.useEffect)(function () {
     fetchOrders({
       current: pagination.current,
       pageSize: pagination.pageSize
     });
-  }, [searchText]); // Refetch when searchText changes
+  }, [searchText]);
 
   // Handle table change (pagination, filters, sorter)
   var handleTableChange = function handleTableChange(pagination, filters, sorter) {
@@ -75676,7 +75675,7 @@ function AppContent() {
   var location = (0,react_router_dom__WEBPACK_IMPORTED_MODULE_35__.useLocation)();
 
   // We hide the Chatbot on these paths
-  var hideChatbotPaths = ["/LogIn", "/register", "/admin", "/adminprofile", "/admindashboard", "/allusers", "/adminchat"];
+  var hideChatbotPaths = ["/LogIn", "/register", "/admin", "/adminprofile", "/admindashboard", "/allusers", "/adminchat", "/adminproducts", "/orderlist", "/customers", "/adminsettings"];
   return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_34__.jsxs)(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_34__.Fragment, {
     children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_34__.jsxs)(react_router_dom__WEBPACK_IMPORTED_MODULE_35__.Routes, {
       children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_34__.jsx)(react_router_dom__WEBPACK_IMPORTED_MODULE_35__.Route, {
