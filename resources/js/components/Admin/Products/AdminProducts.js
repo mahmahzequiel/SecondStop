@@ -87,19 +87,19 @@ const AdminProducts = () => {
     let filtered = products.filter((product) =>
       product.product_name.toLowerCase().includes(searchQuery.toLowerCase())
     );
-
+  
     if (selectedCategory) {
-      filtered = filtered.filter((product) => product.category?.name === selectedCategory);
+      filtered = filtered.filter((product) => product.category?.category_name === selectedCategory);
     }
-
+  
     if (selectedCategoryType) {
-      filtered = filtered.filter((product) => product.category_type?.name === selectedCategoryType);
+      filtered = filtered.filter((product) => product.category_type?.category_type === selectedCategoryType);
     }
-
+  
     if (selectedBrand) {
       filtered = filtered.filter((product) => product.brand?.name === selectedBrand);
     }
-
+  
     setFilteredProducts(filtered);
   }, [searchQuery, selectedCategory, selectedCategoryType, selectedBrand, products]);
 

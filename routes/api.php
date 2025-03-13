@@ -27,10 +27,19 @@ Route::get('/roles', [RoleController::class, 'index']);
 
 Route::put('/products/{id}/restore', [ProductsController::class, 'restore']);
 Route::resource("products", ProductsController::class);
+
+Route::put('/categories/{id}/restore', [CategoryController::class, 'restore']);
 Route::resource('categories', CategoryController::class);
+
 Route::get("category-types", [CategoryTypeController::class, "index"]);
+Route::put("category-types/{categoryType}", [CategoryTypeController::class, "update"]);
+Route::post("category-types", [CategoryTypeController::class, "store"]);
+Route::delete("category-types/{categoryType}", [CategoryTypeController::class, "destroy"]);
+Route::post("category-types/{id}/restore", [CategoryTypeController::class, "restore"]);
+
 Route::get("/products-by-category-type", [ProductsController::class, "getProductsByCategoryType"]);
 Route::resource('brands', BrandController::class);
+Route::put('/brands/{id}/restore', [BrandController::class, 'restore']);
 
 // Public Address Routes
 Route::get('address', [AddressController::class, 'index']);

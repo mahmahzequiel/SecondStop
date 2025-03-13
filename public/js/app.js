@@ -65956,7 +65956,7 @@ function BrandTab() {
       content: "This will make it active again.",
       onOk: function onOk() {
         setLoading(true);
-        axios__WEBPACK_IMPORTED_MODULE_1___default().post("".concat(BRANDS_API, "/").concat(brandId, "/restore"), {}).then(function (response) {
+        axios__WEBPACK_IMPORTED_MODULE_1___default().put("".concat(BRANDS_API, "/").concat(brandId, "/restore"), {}).then(function (response) {
           console.log("Restore response:", response);
           antd__WEBPACK_IMPORTED_MODULE_6__["default"].success("Brand restored successfully!");
           fetchBrands();
@@ -66651,7 +66651,7 @@ function CategoryTab() {
       content: "This will make it active again.",
       onOk: function onOk() {
         setLoading(true);
-        axios__WEBPACK_IMPORTED_MODULE_1___default().post("".concat(CATEGORIES_API, "/").concat(categoryId, "/restore"), {}, {
+        axios__WEBPACK_IMPORTED_MODULE_1___default().put("".concat(CATEGORIES_API, "/").concat(categoryId, "/restore"), {}, {
           headers: {
             'Content-Type': 'application/json',
             'Accept': 'application/json'
@@ -66983,7 +66983,7 @@ function EditCategoryModal(_ref) {
     // Set form values when category data changes
     if (category) {
       form.setFieldsValue({
-        name: category.name
+        category_name: category.category_name
       });
     }
   }, [category, form]);
@@ -66995,15 +66995,11 @@ function EditCategoryModal(_ref) {
     form.validateFields().then(function (values) {
       setLoading(true);
       axios__WEBPACK_IMPORTED_MODULE_1___default().put("".concat(CATEGORIES_API, "/").concat(category.id), values).then(function (res) {
-        var _res$data;
-        if ((_res$data = res.data) !== null && _res$data !== void 0 && _res$data.success) {
-          antd__WEBPACK_IMPORTED_MODULE_4__["default"].success("Category updated successfully!");
-          form.resetFields();
-          onSave();
-        } else {
-          var _res$data2;
-          antd__WEBPACK_IMPORTED_MODULE_4__["default"].error(((_res$data2 = res.data) === null || _res$data2 === void 0 ? void 0 : _res$data2.message) || "Failed to update category");
-        }
+        var _res$data, _res$data2;
+        // Updated to check for the message field instead of success
+        antd__WEBPACK_IMPORTED_MODULE_4__["default"].success(((_res$data = res.data) === null || _res$data === void 0 ? void 0 : _res$data.message) || "Category updated successfully!");
+        form.resetFields();
+        onSave((_res$data2 = res.data) === null || _res$data2 === void 0 ? void 0 : _res$data2.category); // Pass the updated category to the parent component
       })["catch"](function (err) {
         var _err$response;
         console.error("Error updating category:", err);
@@ -67014,7 +67010,8 @@ function EditCategoryModal(_ref) {
             antd__WEBPACK_IMPORTED_MODULE_4__["default"].error("".concat(field, ": ").concat(validationErrors[field][0]));
           });
         } else {
-          antd__WEBPACK_IMPORTED_MODULE_4__["default"].error("An error occurred while updating the category");
+          var _err$response2;
+          antd__WEBPACK_IMPORTED_MODULE_4__["default"].error(((_err$response2 = err.response) === null || _err$response2 === void 0 || (_err$response2 = _err$response2.data) === null || _err$response2 === void 0 ? void 0 : _err$response2.message) || "An error occurred while updating the category");
         }
       })["finally"](function () {
         setLoading(false);
@@ -67025,7 +67022,7 @@ function EditCategoryModal(_ref) {
   };
   return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)(antd__WEBPACK_IMPORTED_MODULE_5__["default"], {
     title: "Edit Category",
-    visible: visible,
+    open: visible,
     onCancel: handleCancel,
     footer: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)(antd__WEBPACK_IMPORTED_MODULE_6__["default"], {
       onClick: handleCancel,
@@ -67044,7 +67041,7 @@ function EditCategoryModal(_ref) {
       layout: "vertical",
       name: "edit_category_form",
       children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)(antd__WEBPACK_IMPORTED_MODULE_3__["default"].Item, {
-        name: "name",
+        name: "category_name",
         label: "Category Name",
         rules: [{
           required: true,
@@ -67408,7 +67405,7 @@ function CategoryTypeTab() {
       content: "This will make it active again.",
       onOk: function onOk() {
         setLoading(true);
-        axios__WEBPACK_IMPORTED_MODULE_1___default().post("".concat(CATEGORY_TYPES_API, "/").concat(categoryTypeId, "/restore"), {}, {
+        axios__WEBPACK_IMPORTED_MODULE_1___default().put("".concat(CATEGORY_TYPES_API, "/").concat(categoryTypeId, "/restore"), {}, {
           headers: {
             'Content-Type': 'application/json',
             'Accept': 'application/json'
@@ -70050,13 +70047,13 @@ var AdminProducts = function AdminProducts() {
     if (selectedCategory) {
       filtered = filtered.filter(function (product) {
         var _product$category;
-        return ((_product$category = product.category) === null || _product$category === void 0 ? void 0 : _product$category.name) === selectedCategory;
+        return ((_product$category = product.category) === null || _product$category === void 0 ? void 0 : _product$category.category_name) === selectedCategory;
       });
     }
     if (selectedCategoryType) {
       filtered = filtered.filter(function (product) {
         var _product$category_typ;
-        return ((_product$category_typ = product.category_type) === null || _product$category_typ === void 0 ? void 0 : _product$category_typ.name) === selectedCategoryType;
+        return ((_product$category_typ = product.category_type) === null || _product$category_typ === void 0 ? void 0 : _product$category_typ.category_type) === selectedCategoryType;
       });
     }
     if (selectedBrand) {

@@ -12,7 +12,7 @@ function EditCategoryModal({ visible, onCancel, onSave, category }) {
     // Set form values when category data changes
     if (category) {
       form.setFieldsValue({
-        name: category.name,
+        category_name: category.category_name,
       });
     }
   }, [category, form]);
@@ -29,13 +29,10 @@ function EditCategoryModal({ visible, onCancel, onSave, category }) {
         
         axios.put(`${CATEGORIES_API}/${category.id}`, values)
           .then((res) => {
-            if (res.data?.success) {
-              message.success("Category updated successfully!");
-              form.resetFields();
-              onSave();
-            } else {
-              message.error(res.data?.message || "Failed to update category");
-            }
+            // Updated to check for the message field instead of success
+            message.success(res.data?.message || "Category updated successfully!");
+            form.resetFields();
+            onSave(res.data?.category); // Pass the updated category to the parent component
           })
           .catch((err) => {
             console.error("Error updating category:", err);
@@ -46,7 +43,7 @@ function EditCategoryModal({ visible, onCancel, onSave, category }) {
                 message.error(`${field}: ${validationErrors[field][0]}`);
               });
             } else {
-              message.error("An error occurred while updating the category");
+              message.error(err.response?.data?.message || "An error occurred while updating the category");
             }
           })
           .finally(() => {
@@ -61,7 +58,7 @@ function EditCategoryModal({ visible, onCancel, onSave, category }) {
   return (
     <Modal
       title="Edit Category"
-      visible={visible}
+      open={visible}
       onCancel={handleCancel}
       footer={[
         <Button key="back" onClick={handleCancel}>
@@ -84,7 +81,7 @@ function EditCategoryModal({ visible, onCancel, onSave, category }) {
         name="edit_category_form"
       >
         <Form.Item
-          name="name"
+          name="category_name"
           label="Category Name"
           rules={[
             {

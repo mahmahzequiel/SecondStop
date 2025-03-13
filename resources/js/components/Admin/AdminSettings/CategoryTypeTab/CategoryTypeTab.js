@@ -112,7 +112,7 @@ function CategoryTypeTab() {
         setLoading(true);
         
         axios
-          .post(`${CATEGORY_TYPES_API}/${categoryTypeId}/restore`, {}, {
+          .put(`${CATEGORY_TYPES_API}/${categoryTypeId}/restore`, {}, {
             headers: {
               'Content-Type': 'application/json',
               'Accept': 'application/json'

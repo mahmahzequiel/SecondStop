@@ -110,7 +110,7 @@ function BrandTab() {
         setLoading(true);
         
         axios
-          .post(`${BRANDS_API}/${brandId}/restore`, {})
+          .put(`${BRANDS_API}/${brandId}/restore`, {})
           .then((response) => {
             console.log("Restore response:", response);
             message.success("Brand restored successfully!");
