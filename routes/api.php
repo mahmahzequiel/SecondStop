@@ -70,9 +70,16 @@ Route::group(["middleware" => ["auth:api"]], function() {
     Route::put('/address/restore/{id}', [AddressController::class, 'restore']);
 
     // Chat Routes
-    Route::get('chat/{otherUserId}', [ChatController::class, 'getMessages']);
-    Route::post('chat/send', [ChatController::class, 'sendMessage']);
-    Route::get('chat/customer-chats', [ChatController::class, 'getAllCustomerChats']);
+    // Chat Routes
+Route::post('/chat/send', [ChatController::class, 'sendMessage']);
+// Route::get('/chat/messages/{otherUserId}', [ChatController::class, 'getMessagesWithUserData']);
+Route::post('/chat/mark-read/{senderId}', [ChatController::class, 'markAsRead']);
+Route::get('/chat/messages/{userId}', [ChatController::class, 'getMessagesWithUserData']);
+Route::get('/chat/customer/messages', [ChatController::class, 'getCustomerMessages']);
+
+// For admin users only
+Route::get('/chat/customer-chats', [ChatController::class, 'getAllCustomerChats']);
+Route::get('/chat/conversations', [ChatController::class, 'getConversations']);
 
     // Admin Routes
     Route::put('/users/{id}/archive', [UserController::class, 'archive']);

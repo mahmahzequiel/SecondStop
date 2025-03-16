@@ -1,6 +1,8 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use Illuminate\Support\Facades\Broadcast;
+use App\Http\Controllers\ChatController;
 
 /*
 |--------------------------------------------------------------------------
@@ -13,8 +15,18 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
+// Broadcast authentication routes - important for private channels
+Broadcast::routes(['middleware' => ['auth:sanctum']]);
+
 Route::get('/', function () {
     return view('welcome');
+});
+
+// Chat web routes (if you need them)
+Route::middleware(['auth:sanctum'])->group(function () {
+    Route::get('/chat', function () {
+        return view('chat');
+    });
 });
 
 // Catch all other routes and direct them to the welcome view

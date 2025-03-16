@@ -46,6 +46,7 @@ class ChatController extends Controller
                 ->orderBy('created_at', 'asc')
                 ->get();
         }
+        broadcast(new NewMessage($chat))->toOthers();
 
         Log::info("Fetched messages between user {$user->id} and {$otherUserId}", $messages->toArray());
         return response()->json(['messages' => $messages]);
@@ -87,6 +88,10 @@ class ChatController extends Controller
                         'date_time'   => now(),
                         'is_read'     => false,
                     ]);
+                    
+                    // Place the broadcast call after creating the chat
+                    broadcast(new NewMessage($chat))->toOthers();
+                    
                     $createdChats[] = $chat;
                     Log::info("Chat created for admin (ID: {$admin->id})", $chat->toArray());
                 } catch (\Exception $e) {
@@ -112,6 +117,10 @@ class ChatController extends Controller
                     'date_time'   => now(),
                     'is_read'     => false,
                 ]);
+
+                // Add the broadcast call here
+                broadcast(new NewMessage($chat))->toOthers();
+                
                 Log::info("Chat created by admin", $chat->toArray());
             } catch (\Exception $e) {
                 Log::error("Error creating chat: " . $e->getMessage());
@@ -150,4 +159,190 @@ class ChatController extends Controller
         // For debugging, return raw messages.
         return response()->json(['customer_chats' => $messages]);
     }
+
+    /**
+ * For admin: Get all conversations grouped by customer with latest message and unread count
+ */
+public function getConversations()
+{
+    $user = Auth::user();
+    if (!$user || $user->role_id != 2) {
+        return response()->json(['message' => 'Forbidden'], 403);
+    }
+
+    // Get unique customer IDs who have sent messages to this admin
+    $customerIds = Chat::where('receiver_id', $user->id)
+        ->select('sender_id')
+        ->distinct()
+        ->pluck('sender_id');
+
+    $conversations = [];
+    foreach ($customerIds as $customerId) {
+        // Get customer details
+        $customer = User::find($customerId);
+        if (!$customer) continue;
+        
+        // Get the latest message
+        $latestMessage = Chat::where(function ($query) use ($customerId, $user) {
+                $query->where('sender_id', $customerId)
+                      ->where('receiver_id', $user->id);
+            })->orWhere(function ($query) use ($customerId, $user) {
+                $query->where('sender_id', $user->id)
+                      ->where('receiver_id', $customerId);
+            })
+            ->orderBy('created_at', 'desc')
+            ->first();
+            
+        // Count unread messages
+        $unreadCount = Chat::where('sender_id', $customerId)
+            ->where('receiver_id', $user->id)
+            ->where('is_read', false)
+            ->count();
+            
+        if ($latestMessage) {
+            $conversations[] = [
+                'user_id' => $customerId,
+                'user_name' => $customer->username,
+                'last_message' => $latestMessage->message,
+                'last_message_time' => $latestMessage->created_at,
+                'unread_count' => $unreadCount
+            ];
+        }
+    }
+    
+    // Sort by latest message
+    usort($conversations, function($a, $b) {
+        return strtotime($b['last_message_time']) - strtotime($a['last_message_time']);
+    });
+
+    return response()->json(['conversations' => $conversations]);
+}
+
+/**
+ * Mark messages as read for a specific conversation
+ */
+public function markAsRead(Request $request, $senderId)
+{
+    $user = Auth::user();
+    if (!$user) {
+        return response()->json(['message' => 'Unauthorized'], 401);
+    }
+    
+    // Mark all messages from this sender to this user as read
+    Chat::where('sender_id', $senderId)
+        ->where('receiver_id', $user->id)
+        ->where('is_read', false)
+        ->update(['is_read' => true]);
+        
+    return response()->json(['message' => 'Messages marked as read']);
+}
+
+/**
+ * Get messages between admin and user with user details
+ */
+public function getMessagesWithUserData(Request $request, $otherUserId)
+{
+    $user = Auth::user();
+    if (!$user) {
+        return response()->json(['message' => 'Unauthorized'], 401);
+    }
+
+    // Get user details
+    $otherUser = User::find($otherUserId);
+    if (!$otherUser) {
+        return response()->json(['message' => 'User not found'], 404);
+    }
+
+    $messages = Chat::where(function ($query) use ($otherUserId, $user) {
+            $query->where('sender_id', $otherUserId)
+                  ->where('receiver_id', $user->id);
+        })->orWhere(function ($query) use ($otherUserId, $user) {
+            $query->where('sender_id', $user->id)
+                  ->where('receiver_id', $otherUserId);
+        })
+        ->orderBy('created_at', 'asc')
+        ->get();
+
+    return response()->json([
+        'messages' => $messages,
+        'user_name' => $otherUser->username
+    ]);
+}
+/**
+ * For customers: Retrieve all messages sent to and from this customer
+ * Groups messages by admin
+ */
+/**
+ * For customers: Retrieve all messages sent to and from this customer
+ * Groups messages by admin
+ */
+public function getCustomerMessages()
+{
+    $user = Auth::user();
+    if (!$user) {
+        Log::error("Unauthorized access in getCustomerMessages");
+        return response()->json(['message' => 'Unauthorized'], 401);
+    }
+
+    // Only allow customers to access this endpoint
+    if ($user->role_id == 2) {
+        Log::warning("Admin attempting to access customer messages endpoint", ['admin_id' => $user->id]);
+        return response()->json(['message' => 'Forbidden - This endpoint is for customers only'], 403);
+    }
+
+    Log::debug("getCustomerMessages called by customer with ID: " . $user->id);
+
+    // Get all messages where the customer is either sender or receiver
+    $messages = Chat::where('sender_id', $user->id)
+                    ->orWhere('receiver_id', $user->id)
+                    ->orderBy('created_at', 'asc')
+                    ->get();
+
+    // Find a valid admin to respond to (prefer the last admin they communicated with)
+    $lastAdminConversation = Chat::where(function($query) use ($user) {
+            $query->where('sender_id', $user->id)
+                  ->whereHas('receiver', function($q) {
+                      $q->where('role_id', 2);
+                  });
+        })
+        ->orWhere(function($query) use ($user) {
+            $query->where('receiver_id', $user->id)
+                  ->whereHas('sender', function($q) {
+                      $q->where('role_id', 2);
+                  });
+        })
+        ->orderBy('created_at', 'desc')
+        ->first();
+
+    $admin_id = null;
+    if ($lastAdminConversation) {
+        if ($lastAdminConversation->sender_id != $user->id) {
+            // Check if sender is an admin
+            $senderUser = User::find($lastAdminConversation->sender_id);
+            if ($senderUser && $senderUser->role_id == 2) {
+                $admin_id = $lastAdminConversation->sender_id;
+            }
+        } elseif ($lastAdminConversation->receiver_id != $user->id) {
+            // Check if receiver is an admin
+            $receiverUser = User::find($lastAdminConversation->receiver_id);
+            if ($receiverUser && $receiverUser->role_id == 2) {
+                $admin_id = $lastAdminConversation->receiver_id;
+            }
+        }
+    }
+
+    // If no admin found from messages, just get the first admin in the system
+    if (!$admin_id) {
+        $firstAdmin = User::where('role_id', 2)->first();
+        $admin_id = $firstAdmin ? $firstAdmin->id : null;
+    }
+
+    Log::info("Customer messages retrieved for user {$user->id}, total messages: " . $messages->count());
+    
+    return response()->json([
+        'messages' => $messages,
+        'admin_id' => $admin_id,
+    ]);
+}
+
 }

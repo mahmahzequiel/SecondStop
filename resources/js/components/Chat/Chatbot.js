@@ -1,71 +1,407 @@
-import React, { useState } from "react";
-import { FloatButton, Input, Button, Card } from "antd";
+import React, { useState, useEffect, useRef } from "react";
+import { FloatButton, Input, Button, Card, message as antMessage } from "antd";
 import { MessageOutlined, SendOutlined, CloseOutlined } from "@ant-design/icons";
 import axios from "axios";
+import Pusher from 'pusher-js';
 
 function Chatbot() {
   const [openChat, setOpenChat] = useState(false);
   const [message, setMessage] = useState("");
-  const [messages, setMessages] = useState([
-    { text: "Hello! How can we help you?", sender: "bot" },
-  ]);
+  const [messages, setMessages] = useState([]);
+  const [userId, setUserId] = useState(null);
+  const [adminId, setAdminId] = useState(null);
+  const [isLoading, setIsLoading] = useState(true);
+  const [unreadCount, setUnreadCount] = useState(0);
+  const messagesEndRef = useRef(null);
+  const messagesContainerRef = useRef(null); // Ref for the messages container
+  const pusherRef = useRef(null);
 
+  // Get auth information from localStorage
   const userToken = localStorage.getItem("userToken");
+  const storedUserId = localStorage.getItem("userId");
+  const storedUserData = localStorage.getItem("user");
 
-  const sendMessage = () => {
-    if (message.trim() === "") return;
-    console.log("Attempting to send message to API:", message);
+  // Initialize axios default headers
+  useEffect(() => {
+    if (userToken) {
+      axios.defaults.headers.common['Authorization'] = `Bearer ${userToken}`;
+    }
+  }, [userToken]);
 
-    axios
-      .post(
-        "http://127.0.0.1:8000/api/chat/send",
-        { message: message },
-        { headers: { Authorization: `Bearer ${userToken}` } }
-      )
-      .then((res) => {
-        console.log("Message sent from customer:", res.data.data);
-        setMessages((prev) => [
-          ...prev,
-          { text: res.data.data.message, sender: "user" },
-        ]);
-        setMessage("");
-      })
-      .catch((err) => {
-        console.error("Error sending message:", err.response ? err.response.data : err);
+  // Scroll to bottom whenever messages change
+  useEffect(() => {
+    if (messagesContainerRef.current) {
+      messagesContainerRef.current.scrollTop = messagesContainerRef.current.scrollHeight;
+    }
+  }, [messages]);
+
+  // Initialize user data from localStorage first, then verify with API
+  useEffect(() => {
+    const initializeUser = async () => {
+      setIsLoading(true);
+      
+      // First try to get user info from localStorage
+      if (storedUserId) {
+        console.log("Found stored user ID:", storedUserId);
+        setUserId(parseInt(storedUserId));
+        
+        // Check if we can fetch chat history with stored ID
+        try {
+          await fetchChatHistory(parseInt(storedUserId));
+          setIsLoading(false);
+          return; // If successful, no need to continue
+        } catch (error) {
+          console.warn("Error using stored user ID, will try to re-authenticate", error);
+          // Continue to API verification
+        }
+      } else if (storedUserData) {
+        try {
+          const userData = JSON.parse(storedUserData);
+          if (userData && userData.id) {
+            console.log("Found stored user data:", userData);
+            setUserId(userData.id);
+            
+            // Check if we can fetch chat history with parsed ID
+            try {
+              await fetchChatHistory(userData.id);
+              setIsLoading(false);
+              return; // If successful, no need to continue
+            } catch (error) {
+              console.warn("Error using stored user data, will try to re-authenticate", error);
+              // Continue to API verification
+            }
+          }
+        } catch (e) {
+          console.error("Error parsing stored user data:", e);
+        }
+      }
+      
+      // If no valid stored data or fetch failed, try API verification
+      if (userToken) {
+        try {
+          console.log("Fetching user data from API");
+          const response = await axios.get("http://127.0.0.1:8000/api/user", {
+            headers: { Authorization: `Bearer ${userToken}` }
+          });
+          
+          console.log("User data retrieved from API:", response.data);
+          
+          if (response.data && response.data.id) {
+            // Update localStorage with latest user info
+            localStorage.setItem("userId", response.data.id);
+            localStorage.setItem("user", JSON.stringify(response.data));
+            
+            setUserId(response.data.id);
+            await fetchChatHistory(response.data.id);
+          } else {
+            console.error("API returned user data without ID");
+            setIsLoading(false);
+            setMessages([{ text: "Hello! How can we help you?", sender: "bot" }]);
+          }
+        } catch (error) {
+          console.error("Authentication error:", error);
+          handleAuthError(error);
+        }
+      } else {
+        // No token available
+        console.log("No authentication token available");
+        setIsLoading(false);
+        setMessages([{ text: "Hello! How can we help you?", sender: "bot" }]);
+      }
+    };
+
+    initializeUser();
+    
+    // Cleanup function to ensure proper unmounting
+    return () => {
+      if (pusherRef.current) {
+        const channel = pusherRef.current.channel('chat-channel');
+        if (channel) {
+          channel.unbind_all();
+        }
+        pusherRef.current.unsubscribe('chat-channel');
+        pusherRef.current.disconnect();
+      }
+    };
+  }, []);  // Empty dependency array to ensure this only runs once on mount
+
+  // Handle authentication errors
+  const handleAuthError = (error) => {
+    if (error.response && error.response.status === 401) {
+      antMessage.error("Your session has expired. Please log in again.");
+    }
+    setIsLoading(false);
+    setMessages([{ text: "Hello! How can we help you?", sender: "bot" }]);
+  };
+
+  // Fetch chat history for the specific user
+  const fetchChatHistory = async (currentUserId) => {
+    if (!currentUserId) {
+      throw new Error("Cannot fetch chat history: No user ID available");
+    }
+    
+    console.log("Fetching chat history for user:", currentUserId);
+    
+    try {
+      const messagesRes = await axios.get(`http://127.0.0.1:8000/api/chat/customer/messages`, {
+        headers: { Authorization: `Bearer ${userToken}` }
       });
+      
+      console.log("Messages response:", messagesRes.data);
+      
+      if (messagesRes.data.messages && messagesRes.data.messages.length > 0) {
+        const formattedMessages = messagesRes.data.messages.map(msg => ({
+          id: msg.id,
+          text: msg.message,
+          sender: msg.sender_id === currentUserId ? 'user' : 'bot',
+          timestamp: new Date(msg.created_at || msg.date_time)
+        }));
+        
+        console.log("Formatted messages:", formattedMessages);
+        setMessages(formattedMessages);
+        
+        if (messagesRes.data.admin_id) {
+          setAdminId(messagesRes.data.admin_id);
+          console.log("Setting adminId from response:", messagesRes.data.admin_id);
+        } else {
+          setAdminId(1);
+          console.log("No admin ID provided, setting fallback adminId: 1");
+        }
+        
+        const unreadMessages = messagesRes.data.messages.filter(
+          msg => msg.receiver_id === currentUserId && !msg.is_read
+        ).length;
+        
+        setUnreadCount(unreadMessages);
+      } else {
+        console.log("No messages found, showing welcome message");
+        setMessages([{ text: "Hello! How can we help you?", sender: "bot" }]);
+        
+        if (messagesRes.data.admin_id) {
+          setAdminId(messagesRes.data.admin_id);
+          console.log("Setting default adminId:", messagesRes.data.admin_id);
+        } else {
+          setAdminId(1);
+          console.log("Setting fallback adminId: 1");
+        }
+      }
+      setIsLoading(false);
+    } catch (error) {
+      console.error("Error fetching messages:", error);
+      setIsLoading(false);
+      throw error;
+    }
+  };
+
+  // Initialize Pusher for real-time updates
+  useEffect(() => {
+    if (!userId) return;
+    
+    const pusher = new Pusher('450508915178ad069fcf', {
+      cluster: 'ap1',
+      forceTLS: true
+    });
+    
+    pusherRef.current = pusher;
+
+    const channel = pusher.subscribe('chat-channel');
+    
+    channel.bind('new-message', (data) => {
+      console.log("New message received:", data);
+      
+      if (data && data.chat && data.chat.receiver_id === userId) {
+        console.log("Message is for this user, adding to messages");
+        
+        if (data.chat.sender_id !== userId) {
+          setAdminId(data.chat.sender_id);
+          console.log("Updating adminId to:", data.chat.sender_id);
+        }
+        
+        setMessages(prev => [...prev, { 
+          id: data.chat.id,
+          text: data.chat.message, 
+          sender: data.chat.sender_id === userId ? 'user' : 'bot',
+          timestamp: new Date(data.chat.created_at || data.chat.date_time)
+        }]);
+        
+        if (!openChat) {
+          setUnreadCount(prev => prev + 1);
+        } else {
+          markMessagesAsRead();
+        }
+      } else {
+        console.log("Message is not for this user, ignoring");
+      }
+    });
+
+    return () => {
+      try {
+        channel.unbind_all();
+        pusher.unsubscribe('chat-channel');
+      } catch (error) {
+        console.error("Error unbinding Pusher events:", error);
+      }
+    };
+  }, [userId, openChat]);
+
+  // Listen to the user's personal channel for new messages
+  useEffect(() => {
+    if (!userId) return;
+    
+    if (!pusherRef.current) {
+      pusherRef.current = new Pusher('450508915178ad069fcf', {
+        cluster: 'ap1',
+        forceTLS: true
+      });
+    }
+    
+    const personalChannel = pusherRef.current.subscribe(`chat.${userId}`);
+    
+    personalChannel.bind('new.message', (e) => {
+      console.log("New message received via personal channel:", e);
+      
+      const messageData = e.chat || e;
+      
+      if (messageData) {
+        if (messageData.sender_id !== userId) {
+          setAdminId(messageData.sender_id);
+          console.log("Updating adminId to:", messageData.sender_id);
+        }
+        
+        setMessages(prev => [...prev, { 
+          id: messageData.id,
+          text: messageData.message, 
+          sender: messageData.sender_id === userId ? 'user' : 'bot',
+          timestamp: new Date(messageData.created_at || messageData.date_time)
+        }]);
+        
+        if (openChat) {
+          markMessagesAsRead();
+        } else {
+          setUnreadCount(prev => prev + 1);
+        }
+      }
+    });
+
+    return () => {
+      try {
+        personalChannel.unbind_all();
+        pusherRef.current.unsubscribe(`chat.${userId}`);
+      } catch (error) {
+        console.error("Error unbinding Pusher events:", error);
+      }
+    };
+  }, [userId, openChat]);
+
+  // Mark messages as read when chat is opened
+  useEffect(() => {
+    if (openChat && userId && adminId) {
+      markMessagesAsRead();
+    }
+  }, [openChat, userId, adminId]);
+  
+  const markMessagesAsRead = async () => {
+    if (!userToken || !userId || !adminId) return;
+    
+    try {
+      await axios.post(
+        `http://127.0.0.1:8000/api/chat/mark-read/${adminId}`,
+        {},
+        { headers: { Authorization: `Bearer ${userToken}` } }
+      );
+      setUnreadCount(0);
+    } catch (error) {
+      console.error("Error marking messages as read:", error);
+    }
+  };
+
+  const sendMessage = async () => {
+    if (message.trim() === "" || !userToken || !userId || !adminId) {
+      return;
+    }
+    
+    const newUserMessage = { 
+      id: `temp-${Date.now()}`,
+      text: message, 
+      sender: "user",
+      timestamp: new Date()
+    };
+    setMessages(prev => [...prev, newUserMessage]);
+    
+    const messageToSend = message;
+    setMessage("");
+
+    try {
+      const res = await axios.post(
+        "http://127.0.0.1:8000/api/chat/send",
+        { 
+          message: messageToSend,
+          receiver_id: adminId
+        },
+        { headers: { Authorization: `Bearer ${userToken}` } }
+      );
+      
+      console.log("Message sent successfully:", res.data);
+      
+      if (res.data.data) {
+        setMessages(prev => 
+          prev.map(msg => 
+            msg.id === newUserMessage.id 
+              ? { 
+                  id: res.data.data.id,
+                  text: res.data.data.message,
+                  sender: 'user',
+                  timestamp: new Date(res.data.data.created_at || res.data.data.date_time)
+                } 
+              : msg
+          )
+        );
+      }
+    } catch (error) {
+      console.error("Error sending message:", error.response ? error.response.data : error);
+      setMessages(prev => [...prev, { 
+        id: `error-${Date.now()}`,
+        text: "Message failed to send. Please try again.", 
+        sender: "bot",
+        timestamp: new Date()
+      }]);
+    }
   };
 
   return (
     <>
       <FloatButton
         icon={<MessageOutlined style={{ fontSize: "22px" }} />}
-        type="primary"
-        size="large"
+        badge={{ count: unreadCount, offset: [-5, 5] }}
+        onClick={() => {
+          setOpenChat(!openChat);
+          if (!openChat) {
+            setUnreadCount(0);
+          }
+        }}
         style={{
-          right: 24,
-          bottom: 24,
           width: 60,
           height: 60,
-          fontSize: "20px",
+          backgroundColor: "#1890ff"
         }}
-        onClick={() => setOpenChat(!openChat)}
       />
 
       {openChat && (
         <Card
           style={{
             position: "fixed",
-            bottom: 80,
-            right: 24,
-            width: 800,
-            height: 780,
-            boxShadow: "0px 4px 10px rgba(0, 0, 0, 0.2)",
-            borderRadius: 10,
+            bottom: 90,
+            right: 20,
+            width: 350,
+            height: 500,
+            boxShadow: "0 4px 12px rgba(0,0,0,0.15)",
             display: "flex",
             flexDirection: "column",
-            justifyContent: "space-between",
+            padding: 0,
+            zIndex: 999
           }}
-          title="Conversation"
+          bodyStyle={{ padding: 0, flex: 1, display: "flex", flexDirection: "column" }}
+          title="Customer Support"
           extra={
             <CloseOutlined
               onClick={() => setOpenChat(false)}
@@ -74,48 +410,80 @@ function Chatbot() {
           }
         >
           <div
+            ref={messagesContainerRef} // Ref for the messages container
             style={{
               flex: 1,
               overflowY: "auto",
-              paddingBottom: 10,
+              padding: "12px 16px",
               display: "flex",
               flexDirection: "column",
+              maxHeight: "400px" // Ensure the container has a fixed height
             }}
           >
-            {messages.map((msg, index) => (
-              <div
-                key={index}
-                style={{
-                  alignSelf: msg.sender === "user" ? "flex-end" : "flex-start",
-                  background: msg.sender === "user" ? "#1890ff" : "#f1f1f1",
-                  color: msg.sender === "user" ? "#fff" : "#000",
-                  padding: "8px 12px",
-                  borderRadius: "10px",
-                  margin: "5px",
-                  maxWidth: "70%",
-                  textAlign: msg.sender === "user" ? "right" : "left",
-                }}
-              >
-                {msg.text}
-              </div>
-            ))}
+            {isLoading ? (
+              <div style={{ textAlign: "center", padding: 20 }}>Loading chat...</div>
+            ) : (
+              messages.map((msg, index) => (
+                <div
+                  key={msg.id || index}
+                  style={{
+                    alignSelf: msg.sender === "user" ? "flex-end" : "flex-start",
+                    maxWidth: "100%",
+                    marginBottom: 10
+                  }}
+                >
+                  <div
+                    style={{
+                      backgroundColor: msg.sender === "user" ? "#1890ff" : "#f0f2f5",
+                      color: msg.sender === "user" ? "white" : "black",
+                      padding: "8px 12px",
+                      borderRadius: 8,
+                      wordBreak: "break-word"
+                    }}
+                  >
+                    {msg.text}
+                  </div>
+                  {msg.timestamp && (
+                    <div
+                      style={{
+                        fontSize: 11,
+                        color: "#888",
+                        marginTop: 3,
+                        textAlign: msg.sender === "user" ? "right" : "left"
+                      }}
+                    >
+                      {new Date(msg.timestamp).toLocaleTimeString([], { 
+                        hour: '2-digit', 
+                        minute: '2-digit' 
+                      })}
+                    </div>
+                  )}
+                </div>
+              ))
+            )}
+            <div ref={messagesEndRef} />
           </div>
-
-          <div style={{ borderTop: "1px solid #f0f0f0", padding: "10px" }}>
-            <Input.TextArea
-              rows={2}
+          <div
+            style={{
+              display: "flex",
+              padding: 10,
+              borderTop: "1px solid #e8e8e8"
+            }}
+          >
+            <Input
               placeholder="Type a message..."
               value={message}
               onChange={(e) => setMessage(e.target.value)}
+              onPressEnter={sendMessage}
+              disabled={isLoading || !userId || !adminId}
+              style={{ marginRight: 8 }}
             />
             <Button
               type="primary"
               icon={<SendOutlined />}
-              style={{ marginTop: 10, width: "100%" }}
               onClick={sendMessage}
-            >
-              Send
-            </Button>
+              disabled={isLoading || !userId || !adminId}
+            />
           </div>
         </Card>
       )}
