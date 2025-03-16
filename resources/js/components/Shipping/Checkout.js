@@ -78,8 +78,8 @@ const Checkout = () => {
           // Fill from the default address, ensuring all fields are properly mapped
           setAddress({
             id: defaultAddress.id,
-            receiver_fullname: defaultAddress.receiver_fullname || profile.full_name || "",
-            contact_number: defaultAddress.contact_number || profile.phone_number || "",
+            receiver_fullname: defaultAddress.receiver_fullname || "",
+            contact_number: defaultAddress.contact_number || "",
             country: defaultAddress.country || "",
             region: defaultAddress.region || "",
             state: defaultAddress.state || "",
@@ -97,8 +97,8 @@ const Checkout = () => {
           // No default address: create fields with profile data when available
           setAddress({
             id: null,
-            receiver_fullname: profile.full_name || "",
-            contact_number: profile.phone_number || "",
+            receiver_fullname: "",
+            contact_number: "",
             country: "",
             region: "",
             state: "",
