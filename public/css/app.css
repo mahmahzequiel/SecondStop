@@ -14647,7 +14647,7 @@ a {
 }
 .change-password-content .ant-form .ant-form-item-label > label {
   font-weight: 600;
-  color: #333;
+  color: #ffffff;
   font-size: 16px;
   font-family: "Inria Serif", serif;
   height: auto;
@@ -14670,25 +14670,6 @@ a {
 }
 .change-password-content .ant-form .ant-input-password-disabled {
   background-color: #f5f5f5;
-}
-.change-password-content .ant-form button[type=primary] {
-  background-color: #d84727;
-  border-color: #d84727;
-  border-radius: 6px;
-  height: 40px;
-  padding: 0 30px;
-  font-size: 16px;
-  font-family: "Inria Serif", serif;
-  margin-top: 10px;
-  transition: all 0.3s;
-}
-.change-password-content .ant-form button[type=primary]:hover {
-  background-color: #c63c1f;
-  border-color: #c63c1f;
-  transform: translateY(-1px);
-}
-.change-password-content .ant-form button[type=primary]:active {
-  transform: translateY(0);
 }
 .change-password-content .ant-form-item-has-error .ant-input-password {
   border-color: #ff4d4f;

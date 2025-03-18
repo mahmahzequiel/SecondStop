@@ -101,6 +101,7 @@ const ChangePassword = () => {
               loading={loading}
               disabled={loading}
               className="save-button"
+              style={{ backgroundColor: '#ff3b30', borderColor: '#ff0000' }}
             >
               {loading ? "Changing..." : "Change Password"}
             </Button>

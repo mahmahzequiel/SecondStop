@@ -75785,6 +75785,10 @@ var ChangePassword = function ChangePassword() {
             loading: loading,
             disabled: loading,
             className: "save-button",
+            style: {
+              backgroundColor: '#ff3b30',
+              borderColor: '#ff0000'
+            },
             children: loading ? "Changing..." : "Change Password"
           })
         })]
