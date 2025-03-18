@@ -14309,6 +14309,7 @@ a {
 .confirmation-page .order-details p {
   margin: 5px 0;
   font-size: 16px;
+  color: black;
 }
 .confirmation-page .order-details p strong {
   font-weight: bold;

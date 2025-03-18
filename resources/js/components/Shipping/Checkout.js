@@ -30,22 +30,36 @@ const Checkout = () => {
 
   const [isEditing, setIsEditing] = useState(false);
   const [userId, setUserId] = useState(null);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null);
+  const [profileData, setProfileData] = useState(null);
 
   useEffect(() => {
     const fetchProfileAndAddress = async () => {
       try {
+        setLoading(true);
         const token = localStorage.getItem("userToken");
-        if (!token) return;
+        if (!token) {
+          setError("Authentication token not found");
+          setLoading(false);
+          return;
+        }
 
         // 1) Fetch user profile
         const profileResponse = await axios.get("http://127.0.0.1:8000/api/profile", {
           headers: { Authorization: `Bearer ${token}` },
         });
+        
         if (!profileResponse.data || !profileResponse.data.profile) {
+          setError("Profile data not available");
+          setLoading(false);
           return;
         }
+        
         const profile = profileResponse.data.profile;
+        setProfileData(profile); // Store the full profile data
         setUserId(profile.user_id);
+        console.log("User profile fetched:", profile);
 
         // 2) Fetch user addresses
         const addressResponse = await axios.get(
@@ -53,12 +67,15 @@ const Checkout = () => {
           { headers: { Authorization: `Bearer ${token}` } }
         );
 
+        console.log("Address response:", addressResponse.data);
+        
         // Check for default address
         const addressesData = addressResponse.data.addresses || [];
         const defaultAddress = addressesData.find((a) => a.is_default === 1);
 
         if (defaultAddress) {
-          // Fill from the default address
+          console.log("Default address found:", defaultAddress);
+          // Fill from the default address, ensuring all fields are properly mapped
           setAddress({
             id: defaultAddress.id,
             receiver_fullname: defaultAddress.receiver_fullname || "",
@@ -76,7 +93,8 @@ const Checkout = () => {
           });
           setIsEditing(false);
         } else {
-          // No default address: create empty fields
+          console.log("No default address found, setting up with profile data");
+          // No default address: create fields with profile data when available
           setAddress({
             id: null,
             receiver_fullname: "",
@@ -95,6 +113,9 @@ const Checkout = () => {
         }
       } catch (error) {
         console.error("Failed to fetch profile/address", error);
+        setError("Failed to load your information. Please try again.");
+      } finally {
+        setLoading(false);
       }
     };
 
@@ -116,27 +137,33 @@ const Checkout = () => {
         return;
       }
 
-      // Basic required fields check
-      if (
-        !address.receiver_fullname ||
-        !address.contact_number ||
-        !address.house_number ||
-        !address.street ||
-        !address.barangay ||
-        !address.city
-      ) {
-        alert(
-          "Please fill out required fields (Fullname, Contact, House Number, Street, Barangay, City)."
-        );
+      // Basic required fields check - focus on fullname, phone, house number
+      if (!address.receiver_fullname) {
+        alert("Please enter the receiver's full name.");
+        return;
+      }
+      
+      if (!address.contact_number) {
+        alert("Please enter a contact phone number.");
+        return;
+      }
+      
+      if (!address.house_number) {
+        alert("Please enter the house number.");
+        return;
+      }
+      
+      if (!address.street || !address.barangay || !address.city) {
+        alert("Please fill out all required address fields.");
         return;
       }
 
       // Build data for saving
       const addressData = {
         user_id: userId,
-        receiver_fullname: address.receiver_fullname,
-        contact_number: address.contact_number,
-        house_number: address.house_number,
+        receiver_fullname: address.receiver_fullname.trim(),
+        contact_number: address.contact_number.trim(),
+        house_number: address.house_number.trim(),
         street: address.street,
         barangay: address.barangay,
         city: address.city,
@@ -168,6 +195,7 @@ const Checkout = () => {
         });
       }
 
+      console.log("Address saved successfully:", response.data);
       alert("Address saved successfully!");
       setIsEditing(false);
 
@@ -185,6 +213,22 @@ const Checkout = () => {
       alert("Failed to save address. Check console for details.");
     }
   };
+
+  if (loading) {
+    return (
+      <MainPage>
+        <div className="loading">Loading your information...</div>
+      </MainPage>
+    );
+  }
+
+  if (error) {
+    return (
+      <MainPage>
+        <div className="error">{error}</div>
+      </MainPage>
+    );
+  }
 
   return (
     <MainPage>
@@ -246,73 +290,82 @@ const Checkout = () => {
           <div className="billing-address">
             <h3>Billing Address</h3>
             <form>
-              <div>
-                <label>Receiver Fullname</label>
+              <div className="form-field required">
+                <label>Receiver Fullname <span className="required-star">*</span></label>
                 <input
                   type="text"
                   name="receiver_fullname"
                   value={address.receiver_fullname}
                   onChange={handleChange}
                   disabled={!isEditing}
+                  required
+                  placeholder="Enter the recipient's full name"
                 />
               </div>
 
-              <div>
-                <label>Phone Number</label>
+              <div className="form-field required">
+                <label>Phone Number <span className="required-star">*</span></label>
                 <input
                   type="text"
                   name="contact_number"
                   value={address.contact_number}
                   onChange={handleChange}
                   disabled={!isEditing}
+                  required
+                  placeholder="Enter contact phone number"
                 />
               </div>
 
-              <div>
-                <label>House Number</label>
+              <div className="form-field required">
+                <label>House Number <span className="required-star">*</span></label>
                 <input
                   type="text"
                   name="house_number"
                   value={address.house_number}
                   onChange={handleChange}
                   disabled={!isEditing}
+                  required
+                  placeholder="Enter house/unit number"
                 />
               </div>
 
-              <div>
-                <label>Street</label>
+              <div className="form-field required">
+                <label>Street <span className="required-star">*</span></label>
                 <input
                   type="text"
                   name="street"
                   value={address.street}
                   onChange={handleChange}
                   disabled={!isEditing}
+                  required
                 />
               </div>
 
-              <div>
-                <label>Barangay</label>
+              <div className="form-field required">
+                <label>Barangay <span className="required-star">*</span></label>
                 <input
                   type="text"
                   name="barangay"
                   value={address.barangay}
                   onChange={handleChange}
                   disabled={!isEditing}
+                  required
                 />
               </div>
 
-              <div>
-                <label>City</label>
+              <div className="form-field required">
+                <label>City <span className="required-star">*</span></label>
                 <input
                   type="text"
                   name="city"
                   value={address.city}
                   onChange={handleChange}
                   disabled={!isEditing}
+                  required
                 />
               </div>
 
-              <div>
+              <div className="form-field">
                 <label>Region</label>
                 <input
                   type="text"
@@ -323,7 +376,7 @@ const Checkout = () => {
                 />
               </div>
 
-              <div>
+              <div className="form-field">
                 <label>State</label>
                 <input
                   type="text"
@@ -334,7 +387,7 @@ const Checkout = () => {
                 />
               </div>
 
-              <div>
+              <div className="form-field">
                 <label>Country</label>
                 <input
                   type="text"
@@ -345,7 +398,7 @@ const Checkout = () => {
                 />
               </div>
 
-              <div>
+              <div className="form-field">
                 <label>Postal Code</label>
                 <input
                   type="text"
@@ -358,9 +411,9 @@ const Checkout = () => {
             </form>
 
             {!isEditing ? (
-              <button onClick={() => setIsEditing(true)}>Edit Address</button>
+              <button onClick={() => setIsEditing(true)} className="edit-btn">Edit Address</button>
             ) : (
-              <button onClick={handleSaveAddress}>Save Address</button>
+              <button onClick={handleSaveAddress} className="save-btn">Save Address</button>
             )}
           </div>
         </div>
@@ -370,6 +423,12 @@ const Checkout = () => {
           <button
             className="proceed-btn"
             onClick={() => {
+              // Ensure required fields are filled before proceeding
+              if (!address.receiver_fullname || !address.contact_number || !address.house_number) {
+                alert("Please complete required address fields before proceeding to payment.");
+                return;
+              }
+              
               navigate("/payment", {
                 state: { selectedItems, totalPrice: numericTotalPrice, address },
               });
