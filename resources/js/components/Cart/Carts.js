@@ -21,15 +21,11 @@ const Carts = () => {
           navigate("/login");
           return;
         }
-
         const response = await axios.get("http://127.0.0.1:8000/api/carts", {
           headers: { Authorization: `Bearer ${userToken}` },
         });
-
         const fetchedItems = Array.isArray(response.data) ? response.data : [];
         setCartItems(fetchedItems);
-
-        // Update user-specific cart count
         if (userId) {
           localStorage.setItem(`cartCount_${userId}`, fetchedItems.length.toString());
           window.dispatchEvent(new Event("cartCountUpdated"));
@@ -38,26 +34,22 @@ const Carts = () => {
         console.error("Error fetching cart items:", error);
       }
     };
-
     fetchCartItems();
   }, [navigate, userId]);
 
-  // Handle select item
-  const handleSelectItem = (productId) => {
+  const handleSelectItem = (cartItemId) => {
     setSelectedItems((prevSelected) =>
-      prevSelected.includes(productId)
-        ? prevSelected.filter((id) => id !== productId)
-        : [...prevSelected, productId]
+      prevSelected.includes(cartItemId)
+        ? prevSelected.filter((id) => id !== cartItemId)
+        : [...prevSelected, cartItemId]
     );
   };
 
-  // Handle select all
   const handleSelectAll = () => {
     setSelectedItems(selectAll ? [] : cartItems.map((item) => item.id));
     setSelectAll(!selectAll);
   };
 
-  // Delete selected items
   const handleDeleteSelected = async () => {
     const userToken = localStorage.getItem("userToken");
     if (!userToken) {
@@ -65,19 +57,16 @@ const Carts = () => {
       navigate("/login");
       return;
     }
-
     try {
       await axios.post(
         "http://127.0.0.1:8000/api/carts/delete",
-        { cart_ids: selectedItems },
+        { cart_item_ids: selectedItems },
         { headers: { Authorization: `Bearer ${userToken}` } }
       );
-
       const updatedCart = cartItems.filter((item) => !selectedItems.includes(item.id));
       setCartItems(updatedCart);
       setSelectedItems([]);
       setSelectAll(false);
-
       if (userId) {
         localStorage.setItem(`cartCount_${userId}`, updatedCart.length.toString());
         window.dispatchEvent(new Event("cartCountUpdated"));
@@ -89,7 +78,7 @@ const Carts = () => {
 
   const selectedCartItems = cartItems.filter((item) => selectedItems.includes(item.id));
   const totalPrice = selectedCartItems.reduce(
-    (acc, item) => acc + parseFloat(item.product?.price || 0),
+    (acc, item) => acc + parseFloat(item.product?.price || 0) * (item.quantity || 1),
     0
   );
 
@@ -100,12 +89,10 @@ const Carts = () => {
       navigate("/login");
       return;
     }
-
     if (selectedCartItems.length === 0) {
       alert("Please select items to checkout.");
       return;
     }
-
     navigate("/checkout", {
       state: {
         selectedItems: selectedCartItems.map((item) => ({
@@ -113,6 +100,7 @@ const Carts = () => {
           product_name: item.product?.product_name,
           price: item.product?.price,
           brand: item.product?.brand,
+          quantity: item.quantity || 1,
         })),
         totalPrice,
       },
@@ -134,7 +122,8 @@ const Carts = () => {
                   <th>Product</th>
                   <th>Image</th>
                   <th>Description</th>
-                  <th>Total Price</th>
+                  <th>Price</th>
+                  <th>Quantity</th>
                 </tr>
               </thead>
               <tbody>
@@ -148,7 +137,8 @@ const Carts = () => {
                       />
                     </td>
                     <td className="product_name">
-                    {item.product?.product_name || "Unknown Product"}</td>
+                      {item.product?.product_name || "Unknown Product"}
+                    </td>
                     <td>
                       <img
                         src={
@@ -164,23 +154,20 @@ const Carts = () => {
                       {item.product?.description || "No Description"}
                     </td>
                     <td className="price">PHP {item.product?.price || "0"}.00</td>
+                    <td className="quantity">{item.quantity || 1}</td>
                   </tr>
                 ))}
               </tbody>
             </table>
-
             <div className="cart-actions">
               <label>
                 <input type="checkbox" checked={selectAll} onChange={handleSelectAll} />
                 Select All
               </label>
-
               <button className="delete-btn" onClick={handleDeleteSelected}>
                 <DeleteOutlined /> Delete
               </button>
-
               <span className="total-price">Total: PHP {totalPrice.toFixed(2)}</span>
-
               <button className="checkout-btn" onClick={handleCheckout}>
                 Checkout
               </button>

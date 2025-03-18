@@ -6,23 +6,22 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 
-class Cart extends Model
+class OrderItem extends Model
 {
     use HasFactory, SoftDeletes;
 
     protected $fillable = [
-        'user_id'
+        'order_id',
+        'product_id',
     ];
 
-    // Each Cart belongs to a User.
-    public function user()
+    public function order()
     {
-        return $this->belongsTo(User::class);
+        return $this->belongsTo(Order::class);
     }
 
-    // A Cart has many CartItems.
-    public function cartItems()
+    public function product()
     {
-        return $this->hasMany(CartItem::class);
+        return $this->belongsTo(Product::class);
     }
 }

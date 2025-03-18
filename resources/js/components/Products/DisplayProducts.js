@@ -105,19 +105,17 @@ const DisplayProducts = () => {
   const handleAddToCart = async (product) => {
     const userToken = localStorage.getItem("userToken");
     const userId = localStorage.getItem("userId");
-
+  
     if (!userToken) {
       alert("Please log in to add items to the cart.");
       return;
     }
-
     if (!userId) {
       alert("User ID is missing. Please log in again.");
       return;
     }
-
     try {
-      // Fetch current cart items to check for duplicates
+      // Fetch current cart items to check for duplicates.
       const cartResponse = await axios.get("http://127.0.0.1:8000/api/carts", {
         headers: { Authorization: `Bearer ${userToken}` }
       });
@@ -127,33 +125,27 @@ const DisplayProducts = () => {
       const productAlreadyInCart = currentCartItems.some(
         (item) => item.product?.id === product.id
       );
-
+  
       if (productAlreadyInCart) {
         alert("Item is already in the cart!");
         return;
       }
-
-      // If not a duplicate, proceed to add
+  
+      // If not a duplicate, add the product to the cart.
       await axios.post(
         "http://127.0.0.1:8000/api/carts",
-        {
-          user_id: userId,
-          product_id: product.id
-        },
-        {
-          headers: { Authorization: `Bearer ${userToken}`, "Content-Type": "application/json" }
-        }
+        { product_id: product.id },
+        { headers: { Authorization: `Bearer ${userToken}`, "Content-Type": "application/json" } }
       );
-
+  
       alert(`${product.product_name} added to cart!`);
-
-      // Update the user-specific cart count
+  
       let currentCount = parseInt(localStorage.getItem(`cartCount_${userId}`)) || 0;
       localStorage.setItem(`cartCount_${userId}`, (currentCount + 1).toString());
       window.dispatchEvent(new Event("cartCountUpdated"));
     } catch (error) {
       console.error("Error adding to cart:", error.response?.data || error);
-      alert("Error: " + JSON.stringify(error.response?.data.errors || error.response?.data || error));
+      alert("Error adding to cart. Please try again.");
     }
   };
 

@@ -15,28 +15,7 @@ class CreateCartsTable extends Migration
     {
         Schema::create('carts', function (Blueprint $table) {
             $table->id();
-
-            // Foreign key to users table
-            $table->unsignedBigInteger('user_id');
-            $table->foreign('user_id')
-                  ->references('id')
-                  ->on('users')
-                  ->onDelete('cascade'); 
-            // onDelete('cascade'): if a user is deleted, remove their cart items
-
-            // Foreign key to products table
-            $table->unsignedBigInteger('product_id');
-$table->foreign('product_id')
-      ->references('id')
-      ->on('products')
-      ->onDelete('cascade');
-
-            // If your products table is named differently, adjust the reference
-
-            // If want to add another column, uncomment next line:
-            // $table->integer('quantity')->default(1);
-
-            // Timestamps
+            $table->foreignId('user_id')->constrained()->onDelete('cascade');
             $table->timestamps();
             $table->softDeletes(); 
         });
