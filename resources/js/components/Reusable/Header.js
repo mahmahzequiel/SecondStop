@@ -1,38 +1,15 @@
-// Header.js
 import React, { useState, useEffect, useRef } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import {
   BellOutlined,
   ShoppingCartOutlined,
   UserOutlined,
-  SearchOutlined,
 } from "@ant-design/icons";
 import { message } from "antd";
 import axios from "axios";
 
-function Header({ onSearch = () => {} }) {
-  // Search functionality states and effects
-  const [searchQuery, setSearchQuery] = useState("");
-  const [debouncedQuery, setDebouncedQuery] = useState("");
+function Header() {
   const navigate = useNavigate();
-
-  // Debounce search input
-  useEffect(() => {
-    const handler = setTimeout(() => {
-      setDebouncedQuery(searchQuery);
-    }, 500); // 500ms debounce delay
-
-    return () => clearTimeout(handler);
-  }, [searchQuery]);
-
-  // Handle search when debounced query changes
-  useEffect(() => {
-    if (debouncedQuery) {
-      onSearch(debouncedQuery);
-      // Alternatively navigate to search page:
-      // navigate(`/search?q=${encodeURIComponent(debouncedQuery)}`);
-    }
-  }, [debouncedQuery, onSearch, navigate]);
 
   // Existing notification and cart states
   const [notificationCount, setNotificationCount] = useState(0);
@@ -130,95 +107,87 @@ function Header({ onSearch = () => {} }) {
   };
 
   return (
-    <header className="header-layer">
-      <Link to="/products" className="logo-link">
-        <div className="logo">
-          <img src="/images/logo.png" alt="Logo" />
-          <span className="icon">Second Stop</span>
-        </div>
-      </Link>
+    <header className="header-dark">
+      <div className="header-container">
+        <Link to="/" className="logo-link">
+          <div className="logo">
+            <img src="/images/logo.png" alt="Logo" className="logo-image" />
+            <span className="logo-text">SecondStop</span>
+          </div>
+        </Link>
 
-      {/* Enhanced Search Bar */}
-      <div className="search-bar">
-        <input
-          type="text"
-          placeholder="Search products..."
-          value={searchQuery}
-          onChange={(e) => setSearchQuery(e.target.value.trim())}
-          aria-label="Product search input"
-        />
-        <SearchOutlined className="search-icon" />
-      </div>
-
-      <div className="navbar-icons">
-        {/* Notification Section (existing) */}
-        <div className="notification-container" ref={notifRef}>
-          <BellOutlined className="notification-icon icon" onClick={handleNotificationsClick} />
-          {notificationCount > 0 && (
-            <span className="notification-badge">{notificationCount}</span>
-          )}
-          {showNotifications && (
-            <div className="notification-dropdown">
-              <div className="dropdown-header">
-                <h4>Notifications</h4>
-                <button onClick={markAllAsRead} className="mark-all-read">
-                  Mark All Read
-                </button>
-              </div>
-              <hr />
-              {notifications.length === 0 ? (
-                <p className="no-notifications">No new notifications</p>
-              ) : (
-                notifications.map((notif) => (
-                  <div key={notif.id} className="notification-item">
-                    {notif.product_image && (
-                      <img
-                        className="notification-image"
-                        src={notif.product_image.startsWith("http")
-                          ? notif.product_image
-                          : `http://127.0.0.1:8000/storage/${notif.product_image}`}
-                        alt="Product preview"
-                      />
-                    )}
-                    <div className="notification-content">
-                      <h5>{notif.title}</h5>
-                      <div dangerouslySetInnerHTML={{ __html: notif.description }} />
-                      <div className="notification-meta">
-                        <span className={`status ${notif.is_read ? 'read' : 'unread'}`}>
-                          {notif.is_read ? 'Read' : 'Unread'}
-                        </span>
-                        {!notif.is_read && (
-                          <button 
-                            onClick={() => markAsRead(notif.id)}
-                            className="mark-read-btn"
-                          >
-                            Mark Read
-                          </button>
-                        )}
-                      </div>
-                    </div>
+        <div className="header-right">
+          <div className="navbar-icons">
+            {/* Notification Section */}
+            <div className="notification-container" ref={notifRef}>
+              <BellOutlined className="notification-icon icon" onClick={handleNotificationsClick} />
+              {notificationCount > 0 && (
+                <span className="notification-badge">{notificationCount}</span>
+              )}
+              {showNotifications && (
+                <div className="notification-dropdown">
+                  <div className="dropdown-header">
+                    <h4>Notifications</h4>
+                    <button onClick={markAllAsRead} className="mark-all-read">
+                      Mark All Read
+                    </button>
                   </div>
-                ))
+                  <hr />
+                  {notifications.length === 0 ? (
+                    <p className="no-notifications">No new notifications</p>
+                  ) : (
+                    notifications.map((notif) => (
+                      <div key={notif.id} className="notification-item">
+                        {notif.product_image && (
+                          <img
+                            className="notification-image"
+                            src={notif.product_image.startsWith("http")
+                              ? notif.product_image
+                              : `http://127.0.0.1:8000/storage/${notif.product_image}`}
+                            alt="Product preview"
+                          />
+                        )}
+                        <div className="notification-content">
+                          <h5>{notif.title}</h5>
+                          <div dangerouslySetInnerHTML={{ __html: notif.description }} />
+                          <div className="notification-meta">
+                            <span className={`status ${notif.is_read ? 'read' : 'unread'}`}>
+                              {notif.is_read ? 'Read' : 'Unread'}
+                            </span>
+                            {!notif.is_read && (
+                              <button 
+                                onClick={() => markAsRead(notif.id)}
+                                className="mark-read-btn"
+                              >
+                                Mark Read
+                              </button>
+                            )}
+                          </div>
+                        </div>
+                      </div>
+                    ))
+                  )}
+                </div>
               )}
             </div>
-          )}
+
+            {/* Cart Icon */}
+            <Link to="/cart" className="cart-link">
+              <ShoppingCartOutlined className="icon" />
+              {cartCount > 0 && <span className="cart-badge">{cartCount}</span>}
+            </Link>
+
+            {/* Profile Icon */}
+            <Link 
+              to={isAuthenticated ? "/profile" : "#"} 
+              onClick={handleProfileClick} 
+              className="profile-link"
+              aria-label="User profile"
+            >
+              <UserOutlined className="icon" />
+            </Link>
+          </div>
         </div>
-
-        {/* Cart Icon (existing) */}
-        <Link to="/cart" className="cart-link">
-          <ShoppingCartOutlined className="icon" />
-          {cartCount > 0 && <span className="cart-badge">{cartCount}</span>}
-        </Link>
-
-        {/* Profile Icon (existing) */}
-        <Link 
-          to={isAuthenticated ? "/profile" : "#"} 
-          onClick={handleProfileClick} 
-          className="profile-link"
-          aria-label="User profile"
-        >
-          <UserOutlined className="icon" />
-        </Link>
       </div>
     </header>
   );

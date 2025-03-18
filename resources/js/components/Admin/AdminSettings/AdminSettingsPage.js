@@ -4,7 +4,7 @@ import BrandTab from './BrandTab/BrandTab';
 import CategoryTab from './CategoryTab/CategoryTab';
 import CategoryTypeTab from './CategoryTypeTab/CategoryTypeTab';
 import AdminPage from '../../AdminReusable/AdminPage';
-import RoleTab from './RoleTab';
+import RoleTab from './Role/RoleTab';
 
 export default function Adminsetting() {
     const onChange = (key) => {

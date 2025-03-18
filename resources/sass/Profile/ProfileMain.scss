@@ -1,41 +1,49 @@
-/* ProfileMain.css */
-.first-layer {
-  background-color: #750139;
+// ProfileMain.scss
+.profile-main {
+  background-color: #121212;
   min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  padding-top: 40px; /* Adjust based on header height */
-  padding-bottom: 40px; /* Adjust based on footer height */
-}
-
-.content-wrapper {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  width: 100%;
-}
-
-.white-layer {
-  background-color: #ffffff;
-  width: 95%;
-  padding: 20px;
-  border-radius: 10px;
-  display: flex;
-  gap: 20px;  
-}
-
-.second-layer {
-  background-color: #FFD0C1;
-  flex: 1;
-  padding: 20px;
-  border-radius: 10px;
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-  min-height: 60vh; /* Match your MainPage content height */
-}
-
-.profile-sidebar {
-  width: 280px;
-  padding: 20px;
+  
+  .loading-state,
+  .error-state {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    background-color: #121212;
+  }
+  
+  .loading-state {
+    color: #ffffff;
+  }
+  
+  .error-state {
+    color: #ff3b30;
+  }
+  
+  .container {
+    padding: 20px;
+    max-width: 1200px;
+    margin: 0 auto;
+    
+    .layout {
+      display: flex;
+      gap: 20px;
+      
+      @media (max-width: 768px) {
+        flex-direction: column;
+      }
+      
+      .sidebar {
+        flex: 0 0 250px;
+        
+        @media (max-width: 768px) {
+          flex: auto;
+        }
+      }
+      
+      .content {
+        flex: 1;
+      }
+    }
+  }
 }

@@ -1,109 +1,107 @@
-/* Profile content area - these styles only affect the content inside the main-layer */
+// Profiles.scss
 .profile-content {
-  font-family: 'Inria Serif', serif;
+  background-color: #1f1f1f;
+  color: #fff;
   padding: 20px;
-}
+  border-radius: 8px;
 
-.profile-title {
-  font-size: 2rem;
-  color: #333;
-  margin: 0;
-  font-weight: bolder;
-  font-family: 'Inria Serif', serif;
-}
+  .profile-header {
+    display: flex;
+    align-items: center;
+    margin-bottom: 20px;
 
-.title-divider {
-  margin-bottom: 30px;
-  border-top: 1px solid #fff;
-}
+    .profile-avatar {
+      margin-right: 15px;
+    }
 
-/* Image upload section positioning */
-.image-upload {
-  display: flex;
-  align-items: center;
-  gap: 20px;
-  margin-bottom: 30px;
-  /* Adjust if needed for precise positioning */
-  padding-left: 50px;
-}
+    .profile-name {
+      color: #fff;
+      margin: 0;
+    }
 
-.avatar-upload {
-  width: 80px; /* Ensure it matches the Avatar size */
-  height: 80px;
-  border-radius: 50%;
-  border: 1px solid #333;
-}
+    .photo-actions {
+      margin-top: 10px;
+      
+      .upload-button {
+        background-color: #ff3b30;
+        border: none;
+      }
 
-/* Form styling */
-.profile-form .ant-form-item-label > label {
-  font-weight: 600;
-  color: #333;
-  font-size: 16px;
-}
-
-.profile-form .ant-input {
-  border-radius: 6px;
-  padding: 8px 12px;
-  border: 1px solid #d9d9d9;
-  background-color: #fff;
-  font-size: 16px;
-}
-
-.profile-form .ant-radio-group {
-  display: flex;
-  gap: 20px;
-}
-
-.form-actions {
-  display: flex;
-  justify-content: flex-end;
-  margin-top: 24px;
-
-  .edit-button {
-    padding: 0 32px;
-    height: 40px;
-    font-size: 16px;
-    border-radius: 6px;
-    background-color: #d84727;
-    border-color: #d84727;
-    
-    &:hover {
-      background-color: #c63c1f !important;
-      border-color: #c63c1f !important;
+      .remove-button {
+        color: #ff3b30;
+        margin-left: 8px;
+      }
     }
   }
 
-  .edit-mode-buttons {
-    display: flex;
-    gap: 16px; // Added spacing between buttons
-    align-items: center;
+  .profile-form {
+    width: 100%;
 
-    .cancel-button {
-      padding: 0 24px;
+    .form-input {
+      background-color: #2a2a2a;
+      color: #fff;
+      border: none;
+      border-radius: 4px;
       height: 40px;
-      font-size: 16px;
-      border-radius: 6px;
-      border: 1px solid #d9d9d9;
-      color: #333;
+      margin-bottom: 10px;
       
-      &:hover {
-        color: #d84727 !important;
-        border-color: #d84727 !important;
-        background: transparent !important;
+
+      &::placeholder {
+        color: #aaa;
+      }
+
+      &:disabled {
+        background-color: #494747;
+        color: #ffffff;
       }
     }
 
-    .save-button {
-      padding: 0 24px;
-      height: 40px;
-      font-size: 16px;
-      border-radius: 6px;
-      background-color: #d84727;
-      border-color: #d84727;
-      
-      &:hover {
-        background-color: #c63c1f !important;
-        border-color: #c63c1f !important;
+    .gender-radio {
+      color: #fff;
+
+      .ant-radio-wrapper {
+        color: #fff;
+
+        &:hover .ant-radio-inner {
+          border-color: #ff3b30;
+        }
+      }
+
+      .ant-radio-checked .ant-radio-inner {
+        background-color: #ff3b30;
+        border-color: #ff3b30;
+      }
+    }
+
+    .form-actions {
+      .edit-profile-btn {
+        background-color: #ff3b30;
+        border: none;
+        border-radius: 4px;
+        width: 100%;
+        height: 40px;
+      }
+
+      .action-buttons {
+        display: flex;
+        gap: 10px;
+
+        .cancel-btn {
+          background-color: #2a2a2a;
+          color: #fff;
+          border: none;
+          flex: 1;
+          border-radius: 4px;
+          height: 40px;
+        }
+
+        .save-btn {
+          background-color: #ff3b30;
+          border: none;
+          flex: 1;
+          border-radius: 4px;
+          height: 40px;
+        }
       }
     }
   }

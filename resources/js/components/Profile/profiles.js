@@ -4,6 +4,7 @@ import { Avatar, Button, Form, Input, Radio, Upload, message, Divider } from "an
 import { UserOutlined, UploadOutlined } from "@ant-design/icons";
 import axios from "axios";
 
+
 const Profiles = () => {
   const [form] = Form.useForm();
   const [loadingProfile, setLoadingProfile] = useState(false);
@@ -126,140 +127,158 @@ const Profiles = () => {
   return (
     <ProfileMain profileData={profileData}>
       <div className="profile-content">
-        <h2 className="profile-title">My Profile</h2>
-        <Divider className="title-divider" />
-
-        <div className="image-upload">
+        <div className="profile-header">
           <Avatar
-            size={80}
+            size={64}
             icon={<UserOutlined />}
-            className="avatar-upload"
             src={
               profileData?.profile_image
                 ? `http://127.0.0.1:8000/storage/${profileData.profile_image}`
                 : null
             }
+            className="profile-avatar"
           />
-          <Upload {...uploadProps} showUploadList={false} disabled={!isEditing}>
-            <Button icon={<UploadOutlined />} disabled={!isEditing}>
-              {selectedFile ? selectedFile.name : "Select Image"}
-            </Button>
-          </Upload>
-          {selectedFile && isEditing && (
-            <Button
-              type="link"
-              danger
-              onClick={() => setSelectedFile(null)}
-              style={{ marginLeft: 8 }}
-            >
-              Remove
-            </Button>
-          )}
+          <div>
+            <h3 className="profile-name">
+              {profileData ? `${profileData.first_name} ${profileData.last_name}` : "User"}
+            </h3>
+            {isEditing && (
+              <div className="photo-actions">
+                <Upload {...uploadProps} showUploadList={false}>
+                  <Button 
+                    type="primary" 
+                    icon={<UploadOutlined />} 
+                    size="small"
+                    className="upload-button"
+                  >
+                    {selectedFile ? "Change Photo" : "Upload Photo"}
+                  </Button>
+                </Upload>
+                {selectedFile && (
+                  <Button
+                    type="text"
+                    size="small"
+                    onClick={() => setSelectedFile(null)}
+                    className="remove-button"
+                  >
+                    Remove
+                  </Button>
+                )}
+              </div>
+            )}
+          </div>
         </div>
 
         <Form
-          className="profile-form"
           form={form}
-          layout="horizontal"
-          labelCol={{ span: 6 }}
-          wrapperCol={{ span: 18 }}
-          requiredMark={false}
+          layout="vertical"
           onFinish={onFinish}
+          className="profile-form"
+          requiredMark={false}
         >
           <Form.Item
-            label="First Name"
             name="first_name"
-            rules={[{ required: true, message: "Please input your first name!" }]}
+            rules={[{ required: true, message: "First name is required" }]}
           >
-            <Input disabled={!isEditing} />
-          </Form.Item>
-
-          <Form.Item label="Middle Name" name="middle_name">
-            <Input disabled={!isEditing} />
+            <Input 
+              placeholder="First Name" 
+              disabled={!isEditing}
+              className="form-input"
+            />
           </Form.Item>
 
           <Form.Item
-            label="Last Name"
             name="last_name"
-            rules={[{ required: true, message: "Please input your last name!" }]}
+            rules={[{ required: true, message: "Last name is required" }]}
           >
-            <Input disabled={!isEditing} />
+            <Input 
+              placeholder="Last Name" 
+              disabled={!isEditing}
+              className="form-input"
+            />
           </Form.Item>
 
           <Form.Item
-            label="Username"
             name="username"
-            rules={[{ required: true, message: "Please input your username!" }]}
+            rules={[{ required: true, message: "Username is required" }]}
           >
-            <Input disabled={!isEditing} />
+            <Input 
+              placeholder="Username" 
+              disabled={!isEditing}
+              className="form-input"
+            />
           </Form.Item>
 
           <Form.Item
-            label="Email"
             name="email"
             rules={[
-              { required: true, message: "Please input your email!" },
-              { type: "email", message: "Invalid email format" },
+              { required: true, message: "Email is required" },
+              { type: "email", message: "Please enter a valid email" }
             ]}
           >
-            <Input disabled={!isEditing} />
+            <Input 
+              placeholder="Email" 
+              disabled={!isEditing}
+              className="form-input"
+            />
           </Form.Item>
 
           <Form.Item
-            label="Phone Number"
             name="phone_number"
-            rules={[{ required: true, message: "Please input your phone number!" }]}
+            rules={[{ required: true, message: "Phone number is required" }]}
           >
-            <Input disabled={!isEditing} />
+            <Input 
+              placeholder="Phone Number" 
+              disabled={!isEditing}
+              className="form-input"
+            />
           </Form.Item>
 
           <Form.Item
-            label="Gender"
             name="sex"
-            rules={[{ required: true, message: "Please select your gender!" }]}
+            rules={[{ required: true, message: "Please select your gender" }]}
           >
-            <Radio.Group disabled={!isEditing}>
+            <Radio.Group 
+              disabled={!isEditing}
+              className="gender-radio"
+            >
               <Radio value="Male">Male</Radio>
               <Radio value="Female">Female</Radio>
               <Radio value="Other">Other</Radio>
             </Radio.Group>
           </Form.Item>
 
-          <Form.Item wrapperCol={{ span: 24 }}>
-            <div className="form-actions">
-              {!isEditing ? (
+          <Form.Item className="form-actions">
+            {!isEditing ? (
+              <Button 
+                type="primary" 
+                onClick={() => setIsEditing(true)} 
+                className="edit-profile-btn"
+              >
+                Edit Profile
+              </Button>
+            ) : (
+              <div className="action-buttons">
+                <Button 
+                  onClick={() => {
+                    setIsEditing(false);
+                    setSelectedFile(null);
+                    form.setFieldsValue(profileData);
+                  }} 
+                  className="cancel-btn"
+                >
+                  Cancel
+                </Button>
                 <Button 
                   type="primary" 
-                  onClick={() => setIsEditing(true)}
-                  className="edit-button"
+                  htmlType="submit" 
+                  loading={uploading}
+                  className="save-btn"
                 >
-                  Edit Profile
+                  Save Changes
                 </Button>
-              ) : (
-                <div className="edit-mode-buttons">
-                  <Button 
-                    type="default" 
-                    onClick={() => {
-                      setIsEditing(false);
-                      form.setFieldsValue(profileData);
-                      setSelectedFile(null);
-                    }}
-                    className="cancel-button"
-                  >
-                    Cancel
-                  </Button>
-                  <Button 
-                    type="primary" 
-                    htmlType="submit" 
-                    className="save-button" 
-                    loading={uploading}
-                    disabled={uploading}
-                  >
-                    {uploading ? "Saving..." : "Save Changes"}
-                  </Button>
-                </div>
-              )}
-            </div>
+              </div>
+            )}
           </Form.Item>
         </Form>
       </div>

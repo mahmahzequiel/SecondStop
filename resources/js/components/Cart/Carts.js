@@ -147,7 +147,8 @@ const Carts = () => {
                         onChange={() => handleSelectItem(item.id)}
                       />
                     </td>
-                    <td>{item.product?.product_name || "Unknown Product"}</td>
+                    <td className="product_name">
+                    {item.product?.product_name || "Unknown Product"}</td>
                     <td>
                       <img
                         src={

@@ -15,24 +15,27 @@ const Footer = () => {
       <div className="footer-container">
         {/* Copyright */}
         <div className="footer-section">
-          <p>© All rights Reserved</p>
+          <div className="footer-logo">
+            <span>SecondStop</span>
+          </div>
+          <p className="copyright">© All rights Reserved</p>
         </div>
 
         {/* Contact Us */}
         <div className="footer-section">
           <h4>Contact Us</h4>
           <p>
-            <MailOutlined />{" "}
-            <a href="mailto:secondstop@gmail.com">secondstop@gmail.com</a>
+            <MailOutlined className="footer-icon" />
+            <a href="mailto:secondchic@gmail.com">secondchic@gmail.com</a>
           </p>
           <p>
-            <PhoneOutlined /> 091-234-56789
+            <PhoneOutlined className="footer-icon" /> 091-234-56789
           </p>
           <p>
-            <FacebookOutlined /> Second Stop
+            <FacebookOutlined className="footer-icon" /> SecondChic
           </p>
           <p>
-            <InstagramOutlined /> Second Stop
+            <InstagramOutlined className="footer-icon" /> SecondChic
           </p>
         </div>
 
@@ -40,7 +43,7 @@ const Footer = () => {
         <div className="footer-section">
           <h4>Address</h4>
           <p>
-            <EnvironmentOutlined /> 123 Oak Street, Butuan City
+            <EnvironmentOutlined className="footer-icon" /> 123 Oak Street, Butuan City
           </p>
         </div>
 
@@ -48,12 +51,14 @@ const Footer = () => {
         <div className="footer-section">
           <h4>Payment</h4>
           <p>
-            <CreditCardOutlined /> Cash On Delivery
+            <CreditCardOutlined className="footer-icon" /> Cash On Delivery
           </p>
           <p>
-            <PayCircleOutlined /> Paypal
+            <PayCircleOutlined className="footer-icon" /> Paypal
           </p>
-          <p>🌀 G-Cash</p>
+          <p>
+            <span className="footer-icon">🌀</span> G-Cash
+          </p>
         </div>
       </div>
     </footer>
@@ -61,6 +66,3 @@ const Footer = () => {
 };
 
 export default Footer;
-
-
-//meowmeow

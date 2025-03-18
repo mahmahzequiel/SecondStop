@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
-import Header from "../Reusable/Header";
+import MainPage from "../Reusable/MainPage"; // Import MainPage instead of Header
 import ProfileSidebar from "./ProfileSidebar";
 
 function ProfileMain({ children, onSearch }) {
@@ -27,25 +27,24 @@ function ProfileMain({ children, onSearch }) {
     fetchProfileData();
   }, []);
 
-  if (loading) return <div>Loading...</div>;
-  if (error) return <div>Error: {error}</div>;
+  if (loading) return <div className="loading-state">Loading...</div>;
+  if (error) return <div className="error-state">Error: {error}</div>;
 
   return (
-    <div>
-      <Header onSearch={onSearch} />
-
-      {/* Match MainPage structure */}
-      <div className="first-layer">
-        <div className="content-wrapper">
-          <div className="white-layer">
-            <ProfileSidebar profileData={profileData} />
-            <div className="second-layer">
+    <MainPage onSearch={onSearch}> {/* Use MainPage instead of Header */}
+      <div className="profile-main">
+        <div className="container">
+          <div className="layout">
+            <div className="sidebar">
+              <ProfileSidebar profileData={profileData} />
+            </div>
+            <div className="content">
               {children}
             </div>
           </div>
         </div>
       </div>
-    </div>
+    </MainPage>
   );
 }
 

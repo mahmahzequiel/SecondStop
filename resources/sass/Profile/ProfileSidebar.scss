@@ -1,110 +1,84 @@
 .profile-sidebar {
-    width: 550px;
-    padding: 30px;
-    height: 100%;
-  
-  
-    .avatar-section {
-      align-items: center; 
-      display: flex;
-      margin-bottom: 30px;
-  
-      .avatar {
-        width: 100px;
-        height: 100px;
-        border-radius: 50%;
-        margin-bottom: 0;
-        margin-right: 20px;
-        border: 1px solid #333;
-      }
-  
-      .user-fullname {
-        font-size: 30px;
-        font-weight: bold;
-        margin: 0;
-        color: #333;
-      }
-    }
-  
-    .ant-menu {
-      margin-top: 10px; /* Moves the entire menu down from the avatar section */
-      font-family: 'Inria Serif', serif;
-  
-      a {
-        text-decoration: none;
-      }
-      a:hover {
-        text-decoration: underline;
-      }
-  
-      .ant-menu-submenu-title,
-      .ant-menu-item {
-        font-size: 25px;
-        margin-bottom: 20px;
-  
-        .ant-menu-item-icon,
-        .ant-menu-submenu-title .ant-menu-item-icon {
-          display: inline-flex;
-          align-items: center;
-          margin-right: 10px;
-        }
-  
-        .anticon {
-          width: 25px;
-          height: 25px;
-          font-size: 25px;
-          line-height: 1;
-        }
-  
-        .ant-menu-title-content {
-          margin-left: 0 !important;
-        }
-      }
-    }
-  }
-  
-  /* 
-    1) Removes top margin/padding from inline submenus 
-       so "Profile" is flush with "Account." 
-    2) Also resets any inline positioning or transform 
-       that might be pushing it down.
-  */
-  .ant-menu-inline .ant-menu-sub {
-    margin: 0 !important;
-    padding: 0 !important;
-    top: auto !important;
-    left: auto !important;
-    transform: none !important;
-  }
-  
-  /* 
-    In some AntD versions, the submenu is rendered with 
-    these classes during open. Overriding them as well. 
-  */
-  .ant-menu-submenu-popup.ant-menu-sub.ant-menu-inline,
-  .ant-menu-submenu-placement-bottomLeft {
-    margin: 0 !important;
-    padding: 0 !important;
-    top: auto !important;
-    left: auto !important;
-    transform: none !important;
-  }
-  
-  
-  
-  
-  /* 
-    Place the expand arrow directly after "Account" text 
-    with some left margin, so it won't push far to the right 
-  */
-  .ant-menu-inline .ant-menu-submenu-title {
+  background-color: #ff3b30;
+  padding: 20px;
+  border-radius: 8px;
+  height: 615px;
+  transition: background-color 0.3s ease;
+
+  .avatar-section {
     display: flex;
-    align-items: center; 
-    justify-content: flex-start;
-  
-    .ant-menu-submenu-expand-icon,
-    .ant-menu-submenu-arrow {
-      margin-right: 60% !important; /* spacing between text and arrow */
-      position: static !important;  /* override default absolute positioning */
+    flex-direction: column;
+    align-items: center;
+    margin-bottom: 20px;
+
+    .ant-avatar {
+      margin-bottom: 10px;
+    }
+
+    .user-fullname {
+      color: #ffffff;
+      margin: 0;
+      text-align: center;
+      font-weight: bold;
     }
   }
+
+  .sidebar-menu {
+    background-color: transparent;
+    border: none;
+
+    .menu-label {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      width: 100%;
+      color: #ffffff;
+      font-weight: bolder;
+    }
+
+    &.ant-menu-dark {
+      background-color: transparent;
+
+      .ant-menu-item:hover:not(.ant-menu-item-selected):not(.ant-menu-submenu-selected) {
+        background-color: rgba(255, 255, 255, 0.08);
+      }
+
+      .ant-menu-submenu-title:hover {
+        background-color: rgba(255, 255, 255, 0.08);
+      }
+
+      .ant-menu-item-selected {
+        background-color: rgba(255, 59, 48, 0.2);
+      }
+    }
+
+    .ant-menu-item-danger {
+      color: #ff3b30;
+    }
+
+    // ✅ Submenu background red
+    .ant-menu-sub {
+      background-color: #ff3b30 !important;
+    }
+
+    .ant-menu-sub .ant-menu-item {
+      color: white !important;
+    }
+
+    .ant-menu-sub .ant-menu-item:hover {
+      background-color: rgba(255, 255, 255, 0.2) !important;
+    }
+
+    // ✅ Standalone menu items (Purchases, FAQ, Logout) background red
+    .ant-menu-item {
+      background-color: #ff3b30 !important; // Red background
+      color: white !important; // White text for contrast
+      font-weight: bold;
+      transition: background-color 0.3s ease;
+    }
+
+    .ant-menu-item:hover {
+      background-color: rgba(255, 255, 255, 0.2) !important; // Light red hover effect
+    }
+  }
+}

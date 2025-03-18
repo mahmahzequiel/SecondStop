@@ -51,12 +51,7 @@ function AdminSidebar() {
           <span>Messages</span>
         </Link>
       </div>
-      <div className="nav-item">
-        <Link to="/adminprofile">
-          <ProfileOutlined className="nav-icon" />
-          <span>Profile</span>
-        </Link>
-      </div>
+      
       <div className="nav-item">
         <Link to="/adminsettings">
           <SettingOutlined className="nav-icon" />

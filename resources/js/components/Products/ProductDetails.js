@@ -1,9 +1,8 @@
-// ProductDetails.js
 import { useEffect, useState } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import axios from "axios";
 import MainPage from "../Reusable/MainPage";
-import { ArrowLeftOutlined } from "@ant-design/icons";
+import { ArrowLeftOutlined, ShoppingCartOutlined } from "@ant-design/icons";
 
 const ProductDetails = () => {
   const { id } = useParams();
@@ -11,7 +10,7 @@ const ProductDetails = () => {
   const [product, setProduct] = useState(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
-
+  
   useEffect(() => {
     const fetchProduct = async () => {
       try {
@@ -132,8 +131,6 @@ const ProductDetails = () => {
         const newCount = currentCartItems.length + 1;
         localStorage.setItem(`cartCount_${userId}`, newCount.toString());
         window.dispatchEvent(new Event("cartCountUpdated"));
-      } else {
-        
       }
   
       // Prepare product data for direct purchase navigation
@@ -161,41 +158,81 @@ const ProductDetails = () => {
       alert("Error processing your purchase. Please try again.");
     }
   };
-  
 
-  if (loading) return <h2>Loading...</h2>;
-  if (error) return <h2>{error}</h2>;
-  if (!product) return <h2>Product not found</h2>;
+  if (loading) return (
+    <MainPage>
+      <div className="product-details-view">
+        <div className="loading-container">
+          <h2>Loading...</h2>
+        </div>
+      </div>
+    </MainPage>
+  );
+  
+  if (error) return (
+    <MainPage>
+      <div className="product-details-view">
+        <div className="error-container">
+          <h2>{error}</h2>
+        </div>
+      </div>
+    </MainPage>
+  );
+  
+  if (!product) return (
+    <MainPage>
+      <div className="product-details-view">
+        <div className="not-found-container">
+          <h2>Product not found</h2>
+        </div>
+      </div>
+    </MainPage>
+  );
 
   return (
     <MainPage>
-      <div className="product-details-container">
-        <button className="back-button" onClick={() => navigate(-1)}>
+      <div className="product-details-view">
+        <div className="back-button" onClick={() => navigate(-1)}>
           <ArrowLeftOutlined /> Back
-        </button>
+        </div>
 
-        <div className="product-details">
-          <div className="product-image-container">
+        <div className="product-details-layout">
+          <div className="product-details-image-container">
             <img
               src={`http://127.0.0.1:8000/storage/${product.product_image}`}
               alt={product.product_name}
-              className="product-image"
+              className="product-details-image"
             />
           </div>
 
-          <div className="product-info">
-            <h1>{product.product_name}</h1>
-            <p className="price">
-              Price: <span>PHP {product.price}</span>
-            </p>
-            <p><strong>Description:</strong> {product.description}</p>
-            <p><strong>Brand:</strong> {product.brand ? product.brand.name : "N/A"}</p>
+          <div className="product-info-panel">
+            <h1 className="product-title">{product.product_name}</h1>
+            
+            <div className="product-meta">
+              <p>
+                <span className="meta-label">Brand:</span> {
+                  product.brand?.name || 
+                  (product.brand_id && `ID: ${product.brand_id}`) || 
+                  "N/A"
+                }
+              </p>
+            </div>
 
-            <div className="buttons">
-              <button className="add-to-cart" onClick={handleAddToCart}>
-                🛒 Add to Cart
+            <div className="product-details-price">
+              <span className="currency">$</span>
+              <span className="amount">{product.price}</span>
+            </div>
+
+            <div className="product-description">
+              <h3>Description:</h3>
+              <p>{product.description}</p>
+            </div>
+
+            <div className="product-details-actions">
+              <button className="add-to-cart-btn" onClick={handleAddToCart}>
+                <ShoppingCartOutlined /> Add to Cart
               </button>
-              <button className="buy-now" onClick={handleBuyNow}>
+              <button className="buy-now-btn" onClick={handleBuyNow}>
                 Buy Now
               </button>
             </div>

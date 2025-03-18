@@ -1,43 +1,73 @@
+/* Footer Styles to match dark theme */
 .footer {
-    background-color: #750139;
-    color: #fff;
-    padding: 20px;
-    display: flex;
-    justify-content: center;
-  }
-  
+  background-color: #121212;
+  padding: 3rem 2rem;
+  border-top: 1px solid #333;
+}
+
+.footer-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 2rem;
+}
+
+.footer-logo {
+  font-size: 1.5rem;
+  font-weight: 600;
+  color: #ffffff;
+  margin-bottom: 1rem;
+}
+
+.copyright {
+  color: #aaa;
+  font-size: 0.9rem;
+}
+
+.footer-section h4 {
+  color: #ffffff;
+  margin-bottom: 1.2rem;
+  font-size: 1.1rem;
+  font-weight: 500;
+}
+
+.footer-section p {
+  color: #aaa;
+  display: flex;
+  align-items: center;
+  margin-bottom: 0.8rem;
+  font-size: 0.9rem;
+}
+
+.footer-icon {
+  margin-right: 10px;
+  font-size: 1rem;
+  color: #888;
+}
+
+.footer-section a {
+  color: #aaa;
+  transition: color 0.2s;
+}
+
+.footer-section a:hover {
+  color: #e53935;
+}
+
+/* Responsive Footer */
+@media (max-width: 992px) {
   .footer-container {
-    width: 90%;
-    max-width: 1200px;
-    display: flex;
-    justify-content: space-between;
-    flex-wrap: wrap;
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 576px) {
+  .footer-container {
+    grid-template-columns: 1fr;
   }
   
-  .footer-section {
-    flex: 1;
-    min-width: 150px;
-    margin: 10px;
+  .footer {
+    padding: 2rem 1rem;
   }
-  
-  .footer-section h4 {
-    font-size: 18px;
-    margin-bottom: 8px;
-  }
-  
-  .footer-section p {
-    display: flex;
-    align-items: center;
-    gap: 8px;
-    margin: 5px 0;
-  }
-  
-  .footer-section a {
-    color: #fff;
-    text-decoration: none;
-  }
-  
-  .footer-section a:hover {
-    text-decoration: underline;
-  }
-  
+}

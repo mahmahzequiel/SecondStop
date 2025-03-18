@@ -1,28 +1,65 @@
 .admin-header {
-    background-color: #E8AB99;
-    color: white;
+  background-color: #E8AB99;
+  color: white;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px 20px;
+  position: sticky;
+  top: 0;
+  z-index: 1000; /* Ensures the header stays on top */
+
+  .logo {
     display: flex;
-    justify-content: space-between;
     align-items: center;
-    padding: 10px 20px;
-    position: sticky;
-    top: 0;
-    z-index: 1000; /* Ensures the header stays on top */
-  
-    .logo {
-      display: flex;
-      align-items: center;
-  
-      img {
-        height: 70px;
-        width: 70px;
-      }
-  
-      .title {
-        margin-left: 10px;
-        font-size: 30px;
-        font-family: 'Inria Serif', serif;
-      }
+
+    img {
+      height: 70px;
+      width: 70px;
+    }
+
+    .title {
+      margin-left: 10px;
+      font-size: 30px;
+      font-family: 'Inria Serif', serif;
     }
   }
+
+  .header-right {
+    display: flex;
+    align-items: center;
+    
+    a {
+      color: #A63F3F;
+      display: flex;
+      align-items: center;
+      
+    }
+    
+    .ant-typography {
+      color: #A63F3F;
+      margin-left: 8px;
+      font-size: 16px;
+    }
+    
+    .anticon-down {
+      color: #A63F3F;
+      font-size: 12px;
+      margin-left: 4px;
+    }
+  }
+}
+
+// Style for dropdown menu
+.ant-dropdown-menu {
+  border-radius: 8px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
   
+  .ant-dropdown-menu-item {
+    padding: 8px 16px;
+    
+    &:hover {
+      background-color: #f5f5f5;
+    }
+  }
+}

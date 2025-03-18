@@ -1,11 +1,11 @@
-// DisplayProducts.js
 import React, { useEffect, useState } from "react";
 import MainPage from "../Reusable/MainPage";
 import { ShoppingCartOutlined } from "@ant-design/icons";
 import { useNavigate } from "react-router-dom";
-import categories from "../Categories/Categories";
+import useCategories from "../Categories/Categories";
 import Filters from "./Filters";
 import axios from "axios";
+import Advertisement from "./Advertisement"; // Import the Advertisement component
 
 const DisplayProducts = () => {
   const [products, setProducts] = useState([]);
@@ -14,10 +14,13 @@ const DisplayProducts = () => {
   const [selectedCategoryType, setSelectedCategoryType] = useState(null);
   const [selectedBrand, setSelectedBrand] = useState(null);
   const [selectedFilters, setSelectedFilters] = useState({});
-  const [showFilters, setShowFilters] = useState(false);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
+  const [activeCategory, setActiveCategory] = useState("all");
   const navigate = useNavigate();
+  
+  // Get categories using the custom hook
+  const { categories, loading: categoriesLoading, error: categoriesError } = useCategories();
 
   useEffect(() => {
     const fetchProducts = async () => {
@@ -46,6 +49,22 @@ const DisplayProducts = () => {
 
     fetchProducts();
   }, [selectedCategoryType]);
+
+  // Handle category filter
+  const handleCategoryFilter = (categoryId) => {
+    setActiveCategory(categoryId);
+    
+    if (categoryId === "all") {
+      setFilteredProducts(products);
+      setSelectedCategory(null);
+    } else {
+      const filtered = products.filter((product) => product.category_id === categoryId);
+      setFilteredProducts(filtered);
+      
+      const selectedCat = categories.find(cat => cat.id === categoryId);
+      setSelectedCategory(selectedCat || null);
+    }
+  };
 
   // Search Filtering
   const handleSearch = (query) => {
@@ -138,53 +157,67 @@ const DisplayProducts = () => {
     }
   };
 
-  if (loading) return <div>Loading...</div>;
-  if (error) return <div>Error: {error}</div>;
+  if (loading || categoriesLoading) return <div className="loading-container">Loading...</div>;
+  if (error || categoriesError) return <div className="error-container">Error: {error || categoriesError}</div>;
 
   return (
     <MainPage onSearch={handleSearch}>
-      <div className="display-products">
-        {/* Categories at the top */}
-        <div className="category-container">
+      <div className="display-products dark-theme">
+        {/* Advertisement Carousel */}
+        <Advertisement /> {/* Add the Advertisement component here */}
+
+        {/* Category filter tabs from database */}
+        <div className="filter-tabs">
+          <button
+            className={`filter-button ${activeCategory === "all" ? 'active' : ''}`}
+            onClick={() => handleCategoryFilter("all")}
+          >
+            View all
+          </button>
+          
           {categories.map((category) => (
-            <div
+            <button
               key={category.id}
-              className="category-item"
-              onClick={() => setSelectedCategory(category)}
+              className={`filter-button ${activeCategory === category.id ? 'active' : ''}`}
+              onClick={() => handleCategoryFilter(category.id)}
             >
-              <img
-                src={`http://127.0.0.1:8000/${category.image}`}
-                alt={category.name}
-                className="category-image"
-              />
-              <p>{category.name}</p>
-            </div>
+              {category.category_name}
+            </button>
           ))}
+          
+          <div className="search-container">
+            <input type="text" placeholder="Search for items..." onChange={(e) => handleSearch(e.target.value)} />
+            <button className="search-icon">
+              <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" viewBox="0 0 16 16">
+                <path d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001c.03.04.062.078.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1.007 1.007 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0z"/>
+              </svg>
+            </button>
+          </div>
         </div>
 
-        {/* Main Grid Layout */}
-        <div className="content-grid">
-          {/* Filters on the left */}
-          <div className="filters-container">
-            {selectedCategory && (
+        {/* Main content area with conditional filters */}
+        <div className="content-area">
+          {/* Filters panel - automatically displayed when category is selected */}
+          {selectedCategory && (
+            <div className="filters-panel">
               <Filters
                 selectedFilters={selectedFilters}
                 setSelectedFilters={setSelectedFilters}
                 onCategoryTypeSelect={setSelectedCategoryType}
                 onBrandSelect={setSelectedBrand}
               />
-            )}
-          </div>
+            </div>
+          )}
 
           {/* Product Grid */}
-          <div className="product-list">
+          <div className="product-grid">
             {filteredProducts.length > 0 ? (
               filteredProducts.map((product) => (
-                <div key={product.id} className="product-item">
-                  <div onClick={() => navigate(`/product/${product.id}`)}>
+                <div key={product.id} className="product-card">
+                  <div className="product-image-container" onClick={() => navigate(`/product/${product.id}`)}>
                     {product.product_image ? (
                       <img
-                      src={`http://127.0.0.1:8000/storage/${product.product_image}`}
+                        src={`http://127.0.0.1:8000/storage/${product.product_image}`}
                         alt={product.product_name}
                         className="product-image"
                       />
@@ -195,20 +228,26 @@ const DisplayProducts = () => {
                         className="product-image"
                       />
                     )}
-                    <h2>{product.product_name}</h2>
-                    <p>Price: PHP{product.price}</p>
                   </div>
-                  <div className="description-container">
-                    <p>{product.description}</p>
-                    {/* Add to Cart Button */}
-                    <button className="cart-button" onClick={() => handleAddToCart(product)}>
+                  <div className="product-info">
+                    <h3 className="product-name">{product.product_name}</h3>
+                    <p className="product-price">$ {product.price}</p>
+                  </div>
+                  <div className="product-actions">
+                    <button 
+                      className="cart-button" 
+                      onClick={(e) => {
+                        e.stopPropagation();
+                        handleAddToCart(product);
+                      }}
+                    >
                       <ShoppingCartOutlined className="cart-icon" />
                     </button>
                   </div>
                 </div>
               ))
             ) : (
-              <p>No products found.</p>
+              <p className="no-products">No products found.</p>
             )}
           </div>
         </div>

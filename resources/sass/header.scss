@@ -1,324 +1,194 @@
-/* header.scss */
+/* General Resets */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
 
-.header-layer {
-  background-color: #E8AB99;
-  color: white;
+body {
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+  background-color: #2a2828;
+  color: #ffffff;
+}
+
+a {
+  text-decoration: none;
+  color: inherit;
+}
+
+/* Header Styles - Dark Theme */
+.header-dark {
+  background-color: #000000;
+  padding: 1rem 2rem;
+  width: 100%;
+}
+
+.header-container {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 10px 20px;
-  position: sticky;
-  top: 0;
-  z-index: 1000;
-
-  .logo-link {
-    text-decoration: none;
-    color: white;
-  }
-
-  .logo {
-    display: flex;
-    align-items: center;
-    cursor: pointer;
-
-    img {
-      height: 70px;
-      width: 70px;
-    }
-
-    .icon {
-      margin-left: 10px;
-      font-size: 30px;
-      font-family: 'Inria Serif', serif;
-    }
-  }
-
-  .search-bar {
-    display: flex;
-    align-items: center;
-    background-color: white;
-    border-radius: 5px;
-    padding: 5px;
-
-    input {
-      padding: 8px;
-      border: none;
-      outline: none;
-      width: 700px;
-    }
-
-    .search-icon {
-      color: #333;
-      font-size: 24px;
-      cursor: pointer;
-      margin-left: 10px;
-    }
-  }
-
-  .navbar-icons {
-    display: flex;
-    gap: 20px;
-
-    .icon {
-      font-size: 32px;
-      cursor: pointer;
-      color: white;
-
-      &:hover {
-        color: #ddd;
-      }
-    }
-
-    /* Enhanced Notification Styles */
-    .notification-container {
-      position: relative;
-      cursor: pointer;
-
-      .notification-icon {
-        font-size: 32px;
-        color: white;
-        transition: transform 0.2s ease;
-
-        &:hover {
-          transform: scale(1.1);
-        }
-      }
-
-      .notification-badge {
-        position: absolute;
-        top: -8px;
-        right: -8px;
-        background-color: #e74c3c;
-        color: white;
-        border-radius: 50%;
-        padding: 4px 8px;
-        font-size: 0.75rem;
-        font-weight: bold;
-        box-shadow: 0 2px 4px rgba(0,0,0,0.1);
-      }
-
-      .notification-dropdown {
-        position: absolute;
-        top: 60px;
-        right: 0;
-        width: 450px;
-        max-height: 70vh;
-        overflow-y: auto;
-        background-color: #fff;
-        border: 1px solid #eee;
-        border-radius: 12px;
-        box-shadow: 0 8px 24px rgba(0,0,0,0.12);
-        z-index: 9999;
-        padding: 16px;
-        color: #2c3e50;
-        font-family: 'Segoe UI', system-ui, sans-serif;
-
-        .dropdown-header {
-          display: flex;
-          justify-content: space-between;
-          align-items: center;
-          margin-bottom: 16px;
-
-          h4 {
-            margin: 0;
-            font-size: 1.25rem;
-            font-weight: 600;
-          }
-
-          .mark-all-read {
-            background: none;
-            border: none;
-            color: #E8AB99;
-            font-weight: 500;
-            cursor: pointer;
-            padding: 6px 12px;
-            border-radius: 6px;
-            transition: all 0.2s ease;
-
-            &:hover {
-              background-color: rgba(232, 171, 153, 0.1);
-            }
-          }
-        }
-
-        hr {
-          margin: 12px 0;
-          border: none;
-          border-top: 1px solid #f0f0f0;
-        }
-
-        .no-notifications {
-          text-align: center;
-          padding: 24px 0;
-          color: #95a5a6;
-          font-size: 0.9rem;
-
-          &::before {
-            content: "🎉";
-            font-size: 2rem;
-            display: block;
-            margin-bottom: 8px;
-          }
-        }
-
-        .notification-item {
-          display: flex;
-          align-items: flex-start;
-          gap: 16px;
-          padding: 12px;
-          margin-bottom: 8px;
-          border-radius: 8px;
-          transition: all 0.2s ease;
-          animation: notificationEntry 0.3s ease-out;
-          background-color: #fff;
-          position: relative;
-
-          &:hover {
-            background-color: #f9f9f9;
-            transform: translateX(4px);
-          }
-
-          &::before {
-            content: "";
-            position: absolute;
-            left: 0;
-            top: 0;
-            bottom: 0;
-            width: 3px;
-            background-color: #E8AB99;
-            border-radius: 2px;
-            opacity: 0;
-            transition: opacity 0.2s ease;
-          }
-
-          &.unread {
-            background-color: #fff8f6;
-            
-            &::before {
-              opacity: 1;
-            }
-
-            .notification-meta .status {
-              color: #e74c3c;
-            }
-          }
-
-          .notification-image {
-            width: 50px;
-            height: 50px;
-            object-fit: cover;
-            border-radius: 8px;
-            flex-shrink: 0;
-            border: 1px solid #eee;
-          }
-
-          .notification-content {
-            flex-grow: 1;
-            min-width: 0;
-
-            h5 {
-              margin: 0 0 6px 0;
-              font-size: 0.95rem;
-              font-weight: 600;
-            }
-
-            div[class*="notification-description"] {
-              font-size: 0.9rem;
-              color: #7f8c8d;
-              line-height: 1.4;
-              margin-bottom: 8px;
-            }
-
-            .notification-meta {
-              display: flex;
-              align-items: center;
-              justify-content: space-between;
-              font-size: 0.8rem;
-
-              .status {
-                color: #2ecc71;
-                font-weight: 500;
-                display: flex;
-                align-items: center;
-                gap: 4px;
-
-                &::before {
-                  content: "";
-                  width: 8px;
-                  height: 8px;
-                  border-radius: 50%;
-                  background-color: currentColor;
-                }
-              }
-
-              .mark-read-btn {
-                background: none;
-                border: 1px solid #eee;
-                border-radius: 6px;
-                padding: 4px 12px;
-                font-size: 0.75rem;
-                color: #7f8c8d;
-                cursor: pointer;
-                transition: all 0.2s ease;
-
-                &:hover {
-                  border-color: #E8AB99;
-                  color: #E8AB99;
-                  background-color: rgba(232, 171, 153, 0.05);
-                }
-              }
-
-              .timestamp {
-                color: #95a5a6;
-                font-size: 0.75rem;
-              }
-            }
-          }
-        }
-      }
-    }
-
-    /* Cart Icon */
-    .cart-link {
-      position: relative;
-      transition: transform 0.2s ease;
-
-      &:hover {
-        transform: scale(1.1);
-      }
-
-      .cart-badge {
-        position: absolute;
-        top: -8px;
-        right: -8px;
-        background-color: #e74c3c;
-        color: white;
-        border-radius: 50%;
-        padding: 4px 8px;
-        font-size: 0.75rem;
-        font-weight: bold;
-        box-shadow: 0 2px 4px rgba(0,0,0,0.1);
-      }
-    }
-
-    .profile-link {
-      color: white;
-      transition: transform 0.2s ease;
-
-      &:hover {
-        transform: scale(1.1);
-      }
-    }
-  }
+  max-width: 1200px;
+  margin: 0 auto;
 }
 
-@keyframes notificationEntry {
-  from {
-    opacity: 0;
-    transform: translateY(-10px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
+/* Logo Styles */
+.logo {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  margin-left: -10rem; /* Move logo further to the left */
+}
+
+.logo-image {
+  width: 80px; /* Adjust this value as needed */
+  height: auto; /* Maintain aspect ratio */
+}
+
+.logo-text {
+  font-size: 1.5rem;
+  font-weight: 600;
+  color: #ffffff;
+}
+
+/* Header Right Section */
+.header-right {
+  display: flex;
+  align-items: center;
+  margin-right: -8rem; /* Move icons further to the right */
+}
+
+/* Navbar Icons */
+.navbar-icons {
+  display: flex;
+  gap: 1.5rem; /* Increase gap between icons */
+  align-items: center;
+}
+
+.icon {
+  font-size: 1.5rem; /* Increase icon size */
+  color: #ffffff;
+  cursor: pointer;
+  transition: color 0.2s;
+}
+
+.icon:hover {
+  color: #e0e0e0;
+}
+
+/* Notification & Cart Badges */
+.notification-badge,
+.cart-badge {
+  position: absolute;
+  top: -8px;
+  right: -8px;
+  background-color: #e53935;
+  color: white;
+  border-radius: 50%;
+  font-size: 0.7rem;
+  min-width: 18px;
+  height: 18px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 2px;
+}
+
+.notification-container,
+.cart-link,
+.profile-link {
+  position: relative;
+}
+
+/* Notification Dropdown */
+.notification-dropdown {
+  position: absolute;
+  top: 100%;
+  right: -10px;
+  width: 300px;
+  max-height: 400px;
+  overflow-y: auto;
+  background-color: #1e1e1e;
+  border: 1px solid #333;
+  border-radius: 4px;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.5);
+  z-index: 1000;
+  margin-top: 10px;
+}
+
+.dropdown-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px 15px;
+  border-bottom: 1px solid #333;
+}
+
+.dropdown-header h4 {
+  margin: 0;
+  color: #ffffff;
+}
+
+.mark-all-read {
+  background: none;
+  border: none;
+  color: #4fc3f7;
+  cursor: pointer;
+  font-size: 0.8rem;
+}
+
+.notification-item {
+  display: flex;
+  padding: 10px 15px;
+  border-bottom: 1px solid #333;
+  transition: background-color 0.2s;
+}
+
+.notification-item:hover {
+  background-color: #2d2d2d;
+}
+
+.notification-image {
+  width: 50px;
+  height: 50px;
+  object-fit: cover;
+  border-radius: 4px;
+  margin-right: 10px;
+}
+
+.notification-content h5 {
+  margin: 0 0 5px;
+  color: #ffffff;
+}
+
+.notification-meta {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 5px;
+  font-size: 0.8rem;
+}
+
+.status {
+  padding: 2px 6px;
+  border-radius: 10px;
+  font-size: 0.7rem;
+}
+
+.status.unread {
+  background-color: #2196f3;
+  color: white;
+}
+
+.status.read {
+  background-color: #424242;
+  color: #e0e0e0;
+}
+
+.mark-read-btn {
+  background: none;
+  border: none;
+  color: #4fc3f7;
+  cursor: pointer;
+  font-size: 0.7rem;
+  padding: 0;
 }

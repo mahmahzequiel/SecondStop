@@ -1,135 +1,190 @@
-.product-details-container {
-    max-width: 1100px;
-    margin: 40px auto;
-    padding: 20px;
-    background: #fff;
-    border-radius: 10px;
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
-    position: relative;
+/* Product Details CSS */
+.product-details-view {
+  padding: 20px;
+  max-width: 1200px;
+  margin: 0 auto;
+  background-color: inherit;
+  color: inherit;
+}
+
+.product-details-view .back-button {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  background: none;
+  border: none;
+  color: inherit;
+  cursor: pointer;
+  font-size: 16px;
+  margin-bottom: 20px;
+  padding: 8px 12px;
+  border-radius: 4px;
+  transition: background-color 0.2s;
+}
+
+.product-details-view .back-button:hover {
+  background-color: rgba(128, 128, 128, 0.1);
+}
+
+.product-details-view .product-details-layout {
+  display: flex;
+  flex-direction: row;
+  gap: 30px;
+  background-color: inherit;
+  border-radius: 8px;
+  overflow: hidden;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+}
+
+.product-details-view .product-details-image-container {
+  width: 100%; /* Take full width on its side */
+  height: 600px; /* Increase height */
+  background-color: #ffffff; /* White background to make the product stand out */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 30px;
+  border-radius: 8px;
+}
+
+.product-details-view .product-details-image {
+  max-width: 90%; /* Slightly reduced from 100% to ensure some padding */
+  max-height: 90%;
+  object-fit: contain;
+  transition: transform 0.3s ease;
+}
+
+.product-details-view .product-details-image:hover {
+  transform: scale(1.05); /* Subtle zoom effect on hover */
+}
+
+/* Adjust the layout to give more prominence to the image */
+.product-details-view .product-details-layout {
+  display: grid;
+  grid-template-columns: 60% 40%; /* Give more space to image */
+  gap: 30px;
+  background-color: inherit;
+  border-radius: 8px;
+  overflow: hidden;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+}
+
+.product-details-view .product-info-panel {
+  flex: 0 0 50%;
+  padding: 30px;
+  display: flex;
+  flex-direction: column;
+}
+
+.product-details-view .product-title {
+  font-size: 28px;
+  font-weight: 600;
+  margin: 0 0 20px 0;
+  color: inherit;
+}
+
+.product-details-view .product-meta {
+  margin-bottom: 20px;
+}
+
+.product-details-view .meta-label {
+  font-weight: 600;
+  color: inherit;
+}
+
+.product-details-view .product-meta p {
+  color: inherit;
+}
+
+.product-details-view .product-details-price {
+  font-size: 32px;
+  font-weight: 700;
+  margin: 20px 0;
+  color: inherit;
+}
+
+.product-details-view .currency {
+  font-size: 24px;
+  vertical-align: top;
+}
+
+.product-details-view .product-description {
+  margin-bottom: 30px;
+}
+
+.product-details-view .product-description h3 {
+  margin-bottom: 10px;
+  font-size: 18px;
+  font-weight: 600;
+  color: inherit;
+}
+
+.product-details-view .product-description p {
+  line-height: 1.6;
+  color: inherit;
+}
+
+.product-details-view .product-details-actions {
+  display: flex;
+  gap: 15px;
+  margin-top: auto;
+}
+
+.product-details-view .add-to-cart-btn,
+.product-details-view .buy-now-btn {
+  flex: 1;
+  padding: 12px 0;
+  border-radius: 4px;
+  font-size: 16px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background-color 0.2s;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+}
+
+.product-details-view .add-to-cart-btn {
+  background-color: transparent;
+  color: inherit;
+  border: 2px solid #ff3b30;
+}
+
+.product-details-view .add-to-cart-btn:hover {
+  background-color: rgba(128, 128, 128, 0.1);
+}
+
+.product-details-view .buy-now-btn {
+  background-color: #ff3b30; /* Using the blue accent from the DisplayProducts theme */
+  color: white;
+  border: 2px solid #ff3b30;
+}
+
+.product-details-view .buy-now-btn:hover {
+  background-color: #7c2520;
+}
+
+/* Responsive styles */
+@media (max-width: 768px) {
+  .product-details-view .product-details-layout {
+    flex-direction: column;
   }
   
-  .back-button {
-    display: flex;
-    align-items: center;
-    gap: 5px;
-    border: none;
-    background: none;
-    cursor: pointer;
-    font-size: 16px;
-    font-weight: bold;
-    position: absolute;
-    top: 20px;
-    left: 20px;
-    color: #a52a2a;
-    transition: color 0.3s ease;
-  
-    &:hover {
-      color: #d9534f;
-    }
-  }
-  
-  .product-details {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: 40px;
-    padding: 40px;
-  }
-  
-  .product-image-container {
+  .product-details-view .product-details-image-container,
+  .product-details-view .product-info-panel {
     flex: 1;
-    display: flex;
-    justify-content: center;
-    padding: 20px;
-    background: #ffe5e5;
-    border-radius: 10px;
-  
-    .product-image {
-      width: 100%;
-      max-width: 300px;
-      border-radius: 10px;
-      object-fit: cover;
-    }
+    width: 100%;
   }
-  
-  .product-info {
-    flex: 1;
-    text-align: left;
-  
-    h1 {
-      font-size: 26px;
-      font-weight: bold;
-      margin-bottom: 10px;
-    }
-  
-    .price {
-      font-size: 20px;
-      font-weight: bold;
-      color: red;
-      margin-bottom: 15px;
-    }
-  
-    p {
-      font-size: 16px;
-      margin-bottom: 10px;
-  
-      strong {
-        font-weight: bold;
-      }
-    }
-  }
-  
-  .buttons {
-    display: flex;
-    gap: 15px;
-    margin-top: 20px;
-  
-    .add-to-cart,
-    .buy-now {
-      padding: 10px 20px;
-      font-size: 16px;
-      border-radius: 5px;
-      cursor: pointer;
-      transition: 0.3s ease;
-    }
-  
-    .add-to-cart {
-      background: none;
-      border: 2px solid #d9534f;
-      color: #d9534f;
-      font-weight: bold;
-  
-      &:hover {
-        background: #d9534f;
-        color: #fff;
-      }
-    }
-  
-    .buy-now {
-      background: #d9534f;
-      color: #fff;
-      border: none;
-      font-weight: bold;
-  
-      &:hover {
-        background: darkred;
-      }
-    }
-  }
-  
-  /* Responsive Design */
-  @media (max-width: 768px) {
-    .product-details {
-      flex-direction: column;
-      text-align: center;
-    }
-  
-    .product-info {
-      text-align: center;
-    }
-  
-    .buttons {
-      justify-content: center;
-    }
-  }
-  
+}
+
+/* Loading and error states */
+.product-details-view .loading-container,
+.product-details-view .error-container,
+.product-details-view .not-found-container {
+  min-height: 400px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+}

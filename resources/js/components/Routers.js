@@ -43,17 +43,16 @@ import AddUserModal from "./Admin/AddUserModal";
 import ProfileSidebar from "./Profile/ProfileSidebar";
 import ProfileMain from "./Profile/ProfileMain";
 import AdminProducts from "./Admin/Products/AdminProducts";
-import Customers from "./Admin/Customer";
 import AllCustomers from "./Admin/Customer";
 import OrderTracking from "./Shipping/OrderTracking";
 import OrdersList from "./Admin/Orders/AdminOrders";
 import AdminSettings from "./Admin/AdminSettings/AdminSettingsPage";
-
+import MainButton from "./Chat/Mainbutton";
 
 function AppContent() {
   const location = useLocation();
 
-  // We hide the Chatbot on these paths
+  // We hide the Chatbot and MainButton on these paths
   const hideChatbotPaths = ["/LogIn", "/register", "/admin", "/adminprofile", "/admindashboard", "/allusers", "/adminchat", "/adminproducts", "/orderlist", "/customers", "/adminsettings"];
 
   return (
@@ -95,8 +94,8 @@ function AppContent() {
       
       </Routes>
 
-      {/* Conditionally Render Chatbot */}
-      {!hideChatbotPaths.includes(location.pathname) && <Chatbot />}
+      {/* Conditionally Render MainButton instead of directly rendering Chatbot */}
+      {!hideChatbotPaths.includes(location.pathname) && <MainButton />}
     </>
   );
 }
