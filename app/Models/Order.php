@@ -13,7 +13,7 @@ class Order extends Model
     protected $table = 'orders';
 
     protected $fillable = [
-        'cart_id',
+        'user_id',
         'payment_id',
         'address_id',
         'order_number',
@@ -38,9 +38,9 @@ class Order extends Model
     /**
      * Define a relationship with the Cart model.
      */
-    public function cart()
+    public function user()
     {
-        return $this->belongsTo(Cart::class);
+        return $this->belongsTo(User::class);
     }
 
     /**
@@ -49,5 +49,10 @@ class Order extends Model
     public function address()
     {
         return $this->belongsTo(Address::class);
+    }
+
+    public function orderItems()
+    {
+        return $this->hasMany(OrderItem::class);
     }
 }

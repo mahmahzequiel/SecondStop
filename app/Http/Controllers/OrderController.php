@@ -3,10 +3,16 @@
 namespace App\Http\Controllers;
 
 use App\Models\Order;
+use App\Models\OrderItem;
+use App\Models\Payment;
 use App\Models\Cart;
-use App\Models\Notification;
+use App\Models\CartItem;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Validation\ValidationException;
+use Illuminate\Support\Facades\Log;
+use App\Models\Notification;
+use Illuminate\Validation\Rule;
 
 class OrderController extends Controller
 {
@@ -15,88 +21,116 @@ class OrderController extends Controller
      */
     public function index()
     {
-        $orders = Order::with(['cart', 'payment', 'address'])->get();
-        return response()->json(['orders' => $orders]);
+        $orders = Order::with(['orderItems.product', 'payment', 'address'])->get();
+        return response()->json([
+            'status' => 'success',
+            'data' => $orders
+        ]);
     }
 
     /**
-     * Store a newly created order and create a notification.
+     * Process checkout and create order
      */
-    public function store(Request $request)
+    public function checkout(Request $request)
     {
+        DB::beginTransaction();
+        
         try {
-            // Validate the request data
+            $user = $request->user();
+
+            // Get cart item ID from request with correct parameter name
+            $cartItemId = $request->input('cart_item_id'); // Fixed parameter name
+
+            // Get cart item with ownership check
+            $cartItem = CartItem::with('product')
+                ->whereHas('cart', function($query) use ($user) {
+                    $query->where('user_id', $user->id);
+                })
+                ->find($cartItemId);
+
+            if (!$cartItem) {
+                Log::error("Cart item not found", [
+                    'cart_item_id' => $cartItemId,
+                    'user_id' => $user->id
+                ]);
+                return response()->json([
+                    'status' => 'error',
+                    'message' => 'Cart item not found or unauthorized'
+                ], 404);
+            }
+
+            // Validate request
             $validated = $request->validate([
-                'cart_id'       => 'required', // can be a single int or array
-                'payment_id'    => 'required|exists:payments,id',
-                'address_id'    => 'nullable|exists:addresses,id',
-                'order_number'  => 'nullable|string|unique:orders,order_number',
-                'subtotal'      => 'required|numeric|min:0',
-                'shipping_cost' => 'required|numeric|min:0',
-                'total_amount'  => 'required|numeric|min:0',
-                'status'        => 'required|in:pending,shipped,delivered,cancelled,returned,refunded',
-                'purchase_date' => 'nullable|date',
+                'payment_method' => 'required|in:cod,gcash,paypal',
+                'address_id' => 'nullable|exists:addresses,id',
+                'shipping_cost' => 'required|numeric|min:0|max:1000'
             ]);
 
-            // Handle single or multiple cart_ids
-            $cartIds = is_array($validated['cart_id'])
-                ? $validated['cart_id']
-                : [$validated['cart_id']];
+            // Calculate totals
+            $subtotal = $cartItem->product->price;
+            $totalAmount = $subtotal + $validated['shipping_cost'];
 
-            // Validate each cart_id
-            foreach ($cartIds as $cartId) {
-                if (!Cart::where('id', $cartId)->exists()) {
-                    return response()->json(['error' => "Invalid cart_id: $cartId"], 400);
-                }
-            }
+            // Create payment
+            $payment = Payment::create([
+                'payment_method' => strtolower($validated['payment_method']),
+                'amount' => $totalAmount,
+                'status' => 'pending'
+            ]);
 
-            // Generate order number if not provided
-            if (empty($validated['order_number'])) {
-                $validated['order_number'] = 'ORD-' . mt_rand(100000, 999999);
-            }
+            // Create order
+            $order = Order::create([
+                'user_id' => $user->id,
+                'payment_id' => $payment->id,
+                'address_id' => $validated['address_id'],
+                'order_number' => 'ORD-' . mt_rand(100000, 999999),
+                'subtotal' => $subtotal,
+                'shipping_cost' => $validated['shipping_cost'],
+                'total_amount' => $totalAmount,
+                'status' => 'pending'
+            ]);
 
-            // Create the order
-            $order = Order::create($validated);
+            // Create order item
+            OrderItem::create([
+                'order_id' => $order->id,
+                'product_id' => $cartItem->product_id,
+                'quantity' => 1,
+                'price' => $cartItem->product->price
+            ]);
 
-            // Create Notification (using first cart ID)
-            $firstCartId = $cartIds[0];
-            $cart = Cart::with('product')->find($firstCartId);
+            // Clear the cart item
+            $cartItem->delete();
 
-            // Default notification details
-            $productImage = null;
-            $description  = "Your order has been placed.";
+            // Create notification
+            Notification::create([
+                'user_id' => $user->id,
+                'order_id' => $order->id,
+                'title' => 'Order Placed',
+                'description' => 'Your order #'.$order->order_number.' has been placed successfully'
+            ]);
 
-            if ($cart && $cart->product) {
-                $product = $cart->product;
-                // Here we store exactly what's in product_image, e.g. "images/women/tops/image1.png"
-                $productImage = $product->product_image;
-                // Build a more detailed description
-                $description  = "Your order {$product->product_name} has been placed.\n"
-                              . "Price: PHP {$order->total_amount}\n"
-                              . "Quantity: 1";
-            }
-
-            // Create the notification if user is authenticated
-            $user = $request->user();
-            if ($user) {
-                Notification::create([
-                    'user_id'       => $user->id,
-                    'order_id'      => $order->id,
-                    'title'         => 'Order Placed Successfully',
-                    'description'   => $description,
-                    'is_read'       => 0,
-                    // Store the relative path from product_image
-                    'product_image' => $productImage,
-                ]);
-            }
+            DB::commit();
 
             return response()->json([
-                'message' => 'Order created successfully',
-                'order'   => $order
+                'status' => 'success',
+                'data' => $order->load('orderItems.product', 'payment')
             ], 201);
 
         } catch (ValidationException $e) {
-            return response()->json(['errors' => $e->errors()], 422);
+            DB::rollBack();
+            return response()->json([
+                'status' => 'error',
+                'errors' => $e->errors()
+            ], 422);
+            
+        } catch (\Exception $e) {
+            DB::rollBack();
+            Log::error('Checkout Error: ' . $e->getMessage());
+            Log::error('Stack Trace: ' . $e->getTraceAsString());
+            return response()->json([
+                'status' => 'error',
+                'message' => 'Checkout failed. Please try again.',
+                'error' => config('app.debug') ? $e->getMessage() : null
+            ], 500);
         }
     }
 
@@ -105,7 +139,10 @@ class OrderController extends Controller
      */
     public function show(Order $order)
     {
-        return response()->json(['order' => $order->load(['cart', 'payment', 'address'])]);
+        return response()->json([
+            'status' => 'success',
+            'data' => $order->load(['orderItems.product', 'payment', 'address'])
+        ]);
     }
 
     /**
@@ -115,25 +152,24 @@ class OrderController extends Controller
     {
         try {
             $validated = $request->validate([
-                'cart_id'       => 'required|exists:carts,id',
-                'payment_id'    => 'required|exists:payments,id',
-                'address_id'    => 'nullable|exists:addresses,id',
-                'order_number'  => 'required|string|unique:orders,order_number,' . $order->id,
-                'subtotal'      => 'required|numeric|min:0',
-                'shipping_cost' => 'required|numeric|min:0',
-                'total_amount'  => 'required|numeric|min:0',
-                'status'        => 'required|in:pending,shipped,delivered,cancelled,returned,refunded',
-                'purchase_date' => 'nullable|date',
+                'status' => 'required|in:pending,shipped,delivered,cancelled,returned,refunded',
+                'shipping_cost' => 'sometimes|numeric|min:0',
+                'address_id' => 'sometimes|exists:addresses,id'
             ]);
 
             $order->update($validated);
 
             return response()->json([
+                'status' => 'success',
                 'message' => 'Order updated successfully',
-                'order'   => $order
+                'data' => $order
             ]);
+
         } catch (ValidationException $e) {
-            return response()->json(['errors' => $e->errors()], 422);
+            return response()->json([
+                'status' => 'error',
+                'errors' => $e->errors()
+            ], 422);
         }
     }
 
@@ -142,12 +178,25 @@ class OrderController extends Controller
      */
     public function destroy(Order $order)
     {
-        if ($order->trashed()) {
-            $order->forceDelete();
-        } else {
-            $order->delete();
+        try {
+            if ($order->trashed()) {
+                $order->forceDelete();
+            } else {
+                $order->delete();
+            }
+
+            return response()->json([
+                'status' => 'success',
+                'message' => 'Order deleted successfully'
+            ]);
+
+        } catch (\Exception $e) {
+            Log::error('Order Delete Error: ' . $e->getMessage());
+            return response()->json([
+                'status' => 'error',
+                'message' => 'Failed to delete order'
+            ], 500);
         }
-        return response()->json(['message' => 'Order deleted successfully']);
     }
 
     /**
@@ -155,16 +204,29 @@ class OrderController extends Controller
      */
     public function restore($id)
     {
-        $order = Order::withTrashed()->find($id);
-        if (!$order || !$order->trashed()) {
-            return response()->json(['message' => 'Order not found or not deleted'], 404);
+        try {
+            $order = Order::withTrashed()->findOrFail($id);
+            
+            if ($order->trashed()) {
+                $order->restore();
+                return response()->json([
+                    'status' => 'success',
+                    'message' => 'Order restored successfully',
+                    'data' => $order
+                ]);
+            }
+
+            return response()->json([
+                'status' => 'error',
+                'message' => 'Order is not deleted'
+            ], 400);
+
+        } catch (\Exception $e) {
+            Log::error('Order Restore Error: ' . $e->getMessage());
+            return response()->json([
+                'status' => 'error',
+                'message' => 'Order not found'
+            ], 404);
         }
-
-        $order->restore();
-
-        return response()->json([
-            'message' => 'Order restored successfully',
-            'order'   => $order
-        ]);
     }
 }

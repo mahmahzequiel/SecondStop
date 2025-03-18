@@ -57,8 +57,10 @@ Route::group(["middleware" => ["auth:api"]], function() {
     Route::put("profile/update", [ApiController::class, "updateProfile"]);
 
     // Cart Routes
-    Route::post('carts', [CartController::class, 'addToCart']);
+  
+    Route::post('carts', [CartController::class, 'addToCart']); // Match frontend request
     Route::get('carts', [CartController::class, 'index']);
+    Route::delete('carts/{id}', [CartController::class, 'destroy']);
     Route::post('/carts/delete', [CartController::class, 'bulkDestroy']);
 
     // Protected Address Routes
@@ -98,4 +100,6 @@ Route::get('/chat/conversations', [ChatController::class, 'getConversations']);
     Route::post('notification', [NotificationController::class, 'store']);
     Route::get('notification', [NotificationController::class, 'index']);
     Route::patch('notification/{id}/mark-read', [NotificationController::class, 'markAsRead']);
+
+    Route::post('/checkout', [OrderController::class, 'checkout']);
 });

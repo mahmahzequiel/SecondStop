@@ -112,87 +112,53 @@ const Payment = () => {
   // ------------------------------------------------------------------
 
   // Removes purchased items from cart
-  const removePurchasedItemsFromCart = async (cartIds) => {
-    try {
-      if (!Array.isArray(cartIds) || cartIds.length === 0) {
-        console.warn("⚠ No valid cart items to remove.");
-        return;
-      }
-
-      const userToken = localStorage.getItem("userToken");
-
-      await axios.post(
-        "http://127.0.0.1:8000/api/carts/delete",
-        { cart_ids: cartIds },
-        { headers: { Authorization: `Bearer ${userToken}` } }
-      );
-
-      console.log("✅ Purchased items removed from cart:", cartIds);
-
-      // Update the user-specific cart count
-      const userId = localStorage.getItem("userId");
-      if (userId) {
-        let currentCount = parseInt(localStorage.getItem(`cartCount_${userId}`)) || 0;
-        const newCount = Math.max(0, currentCount - cartIds.length);
-        localStorage.setItem(`cartCount_${userId}`, newCount.toString());
-        // Dispatch the custom event so Header updates immediately
-        window.dispatchEvent(new Event("cartCountUpdated"));
-      }
-    } catch (error) {
-      console.error("❌ Failed to remove purchased items:", error.response?.data || error);
-    }
-  };
+  
 
   // Payment success callback
   const handlePaymentSuccess = async (details) => {
     try {
-      setPaymentDetails(details);
-      alert(`Payment successful via ${details.method}!`);
-
-      // 1) Save Payment => Payment ID
-      const paymentId = await savePaymentDetails(details);
-      if (!paymentId) throw new Error("Payment ID is missing");
-
-      // 2) Build order data (including shipping address)
-      const orderData = {
-        orderNumber: `ORD-${Math.floor(100000 + Math.random() * 900000)}`,
-        purchaseDate: new Date().toISOString(),
-        userId: localStorage.getItem("userId"),
-        items: selectedItems.map((item) => ({
-          cart_id: item.cart_id,
-          product_name: item.product_name,
-          price: item.price,
-          brand: item.brand,
-        })),
-        totalPrice: totalPrice + 70,
-        paymentMethod: details.method,
-        shippingAddress: buildShippingAddressString(address),
-        paymentId
-      };
-
-      // 3) Save Order
-      const orderId = await saveOrderDetails(orderData);
-
-      // 4) Remove from cart
-      const cartIds = selectedItems.map((item) => item.cart_id);
-      if (cartIds.length > 0) {
-        await removePurchasedItemsFromCart(cartIds);
+      const token = localStorage.getItem("userToken");
+      const userId = localStorage.getItem("userId");
+      
+      // Validate critical data
+      if (!address?.id || typeof address.id !== 'number') {
+        throw new Error("Invalid shipping address - please save your address first");
       }
-
-      // 5) Go to Confirmation
+  
+      // Prepare complete checkout payload
+      const checkoutPayload = {
+        payment_method: selectedPaymentMethod.toLowerCase(),
+        address_id: address.id, // Must be numeric
+        shipping_cost: 70.00,   // Send as number
+        user_id: parseInt(userId) // Add user_id if backend requires
+      };
+  
+      // Debugging: Log the actual payload
+      console.log("Final checkout payload:", JSON.stringify(checkoutPayload, null, 2));
+  
+      // Make the request
+      const response = await axios.post(
+        "http://127.0.0.1:8000/api/checkout",
+        checkoutPayload,
+        { headers: { Authorization: `Bearer ${token}` } }
+      );
+  
+      // Handle success
       navigate("/confirmation", {
         state: {
-          orderNumber: orderData.orderNumber,
-          purchaseDate: orderData.purchaseDate,
+          orderNumber: response.data.data.order_number,
           address,
           selectedItems,
-          totalPrice: totalPrice + 70,
-          paymentMethod: details.method,
-        },
+          totalPrice: response.data.data.total_amount,
+          paymentMethod: selectedPaymentMethod
+        }
       });
     } catch (error) {
-      console.error("Error processing payment:", error);
-      alert("Failed to process payment. Please try again.");
+      console.error("Full error details:", {
+        config: error.config,
+        response: error.response?.data
+      });
+      alert(`Checkout failed: ${error.response?.data?.message || error.message}`);
     }
   };
 
@@ -227,37 +193,17 @@ const Payment = () => {
   const saveOrderDetails = async (orderData) => {
     try {
       const token = localStorage.getItem("userToken");
-
-      console.log("🔍 Sending Order Data:", orderData);
-
-      // If only one cart ID
-      let cartIds = orderData.items
-        .map((item) => item.cart_id)
-        .filter((id) => id !== undefined && id !== null);
-
-      if (cartIds.length === 1) {
-        cartIds = cartIds[0];
-      }
-
+      
+      // Send a POST to /checkout endpoint instead of /orders
       const response = await axios.post(
-        "http://127.0.0.1:8000/api/orders",
-        {
-          cart_id: cartIds,
-          payment_id: orderData.paymentId,
-          address_id: null, // if you have an address ID, pass it
-          subtotal: totalPrice,
-          shipping_cost: 70,
-          total_amount: totalPrice + 70,
-          status: "pending",
-          purchase_date: new Date().toISOString().split("T")[0],
-        },
+        "http://127.0.0.1:8000/api/checkout", 
+        {}, // No need to send cart IDs - backend handles it
         { headers: { Authorization: `Bearer ${token}` } }
       );
-
-      console.log("✅ Order details saved:", response.data);
+  
       return response.data.order.id;
     } catch (error) {
-      console.error("❌ Failed to save order details:", error.response?.data || error);
+      console.error("Order creation failed:", error);
       throw error;
     }
   };
@@ -372,7 +318,7 @@ const Payment = () => {
             <input
               type="radio"
               name="payment"
-              value="Paypal"
+              value="paypal"
               onChange={handlePaymentMethodChange}
             />
             <PayCircleOutlined /> Paypal
@@ -381,13 +327,13 @@ const Payment = () => {
             <input
               type="radio"
               name="payment"
-              value="Gcash"
+              value="gcash"
               onChange={handlePaymentMethodChange}
             />
             <MobileOutlined /> Gcash
           </label>
           <label>
-            <input type="radio" name="payment" value="COD" onChange={handlePaymentMethodChange} />
+            <input type="radio" name="payment" value="cod" onChange={handlePaymentMethodChange} />
             <ShoppingOutlined /> Cash On Delivery
           </label>
         </div>

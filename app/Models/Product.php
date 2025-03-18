@@ -4,11 +4,11 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Database\Eloquent\SoftDeletes; // Add this line
+use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Product extends Model
 {
-    use HasFactory, SoftDeletes; // Enable SoftDeletes
+    use HasFactory, SoftDeletes;
 
     protected $fillable = [
         'category_id',
@@ -20,7 +20,23 @@ class Product extends Model
         'product_image',
     ];
 
-    protected $dates = ['deleted_at']; // Ensure this is present
+    protected $dates = ['deleted_at'];
+
+    /**
+     * Get the URL for the product image
+     */
+    public function getImageUrlAttribute()
+    {
+        if (!$this->product_image) {
+            return asset('images/placeholder.png');
+        }
+        
+        if (strpos($this->product_image, 'http') === 0) {
+            return $this->product_image;
+        }
+        
+        return asset('storage/' . $this->product_image);
+    }
 
     /**
      * Get the category that owns the product.
@@ -47,10 +63,20 @@ class Product extends Model
     }
 
     /**
-     * Get the carts that contain this product.
+     * Get all cart items that contain this product
      */
-    public function carts()
+    public function cartItems()
     {
-        return $this->hasMany(Cart::class, 'product_id');
+        return $this->hasMany(CartItem::class);
+    }
+
+    /**
+     * Get the orders that include this product
+     */
+    public function orders()
+    {
+        return $this->belongsToMany(Order::class, 'order_items')
+                    ->withPivot('quantity', 'price')
+                    ->withTimestamps();
     }
 }

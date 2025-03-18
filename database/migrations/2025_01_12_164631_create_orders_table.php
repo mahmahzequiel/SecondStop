@@ -15,52 +15,32 @@ class CreateOrdersTable extends Migration
     {
         Schema::create('orders', function (Blueprint $table) {
             $table->id();
-
-            // Foreign key to carts table
-            $table->unsignedBigInteger('cart_id');
-            $table->foreign('cart_id')
-                  ->references('id')
-                  ->on('carts')
-                  ->onDelete('cascade');
-
-            $table->unsignedBigInteger('payment_id');
-            $table->foreign('payment_id')
-                        ->references('id')
-                        ->on('payments')
-                        ->onDelete('cascade'); 
-
-            // Foreign key to addresses table 
-            $table->unsignedBigInteger('address_id')->nullable();
-            $table->foreign('address_id')
-                  ->references('id')
-                  ->on('addresses')
-                  ->onDelete('cascade');
-
-            // Order number as a string
+            
+            // Replace this:
+            // $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
+            
+            // With this:
+            $table->foreignId('user_id')->constrained()->onDelete('cascade');
+            
+            $table->foreignId('payment_id')->constrained();
+            $table->foreignId('address_id')->nullable()->constrained();
+            
             $table->string('order_number')->unique();
-
-            // Decimal columns with default values
             $table->decimal('subtotal', 10, 2)->default(0.00);
             $table->decimal('shipping_cost', 10, 2)->default(0.00);
             $table->decimal('total_amount', 10, 2)->default(0.00);
-
-            // Order status
             $table->enum('status', [
                 'pending',
-                'shipped',
+                'shipped', 
                 'delivered',
                 'cancelled',
                 'returned',
-                'refunded',
+                'refunded'
             ])->default('pending');
-
-            // Date of purchase
-            $table->dateTime('purchase_date')->nullable(); // 🔥 Added purchase_date
-
-            // created_at & updated_at
-            $table->dateTime('date_time')->nullable();
+            
+            $table->dateTime('purchase_date')->nullable();
             $table->timestamps();
-            $table->softDeletes()->nullable(); 
+            $table->softDeletes();
         });
     }
 

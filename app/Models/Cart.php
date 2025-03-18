@@ -12,7 +12,7 @@ class Cart extends Model
 
     protected $fillable = [
         'user_id',
-        'product_id',
+        
     ];
 
     /**
@@ -23,11 +23,9 @@ class Cart extends Model
         return $this->belongsTo(User::class);
     }
 
-    /**
-     * Relationship with Product model.
-     */
-    public function product() // ✅ Should be 'product', not 'products'
+    public function cartItems()
     {
-        return $this->belongsTo(Product::class, 'product_id');
+        return $this->hasMany(CartItem::class);
     }
+
 }

@@ -70913,40 +70913,38 @@ var Carts = function Carts() {
               _context.prev = 0;
               userToken = localStorage.getItem("userToken");
               if (userToken) {
-                _context.next = 6;
+                _context.next = 5;
                 break;
               }
-              alert("Please log in to view your cart.");
               navigate("/login");
               return _context.abrupt("return");
-            case 6:
-              _context.next = 8;
+            case 5:
+              _context.next = 7;
               return axios__WEBPACK_IMPORTED_MODULE_1___default().get("http://127.0.0.1:8000/api/carts", {
                 headers: {
                   Authorization: "Bearer ".concat(userToken)
                 }
               });
-            case 8:
+            case 7:
               response = _context.sent;
-              fetchedItems = Array.isArray(response.data) ? response.data : [];
+              // Updated this line
+              fetchedItems = response.data.data || [];
               setCartItems(fetchedItems);
-
-              // Update user-specific cart count
               if (userId) {
                 localStorage.setItem("cartCount_".concat(userId), fetchedItems.length.toString());
                 window.dispatchEvent(new Event("cartCountUpdated"));
               }
-              _context.next = 17;
+              _context.next = 16;
               break;
-            case 14:
-              _context.prev = 14;
+            case 13:
+              _context.prev = 13;
               _context.t0 = _context["catch"](0);
               console.error("Error fetching cart items:", _context.t0);
-            case 17:
+            case 16:
             case "end":
               return _context.stop();
           }
-        }, _callee, null, [[0, 14]]);
+        }, _callee, null, [[0, 13]]);
       }));
       return function fetchCartItems() {
         return _ref.apply(this, arguments);
@@ -70975,7 +70973,7 @@ var Carts = function Carts() {
   // Delete selected items
   var handleDeleteSelected = /*#__PURE__*/function () {
     var _ref2 = _asyncToGenerator(/*#__PURE__*/_regeneratorRuntime().mark(function _callee2() {
-      var userToken, updatedCart;
+      var userToken, response, updatedCart, _error$response;
       return _regeneratorRuntime().wrap(function _callee2$(_context2) {
         while (1) switch (_context2.prev = _context2.next) {
           case 0:
@@ -70992,33 +70990,40 @@ var Carts = function Carts() {
             _context2.next = 8;
             return axios__WEBPACK_IMPORTED_MODULE_1___default().post("http://127.0.0.1:8000/api/carts/delete", {
               cart_ids: selectedItems
-            }, {
+            },
+            // Match backend parameter name
+            {
               headers: {
                 Authorization: "Bearer ".concat(userToken)
               }
             });
           case 8:
-            updatedCart = cartItems.filter(function (item) {
-              return !selectedItems.includes(item.id);
-            });
-            setCartItems(updatedCart);
-            setSelectedItems([]);
-            setSelectAll(false);
-            if (userId) {
-              localStorage.setItem("cartCount_".concat(userId), updatedCart.length.toString());
-              window.dispatchEvent(new Event("cartCountUpdated"));
+            response = _context2.sent;
+            if (response.data.status === 'success') {
+              updatedCart = cartItems.filter(function (item) {
+                return !selectedItems.includes(item.id);
+              });
+              setCartItems(updatedCart);
+              setSelectedItems([]);
+              setSelectAll(false);
+              if (userId) {
+                localStorage.setItem("cartCount_".concat(userId), updatedCart.length.toString());
+                window.dispatchEvent(new Event("cartCountUpdated"));
+              }
+              alert(response.data.message);
             }
-            _context2.next = 18;
+            _context2.next = 16;
             break;
-          case 15:
-            _context2.prev = 15;
+          case 12:
+            _context2.prev = 12;
             _context2.t0 = _context2["catch"](5);
             console.error("Error deleting cart items:", _context2.t0);
-          case 18:
+            alert(((_error$response = _context2.t0.response) === null || _error$response === void 0 || (_error$response = _error$response.data) === null || _error$response === void 0 ? void 0 : _error$response.message) || "Failed to delete items");
+          case 16:
           case "end":
             return _context2.stop();
         }
-      }, _callee2, null, [[5, 15]]);
+      }, _callee2, null, [[5, 12]]);
     }));
     return function handleDeleteSelected() {
       return _ref2.apply(this, arguments);
@@ -71031,32 +71036,71 @@ var Carts = function Carts() {
     var _item$product;
     return acc + parseFloat(((_item$product = item.product) === null || _item$product === void 0 ? void 0 : _item$product.price) || 0);
   }, 0);
-  var handleCheckout = function handleCheckout() {
-    var userToken = localStorage.getItem("userToken");
-    if (!userToken) {
-      alert("Please log in to proceed to checkout.");
-      navigate("/login");
-      return;
-    }
-    if (selectedCartItems.length === 0) {
-      alert("Please select items to checkout.");
-      return;
-    }
-    navigate("/checkout", {
-      state: {
-        selectedItems: selectedCartItems.map(function (item) {
-          var _item$product2, _item$product3, _item$product4;
-          return {
-            cart_id: item.id,
-            product_name: (_item$product2 = item.product) === null || _item$product2 === void 0 ? void 0 : _item$product2.product_name,
-            price: (_item$product3 = item.product) === null || _item$product3 === void 0 ? void 0 : _item$product3.price,
-            brand: (_item$product4 = item.product) === null || _item$product4 === void 0 ? void 0 : _item$product4.brand
-          };
-        }),
-        totalPrice: totalPrice
-      }
-    });
-  };
+  var handleCheckout = /*#__PURE__*/function () {
+    var _ref3 = _asyncToGenerator(/*#__PURE__*/_regeneratorRuntime().mark(function _callee3() {
+      var userToken, response, _error$response2;
+      return _regeneratorRuntime().wrap(function _callee3$(_context3) {
+        while (1) switch (_context3.prev = _context3.next) {
+          case 0:
+            userToken = localStorage.getItem("userToken");
+            if (userToken) {
+              _context3.next = 5;
+              break;
+            }
+            alert("Please log in to checkout.");
+            navigate("/login");
+            return _context3.abrupt("return");
+          case 5:
+            if (!(selectedItems.length === 0)) {
+              _context3.next = 8;
+              break;
+            }
+            alert("Please select at least one item to checkout.");
+            return _context3.abrupt("return");
+          case 8:
+            _context3.prev = 8;
+            _context3.next = 11;
+            return axios__WEBPACK_IMPORTED_MODULE_1___default().post("http://127.0.0.1:8000/api/checkout", {
+              cart_item_id: selectedItems[0],
+              // Send the first selected item's ID
+              payment_method: "cod",
+              // Default payment method
+              shipping_cost: 70.00 // Default shipping cost
+            }, {
+              headers: {
+                Authorization: "Bearer ".concat(userToken),
+                'Content-Type': 'application/json'
+              }
+            });
+          case 11:
+            response = _context3.sent;
+            if (response.data.status === 'success') {
+              localStorage.setItem("cartCount_".concat(userId), "0");
+              window.dispatchEvent(new Event("cartCountUpdated"));
+              navigate("/confirmation", {
+                state: {
+                  order: response.data.order,
+                  payment: response.data.order.payment
+                }
+              });
+            }
+            _context3.next = 19;
+            break;
+          case 15:
+            _context3.prev = 15;
+            _context3.t0 = _context3["catch"](8);
+            console.error("Checkout error:", _context3.t0);
+            alert(((_error$response2 = _context3.t0.response) === null || _error$response2 === void 0 || (_error$response2 = _error$response2.data) === null || _error$response2 === void 0 ? void 0 : _error$response2.message) || "Checkout failed. Please try again.");
+          case 19:
+          case "end":
+            return _context3.stop();
+        }
+      }, _callee3, null, [[8, 15]]);
+    }));
+    return function handleCheckout() {
+      return _ref3.apply(this, arguments);
+    };
+  }();
   return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)(_Reusable_MainPage__WEBPACK_IMPORTED_MODULE_2__["default"], {
     children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)("div", {
       className: "cart-container",
@@ -71082,7 +71126,7 @@ var Carts = function Carts() {
             })
           }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("tbody", {
             children: cartItems.map(function (item) {
-              var _item$product5, _item$product6, _item$product7, _item$product8, _item$product9;
+              var _item$product2, _item$product3, _item$product4, _item$product5, _item$product6;
               return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)("tr", {
                 children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("td", {
                   children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("input", {
@@ -71093,19 +71137,20 @@ var Carts = function Carts() {
                     }
                   })
                 }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("td", {
-                  children: ((_item$product5 = item.product) === null || _item$product5 === void 0 ? void 0 : _item$product5.product_name) || "Unknown Product"
+                  children: ((_item$product2 = item.product) === null || _item$product2 === void 0 ? void 0 : _item$product2.product_name) || "Unknown Product"
                 }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("td", {
                   children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("img", {
-                    src: (_item$product6 = item.product) !== null && _item$product6 !== void 0 && _item$product6.product_image ? "http://127.0.0.1:8000/storage/".concat(item.product.product_image) : "/placeholder.jpg",
-                    alt: ((_item$product7 = item.product) === null || _item$product7 === void 0 ? void 0 : _item$product7.product_name) || "Product Image",
+                    src: (_item$product3 = item.product) !== null && _item$product3 !== void 0 && _item$product3.product_image ? item.product.product_image // Already includes full URL from backend
+                    : "/placeholder.jpg",
+                    alt: ((_item$product4 = item.product) === null || _item$product4 === void 0 ? void 0 : _item$product4.product_name) || "Product Image",
                     className: "cart-image"
                   })
                 }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("td", {
                   className: "description",
-                  children: ((_item$product8 = item.product) === null || _item$product8 === void 0 ? void 0 : _item$product8.description) || "No Description"
+                  children: ((_item$product5 = item.product) === null || _item$product5 === void 0 ? void 0 : _item$product5.description) || "No Description"
                 }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)("td", {
                   className: "price",
-                  children: ["PHP ", ((_item$product9 = item.product) === null || _item$product9 === void 0 ? void 0 : _item$product9.price) || "0", ".00"]
+                  children: ["PHP ", ((_item$product6 = item.product) === null || _item$product6 === void 0 ? void 0 : _item$product6.price) || "0", ".00"]
                 })]
               }, item.id);
             })
@@ -76459,12 +76504,9 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router/dist/development/chunk-K6AXKMTT.mjs");
-/* harmony import */ var _Reusable_MainPage__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../Reusable/MainPage */ "./resources/js/components/Reusable/MainPage.js");
-/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
-/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_2__);
-/* harmony import */ var _ant_design_icons__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! @ant-design/icons */ "./node_modules/@ant-design/icons/es/icons/ShoppingCartOutlined.js");
-/* harmony import */ var _ant_design_icons__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! @ant-design/icons */ "./node_modules/@ant-design/icons/es/icons/CreditCardOutlined.js");
-/* harmony import */ var _ant_design_icons__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! @ant-design/icons */ "./node_modules/@ant-design/icons/es/icons/CheckCircleOutlined.js");
+/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
+/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_1__);
+/* harmony import */ var _Reusable_MainPage__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../Reusable/MainPage */ "./resources/js/components/Reusable/MainPage.js");
 /* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! react/jsx-runtime */ "./node_modules/react/jsx-runtime.js");
 function _typeof(o) { "@babel/helpers - typeof"; return _typeof = "function" == typeof Symbol && "symbol" == typeof Symbol.iterator ? function (o) { return typeof o; } : function (o) { return o && "function" == typeof Symbol && o.constructor === Symbol && o !== Symbol.prototype ? "symbol" : typeof o; }, _typeof(o); }
 function ownKeys(e, r) { var t = Object.keys(e); if (Object.getOwnPropertySymbols) { var o = Object.getOwnPropertySymbols(e); r && (o = o.filter(function (r) { return Object.getOwnPropertyDescriptor(e, r).enumerable; })), t.push.apply(t, o); } return t; }
@@ -76486,38 +76528,28 @@ function _arrayWithHoles(r) { if (Array.isArray(r)) return r; }
 
 
 
-
 var Checkout = function Checkout() {
   var navigate = (0,react_router_dom__WEBPACK_IMPORTED_MODULE_4__.useNavigate)();
   var location = (0,react_router_dom__WEBPACK_IMPORTED_MODULE_4__.useLocation)();
-  var _ref = location.state || {
-      selectedItems: [],
-      totalPrice: 0
-    },
-    selectedItems = _ref.selectedItems,
-    totalPrice = _ref.totalPrice;
-  // Safely convert totalPrice to a number
-  var numericTotalPrice = !isNaN(parseFloat(totalPrice)) ? parseFloat(totalPrice) : 0;
-
-  // Include `is_default` in local state to track whether this address is default.
+  var _ref = location.state || {},
+    selectedItem = _ref.selectedItem;
   var _useState = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)({
       id: null,
       receiver_fullname: "",
       contact_number: "",
-      country: "",
+      country: "Philippines",
       region: "",
       state: "",
       city: "",
       barangay: "",
       postalCode: "",
       street: "",
-      house_number: "",
-      is_default: false // track the default status
+      house_number: ""
     }),
     _useState2 = _slicedToArray(_useState, 2),
     address = _useState2[0],
     setAddress = _useState2[1];
-  var _useState3 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(false),
+  var _useState3 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(true),
     _useState4 = _slicedToArray(_useState3, 2),
     isEditing = _useState4[0],
     setIsEditing = _useState4[1];
@@ -76533,128 +76565,95 @@ var Checkout = function Checkout() {
     _useState10 = _slicedToArray(_useState9, 2),
     error = _useState10[0],
     setError = _useState10[1];
-  var _useState11 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(null),
+  var _useState11 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(false),
     _useState12 = _slicedToArray(_useState11, 2),
-    profileData = _useState12[0],
-    setProfileData = _useState12[1];
+    saving = _useState12[0],
+    setSaving = _useState12[1];
   (0,react__WEBPACK_IMPORTED_MODULE_0__.useEffect)(function () {
-    var fetchProfileAndAddress = /*#__PURE__*/function () {
+    var fetchData = /*#__PURE__*/function () {
       var _ref2 = _asyncToGenerator(/*#__PURE__*/_regeneratorRuntime().mark(function _callee() {
-        var token, profileResponse, profile, addressResponse, addressesData, defaultAddress;
+        var _profileRes$data, _addressRes$data, token, profileRes, profile, addressRes, defaultAddress;
         return _regeneratorRuntime().wrap(function _callee$(_context) {
           while (1) switch (_context.prev = _context.next) {
             case 0:
               _context.prev = 0;
-              setLoading(true);
               token = localStorage.getItem("userToken");
               if (token) {
-                _context.next = 7;
+                _context.next = 4;
                 break;
               }
-              setError("Authentication token not found");
-              setLoading(false);
-              return _context.abrupt("return");
-            case 7:
-              _context.next = 9;
-              return axios__WEBPACK_IMPORTED_MODULE_2___default().get("http://127.0.0.1:8000/api/profile", {
+              throw new Error("Authentication required");
+            case 4:
+              _context.next = 6;
+              return axios__WEBPACK_IMPORTED_MODULE_1___default().get("http://127.0.0.1:8000/api/profile", {
                 headers: {
                   Authorization: "Bearer ".concat(token)
                 }
               });
-            case 9:
-              profileResponse = _context.sent;
-              if (!(!profileResponse.data || !profileResponse.data.profile)) {
-                _context.next = 14;
+            case 6:
+              profileRes = _context.sent;
+              profile = (_profileRes$data = profileRes.data) === null || _profileRes$data === void 0 ? void 0 : _profileRes$data.profile;
+              if (profile) {
+                _context.next = 10;
                 break;
               }
-              setError("Profile data not available");
-              setLoading(false);
-              return _context.abrupt("return");
-            case 14:
-              profile = profileResponse.data.profile;
-              setProfileData(profile); // Store the full profile data
+              throw new Error("Profile not found");
+            case 10:
               setUserId(profile.user_id);
-              console.log("User profile fetched:", profile);
 
-              // 2) Fetch user addresses
-              _context.next = 20;
-              return axios__WEBPACK_IMPORTED_MODULE_2___default().get("http://127.0.0.1:8000/api/address/user/".concat(profile.user_id), {
+              // Fetch addresses
+              _context.next = 13;
+              return axios__WEBPACK_IMPORTED_MODULE_1___default().get("http://127.0.0.1:8000/api/address/user/".concat(profile.user_id), {
                 headers: {
                   Authorization: "Bearer ".concat(token)
                 }
               });
-            case 20:
-              addressResponse = _context.sent;
-              console.log("Address response:", addressResponse.data);
-
-              // Check for default address
-              addressesData = addressResponse.data.addresses || [];
-              defaultAddress = addressesData.find(function (a) {
-                return a.is_default === 1;
+            case 13:
+              addressRes = _context.sent;
+              defaultAddress = (_addressRes$data = addressRes.data) === null || _addressRes$data === void 0 || (_addressRes$data = _addressRes$data.addresses) === null || _addressRes$data === void 0 ? void 0 : _addressRes$data.find(function (a) {
+                return a.is_default;
               });
               if (defaultAddress) {
-                console.log("Default address found:", defaultAddress);
-                // Fill from the default address, ensuring all fields are properly mapped
-                setAddress({
-                  id: defaultAddress.id,
-                  receiver_fullname: defaultAddress.receiver_fullname || "",
-                  contact_number: defaultAddress.contact_number || "",
-                  country: defaultAddress.country || "",
-                  region: defaultAddress.region || "",
-                  state: defaultAddress.state || "",
-                  city: defaultAddress.city || "",
-                  barangay: defaultAddress.barangay || "",
-                  postalCode: defaultAddress.postal_code || "",
-                  street: defaultAddress.street || "",
-                  house_number: defaultAddress.house_number || "",
-                  // Convert 1/0 to true/false
-                  is_default: defaultAddress.is_default === 1
-                });
+                setAddress(mapAddress(defaultAddress));
                 setIsEditing(false);
-              } else {
-                console.log("No default address found, setting up with profile data");
-                // No default address: create fields with profile data when available
-                setAddress({
-                  id: null,
-                  receiver_fullname: "",
-                  contact_number: "",
-                  country: "",
-                  region: "",
-                  state: "",
-                  city: "",
-                  barangay: "",
-                  postalCode: "",
-                  street: "",
-                  house_number: "",
-                  is_default: false
-                });
-                setIsEditing(true);
               }
-              _context.next = 31;
+              _context.next = 21;
               break;
-            case 27:
-              _context.prev = 27;
+            case 18:
+              _context.prev = 18;
               _context.t0 = _context["catch"](0);
-              console.error("Failed to fetch profile/address", _context.t0);
-              setError("Failed to load your information. Please try again.");
-            case 31:
-              _context.prev = 31;
+              setError(_context.t0.message);
+            case 21:
+              _context.prev = 21;
               setLoading(false);
-              return _context.finish(31);
-            case 34:
+              return _context.finish(21);
+            case 24:
             case "end":
               return _context.stop();
           }
-        }, _callee, null, [[0, 27, 31, 34]]);
+        }, _callee, null, [[0, 18, 21, 24]]);
       }));
-      return function fetchProfileAndAddress() {
+      return function fetchData() {
         return _ref2.apply(this, arguments);
       };
     }();
-    fetchProfileAndAddress();
+    fetchData();
   }, []);
-
-  // Handle form changes
+  var mapAddress = function mapAddress(addr) {
+    return {
+      id: addr.id,
+      receiver_fullname: addr.receiver_fullname || "",
+      contact_number: addr.contact_number || "",
+      country: addr.country || "Philippines",
+      region: addr.region || "",
+      state: addr.state || "",
+      city: addr.city || "",
+      barangay: addr.barangay || "",
+      postalCode: addr.postal_code || "",
+      street: addr.street || "",
+      house_number: addr.house_number || ""
+    };
+  };
   var handleChange = function handleChange(e) {
     var _e$target = e.target,
       name = _e$target.name,
@@ -76663,399 +76662,195 @@ var Checkout = function Checkout() {
       return _objectSpread(_objectSpread({}, prev), {}, _defineProperty({}, name, value));
     });
   };
-
-  // Save or update address
+  var validateAddress = function validateAddress() {
+    var requiredFields = ['receiver_fullname', 'contact_number', 'house_number', 'street', 'barangay', 'city'];
+    return requiredFields.every(function (field) {
+      var _address$field;
+      return !!((_address$field = address[field]) !== null && _address$field !== void 0 && _address$field.trim());
+    });
+  };
   var handleSaveAddress = /*#__PURE__*/function () {
     var _ref3 = _asyncToGenerator(/*#__PURE__*/_regeneratorRuntime().mark(function _callee2() {
-      var token, addressData, response, savedAddress;
+      var token, addressData, endpoint, method, response, savedAddress, _error$response, _error$response2;
       return _regeneratorRuntime().wrap(function _callee2$(_context2) {
         while (1) switch (_context2.prev = _context2.next) {
           case 0:
             _context2.prev = 0;
+            if (validateAddress()) {
+              _context2.next = 4;
+              break;
+            }
+            alert("Please fill all required fields (*)");
+            return _context2.abrupt("return");
+          case 4:
+            setSaving(true);
             token = localStorage.getItem("userToken");
-            if (!(!token || !userId)) {
-              _context2.next = 5;
-              break;
-            }
-            alert("Missing auth token or userId.");
-            return _context2.abrupt("return");
-          case 5:
-            if (address.receiver_fullname) {
-              _context2.next = 8;
-              break;
-            }
-            alert("Please enter the receiver's full name.");
-            return _context2.abrupt("return");
-          case 8:
-            if (address.contact_number) {
-              _context2.next = 11;
-              break;
-            }
-            alert("Please enter a contact phone number.");
-            return _context2.abrupt("return");
-          case 11:
-            if (address.house_number) {
-              _context2.next = 14;
-              break;
-            }
-            alert("Please enter the house number.");
-            return _context2.abrupt("return");
-          case 14:
-            if (!(!address.street || !address.barangay || !address.city)) {
-              _context2.next = 17;
-              break;
-            }
-            alert("Please fill out all required address fields.");
-            return _context2.abrupt("return");
-          case 17:
-            // Build data for saving
             addressData = {
               user_id: userId,
               receiver_fullname: address.receiver_fullname.trim(),
               contact_number: address.contact_number.trim(),
               house_number: address.house_number.trim(),
-              street: address.street,
-              barangay: address.barangay,
-              city: address.city,
-              state: address.state,
-              country: address.country,
-              region: address.region,
-              postal_code: address.postalCode
-            }; // If editing an existing address, preserve its current is_default value.
-            // If creating a new address, set it to default = true (per your original code).
-            if (address.id) {
-              addressData.is_default = address.is_default ? 1 : 0;
-              // Update existing
-            } else {
-              addressData.is_default = 1; // new addresses in checkout are default
-            }
-            if (!address.id) {
-              _context2.next = 25;
-              break;
-            }
-            _context2.next = 22;
-            return axios__WEBPACK_IMPORTED_MODULE_2___default().put("http://127.0.0.1:8000/api/address/".concat(address.id), addressData, {
+              street: address.street.trim(),
+              barangay: address.barangay.trim(),
+              city: address.city.trim(),
+              state: address.state.trim(),
+              country: address.country.trim(),
+              region: address.region.trim(),
+              postal_code: address.postalCode.trim(),
+              is_default: true
+            };
+            endpoint = address.id ? "http://127.0.0.1:8000/api/address/".concat(address.id) : "http://127.0.0.1:8000/api/address";
+            method = address.id ? 'put' : 'post';
+            _context2.next = 11;
+            return (axios__WEBPACK_IMPORTED_MODULE_1___default())[method](endpoint, addressData, {
               headers: {
                 Authorization: "Bearer ".concat(token)
               }
             });
-          case 22:
+          case 11:
             response = _context2.sent;
-            _context2.next = 28;
-            break;
-          case 25:
-            _context2.next = 27;
-            return axios__WEBPACK_IMPORTED_MODULE_2___default().post("http://127.0.0.1:8000/api/address", addressData, {
-              headers: {
-                Authorization: "Bearer ".concat(token)
-              }
-            });
-          case 27:
-            response = _context2.sent;
-          case 28:
-            console.log("Address saved successfully:", response.data);
-            alert("Address saved successfully!");
+            savedAddress = mapAddress(response.data.data);
+            setAddress(savedAddress);
             setIsEditing(false);
-
-            // If successful, update local state with the final 'id' and is_default
-            savedAddress = response.data.address;
-            if (savedAddress) {
-              setAddress(function (prev) {
-                return _objectSpread(_objectSpread({}, prev), {}, {
-                  id: savedAddress.id,
-                  is_default: savedAddress.is_default === 1
-                });
-              });
-            }
-            _context2.next = 39;
+            alert("Address saved successfully!");
+            _context2.next = 22;
             break;
-          case 35:
-            _context2.prev = 35;
+          case 18:
+            _context2.prev = 18;
             _context2.t0 = _context2["catch"](0);
-            console.error("Failed to save address", _context2.t0);
-            alert("Failed to save address. Check console for details.");
-          case 39:
+            console.error("Save error:", (_error$response = _context2.t0.response) === null || _error$response === void 0 ? void 0 : _error$response.data);
+            alert("Save failed: ".concat(((_error$response2 = _context2.t0.response) === null || _error$response2 === void 0 || (_error$response2 = _error$response2.data) === null || _error$response2 === void 0 ? void 0 : _error$response2.message) || "Server error"));
+          case 22:
+            _context2.prev = 22;
+            setSaving(false);
+            return _context2.finish(22);
+          case 25:
           case "end":
             return _context2.stop();
         }
-      }, _callee2, null, [[0, 35]]);
+      }, _callee2, null, [[0, 18, 22, 25]]);
     }));
     return function handleSaveAddress() {
       return _ref3.apply(this, arguments);
     };
   }();
-  if (loading) {
-    return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)(_Reusable_MainPage__WEBPACK_IMPORTED_MODULE_1__["default"], {
-      children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("div", {
-        className: "loading",
-        children: "Loading your information..."
-      })
+  var handleProceed = function handleProceed() {
+    navigate("/payment", {
+      state: {
+        selectedItem: selectedItem,
+        address: address,
+        shippingCost: 70.00
+      }
     });
-  }
-  if (error) {
-    return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)(_Reusable_MainPage__WEBPACK_IMPORTED_MODULE_1__["default"], {
-      children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("div", {
-        className: "error",
-        children: error
-      })
-    });
-  }
-  return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)(_Reusable_MainPage__WEBPACK_IMPORTED_MODULE_1__["default"], {
+  };
+  if (loading) return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)(_Reusable_MainPage__WEBPACK_IMPORTED_MODULE_2__["default"], {
+    children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("div", {
+      className: "loading",
+      children: "Loading..."
+    })
+  });
+  if (error) return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)(_Reusable_MainPage__WEBPACK_IMPORTED_MODULE_2__["default"], {
+    children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("div", {
+      className: "error",
+      children: error
+    })
+  });
+  return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)(_Reusable_MainPage__WEBPACK_IMPORTED_MODULE_2__["default"], {
     children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)("div", {
       className: "checkout-container",
-      children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)("div", {
-        className: "progress-bar",
-        children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)("div", {
-          className: "step active",
-          children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)(_ant_design_icons__WEBPACK_IMPORTED_MODULE_5__["default"], {
-            style: {
-              fontSize: "24px",
-              marginBottom: "8px"
-            }
-          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("span", {
-            children: "Checkout"
-          })]
-        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("div", {
-          className: "line"
-        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)("div", {
-          className: "step",
-          children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)(_ant_design_icons__WEBPACK_IMPORTED_MODULE_6__["default"], {
-            style: {
-              fontSize: "24px",
-              marginBottom: "8px"
-            }
-          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("span", {
-            children: "Payment"
-          })]
-        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("div", {
-          className: "line"
-        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)("div", {
-          className: "step",
-          children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)(_ant_design_icons__WEBPACK_IMPORTED_MODULE_7__["default"], {
-            style: {
-              fontSize: "24px",
-              marginBottom: "8px"
-            }
-          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("span", {
-            children: "Confirmation"
-          })]
+      children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("h2", {
+        children: "Checkout"
+      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)("div", {
+        className: "order-details",
+        children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("h3", {
+          children: "Order Details"
+        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)("p", {
+          children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("strong", {
+            children: "Product:"
+          }), " ", selectedItem.product_name]
+        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)("p", {
+          children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("strong", {
+            children: "Price:"
+          }), " PHP ", selectedItem.price]
+        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)("p", {
+          children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("strong", {
+            children: "Subtotal:"
+          }), " PHP ", selectedItem.price]
+        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)("p", {
+          children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("strong", {
+            children: "Shipping Cost:"
+          }), " PHP 70.00"]
+        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)("p", {
+          children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("strong", {
+            children: "Grand Total:"
+          }), " PHP ", selectedItem.price + 70]
         })]
       }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)("div", {
-        className: "checkout-content",
-        children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)("div", {
-          className: "order-details",
-          children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("h3", {
-            children: "Order Details"
-          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("table", {
-            children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)("tbody", {
-              children: [selectedItems.map(function (item, index) {
-                return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)("tr", {
-                  children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("td", {
-                    children: item.product_name || "Unknown Product"
-                  }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)("td", {
-                    children: ["PHP ", item.price || "0", ".00"]
-                  })]
-                }, index);
-              }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)("tr", {
-                children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("td", {
-                  children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("strong", {
-                    children: "Subtotal"
-                  })
-                }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)("td", {
-                  children: ["PHP ", numericTotalPrice.toFixed(2)]
+        className: "address-section",
+        children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("h3", {
+          children: "Shipping Address"
+        }), isEditing ? /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.Fragment, {
+          children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)("form", {
+            children: [['receiver_fullname', 'contact_number', 'house_number', 'street', 'barangay', 'city'].map(function (field) {
+              return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)("div", {
+                className: "form-field required",
+                children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)("label", {
+                  children: [field.replace(/_/g, ' ').toUpperCase(), " *"]
+                }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("input", {
+                  type: "text",
+                  name: field,
+                  value: address[field],
+                  onChange: handleChange,
+                  required: true,
+                  placeholder: "Enter ".concat(field.replace(/_/g, ' '))
                 })]
-              }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)("tr", {
-                children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("td", {
-                  children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("strong", {
-                    children: "Shipping"
-                  })
-                }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("td", {
-                  children: "PHP 70.00"
+              }, field);
+            }), ['region', 'state', 'country', 'postalCode'].map(function (field) {
+              return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)("div", {
+                className: "form-field",
+                children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("label", {
+                  children: field === 'postalCode' ? 'POSTAL CODE' : field.toUpperCase()
+                }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("input", {
+                  type: "text",
+                  name: field,
+                  value: address[field],
+                  onChange: handleChange,
+                  placeholder: "Enter ".concat(field.replace(/([A-Z])/g, ' $1').toLowerCase())
                 })]
-              }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)("tr", {
-                children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("td", {
-                  children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("strong", {
-                    children: "Grand Total"
-                  })
-                }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)("td", {
-                  children: ["PHP ", (numericTotalPrice + 70).toFixed(2)]
-                })]
-              })]
-            })
-          })]
-        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)("div", {
-          className: "billing-address",
-          children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("h3", {
-            children: "Billing Address"
-          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)("form", {
-            children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)("div", {
-              className: "form-field required",
-              children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)("label", {
-                children: ["Receiver Fullname ", /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("span", {
-                  className: "required-star",
-                  children: "*"
-                })]
-              }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("input", {
-                type: "text",
-                name: "receiver_fullname",
-                value: address.receiver_fullname,
-                onChange: handleChange,
-                disabled: !isEditing,
-                required: true,
-                placeholder: "Enter the recipient's full name"
-              })]
-            }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)("div", {
-              className: "form-field required",
-              children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)("label", {
-                children: ["Phone Number ", /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("span", {
-                  className: "required-star",
-                  children: "*"
-                })]
-              }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("input", {
-                type: "text",
-                name: "contact_number",
-                value: address.contact_number,
-                onChange: handleChange,
-                disabled: !isEditing,
-                required: true,
-                placeholder: "Enter contact phone number"
-              })]
-            }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)("div", {
-              className: "form-field required",
-              children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)("label", {
-                children: ["House Number ", /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("span", {
-                  className: "required-star",
-                  children: "*"
-                })]
-              }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("input", {
-                type: "text",
-                name: "house_number",
-                value: address.house_number,
-                onChange: handleChange,
-                disabled: !isEditing,
-                required: true,
-                placeholder: "Enter house/unit number"
-              })]
-            }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)("div", {
-              className: "form-field required",
-              children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)("label", {
-                children: ["Street ", /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("span", {
-                  className: "required-star",
-                  children: "*"
-                })]
-              }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("input", {
-                type: "text",
-                name: "street",
-                value: address.street,
-                onChange: handleChange,
-                disabled: !isEditing,
-                required: true
-              })]
-            }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)("div", {
-              className: "form-field required",
-              children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)("label", {
-                children: ["Barangay ", /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("span", {
-                  className: "required-star",
-                  children: "*"
-                })]
-              }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("input", {
-                type: "text",
-                name: "barangay",
-                value: address.barangay,
-                onChange: handleChange,
-                disabled: !isEditing,
-                required: true
-              })]
-            }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)("div", {
-              className: "form-field required",
-              children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)("label", {
-                children: ["City ", /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("span", {
-                  className: "required-star",
-                  children: "*"
-                })]
-              }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("input", {
-                type: "text",
-                name: "city",
-                value: address.city,
-                onChange: handleChange,
-                disabled: !isEditing,
-                required: true
-              })]
-            }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)("div", {
-              className: "form-field",
-              children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("label", {
-                children: "Region"
-              }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("input", {
-                type: "text",
-                name: "region",
-                value: address.region,
-                onChange: handleChange,
-                disabled: !isEditing
-              })]
-            }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)("div", {
-              className: "form-field",
-              children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("label", {
-                children: "State"
-              }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("input", {
-                type: "text",
-                name: "state",
-                value: address.state,
-                onChange: handleChange,
-                disabled: !isEditing
-              })]
-            }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)("div", {
-              className: "form-field",
-              children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("label", {
-                children: "Country"
-              }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("input", {
-                type: "text",
-                name: "country",
-                value: address.country,
-                onChange: handleChange,
-                disabled: !isEditing
-              })]
-            }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)("div", {
-              className: "form-field",
-              children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("label", {
-                children: "Postal Code"
-              }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("input", {
-                type: "text",
-                name: "postalCode",
-                value: address.postalCode,
-                onChange: handleChange,
-                disabled: !isEditing
-              })]
+              }, field);
             })]
-          }), !isEditing ? /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("button", {
+          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("button", {
+            onClick: handleSaveAddress,
+            className: "save-btn",
+            disabled: saving,
+            children: saving ? "Saving..." : "Save Address"
+          })]
+        }) : /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.Fragment, {
+          children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)("div", {
+            className: "address-display",
+            children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("p", {
+              children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("strong", {
+                children: address.receiver_fullname
+              })
+            }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("p", {
+              children: address.contact_number
+            }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("p", {
+              children: [address.house_number, address.street, address.barangay, address.city, address.region, address.country, address.postalCode].filter(Boolean).join(", ")
+            })]
+          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("button", {
             onClick: function onClick() {
               return setIsEditing(true);
             },
             className: "edit-btn",
             children: "Edit Address"
-          }) : /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("button", {
-            onClick: handleSaveAddress,
-            className: "save-btn",
-            children: "Save Address"
           })]
         })]
       }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("div", {
-        className: "checkout-actions",
+        className: "proceed-section",
         children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("button", {
           className: "proceed-btn",
-          onClick: function onClick() {
-            // Ensure required fields are filled before proceeding
-            if (!address.receiver_fullname || !address.contact_number || !address.house_number) {
-              alert("Please complete required address fields before proceeding to payment.");
-              return;
-            }
-            navigate("/payment", {
-              state: {
-                selectedItems: selectedItems,
-                totalPrice: numericTotalPrice,
-                address: address
-              }
-            });
-          },
+          onClick: handleProceed,
+          disabled: !address.id,
           children: "Proceed to Payment"
         })
       })]
@@ -77756,139 +77551,72 @@ var Payment = function Payment() {
   // ------------------------------------------------------------------
 
   // Removes purchased items from cart
-  var removePurchasedItemsFromCart = /*#__PURE__*/function () {
-    var _ref3 = _asyncToGenerator(/*#__PURE__*/_regeneratorRuntime().mark(function _callee2(cartIds) {
-      var userToken, userId, currentCount, newCount, _error$response;
+
+  // Payment success callback
+  var handlePaymentSuccess = /*#__PURE__*/function () {
+    var _ref3 = _asyncToGenerator(/*#__PURE__*/_regeneratorRuntime().mark(function _callee2(details) {
+      var token, userId, checkoutPayload, response, _error$response, _error$response2;
       return _regeneratorRuntime().wrap(function _callee2$(_context2) {
         while (1) switch (_context2.prev = _context2.next) {
           case 0:
             _context2.prev = 0;
-            if (!(!Array.isArray(cartIds) || cartIds.length === 0)) {
-              _context2.next = 4;
+            token = localStorage.getItem("userToken");
+            userId = localStorage.getItem("userId"); // Validate critical data
+            if (!(!(address !== null && address !== void 0 && address.id) || typeof address.id !== 'number')) {
+              _context2.next = 5;
               break;
             }
-            console.warn("⚠ No valid cart items to remove.");
-            return _context2.abrupt("return");
-          case 4:
-            userToken = localStorage.getItem("userToken");
-            _context2.next = 7;
-            return axios__WEBPACK_IMPORTED_MODULE_2___default().post("http://127.0.0.1:8000/api/carts/delete", {
-              cart_ids: cartIds
-            }, {
+            throw new Error("Invalid shipping address - please save your address first");
+          case 5:
+            // Prepare complete checkout payload
+            checkoutPayload = {
+              payment_method: selectedPaymentMethod.toLowerCase(),
+              address_id: address.id,
+              // Must be numeric
+              shipping_cost: 70.00,
+              // Send as number
+              user_id: parseInt(userId) // Add user_id if backend requires
+            }; // Debugging: Log the actual payload
+
+            console.log("Final checkout payload:", JSON.stringify(checkoutPayload, null, 2));
+
+            // Make the request
+            _context2.next = 9;
+            return axios__WEBPACK_IMPORTED_MODULE_2___default().post("http://127.0.0.1:8000/api/checkout", checkoutPayload, {
               headers: {
-                Authorization: "Bearer ".concat(userToken)
+                Authorization: "Bearer ".concat(token)
               }
             });
-          case 7:
-            console.log("✅ Purchased items removed from cart:", cartIds);
-
-            // Update the user-specific cart count
-            userId = localStorage.getItem("userId");
-            if (userId) {
-              currentCount = parseInt(localStorage.getItem("cartCount_".concat(userId))) || 0;
-              newCount = Math.max(0, currentCount - cartIds.length);
-              localStorage.setItem("cartCount_".concat(userId), newCount.toString());
-              // Dispatch the custom event so Header updates immediately
-              window.dispatchEvent(new Event("cartCountUpdated"));
-            }
-            _context2.next = 15;
+          case 9:
+            response = _context2.sent;
+            // Handle success
+            navigate("/confirmation", {
+              state: {
+                orderNumber: response.data.data.order_number,
+                address: address,
+                selectedItems: selectedItems,
+                totalPrice: response.data.data.total_amount,
+                paymentMethod: selectedPaymentMethod
+              }
+            });
+            _context2.next = 17;
             break;
-          case 12:
-            _context2.prev = 12;
+          case 13:
+            _context2.prev = 13;
             _context2.t0 = _context2["catch"](0);
-            console.error("❌ Failed to remove purchased items:", ((_error$response = _context2.t0.response) === null || _error$response === void 0 ? void 0 : _error$response.data) || _context2.t0);
-          case 15:
+            console.error("Full error details:", {
+              config: _context2.t0.config,
+              response: (_error$response = _context2.t0.response) === null || _error$response === void 0 ? void 0 : _error$response.data
+            });
+            alert("Checkout failed: ".concat(((_error$response2 = _context2.t0.response) === null || _error$response2 === void 0 || (_error$response2 = _error$response2.data) === null || _error$response2 === void 0 ? void 0 : _error$response2.message) || _context2.t0.message));
+          case 17:
           case "end":
             return _context2.stop();
         }
-      }, _callee2, null, [[0, 12]]);
+      }, _callee2, null, [[0, 13]]);
     }));
-    return function removePurchasedItemsFromCart(_x) {
+    return function handlePaymentSuccess(_x) {
       return _ref3.apply(this, arguments);
-    };
-  }();
-
-  // Payment success callback
-  var handlePaymentSuccess = /*#__PURE__*/function () {
-    var _ref4 = _asyncToGenerator(/*#__PURE__*/_regeneratorRuntime().mark(function _callee3(details) {
-      var paymentId, orderData, orderId, cartIds;
-      return _regeneratorRuntime().wrap(function _callee3$(_context3) {
-        while (1) switch (_context3.prev = _context3.next) {
-          case 0:
-            _context3.prev = 0;
-            setPaymentDetails(details);
-            alert("Payment successful via ".concat(details.method, "!"));
-
-            // 1) Save Payment => Payment ID
-            _context3.next = 5;
-            return savePaymentDetails(details);
-          case 5:
-            paymentId = _context3.sent;
-            if (paymentId) {
-              _context3.next = 8;
-              break;
-            }
-            throw new Error("Payment ID is missing");
-          case 8:
-            // 2) Build order data (including shipping address)
-            orderData = {
-              orderNumber: "ORD-".concat(Math.floor(100000 + Math.random() * 900000)),
-              purchaseDate: new Date().toISOString(),
-              userId: localStorage.getItem("userId"),
-              items: selectedItems.map(function (item) {
-                return {
-                  cart_id: item.cart_id,
-                  product_name: item.product_name,
-                  price: item.price,
-                  brand: item.brand
-                };
-              }),
-              totalPrice: totalPrice + 70,
-              paymentMethod: details.method,
-              shippingAddress: buildShippingAddressString(address),
-              paymentId: paymentId
-            }; // 3) Save Order
-            _context3.next = 11;
-            return saveOrderDetails(orderData);
-          case 11:
-            orderId = _context3.sent;
-            // 4) Remove from cart
-            cartIds = selectedItems.map(function (item) {
-              return item.cart_id;
-            });
-            if (!(cartIds.length > 0)) {
-              _context3.next = 16;
-              break;
-            }
-            _context3.next = 16;
-            return removePurchasedItemsFromCart(cartIds);
-          case 16:
-            // 5) Go to Confirmation
-            navigate("/confirmation", {
-              state: {
-                orderNumber: orderData.orderNumber,
-                purchaseDate: orderData.purchaseDate,
-                address: address,
-                selectedItems: selectedItems,
-                totalPrice: totalPrice + 70,
-                paymentMethod: details.method
-              }
-            });
-            _context3.next = 23;
-            break;
-          case 19:
-            _context3.prev = 19;
-            _context3.t0 = _context3["catch"](0);
-            console.error("Error processing payment:", _context3.t0);
-            alert("Failed to process payment. Please try again.");
-          case 23:
-          case "end":
-            return _context3.stop();
-        }
-      }, _callee3, null, [[0, 19]]);
-    }));
-    return function handlePaymentSuccess(_x2) {
-      return _ref4.apply(this, arguments);
     };
   }();
 
@@ -77898,14 +77626,14 @@ var Payment = function Payment() {
 
   // Save Payment
   var savePaymentDetails = /*#__PURE__*/function () {
-    var _ref5 = _asyncToGenerator(/*#__PURE__*/_regeneratorRuntime().mark(function _callee4(details) {
-      var token, response, _error$response2;
-      return _regeneratorRuntime().wrap(function _callee4$(_context4) {
-        while (1) switch (_context4.prev = _context4.next) {
+    var _ref4 = _asyncToGenerator(/*#__PURE__*/_regeneratorRuntime().mark(function _callee3(details) {
+      var token, response, _error$response3;
+      return _regeneratorRuntime().wrap(function _callee3$(_context3) {
+        while (1) switch (_context3.prev = _context3.next) {
           case 0:
-            _context4.prev = 0;
+            _context3.prev = 0;
             token = localStorage.getItem("userToken");
-            _context4.next = 4;
+            _context3.next = 4;
             return axios__WEBPACK_IMPORTED_MODULE_2___default().post("http://127.0.0.1:8000/api/payments", {
               payment_method: details.method.toLowerCase()
             }, {
@@ -77914,87 +77642,67 @@ var Payment = function Payment() {
               }
             });
           case 4:
-            response = _context4.sent;
+            response = _context3.sent;
             console.log("✅ Payment details saved:", response.data);
             if (!(response.data && response.data.payment_id)) {
-              _context4.next = 10;
+              _context3.next = 10;
               break;
             }
-            return _context4.abrupt("return", response.data.payment_id);
+            return _context3.abrupt("return", response.data.payment_id);
           case 10:
             throw new Error("Payment ID not returned from API");
           case 11:
-            _context4.next = 17;
+            _context3.next = 17;
             break;
           case 13:
-            _context4.prev = 13;
-            _context4.t0 = _context4["catch"](0);
-            console.error("❌ Failed to save payment details:", ((_error$response2 = _context4.t0.response) === null || _error$response2 === void 0 ? void 0 : _error$response2.data) || _context4.t0);
-            throw _context4.t0;
+            _context3.prev = 13;
+            _context3.t0 = _context3["catch"](0);
+            console.error("❌ Failed to save payment details:", ((_error$response3 = _context3.t0.response) === null || _error$response3 === void 0 ? void 0 : _error$response3.data) || _context3.t0);
+            throw _context3.t0;
           case 17:
           case "end":
-            return _context4.stop();
+            return _context3.stop();
         }
-      }, _callee4, null, [[0, 13]]);
+      }, _callee3, null, [[0, 13]]);
     }));
-    return function savePaymentDetails(_x3) {
-      return _ref5.apply(this, arguments);
+    return function savePaymentDetails(_x2) {
+      return _ref4.apply(this, arguments);
     };
   }();
 
   // Save Order
   var saveOrderDetails = /*#__PURE__*/function () {
-    var _ref6 = _asyncToGenerator(/*#__PURE__*/_regeneratorRuntime().mark(function _callee5(orderData) {
-      var token, cartIds, response, _error$response3;
-      return _regeneratorRuntime().wrap(function _callee5$(_context5) {
-        while (1) switch (_context5.prev = _context5.next) {
+    var _ref5 = _asyncToGenerator(/*#__PURE__*/_regeneratorRuntime().mark(function _callee4(orderData) {
+      var token, response;
+      return _regeneratorRuntime().wrap(function _callee4$(_context4) {
+        while (1) switch (_context4.prev = _context4.next) {
           case 0:
-            _context5.prev = 0;
-            token = localStorage.getItem("userToken");
-            console.log("🔍 Sending Order Data:", orderData);
-
-            // If only one cart ID
-            cartIds = orderData.items.map(function (item) {
-              return item.cart_id;
-            }).filter(function (id) {
-              return id !== undefined && id !== null;
-            });
-            if (cartIds.length === 1) {
-              cartIds = cartIds[0];
-            }
-            _context5.next = 7;
-            return axios__WEBPACK_IMPORTED_MODULE_2___default().post("http://127.0.0.1:8000/api/orders", {
-              cart_id: cartIds,
-              payment_id: orderData.paymentId,
-              address_id: null,
-              // if you have an address ID, pass it
-              subtotal: totalPrice,
-              shipping_cost: 70,
-              total_amount: totalPrice + 70,
-              status: "pending",
-              purchase_date: new Date().toISOString().split("T")[0]
-            }, {
+            _context4.prev = 0;
+            token = localStorage.getItem("userToken"); // Send a POST to /checkout endpoint instead of /orders
+            _context4.next = 4;
+            return axios__WEBPACK_IMPORTED_MODULE_2___default().post("http://127.0.0.1:8000/api/checkout", {},
+            // No need to send cart IDs - backend handles it
+            {
               headers: {
                 Authorization: "Bearer ".concat(token)
               }
             });
-          case 7:
-            response = _context5.sent;
-            console.log("✅ Order details saved:", response.data);
-            return _context5.abrupt("return", response.data.order.id);
+          case 4:
+            response = _context4.sent;
+            return _context4.abrupt("return", response.data.order.id);
+          case 8:
+            _context4.prev = 8;
+            _context4.t0 = _context4["catch"](0);
+            console.error("Order creation failed:", _context4.t0);
+            throw _context4.t0;
           case 12:
-            _context5.prev = 12;
-            _context5.t0 = _context5["catch"](0);
-            console.error("❌ Failed to save order details:", ((_error$response3 = _context5.t0.response) === null || _error$response3 === void 0 ? void 0 : _error$response3.data) || _context5.t0);
-            throw _context5.t0;
-          case 16:
           case "end":
-            return _context5.stop();
+            return _context4.stop();
         }
-      }, _callee5, null, [[0, 12]]);
+      }, _callee4, null, [[0, 8]]);
     }));
-    return function saveOrderDetails(_x4) {
-      return _ref6.apply(this, arguments);
+    return function saveOrderDetails(_x3) {
+      return _ref5.apply(this, arguments);
     };
   }();
 
@@ -78152,21 +77860,21 @@ var Payment = function Payment() {
           children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("input", {
             type: "radio",
             name: "payment",
-            value: "Paypal",
+            value: "paypal",
             onChange: handlePaymentMethodChange
           }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)(_ant_design_icons__WEBPACK_IMPORTED_MODULE_11__["default"], {}), " Paypal"]
         }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsxs)("label", {
           children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("input", {
             type: "radio",
             name: "payment",
-            value: "Gcash",
+            value: "gcash",
             onChange: handlePaymentMethodChange
           }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)(_ant_design_icons__WEBPACK_IMPORTED_MODULE_12__["default"], {}), " Gcash"]
         }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsxs)("label", {
           children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("input", {
             type: "radio",
             name: "payment",
-            value: "COD",
+            value: "cod",
             onChange: handlePaymentMethodChange
           }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)(_ant_design_icons__WEBPACK_IMPORTED_MODULE_13__["default"], {}), " Cash On Delivery"]
         })]

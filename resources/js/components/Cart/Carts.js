@@ -14,33 +14,32 @@ const Carts = () => {
 
   useEffect(() => {
     const fetchCartItems = async () => {
-      try {
-        const userToken = localStorage.getItem("userToken");
-        if (!userToken) {
-          alert("Please log in to view your cart.");
-          navigate("/login");
-          return;
+        try {
+            const userToken = localStorage.getItem("userToken");
+            if (!userToken) {
+                navigate("/login");
+                return;
+            }
+
+            const response = await axios.get("http://127.0.0.1:8000/api/carts", {
+                headers: { Authorization: `Bearer ${userToken}` },
+            });
+
+            // Updated this line
+            const fetchedItems = response.data.data || [];
+            setCartItems(fetchedItems);
+
+            if (userId) {
+                localStorage.setItem(`cartCount_${userId}`, fetchedItems.length.toString());
+                window.dispatchEvent(new Event("cartCountUpdated"));
+            }
+        } catch (error) {
+            console.error("Error fetching cart items:", error);
         }
-
-        const response = await axios.get("http://127.0.0.1:8000/api/carts", {
-          headers: { Authorization: `Bearer ${userToken}` },
-        });
-
-        const fetchedItems = Array.isArray(response.data) ? response.data : [];
-        setCartItems(fetchedItems);
-
-        // Update user-specific cart count
-        if (userId) {
-          localStorage.setItem(`cartCount_${userId}`, fetchedItems.length.toString());
-          window.dispatchEvent(new Event("cartCountUpdated"));
-        }
-      } catch (error) {
-        console.error("Error fetching cart items:", error);
-      }
     };
 
     fetchCartItems();
-  }, [navigate, userId]);
+}, [navigate, userId]);
 
   // Handle select item
   const handleSelectItem = (productId) => {
@@ -61,31 +60,35 @@ const Carts = () => {
   const handleDeleteSelected = async () => {
     const userToken = localStorage.getItem("userToken");
     if (!userToken) {
-      alert("Please log in to delete items.");
-      navigate("/login");
-      return;
+        alert("Please log in to delete items.");
+        navigate("/login");
+        return;
     }
 
     try {
-      await axios.post(
-        "http://127.0.0.1:8000/api/carts/delete",
-        { cart_ids: selectedItems },
-        { headers: { Authorization: `Bearer ${userToken}` } }
-      );
+        const response = await axios.post(
+            "http://127.0.0.1:8000/api/carts/delete",
+            { cart_ids: selectedItems }, // Match backend parameter name
+            { headers: { Authorization: `Bearer ${userToken}` } }
+        );
 
-      const updatedCart = cartItems.filter((item) => !selectedItems.includes(item.id));
-      setCartItems(updatedCart);
-      setSelectedItems([]);
-      setSelectAll(false);
+        if (response.data.status === 'success') {
+            const updatedCart = cartItems.filter((item) => !selectedItems.includes(item.id));
+            setCartItems(updatedCart);
+            setSelectedItems([]);
+            setSelectAll(false);
 
-      if (userId) {
-        localStorage.setItem(`cartCount_${userId}`, updatedCart.length.toString());
-        window.dispatchEvent(new Event("cartCountUpdated"));
-      }
+            if (userId) {
+                localStorage.setItem(`cartCount_${userId}`, updatedCart.length.toString());
+                window.dispatchEvent(new Event("cartCountUpdated"));
+            }
+            alert(response.data.message);
+        }
     } catch (error) {
-      console.error("Error deleting cart items:", error);
+        console.error("Error deleting cart items:", error);
+        alert(error.response?.data?.message || "Failed to delete items");
     }
-  };
+};
 
   const selectedCartItems = cartItems.filter((item) => selectedItems.includes(item.id));
   const totalPrice = selectedCartItems.reduce(
@@ -93,30 +96,49 @@ const Carts = () => {
     0
   );
 
-  const handleCheckout = () => {
+  const handleCheckout = async () => {
     const userToken = localStorage.getItem("userToken");
     if (!userToken) {
-      alert("Please log in to proceed to checkout.");
+      alert("Please log in to checkout.");
       navigate("/login");
       return;
     }
-
-    if (selectedCartItems.length === 0) {
-      alert("Please select items to checkout.");
+  
+    if (selectedItems.length === 0) {
+      alert("Please select at least one item to checkout.");
       return;
     }
-
-    navigate("/checkout", {
-      state: {
-        selectedItems: selectedCartItems.map((item) => ({
-          cart_id: item.id,
-          product_name: item.product?.product_name,
-          price: item.product?.price,
-          brand: item.product?.brand,
-        })),
-        totalPrice,
-      },
-    });
+  
+    try {
+      const response = await axios.post(
+        "http://127.0.0.1:8000/api/checkout",
+        {
+          cart_item_id: selectedItems[0], // Send the first selected item's ID
+          payment_method: "cod", // Default payment method
+          shipping_cost: 70.00 // Default shipping cost
+        },
+        {
+          headers: { 
+            Authorization: `Bearer ${userToken}`,
+            'Content-Type': 'application/json'
+          }
+        }
+      );
+  
+      if (response.data.status === 'success') {
+        localStorage.setItem(`cartCount_${userId}`, "0");
+        window.dispatchEvent(new Event("cartCountUpdated"));
+        navigate("/confirmation", { 
+          state: {
+            order: response.data.order,
+            payment: response.data.order.payment
+          }
+        });
+      }
+    } catch (error) {
+      console.error("Checkout error:", error);
+      alert(error.response?.data?.message || "Checkout failed. Please try again.");
+    }
   };
 
   return (
@@ -138,34 +160,34 @@ const Carts = () => {
                 </tr>
               </thead>
               <tbody>
-                {cartItems.map((item) => (
-                  <tr key={item.id}>
-                    <td>
-                      <input
-                        type="checkbox"
-                        checked={selectedItems.includes(item.id)}
-                        onChange={() => handleSelectItem(item.id)}
-                      />
-                    </td>
-                    <td>{item.product?.product_name || "Unknown Product"}</td>
-                    <td>
-                      <img
-                        src={
-                          item.product?.product_image
-                            ? `http://127.0.0.1:8000/storage/${item.product.product_image}`
-                            : "/placeholder.jpg"
-                        }
-                        alt={item.product?.product_name || "Product Image"}
-                        className="cart-image"
-                      />
-                    </td>
-                    <td className="description">
-                      {item.product?.description || "No Description"}
-                    </td>
-                    <td className="price">PHP {item.product?.price || "0"}.00</td>
-                  </tr>
-                ))}
-              </tbody>
+  {cartItems.map((item) => (
+    <tr key={item.id}>
+      <td>
+        <input
+          type="checkbox"
+          checked={selectedItems.includes(item.id)}
+          onChange={() => handleSelectItem(item.id)}
+        />
+      </td>
+      <td>{item.product?.product_name || "Unknown Product"}</td>
+      <td>
+        <img
+          src={
+            item.product?.product_image
+              ? item.product.product_image // Already includes full URL from backend
+              : "/placeholder.jpg"
+          }
+          alt={item.product?.product_name || "Product Image"}
+          className="cart-image"
+        />
+      </td>
+      <td className="description">
+        {item.product?.description || "No Description"}
+      </td>
+      <td className="price">PHP {item.product?.price || "0"}.00</td>
+    </tr>
+  ))}
+</tbody>
             </table>
 
             <div className="cart-actions">

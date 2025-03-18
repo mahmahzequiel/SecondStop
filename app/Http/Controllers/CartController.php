@@ -4,90 +4,171 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Cart;
-use App\Models\Products;
+use App\Models\CartItem;
+use App\Models\Product;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Log;
 
 class CartController extends Controller
 {
     /**
-     * Display a listing of the cart items.
+     * Display all items in the user's cart
      */
     public function index(Request $request)
 {
-    $user = $request->user();
-    if (!$user) {
-        return response()->json(['message' => 'Unauthorized'], 401);
-    }
+    try {
+        $user = $request->user();
+        
+        if (!$user) {
+            return response()->json([
+                'status' => 'error',
+                'message' => 'Unauthorized'
+            ], 401);
+        }
 
-    $cartItems = Cart::where('user_id', $user->id)->with('product')->get();
-    return response()->json($cartItems);
+        // Load cart with items and their product details
+        $cart = $user->cart()
+                    ->with(['cartItems.product:id,product_name,price,product_image,description'])
+                    ->first();
+
+        // Return formatted response even for empty cart
+        return response()->json([
+            'status' => 'success',
+            'data' => $cart ? $cart->cartItems->map(function ($item) {
+                return [
+                    'id' => $item->id,
+                    'product' => $item->product ? [
+                        'id' => $item->product->id,
+                        'product_name' => $item->product->product_name,
+                        'description' => $item->product->description,
+                        'price' => $item->product->price,
+                        'product_image' => $item->product->product_image 
+                            ? asset('storage/' . $item->product->product_image)
+                            : null
+                    ] : null,
+                    'created_at' => $item->created_at
+                ];
+            }) : []
+        ]);
+
+    } catch (\Exception $e) {
+        return response()->json([
+            'status' => 'error',
+            'message' => 'Failed to fetch cart items',
+            'error' => $e->getMessage()
+        ], 500);
+    }
 }
 
 
     /**
-     * Store a newly created item in the cart.
+     * Add item to cart
      */
-    public function store(Request $request)
+    public function addToCart(Request $request)
     {
-        $request->validate([
-            'product_id' => 'required|exists:products,id', // ✅ Corrected field name
-        ]);
+        try {
+            $request->validate([
+                'product_id' => 'required|exists:products,id'
+            ]);
 
-        $cartItem = Cart::create([
-            'user_id' => Auth::id(),
-            'product_id' => $request->product_id, // ✅ Use product_id
-        ]);
+            $user = Auth::user();
+            $cart = $user->cart()->firstOrCreate();
 
-        return response()->json(['message' => 'Item added to cart', 'cart' => $cartItem], 201);
+            if ($cart->cartItems()->where('product_id', $request->product_id)->exists()) {
+                return response()->json([
+                    'status' => 'error',
+                    'message' => 'Product already in cart'
+                ], 400);
+            }
+
+            $cartItem = $cart->cartItems()->create([
+                'product_id' => $request->product_id
+            ]);
+
+            return response()->json([
+                'status' => 'success',
+                'message' => 'Product added to cart',
+                'data' => $cartItem->load('product')
+            ], 201);
+
+        } catch (\Exception $e) {
+            Log::error('Add to Cart Error: ' . $e->getMessage());
+            return response()->json([
+                'status' => 'error',
+                'message' => 'Failed to add item to cart'
+            ], 500);
+        }
     }
 
     /**
-     * Remove the specified item from the cart.
+     * Remove item from cart
      */
     public function destroy($id)
     {
-        $cartItem = Cart::where('id', $id)->where('user_id', Auth::id())->first();
+        try {
+            $cartItem = CartItem::where('id', $id)
+                ->whereHas('cart', function($query) {
+                    $query->where('user_id', Auth::id());
+                })
+                ->firstOrFail();
 
-        if (!$cartItem) {
-            return response()->json(['message' => 'Item not found'], 404);
+            $cartItem->delete();
+
+            return response()->json([
+                'status' => 'success',
+                'message' => 'Item removed from cart'
+            ]);
+
+        } catch (\Exception $e) {
+            Log::error('Delete Cart Item Error: ' . $e->getMessage());
+            return response()->json([
+                'status' => 'error',
+                'message' => 'Item not found'
+            ], 404);
         }
-
-        $cartItem->delete();
-        return response()->json(['message' => 'Item removed from cart']);
     }
 
-    public function addToCart(Request $request)
+    /**
+     * Bulk remove items from cart
+     */
+    public function bulkDestroy(Request $request)
 {
-    $validatedData = $request->validate([
-        'user_id' => 'required|exists:users,id',
-        'product_id' => 'required|exists:products,id',
-    ]);
+    try {
+        $request->validate([
+            'cart_ids' => 'required|array', // Match frontend parameter name
+            'cart_ids.*' => 'exists:cart_items,id'
+        ]);
 
-    // Create cart entry
-    $cart = Cart::create([
-        'user_id' => Auth::id(), // ✅ Securely use authenticated user ID
+        $deleted = CartItem::whereIn('id', $request->cart_ids)
+            ->whereHas('cart', function($query) {
+                $query->where('user_id', Auth::id());
+            })
+            ->delete();
 
-        'product_id' => $validatedData['product_id'],
-    ]);
+        return response()->json([
+            'status' => 'success',
+            'message' => 'Items removed successfully',
+            'deleted_count' => $deleted
+        ]);
 
-    return response()->json(['message' => 'Product added to cart successfully', 'cart' => $cart], 201);
-}
-public function bulkDestroy(Request $request)
-{
-    $request->validate([
-        'cart_ids' => 'required|array', // Ensure it's an array
-        'cart_ids.*' => 'exists:carts,id', // Validate each cart_id
-    ]);
-
-    $user = Auth::id();
-
-    // Delete only the cart items belonging to the authenticated user
-    Cart::whereIn('id', $request->cart_ids)
-        ->where('user_id', $user)
-        ->delete();
-
-    return response()->json(['message' => 'Selected cart items removed successfully']);
+    } catch (\Exception $e) {
+        \Log::error('Bulk delete error: ' . $e->getMessage());
+        return response()->json([
+            'status' => 'error',
+            'message' => 'Failed to remove items',
+            'error' => $e->getMessage()
+        ], 500);
+    }
 }
 
-
+    /**
+     * @deprecated - Use addToCart instead
+     */
+    public function store(Request $request)
+    {
+        return response()->json([
+            'status' => 'error',
+            'message' => 'Method deprecated - Use POST /carts instead'
+        ], 410);
+    }
 }
