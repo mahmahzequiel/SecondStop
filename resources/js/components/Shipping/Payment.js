@@ -52,19 +52,17 @@ const Payment = () => {
   useEffect(() => {
     const fetchDefaultAddress = async () => {
       try {
-        if (receivedAddress) return; // If we already have an address from Checkout, skip
+        if (receivedAddress) return; // Skip if already provided
 
         const token = localStorage.getItem("userToken");
         const userId = localStorage.getItem("userId");
         if (!token || !userId) return;
 
-        // Fetch user addresses
         const addressResponse = await axios.get(
           `http://127.0.0.1:8000/api/address/user/${userId}`,
           { headers: { Authorization: `Bearer ${token}` } }
         );
 
-        // Attempt to find the default address
         const addressesData = addressResponse.data.addresses || [];
         const defaultAddress = addressesData.find((addr) => addr.is_default === 1);
 
@@ -103,7 +101,7 @@ const Payment = () => {
       addr.region,
       addr.country,
       addr.postal_code
-    ].filter(Boolean); // remove undefined, null, ""
+    ].filter(Boolean);
     return parts.join(", ");
   };
 
@@ -111,7 +109,7 @@ const Payment = () => {
   // 5) Payment Success Flow
   // ------------------------------------------------------------------
 
-  // Removes purchased items from cart
+  // Remove purchased items from cart
   const removePurchasedItemsFromCart = async (cartIds) => {
     try {
       if (!Array.isArray(cartIds) || cartIds.length === 0) {
@@ -120,7 +118,6 @@ const Payment = () => {
       }
 
       const userToken = localStorage.getItem("userToken");
-
       await axios.post(
         "http://127.0.0.1:8000/api/carts/delete",
         { cart_ids: cartIds },
@@ -129,13 +126,11 @@ const Payment = () => {
 
       console.log("✅ Purchased items removed from cart:", cartIds);
 
-      // Update the user-specific cart count
       const userId = localStorage.getItem("userId");
       if (userId) {
         let currentCount = parseInt(localStorage.getItem(`cartCount_${userId}`)) || 0;
         const newCount = Math.max(0, currentCount - cartIds.length);
         localStorage.setItem(`cartCount_${userId}`, newCount.toString());
-        // Dispatch the custom event so Header updates immediately
         window.dispatchEvent(new Event("cartCountUpdated"));
       }
     } catch (error) {
@@ -149,15 +144,16 @@ const Payment = () => {
       setPaymentDetails(details);
       alert(`Payment successful via ${details.method}!`);
 
-      // 1) Save Payment => Payment ID
+      // 1) Save Payment and retrieve Payment ID.
       const paymentId = await savePaymentDetails(details);
       if (!paymentId) throw new Error("Payment ID is missing");
 
-      // 2) Build order data (including shipping address)
+      // 2) Build order data.
       const orderData = {
         orderNumber: `ORD-${Math.floor(100000 + Math.random() * 900000)}`,
         purchaseDate: new Date().toISOString(),
         userId: localStorage.getItem("userId"),
+        // items array is kept for display purposes only.
         items: selectedItems.map((item) => ({
           cart_id: item.cart_id,
           product_name: item.product_name,
@@ -170,16 +166,16 @@ const Payment = () => {
         paymentId
       };
 
-      // 3) Save Order
+      // 3) Save Order.
       const orderId = await saveOrderDetails(orderData);
 
-      // 4) Remove from cart
+      // 4) Remove purchased items from cart.
       const cartIds = selectedItems.map((item) => item.cart_id);
       if (cartIds.length > 0) {
         await removePurchasedItemsFromCart(cartIds);
       }
 
-      // 5) Go to Confirmation
+      // 5) Navigate to Confirmation.
       navigate("/confirmation", {
         state: {
           orderNumber: orderData.orderNumber,
@@ -223,50 +219,49 @@ const Payment = () => {
     }
   };
 
-  // Save Order
-  const saveOrderDetails = async (orderData) => {
-    try {
-      const token = localStorage.getItem("userToken");
+// Save Order
+const saveOrderDetails = async (orderData) => {
+  try {
+    const token = localStorage.getItem("userToken");
 
-      console.log("🔍 Sending Order Data:", orderData);
+    console.log("🔍 Sending Order Data:", orderData);
 
-      // If only one cart ID
-      let cartIds = orderData.items
-        .map((item) => item.cart_id)
-        .filter((id) => id !== undefined && id !== null);
+    // Extract cart IDs from selected items.
+    const cartIds = orderData.items
+      .map((item) => item.cart_id)
+      .filter((id) => id !== null);
 
-      if (cartIds.length === 1) {
-        cartIds = cartIds[0];
-      }
+    const response = await axios.post(
+      "http://127.0.0.1:8000/api/orders",
+      {
+        cart_ids: cartIds,  
+        payment_id: orderData.paymentId,
+        // Pass the actual address_id if available
+        address_id: address.id ? address.id : null,
+        subtotal: totalPrice,
+        shipping_cost: 70,
+        total_amount: totalPrice + 70,
+        status: "pending",
+        purchase_date: new Date().toISOString().split("T")[0],
+      },
+      { headers: { Authorization: `Bearer ${token}` } }
+    );
 
-      const response = await axios.post(
-        "http://127.0.0.1:8000/api/orders",
-        {
-          cart_id: cartIds,
-          payment_id: orderData.paymentId,
-          address_id: null, // if you have an address ID, pass it
-          subtotal: totalPrice,
-          shipping_cost: 70,
-          total_amount: totalPrice + 70,
-          status: "pending",
-          purchase_date: new Date().toISOString().split("T")[0],
-        },
-        { headers: { Authorization: `Bearer ${token}` } }
-      );
+    console.log("✅ Order details saved:", response.data);
+    return response.data.order.id;
+  } catch (error) {
+    console.error("❌ Failed to save order details:", error.response?.data || error);
+    throw error;
+  }
+};
 
-      console.log("✅ Order details saved:", response.data);
-      return response.data.order.id;
-    } catch (error) {
-      console.error("❌ Failed to save order details:", error.response?.data || error);
-      throw error;
-    }
-  };
+
 
   // ------------------------------------------------------------------
   // 7) Payment Method Handling
   // ------------------------------------------------------------------
 
-  // Show the correct payment method form
+  // Render the correct payment form based on the selected method.
   const renderPaymentForm = () => {
     switch (selectedPaymentMethod) {
       case "Paypal":
@@ -292,12 +287,10 @@ const Payment = () => {
     }
   };
 
-  // Radiobutton changes
+  // Handle radio button changes for payment method.
   const handlePaymentMethodChange = (e) => {
     const method = e.target.value;
     setSelectedPaymentMethod(method);
-
-    // Show only the relevant modal
     setIsPaypalVisible(method === "Paypal");
     setIsGcashModalVisible(method === "Gcash");
   };
@@ -392,7 +385,7 @@ const Payment = () => {
           </label>
         </div>
 
-        {/* Renders PaypalPayment / GcashPayment / CODPayment based on selectedPaymentMethod */}
+        {/* Render the appropriate payment form */}
         {renderPaymentForm()}
       </div>
     </MainPage>

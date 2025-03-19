@@ -32,11 +32,11 @@ class User extends Authenticatable
     protected $casts = [
         "email_verified_at" => "datetime",
     ];
+
     protected $dates = ['deleted_at']; 
 
     /**
-     * A User belongs to a Role (one Role can have many Users).
-     * role_id references roles.id
+     * A User belongs to a Role.
      */
     public function role()
     {
@@ -44,11 +44,18 @@ class User extends Authenticatable
     }
 
     /**
-     * A User has one Profile (one-to-one).
-     * user_id in profiles references this user's id
+     * A User has one Profile.
      */
     public function profile()
     {
         return $this->hasOne(Profile::class, 'user_id', 'id');
+    }
+    
+    /**
+     * A User can have many Orders.
+     */
+    public function orders()
+    {
+        return $this->hasMany(Order::class);
     }
 }

@@ -96,7 +96,7 @@ const Carts = () => {
     navigate("/checkout", {
       state: {
         selectedItems: selectedCartItems.map((item) => ({
-          cart_id: item.id,
+          cart_id: item.cart_id,
           product_name: item.product?.product_name,
           price: item.product?.price,
           brand: item.product?.brand,

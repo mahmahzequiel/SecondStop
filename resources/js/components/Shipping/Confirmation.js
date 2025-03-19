@@ -1,11 +1,12 @@
 import React, { useEffect, useState } from "react";
-import { useLocation } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 import MainPage from "../Reusable/MainPage";
 import { ShoppingCartOutlined, CreditCardOutlined, CheckCircleOutlined } from "@ant-design/icons";
 
 const Confirmation = () => {
   const location = useLocation();
   const [orderDetails, setOrderDetails] = useState(null);
+  const navigate = useNavigate();
 
   useEffect(() => {
     if (location.state) {
@@ -107,7 +108,9 @@ const Confirmation = () => {
         <div className="animation-container">
           <img src="/images/order.png" alt="Order Confirmation" />
           {/* Track Order Button */}
-          <button className="track-order">Track Your Order</button>
+          <button className="track-order" onClick={() => navigate("/purchases")}>
+            Track Your Order
+          </button>
         </div>
 
         {/* Order Details Container */}

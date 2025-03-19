@@ -82,18 +82,21 @@ class CartController extends Controller
      * Bulk delete cart items.
      */
     public function bulkDestroy(Request $request)
-    {
-        $request->validate([
-            'cart_item_ids' => 'required|array',
-            'cart_item_ids.*' => 'exists:cart_items,id',
-        ]);
+{
+    $request->validate([
+        'cart_ids' => 'required|array',
+        'cart_ids.*' => 'exists:cart_items,id',
+    ]);
 
-        $user = Auth::id();
-        CartItem::whereIn('id', $request->cart_item_ids)
-            ->whereHas('cart', function($query) use ($user) {
-                $query->where('user_id', $user);
-            })->delete();
+    $user = Auth::id();
 
-        return response()->json(['message' => 'Selected cart items removed successfully']);
-    }
+    // Delete only the cart items belonging to the authenticated user.
+    \App\Models\CartItem::whereIn('id', $request->cart_ids)
+        ->whereHas('cart', function($query) use ($user) {
+            $query->where('user_id', $user);
+        })->delete();
+
+    return response()->json(['message' => 'Selected cart items removed successfully']);
+}
+
 }

@@ -13,7 +13,7 @@ class Order extends Model
     protected $table = 'orders';
 
     protected $fillable = [
-        'cart_id',
+        'user_id',         // Added to associate the order with the user who placed it.
         'payment_id',
         'address_id',
         'order_number',
@@ -21,14 +21,14 @@ class Order extends Model
         'shipping_cost',
         'total_amount',
         'status',
-        'purchase_date',
-        'date_time',
+        'purchase_date'
+        // 'date_time' field removed if not used.
     ];
 
-    protected $dates = ['deleted_at', 'purchase_date', 'date_time'];
+    protected $dates = ['deleted_at', 'purchase_date'];
 
     /**
-     * Define a relationship with the Payment model.
+     * Get the payment associated with the order.
      */
     public function payment()
     {
@@ -36,18 +36,18 @@ class Order extends Model
     }
 
     /**
-     * Define a relationship with the Cart model.
-     */
-    public function cart()
-    {
-        return $this->belongsTo(Cart::class);
-    }
-
-    /**
-     * Define a relationship with the Address model.
+     * Get the address associated with the order.
      */
     public function address()
     {
         return $this->belongsTo(Address::class);
+    }
+    
+    /**
+     * (Optional) If you plan to create order items later, you can add:
+     */
+    public function orderItems()
+    {
+        return $this->hasMany(OrderItem::class);
     }
 }
