@@ -42,24 +42,24 @@ function AdminHeader() {
   ];
 
   return (
-    <header className="admin-header">
-      <div className="logo">
+    <header className="admin-header__container">
+      <div className="admin-header__logo">
         <img src="/images/logo.png" alt="Logo" />
-        <span className="title">Second Stop</span>
+        <span className="admin-header__title">Second Stop</span>
       </div>
-      <div className="header-right">
+      <div className="admin-header__right">
         <Dropdown menu={{ items }} trigger={['click']}>
           <a onClick={(e) => e.preventDefault()}>
             <Space>
               <Avatar 
-                size={40} 
+                size={36} 
                 icon={<UserOutlined />} 
                 src={profileData?.profile_image && `http://127.0.0.1:8000/storage/${profileData.profile_image}`}
               />
-              <Text strong style={{ marginLeft: '8px' }}>
+              <Text strong style={{ marginLeft: '10px', color: "white" }}>
                 {profileData?.username || 'Admin'}
               </Text>
-              <DownOutlined style={{ fontSize: '12px' }} />
+              <DownOutlined style={{ marginRight: '20px', fontSize: '12px', color: "white" }} />
             </Space>
           </a>
         </Dropdown>

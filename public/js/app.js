@@ -4872,24 +4872,6 @@ var CloseCircleFilled = { "icon": { "tag": "svg", "attrs": { "fill-rule": "eveno
 
 /***/ }),
 
-/***/ "./node_modules/@ant-design/icons-svg/es/asn/CloseCircleOutlined.js":
-/*!**************************************************************************!*\
-  !*** ./node_modules/@ant-design/icons-svg/es/asn/CloseCircleOutlined.js ***!
-  \**************************************************************************/
-/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
-/* harmony export */ });
-// This icon file is generated automatically.
-var CloseCircleOutlined = { "icon": { "tag": "svg", "attrs": { "fill-rule": "evenodd", "viewBox": "64 64 896 896", "focusable": "false" }, "children": [{ "tag": "path", "attrs": { "d": "M512 64c247.4 0 448 200.6 448 448S759.4 960 512 960 64 759.4 64 512 264.6 64 512 64zm0 76c-205.4 0-372 166.6-372 372s166.6 372 372 372 372-166.6 372-372-166.6-372-372-372zm128.01 198.83c.03 0 .05.01.09.06l45.02 45.01a.2.2 0 01.05.09.12.12 0 010 .07c0 .02-.01.04-.05.08L557.25 512l127.87 127.86a.27.27 0 01.05.06v.02a.12.12 0 010 .07c0 .03-.01.05-.05.09l-45.02 45.02a.2.2 0 01-.09.05.12.12 0 01-.07 0c-.02 0-.04-.01-.08-.05L512 557.25 384.14 685.12c-.04.04-.06.05-.08.05a.12.12 0 01-.07 0c-.03 0-.05-.01-.09-.05l-45.02-45.02a.2.2 0 01-.05-.09.12.12 0 010-.07c0-.02.01-.04.06-.08L466.75 512 338.88 384.14a.27.27 0 01-.05-.06l-.01-.02a.12.12 0 010-.07c0-.03.01-.05.05-.09l45.02-45.02a.2.2 0 01.09-.05.12.12 0 01.07 0c.02 0 .04.01.08.06L512 466.75l127.86-127.86c.04-.05.06-.06.08-.06a.12.12 0 01.07 0z" } }] }, "name": "close-circle", "theme": "outlined" };
-/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (CloseCircleOutlined);
-
-
-/***/ }),
-
 /***/ "./node_modules/@ant-design/icons-svg/es/asn/CloseOutlined.js":
 /*!********************************************************************!*\
   !*** ./node_modules/@ant-design/icons-svg/es/asn/CloseOutlined.js ***!
@@ -4904,24 +4886,6 @@ __webpack_require__.r(__webpack_exports__);
 // This icon file is generated automatically.
 var CloseOutlined = { "icon": { "tag": "svg", "attrs": { "fill-rule": "evenodd", "viewBox": "64 64 896 896", "focusable": "false" }, "children": [{ "tag": "path", "attrs": { "d": "M799.86 166.31c.02 0 .04.02.08.06l57.69 57.7c.04.03.05.05.06.08a.12.12 0 010 .06c0 .03-.02.05-.06.09L569.93 512l287.7 287.7c.04.04.05.06.06.09a.12.12 0 010 .07c0 .02-.02.04-.06.08l-57.7 57.69c-.03.04-.05.05-.07.06a.12.12 0 01-.07 0c-.03 0-.05-.02-.09-.06L512 569.93l-287.7 287.7c-.04.04-.06.05-.09.06a.12.12 0 01-.07 0c-.02 0-.04-.02-.08-.06l-57.69-57.7c-.04-.03-.05-.05-.06-.07a.12.12 0 010-.07c0-.03.02-.05.06-.09L454.07 512l-287.7-287.7c-.04-.04-.05-.06-.06-.09a.12.12 0 010-.07c0-.02.02-.04.06-.08l57.7-57.69c.03-.04.05-.05.07-.06a.12.12 0 01.07 0c.03 0 .05.02.09.06L512 454.07l287.7-287.7c.04-.04.06-.05.09-.06a.12.12 0 01.07 0z" } }] }, "name": "close", "theme": "outlined" };
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (CloseOutlined);
-
-
-/***/ }),
-
-/***/ "./node_modules/@ant-design/icons-svg/es/asn/ContactsOutlined.js":
-/*!***********************************************************************!*\
-  !*** ./node_modules/@ant-design/icons-svg/es/asn/ContactsOutlined.js ***!
-  \***********************************************************************/
-/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
-/* harmony export */ });
-// This icon file is generated automatically.
-var ContactsOutlined = { "icon": { "tag": "svg", "attrs": { "viewBox": "64 64 896 896", "focusable": "false" }, "children": [{ "tag": "path", "attrs": { "d": "M594.3 601.5a111.8 111.8 0 0029.1-75.5c0-61.9-49.9-112-111.4-112s-111.4 50.1-111.4 112c0 29.1 11 55.5 29.1 75.5a158.09 158.09 0 00-74.6 126.1 8 8 0 008 8.4H407c4.2 0 7.6-3.3 7.9-7.5 3.8-50.6 46-90.5 97.2-90.5s93.4 40 97.2 90.5c.3 4.2 3.7 7.5 7.9 7.5H661a8 8 0 008-8.4c-2.8-53.3-32-99.7-74.7-126.1zM512 578c-28.5 0-51.7-23.3-51.7-52s23.2-52 51.7-52 51.7 23.3 51.7 52-23.2 52-51.7 52zm416-354H768v-56c0-4.4-3.6-8-8-8h-56c-4.4 0-8 3.6-8 8v56H548v-56c0-4.4-3.6-8-8-8h-56c-4.4 0-8 3.6-8 8v56H328v-56c0-4.4-3.6-8-8-8h-56c-4.4 0-8 3.6-8 8v56H96c-17.7 0-32 14.3-32 32v576c0 17.7 14.3 32 32 32h832c17.7 0 32-14.3 32-32V256c0-17.7-14.3-32-32-32zm-40 568H136V296h120v56c0 4.4 3.6 8 8 8h56c4.4 0 8-3.6 8-8v-56h148v56c0 4.4 3.6 8 8 8h56c4.4 0 8-3.6 8-8v-56h148v56c0 4.4 3.6 8 8 8h56c4.4 0 8-3.6 8-8v-56h120v496z" } }] }, "name": "contacts", "theme": "outlined" };
-/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (ContactsOutlined);
 
 
 /***/ }),
@@ -4958,24 +4922,6 @@ __webpack_require__.r(__webpack_exports__);
 // This icon file is generated automatically.
 var CreditCardOutlined = { "icon": { "tag": "svg", "attrs": { "viewBox": "64 64 896 896", "focusable": "false" }, "children": [{ "tag": "path", "attrs": { "d": "M928 160H96c-17.7 0-32 14.3-32 32v640c0 17.7 14.3 32 32 32h832c17.7 0 32-14.3 32-32V192c0-17.7-14.3-32-32-32zm-792 72h752v120H136V232zm752 560H136V440h752v352zm-237-64h165c4.4 0 8-3.6 8-8v-72c0-4.4-3.6-8-8-8H651c-4.4 0-8 3.6-8 8v72c0 4.4 3.6 8 8 8z" } }] }, "name": "credit-card", "theme": "outlined" };
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (CreditCardOutlined);
-
-
-/***/ }),
-
-/***/ "./node_modules/@ant-design/icons-svg/es/asn/DashboardOutlined.js":
-/*!************************************************************************!*\
-  !*** ./node_modules/@ant-design/icons-svg/es/asn/DashboardOutlined.js ***!
-  \************************************************************************/
-/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
-/* harmony export */ });
-// This icon file is generated automatically.
-var DashboardOutlined = { "icon": { "tag": "svg", "attrs": { "viewBox": "64 64 896 896", "focusable": "false" }, "children": [{ "tag": "path", "attrs": { "d": "M924.8 385.6a446.7 446.7 0 00-96-142.4 446.7 446.7 0 00-142.4-96C631.1 123.8 572.5 112 512 112s-119.1 11.8-174.4 35.2a446.7 446.7 0 00-142.4 96 446.7 446.7 0 00-96 142.4C75.8 440.9 64 499.5 64 560c0 132.7 58.3 257.7 159.9 343.1l1.7 1.4c5.8 4.8 13.1 7.5 20.6 7.5h531.7c7.5 0 14.8-2.7 20.6-7.5l1.7-1.4C901.7 817.7 960 692.7 960 560c0-60.5-11.9-119.1-35.2-174.4zM761.4 836H262.6A371.12 371.12 0 01140 560c0-99.4 38.7-192.8 109-263 70.3-70.3 163.7-109 263-109 99.4 0 192.8 38.7 263 109 70.3 70.3 109 163.7 109 263 0 105.6-44.5 205.5-122.6 276zM623.5 421.5a8.03 8.03 0 00-11.3 0L527.7 506c-18.7-5-39.4-.2-54.1 14.5a55.95 55.95 0 000 79.2 55.95 55.95 0 0079.2 0 55.87 55.87 0 0014.5-54.1l84.5-84.5c3.1-3.1 3.1-8.2 0-11.3l-28.3-28.3zM490 320h44c4.4 0 8-3.6 8-8v-80c0-4.4-3.6-8-8-8h-44c-4.4 0-8 3.6-8 8v80c0 4.4 3.6 8 8 8zm260 218v44c0 4.4 3.6 8 8 8h80c4.4 0 8-3.6 8-8v-44c0-4.4-3.6-8-8-8h-80c-4.4 0-8 3.6-8 8zm12.7-197.2l-31.1-31.1a8.03 8.03 0 00-11.3 0l-56.6 56.6a8.03 8.03 0 000 11.3l31.1 31.1c3.1 3.1 8.2 3.1 11.3 0l56.6-56.6c3.1-3.1 3.1-8.2 0-11.3zm-458.6-31.1a8.03 8.03 0 00-11.3 0l-31.1 31.1a8.03 8.03 0 000 11.3l56.6 56.6c3.1 3.1 8.2 3.1 11.3 0l31.1-31.1c3.1-3.1 3.1-8.2 0-11.3l-56.6-56.6zM262 530h-80c-4.4 0-8 3.6-8 8v44c0 4.4 3.6 8 8 8h80c4.4 0 8-3.6 8-8v-44c0-4.4-3.6-8-8-8z" } }] }, "name": "dashboard", "theme": "outlined" };
-/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (DashboardOutlined);
 
 
 /***/ }),
@@ -5808,6 +5754,24 @@ var ShoppingOutlined = { "icon": { "tag": "svg", "attrs": { "viewBox": "64 64 89
 
 /***/ }),
 
+/***/ "./node_modules/@ant-design/icons-svg/es/asn/TeamOutlined.js":
+/*!*******************************************************************!*\
+  !*** ./node_modules/@ant-design/icons-svg/es/asn/TeamOutlined.js ***!
+  \*******************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+// This icon file is generated automatically.
+var TeamOutlined = { "icon": { "tag": "svg", "attrs": { "viewBox": "64 64 896 896", "focusable": "false" }, "children": [{ "tag": "path", "attrs": { "d": "M824.2 699.9a301.55 301.55 0 00-86.4-60.4C783.1 602.8 812 546.8 812 484c0-110.8-92.4-201.7-203.2-200-109.1 1.7-197 90.6-197 200 0 62.8 29 118.8 74.2 155.5a300.95 300.95 0 00-86.4 60.4C345 754.6 314 826.8 312 903.8a8 8 0 008 8.2h56c4.3 0 7.9-3.4 8-7.7 1.9-58 25.4-112.3 66.7-153.5A226.62 226.62 0 01612 684c60.9 0 118.2 23.7 161.3 66.8C814.5 792 838 846.3 840 904.3c.1 4.3 3.7 7.7 8 7.7h56a8 8 0 008-8.2c-2-77-33-149.2-87.8-203.9zM612 612c-34.2 0-66.4-13.3-90.5-37.5a126.86 126.86 0 01-37.5-91.8c.3-32.8 13.4-64.5 36.3-88 24-24.6 56.1-38.3 90.4-38.7 33.9-.3 66.8 12.9 91 36.6 24.8 24.3 38.4 56.8 38.4 91.4 0 34.2-13.3 66.3-37.5 90.5A127.3 127.3 0 01612 612zM361.5 510.4c-.9-8.7-1.4-17.5-1.4-26.4 0-15.9 1.5-31.4 4.3-46.5.7-3.6-1.2-7.3-4.5-8.8-13.6-6.1-26.1-14.5-36.9-25.1a127.54 127.54 0 01-38.7-95.4c.9-32.1 13.8-62.6 36.3-85.6 24.7-25.3 57.9-39.1 93.2-38.7 31.9.3 62.7 12.6 86 34.4 7.9 7.4 14.7 15.6 20.4 24.4 2 3.1 5.9 4.4 9.3 3.2 17.6-6.1 36.2-10.4 55.3-12.4 5.6-.6 8.8-6.6 6.3-11.6-32.5-64.3-98.9-108.7-175.7-109.9-110.9-1.7-203.3 89.2-203.3 199.9 0 62.8 28.9 118.8 74.2 155.5-31.8 14.7-61.1 35-86.5 60.4-54.8 54.7-85.8 126.9-87.8 204a8 8 0 008 8.2h56.1c4.3 0 7.9-3.4 8-7.7 1.9-58 25.4-112.3 66.7-153.5 29.4-29.4 65.4-49.8 104.7-59.7 3.9-1 6.5-4.7 6-8.7z" } }] }, "name": "team", "theme": "outlined" };
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (TeamOutlined);
+
+
+/***/ }),
+
 /***/ "./node_modules/@ant-design/icons-svg/es/asn/UndoOutlined.js":
 /*!*******************************************************************!*\
   !*** ./node_modules/@ant-design/icons-svg/es/asn/UndoOutlined.js ***!
@@ -6559,45 +6523,6 @@ if (true) {
 
 /***/ }),
 
-/***/ "./node_modules/@ant-design/icons/es/icons/CloseCircleOutlined.js":
-/*!************************************************************************!*\
-  !*** ./node_modules/@ant-design/icons/es/icons/CloseCircleOutlined.js ***!
-  \************************************************************************/
-/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
-/* harmony export */ });
-/* harmony import */ var _babel_runtime_helpers_esm_extends__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @babel/runtime/helpers/esm/extends */ "./node_modules/@babel/runtime/helpers/esm/extends.js");
-/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
-/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_1__);
-/* harmony import */ var _ant_design_icons_svg_es_asn_CloseCircleOutlined__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @ant-design/icons-svg/es/asn/CloseCircleOutlined */ "./node_modules/@ant-design/icons-svg/es/asn/CloseCircleOutlined.js");
-/* harmony import */ var _components_AntdIcon__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../components/AntdIcon */ "./node_modules/@ant-design/icons/es/components/AntdIcon.js");
-
-// GENERATE BY ./scripts/generate.ts
-// DON NOT EDIT IT MANUALLY
-
-
-
-
-var CloseCircleOutlined = function CloseCircleOutlined(props, ref) {
-  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1__.createElement(_components_AntdIcon__WEBPACK_IMPORTED_MODULE_2__["default"], (0,_babel_runtime_helpers_esm_extends__WEBPACK_IMPORTED_MODULE_0__["default"])({}, props, {
-    ref: ref,
-    icon: _ant_design_icons_svg_es_asn_CloseCircleOutlined__WEBPACK_IMPORTED_MODULE_3__["default"]
-  }));
-};
-
-/**![close-circle](data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNTAiIGhlaWdodD0iNTAiIGZpbGw9IiNjYWNhY2EiIGZpbGwtcnVsZT0iZXZlbm9kZCIgdmlld0JveD0iNjQgNjQgODk2IDg5NiIgZm9jdXNhYmxlPSJmYWxzZSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48cGF0aCBkPSJNNTEyIDY0YzI0Ny40IDAgNDQ4IDIwMC42IDQ0OCA0NDhTNzU5LjQgOTYwIDUxMiA5NjAgNjQgNzU5LjQgNjQgNTEyIDI2NC42IDY0IDUxMiA2NHptMCA3NmMtMjA1LjQgMC0zNzIgMTY2LjYtMzcyIDM3MnMxNjYuNiAzNzIgMzcyIDM3MiAzNzItMTY2LjYgMzcyLTM3Mi0xNjYuNi0zNzItMzcyLTM3MnptMTI4LjAxIDE5OC44M2MuMDMgMCAuMDUuMDEuMDkuMDZsNDUuMDIgNDUuMDFhLjIuMiAwIDAxLjA1LjA5LjEyLjEyIDAgMDEwIC4wN2MwIC4wMi0uMDEuMDQtLjA1LjA4TDU1Ny4yNSA1MTJsMTI3Ljg3IDEyNy44NmEuMjcuMjcgMCAwMS4wNS4wNnYuMDJhLjEyLjEyIDAgMDEwIC4wN2MwIC4wMy0uMDEuMDUtLjA1LjA5bC00NS4wMiA0NS4wMmEuMi4yIDAgMDEtLjA5LjA1LjEyLjEyIDAgMDEtLjA3IDBjLS4wMiAwLS4wNC0uMDEtLjA4LS4wNUw1MTIgNTU3LjI1IDM4NC4xNCA2ODUuMTJjLS4wNC4wNC0uMDYuMDUtLjA4LjA1YS4xMi4xMiAwIDAxLS4wNyAwYy0uMDMgMC0uMDUtLjAxLS4wOS0uMDVsLTQ1LjAyLTQ1LjAyYS4yLjIgMCAwMS0uMDUtLjA5LjEyLjEyIDAgMDEwLS4wN2MwLS4wMi4wMS0uMDQuMDYtLjA4TDQ2Ni43NSA1MTIgMzM4Ljg4IDM4NC4xNGEuMjcuMjcgMCAwMS0uMDUtLjA2bC0uMDEtLjAyYS4xMi4xMiAwIDAxMC0uMDdjMC0uMDMuMDEtLjA1LjA1LS4wOWw0NS4wMi00NS4wMmEuMi4yIDAgMDEuMDktLjA1LjEyLjEyIDAgMDEuMDcgMGMuMDIgMCAuMDQuMDEuMDguMDZMNTEyIDQ2Ni43NWwxMjcuODYtMTI3Ljg2Yy4wNC0uMDUuMDYtLjA2LjA4LS4wNmEuMTIuMTIgMCAwMS4wNyAweiIgLz48L3N2Zz4=) */
-var RefIcon = /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1__.forwardRef(CloseCircleOutlined);
-if (true) {
-  RefIcon.displayName = 'CloseCircleOutlined';
-}
-/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (RefIcon);
-
-/***/ }),
-
 /***/ "./node_modules/@ant-design/icons/es/icons/CloseOutlined.js":
 /*!******************************************************************!*\
   !*** ./node_modules/@ant-design/icons/es/icons/CloseOutlined.js ***!
@@ -6632,45 +6557,6 @@ var CloseOutlined = function CloseOutlined(props, ref) {
 var RefIcon = /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1__.forwardRef(CloseOutlined);
 if (true) {
   RefIcon.displayName = 'CloseOutlined';
-}
-/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (RefIcon);
-
-/***/ }),
-
-/***/ "./node_modules/@ant-design/icons/es/icons/ContactsOutlined.js":
-/*!*********************************************************************!*\
-  !*** ./node_modules/@ant-design/icons/es/icons/ContactsOutlined.js ***!
-  \*********************************************************************/
-/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
-/* harmony export */ });
-/* harmony import */ var _babel_runtime_helpers_esm_extends__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @babel/runtime/helpers/esm/extends */ "./node_modules/@babel/runtime/helpers/esm/extends.js");
-/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
-/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_1__);
-/* harmony import */ var _ant_design_icons_svg_es_asn_ContactsOutlined__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @ant-design/icons-svg/es/asn/ContactsOutlined */ "./node_modules/@ant-design/icons-svg/es/asn/ContactsOutlined.js");
-/* harmony import */ var _components_AntdIcon__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../components/AntdIcon */ "./node_modules/@ant-design/icons/es/components/AntdIcon.js");
-
-// GENERATE BY ./scripts/generate.ts
-// DON NOT EDIT IT MANUALLY
-
-
-
-
-var ContactsOutlined = function ContactsOutlined(props, ref) {
-  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1__.createElement(_components_AntdIcon__WEBPACK_IMPORTED_MODULE_2__["default"], (0,_babel_runtime_helpers_esm_extends__WEBPACK_IMPORTED_MODULE_0__["default"])({}, props, {
-    ref: ref,
-    icon: _ant_design_icons_svg_es_asn_ContactsOutlined__WEBPACK_IMPORTED_MODULE_3__["default"]
-  }));
-};
-
-/**![contacts](data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNTAiIGhlaWdodD0iNTAiIGZpbGw9IiNjYWNhY2EiIHZpZXdCb3g9IjY0IDY0IDg5NiA4OTYiIGZvY3VzYWJsZT0iZmFsc2UiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+PHBhdGggZD0iTTU5NC4zIDYwMS41YTExMS44IDExMS44IDAgMDAyOS4xLTc1LjVjMC02MS45LTQ5LjktMTEyLTExMS40LTExMnMtMTExLjQgNTAuMS0xMTEuNCAxMTJjMCAyOS4xIDExIDU1LjUgMjkuMSA3NS41YTE1OC4wOSAxNTguMDkgMCAwMC03NC42IDEyNi4xIDggOCAwIDAwOCA4LjRINDA3YzQuMiAwIDcuNi0zLjMgNy45LTcuNSAzLjgtNTAuNiA0Ni05MC41IDk3LjItOTAuNXM5My40IDQwIDk3LjIgOTAuNWMuMyA0LjIgMy43IDcuNSA3LjkgNy41SDY2MWE4IDggMCAwMDgtOC40Yy0yLjgtNTMuMy0zMi05OS43LTc0LjctMTI2LjF6TTUxMiA1NzhjLTI4LjUgMC01MS43LTIzLjMtNTEuNy01MnMyMy4yLTUyIDUxLjctNTIgNTEuNyAyMy4zIDUxLjcgNTItMjMuMiA1Mi01MS43IDUyem00MTYtMzU0SDc2OHYtNTZjMC00LjQtMy42LTgtOC04aC01NmMtNC40IDAtOCAzLjYtOCA4djU2SDU0OHYtNTZjMC00LjQtMy42LTgtOC04aC01NmMtNC40IDAtOCAzLjYtOCA4djU2SDMyOHYtNTZjMC00LjQtMy42LTgtOC04aC01NmMtNC40IDAtOCAzLjYtOCA4djU2SDk2Yy0xNy43IDAtMzIgMTQuMy0zMiAzMnY1NzZjMCAxNy43IDE0LjMgMzIgMzIgMzJoODMyYzE3LjcgMCAzMi0xNC4zIDMyLTMyVjI1NmMwLTE3LjctMTQuMy0zMi0zMi0zMnptLTQwIDU2OEgxMzZWMjk2aDEyMHY1NmMwIDQuNCAzLjYgOCA4IDhoNTZjNC40IDAgOC0zLjYgOC04di01NmgxNDh2NTZjMCA0LjQgMy42IDggOCA4aDU2YzQuNCAwIDgtMy42IDgtOHYtNTZoMTQ4djU2YzAgNC40IDMuNiA4IDggOGg1NmM0LjQgMCA4LTMuNiA4LTh2LTU2aDEyMHY0OTZ6IiAvPjwvc3ZnPg==) */
-var RefIcon = /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1__.forwardRef(ContactsOutlined);
-if (true) {
-  RefIcon.displayName = 'ContactsOutlined';
 }
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (RefIcon);
 
@@ -6749,45 +6635,6 @@ var CreditCardOutlined = function CreditCardOutlined(props, ref) {
 var RefIcon = /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1__.forwardRef(CreditCardOutlined);
 if (true) {
   RefIcon.displayName = 'CreditCardOutlined';
-}
-/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (RefIcon);
-
-/***/ }),
-
-/***/ "./node_modules/@ant-design/icons/es/icons/DashboardOutlined.js":
-/*!**********************************************************************!*\
-  !*** ./node_modules/@ant-design/icons/es/icons/DashboardOutlined.js ***!
-  \**********************************************************************/
-/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
-/* harmony export */ });
-/* harmony import */ var _babel_runtime_helpers_esm_extends__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @babel/runtime/helpers/esm/extends */ "./node_modules/@babel/runtime/helpers/esm/extends.js");
-/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
-/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_1__);
-/* harmony import */ var _ant_design_icons_svg_es_asn_DashboardOutlined__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @ant-design/icons-svg/es/asn/DashboardOutlined */ "./node_modules/@ant-design/icons-svg/es/asn/DashboardOutlined.js");
-/* harmony import */ var _components_AntdIcon__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../components/AntdIcon */ "./node_modules/@ant-design/icons/es/components/AntdIcon.js");
-
-// GENERATE BY ./scripts/generate.ts
-// DON NOT EDIT IT MANUALLY
-
-
-
-
-var DashboardOutlined = function DashboardOutlined(props, ref) {
-  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1__.createElement(_components_AntdIcon__WEBPACK_IMPORTED_MODULE_2__["default"], (0,_babel_runtime_helpers_esm_extends__WEBPACK_IMPORTED_MODULE_0__["default"])({}, props, {
-    ref: ref,
-    icon: _ant_design_icons_svg_es_asn_DashboardOutlined__WEBPACK_IMPORTED_MODULE_3__["default"]
-  }));
-};
-
-/**![dashboard](data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNTAiIGhlaWdodD0iNTAiIGZpbGw9IiNjYWNhY2EiIHZpZXdCb3g9IjY0IDY0IDg5NiA4OTYiIGZvY3VzYWJsZT0iZmFsc2UiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+PHBhdGggZD0iTTkyNC44IDM4NS42YTQ0Ni43IDQ0Ni43IDAgMDAtOTYtMTQyLjQgNDQ2LjcgNDQ2LjcgMCAwMC0xNDIuNC05NkM2MzEuMSAxMjMuOCA1NzIuNSAxMTIgNTEyIDExMnMtMTE5LjEgMTEuOC0xNzQuNCAzNS4yYTQ0Ni43IDQ0Ni43IDAgMDAtMTQyLjQgOTYgNDQ2LjcgNDQ2LjcgMCAwMC05NiAxNDIuNEM3NS44IDQ0MC45IDY0IDQ5OS41IDY0IDU2MGMwIDEzMi43IDU4LjMgMjU3LjcgMTU5LjkgMzQzLjFsMS43IDEuNGM1LjggNC44IDEzLjEgNy41IDIwLjYgNy41aDUzMS43YzcuNSAwIDE0LjgtMi43IDIwLjYtNy41bDEuNy0xLjRDOTAxLjcgODE3LjcgOTYwIDY5Mi43IDk2MCA1NjBjMC02MC41LTExLjktMTE5LjEtMzUuMi0xNzQuNHpNNzYxLjQgODM2SDI2Mi42QTM3MS4xMiAzNzEuMTIgMCAwMTE0MCA1NjBjMC05OS40IDM4LjctMTkyLjggMTA5LTI2MyA3MC4zLTcwLjMgMTYzLjctMTA5IDI2My0xMDkgOTkuNCAwIDE5Mi44IDM4LjcgMjYzIDEwOSA3MC4zIDcwLjMgMTA5IDE2My43IDEwOSAyNjMgMCAxMDUuNi00NC41IDIwNS41LTEyMi42IDI3NnpNNjIzLjUgNDIxLjVhOC4wMyA4LjAzIDAgMDAtMTEuMyAwTDUyNy43IDUwNmMtMTguNy01LTM5LjQtLjItNTQuMSAxNC41YTU1Ljk1IDU1Ljk1IDAgMDAwIDc5LjIgNTUuOTUgNTUuOTUgMCAwMDc5LjIgMCA1NS44NyA1NS44NyAwIDAwMTQuNS01NC4xbDg0LjUtODQuNWMzLjEtMy4xIDMuMS04LjIgMC0xMS4zbC0yOC4zLTI4LjN6TTQ5MCAzMjBoNDRjNC40IDAgOC0zLjYgOC04di04MGMwLTQuNC0zLjYtOC04LThoLTQ0Yy00LjQgMC04IDMuNi04IDh2ODBjMCA0LjQgMy42IDggOCA4em0yNjAgMjE4djQ0YzAgNC40IDMuNiA4IDggOGg4MGM0LjQgMCA4LTMuNiA4LTh2LTQ0YzAtNC40LTMuNi04LTgtOGgtODBjLTQuNCAwLTggMy42LTggOHptMTIuNy0xOTcuMmwtMzEuMS0zMS4xYTguMDMgOC4wMyAwIDAwLTExLjMgMGwtNTYuNiA1Ni42YTguMDMgOC4wMyAwIDAwMCAxMS4zbDMxLjEgMzEuMWMzLjEgMy4xIDguMiAzLjEgMTEuMyAwbDU2LjYtNTYuNmMzLjEtMy4xIDMuMS04LjIgMC0xMS4zem0tNDU4LjYtMzEuMWE4LjAzIDguMDMgMCAwMC0xMS4zIDBsLTMxLjEgMzEuMWE4LjAzIDguMDMgMCAwMDAgMTEuM2w1Ni42IDU2LjZjMy4xIDMuMSA4LjIgMy4xIDExLjMgMGwzMS4xLTMxLjFjMy4xLTMuMSAzLjEtOC4yIDAtMTEuM2wtNTYuNi01Ni42ek0yNjIgNTMwaC04MGMtNC40IDAtOCAzLjYtOCA4djQ0YzAgNC40IDMuNiA4IDggOGg4MGM0LjQgMCA4LTMuNiA4LTh2LTQ0YzAtNC40LTMuNi04LTgtOHoiIC8+PC9zdmc+) */
-var RefIcon = /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1__.forwardRef(DashboardOutlined);
-if (true) {
-  RefIcon.displayName = 'DashboardOutlined';
 }
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (RefIcon);
 
@@ -8582,6 +8429,45 @@ var ShoppingOutlined = function ShoppingOutlined(props, ref) {
 var RefIcon = /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1__.forwardRef(ShoppingOutlined);
 if (true) {
   RefIcon.displayName = 'ShoppingOutlined';
+}
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (RefIcon);
+
+/***/ }),
+
+/***/ "./node_modules/@ant-design/icons/es/icons/TeamOutlined.js":
+/*!*****************************************************************!*\
+  !*** ./node_modules/@ant-design/icons/es/icons/TeamOutlined.js ***!
+  \*****************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var _babel_runtime_helpers_esm_extends__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @babel/runtime/helpers/esm/extends */ "./node_modules/@babel/runtime/helpers/esm/extends.js");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_1__);
+/* harmony import */ var _ant_design_icons_svg_es_asn_TeamOutlined__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @ant-design/icons-svg/es/asn/TeamOutlined */ "./node_modules/@ant-design/icons-svg/es/asn/TeamOutlined.js");
+/* harmony import */ var _components_AntdIcon__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../components/AntdIcon */ "./node_modules/@ant-design/icons/es/components/AntdIcon.js");
+
+// GENERATE BY ./scripts/generate.ts
+// DON NOT EDIT IT MANUALLY
+
+
+
+
+var TeamOutlined = function TeamOutlined(props, ref) {
+  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1__.createElement(_components_AntdIcon__WEBPACK_IMPORTED_MODULE_2__["default"], (0,_babel_runtime_helpers_esm_extends__WEBPACK_IMPORTED_MODULE_0__["default"])({}, props, {
+    ref: ref,
+    icon: _ant_design_icons_svg_es_asn_TeamOutlined__WEBPACK_IMPORTED_MODULE_3__["default"]
+  }));
+};
+
+/**![team](data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNTAiIGhlaWdodD0iNTAiIGZpbGw9IiNjYWNhY2EiIHZpZXdCb3g9IjY0IDY0IDg5NiA4OTYiIGZvY3VzYWJsZT0iZmFsc2UiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+PHBhdGggZD0iTTgyNC4yIDY5OS45YTMwMS41NSAzMDEuNTUgMCAwMC04Ni40LTYwLjRDNzgzLjEgNjAyLjggODEyIDU0Ni44IDgxMiA0ODRjMC0xMTAuOC05Mi40LTIwMS43LTIwMy4yLTIwMC0xMDkuMSAxLjctMTk3IDkwLjYtMTk3IDIwMCAwIDYyLjggMjkgMTE4LjggNzQuMiAxNTUuNWEzMDAuOTUgMzAwLjk1IDAgMDAtODYuNCA2MC40QzM0NSA3NTQuNiAzMTQgODI2LjggMzEyIDkwMy44YTggOCAwIDAwOCA4LjJoNTZjNC4zIDAgNy45LTMuNCA4LTcuNyAxLjktNTggMjUuNC0xMTIuMyA2Ni43LTE1My41QTIyNi42MiAyMjYuNjIgMCAwMTYxMiA2ODRjNjAuOSAwIDExOC4yIDIzLjcgMTYxLjMgNjYuOEM4MTQuNSA3OTIgODM4IDg0Ni4zIDg0MCA5MDQuM2MuMSA0LjMgMy43IDcuNyA4IDcuN2g1NmE4IDggMCAwMDgtOC4yYy0yLTc3LTMzLTE0OS4yLTg3LjgtMjAzLjl6TTYxMiA2MTJjLTM0LjIgMC02Ni40LTEzLjMtOTAuNS0zNy41YTEyNi44NiAxMjYuODYgMCAwMS0zNy41LTkxLjhjLjMtMzIuOCAxMy40LTY0LjUgMzYuMy04OCAyNC0yNC42IDU2LjEtMzguMyA5MC40LTM4LjcgMzMuOS0uMyA2Ni44IDEyLjkgOTEgMzYuNiAyNC44IDI0LjMgMzguNCA1Ni44IDM4LjQgOTEuNCAwIDM0LjItMTMuMyA2Ni4zLTM3LjUgOTAuNUExMjcuMyAxMjcuMyAwIDAxNjEyIDYxMnpNMzYxLjUgNTEwLjRjLS45LTguNy0xLjQtMTcuNS0xLjQtMjYuNCAwLTE1LjkgMS41LTMxLjQgNC4zLTQ2LjUuNy0zLjYtMS4yLTcuMy00LjUtOC44LTEzLjYtNi4xLTI2LjEtMTQuNS0zNi45LTI1LjFhMTI3LjU0IDEyNy41NCAwIDAxLTM4LjctOTUuNGMuOS0zMi4xIDEzLjgtNjIuNiAzNi4zLTg1LjYgMjQuNy0yNS4zIDU3LjktMzkuMSA5My4yLTM4LjcgMzEuOS4zIDYyLjcgMTIuNiA4NiAzNC40IDcuOSA3LjQgMTQuNyAxNS42IDIwLjQgMjQuNCAyIDMuMSA1LjkgNC40IDkuMyAzLjIgMTcuNi02LjEgMzYuMi0xMC40IDU1LjMtMTIuNCA1LjYtLjYgOC44LTYuNiA2LjMtMTEuNi0zMi41LTY0LjMtOTguOS0xMDguNy0xNzUuNy0xMDkuOS0xMTAuOS0xLjctMjAzLjMgODkuMi0yMDMuMyAxOTkuOSAwIDYyLjggMjguOSAxMTguOCA3NC4yIDE1NS41LTMxLjggMTQuNy02MS4xIDM1LTg2LjUgNjAuNC01NC44IDU0LjctODUuOCAxMjYuOS04Ny44IDIwNGE4IDggMCAwMDggOC4yaDU2LjFjNC4zIDAgNy45LTMuNCA4LTcuNyAxLjktNTggMjUuNC0xMTIuMyA2Ni43LTE1My41IDI5LjQtMjkuNCA2NS40LTQ5LjggMTA0LjctNTkuNyAzLjktMSA2LjUtNC43IDYtOC43eiIgLz48L3N2Zz4=) */
+var RefIcon = /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1__.forwardRef(TeamOutlined);
+if (true) {
+  RefIcon.displayName = 'TeamOutlined';
 }
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (RefIcon);
 
@@ -40100,351 +39986,6 @@ function useShowSizeChanger(showSizeChanger) {
 
 /***/ }),
 
-/***/ "./node_modules/antd/es/popconfirm/PurePanel.js":
-/*!******************************************************!*\
-  !*** ./node_modules/antd/es/popconfirm/PurePanel.js ***!
-  \******************************************************/
-/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   Overlay: () => (/* binding */ Overlay),
-/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
-/* harmony export */ });
-/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
-/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var _ant_design_icons_es_icons_ExclamationCircleFilled__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @ant-design/icons/es/icons/ExclamationCircleFilled */ "./node_modules/@ant-design/icons/es/icons/ExclamationCircleFilled.js");
-/* harmony import */ var classnames__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! classnames */ "./node_modules/classnames/index.js");
-/* harmony import */ var classnames__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(classnames__WEBPACK_IMPORTED_MODULE_1__);
-/* harmony import */ var _util_ActionButton__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ../_util/ActionButton */ "./node_modules/antd/es/_util/ActionButton.js");
-/* harmony import */ var _util_getRenderPropValue__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ../_util/getRenderPropValue */ "./node_modules/antd/es/_util/getRenderPropValue.js");
-/* harmony import */ var _button__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ../button */ "./node_modules/antd/es/button/index.js");
-/* harmony import */ var _button_buttonHelpers__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ../button/buttonHelpers */ "./node_modules/antd/es/button/buttonHelpers.js");
-/* harmony import */ var _config_provider__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../config-provider */ "./node_modules/antd/es/config-provider/context.js");
-/* harmony import */ var _locale__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../locale */ "./node_modules/antd/es/locale/useLocale.js");
-/* harmony import */ var _locale_en_US__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../locale/en_US */ "./node_modules/antd/es/locale/en_US.js");
-/* harmony import */ var _popover_PurePanel__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! ../popover/PurePanel */ "./node_modules/antd/es/popover/PurePanel.js");
-/* harmony import */ var _style__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! ./style */ "./node_modules/antd/es/popconfirm/style/index.js");
-"use client";
-
-var __rest = undefined && undefined.__rest || function (s, e) {
-  var t = {};
-  for (var p in s) if (Object.prototype.hasOwnProperty.call(s, p) && e.indexOf(p) < 0) t[p] = s[p];
-  if (s != null && typeof Object.getOwnPropertySymbols === "function") for (var i = 0, p = Object.getOwnPropertySymbols(s); i < p.length; i++) {
-    if (e.indexOf(p[i]) < 0 && Object.prototype.propertyIsEnumerable.call(s, p[i])) t[p[i]] = s[p[i]];
-  }
-  return t;
-};
-
-
-
-
-
-
-
-
-
-
-
-
-const Overlay = props => {
-  const {
-    prefixCls,
-    okButtonProps,
-    cancelButtonProps,
-    title,
-    description,
-    cancelText,
-    okText,
-    okType = 'primary',
-    icon = /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_ant_design_icons_es_icons_ExclamationCircleFilled__WEBPACK_IMPORTED_MODULE_2__["default"], null),
-    showCancel = true,
-    close,
-    onConfirm,
-    onCancel,
-    onPopupClick
-  } = props;
-  const {
-    getPrefixCls
-  } = react__WEBPACK_IMPORTED_MODULE_0__.useContext(_config_provider__WEBPACK_IMPORTED_MODULE_3__.ConfigContext);
-  const [contextLocale] = (0,_locale__WEBPACK_IMPORTED_MODULE_4__["default"])('Popconfirm', _locale_en_US__WEBPACK_IMPORTED_MODULE_5__["default"].Popconfirm);
-  const titleNode = (0,_util_getRenderPropValue__WEBPACK_IMPORTED_MODULE_6__.getRenderPropValue)(title);
-  const descriptionNode = (0,_util_getRenderPropValue__WEBPACK_IMPORTED_MODULE_6__.getRenderPropValue)(description);
-  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
-    className: `${prefixCls}-inner-content`,
-    onClick: onPopupClick
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
-    className: `${prefixCls}-message`
-  }, icon && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("span", {
-    className: `${prefixCls}-message-icon`
-  }, icon), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
-    className: `${prefixCls}-message-text`
-  }, titleNode && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
-    className: `${prefixCls}-title`
-  }, titleNode), descriptionNode && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
-    className: `${prefixCls}-description`
-  }, descriptionNode))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
-    className: `${prefixCls}-buttons`
-  }, showCancel && (/*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_button__WEBPACK_IMPORTED_MODULE_7__["default"], Object.assign({
-    onClick: onCancel,
-    size: "small"
-  }, cancelButtonProps), cancelText || (contextLocale === null || contextLocale === void 0 ? void 0 : contextLocale.cancelText))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_util_ActionButton__WEBPACK_IMPORTED_MODULE_8__["default"], {
-    buttonProps: Object.assign(Object.assign({
-      size: 'small'
-    }, (0,_button_buttonHelpers__WEBPACK_IMPORTED_MODULE_9__.convertLegacyProps)(okType)), okButtonProps),
-    actionFn: onConfirm,
-    close: close,
-    prefixCls: getPrefixCls('btn'),
-    quitOnNullishReturnValue: true,
-    emitEvent: true
-  }, okText || (contextLocale === null || contextLocale === void 0 ? void 0 : contextLocale.okText))));
-};
-const PurePanel = props => {
-  const {
-      prefixCls: customizePrefixCls,
-      placement,
-      className,
-      style
-    } = props,
-    restProps = __rest(props, ["prefixCls", "placement", "className", "style"]);
-  const {
-    getPrefixCls
-  } = react__WEBPACK_IMPORTED_MODULE_0__.useContext(_config_provider__WEBPACK_IMPORTED_MODULE_3__.ConfigContext);
-  const prefixCls = getPrefixCls('popconfirm', customizePrefixCls);
-  const [wrapCSSVar] = (0,_style__WEBPACK_IMPORTED_MODULE_10__["default"])(prefixCls);
-  return wrapCSSVar(/*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_popover_PurePanel__WEBPACK_IMPORTED_MODULE_11__["default"], {
-    placement: placement,
-    className: classnames__WEBPACK_IMPORTED_MODULE_1___default()(prefixCls, className),
-    style: style,
-    content: /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(Overlay, Object.assign({
-      prefixCls: prefixCls
-    }, restProps))
-  }));
-};
-/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (PurePanel);
-
-/***/ }),
-
-/***/ "./node_modules/antd/es/popconfirm/index.js":
-/*!**************************************************!*\
-  !*** ./node_modules/antd/es/popconfirm/index.js ***!
-  \**************************************************/
-/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
-/* harmony export */ });
-/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
-/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var _ant_design_icons_es_icons_ExclamationCircleFilled__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! @ant-design/icons/es/icons/ExclamationCircleFilled */ "./node_modules/@ant-design/icons/es/icons/ExclamationCircleFilled.js");
-/* harmony import */ var classnames__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! classnames */ "./node_modules/classnames/index.js");
-/* harmony import */ var classnames__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(classnames__WEBPACK_IMPORTED_MODULE_1__);
-/* harmony import */ var rc_util_es_hooks_useMergedState__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! rc-util/es/hooks/useMergedState */ "./node_modules/rc-util/es/hooks/useMergedState.js");
-/* harmony import */ var rc_util_es_omit__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! rc-util/es/omit */ "./node_modules/rc-util/es/omit.js");
-/* harmony import */ var _config_provider_context__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../config-provider/context */ "./node_modules/antd/es/config-provider/context.js");
-/* harmony import */ var _popover__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ../popover */ "./node_modules/antd/es/popover/index.js");
-/* harmony import */ var _PurePanel__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ./PurePanel */ "./node_modules/antd/es/popconfirm/PurePanel.js");
-/* harmony import */ var _style__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./style */ "./node_modules/antd/es/popconfirm/style/index.js");
-"use client";
-
-var __rest = undefined && undefined.__rest || function (s, e) {
-  var t = {};
-  for (var p in s) if (Object.prototype.hasOwnProperty.call(s, p) && e.indexOf(p) < 0) t[p] = s[p];
-  if (s != null && typeof Object.getOwnPropertySymbols === "function") for (var i = 0, p = Object.getOwnPropertySymbols(s); i < p.length; i++) {
-    if (e.indexOf(p[i]) < 0 && Object.prototype.propertyIsEnumerable.call(s, p[i])) t[p[i]] = s[p[i]];
-  }
-  return t;
-};
-
-
-
-
-
-
-
-
-
-const InternalPopconfirm = /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.forwardRef((props, ref) => {
-  var _a, _b;
-  const {
-      prefixCls: customizePrefixCls,
-      placement = 'top',
-      trigger = 'click',
-      okType = 'primary',
-      icon = /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_ant_design_icons_es_icons_ExclamationCircleFilled__WEBPACK_IMPORTED_MODULE_4__["default"], null),
-      children,
-      overlayClassName,
-      onOpenChange,
-      onVisibleChange,
-      overlayStyle,
-      styles,
-      classNames: popconfirmClassNames
-    } = props,
-    restProps = __rest(props, ["prefixCls", "placement", "trigger", "okType", "icon", "children", "overlayClassName", "onOpenChange", "onVisibleChange", "overlayStyle", "styles", "classNames"]);
-  const {
-    getPrefixCls,
-    className: contextClassName,
-    style: contextStyle,
-    classNames: contextClassNames,
-    styles: contextStyles
-  } = (0,_config_provider_context__WEBPACK_IMPORTED_MODULE_5__.useComponentConfig)('popconfirm');
-  const [open, setOpen] = (0,rc_util_es_hooks_useMergedState__WEBPACK_IMPORTED_MODULE_2__["default"])(false, {
-    value: (_a = props.open) !== null && _a !== void 0 ? _a : props.visible,
-    defaultValue: (_b = props.defaultOpen) !== null && _b !== void 0 ? _b : props.defaultVisible
-  });
-  const settingOpen = (value, e) => {
-    setOpen(value, true);
-    onVisibleChange === null || onVisibleChange === void 0 ? void 0 : onVisibleChange(value);
-    onOpenChange === null || onOpenChange === void 0 ? void 0 : onOpenChange(value, e);
-  };
-  const close = e => {
-    settingOpen(false, e);
-  };
-  const onConfirm = e => {
-    var _a;
-    return (_a = props.onConfirm) === null || _a === void 0 ? void 0 : _a.call(undefined, e);
-  };
-  const onCancel = e => {
-    var _a;
-    settingOpen(false, e);
-    (_a = props.onCancel) === null || _a === void 0 ? void 0 : _a.call(undefined, e);
-  };
-  const onInternalOpenChange = (value, e) => {
-    const {
-      disabled = false
-    } = props;
-    if (disabled) {
-      return;
-    }
-    settingOpen(value, e);
-  };
-  const prefixCls = getPrefixCls('popconfirm', customizePrefixCls);
-  const rootClassNames = classnames__WEBPACK_IMPORTED_MODULE_1___default()(prefixCls, contextClassName, overlayClassName, contextClassNames.root, popconfirmClassNames === null || popconfirmClassNames === void 0 ? void 0 : popconfirmClassNames.root);
-  const bodyClassNames = classnames__WEBPACK_IMPORTED_MODULE_1___default()(contextClassNames.body, popconfirmClassNames === null || popconfirmClassNames === void 0 ? void 0 : popconfirmClassNames.body);
-  const [wrapCSSVar] = (0,_style__WEBPACK_IMPORTED_MODULE_6__["default"])(prefixCls);
-  return wrapCSSVar(/*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_popover__WEBPACK_IMPORTED_MODULE_7__["default"], Object.assign({}, (0,rc_util_es_omit__WEBPACK_IMPORTED_MODULE_3__["default"])(restProps, ['title']), {
-    trigger: trigger,
-    placement: placement,
-    onOpenChange: onInternalOpenChange,
-    open: open,
-    ref: ref,
-    classNames: {
-      root: rootClassNames,
-      body: bodyClassNames
-    },
-    styles: {
-      root: Object.assign(Object.assign(Object.assign(Object.assign({}, contextStyles.root), contextStyle), overlayStyle), styles === null || styles === void 0 ? void 0 : styles.root),
-      body: Object.assign(Object.assign({}, contextStyles.body), styles === null || styles === void 0 ? void 0 : styles.body)
-    },
-    content: /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_PurePanel__WEBPACK_IMPORTED_MODULE_8__.Overlay, Object.assign({
-      okType: okType,
-      icon: icon
-    }, props, {
-      prefixCls: prefixCls,
-      close: close,
-      onConfirm: onConfirm,
-      onCancel: onCancel
-    })),
-    "data-popover-inject": true
-  }), children));
-});
-const Popconfirm = InternalPopconfirm;
-// We don't care debug panel
-/* istanbul ignore next */
-Popconfirm._InternalPanelDoNotUseOrYouWillBeFired = _PurePanel__WEBPACK_IMPORTED_MODULE_8__["default"];
-if (true) {
-  Popconfirm.displayName = 'Popconfirm';
-}
-/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (Popconfirm);
-
-/***/ }),
-
-/***/ "./node_modules/antd/es/popconfirm/style/index.js":
-/*!********************************************************!*\
-  !*** ./node_modules/antd/es/popconfirm/style/index.js ***!
-  \********************************************************/
-/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__),
-/* harmony export */   prepareComponentToken: () => (/* binding */ prepareComponentToken)
-/* harmony export */ });
-/* harmony import */ var _theme_internal__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../../theme/internal */ "./node_modules/antd/es/theme/util/genStyleUtils.js");
-
-// =============================== Base ===============================
-const genBaseStyle = token => {
-  const {
-    componentCls,
-    iconCls,
-    antCls,
-    zIndexPopup,
-    colorText,
-    colorWarning,
-    marginXXS,
-    marginXS,
-    fontSize,
-    fontWeightStrong,
-    colorTextHeading
-  } = token;
-  return {
-    [componentCls]: {
-      zIndex: zIndexPopup,
-      [`&${antCls}-popover`]: {
-        fontSize
-      },
-      [`${componentCls}-message`]: {
-        marginBottom: marginXS,
-        display: 'flex',
-        flexWrap: 'nowrap',
-        alignItems: 'start',
-        [`> ${componentCls}-message-icon ${iconCls}`]: {
-          color: colorWarning,
-          fontSize,
-          lineHeight: 1,
-          marginInlineEnd: marginXS
-        },
-        [`${componentCls}-title`]: {
-          fontWeight: fontWeightStrong,
-          color: colorTextHeading,
-          '&:only-child': {
-            fontWeight: 'normal'
-          }
-        },
-        [`${componentCls}-description`]: {
-          marginTop: marginXXS,
-          color: colorText
-        }
-      },
-      [`${componentCls}-buttons`]: {
-        textAlign: 'end',
-        whiteSpace: 'nowrap',
-        button: {
-          marginInlineStart: marginXS
-        }
-      }
-    }
-  };
-};
-// ============================== Export ==============================
-const prepareComponentToken = token => {
-  const {
-    zIndexPopupBase
-  } = token;
-  return {
-    zIndexPopup: zIndexPopupBase + 60
-  };
-};
-/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ((0,_theme_internal__WEBPACK_IMPORTED_MODULE_0__.genStyleHooks)('Popconfirm', token => genBaseStyle(token), prepareComponentToken, {
-  resetStyle: false
-}));
-
-/***/ }),
-
 /***/ "./node_modules/antd/es/popover/PurePanel.js":
 /*!***************************************************!*\
   !*** ./node_modules/antd/es/popover/PurePanel.js ***!
@@ -64657,18 +64198,18 @@ function AdminHeader() {
     })
   }];
   return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxs)("header", {
-    className: "admin-header",
+    className: "admin-header__container",
     children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxs)("div", {
-      className: "logo",
+      className: "admin-header__logo",
       children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("img", {
         src: "/images/logo.png",
         alt: "Logo"
       }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("span", {
-        className: "title",
+        className: "admin-header__title",
         children: "Second Stop"
       })]
     }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("div", {
-      className: "header-right",
+      className: "admin-header__right",
       children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)(antd__WEBPACK_IMPORTED_MODULE_7__["default"], {
         menu: {
           items: items
@@ -64680,18 +64221,21 @@ function AdminHeader() {
           },
           children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxs)(antd__WEBPACK_IMPORTED_MODULE_8__["default"], {
             children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)(antd__WEBPACK_IMPORTED_MODULE_9__["default"], {
-              size: 40,
+              size: 36,
               icon: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)(_ant_design_icons__WEBPACK_IMPORTED_MODULE_10__["default"], {}),
               src: (profileData === null || profileData === void 0 ? void 0 : profileData.profile_image) && "http://127.0.0.1:8000/storage/".concat(profileData.profile_image)
             }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)(Text, {
               strong: true,
               style: {
-                marginLeft: '8px'
+                marginLeft: '10px',
+                color: "white"
               },
               children: (profileData === null || profileData === void 0 ? void 0 : profileData.username) || 'Admin'
             }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)(_ant_design_icons__WEBPACK_IMPORTED_MODULE_11__["default"], {
               style: {
-                fontSize: '12px'
+                marginRight: '20px',
+                fontSize: '12px',
+                color: "white"
               }
             })]
           })
@@ -64732,6 +64276,14 @@ function AdminPage(_ref) {
       className: "admin-body",
       children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)(_AdminSidebar__WEBPACK_IMPORTED_MODULE_2__["default"], {}), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("div", {
         className: "admin-content",
+        style: {
+          overflowY: 'scroll',
+          overflowX: 'hidden',
+          height: 'calc(100vh - 64px)',
+          // Adjust based on your header height
+          maxHeight: 'calc(100vh - 64px)',
+          WebkitOverflowScrolling: 'touch' // For smooth scrolling on iOS
+        },
         children: children
       })]
     })]
@@ -64755,11 +64307,11 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router/dist/development/chunk-K6AXKMTT.mjs");
-/* harmony import */ var _ant_design_icons__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @ant-design/icons */ "./node_modules/@ant-design/icons/es/icons/DashboardOutlined.js");
+/* harmony import */ var _ant_design_icons__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @ant-design/icons */ "./node_modules/@ant-design/icons/es/icons/HomeOutlined.js");
 /* harmony import */ var _ant_design_icons__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! @ant-design/icons */ "./node_modules/@ant-design/icons/es/icons/UserOutlined.js");
 /* harmony import */ var _ant_design_icons__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! @ant-design/icons */ "./node_modules/@ant-design/icons/es/icons/AppstoreOutlined.js");
-/* harmony import */ var _ant_design_icons__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! @ant-design/icons */ "./node_modules/@ant-design/icons/es/icons/ShoppingCartOutlined.js");
-/* harmony import */ var _ant_design_icons__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! @ant-design/icons */ "./node_modules/@ant-design/icons/es/icons/ContactsOutlined.js");
+/* harmony import */ var _ant_design_icons__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! @ant-design/icons */ "./node_modules/@ant-design/icons/es/icons/ShoppingOutlined.js");
+/* harmony import */ var _ant_design_icons__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! @ant-design/icons */ "./node_modules/@ant-design/icons/es/icons/TeamOutlined.js");
 /* harmony import */ var _ant_design_icons__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! @ant-design/icons */ "./node_modules/@ant-design/icons/es/icons/MessageOutlined.js");
 /* harmony import */ var _ant_design_icons__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! @ant-design/icons */ "./node_modules/@ant-design/icons/es/icons/SettingOutlined.js");
 /* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react/jsx-runtime */ "./node_modules/react/jsx-runtime.js");
@@ -64768,10 +64320,16 @@ __webpack_require__.r(__webpack_exports__);
 
 
 function AdminSidebar() {
+  var location = (0,react_router_dom__WEBPACK_IMPORTED_MODULE_2__.useLocation)();
+
+  // Check if the current path matches the menu item path
+  var isActive = function isActive(path) {
+    return location.pathname === path;
+  };
   return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)("aside", {
     className: "admin-sidebar",
     children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("div", {
-      className: "nav-item",
+      className: "nav-item ".concat(isActive('/admindashboard') ? 'active' : ''),
       children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)(react_router_dom__WEBPACK_IMPORTED_MODULE_2__.Link, {
         to: "/admindashboard",
         children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_ant_design_icons__WEBPACK_IMPORTED_MODULE_3__["default"], {
@@ -64781,7 +64339,7 @@ function AdminSidebar() {
         })]
       })
     }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("div", {
-      className: "nav-item",
+      className: "nav-item ".concat(isActive('/allusers') ? 'active' : ''),
       children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)(react_router_dom__WEBPACK_IMPORTED_MODULE_2__.Link, {
         to: "/allusers",
         children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_ant_design_icons__WEBPACK_IMPORTED_MODULE_4__["default"], {
@@ -64791,7 +64349,7 @@ function AdminSidebar() {
         })]
       })
     }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("div", {
-      className: "nav-item",
+      className: "nav-item ".concat(isActive('/adminproducts') ? 'active' : ''),
       children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)(react_router_dom__WEBPACK_IMPORTED_MODULE_2__.Link, {
         to: "/adminproducts",
         children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_ant_design_icons__WEBPACK_IMPORTED_MODULE_5__["default"], {
@@ -64801,7 +64359,7 @@ function AdminSidebar() {
         })]
       })
     }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("div", {
-      className: "nav-item",
+      className: "nav-item ".concat(isActive('/orderlist') ? 'active' : ''),
       children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)(react_router_dom__WEBPACK_IMPORTED_MODULE_2__.Link, {
         to: "/orderlist",
         children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_ant_design_icons__WEBPACK_IMPORTED_MODULE_6__["default"], {
@@ -64811,7 +64369,7 @@ function AdminSidebar() {
         })]
       })
     }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("div", {
-      className: "nav-item",
+      className: "nav-item ".concat(isActive('/customers') ? 'active' : ''),
       children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)(react_router_dom__WEBPACK_IMPORTED_MODULE_2__.Link, {
         to: "/customers",
         children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_ant_design_icons__WEBPACK_IMPORTED_MODULE_7__["default"], {
@@ -64821,7 +64379,7 @@ function AdminSidebar() {
         })]
       })
     }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("div", {
-      className: "nav-item",
+      className: "nav-item ".concat(isActive('/adminchat') ? 'active' : ''),
       children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)(react_router_dom__WEBPACK_IMPORTED_MODULE_2__.Link, {
         to: "/adminchat",
         children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_ant_design_icons__WEBPACK_IMPORTED_MODULE_8__["default"], {
@@ -64831,7 +64389,7 @@ function AdminSidebar() {
         })]
       })
     }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("div", {
-      className: "nav-item",
+      className: "nav-item ".concat(isActive('/adminsettings') ? 'active' : ''),
       children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)(react_router_dom__WEBPACK_IMPORTED_MODULE_2__.Link, {
         to: "/adminsettings",
         children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_ant_design_icons__WEBPACK_IMPORTED_MODULE_9__["default"], {
@@ -68588,8 +68146,16 @@ var AddRoleModal = function AddRoleModal(_ref) {
         if (onSuccess) onSuccess();
         onCancel();
       })["catch"](function (error) {
-        console.error("Error adding role:", error);
-        antd__WEBPACK_IMPORTED_MODULE_4__["default"].error("Failed to add role");
+        if (error.response && error.response.data && error.response.data.errors) {
+          // Display validation errors from the server
+          var errorMessages = Object.values(error.response.data.errors).flat();
+          errorMessages.forEach(function (errMsg) {
+            return antd__WEBPACK_IMPORTED_MODULE_4__["default"].error(errMsg);
+          });
+        } else {
+          console.error("Error adding role:", error);
+          antd__WEBPACK_IMPORTED_MODULE_4__["default"].error("Failed to add role");
+        }
       })["finally"](function () {
         setLoading(false);
       });
@@ -68610,11 +68176,11 @@ var AddRoleModal = function AddRoleModal(_ref) {
       onClick: handleSubmit,
       children: "Add Role"
     }, "submit")],
-    children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxs)(antd__WEBPACK_IMPORTED_MODULE_3__["default"], {
+    children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)(antd__WEBPACK_IMPORTED_MODULE_3__["default"], {
       form: form,
       layout: "vertical",
       name: "add_role_form",
-      children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)(antd__WEBPACK_IMPORTED_MODULE_3__["default"].Item, {
+      children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)(antd__WEBPACK_IMPORTED_MODULE_3__["default"].Item, {
         name: "role_name",
         label: "Role Name",
         rules: [{
@@ -68627,18 +68193,7 @@ var AddRoleModal = function AddRoleModal(_ref) {
         children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)(antd__WEBPACK_IMPORTED_MODULE_7__["default"], {
           placeholder: "Enter role name"
         })
-      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)(antd__WEBPACK_IMPORTED_MODULE_3__["default"].Item, {
-        name: "description",
-        label: "Description",
-        rules: [{
-          max: 200,
-          message: "Description cannot exceed 200 characters"
-        }],
-        children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)(antd__WEBPACK_IMPORTED_MODULE_7__["default"].TextArea, {
-          placeholder: "Enter role description (optional)",
-          rows: 4
-        })
-      })]
+      })
     })
   });
 };
@@ -68730,11 +68285,11 @@ var EditRoleModal = function EditRoleModal(_ref) {
       onClick: handleSubmit,
       children: "Save Changes"
     }, "submit")],
-    children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxs)(antd__WEBPACK_IMPORTED_MODULE_3__["default"], {
+    children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)(antd__WEBPACK_IMPORTED_MODULE_3__["default"], {
       form: form,
       layout: "vertical",
       name: "edit_role_form",
-      children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)(antd__WEBPACK_IMPORTED_MODULE_3__["default"].Item, {
+      children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)(antd__WEBPACK_IMPORTED_MODULE_3__["default"].Item, {
         name: "role_name",
         label: "Role Name",
         rules: [{
@@ -68747,18 +68302,7 @@ var EditRoleModal = function EditRoleModal(_ref) {
         children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)(antd__WEBPACK_IMPORTED_MODULE_7__["default"], {
           placeholder: "Enter role name"
         })
-      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)(antd__WEBPACK_IMPORTED_MODULE_3__["default"].Item, {
-        name: "description",
-        label: "Description",
-        rules: [{
-          max: 200,
-          message: "Description cannot exceed 200 characters"
-        }],
-        children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)(antd__WEBPACK_IMPORTED_MODULE_7__["default"].TextArea, {
-          placeholder: "Enter role description (optional)",
-          rows: 4
-        })
-      })]
+      })
     })
   });
 };
@@ -68781,16 +68325,17 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
 /* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_1__);
-/* harmony import */ var antd__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! antd */ "./node_modules/antd/es/message/index.js");
-/* harmony import */ var antd__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! antd */ "./node_modules/antd/es/space/index.js");
-/* harmony import */ var antd__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! antd */ "./node_modules/antd/es/input/index.js");
-/* harmony import */ var antd__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! antd */ "./node_modules/antd/es/button/index.js");
-/* harmony import */ var antd__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! antd */ "./node_modules/antd/es/table/index.js");
-/* harmony import */ var antd__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(/*! antd */ "./node_modules/antd/es/popconfirm/index.js");
-/* harmony import */ var _ant_design_icons__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! @ant-design/icons */ "./node_modules/@ant-design/icons/es/icons/SearchOutlined.js");
-/* harmony import */ var _ant_design_icons__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! @ant-design/icons */ "./node_modules/@ant-design/icons/es/icons/PlusOutlined.js");
-/* harmony import */ var _ant_design_icons__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! @ant-design/icons */ "./node_modules/@ant-design/icons/es/icons/EditOutlined.js");
-/* harmony import */ var _ant_design_icons__WEBPACK_IMPORTED_MODULE_14__ = __webpack_require__(/*! @ant-design/icons */ "./node_modules/@ant-design/icons/es/icons/DeleteOutlined.js");
+/* harmony import */ var antd__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! antd */ "./node_modules/antd/es/select/index.js");
+/* harmony import */ var antd__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! antd */ "./node_modules/antd/es/message/index.js");
+/* harmony import */ var antd__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! antd */ "./node_modules/antd/es/space/index.js");
+/* harmony import */ var antd__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! antd */ "./node_modules/antd/es/input/index.js");
+/* harmony import */ var antd__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! antd */ "./node_modules/antd/es/button/index.js");
+/* harmony import */ var antd__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! antd */ "./node_modules/antd/es/table/index.js");
+/* harmony import */ var _ant_design_icons__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! @ant-design/icons */ "./node_modules/@ant-design/icons/es/icons/SearchOutlined.js");
+/* harmony import */ var _ant_design_icons__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! @ant-design/icons */ "./node_modules/@ant-design/icons/es/icons/PlusOutlined.js");
+/* harmony import */ var _ant_design_icons__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(/*! @ant-design/icons */ "./node_modules/@ant-design/icons/es/icons/EditOutlined.js");
+/* harmony import */ var _ant_design_icons__WEBPACK_IMPORTED_MODULE_14__ = __webpack_require__(/*! @ant-design/icons */ "./node_modules/@ant-design/icons/es/icons/UndoOutlined.js");
+/* harmony import */ var _ant_design_icons__WEBPACK_IMPORTED_MODULE_15__ = __webpack_require__(/*! @ant-design/icons */ "./node_modules/@ant-design/icons/es/icons/InboxOutlined.js");
 /* harmony import */ var _AddRoleModal__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./AddRoleModal */ "./resources/js/components/Admin/AdminSettings/Role/AddRoleModal.js");
 /* harmony import */ var _EditRoleModal__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./EditRoleModal */ "./resources/js/components/Admin/AdminSettings/Role/EditRoleModal.js");
 /* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! react/jsx-runtime */ "./node_modules/react/jsx-runtime.js");
@@ -68804,9 +68349,10 @@ function _arrayWithHoles(r) { if (Array.isArray(r)) return r; }
 
 
 
- // Import the AddRoleModal component
- // Import the EditRoleModal component
 
+
+
+var Option = antd__WEBPACK_IMPORTED_MODULE_5__["default"].Option;
 var ROLES_API = "http://127.0.0.1:8000/api/roles";
 function RoleTab() {
   var _useState = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)([]),
@@ -68833,21 +68379,33 @@ function RoleTab() {
     _useState12 = _slicedToArray(_useState11, 2),
     selectedRole = _useState12[0],
     setSelectedRole = _useState12[1];
+  var _useState13 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)([]),
+    _useState14 = _slicedToArray(_useState13, 2),
+    selectedRowKeys = _useState14[0],
+    setSelectedRowKeys = _useState14[1];
+  var _useState15 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)("Active"),
+    _useState16 = _slicedToArray(_useState15, 2),
+    statusFilter = _useState16[0],
+    setStatusFilter = _useState16[1];
   (0,react__WEBPACK_IMPORTED_MODULE_0__.useEffect)(function () {
     fetchRoles();
-  }, []);
+  }, [statusFilter]);
   var fetchRoles = function fetchRoles() {
     setLoading(true);
-    axios__WEBPACK_IMPORTED_MODULE_1___default().get(ROLES_API).then(function (res) {
+    axios__WEBPACK_IMPORTED_MODULE_1___default().get(ROLES_API, {
+      params: {
+        include_archived: 'true'
+      }
+    }).then(function (res) {
       if (Array.isArray(res.data)) {
         setRoles(res.data);
       } else {
         console.error("Invalid roles structure:", res.data);
-        antd__WEBPACK_IMPORTED_MODULE_5__["default"].error("Failed to fetch roles");
+        antd__WEBPACK_IMPORTED_MODULE_6__["default"].error("Failed to fetch roles");
       }
     })["catch"](function (err) {
       console.error("Error fetching roles:", err);
-      antd__WEBPACK_IMPORTED_MODULE_5__["default"].error("Error fetching roles");
+      antd__WEBPACK_IMPORTED_MODULE_6__["default"].error("Error fetching roles");
     })["finally"](function () {
       setLoading(false);
     });
@@ -68855,11 +68413,12 @@ function RoleTab() {
   var handleDelete = function handleDelete(roleId) {
     setLoading(true);
     axios__WEBPACK_IMPORTED_MODULE_1___default()["delete"]("".concat(ROLES_API, "/").concat(roleId)).then(function () {
-      antd__WEBPACK_IMPORTED_MODULE_5__["default"].success("Role deleted successfully");
+      antd__WEBPACK_IMPORTED_MODULE_6__["default"].success("Role deleted successfully");
       fetchRoles();
+      setSelectedRowKeys([]);
     })["catch"](function (err) {
       console.error("Error deleting role:", err);
-      antd__WEBPACK_IMPORTED_MODULE_5__["default"].error("Failed to delete role");
+      antd__WEBPACK_IMPORTED_MODULE_6__["default"].error("Failed to delete role");
     })["finally"](function () {
       setLoading(false);
     });
@@ -68868,50 +68427,181 @@ function RoleTab() {
     setSelectedRole(role);
     setEditModalVisible(true);
   };
+  var handleOpenAddModal = function handleOpenAddModal() {
+    setAddModalVisible(true);
+  };
+  var handleOpenEditModal = function handleOpenEditModal(role) {
+    setSelectedRole(role);
+    setEditModalVisible(true);
+  };
+  var handleArchive = function handleArchive(roleId) {
+    setLoading(true);
+    axios__WEBPACK_IMPORTED_MODULE_1___default().put("".concat(ROLES_API, "/").concat(roleId, "/archive")).then(function () {
+      antd__WEBPACK_IMPORTED_MODULE_6__["default"].success("Role archived successfully");
+      fetchRoles();
+      setSelectedRowKeys([]);
+    })["catch"](function (err) {
+      console.error("Error archiving role:", err);
+      antd__WEBPACK_IMPORTED_MODULE_6__["default"].error("Failed to archive role");
+    })["finally"](function () {
+      setLoading(false);
+    });
+  };
+  var handleRestore = function handleRestore(roleId) {
+    setLoading(true);
+    axios__WEBPACK_IMPORTED_MODULE_1___default().put("".concat(ROLES_API, "/").concat(roleId, "/restore")).then(function () {
+      antd__WEBPACK_IMPORTED_MODULE_6__["default"].success("Role restored successfully");
+      fetchRoles();
+      setSelectedRowKeys([]);
+    })["catch"](function (err) {
+      console.error("Error restoring role:", err);
+      antd__WEBPACK_IMPORTED_MODULE_6__["default"].error("Failed to restore role");
+    })["finally"](function () {
+      setLoading(false);
+    });
+  };
+  var handleBulkStatusChange = function handleBulkStatusChange() {
+    setLoading(true);
+    var endpoint = statusFilter === "Archived" ? "restore" : "archive";
+    Promise.all(selectedRowKeys.map(function (key) {
+      return axios__WEBPACK_IMPORTED_MODULE_1___default().put("".concat(ROLES_API, "/").concat(key, "/").concat(endpoint));
+    })).then(function () {
+      antd__WEBPACK_IMPORTED_MODULE_6__["default"].success("Roles ".concat(statusFilter === "Archived" ? "restored" : "archived", " successfully"));
+      fetchRoles();
+      setSelectedRowKeys([]);
+    })["catch"](function (err) {
+      console.error("Error processing roles:", err);
+      antd__WEBPACK_IMPORTED_MODULE_6__["default"].error("Failed to ".concat(statusFilter === "Archived" ? "restore" : "archive", " roles"));
+    })["finally"](function () {
+      setLoading(false);
+    });
+  };
+
+  // Filter roles based on search text and archive status
   var filteredRoles = roles.filter(function (role) {
-    return (role.role_name || "").toLowerCase().includes(search.toLowerCase());
+    var matchesSearch = (role.role_name || "").toLowerCase().includes(search.toLowerCase());
+    var matchesStatus = statusFilter === "Active" && !role.deleted_at || statusFilter === "Archived" && role.deleted_at;
+    return matchesSearch && matchesStatus;
   });
+  var rowSelection = {
+    selectedRowKeys: selectedRowKeys,
+    onChange: function onChange(keys) {
+      return setSelectedRowKeys(keys);
+    },
+    getCheckboxProps: function getCheckboxProps(record) {
+      return {
+        disabled: statusFilter === "Active" ? record.deleted_at !== null : record.deleted_at === null
+      };
+    }
+  };
   return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsxs)("div", {
     className: "roles-container",
     children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("h2", {
       children: "Roles Management"
-    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsxs)(antd__WEBPACK_IMPORTED_MODULE_6__["default"], {
+    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsxs)(antd__WEBPACK_IMPORTED_MODULE_7__["default"], {
       style: {
         marginBottom: 16,
         display: "flex",
-        justifyContent: "space-between"
+        justifyContent: "space-between",
+        width: "100%"
       },
-      children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)(antd__WEBPACK_IMPORTED_MODULE_7__["default"], {
-        placeholder: "Search roles",
-        prefix: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)(_ant_design_icons__WEBPACK_IMPORTED_MODULE_8__["default"], {}),
-        value: search,
-        onChange: function onChange(e) {
-          return setSearch(e.target.value);
-        },
+      children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsxs)("div", {
         style: {
-          width: 200
-        }
-      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)(antd__WEBPACK_IMPORTED_MODULE_9__["default"], {
-        type: "primary",
-        icon: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)(_ant_design_icons__WEBPACK_IMPORTED_MODULE_10__["default"], {}),
-        onClick: function onClick() {
-          return setAddModalVisible(true);
+          display: "flex",
+          gap: 12
         },
-        children: "Add Role"
+        children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)(antd__WEBPACK_IMPORTED_MODULE_8__["default"], {
+          placeholder: "Search roles",
+          prefix: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)(_ant_design_icons__WEBPACK_IMPORTED_MODULE_9__["default"], {}),
+          value: search,
+          onChange: function onChange(e) {
+            return setSearch(e.target.value);
+          },
+          style: {
+            width: 200
+          }
+        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsxs)(antd__WEBPACK_IMPORTED_MODULE_5__["default"], {
+          defaultValue: "Active",
+          style: {
+            width: 120
+          },
+          onChange: function onChange(value) {
+            setStatusFilter(value);
+            setSelectedRowKeys([]);
+          },
+          children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)(Option, {
+            value: "Active",
+            children: "Active"
+          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)(Option, {
+            value: "Archived",
+            children: "Archived"
+          })]
+        })]
+      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsxs)("div", {
+        children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)(antd__WEBPACK_IMPORTED_MODULE_10__["default"], {
+          type: "primary",
+          onClick: handleOpenAddModal,
+          icon: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)(_ant_design_icons__WEBPACK_IMPORTED_MODULE_11__["default"], {}),
+          style: {
+            backgroundColor: "#A63F3F"
+          },
+          children: "Add Role"
+        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsxs)(antd__WEBPACK_IMPORTED_MODULE_10__["default"], {
+          type: "primary",
+          onClick: handleBulkStatusChange,
+          style: {
+            backgroundColor: "#A63F3F",
+            marginLeft: 8
+          },
+          disabled: selectedRowKeys.length === 0,
+          children: [statusFilter === "Archived" ? "Restore" : "Archive", " Selected"]
+        })]
       })]
-    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)(antd__WEBPACK_IMPORTED_MODULE_11__["default"], {
+    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)(antd__WEBPACK_IMPORTED_MODULE_12__["default"], {
+      rowSelection: rowSelection,
       columns: [{
+        title: "Actions",
+        key: "actions",
+        render: function render(_, record) {
+          return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsxs)(antd__WEBPACK_IMPORTED_MODULE_7__["default"], {
+            size: "middle",
+            children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)(antd__WEBPACK_IMPORTED_MODULE_10__["default"], {
+              type: "text",
+              icon: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)(_ant_design_icons__WEBPACK_IMPORTED_MODULE_13__["default"], {}),
+              onClick: function onClick() {
+                return handleOpenEditModal(record);
+              },
+              disabled: record.deleted_at !== null
+            }), record.deleted_at !== null ? /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)(antd__WEBPACK_IMPORTED_MODULE_10__["default"], {
+              type: "text",
+              icon: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)(_ant_design_icons__WEBPACK_IMPORTED_MODULE_14__["default"], {}),
+              style: {
+                color: "#52c41a"
+              },
+              onClick: function onClick() {
+                return handleRestore(record.id);
+              },
+              title: "Restore"
+            }) : /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)(antd__WEBPACK_IMPORTED_MODULE_10__["default"], {
+              type: "text",
+              icon: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)(_ant_design_icons__WEBPACK_IMPORTED_MODULE_15__["default"], {}),
+              style: {
+                marginLeft: "-20px"
+              },
+              onClick: function onClick() {
+                return handleArchive(record.id);
+              },
+              title: "Archive"
+            })]
+          });
+        }
+      }, {
         title: "Role Name",
         dataIndex: "role_name",
         key: "role_name",
         sorter: function sorter(a, b) {
           return a.role_name.localeCompare(b.role_name);
         }
-      }, {
-        title: "Description",
-        dataIndex: "description",
-        key: "description",
-        ellipsis: true
       }, {
         title: "Created At",
         dataIndex: "created_at",
@@ -68925,33 +68615,6 @@ function RoleTab() {
         key: "updated_at",
         render: function render(date) {
           return date ? new Date(date).toLocaleDateString() : "-";
-        }
-      }, {
-        title: "Actions",
-        key: "actions",
-        render: function render(_, record) {
-          return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsxs)(antd__WEBPACK_IMPORTED_MODULE_6__["default"], {
-            size: "middle",
-            children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)(antd__WEBPACK_IMPORTED_MODULE_9__["default"], {
-              type: "text",
-              icon: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)(_ant_design_icons__WEBPACK_IMPORTED_MODULE_12__["default"], {}),
-              onClick: function onClick() {
-                return handleEdit(record);
-              }
-            }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)(antd__WEBPACK_IMPORTED_MODULE_13__["default"], {
-              title: "Are you sure you want to delete this role?",
-              onConfirm: function onConfirm() {
-                return handleDelete(record.id);
-              },
-              okText: "Yes",
-              cancelText: "No",
-              children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)(antd__WEBPACK_IMPORTED_MODULE_9__["default"], {
-                type: "text",
-                danger: true,
-                icon: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)(_ant_design_icons__WEBPACK_IMPORTED_MODULE_14__["default"], {})
-              })
-            })]
-          });
         }
       }],
       dataSource: filteredRoles,
@@ -69001,14 +68664,15 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var antd__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! antd */ "./node_modules/antd/es/select/index.js");
 /* harmony import */ var antd__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! antd */ "./node_modules/antd/es/modal/index.js");
 /* harmony import */ var antd__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! antd */ "./node_modules/antd/es/space/index.js");
-/* harmony import */ var antd__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! antd */ "./node_modules/antd/es/tag/index.js");
-/* harmony import */ var antd__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! antd */ "./node_modules/antd/es/input/index.js");
-/* harmony import */ var antd__WEBPACK_IMPORTED_MODULE_14__ = __webpack_require__(/*! antd */ "./node_modules/antd/es/button/index.js");
-/* harmony import */ var antd__WEBPACK_IMPORTED_MODULE_16__ = __webpack_require__(/*! antd */ "./node_modules/antd/es/table/index.js");
+/* harmony import */ var antd__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! antd */ "./node_modules/antd/es/tag/index.js");
+/* harmony import */ var antd__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(/*! antd */ "./node_modules/antd/es/input/index.js");
+/* harmony import */ var antd__WEBPACK_IMPORTED_MODULE_15__ = __webpack_require__(/*! antd */ "./node_modules/antd/es/button/index.js");
+/* harmony import */ var antd__WEBPACK_IMPORTED_MODULE_17__ = __webpack_require__(/*! antd */ "./node_modules/antd/es/table/index.js");
 /* harmony import */ var _ant_design_icons__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! @ant-design/icons */ "./node_modules/@ant-design/icons/es/icons/EditOutlined.js");
-/* harmony import */ var _ant_design_icons__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! @ant-design/icons */ "./node_modules/@ant-design/icons/es/icons/InboxOutlined.js");
-/* harmony import */ var _ant_design_icons__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(/*! @ant-design/icons */ "./node_modules/@ant-design/icons/es/icons/SearchOutlined.js");
-/* harmony import */ var _ant_design_icons__WEBPACK_IMPORTED_MODULE_15__ = __webpack_require__(/*! @ant-design/icons */ "./node_modules/@ant-design/icons/es/icons/PlusOutlined.js");
+/* harmony import */ var _ant_design_icons__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! @ant-design/icons */ "./node_modules/@ant-design/icons/es/icons/UndoOutlined.js");
+/* harmony import */ var _ant_design_icons__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! @ant-design/icons */ "./node_modules/@ant-design/icons/es/icons/InboxOutlined.js");
+/* harmony import */ var _ant_design_icons__WEBPACK_IMPORTED_MODULE_14__ = __webpack_require__(/*! @ant-design/icons */ "./node_modules/@ant-design/icons/es/icons/SearchOutlined.js");
+/* harmony import */ var _ant_design_icons__WEBPACK_IMPORTED_MODULE_16__ = __webpack_require__(/*! @ant-design/icons */ "./node_modules/@ant-design/icons/es/icons/PlusOutlined.js");
 /* harmony import */ var _AddUserModal__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./AddUserModal */ "./resources/js/components/Admin/AddUserModal.js");
 /* harmony import */ var _EditUserModal__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./EditUserModal */ "./resources/js/components/Admin/EditUserModal.js");
 /* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! react/jsx-runtime */ "./node_modules/react/jsx-runtime.js");
@@ -69065,6 +68729,10 @@ function AllUsers() {
     _useState18 = _slicedToArray(_useState17, 2),
     selectedRowKeys = _useState18[0],
     setSelectedRowKeys = _useState18[1];
+  var _useState19 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(localStorage.getItem("selectedStatus") || "active"),
+    _useState20 = _slicedToArray(_useState19, 2),
+    selectedStatus = _useState20[0],
+    setSelectedStatus = _useState20[1];
   (0,react__WEBPACK_IMPORTED_MODULE_0__.useEffect)(function () {
     fetchUsers();
   }, [statusFilter]);
@@ -69119,6 +68787,14 @@ function AllUsers() {
     setIsEditModalVisible(false);
     setSelectedUser(null);
     fetchUsers(); // Refresh users after editing
+  };
+
+  // Handle archive/restore functions
+  var handleArchive = function handleArchive(userId) {
+    toggleUserArchiveStatus(userId, "Active");
+  };
+  var handleRestore = function handleRestore(userId) {
+    toggleUserArchiveStatus(userId, "Archived");
   };
 
   // Archive/Unarchive single user
@@ -69176,8 +68852,6 @@ function AllUsers() {
     title: "Actions",
     key: "actions",
     render: function render(_, record) {
-      var isArchived = record.deleted_at !== null;
-      var status = isArchived ? "Archived" : "Active";
       return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsxs)(antd__WEBPACK_IMPORTED_MODULE_8__["default"], {
         size: "small",
         children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)(_ant_design_icons__WEBPACK_IMPORTED_MODULE_9__["default"], {
@@ -69187,14 +68861,23 @@ function AllUsers() {
           onClick: function onClick() {
             return handleOpenEditModal(record);
           }
-        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)(_ant_design_icons__WEBPACK_IMPORTED_MODULE_10__["default"], {
+        }), record.deleted_at !== null ? /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)(_ant_design_icons__WEBPACK_IMPORTED_MODULE_10__["default"], {
+          style: {
+            cursor: "pointer",
+            color: "#52c41a"
+          },
+          onClick: function onClick() {
+            return handleRestore(record.id);
+          },
+          title: "Restore"
+        }) : /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)(_ant_design_icons__WEBPACK_IMPORTED_MODULE_11__["default"], {
           style: {
             cursor: "pointer"
           },
-          title: isArchived ? "Unarchive" : "Archive",
           onClick: function onClick() {
-            return toggleUserArchiveStatus(record.id, status);
-          }
+            return handleArchive(record.id);
+          },
+          title: "Archive"
         })]
       });
     }
@@ -69214,7 +68897,7 @@ function AllUsers() {
     dataIndex: "role_id",
     key: "role",
     render: function render(role_id) {
-      return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)(antd__WEBPACK_IMPORTED_MODULE_11__["default"], {
+      return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)(antd__WEBPACK_IMPORTED_MODULE_12__["default"], {
         color: role_id === 2 ? "purple" : "blue",
         children: role_id === 2 ? "Admin" : "Customer"
       });
@@ -69224,7 +68907,7 @@ function AllUsers() {
     key: "status",
     render: function render(_, record) {
       var isArchived = record.deleted_at !== null;
-      return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)(antd__WEBPACK_IMPORTED_MODULE_11__["default"], {
+      return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)(antd__WEBPACK_IMPORTED_MODULE_12__["default"], {
         color: isArchived ? "default" : "success",
         children: isArchived ? "Archived" : "Active"
       });
@@ -69264,9 +68947,9 @@ function AllUsers() {
           marginBottom: "20px"
         },
         children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsxs)(antd__WEBPACK_IMPORTED_MODULE_8__["default"], {
-          children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)(antd__WEBPACK_IMPORTED_MODULE_12__["default"], {
+          children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)(antd__WEBPACK_IMPORTED_MODULE_13__["default"], {
             placeholder: "Search",
-            prefix: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)(_ant_design_icons__WEBPACK_IMPORTED_MODULE_13__["default"], {}),
+            prefix: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)(_ant_design_icons__WEBPACK_IMPORTED_MODULE_14__["default"], {}),
             value: search,
             onChange: function onChange(e) {
               return setSearch(e.target.value);
@@ -69311,15 +68994,15 @@ function AllUsers() {
             })]
           })]
         }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsxs)(antd__WEBPACK_IMPORTED_MODULE_8__["default"], {
-          children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)(antd__WEBPACK_IMPORTED_MODULE_14__["default"], {
+          children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)(antd__WEBPACK_IMPORTED_MODULE_15__["default"], {
             type: "primary",
             onClick: handleOpenAddModal,
-            icon: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)(_ant_design_icons__WEBPACK_IMPORTED_MODULE_15__["default"], {}),
+            icon: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)(_ant_design_icons__WEBPACK_IMPORTED_MODULE_16__["default"], {}),
             style: {
               backgroundColor: "#A63F3F"
             },
             children: "Add Users"
-          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsxs)(antd__WEBPACK_IMPORTED_MODULE_14__["default"], {
+          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsxs)(antd__WEBPACK_IMPORTED_MODULE_15__["default"], {
             type: "primary",
             onClick: handleBulkStatusChange,
             style: {
@@ -69329,7 +69012,7 @@ function AllUsers() {
             children: [statusFilter === "Archived" ? "Restore" : "Archive", " Selected"]
           })]
         })]
-      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)(antd__WEBPACK_IMPORTED_MODULE_16__["default"], {
+      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)(antd__WEBPACK_IMPORTED_MODULE_17__["default"], {
         rowSelection: rowSelection,
         columns: columns,
         dataSource: filteredUsers,
@@ -69379,15 +69062,16 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var antd__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! antd */ "./node_modules/antd/es/select/index.js");
 /* harmony import */ var antd__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! antd */ "./node_modules/antd/es/modal/index.js");
 /* harmony import */ var antd__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! antd */ "./node_modules/antd/es/space/index.js");
-/* harmony import */ var antd__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! antd */ "./node_modules/antd/es/tag/index.js");
-/* harmony import */ var antd__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(/*! antd */ "./node_modules/antd/es/input/index.js");
-/* harmony import */ var antd__WEBPACK_IMPORTED_MODULE_16__ = __webpack_require__(/*! antd */ "./node_modules/antd/es/button/index.js");
-/* harmony import */ var antd__WEBPACK_IMPORTED_MODULE_18__ = __webpack_require__(/*! antd */ "./node_modules/antd/es/table/index.js");
+/* harmony import */ var antd__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(/*! antd */ "./node_modules/antd/es/tag/index.js");
+/* harmony import */ var antd__WEBPACK_IMPORTED_MODULE_14__ = __webpack_require__(/*! antd */ "./node_modules/antd/es/input/index.js");
+/* harmony import */ var antd__WEBPACK_IMPORTED_MODULE_17__ = __webpack_require__(/*! antd */ "./node_modules/antd/es/button/index.js");
+/* harmony import */ var antd__WEBPACK_IMPORTED_MODULE_19__ = __webpack_require__(/*! antd */ "./node_modules/antd/es/table/index.js");
 /* harmony import */ var _ant_design_icons__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! @ant-design/icons */ "./node_modules/@ant-design/icons/es/icons/EditOutlined.js");
-/* harmony import */ var _ant_design_icons__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! @ant-design/icons */ "./node_modules/@ant-design/icons/es/icons/InboxOutlined.js");
-/* harmony import */ var _ant_design_icons__WEBPACK_IMPORTED_MODULE_14__ = __webpack_require__(/*! @ant-design/icons */ "./node_modules/@ant-design/icons/es/icons/SearchOutlined.js");
-/* harmony import */ var _ant_design_icons__WEBPACK_IMPORTED_MODULE_15__ = __webpack_require__(/*! @ant-design/icons */ "./node_modules/@ant-design/icons/es/icons/CloseCircleOutlined.js");
-/* harmony import */ var _ant_design_icons__WEBPACK_IMPORTED_MODULE_17__ = __webpack_require__(/*! @ant-design/icons */ "./node_modules/@ant-design/icons/es/icons/PlusOutlined.js");
+/* harmony import */ var _ant_design_icons__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! @ant-design/icons */ "./node_modules/@ant-design/icons/es/icons/UndoOutlined.js");
+/* harmony import */ var _ant_design_icons__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! @ant-design/icons */ "./node_modules/@ant-design/icons/es/icons/InboxOutlined.js");
+/* harmony import */ var _ant_design_icons__WEBPACK_IMPORTED_MODULE_15__ = __webpack_require__(/*! @ant-design/icons */ "./node_modules/@ant-design/icons/es/icons/SearchOutlined.js");
+/* harmony import */ var _ant_design_icons__WEBPACK_IMPORTED_MODULE_16__ = __webpack_require__(/*! @ant-design/icons */ "./node_modules/@ant-design/icons/es/icons/CloseCircleFilled.js");
+/* harmony import */ var _ant_design_icons__WEBPACK_IMPORTED_MODULE_18__ = __webpack_require__(/*! @ant-design/icons */ "./node_modules/@ant-design/icons/es/icons/PlusOutlined.js");
 /* harmony import */ var _AddUserModal__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./AddUserModal */ "./resources/js/components/Admin/AddUserModal.js");
 /* harmony import */ var _EditUserModal__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./EditUserModal */ "./resources/js/components/Admin/EditUserModal.js");
 /* harmony import */ var lodash__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! lodash */ "./node_modules/lodash/lodash.js");
@@ -69511,6 +69195,14 @@ function AllCustomers() {
     fetchCustomers(); // Refresh customers after editing
   };
 
+  // Handle archive/restore functions
+  var handleArchive = function handleArchive(userId) {
+    toggleCustomerArchiveStatus(userId, "Active");
+  };
+  var handleRestore = function handleRestore(userId) {
+    toggleCustomerArchiveStatus(userId, "Archived");
+  };
+
   // Archive/Unarchive single customer
   var toggleCustomerArchiveStatus = function toggleCustomerArchiveStatus(userId, currentStatus) {
     var isArchived = currentStatus === "Archived";
@@ -69574,8 +69266,6 @@ function AllCustomers() {
     title: "Actions",
     key: "actions",
     render: function render(_, record) {
-      var isArchived = record.deleted_at !== null;
-      var status = isArchived ? "Archived" : "Active";
       return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsxs)(antd__WEBPACK_IMPORTED_MODULE_9__["default"], {
         size: "small",
         children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)(_ant_design_icons__WEBPACK_IMPORTED_MODULE_10__["default"], {
@@ -69585,14 +69275,23 @@ function AllCustomers() {
           onClick: function onClick() {
             return handleOpenEditModal(record);
           }
-        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)(_ant_design_icons__WEBPACK_IMPORTED_MODULE_11__["default"], {
+        }), record.deleted_at !== null ? /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)(_ant_design_icons__WEBPACK_IMPORTED_MODULE_11__["default"], {
+          style: {
+            cursor: "pointer",
+            color: "#52c41a"
+          },
+          onClick: function onClick() {
+            return handleRestore(record.id);
+          },
+          title: "Restore"
+        }) : /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)(_ant_design_icons__WEBPACK_IMPORTED_MODULE_12__["default"], {
           style: {
             cursor: "pointer"
           },
-          title: isArchived ? "Restore" : "Archive",
           onClick: function onClick() {
-            return toggleCustomerArchiveStatus(record.id, status);
-          }
+            return handleArchive(record.id);
+          },
+          title: "Archive"
         })]
       });
     }
@@ -69626,7 +69325,7 @@ function AllCustomers() {
     key: "status",
     render: function render(_, record) {
       var isArchived = record.deleted_at !== null;
-      return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)(antd__WEBPACK_IMPORTED_MODULE_12__["default"], {
+      return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)(antd__WEBPACK_IMPORTED_MODULE_13__["default"], {
         color: isArchived ? "default" : "success",
         children: isArchived ? "Archived" : "Active"
       });
@@ -69655,15 +69354,15 @@ function AllCustomers() {
           marginBottom: "20px"
         },
         children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsxs)(antd__WEBPACK_IMPORTED_MODULE_9__["default"], {
-          children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)(antd__WEBPACK_IMPORTED_MODULE_13__["default"], {
+          children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)(antd__WEBPACK_IMPORTED_MODULE_14__["default"], {
             placeholder: "Search customers",
-            prefix: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)(_ant_design_icons__WEBPACK_IMPORTED_MODULE_14__["default"], {}),
+            prefix: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)(_ant_design_icons__WEBPACK_IMPORTED_MODULE_15__["default"], {}),
             value: search,
             onChange: function onChange(e) {
               return handleSearchChange(e.target.value);
             },
             allowClear: {
-              clearIcon: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)(_ant_design_icons__WEBPACK_IMPORTED_MODULE_15__["default"], {
+              clearIcon: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)(_ant_design_icons__WEBPACK_IMPORTED_MODULE_16__["default"], {
                 onClick: clearSearch
               })
             },
@@ -69689,15 +69388,15 @@ function AllCustomers() {
             })]
           })]
         }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsxs)(antd__WEBPACK_IMPORTED_MODULE_9__["default"], {
-          children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)(antd__WEBPACK_IMPORTED_MODULE_16__["default"], {
+          children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)(antd__WEBPACK_IMPORTED_MODULE_17__["default"], {
             type: "primary",
             onClick: handleOpenAddModal,
-            icon: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)(_ant_design_icons__WEBPACK_IMPORTED_MODULE_17__["default"], {}),
+            icon: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)(_ant_design_icons__WEBPACK_IMPORTED_MODULE_18__["default"], {}),
             style: {
               backgroundColor: "#A63F3F"
             },
             children: "Add Customer"
-          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsxs)(antd__WEBPACK_IMPORTED_MODULE_16__["default"], {
+          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsxs)(antd__WEBPACK_IMPORTED_MODULE_17__["default"], {
             type: "primary",
             onClick: handleBulkStatusChange,
             disabled: selectedRowKeys.length === 0,
@@ -69707,7 +69406,7 @@ function AllCustomers() {
             children: [statusFilter === "Archived" ? "Restore" : "Archive", " Selected"]
           })]
         })]
-      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)(antd__WEBPACK_IMPORTED_MODULE_18__["default"], {
+      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)(antd__WEBPACK_IMPORTED_MODULE_19__["default"], {
         rowSelection: rowSelection,
         columns: columns,
         dataSource: filteredCustomers,
@@ -70639,26 +70338,20 @@ var AddProductModal = function AddProductModal(_ref) {
           case 7:
             response = _context.sent;
             if (response.status === 201) {
-              newProduct = response.data; // Find matching category, category type, and brand from existing lists
+              newProduct = response.data; // Find the complete brand, category, and category type objects
               brand = brands.find(function (b) {
-                return b.id === newProduct.brand_id;
-              }) || {
-                name: "N/A"
-              };
+                return b.id === parseInt(formValues.brand_id);
+              });
               category = categories.find(function (c) {
-                return c.id === newProduct.category_id;
-              }) || {
-                category_name: "N/A"
-              };
+                return c.id === parseInt(formValues.category_id);
+              });
               categoryType = categoryTypes.find(function (t) {
-                return t.id === newProduct.category_type_id;
-              }) || {
-                category_type: "N/A"
-              }; // Update new product object with full details
+                return t.id === parseInt(formValues.category_type_id);
+              }); // Create a complete product object with nested objects
               newProduct = _objectSpread(_objectSpread({}, newProduct), {}, {
-                brand_name: brand.name,
-                category_name: category.category_name,
-                category_type_name: categoryType.category_type
+                brand: brand,
+                category: category,
+                category_type: categoryType
               });
 
               // Immediately update state to reflect new product
@@ -70845,11 +70538,17 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var antd__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! antd */ "./node_modules/antd/es/input/index.js");
 /* harmony import */ var antd__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! antd */ "./node_modules/antd/es/select/index.js");
 /* harmony import */ var antd__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! antd */ "./node_modules/antd/es/message/index.js");
-/* harmony import */ var antd__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! antd */ "./node_modules/antd/es/button/index.js");
-/* harmony import */ var antd__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! antd */ "./node_modules/antd/es/table/index.js");
+/* harmony import */ var antd__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! antd */ "./node_modules/antd/es/space/index.js");
+/* harmony import */ var antd__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(/*! antd */ "./node_modules/antd/es/button/index.js");
+/* harmony import */ var antd__WEBPACK_IMPORTED_MODULE_15__ = __webpack_require__(/*! antd */ "./node_modules/antd/es/table/index.js");
+/* harmony import */ var antd__WEBPACK_IMPORTED_MODULE_16__ = __webpack_require__(/*! antd */ "./node_modules/antd/es/pagination/index.js");
+/* harmony import */ var antd__WEBPACK_IMPORTED_MODULE_17__ = __webpack_require__(/*! antd */ "./node_modules/antd/es/modal/index.js");
 /* harmony import */ var _AddProductModal__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./AddProductModal */ "./resources/js/components/Admin/Products/AddProductModal.js");
 /* harmony import */ var _EditProductModal__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./EditProductModal */ "./resources/js/components/Admin/Products/EditProductModal.js");
 /* harmony import */ var _ant_design_icons__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! @ant-design/icons */ "./node_modules/@ant-design/icons/es/icons/EditOutlined.js");
+/* harmony import */ var _ant_design_icons__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! @ant-design/icons */ "./node_modules/@ant-design/icons/es/icons/UndoOutlined.js");
+/* harmony import */ var _ant_design_icons__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! @ant-design/icons */ "./node_modules/@ant-design/icons/es/icons/InboxOutlined.js");
+/* harmony import */ var _ant_design_icons__WEBPACK_IMPORTED_MODULE_14__ = __webpack_require__(/*! @ant-design/icons */ "./node_modules/@ant-design/icons/es/icons/PlusOutlined.js");
 /* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! react/jsx-runtime */ "./node_modules/react/jsx-runtime.js");
 function _typeof(o) { "@babel/helpers - typeof"; return _typeof = "function" == typeof Symbol && "symbol" == typeof Symbol.iterator ? function (o) { return typeof o; } : function (o) { return o && "function" == typeof Symbol && o.constructor === Symbol && o !== Symbol.prototype ? "symbol" : typeof o; }, _typeof(o); }
 function ownKeys(e, r) { var t = Object.keys(e); if (Object.getOwnPropertySymbols) { var o = Object.getOwnPropertySymbols(e); r && (o = o.filter(function (r) { return Object.getOwnPropertyDescriptor(e, r).enumerable; })), t.push.apply(t, o); } return t; }
@@ -70941,6 +70640,32 @@ var AdminProducts = function AdminProducts() {
     _useState32 = _slicedToArray(_useState31, 2),
     selectedRowKeys = _useState32[0],
     setSelectedRowKeys = _useState32[1];
+  var _useState33 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(false),
+    _useState34 = _slicedToArray(_useState33, 2),
+    previewVisible = _useState34[0],
+    setPreviewVisible = _useState34[1];
+  var _useState35 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(''),
+    _useState36 = _slicedToArray(_useState35, 2),
+    previewImage = _useState36[0],
+    setPreviewImage = _useState36[1];
+  var _useState37 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(''),
+    _useState38 = _slicedToArray(_useState37, 2),
+    previewTitle = _useState38[0],
+    setPreviewTitle = _useState38[1];
+
+  // Pagination states
+  var _useState39 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(1),
+    _useState40 = _slicedToArray(_useState39, 2),
+    currentPage = _useState40[0],
+    setCurrentPage = _useState40[1];
+  var _useState41 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(6),
+    _useState42 = _slicedToArray(_useState41, 2),
+    pageSize = _useState42[0],
+    setPageSize = _useState42[1];
+  var _useState43 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(0),
+    _useState44 = _slicedToArray(_useState43, 2),
+    total = _useState44[0],
+    setTotal = _useState44[1];
   var fetchProducts = /*#__PURE__*/function () {
     var _ref = _asyncToGenerator(/*#__PURE__*/_regeneratorRuntime().mark(function _callee() {
       var response;
@@ -70958,22 +70683,23 @@ var AdminProducts = function AdminProducts() {
             response = _context.sent;
             setProducts(response.data);
             setFilteredProducts(response.data);
-            _context.next = 12;
+            setTotal(response.data.length);
+            _context.next = 13;
             break;
-          case 8:
-            _context.prev = 8;
+          case 9:
+            _context.prev = 9;
             _context.t0 = _context["catch"](0);
             setError("Error fetching products.");
             console.error("Error fetching products:", _context.t0);
-          case 12:
-            _context.prev = 12;
+          case 13:
+            _context.prev = 13;
             setLoading(false);
-            return _context.finish(12);
-          case 15:
+            return _context.finish(13);
+          case 16:
           case "end":
             return _context.stop();
         }
-      }, _callee, null, [[0, 8, 12, 15]]);
+      }, _callee, null, [[0, 9, 13, 16]]);
     }));
     return function fetchProducts() {
       return _ref.apply(this, arguments);
@@ -71096,6 +70822,8 @@ var AdminProducts = function AdminProducts() {
       });
     }
     setFilteredProducts(filtered);
+    setTotal(filtered.length);
+    setCurrentPage(1); // Reset to first page when filters change
   }, [searchQuery, selectedCategory, selectedCategoryType, selectedBrand, products]);
   var handleArchive = /*#__PURE__*/function () {
     var _ref5 = _asyncToGenerator(/*#__PURE__*/_regeneratorRuntime().mark(function _callee5(productId) {
@@ -71199,48 +70927,89 @@ var AdminProducts = function AdminProducts() {
       return _ref7.apply(this, arguments);
     };
   }();
-  var handleEdit = function handleEdit(product) {
-    setSelectedProduct(product); // Set the selected product for editing
-    setIsEditProductModalVisible(true); // Open the edit modal
-  };
-  var handleSaveEdit = /*#__PURE__*/function () {
-    var _ref8 = _asyncToGenerator(/*#__PURE__*/_regeneratorRuntime().mark(function _callee8(formData) {
-      var response, _error$response;
+  var handleRestore = /*#__PURE__*/function () {
+    var _ref8 = _asyncToGenerator(/*#__PURE__*/_regeneratorRuntime().mark(function _callee8(productId) {
       return _regeneratorRuntime().wrap(function _callee8$(_context8) {
         while (1) switch (_context8.prev = _context8.next) {
           case 0:
             _context8.prev = 0;
+            _context8.next = 3;
+            return axios__WEBPACK_IMPORTED_MODULE_1___default().put("http://127.0.0.1:8000/api/products/".concat(productId, "/restore"));
+          case 3:
+            setProducts(products.map(function (product) {
+              return product.id === productId ? _objectSpread(_objectSpread({}, product), {}, {
+                is_archived: false
+              }) : product;
+            }));
+            antd__WEBPACK_IMPORTED_MODULE_8__["default"].success("Product restored successfully!");
+            _context8.next = 11;
+            break;
+          case 7:
+            _context8.prev = 7;
+            _context8.t0 = _context8["catch"](0);
+            console.error("Error restoring product:", _context8.t0);
+            antd__WEBPACK_IMPORTED_MODULE_8__["default"].error("Failed to restore product.");
+          case 11:
+          case "end":
+            return _context8.stop();
+        }
+      }, _callee8, null, [[0, 7]]);
+    }));
+    return function handleRestore(_x2) {
+      return _ref8.apply(this, arguments);
+    };
+  }();
+  var handleOpenEditModal = function handleOpenEditModal(product) {
+    setSelectedProduct(product);
+    setIsEditProductModalVisible(true);
+  };
+  var handleSaveEdit = /*#__PURE__*/function () {
+    var _ref9 = _asyncToGenerator(/*#__PURE__*/_regeneratorRuntime().mark(function _callee9(formData) {
+      var response, _error$response;
+      return _regeneratorRuntime().wrap(function _callee9$(_context9) {
+        while (1) switch (_context9.prev = _context9.next) {
+          case 0:
+            _context9.prev = 0;
             // Append the _method=PUT field for Laravel to recognize it as an update request
             formData.append("_method", "PUT");
-            _context8.next = 4;
+            _context9.next = 4;
             return axios__WEBPACK_IMPORTED_MODULE_1___default().post("http://127.0.0.1:8000/api/products/".concat(selectedProduct.id), formData, {
               headers: {
                 "Content-Type": "multipart/form-data"
               }
             });
           case 4:
-            response = _context8.sent;
+            response = _context9.sent;
             // Refetch products to update the UI
             fetchProducts();
             setIsEditProductModalVisible(false);
             antd__WEBPACK_IMPORTED_MODULE_8__["default"].success("Product updated successfully!");
-            _context8.next = 14;
+            _context9.next = 14;
             break;
           case 10:
-            _context8.prev = 10;
-            _context8.t0 = _context8["catch"](0);
-            console.error("Error updating product:", (_error$response = _context8.t0.response) === null || _error$response === void 0 ? void 0 : _error$response.data);
+            _context9.prev = 10;
+            _context9.t0 = _context9["catch"](0);
+            console.error("Error updating product:", (_error$response = _context9.t0.response) === null || _error$response === void 0 ? void 0 : _error$response.data);
             antd__WEBPACK_IMPORTED_MODULE_8__["default"].error("Failed to update product.");
           case 14:
           case "end":
-            return _context8.stop();
+            return _context9.stop();
         }
-      }, _callee8, null, [[0, 10]]);
+      }, _callee9, null, [[0, 10]]);
     }));
-    return function handleSaveEdit(_x2) {
-      return _ref8.apply(this, arguments);
+    return function handleSaveEdit(_x3) {
+      return _ref9.apply(this, arguments);
     };
   }();
+  var handlePageChange = function handlePageChange(page, pageSize) {
+    setCurrentPage(page);
+  };
+
+  // const handlePageSizeChange = (current, size) => {
+  //   setPageSize(size);
+  //   setCurrentPage(1); // Reset to first page when page size changes
+  // };
+
   var onSelectChange = function onSelectChange(selectedRowKeys) {
     setSelectedRowKeys(selectedRowKeys);
   };
@@ -71254,32 +71023,41 @@ var AdminProducts = function AdminProducts() {
   if (error) return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("div", {
     children: error
   });
+
+  // Calculate the current page data
+  var startIndex = (currentPage - 1) * pageSize;
+  var endIndex = startIndex + pageSize;
+  var currentPageData = filteredProducts.slice(startIndex, endIndex);
   var columns = [{
     title: "Actions",
     key: "actions",
     render: function render(_, record) {
-      return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsxs)("span", {
-        children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)(antd__WEBPACK_IMPORTED_MODULE_9__["default"], {
-          type: "primary",
-          icon: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)(_ant_design_icons__WEBPACK_IMPORTED_MODULE_10__["default"], {}),
+      return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsxs)(antd__WEBPACK_IMPORTED_MODULE_9__["default"], {
+        size: "small",
+        children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)(_ant_design_icons__WEBPACK_IMPORTED_MODULE_10__["default"], {
           style: {
-            marginRight: "8px"
+            cursor: "pointer"
           },
           onClick: function onClick() {
-            return handleEdit(record);
-          } // Open the edit modal
-        }), record.is_archived ? /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)(antd__WEBPACK_IMPORTED_MODULE_9__["default"], {
-          type: "primary",
-          onClick: function onClick() {
-            return handleBulkRestore(record.id);
+            return handleOpenEditModal(record);
+          }
+        }), selectedStatus === "archived" || record.is_archived ? /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)(_ant_design_icons__WEBPACK_IMPORTED_MODULE_11__["default"], {
+          style: {
+            cursor: "pointer",
+            color: "#52c41a"
           },
-          children: "Restore"
-        }) : /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)(antd__WEBPACK_IMPORTED_MODULE_9__["default"], {
-          type: "danger",
+          onClick: function onClick() {
+            return handleRestore(record.id);
+          },
+          title: "Restore"
+        }) : /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)(_ant_design_icons__WEBPACK_IMPORTED_MODULE_12__["default"], {
+          style: {
+            cursor: "pointer"
+          },
           onClick: function onClick() {
             return handleArchive(record.id);
           },
-          children: "Archive"
+          title: "Archive"
         })]
       });
     }
@@ -71319,15 +71097,21 @@ var AdminProducts = function AdminProducts() {
     title: "Image",
     dataIndex: "product_image",
     key: "product_image",
-    render: function render(image) {
+    render: function render(image, record) {
       return image ? /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("img", {
         src: "http://127.0.0.1:8000/storage/".concat(image),
-        alt: "Product",
+        alt: record.product_name,
         style: {
           width: 50,
           height: 50,
           objectFit: "cover",
-          borderRadius: 5
+          borderRadius: 5,
+          cursor: "pointer"
+        },
+        onClick: function onClick() {
+          setPreviewImage("http://127.0.0.1:8000/storage/".concat(image));
+          setPreviewTitle(record.product_name);
+          setPreviewVisible(true);
         }
       }) : "No Image";
     }
@@ -71418,31 +71202,49 @@ var AdminProducts = function AdminProducts() {
           display: "flex",
           gap: "10px"
         },
-        children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)(antd__WEBPACK_IMPORTED_MODULE_9__["default"], {
+        children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)(antd__WEBPACK_IMPORTED_MODULE_13__["default"], {
           type: "primary",
           onClick: function onClick() {
             return setIsAddProductModalVisible(true);
           },
-          children: "Add New Product"
-        }), selectedStatus === "active" ? /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)(antd__WEBPACK_IMPORTED_MODULE_9__["default"], {
+          icon: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)(_ant_design_icons__WEBPACK_IMPORTED_MODULE_14__["default"], {}),
+          style: {
+            backgroundColor: "#A63F3F"
+          },
+          children: "Add Product"
+        }), selectedStatus === "active" ? /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)(antd__WEBPACK_IMPORTED_MODULE_13__["default"], {
           type: "primary",
           danger: true,
           onClick: handleBulkArchive,
           disabled: selectedRowKeys.length === 0,
           children: "Archive Selected Products"
-        }) : /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)(antd__WEBPACK_IMPORTED_MODULE_9__["default"], {
+        }) : /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)(antd__WEBPACK_IMPORTED_MODULE_13__["default"], {
           type: "primary",
           onClick: handleBulkRestore,
           disabled: selectedRowKeys.length === 0,
           children: "Restore Selected Products"
         })]
       })]
-    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)(antd__WEBPACK_IMPORTED_MODULE_11__["default"], {
+    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)(antd__WEBPACK_IMPORTED_MODULE_15__["default"], {
       rowSelection: rowSelection,
       columns: columns,
-      dataSource: filteredProducts,
+      dataSource: currentPageData,
       rowKey: "id",
       pagination: false
+    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("div", {
+      style: {
+        marginTop: 16,
+        textAlign: "right"
+      },
+      children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)(antd__WEBPACK_IMPORTED_MODULE_16__["default"], {
+        current: currentPage,
+        pageSize: pageSize,
+        total: total,
+        onChange: handlePageChange,
+        showTotal: function showTotal(total) {
+          return "Total ".concat(total, " products");
+        }
+      })
     }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)(_AddProductModal__WEBPACK_IMPORTED_MODULE_3__["default"], {
       visible: isAddProductModalVisible,
       setVisible: setIsAddProductModalVisible,
@@ -71461,6 +71263,20 @@ var AdminProducts = function AdminProducts() {
       categories: categories,
       categoryTypes: categoryTypes,
       brands: brands
+    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)(antd__WEBPACK_IMPORTED_MODULE_17__["default"], {
+      visible: previewVisible,
+      title: previewTitle,
+      footer: null,
+      onCancel: function onCancel() {
+        return setPreviewVisible(false);
+      },
+      children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("img", {
+        alt: previewTitle,
+        style: {
+          width: '100%'
+        },
+        src: previewImage
+      })
     })]
   });
 };
@@ -77480,59 +77296,63 @@ function Header() {
     }
   };
   return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("header", {
-    className: "header-dark",
+    className: "main-header__dark",
     children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxs)("div", {
-      className: "header-container",
+      className: "main-header__container",
       children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)(react_router_dom__WEBPACK_IMPORTED_MODULE_3__.Link, {
         to: "/",
-        className: "logo-link",
+        className: "main-header__logo-link",
         children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxs)("div", {
-          className: "logo",
+          className: "main-header__logo",
           children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("img", {
             src: "/images/logo.png",
             alt: "Logo",
-            className: "logo-image"
+            className: "main-header__logo-image"
           }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("span", {
-            className: "logo-text",
+            className: "main-header__logo-text",
             children: "SecondStop"
           })]
         })
       }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("div", {
-        className: "header-right",
+        className: "main-header__right",
         children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxs)("div", {
-          className: "navbar-icons",
+          className: "main-header__navbar-icons",
           children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxs)("div", {
-            className: "notification-container",
+            className: "main-header__notification-container",
             ref: notifRef,
             children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)(_ant_design_icons__WEBPACK_IMPORTED_MODULE_5__["default"], {
-              className: "notification-icon icon",
+              className: "main-header__notification-icon icon",
+              style: {
+                marginLeft: '850px',
+                fontSize: '2.2rem'
+              },
               onClick: handleNotificationsClick
             }), notificationCount > 0 && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("span", {
-              className: "notification-badge",
+              className: "main-header__notification-badge",
               children: notificationCount
             }), showNotifications && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxs)("div", {
-              className: "notification-dropdown",
+              className: "main-header__notification-dropdown",
               children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxs)("div", {
-                className: "dropdown-header",
+                className: "main-header__dropdown-header",
                 children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("h4", {
                   children: "Notifications"
                 }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("button", {
                   onClick: markAllAsRead,
-                  className: "mark-all-read",
+                  className: "main-header__mark-all-read",
                   children: "Mark All Read"
                 })]
               }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("hr", {}), notifications.length === 0 ? /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("p", {
-                className: "no-notifications",
+                className: "main-header__no-notifications",
                 children: "No new notifications"
               }) : notifications.map(function (notif) {
                 return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxs)("div", {
-                  className: "notification-item",
+                  className: "main-header__notification-item",
                   children: [notif.product_image && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("img", {
-                    className: "notification-image",
+                    className: "main-header__notification-image",
                     src: notif.product_image.startsWith("http") ? notif.product_image : "http://127.0.0.1:8000/storage/".concat(notif.product_image),
                     alt: "Product preview"
                   }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxs)("div", {
-                    className: "notification-content",
+                    className: "main-header__notification-content",
                     children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("h5", {
                       children: notif.title
                     }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("div", {
@@ -77540,15 +77360,15 @@ function Header() {
                         __html: notif.description
                       }
                     }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxs)("div", {
-                      className: "notification-meta",
+                      className: "main-header__notification-meta",
                       children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("span", {
-                        className: "status ".concat(notif.is_read ? 'read' : 'unread'),
+                        className: "main-header__status ".concat(notif.is_read ? 'read' : 'unread'),
                         children: notif.is_read ? 'Read' : 'Unread'
                       }), !notif.is_read && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("button", {
                         onClick: function onClick() {
                           return markAsRead(notif.id);
                         },
-                        className: "mark-read-btn",
+                        className: "main-header__mark-read-btn",
                         children: "Mark Read"
                       })]
                     })]
@@ -77558,20 +77378,26 @@ function Header() {
             })]
           }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxs)(react_router_dom__WEBPACK_IMPORTED_MODULE_3__.Link, {
             to: "/cart",
-            className: "cart-link",
+            className: "main-header__cart-link",
             children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)(_ant_design_icons__WEBPACK_IMPORTED_MODULE_6__["default"], {
-              className: "icon"
+              className: "icon",
+              style: {
+                fontSize: '2.2rem'
+              }
             }), cartCount > 0 && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("span", {
-              className: "cart-badge",
+              className: "main-header__cart-badge",
               children: cartCount
             })]
           }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)(react_router_dom__WEBPACK_IMPORTED_MODULE_3__.Link, {
             to: isAuthenticated ? "/profile" : "#",
             onClick: handleProfileClick,
-            className: "profile-link",
+            className: "main-header__profile-link",
             "aria-label": "User profile",
             children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)(_ant_design_icons__WEBPACK_IMPORTED_MODULE_7__["default"], {
-              className: "icon"
+              className: "icon",
+              style: {
+                fontSize: '2.2rem'
+              }
             })
           })]
         })

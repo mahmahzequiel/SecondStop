@@ -1,5 +1,5 @@
-.admin-header {
-  background-color: #E8AB99;
+.admin-header__container {
+  background-color: #000000;
   color: white;
   display: flex;
   justify-content: space-between;
@@ -8,44 +8,47 @@
   position: sticky;
   top: 0;
   z-index: 1000; /* Ensures the header stays on top */
+  max-width: 100%; /* Prevents overflow */
 
-  .logo {
+  .admin-header__logo {
     display: flex;
     align-items: center;
 
     img {
       height: 70px;
       width: 70px;
+      object-fit: contain; /* Ensures the image fits well within the dimensions */
     }
 
-    .title {
+    .admin-header__title {
       margin-left: 10px;
-      font-size: 30px;
-      font-family: 'Inria Serif', serif;
+      font-size: 20px;
+      // font-family: 'Inria Serif', serif;
+      color: white; /* Ensures the title is white */
     }
   }
 
-  .header-right {
+  .admin-header__right {
     display: flex;
     align-items: center;
-    
+    flex-wrap: nowrap; /* Prevents wrapping issues */
+
     a {
       color: #A63F3F;
       display: flex;
       align-items: center;
-      
+      gap: 8px; /* Adds spacing between avatar, text, and dropdown */
+      text-decoration: none; /* Removes underline from links */
     }
-    
+
     .ant-typography {
-      color: #A63F3F;
-      margin-left: 8px;
+      color: white; /* Ensures the text is white */
       font-size: 16px;
     }
-    
+
     .anticon-down {
-      color: #A63F3F;
+      color: white; /* Ensures the dropdown icon is white */
       font-size: 12px;
-      margin-left: 4px;
     }
   }
 }
@@ -54,10 +57,10 @@
 .ant-dropdown-menu {
   border-radius: 8px;
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
-  
+
   .ant-dropdown-menu-item {
     padding: 8px 16px;
-    
+
     &:hover {
       background-color: #f5f5f5;
     }

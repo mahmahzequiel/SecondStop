@@ -1,10 +1,6 @@
 import React, { useState, useEffect, useRef } from "react";
 import { Link, useNavigate } from "react-router-dom";
-import {
-  BellOutlined,
-  ShoppingCartOutlined,
-  UserOutlined,
-} from "@ant-design/icons";
+import { BellOutlined, ShoppingCartOutlined, UserOutlined } from "@ant-design/icons";
 import { message } from "antd";
 import axios from "axios";
 
@@ -107,57 +103,57 @@ function Header() {
   };
 
   return (
-    <header className="header-dark">
-      <div className="header-container">
-        <Link to="/" className="logo-link">
-          <div className="logo">
-            <img src="/images/logo.png" alt="Logo" className="logo-image" />
-            <span className="logo-text">SecondStop</span>
+    <header className="main-header__dark">
+      <div className="main-header__container">
+        <Link to="/" className="main-header__logo-link">
+          <div className="main-header__logo">
+            <img src="/images/logo.png" alt="Logo" className="main-header__logo-image" />
+            <span className="main-header__logo-text">SecondStop</span>
           </div>
         </Link>
 
-        <div className="header-right">
-          <div className="navbar-icons">
+        <div className="main-header__right">
+          <div className="main-header__navbar-icons">
             {/* Notification Section */}
-            <div className="notification-container" ref={notifRef}>
-              <BellOutlined className="notification-icon icon" onClick={handleNotificationsClick} />
+            <div className="main-header__notification-container" ref={notifRef}>
+              <BellOutlined className="main-header__notification-icon icon" style={{ marginLeft: '850px', fontSize: '2.2rem' }}onClick={handleNotificationsClick} />
               {notificationCount > 0 && (
-                <span className="notification-badge">{notificationCount}</span>
+                <span className="main-header__notification-badge">{notificationCount}</span>
               )}
               {showNotifications && (
-                <div className="notification-dropdown">
-                  <div className="dropdown-header">
+                <div className="main-header__notification-dropdown">
+                  <div className="main-header__dropdown-header">
                     <h4>Notifications</h4>
-                    <button onClick={markAllAsRead} className="mark-all-read">
+                    <button onClick={markAllAsRead} className="main-header__mark-all-read">
                       Mark All Read
                     </button>
                   </div>
                   <hr />
                   {notifications.length === 0 ? (
-                    <p className="no-notifications">No new notifications</p>
+                    <p className="main-header__no-notifications">No new notifications</p>
                   ) : (
                     notifications.map((notif) => (
-                      <div key={notif.id} className="notification-item">
+                      <div key={notif.id} className="main-header__notification-item">
                         {notif.product_image && (
                           <img
-                            className="notification-image"
+                            className="main-header__notification-image"
                             src={notif.product_image.startsWith("http")
                               ? notif.product_image
                               : `http://127.0.0.1:8000/storage/${notif.product_image}`}
                             alt="Product preview"
                           />
                         )}
-                        <div className="notification-content">
+                        <div className="main-header__notification-content">
                           <h5>{notif.title}</h5>
                           <div dangerouslySetInnerHTML={{ __html: notif.description }} />
-                          <div className="notification-meta">
-                            <span className={`status ${notif.is_read ? 'read' : 'unread'}`}>
+                          <div className="main-header__notification-meta">
+                            <span className={`main-header__status ${notif.is_read ? 'read' : 'unread'}`}>
                               {notif.is_read ? 'Read' : 'Unread'}
                             </span>
                             {!notif.is_read && (
                               <button 
                                 onClick={() => markAsRead(notif.id)}
-                                className="mark-read-btn"
+                                className="main-header__mark-read-btn"
                               >
                                 Mark Read
                               </button>
@@ -172,19 +168,19 @@ function Header() {
             </div>
 
             {/* Cart Icon */}
-            <Link to="/cart" className="cart-link">
-              <ShoppingCartOutlined className="icon" />
-              {cartCount > 0 && <span className="cart-badge">{cartCount}</span>}
+            <Link to="/cart" className="main-header__cart-link">
+              <ShoppingCartOutlined className="icon"style={{ fontSize: '2.2rem' }} />
+              {cartCount > 0 && <span className="main-header__cart-badge">{cartCount}</span>}
             </Link>
 
             {/* Profile Icon */}
             <Link 
               to={isAuthenticated ? "/profile" : "#"} 
               onClick={handleProfileClick} 
-              className="profile-link"
+              className="main-header__profile-link"
               aria-label="User profile"
             >
-              <UserOutlined className="icon" />
+              <UserOutlined className="icon"style={{ fontSize: '2.2rem' }} />
             </Link>
           </div>
         </div>

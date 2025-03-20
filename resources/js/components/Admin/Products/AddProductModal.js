@@ -37,17 +37,17 @@ const AddProductModal = ({ visible, setVisible, setProducts, setFilteredProducts
       if (response.status === 201) {
         let newProduct = response.data;
   
-        // Find matching category, category type, and brand from existing lists
-        const brand = brands.find((b) => b.id === newProduct.brand_id) || { name: "N/A" };
-        const category = categories.find((c) => c.id === newProduct.category_id) || { category_name: "N/A" };
-        const categoryType = categoryTypes.find((t) => t.id === newProduct.category_type_id) || { category_type: "N/A" };
+        // Find the complete brand, category, and category type objects
+        const brand = brands.find((b) => b.id === parseInt(formValues.brand_id));
+        const category = categories.find((c) => c.id === parseInt(formValues.category_id));
+        const categoryType = categoryTypes.find((t) => t.id === parseInt(formValues.category_type_id));
   
-        // Update new product object with full details
+        // Create a complete product object with nested objects
         newProduct = {
           ...newProduct,
-          brand_name: brand.name,
-          category_name: category.category_name,
-          category_type_name: categoryType.category_type,
+          brand: brand,
+          category: category,
+          category_type: categoryType
         };
   
         // Immediately update state to reflect new product

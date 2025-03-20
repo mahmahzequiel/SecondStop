@@ -12161,13 +12161,13 @@ a {
 }
 
 /* Header Styles - Dark Theme */
-.header-dark {
+.main-header__dark {
   background-color: #000000;
   padding: 1rem 2rem;
   width: 100%;
 }
 
-.header-container {
+.main-header__container {
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -12176,52 +12176,52 @@ a {
 }
 
 /* Logo Styles */
-.logo {
+.main-header__logo {
   display: flex;
   align-items: center;
   gap: 0.5rem;
   margin-left: -10rem; /* Move logo further to the left */
 }
 
-.logo-image {
+.main-header__logo-image {
   width: 80px; /* Adjust this value as needed */
   height: auto; /* Maintain aspect ratio */
 }
 
-.logo-text {
+.main-header__logo-text {
   font-size: 1.5rem;
   font-weight: 600;
   color: #ffffff;
 }
 
 /* Header Right Section */
-.header-right {
+.main-header__right {
   display: flex;
   align-items: center;
   margin-right: -8rem; /* Move icons further to the right */
 }
 
 /* Navbar Icons */
-.navbar-icons {
+.main-header__navbar-icons {
   display: flex;
   gap: 1.5rem; /* Increase gap between icons */
   align-items: center;
 }
 
-.icon {
-  font-size: 1.5rem; /* Increase icon size */
+.main-header__icon {
+  font-size: 2rem; /* Increased icon size */
   color: #ffffff;
   cursor: pointer;
   transition: color 0.2s;
 }
 
-.icon:hover {
+.main-header__icon:hover {
   color: #e0e0e0;
 }
 
 /* Notification & Cart Badges */
-.notification-badge,
-.cart-badge {
+.main-header__notification-badge,
+.main-header__cart-badge {
   position: absolute;
   top: -8px;
   right: -8px;
@@ -12237,14 +12237,14 @@ a {
   padding: 2px;
 }
 
-.notification-container,
-.cart-link,
-.profile-link {
+.main-header__notification-container,
+.main-header__cart-link,
+.main-header__profile-link {
   position: relative;
 }
 
 /* Notification Dropdown */
-.notification-dropdown {
+.main-header__notification-dropdown {
   position: absolute;
   top: 100%;
   right: -10px;
@@ -12259,7 +12259,7 @@ a {
   margin-top: 10px;
 }
 
-.dropdown-header {
+.main-header__dropdown-header {
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -12267,12 +12267,12 @@ a {
   border-bottom: 1px solid #333;
 }
 
-.dropdown-header h4, .dropdown-header .h4 {
+.main-header__dropdown-header h4, .main-header__dropdown-header .h4 {
   margin: 0;
   color: #ffffff;
 }
 
-.mark-all-read {
+.main-header__mark-all-read {
   background: none;
   border: none;
   color: #4fc3f7;
@@ -12280,18 +12280,18 @@ a {
   font-size: 0.8rem;
 }
 
-.notification-item {
+.main-header__notification-item {
   display: flex;
   padding: 10px 15px;
   border-bottom: 1px solid #333;
   transition: background-color 0.2s;
 }
 
-.notification-item:hover {
+.main-header__notification-item:hover {
   background-color: #2d2d2d;
 }
 
-.notification-image {
+.main-header__notification-image {
   width: 50px;
   height: 50px;
   -o-object-fit: cover;
@@ -12300,12 +12300,12 @@ a {
   margin-right: 10px;
 }
 
-.notification-content h5, .notification-content .h5 {
+.main-header__notification-content h5, .main-header__notification-content .h5 {
   margin: 0 0 5px;
   color: #ffffff;
 }
 
-.notification-meta {
+.main-header__notification-meta {
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -12313,23 +12313,23 @@ a {
   font-size: 0.8rem;
 }
 
-.status {
+.main-header__status {
   padding: 2px 6px;
   border-radius: 10px;
   font-size: 0.7rem;
 }
 
-.status.unread {
+.main-header__status.unread {
   background-color: #2196f3;
   color: white;
 }
 
-.status.read {
+.main-header__status.read {
   background-color: #424242;
   color: #e0e0e0;
 }
 
-.mark-read-btn {
+.main-header__mark-read-btn {
   background: none;
   border: none;
   color: #4fc3f7;
@@ -13567,25 +13567,215 @@ a {
   display: flex;
   flex-direction: column;
   height: 100vh;
-}
-.admin-page .admin-body {
-  display: flex;
-  flex: 1;
-  background-color: #750139;
-}
-.admin-page .admin-content {
-  width: 100%;
-  flex: 1;
-  padding: 24px;
-  border-radius: 20px;
-  overflow-y: auto;
-  background: #fff;
-  margin: 15px;
+  background-color: white;
+  font-family: "Inter", sans-serif;
+  overflow: hidden; /* Add this line to prevent horizontal scrolling */
 }
 
+.admin-body {
+  display: flex;
+  flex: 1;
+}
+
+.admin-content {
+  flex: 1;
+  padding: 20px;
+  overflow-y: auto;
+  margin: 0 20px 20px 0;
+  background-color: white; /* White background for content area */
+}
+
+/* Sidebar styles */
+.admin-sidebar {
+  width: 80px; /* Narrower sidebar like in the image */
+  background-color: #ff3b30; /* Red sidebar as requested */
+  color: white;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 15px 0;
+}
+
+.admin-sidebar .nav-item {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  padding: 15px 0;
+  margin-bottom: 5px;
+  cursor: pointer;
+  transition: background 0.3s ease;
+}
+
+.admin-sidebar .nav-item a {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  color: rgba(255, 255, 255, 0.8); /* Slightly dimmed white for inactive icons */
+  text-decoration: none;
+  font-size: 12px;
+}
+
+.admin-sidebar .nav-item .nav-icon {
+  font-size: 22px;
+  margin-bottom: 5px;
+}
+
+.admin-sidebar .nav-item span {
+  font-size: 10px;
+}
+
+/* Active state for sidebar items */
+.admin-sidebar .nav-item.active a,
+.admin-sidebar .nav-item:hover a {
+  color: white;
+  background-color: rgba(255, 255, 255, 0.2); /* Subtle highlight for active item */
+}
+
+/* Header styles */
+.admin-header {
+  background-color: black; /* Black header as requested */
+  color: white;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 15px 30px;
+  border-bottom: none;
+}
+
+.header-title h1, .header-title .h1 {
+  color: white;
+  margin: 0;
+  font-size: 20px;
+  font-weight: 500;
+}
+
+.logo {
+  display: none; /* Hide the logo as per original design */
+}
+
+.header-right {
+  margin-left: auto; /* Push to the right side */
+  display: flex;
+  align-items: center;
+}
+
+.header-right .ant-avatar {
+  border: 2px solid #333;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+.header-right .ant-typography {
+  color: white;
+  font-weight: 500;
+}
+
+/* Card styling for content sections */
+.dashboard-card {
+  background: white;
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+  padding: 20px;
+  margin-bottom: 20px;
+  border: 1px solid #f0f0f0;
+}
+
+.dashboard-card h2, .dashboard-card .h2 {
+  margin-top: 0;
+  font-size: 18px;
+  font-weight: 600;
+  color: #000;
+}
+
+/* Button styling */
+.action-button {
+  background-color: #ff3b30; /* Red button to match sidebar */
+  color: white;
+  border: none;
+  border-radius: 6px;
+  padding: 8px 16px;
+  cursor: pointer;
+  font-weight: 500;
+  transition: background-color 0.3s;
+}
+
+.action-button.secondary {
+  background-color: #000; /* Black for secondary buttons */
+}
+
+.action-button:hover {
+  opacity: 0.9;
+}
+
+/* Category card styling */
+.category-card {
+  background: white;
+  border-radius: 12px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+  padding: 16px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  transition: transform 0.3s;
+  border: 1px solid #f0f0f0;
+}
+
+.category-card:hover {
+  transform: translateY(-5px);
+}
+
+.category-icon {
+  width: 40px;
+  height: 40px;
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 8px;
+}
+
+/* Updated colors for category icons */
+.category-icon.research {
+  background-color: #ffefef;
+  color: #ff3b30;
+}
+
+.category-icon.marketing {
+  background-color: #f0f0f0;
+  color: #000;
+}
+
+.category-icon.operations {
+  background-color: #ffefef;
+  color: #ff3b30;
+}
+
+.category-icon.customers {
+  background-color: #f0f0f0;
+  color: #000;
+}
+
+/* Chart container styling */
+.chart-container {
+  height: 200px;
+  margin-top: 20px;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .admin-sidebar {
+    width: 60px;
+  }
+  .admin-content {
+    margin: 0 10px 10px 0;
+    padding: 15px;
+  }
+}
 .admin-sidebar {
   width: 200px;
-  background-color: #E8AB99;
+  background-color: #ff3b30;
   color: black;
   border-right: 1px solid #f0f0f0;
   padding: 20px 0px;
@@ -13612,11 +13802,11 @@ a {
   width: 100%;
 }
 .admin-sidebar .nav-item:hover {
-  background: #e6f7ff;
+  background: #393a3a;
 }
 
-.admin-header {
-  background-color: #E8AB99;
+.admin-header__container {
+  background-color: #000000;
   color: white;
   display: flex;
   justify-content: space-between;
@@ -13625,38 +13815,42 @@ a {
   position: sticky;
   top: 0;
   z-index: 1000; /* Ensures the header stays on top */
+  max-width: 100%; /* Prevents overflow */
 }
-.admin-header .logo {
+.admin-header__container .admin-header__logo {
   display: flex;
   align-items: center;
 }
-.admin-header .logo img {
+.admin-header__container .admin-header__logo img {
   height: 70px;
   width: 70px;
+  -o-object-fit: contain;
+     object-fit: contain; /* Ensures the image fits well within the dimensions */
 }
-.admin-header .logo .title {
+.admin-header__container .admin-header__logo .admin-header__title {
   margin-left: 10px;
-  font-size: 30px;
-  font-family: "Inria Serif", serif;
+  font-size: 20px;
+  color: white; /* Ensures the title is white */
 }
-.admin-header .header-right {
+.admin-header__container .admin-header__right {
   display: flex;
   align-items: center;
+  flex-wrap: nowrap; /* Prevents wrapping issues */
 }
-.admin-header .header-right a {
+.admin-header__container .admin-header__right a {
   color: #A63F3F;
   display: flex;
   align-items: center;
+  gap: 8px; /* Adds spacing between avatar, text, and dropdown */
+  text-decoration: none; /* Removes underline from links */
 }
-.admin-header .header-right .ant-typography {
-  color: #A63F3F;
-  margin-left: 8px;
+.admin-header__container .admin-header__right .ant-typography {
+  color: white; /* Ensures the text is white */
   font-size: 16px;
 }
-.admin-header .header-right .anticon-down {
-  color: #A63F3F;
+.admin-header__container .admin-header__right .anticon-down {
+  color: white; /* Ensures the dropdown icon is white */
   font-size: 12px;
-  margin-left: 4px;
 }
 
 .ant-dropdown-menu {
