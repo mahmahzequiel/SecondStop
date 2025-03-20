@@ -1,10 +1,10 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
 import AdminPage from "../../AdminReusable/AdminPage";
-import { Table, Button, Input, Select, message, Space } from "antd";
+import { Table, Button, Input, Select, message, Space, Pagination, Modal } from "antd";
 import AddProductModal from "./AddProductModal";
 import EditProductModal from "./EditProductModal"; // Import the EditProductModal
-import { EditOutlined, DeleteOutlined } from "@ant-design/icons";
+import { EditOutlined, InboxOutlined, UndoOutlined, PlusOutlined } from "@ant-design/icons";
 
 const { Search } = Input;
 const { Option } = Select;
@@ -28,6 +28,14 @@ const AdminProducts = () => {
   const [isEditProductModalVisible, setIsEditProductModalVisible] = useState(false);
   const [selectedProduct, setSelectedProduct] = useState(null); // Track the selected product for editing
   const [selectedRowKeys, setSelectedRowKeys] = useState([]);
+  const [previewVisible, setPreviewVisible] = useState(false);
+const [previewImage, setPreviewImage] = useState('');
+const [previewTitle, setPreviewTitle] = useState('');
+  
+  // Pagination states
+  const [currentPage, setCurrentPage] = useState(1);
+  const [pageSize, setPageSize] = useState(6);
+  const [total, setTotal] = useState(0);
 
   const fetchProducts = async () => {
     try {
@@ -36,6 +44,7 @@ const AdminProducts = () => {
       });
       setProducts(response.data);
       setFilteredProducts(response.data);
+      setTotal(response.data.length);
     } catch (error) {
       setError("Error fetching products.");
       console.error("Error fetching products:", error);
@@ -101,6 +110,8 @@ const AdminProducts = () => {
     }
   
     setFilteredProducts(filtered);
+    setTotal(filtered.length);
+    setCurrentPage(1); // Reset to first page when filters change
   }, [searchQuery, selectedCategory, selectedCategoryType, selectedBrand, products]);
 
   const handleArchive = async (productId) => {
@@ -148,9 +159,22 @@ const AdminProducts = () => {
     }
   };
 
-  const handleEdit = (product) => {
-    setSelectedProduct(product); // Set the selected product for editing
-    setIsEditProductModalVisible(true); // Open the edit modal
+  const handleRestore = async (productId) => {
+    try {
+      await axios.put(`http://127.0.0.1:8000/api/products/${productId}/restore`);
+      setProducts(products.map(product =>
+        product.id === productId ? { ...product, is_archived: false } : product
+      ));
+      message.success("Product restored successfully!");
+    } catch (error) {
+      console.error("Error restoring product:", error);
+      message.error("Failed to restore product.");
+    }
+  };
+
+  const handleOpenEditModal = (product) => {
+    setSelectedProduct(product);
+    setIsEditProductModalVisible(true);
   };
 
   const handleSaveEdit = async (formData) => {
@@ -174,6 +198,15 @@ const AdminProducts = () => {
     }
   };
 
+  const handlePageChange = (page, pageSize) => {
+    setCurrentPage(page);
+  };
+
+  // const handlePageSizeChange = (current, size) => {
+  //   setPageSize(size);
+  //   setCurrentPage(1); // Reset to first page when page size changes
+  // };
+
   const onSelectChange = (selectedRowKeys) => {
     setSelectedRowKeys(selectedRowKeys);
   };
@@ -186,34 +219,35 @@ const AdminProducts = () => {
   if (loading) return <div>Loading products...</div>;
   if (error) return <div>{error}</div>;
 
+  // Calculate the current page data
+  const startIndex = (currentPage - 1) * pageSize;
+  const endIndex = startIndex + pageSize;
+  const currentPageData = filteredProducts.slice(startIndex, endIndex);
+
   const columns = [
     {
       title: "Actions",
       key: "actions",
       render: (_, record) => (
-        <span>
-          <Button
-            type="primary"
-            icon={<EditOutlined />}
-            style={{ marginRight: "8px" }}
-            onClick={() => handleEdit(record)} // Open the edit modal
+        <Space size="small">
+          <EditOutlined
+            style={{ cursor: "pointer" }}
+            onClick={() => handleOpenEditModal(record)}
           />
-          {record.is_archived ? (
-            <Button
-              type="primary"
-              onClick={() => handleBulkRestore(record.id)}
-            >
-              Restore
-            </Button>
+          {selectedStatus === "archived" || record.is_archived ? (
+            <UndoOutlined
+              style={{ cursor: "pointer", color: "#52c41a" }}
+              onClick={() => handleRestore(record.id)}
+              title="Restore"
+            />
           ) : (
-            <Button
-              type="danger"
+            <InboxOutlined
+              style={{ cursor: "pointer" }}
               onClick={() => handleArchive(record.id)}
-            >
-              Archive
-            </Button>
+              title="Archive"
+            />
           )}
-        </span>
+        </Space>
       ),
     },
     {
@@ -249,11 +283,19 @@ const AdminProducts = () => {
       title: "Image",
       dataIndex: "product_image",
       key: "product_image",
-      render: (image) => image ? (
-        <img src={`http://127.0.0.1:8000/storage/${image}`} alt="Product" style={{ width: 50, height: 50, objectFit: "cover", borderRadius: 5 }} />
+      render: (image, record) => image ? (
+        <img 
+          src={`http://127.0.0.1:8000/storage/${image}`} 
+          alt={record.product_name}
+          style={{ width: 50, height: 50, objectFit: "cover", borderRadius: 5, cursor: "pointer" }} 
+          onClick={() => {
+            setPreviewImage(`http://127.0.0.1:8000/storage/${image}`);
+            setPreviewTitle(record.product_name);
+            setPreviewVisible(true);
+          }}
+        />
       ) : "No Image",
-    },
-    
+    }
   ];
 
   return (
@@ -311,8 +353,12 @@ const AdminProducts = () => {
           <Option value="all">All</Option>
         </Select>
         <div style={{ marginLeft: "auto", display: "flex", gap: "10px" }}>
-          <Button type="primary" onClick={() => setIsAddProductModalVisible(true)}>
-            Add New Product
+        <Button 
+            type="primary"  onClick={() => setIsAddProductModalVisible(true)}
+            icon={<PlusOutlined />}
+            style={{ backgroundColor: "#A63F3F" }}
+          >
+            Add Product
           </Button>
           {selectedStatus === "active" ? (
             <Button
@@ -337,10 +383,20 @@ const AdminProducts = () => {
       <Table
         rowSelection={rowSelection}
         columns={columns}
-        dataSource={filteredProducts}
+        dataSource={currentPageData}
         rowKey="id"
         pagination={false}
       />
+      <div style={{ marginTop: 16, textAlign: "right" }}>
+        <Pagination
+          current={currentPage}
+          pageSize={pageSize}
+          total={total}
+          onChange={handlePageChange}
+          showTotal={(total) => `Total ${total} products`}
+         
+        />
+      </div>
       <AddProductModal
         visible={isAddProductModalVisible}
         setVisible={setIsAddProductModalVisible}
@@ -349,6 +405,7 @@ const AdminProducts = () => {
         categories={categories}
         categoryTypes={categoryTypes}
         brands={brands}
+        
       />
       <EditProductModal
         visible={isEditProductModalVisible}
@@ -359,6 +416,15 @@ const AdminProducts = () => {
         categoryTypes={categoryTypes}
         brands={brands}
       />
+
+<Modal
+      visible={previewVisible}
+      title={previewTitle}
+      footer={null}
+      onCancel={() => setPreviewVisible(false)}
+    >
+      <img alt={previewTitle} style={{ width: '100%' }} src={previewImage} />
+    </Modal>
     </AdminPage>
   );
 };

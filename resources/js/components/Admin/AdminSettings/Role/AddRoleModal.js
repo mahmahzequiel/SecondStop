@@ -22,8 +22,14 @@ const AddRoleModal = ({ visible, onCancel, onSuccess }) => {
             onCancel();
           })
           .catch((error) => {
-            console.error("Error adding role:", error);
-            message.error("Failed to add role");
+            if (error.response && error.response.data && error.response.data.errors) {
+              // Display validation errors from the server
+              const errorMessages = Object.values(error.response.data.errors).flat();
+              errorMessages.forEach(errMsg => message.error(errMsg));
+            } else {
+              console.error("Error adding role:", error);
+              message.error("Failed to add role");
+            }
           })
           .finally(() => {
             setLoading(false);
@@ -73,21 +79,6 @@ const AddRoleModal = ({ visible, onCancel, onSuccess }) => {
           ]}
         >
           <Input placeholder="Enter role name" />
-        </Form.Item>
-        <Form.Item
-          name="description"
-          label="Description"
-          rules={[
-            {
-              max: 200,
-              message: "Description cannot exceed 200 characters",
-            },
-          ]}
-        >
-          <Input.TextArea 
-            placeholder="Enter role description (optional)" 
-            rows={4} 
-          />
         </Form.Item>
       </Form>
     </Modal>

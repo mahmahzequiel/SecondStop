@@ -83,21 +83,6 @@ const EditRoleModal = ({ visible, onCancel, onSuccess, roleData }) => {
         >
           <Input placeholder="Enter role name" />
         </Form.Item>
-        <Form.Item
-          name="description"
-          label="Description"
-          rules={[
-            {
-              max: 200,
-              message: "Description cannot exceed 200 characters",
-            },
-          ]}
-        >
-          <Input.TextArea 
-            placeholder="Enter role description (optional)" 
-            rows={4} 
-          />
-        </Form.Item>
       </Form>
     </Modal>
   );

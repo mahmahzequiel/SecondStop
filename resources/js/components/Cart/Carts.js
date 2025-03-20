@@ -1,4 +1,3 @@
-// Carts.js
 import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { DeleteOutlined } from "@ant-design/icons";
@@ -60,7 +59,7 @@ const Carts = () => {
     try {
       await axios.post(
         "http://127.0.0.1:8000/api/carts/delete",
-        { cart_item_ids: selectedItems },
+        { cart_ids: selectedItems },
         { headers: { Authorization: `Bearer ${userToken}` } }
       );
       const updatedCart = cartItems.filter((item) => !selectedItems.includes(item.id));
@@ -95,7 +94,9 @@ const Carts = () => {
     }
     navigate("/checkout", {
       state: {
+        // Map selected items including the proper cart item primary key as "id"
         selectedItems: selectedCartItems.map((item) => ({
+          id: item.id,
           cart_id: item.cart_id,
           product_name: item.product?.product_name,
           price: item.product?.price,

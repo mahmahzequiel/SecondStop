@@ -17,13 +17,13 @@ a {
 }
 
 /* Header Styles - Dark Theme */
-.header-dark {
+.main-header__dark {
   background-color: #000000;
   padding: 1rem 2rem;
   width: 100%;
 }
 
-.header-container {
+.main-header__container {
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -32,52 +32,52 @@ a {
 }
 
 /* Logo Styles */
-.logo {
+.main-header__logo {
   display: flex;
   align-items: center;
   gap: 0.5rem;
   margin-left: -10rem; /* Move logo further to the left */
 }
 
-.logo-image {
+.main-header__logo-image {
   width: 80px; /* Adjust this value as needed */
   height: auto; /* Maintain aspect ratio */
 }
 
-.logo-text {
+.main-header__logo-text {
   font-size: 1.5rem;
   font-weight: 600;
   color: #ffffff;
 }
 
 /* Header Right Section */
-.header-right {
+.main-header__right {
   display: flex;
   align-items: center;
   margin-right: -8rem; /* Move icons further to the right */
 }
 
 /* Navbar Icons */
-.navbar-icons {
+.main-header__navbar-icons {
   display: flex;
   gap: 1.5rem; /* Increase gap between icons */
   align-items: center;
 }
 
-.icon {
-  font-size: 1.5rem; /* Increase icon size */
+.main-header__icon {
+  font-size: 2rem; /* Increased icon size */
   color: #ffffff;
   cursor: pointer;
   transition: color 0.2s;
 }
 
-.icon:hover {
+.main-header__icon:hover {
   color: #e0e0e0;
 }
 
 /* Notification & Cart Badges */
-.notification-badge,
-.cart-badge {
+.main-header__notification-badge,
+.main-header__cart-badge {
   position: absolute;
   top: -8px;
   right: -8px;
@@ -93,14 +93,14 @@ a {
   padding: 2px;
 }
 
-.notification-container,
-.cart-link,
-.profile-link {
+.main-header__notification-container,
+.main-header__cart-link,
+.main-header__profile-link {
   position: relative;
 }
 
 /* Notification Dropdown */
-.notification-dropdown {
+.main-header__notification-dropdown {
   position: absolute;
   top: 100%;
   right: -10px;
@@ -115,7 +115,7 @@ a {
   margin-top: 10px;
 }
 
-.dropdown-header {
+.main-header__dropdown-header {
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -123,12 +123,12 @@ a {
   border-bottom: 1px solid #333;
 }
 
-.dropdown-header h4 {
+.main-header__dropdown-header h4 {
   margin: 0;
   color: #ffffff;
 }
 
-.mark-all-read {
+.main-header__mark-all-read {
   background: none;
   border: none;
   color: #4fc3f7;
@@ -136,18 +136,18 @@ a {
   font-size: 0.8rem;
 }
 
-.notification-item {
+.main-header__notification-item {
   display: flex;
   padding: 10px 15px;
   border-bottom: 1px solid #333;
   transition: background-color 0.2s;
 }
 
-.notification-item:hover {
+.main-header__notification-item:hover {
   background-color: #2d2d2d;
 }
 
-.notification-image {
+.main-header__notification-image {
   width: 50px;
   height: 50px;
   object-fit: cover;
@@ -155,12 +155,12 @@ a {
   margin-right: 10px;
 }
 
-.notification-content h5 {
+.main-header__notification-content h5 {
   margin: 0 0 5px;
   color: #ffffff;
 }
 
-.notification-meta {
+.main-header__notification-meta {
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -168,23 +168,23 @@ a {
   font-size: 0.8rem;
 }
 
-.status {
+.main-header__status {
   padding: 2px 6px;
   border-radius: 10px;
   font-size: 0.7rem;
 }
 
-.status.unread {
+.main-header__status.unread {
   background-color: #2196f3;
   color: white;
 }
 
-.status.read {
+.main-header__status.read {
   background-color: #424242;
   color: #e0e0e0;
 }
 
-.mark-read-btn {
+.main-header__mark-read-btn {
   background: none;
   border: none;
   color: #4fc3f7;

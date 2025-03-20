@@ -3,8 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Models\Order;
-use App\Models\Cart;
 use App\Models\OrderItem;
+use App\Models\CartItem;          // Ensure this import is present
 use App\Models\Notification;
 use Illuminate\Http\Request;
 use Illuminate\Validation\ValidationException;
@@ -22,23 +22,25 @@ class OrderController extends Controller
     }
 
     /**
-     * Store a newly created order, convert cart items to order items,
-     * remove the purchased cart items, and create a detailed notification.
+     * Store a newly created order, converting selected cart items to order items,
+     * removing those purchased cart items, and creating a detailed notification.
      */
     public function store(Request $request)
     {
         try {
-            // Validate incoming data. Must include 'cart_ids' array.
+            // Validate incoming data.
+            // We now require 'cart_item_ids' instead of 'cart_ids'.
             $validated = $request->validate([
-                'payment_id'    => 'required|exists:payments,id',
-                'address_id'    => 'nullable|exists:addresses,id',
-                'order_number'  => 'nullable|string|unique:orders,order_number',
-                'subtotal'      => 'required|numeric|min:0',
-                'shipping_cost' => 'required|numeric|min:0',
-                'total_amount'  => 'required|numeric|min:0',
-                'status'        => 'required|in:pending,shipped,delivered,cancelled,returned,refunded',
-                'purchase_date' => 'nullable|date',
-                'cart_ids'      => 'required|array', // Must be an array of cart IDs
+                'payment_id'     => 'required|exists:payments,id',
+                'address_id'     => 'nullable|exists:addresses,id',
+                'order_number'   => 'nullable|string|unique:orders,order_number',
+                'subtotal'       => 'required|numeric|min:0',
+                'shipping_cost'  => 'required|numeric|min:0',
+                'total_amount'   => 'required|numeric|min:0',
+                'status'         => 'required|in:pending,shipped,delivered,cancelled,returned,refunded',
+                'purchase_date'  => 'nullable|date',
+                'cart_item_ids'  => 'required|array',
+                'cart_item_ids.*'=> 'integer|exists:cart_items,id',
             ]);
 
             // Retrieve the authenticated user.
@@ -56,24 +58,30 @@ class OrderController extends Controller
             // Create the order record.
             $order = Order::create($validated);
 
-            // Convert cart items to order items and collect them for notification details.
-            $cartIds = $validated['cart_ids'];
+            // Prepare a collection to track order items for notification details.
             $allOrderItems = collect();
 
-            foreach ($cartIds as $cartId) {
-                // Load each cart with its cartItems and the associated product.
-                $cart = Cart::with('cartItems.product')->find($cartId);
-                if ($cart && $cart->cartItems->isNotEmpty()) {
-                    foreach ($cart->cartItems as $cartItem) {
-                        $orderItem = OrderItem::create([
-                            'order_id'   => $order->id,
-                            'product_id' => $cartItem->product_id,
-                            'quantity'   => $cartItem->quantity,
-                        ]);
-                        $allOrderItems->push($orderItem);
-                    }
-                    // Remove all cart items from this cart once transferred.
-                    $cart->cartItems()->delete();
+            // Loop over each selected cart item ID.
+            $cartItemIds = $validated['cart_item_ids'];
+            foreach ($cartItemIds as $cartItemId) {
+                // Load each CartItem with its related Product.
+                $cartItem = CartItem::with('product')->find($cartItemId);
+                if ($cartItem) {
+                    // Create an OrderItem from the CartItem.
+                    $orderItem = OrderItem::create([
+                        'order_id'   => $order->id,
+                        'product_id' => $cartItem->product_id,
+                        'quantity'   => $cartItem->quantity,
+                    ]);
+
+                    // Manually attach the product relation so that $orderItem->product works.
+                    $orderItem->setRelation('product', $cartItem->product);
+
+                    // Add this OrderItem to the collection.
+                    $allOrderItems->push($orderItem);
+
+                    // Remove just this single CartItem from the cart.
+                    $cartItem->delete();
                 }
             }
 
@@ -85,13 +93,12 @@ class OrderController extends Controller
             if ($allOrderItems->count() > 0) {
                 $firstItem = $allOrderItems->first();
                 if ($firstItem && $firstItem->product) {
-                    // Use the first product's name as a highlight in the title if you want
+                    // Optionally, use the first product's name as a highlight.
                     $notificationTitle = $firstItem->product->product_name;
                     if ($firstItem->product->product_image) {
                         $firstProductImage = $firstItem->product->product_image;
                     }
                 }
-
                 foreach ($allOrderItems as $item) {
                     $product = $item->product;
                     $productName = $product ? $product->product_name : 'Unknown Product';
@@ -102,7 +109,7 @@ class OrderController extends Controller
             }
             $notificationDescription .= "Total Amount: PHP " . number_format($order->total_amount, 2);
 
-            // Create the notification
+            // Create the notification.
             Notification::create([
                 'user_id'       => $user->id,
                 'order_id'      => $order->id,

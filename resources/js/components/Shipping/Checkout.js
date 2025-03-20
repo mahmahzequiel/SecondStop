@@ -7,12 +7,9 @@ import { ShoppingCartOutlined, CreditCardOutlined, CheckCircleOutlined } from "@
 const Checkout = () => {
   const navigate = useNavigate();
   const location = useLocation();
-
   const { selectedItems, totalPrice } = location.state || { selectedItems: [], totalPrice: 0 };
-  // Safely convert totalPrice to a number
   const numericTotalPrice = !isNaN(parseFloat(totalPrice)) ? parseFloat(totalPrice) : 0;
 
-  // Include `is_default` in local state to track whether this address is default.
   const [address, setAddress] = useState({
     id: null,
     receiver_fullname: "",
@@ -25,9 +22,8 @@ const Checkout = () => {
     postalCode: "",
     street: "",
     house_number: "",
-    is_default: false, // track the default status
+    is_default: false,
   });
-
   const [isEditing, setIsEditing] = useState(false);
   const [userId, setUserId] = useState(null);
   const [loading, setLoading] = useState(true);
@@ -44,38 +40,24 @@ const Checkout = () => {
           setLoading(false);
           return;
         }
-
-        // 1) Fetch user profile
         const profileResponse = await axios.get("http://127.0.0.1:8000/api/profile", {
           headers: { Authorization: `Bearer ${token}` },
         });
-        
         if (!profileResponse.data || !profileResponse.data.profile) {
           setError("Profile data not available");
           setLoading(false);
           return;
         }
-        
         const profile = profileResponse.data.profile;
-        setProfileData(profile); // Store the full profile data
+        setProfileData(profile);
         setUserId(profile.user_id);
-        console.log("User profile fetched:", profile);
-
-        // 2) Fetch user addresses
         const addressResponse = await axios.get(
           `http://127.0.0.1:8000/api/address/user/${profile.user_id}`,
           { headers: { Authorization: `Bearer ${token}` } }
         );
-
-        console.log("Address response:", addressResponse.data);
-        
-        // Check for default address
-        const addressesData = addressResponse.data.addresses || [];
-        const defaultAddress = addressesData.find((a) => a.is_default === 1);
-
+        const addresses = addressResponse.data.addresses || [];
+        const defaultAddress = addresses.find(a => a.is_default === 1);
         if (defaultAddress) {
-          console.log("Default address found:", defaultAddress);
-          // Fill from the default address, ensuring all fields are properly mapped
           setAddress({
             id: defaultAddress.id,
             receiver_fullname: defaultAddress.receiver_fullname || "",
@@ -88,13 +70,10 @@ const Checkout = () => {
             postalCode: defaultAddress.postal_code || "",
             street: defaultAddress.street || "",
             house_number: defaultAddress.house_number || "",
-            // Convert 1/0 to true/false
             is_default: defaultAddress.is_default === 1,
           });
           setIsEditing(false);
         } else {
-          console.log("No default address found, setting up with profile data");
-          // No default address: create fields with profile data when available
           setAddress({
             id: null,
             receiver_fullname: "",
@@ -112,23 +91,19 @@ const Checkout = () => {
           setIsEditing(true);
         }
       } catch (error) {
-        console.error("Failed to fetch profile/address", error);
         setError("Failed to load your information. Please try again.");
       } finally {
         setLoading(false);
       }
     };
-
     fetchProfileAndAddress();
   }, []);
 
-  // Handle form changes
   const handleChange = (e) => {
     const { name, value } = e.target;
-    setAddress((prev) => ({ ...prev, [name]: value }));
+    setAddress(prev => ({ ...prev, [name]: value }));
   };
 
-  // Save or update address
   const handleSaveAddress = async () => {
     try {
       const token = localStorage.getItem("userToken");
@@ -136,29 +111,22 @@ const Checkout = () => {
         alert("Missing auth token or userId.");
         return;
       }
-
-      // Basic required fields check - focus on fullname, phone, house number
       if (!address.receiver_fullname) {
         alert("Please enter the receiver's full name.");
         return;
       }
-      
       if (!address.contact_number) {
         alert("Please enter a contact phone number.");
         return;
       }
-      
       if (!address.house_number) {
         alert("Please enter the house number.");
         return;
       }
-      
       if (!address.street || !address.barangay || !address.city) {
         alert("Please fill out all required address fields.");
         return;
       }
-
-      // Build data for saving
       const addressData = {
         user_id: userId,
         receiver_fullname: address.receiver_fullname.trim(),
@@ -172,16 +140,11 @@ const Checkout = () => {
         region: address.region,
         postal_code: address.postalCode,
       };
-
-      // If editing an existing address, preserve its current is_default value.
-      // If creating a new address, set it to default = true (per your original code).
       if (address.id) {
-        addressData.is_default = address.is_default ? 1 : 0; 
-        // Update existing
+        addressData.is_default = address.is_default ? 1 : 0;
       } else {
-        addressData.is_default = 1; // new addresses in checkout are default
+        addressData.is_default = 1;
       }
-
       let response;
       if (address.id) {
         response = await axios.put(
@@ -194,22 +157,17 @@ const Checkout = () => {
           headers: { Authorization: `Bearer ${token}` },
         });
       }
-
-      console.log("Address saved successfully:", response.data);
       alert("Address saved successfully!");
       setIsEditing(false);
-
-      // If successful, update local state with the final 'id' and is_default
       const savedAddress = response.data.address;
       if (savedAddress) {
-        setAddress((prev) => ({
+        setAddress(prev => ({
           ...prev,
           id: savedAddress.id,
           is_default: savedAddress.is_default === 1,
         }));
       }
     } catch (error) {
-      console.error("Failed to save address", error);
       alert("Failed to save address. Check console for details.");
     }
   };
@@ -233,7 +191,6 @@ const Checkout = () => {
   return (
     <MainPage>
       <div className="checkout-container">
-        {/* Progress Bar */}
         <div className="progress-bar">
           <div className="step active">
             <ShoppingCartOutlined style={{ fontSize: "24px", marginBottom: "8px" }} />
@@ -250,10 +207,7 @@ const Checkout = () => {
             <span>Confirmation</span>
           </div>
         </div>
-
-        {/* Two-Column Layout */}
         <div className="checkout-content">
-          {/* Order Details Section */}
           <div className="order-details">
             <h3>Order Details</h3>
             <table>
@@ -265,28 +219,20 @@ const Checkout = () => {
                   </tr>
                 ))}
                 <tr>
-                  <td>
-                    <strong>Subtotal</strong>
-                  </td>
+                  <td><strong>Subtotal</strong></td>
                   <td>PHP {numericTotalPrice.toFixed(2)}</td>
                 </tr>
                 <tr>
-                  <td>
-                    <strong>Shipping</strong>
-                  </td>
+                  <td><strong>Shipping</strong></td>
                   <td>PHP 70.00</td>
                 </tr>
                 <tr>
-                  <td>
-                    <strong>Grand Total</strong>
-                  </td>
+                  <td><strong>Grand Total</strong></td>
                   <td>PHP {(numericTotalPrice + 70).toFixed(2)}</td>
                 </tr>
               </tbody>
             </table>
           </div>
-
-          {/* Billing Address Section */}
           <div className="billing-address">
             <h3>Billing Address</h3>
             <form>
@@ -302,7 +248,6 @@ const Checkout = () => {
                   placeholder="Enter the recipient's full name"
                 />
               </div>
-
               <div className="form-field required">
                 <label>Phone Number <span className="required-star">*</span></label>
                 <input
@@ -315,7 +260,6 @@ const Checkout = () => {
                   placeholder="Enter contact phone number"
                 />
               </div>
-
               <div className="form-field required">
                 <label>House Number <span className="required-star">*</span></label>
                 <input
@@ -328,7 +272,6 @@ const Checkout = () => {
                   placeholder="Enter house/unit number"
                 />
               </div>
-
               <div className="form-field required">
                 <label>Street <span className="required-star">*</span></label>
                 <input
@@ -340,7 +283,6 @@ const Checkout = () => {
                   required
                 />
               </div>
-
               <div className="form-field required">
                 <label>Barangay <span className="required-star">*</span></label>
                 <input
@@ -352,7 +294,6 @@ const Checkout = () => {
                   required
                 />
               </div>
-
               <div className="form-field required">
                 <label>City <span className="required-star">*</span></label>
                 <input
@@ -364,7 +305,6 @@ const Checkout = () => {
                   required
                 />
               </div>
-
               <div className="form-field">
                 <label>Region</label>
                 <input
@@ -375,7 +315,6 @@ const Checkout = () => {
                   disabled={!isEditing}
                 />
               </div>
-
               <div className="form-field">
                 <label>State</label>
                 <input
@@ -386,7 +325,6 @@ const Checkout = () => {
                   disabled={!isEditing}
                 />
               </div>
-
               <div className="form-field">
                 <label>Country</label>
                 <input
@@ -397,7 +335,6 @@ const Checkout = () => {
                   disabled={!isEditing}
                 />
               </div>
-
               <div className="form-field">
                 <label>Postal Code</label>
                 <input
@@ -409,7 +346,6 @@ const Checkout = () => {
                 />
               </div>
             </form>
-
             {!isEditing ? (
               <button onClick={() => setIsEditing(true)} className="edit-btn">Edit Address</button>
             ) : (
@@ -417,18 +353,14 @@ const Checkout = () => {
             )}
           </div>
         </div>
-
-        {/* Checkout Actions */}
         <div className="checkout-actions">
           <button
             className="proceed-btn"
             onClick={() => {
-              // Ensure required fields are filled before proceeding
               if (!address.receiver_fullname || !address.contact_number || !address.house_number) {
                 alert("Please complete required address fields before proceeding to payment.");
                 return;
               }
-              
               navigate("/payment", {
                 state: { selectedItems, totalPrice: numericTotalPrice, address },
               });

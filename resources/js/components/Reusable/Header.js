@@ -7,7 +7,7 @@ import axios from "axios";
 function Header() {
   const navigate = useNavigate();
 
-  // Notification and cart states
+  // Existing notification and cart states
   const [notificationCount, setNotificationCount] = useState(0);
   const [notifications, setNotifications] = useState([]);
   const [showNotifications, setShowNotifications] = useState(false);
@@ -15,7 +15,7 @@ function Header() {
   const userId = localStorage.getItem("userId");
   const notifRef = useRef();
 
-  // Cart count logic
+  // Cart count logic (existing)
   const [cartCount, setCartCount] = useState(
     parseInt(localStorage.getItem(`cartCount_${userId}`)) || 0
   );
@@ -29,7 +29,7 @@ function Header() {
     return () => window.removeEventListener("cartCountUpdated", handleCartCountUpdate);
   }, [userId]);
 
-  // Fetch notifications for the current user
+  // Existing notification fetch logic
   useEffect(() => {
     const fetchNotifications = async () => {
       try {
@@ -48,7 +48,7 @@ function Header() {
     if (isAuthenticated) fetchNotifications();
   }, [isAuthenticated]);
 
-  // Click outside to close notifications
+  // Existing click outside handler
   useEffect(() => {
     const handleClickOutside = (event) => {
       if (notifRef.current && !notifRef.current.contains(event.target)) {
@@ -59,6 +59,7 @@ function Header() {
     return () => document.removeEventListener("mousedown", handleClickOutside);
   }, []);
 
+  // Existing notification handlers
   const handleNotificationsClick = (e) => {
     e.stopPropagation();
     setShowNotifications(!showNotifications);
@@ -72,9 +73,7 @@ function Header() {
         {},
         { headers: { Authorization: `Bearer ${token}` } }
       );
-      setNotifications(prev =>
-        prev.map(n => (n.id === notificationId ? { ...n, is_read: 1 } : n))
-      );
+      setNotifications(prev => prev.map(n => n.id === notificationId ? { ...n, is_read: 1 } : n));
       setNotificationCount(prev => prev - 1);
     } catch (error) {
       console.error("Error marking notification as read:", error);
@@ -104,88 +103,57 @@ function Header() {
   };
 
   return (
-    <header className="header-dark">
-      <div className="header-container">
-        <Link to="/" className="logo-link">
-          <div className="logo">
-            <img src="/images/logo.png" alt="Logo" className="logo-image" />
-            <span className="logo-text">SecondStop</span>
+    <header className="main-header__dark">
+      <div className="main-header__container">
+        <Link to="/" className="main-header__logo-link">
+          <div className="main-header__logo">
+            <img src="/images/logo.png" alt="Logo" className="main-header__logo-image" />
+            <span className="main-header__logo-text">SecondStop</span>
           </div>
         </Link>
 
-        <div className="header-right">
-          <div className="navbar-icons">
+        <div className="main-header__right">
+          <div className="main-header__navbar-icons">
             {/* Notification Section */}
-            <div className="notification-container" ref={notifRef}>
-              <BellOutlined className="notification-icon icon" onClick={handleNotificationsClick} />
+            <div className="main-header__notification-container" ref={notifRef}>
+              <BellOutlined className="main-header__notification-icon icon" style={{ marginLeft: '850px', fontSize: '2.2rem' }}onClick={handleNotificationsClick} />
               {notificationCount > 0 && (
-                <span className="notification-badge">{notificationCount}</span>
+                <span className="main-header__notification-badge">{notificationCount}</span>
               )}
               {showNotifications && (
-                <div className="notification-dropdown">
-                  <div className="dropdown-header">
+                <div className="main-header__notification-dropdown">
+                  <div className="main-header__dropdown-header">
                     <h4>Notifications</h4>
-                    <button onClick={markAllAsRead} className="mark-all-read">
+                    <button onClick={markAllAsRead} className="main-header__mark-all-read">
                       Mark All Read
                     </button>
                   </div>
                   <hr />
                   {notifications.length === 0 ? (
-                    <p className="no-notifications">No new notifications</p>
+                    <p className="main-header__no-notifications">No new notifications</p>
                   ) : (
                     notifications.map((notif) => (
-                      <div 
-                        key={notif.id} 
-                        className="notification-item" 
-                        style={{
-                          display: "flex",
-                          padding: "10px",
-                          borderBottom: "1px solid #eee"
-                        }}
-                      >
+                      <div key={notif.id} className="main-header__notification-item">
                         {notif.product_image && (
                           <img
-                            className="notification-image"
+                            className="main-header__notification-image"
                             src={notif.product_image.startsWith("http")
                               ? notif.product_image
                               : `http://127.0.0.1:8000/storage/${notif.product_image}`}
                             alt="Product preview"
-                            style={{
-                              width: "60px",
-                              height: "60px",
-                              objectFit: "cover",
-                              marginRight: "10px"
-                            }}
                           />
                         )}
-                        <div className="notification-content" style={{ flex: 1 }}>
-                          <h5 className="notification-title" style={{ margin: 0 }}>
-                            {notif.title}
-                          </h5>
-                          {/* Render detailed description with line breaks */}
-                          <div 
-                            className="notification-description" 
-                            style={{ fontSize: "0.9em", color: "#555" }}
-                            dangerouslySetInnerHTML={{ __html: notif.description }} 
-                          />
-                          <div 
-                            className="notification-meta" 
-                            style={{ marginTop: "5px", fontSize: "0.8em", color: "#888" }}
-                          >
-                            <span className={`status ${notif.is_read ? 'read' : 'unread'}`}>
+                        <div className="main-header__notification-content">
+                          <h5>{notif.title}</h5>
+                          <div dangerouslySetInnerHTML={{ __html: notif.description }} />
+                          <div className="main-header__notification-meta">
+                            <span className={`main-header__status ${notif.is_read ? 'read' : 'unread'}`}>
                               {notif.is_read ? 'Read' : 'Unread'}
                             </span>
                             {!notif.is_read && (
                               <button 
                                 onClick={() => markAsRead(notif.id)}
-                                className="mark-read-btn"
-                                style={{
-                                  marginLeft: "10px",
-                                  border: "none",
-                                  background: "none",
-                                  color: "#1890ff",
-                                  cursor: "pointer"
-                                }}
+                                className="main-header__mark-read-btn"
                               >
                                 Mark Read
                               </button>
@@ -200,19 +168,19 @@ function Header() {
             </div>
 
             {/* Cart Icon */}
-            <Link to="/cart" className="cart-link">
-              <ShoppingCartOutlined className="icon" />
-              {cartCount > 0 && <span className="cart-badge">{cartCount}</span>}
+            <Link to="/cart" className="main-header__cart-link">
+              <ShoppingCartOutlined className="icon"style={{ fontSize: '2.2rem' }} />
+              {cartCount > 0 && <span className="main-header__cart-badge">{cartCount}</span>}
             </Link>
 
             {/* Profile Icon */}
             <Link 
               to={isAuthenticated ? "/profile" : "#"} 
               onClick={handleProfileClick} 
-              className="profile-link"
+              className="main-header__profile-link"
               aria-label="User profile"
             >
-              <UserOutlined className="icon" />
+              <UserOutlined className="icon"style={{ fontSize: '2.2rem' }} />
             </Link>
           </div>
         </div>

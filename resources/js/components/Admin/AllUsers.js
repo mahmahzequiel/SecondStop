@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import axios from "axios";
 import AdminPage from "../AdminReusable/AdminPage";
 import { Table, Button, Input, Select, Tag, Space, Modal } from "antd";
-import { SearchOutlined, EditOutlined, InboxOutlined, PlusOutlined } from "@ant-design/icons";
+import { SearchOutlined, EditOutlined, InboxOutlined, PlusOutlined, UndoOutlined } from "@ant-design/icons";
 import AddUserModal from "./AddUserModal";
 import EditUserModal from "./EditUserModal";
 
@@ -20,6 +20,9 @@ function AllUsers() {
   const [isEditModalVisible, setIsEditModalVisible] = useState(false);
   const [selectedUser, setSelectedUser] = useState(null);
   const [selectedRowKeys, setSelectedRowKeys] = useState([]);
+  const [selectedStatus, setSelectedStatus] = useState(
+    localStorage.getItem("selectedStatus") || "active"
+  );
 
   useEffect(() => {
     fetchUsers();
@@ -76,6 +79,15 @@ function AllUsers() {
     fetchUsers(); // Refresh users after editing
   };
 
+  // Handle archive/restore functions
+  const handleArchive = (userId) => {
+    toggleUserArchiveStatus(userId, "Active");
+  };
+
+  const handleRestore = (userId) => {
+    toggleUserArchiveStatus(userId, "Archived");
+  };
+
   // Archive/Unarchive single user
   const toggleUserArchiveStatus = (userId, currentStatus) => {
     const isArchived = currentStatus === "Archived";
@@ -130,24 +142,27 @@ function AllUsers() {
     {
       title: "Actions",
       key: "actions",
-      render: (_, record) => {
-        const isArchived = record.deleted_at !== null;
-        const status = isArchived ? "Archived" : "Active";
-        
-        return (
-          <Space size="small">
-            <EditOutlined 
-              style={{ cursor: "pointer" }} 
-              onClick={() => handleOpenEditModal(record)}
+      render: (_, record) => (
+        <Space size="small">
+          <EditOutlined
+            style={{ cursor: "pointer" }}
+            onClick={() => handleOpenEditModal(record)}
+          />
+          {record.deleted_at !== null ? (
+            <UndoOutlined
+              style={{ cursor: "pointer", color: "#52c41a" }}
+              onClick={() => handleRestore(record.id)}
+              title="Restore"
             />
-            <InboxOutlined 
-              style={{ cursor: "pointer" }} 
-              title={isArchived ? "Unarchive" : "Archive"} 
-              onClick={() => toggleUserArchiveStatus(record.id, status)}
+          ) : (
+            <InboxOutlined
+              style={{ cursor: "pointer" }}
+              onClick={() => handleArchive(record.id)}
+              title="Archive"
             />
-          </Space>
-        );
-      },
+          )}
+        </Space>
+      ),
     },
     {
       title: "Username",

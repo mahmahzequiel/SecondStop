@@ -1,25 +1,211 @@
 .admin-page {
-    display: flex;
-    flex-direction: column;
-    height: 100vh; // Full viewport height
-  
-    // Body contains the sidebar and main content
-    .admin-body {
-      display: flex;
-      flex: 1;
-      background-color: #750139; // Ant Design's light gray background
-    }
-  
-    // Main content area styles
-    .admin-content {
-      width: 100%;;       // Set a fixed width (adjust as needed)
-      
-      flex: 1;
-      padding: 24px;
-      border-radius: 20px; 
-      overflow-y: auto;
-      background: #fff;
-      margin: 15px;
-    }
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+  background-color: white;
+  font-family: 'Inter', sans-serif;
+  overflow: hidden; /* Add this line to prevent horizontal scrolling */
+}
+
+.admin-body {
+  display: flex;
+  flex: 1;
+}
+
+.admin-content {
+  flex: 1;
+  padding: 20px;
+  overflow-y: auto;
+  margin: 0 20px 20px 0;
+  background-color: white; /* White background for content area */
+}
+
+/* Sidebar styles */
+.admin-sidebar {
+  width: 80px; /* Narrower sidebar like in the image */
+  background-color: #ff3b30; /* Red sidebar as requested */
+  color: white;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 15px 0;
+}
+
+.admin-sidebar .nav-item {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  padding: 15px 0;
+  margin-bottom: 5px;
+  cursor: pointer;
+  transition: background 0.3s ease;
+}
+
+.admin-sidebar .nav-item a {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  color: rgba(255, 255, 255, 0.8); /* Slightly dimmed white for inactive icons */
+  text-decoration: none;
+  font-size: 12px;
+}
+
+.admin-sidebar .nav-item .nav-icon {
+  font-size: 22px;
+  margin-bottom: 5px;
+}
+
+.admin-sidebar .nav-item span {
+  font-size: 10px;
+}
+
+/* Active state for sidebar items */
+.admin-sidebar .nav-item.active a,
+.admin-sidebar .nav-item:hover a {
+  color: white;
+  background-color: rgba(255, 255, 255, 0.2); /* Subtle highlight for active item */
+}
+
+/* Header styles */
+.admin-header {
+  background-color: black; /* Black header as requested */
+  color: white;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 15px 30px;
+  border-bottom: none;
+}
+
+.header-title h1 {
+  color: white;
+  margin: 0;
+  font-size: 20px;
+  font-weight: 500;
+}
+
+.logo {
+  display: none; /* Hide the logo as per original design */
+}
+
+.header-right {
+  margin-left: auto; /* Push to the right side */
+  display: flex;
+  align-items: center;
+}
+
+.header-right .ant-avatar {
+  border: 2px solid #333;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+}
+
+.header-right .ant-typography {
+  color: white;
+  font-weight: 500;
+}
+
+/* Card styling for content sections */
+.dashboard-card {
+  background: white;
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+  padding: 20px;
+  margin-bottom: 20px;
+  border: 1px solid #f0f0f0;
+}
+
+.dashboard-card h2 {
+  margin-top: 0;
+  font-size: 18px;
+  font-weight: 600;
+  color: #000;
+}
+
+/* Button styling */
+.action-button {
+  background-color: #ff3b30; /* Red button to match sidebar */
+  color: white;
+  border: none;
+  border-radius: 6px;
+  padding: 8px 16px;
+  cursor: pointer;
+  font-weight: 500;
+  transition: background-color 0.3s;
+}
+
+.action-button.secondary {
+  background-color: #000; /* Black for secondary buttons */
+}
+
+.action-button:hover {
+  opacity: 0.9;
+}
+
+/* Category card styling */
+.category-card {
+  background: white;
+  border-radius: 12px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+  padding: 16px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  transition: transform 0.3s;
+  border: 1px solid #f0f0f0;
+}
+
+.category-card:hover {
+  transform: translateY(-5px);
+}
+
+.category-icon {
+  width: 40px;
+  height: 40px;
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 8px;
+}
+
+/* Updated colors for category icons */
+.category-icon.research {
+  background-color: #ffefef;
+  color: #ff3b30;
+}
+
+.category-icon.marketing {
+  background-color: #f0f0f0;
+  color: #000;
+}
+
+.category-icon.operations {
+  background-color: #ffefef;
+  color: #ff3b30;
+}
+
+.category-icon.customers {
+  background-color: #f0f0f0;
+  color: #000;
+}
+
+/* Chart container styling */
+.chart-container {
+  height: 200px;
+  margin-top: 20px;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .admin-sidebar {
+    width: 60px;
   }
   
+  .admin-content {
+    margin: 0 10px 10px 0;
+    padding: 15px;
+  }
+}

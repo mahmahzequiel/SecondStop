@@ -203,6 +203,7 @@ const OrdersList = () => {
 
   // Table columns
   const columns = [
+    
     {
       title: 'Order Number',
       dataIndex: 'order_number',
