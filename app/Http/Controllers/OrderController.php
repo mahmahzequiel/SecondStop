@@ -3,8 +3,9 @@
 namespace App\Http\Controllers;
 
 use App\Models\Order;
+use Carbon\Carbon;
 use App\Models\OrderItem;
-use App\Models\CartItem;          // Ensure this import is present
+use App\Models\CartItem;
 use App\Models\Notification;
 use Illuminate\Http\Request;
 use Illuminate\Validation\ValidationException;
@@ -154,11 +155,39 @@ class OrderController extends Controller
                 'purchase_date' => 'nullable|date',
             ]);
 
+            $oldStatus = $order->status;
+            $newStatus = $validated['status'];
+            
+            // Update the order
             $order->update($validated);
+            
+            // Create notification for status change
+            $user = $request->user();
+            if ($user && $oldStatus !== $newStatus) {
+                $notificationTitle = "Order Status Updated";
+                $notificationDescription = "Your order {$order->order_number} status has been changed to {$newStatus}.";
+                
+                // Customize notification based on new status
+                if ($newStatus === 'delivered') {
+                    $notificationTitle = "Order Delivered Successfully";
+                    $notificationDescription = "Your order {$order->order_number} has been marked as delivered. Thank you for shopping with us!";
+                } elseif ($newStatus === 'refunded') {
+                    $notificationTitle = "Refund Requested";
+                    $notificationDescription = "Your refund request for order {$order->order_number} has been submitted and is being processed.";
+                }
+                
+                Notification::create([
+                    'user_id'     => $user->id,
+                    'order_id'    => $order->id,
+                    'title'       => $notificationTitle,
+                    'description' => $notificationDescription,
+                    'is_read'     => 0,
+                ]);
+            }
 
             return response()->json([
                 'message' => 'Order updated successfully',
-                'order'   => $order,
+                'order'   => $order->load(['payment', 'address', 'orderItems.product']),
             ]);
         } catch (ValidationException $e) {
             return response()->json(['errors' => $e->errors()], 422);
@@ -193,4 +222,397 @@ class OrderController extends Controller
             'order'   => $order,
         ]);
     }
+    
+    /**
+     * Cancel a specific order.
+     */
+    public function cancel(Request $request, Order $order)
+    {
+        try {
+            // Only allow cancellation of pending orders
+            if ($order->status !== 'pending') {
+                return response()->json([
+                    'error' => 'Only pending orders can be cancelled'
+                ], 422);
+            }
+            
+            $order->update(['status' => 'cancelled']);
+
+            // Create a notification about the cancellation
+            $user = $request->user();
+            if ($user) {
+                Notification::create([
+                    'user_id'       => $user->id,
+                    'order_id'      => $order->id,
+                    'title'         => "Order Cancelled",
+                    'description'   => "Your order {$order->order_number} has been cancelled.",
+                    'is_read'       => 0,
+                ]);
+            }
+
+            return response()->json([
+                'message' => 'Order cancelled successfully',
+                'order'   => $order->load(['payment', 'address', 'orderItems.product']),
+            ]);
+        } catch (\Exception $e) {
+            return response()->json(['error' => $e->getMessage()], 500);
+        }
+    }
+    
+    /**
+     * Mark order as delivered (order received by customer)
+     */
+    public function markAsDelivered(Request $request, Order $order)
+    {
+        try {
+            // Only allow marking shipped orders as delivered
+            if ($order->status !== 'shipped') {
+                return response()->json([
+                    'error' => 'Only shipped orders can be marked as delivered'
+                ], 422);
+            }
+            
+            $order->update(['status' => 'delivered']);
+
+            // Create a notification
+            $user = $request->user();
+            if ($user) {
+                Notification::create([
+                    'user_id'       => $user->id,
+                    'order_id'      => $order->id,
+                    'title'         => "Order Delivered",
+                    'description'   => "Your order {$order->order_number} has been marked as delivered. Thank you for shopping with us!",
+                    'is_read'       => 0,
+                ]);
+            }
+
+            return response()->json([
+                'message' => 'Order marked as delivered successfully',
+                'order'   => $order->load(['payment', 'address', 'orderItems.product']),
+            ]);
+        } catch (\Exception $e) {
+            return response()->json(['error' => $e->getMessage()], 500);
+        }
+    }
+    
+
+    public function requestCancellation(Request $request, Order $order)
+    {
+        try {
+            // Validate request
+            $validated = $request->validate([
+                'request_notes' => 'required|string|max:500',
+            ]);
+
+            // Only allow cancellation requests for pending orders
+            if ($order->status !== 'pending') {
+                return response()->json([
+                    'error' => 'Only pending orders can be requested for cancellation'
+                ], 422);
+            }
+            
+            $order->update([
+                'status' => 'cancellation_requested',
+                'request_notes' => $validated['request_notes'],
+                'request_date' => Carbon::now()
+            ]);
+
+            // Create a notification
+            $user = $request->user();
+            if ($user) {
+                Notification::create([
+                    'user_id'     => $user->id,
+                    'order_id'    => $order->id,
+                    'title'       => "Cancellation Requested",
+                    'description' => "Your cancellation request for order {$order->order_number} has been submitted and is pending admin approval.",
+                    'is_read'     => 0,
+                ]);
+            }
+
+            return response()->json([
+                'message' => 'Cancellation requested successfully',
+                'order'   => $order->load(['payment', 'address', 'orderItems.product']),
+            ]);
+        } catch (\Exception $e) {
+            return response()->json(['error' => $e->getMessage()], 500);
+        }
+    }
+    
+    /**
+     * Request a refund for an order
+     */
+    public function requestRefund(Request $request, Order $order)
+    {
+        try {
+            // Validate request
+            $validated = $request->validate([
+                'request_notes' => 'required|string|max:500',
+            ]);
+
+            // Only allow refunds for shipped or delivered orders
+            if (!in_array($order->status, ['shipped', 'delivered'])) {
+                return response()->json([
+                    'error' => 'Only shipped or delivered orders can be requested for refund'
+                ], 422);
+            }
+            
+            $order->update([
+                'status' => 'refund_requested',
+                'request_notes' => $validated['request_notes'],
+                'request_date' => Carbon::now()
+            ]);
+
+            // Create a notification
+            $user = $request->user();
+            if ($user) {
+                Notification::create([
+                    'user_id'     => $user->id,
+                    'order_id'    => $order->id,
+                    'title'       => "Refund Requested",
+                    'description' => "Your refund request for order {$order->order_number} has been submitted and is pending admin approval.",
+                    'is_read'     => 0,
+                ]);
+            }
+
+            return response()->json([
+                'message' => 'Refund requested successfully',
+                'order'   => $order->load(['payment', 'address', 'orderItems.product']),
+            ]);
+        } catch (\Exception $e) {
+            return response()->json(['error' => $e->getMessage()], 500);
+        }
+    }
+    
+    /**
+     * Admin approval for cancellation
+     */
+    public function approveCancellation(Request $request, Order $order)
+    {
+        try {
+            // Validate request
+            $validated = $request->validate([
+                'admin_notes' => 'nullable|string|max:500',
+            ]);
+
+            // Check if the order is in cancellation_requested status
+            if ($order->status !== 'cancellation_requested') {
+                return response()->json([
+                    'error' => 'This order does not have a pending cancellation request'
+                ], 422);
+            }
+            
+            // Update order
+            $order->update([
+                'status' => 'cancellation_approved',
+                'admin_notes' => $validated['admin_notes'] ?? null,
+                'admin_action_date' => Carbon::now()
+            ]);
+            
+            // Then finalize to cancelled status
+            $order->update(['status' => 'cancelled']);
+
+            // Notify user
+            Notification::create([
+                'user_id'     => $order->user_id,
+                'order_id'    => $order->id,
+                'title'       => "Cancellation Approved",
+                'description' => "Your cancellation request for order {$order->order_number} has been approved. " . 
+                                 ($validated['admin_notes'] ? "Admin note: {$validated['admin_notes']}" : ""),
+                'is_read'     => 0,
+            ]);
+
+            return response()->json([
+                'message' => 'Order cancellation approved successfully',
+                'order'   => $order->refresh()->load(['payment', 'address', 'orderItems.product']),
+            ]);
+        } catch (\Exception $e) {
+            return response()->json(['error' => $e->getMessage()], 500);
+        }
+    }
+    
+    /**
+     * Admin denial for cancellation
+     */
+    public function denyCancellation(Request $request, Order $order)
+    {
+        try {
+            // Validate request
+            $validated = $request->validate([
+                'admin_notes' => 'required|string|max:500',
+            ]);
+
+            // Check if the order is in cancellation_requested status
+            if ($order->status !== 'cancellation_requested') {
+                return response()->json([
+                    'error' => 'This order does not have a pending cancellation request'
+                ], 422);
+            }
+            
+            // Update order
+            $order->update([
+                'status' => 'cancellation_denied',
+                'admin_notes' => $validated['admin_notes'],
+                'admin_action_date' => Carbon::now()
+            ]);
+            
+            // Then restore to previous status (pending)
+            $order->update(['status' => 'pending']);
+
+            // Notify user
+            Notification::create([
+                'user_id'     => $order->user_id,
+                'order_id'    => $order->id,
+                'title'       => "Cancellation Denied",
+                'description' => "Your cancellation request for order {$order->order_number} has been denied. Admin note: {$validated['admin_notes']}",
+                'is_read'     => 0,
+            ]);
+
+            return response()->json([
+                'message' => 'Order cancellation denied',
+                'order'   => $order->refresh()->load(['payment', 'address', 'orderItems.product']),
+            ]);
+        } catch (\Exception $e) {
+            return response()->json(['error' => $e->getMessage()], 500);
+        }
+    }
+    
+    /**
+     * Admin approval for refund
+     */
+    public function approveRefund(Request $request, Order $order)
+    {
+        try {
+            // Validate request
+            $validated = $request->validate([
+                'admin_notes' => 'nullable|string|max:500',
+            ]);
+
+            // Check if the order is in refund_requested status
+            if ($order->status !== 'refund_requested') {
+                return response()->json([
+                    'error' => 'This order does not have a pending refund request'
+                ], 422);
+            }
+            
+            // Update order
+            $order->update([
+                'status' => 'refund_approved',
+                'admin_notes' => $validated['admin_notes'] ?? null,
+                'admin_action_date' => Carbon::now()
+            ]);
+            
+            // Then finalize to refunded status
+            $order->update(['status' => 'refunded']);
+
+            // Notify user
+            Notification::create([
+                'user_id'     => $order->user_id,
+                'order_id'    => $order->id,
+                'title'       => "Refund Approved",
+                'description' => "Your refund request for order {$order->order_number} has been approved. " . 
+                                 ($validated['admin_notes'] ? "Admin note: {$validated['admin_notes']}" : ""),
+                'is_read'     => 0,
+            ]);
+
+            return response()->json([
+                'message' => 'Order refund approved successfully',
+                'order'   => $order->refresh()->load(['payment', 'address', 'orderItems.product']),
+            ]);
+        } catch (\Exception $e) {
+            return response()->json(['error' => $e->getMessage()], 500);
+        }
+    }
+    
+    /**
+     * Admin denial for refund
+     */
+    public function denyRefund(Request $request, Order $order)
+    {
+        try {
+            // Validate request
+            $validated = $request->validate([
+                'admin_notes' => 'required|string|max:500',
+            ]);
+
+            // Check if the order is in refund_requested status
+            if ($order->status !== 'refund_requested') {
+                return response()->json([
+                    'error' => 'This order does not have a pending refund request'
+                ], 422);
+            }
+            
+            // Update order
+            $order->update([
+                'status' => 'refund_denied',
+                'admin_notes' => $validated['admin_notes'],
+                'admin_action_date' => Carbon::now()
+            ]);
+            
+            // Then restore to previous status (shipped or delivered)
+            $previousStatus = $order->created_at->diffInDays(now()) > 5 ? 'delivered' : 'shipped';
+            $order->update(['status' => $previousStatus]);
+
+            // Notify user
+            Notification::create([
+                'user_id'     => $order->user_id,
+                'order_id'    => $order->id,
+                'title'       => "Refund Denied",
+                'description' => "Your refund request for order {$order->order_number} has been denied. Admin note: {$validated['admin_notes']}",
+                'is_read'     => 0,
+            ]);
+
+            return response()->json([
+                'message' => 'Order refund denied',
+                'order'   => $order->refresh()->load(['payment', 'address', 'orderItems.product']),
+            ]);
+        } catch (\Exception $e) {
+            return response()->json(['error' => $e->getMessage()], 500);
+        }
+    }
+
+    public function updateStatus(Request $request, Order $order)
+{
+    try {
+        $validated = $request->validate([
+            'status' => 'required|in:pending,shipped,delivered,cancelled,returned,refunded',
+        ]);
+        
+        $oldStatus = $order->status;
+        $newStatus = $validated['status'];
+        
+        // Update just the status
+        $order->update(['status' => $newStatus]);
+        
+        // Create notification for status change
+        $user = $request->user();
+        if ($oldStatus !== $newStatus) {
+            $notificationTitle = "Order Status Updated";
+            $notificationDescription = "Your order {$order->order_number} status has been changed to {$newStatus}.";
+            
+            // Customize notification based on new status
+            if ($newStatus === 'delivered') {
+                $notificationTitle = "Order Delivered Successfully";
+                $notificationDescription = "Your order {$order->order_number} has been marked as delivered. Thank you for shopping with us!";
+            } elseif ($newStatus === 'refunded') {
+                $notificationTitle = "Refund Requested";
+                $notificationDescription = "Your refund request for order {$order->order_number} has been submitted and is being processed.";
+            }
+            
+            Notification::create([
+                'user_id'     => $order->user_id, // Notice: using order->user_id, not request->user()->id
+                'order_id'    => $order->id,
+                'title'       => $notificationTitle,
+                'description' => $notificationDescription,
+                'is_read'     => 0,
+            ]);
+        }
+
+        return response()->json([
+            'message' => 'Order status updated successfully',
+            'order'   => $order->load(['payment', 'address', 'orderItems.product']),
+        ]);
+    } catch (ValidationException $e) {
+        return response()->json(['errors' => $e->errors()], 422);
+    }
+}
 }

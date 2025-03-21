@@ -13,7 +13,7 @@ class Order extends Model
     protected $table = 'orders';
 
     protected $fillable = [
-        'user_id',         // Added to associate the order with the user who placed it.
+        'user_id',
         'payment_id',
         'address_id',
         'order_number',
@@ -21,11 +21,19 @@ class Order extends Model
         'shipping_cost',
         'total_amount',
         'status',
+        'request_notes',
+        'admin_notes',
+        'request_date',
+        'admin_action_date',
         'purchase_date'
-        // 'date_time' field removed if not used.
     ];
 
-    protected $dates = ['deleted_at', 'purchase_date'];
+    protected $dates = [
+        'deleted_at', 
+        'purchase_date', 
+        'request_date', 
+        'admin_action_date'
+    ];
 
     /**
      * Get the payment associated with the order.
@@ -44,10 +52,21 @@ class Order extends Model
     }
     
     /**
-     * (Optional) If you plan to create order items later, you can add:
+     * Get order items.
      */
     public function orderItems()
     {
         return $this->hasMany(OrderItem::class);
+    }
+
+    /**
+     * Check if order has a pending request
+     */
+    public function hasPendingRequest()
+    {
+        return in_array($this->status, [
+            'refund_requested',
+            'cancellation_requested'
+        ]);
     }
 }

@@ -4872,6 +4872,24 @@ var CloseCircleFilled = { "icon": { "tag": "svg", "attrs": { "fill-rule": "eveno
 
 /***/ }),
 
+/***/ "./node_modules/@ant-design/icons-svg/es/asn/CloseCircleOutlined.js":
+/*!**************************************************************************!*\
+  !*** ./node_modules/@ant-design/icons-svg/es/asn/CloseCircleOutlined.js ***!
+  \**************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+// This icon file is generated automatically.
+var CloseCircleOutlined = { "icon": { "tag": "svg", "attrs": { "fill-rule": "evenodd", "viewBox": "64 64 896 896", "focusable": "false" }, "children": [{ "tag": "path", "attrs": { "d": "M512 64c247.4 0 448 200.6 448 448S759.4 960 512 960 64 759.4 64 512 264.6 64 512 64zm0 76c-205.4 0-372 166.6-372 372s166.6 372 372 372 372-166.6 372-372-166.6-372-372-372zm128.01 198.83c.03 0 .05.01.09.06l45.02 45.01a.2.2 0 01.05.09.12.12 0 010 .07c0 .02-.01.04-.05.08L557.25 512l127.87 127.86a.27.27 0 01.05.06v.02a.12.12 0 010 .07c0 .03-.01.05-.05.09l-45.02 45.02a.2.2 0 01-.09.05.12.12 0 01-.07 0c-.02 0-.04-.01-.08-.05L512 557.25 384.14 685.12c-.04.04-.06.05-.08.05a.12.12 0 01-.07 0c-.03 0-.05-.01-.09-.05l-45.02-45.02a.2.2 0 01-.05-.09.12.12 0 010-.07c0-.02.01-.04.06-.08L466.75 512 338.88 384.14a.27.27 0 01-.05-.06l-.01-.02a.12.12 0 010-.07c0-.03.01-.05.05-.09l45.02-45.02a.2.2 0 01.09-.05.12.12 0 01.07 0c.02 0 .04.01.08.06L512 466.75l127.86-127.86c.04-.05.06-.06.08-.06a.12.12 0 01.07 0z" } }] }, "name": "close-circle", "theme": "outlined" };
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (CloseCircleOutlined);
+
+
+/***/ }),
+
 /***/ "./node_modules/@ant-design/icons-svg/es/asn/CloseOutlined.js":
 /*!********************************************************************!*\
   !*** ./node_modules/@ant-design/icons-svg/es/asn/CloseOutlined.js ***!
@@ -5102,6 +5120,24 @@ __webpack_require__.r(__webpack_exports__);
 // This icon file is generated automatically.
 var ExclamationCircleFilled = { "icon": { "tag": "svg", "attrs": { "viewBox": "64 64 896 896", "focusable": "false" }, "children": [{ "tag": "path", "attrs": { "d": "M512 64C264.6 64 64 264.6 64 512s200.6 448 448 448 448-200.6 448-448S759.4 64 512 64zm-32 232c0-4.4 3.6-8 8-8h48c4.4 0 8 3.6 8 8v272c0 4.4-3.6 8-8 8h-48c-4.4 0-8-3.6-8-8V296zm32 440a48.01 48.01 0 010-96 48.01 48.01 0 010 96z" } }] }, "name": "exclamation-circle", "theme": "filled" };
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (ExclamationCircleFilled);
+
+
+/***/ }),
+
+/***/ "./node_modules/@ant-design/icons-svg/es/asn/ExclamationCircleOutlined.js":
+/*!********************************************************************************!*\
+  !*** ./node_modules/@ant-design/icons-svg/es/asn/ExclamationCircleOutlined.js ***!
+  \********************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+// This icon file is generated automatically.
+var ExclamationCircleOutlined = { "icon": { "tag": "svg", "attrs": { "viewBox": "64 64 896 896", "focusable": "false" }, "children": [{ "tag": "path", "attrs": { "d": "M512 64C264.6 64 64 264.6 64 512s200.6 448 448 448 448-200.6 448-448S759.4 64 512 64zm0 820c-205.4 0-372-166.6-372-372s166.6-372 372-372 372 166.6 372 372-166.6 372-372 372z" } }, { "tag": "path", "attrs": { "d": "M464 688a48 48 0 1096 0 48 48 0 10-96 0zm24-112h48c4.4 0 8-3.6 8-8V296c0-4.4-3.6-8-8-8h-48c-4.4 0-8 3.6-8 8v272c0 4.4 3.6 8 8 8z" } }] }, "name": "exclamation-circle", "theme": "outlined" };
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (ExclamationCircleOutlined);
 
 
 /***/ }),
@@ -5750,6 +5786,42 @@ __webpack_require__.r(__webpack_exports__);
 // This icon file is generated automatically.
 var ShoppingOutlined = { "icon": { "tag": "svg", "attrs": { "viewBox": "64 64 896 896", "focusable": "false" }, "children": [{ "tag": "path", "attrs": { "d": "M832 312H696v-16c0-101.6-82.4-184-184-184s-184 82.4-184 184v16H192c-17.7 0-32 14.3-32 32v536c0 17.7 14.3 32 32 32h640c17.7 0 32-14.3 32-32V344c0-17.7-14.3-32-32-32zm-432-16c0-61.9 50.1-112 112-112s112 50.1 112 112v16H400v-16zm392 544H232V384h96v88c0 4.4 3.6 8 8 8h56c4.4 0 8-3.6 8-8v-88h224v88c0 4.4 3.6 8 8 8h56c4.4 0 8-3.6 8-8v-88h96v456z" } }] }, "name": "shopping", "theme": "outlined" };
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (ShoppingOutlined);
+
+
+/***/ }),
+
+/***/ "./node_modules/@ant-design/icons-svg/es/asn/StarFilled.js":
+/*!*****************************************************************!*\
+  !*** ./node_modules/@ant-design/icons-svg/es/asn/StarFilled.js ***!
+  \*****************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+// This icon file is generated automatically.
+var StarFilled = { "icon": { "tag": "svg", "attrs": { "viewBox": "64 64 896 896", "focusable": "false" }, "children": [{ "tag": "path", "attrs": { "d": "M908.1 353.1l-253.9-36.9L540.7 86.1c-3.1-6.3-8.2-11.4-14.5-14.5-15.8-7.8-35-1.3-42.9 14.5L369.8 316.2l-253.9 36.9c-7 1-13.4 4.3-18.3 9.3a32.05 32.05 0 00.6 45.3l183.7 179.1-43.4 252.9a31.95 31.95 0 0046.4 33.7L512 754l227.1 119.4c6.2 3.3 13.4 4.4 20.3 3.2 17.4-3 29.1-19.5 26.1-36.9l-43.4-252.9 183.7-179.1c5-4.9 8.3-11.3 9.3-18.3 2.7-17.5-9.5-33.7-27-36.3z" } }] }, "name": "star", "theme": "filled" };
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (StarFilled);
+
+
+/***/ }),
+
+/***/ "./node_modules/@ant-design/icons-svg/es/asn/StarOutlined.js":
+/*!*******************************************************************!*\
+  !*** ./node_modules/@ant-design/icons-svg/es/asn/StarOutlined.js ***!
+  \*******************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+// This icon file is generated automatically.
+var StarOutlined = { "icon": { "tag": "svg", "attrs": { "viewBox": "64 64 896 896", "focusable": "false" }, "children": [{ "tag": "path", "attrs": { "d": "M908.1 353.1l-253.9-36.9L540.7 86.1c-3.1-6.3-8.2-11.4-14.5-14.5-15.8-7.8-35-1.3-42.9 14.5L369.8 316.2l-253.9 36.9c-7 1-13.4 4.3-18.3 9.3a32.05 32.05 0 00.6 45.3l183.7 179.1-43.4 252.9a31.95 31.95 0 0046.4 33.7L512 754l227.1 119.4c6.2 3.3 13.4 4.4 20.3 3.2 17.4-3 29.1-19.5 26.1-36.9l-43.4-252.9 183.7-179.1c5-4.9 8.3-11.3 9.3-18.3 2.7-17.5-9.5-33.7-27-36.3zM664.8 561.6l36.1 210.3L512 672.7 323.1 772l36.1-210.3-152.8-149L417.6 382 512 190.7 606.4 382l211.2 30.7-152.8 148.9z" } }] }, "name": "star", "theme": "outlined" };
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (StarOutlined);
 
 
 /***/ }),
@@ -6523,6 +6595,45 @@ if (true) {
 
 /***/ }),
 
+/***/ "./node_modules/@ant-design/icons/es/icons/CloseCircleOutlined.js":
+/*!************************************************************************!*\
+  !*** ./node_modules/@ant-design/icons/es/icons/CloseCircleOutlined.js ***!
+  \************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var _babel_runtime_helpers_esm_extends__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @babel/runtime/helpers/esm/extends */ "./node_modules/@babel/runtime/helpers/esm/extends.js");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_1__);
+/* harmony import */ var _ant_design_icons_svg_es_asn_CloseCircleOutlined__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @ant-design/icons-svg/es/asn/CloseCircleOutlined */ "./node_modules/@ant-design/icons-svg/es/asn/CloseCircleOutlined.js");
+/* harmony import */ var _components_AntdIcon__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../components/AntdIcon */ "./node_modules/@ant-design/icons/es/components/AntdIcon.js");
+
+// GENERATE BY ./scripts/generate.ts
+// DON NOT EDIT IT MANUALLY
+
+
+
+
+var CloseCircleOutlined = function CloseCircleOutlined(props, ref) {
+  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1__.createElement(_components_AntdIcon__WEBPACK_IMPORTED_MODULE_2__["default"], (0,_babel_runtime_helpers_esm_extends__WEBPACK_IMPORTED_MODULE_0__["default"])({}, props, {
+    ref: ref,
+    icon: _ant_design_icons_svg_es_asn_CloseCircleOutlined__WEBPACK_IMPORTED_MODULE_3__["default"]
+  }));
+};
+
+/**![close-circle](data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNTAiIGhlaWdodD0iNTAiIGZpbGw9IiNjYWNhY2EiIGZpbGwtcnVsZT0iZXZlbm9kZCIgdmlld0JveD0iNjQgNjQgODk2IDg5NiIgZm9jdXNhYmxlPSJmYWxzZSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48cGF0aCBkPSJNNTEyIDY0YzI0Ny40IDAgNDQ4IDIwMC42IDQ0OCA0NDhTNzU5LjQgOTYwIDUxMiA5NjAgNjQgNzU5LjQgNjQgNTEyIDI2NC42IDY0IDUxMiA2NHptMCA3NmMtMjA1LjQgMC0zNzIgMTY2LjYtMzcyIDM3MnMxNjYuNiAzNzIgMzcyIDM3MiAzNzItMTY2LjYgMzcyLTM3Mi0xNjYuNi0zNzItMzcyLTM3MnptMTI4LjAxIDE5OC44M2MuMDMgMCAuMDUuMDEuMDkuMDZsNDUuMDIgNDUuMDFhLjIuMiAwIDAxLjA1LjA5LjEyLjEyIDAgMDEwIC4wN2MwIC4wMi0uMDEuMDQtLjA1LjA4TDU1Ny4yNSA1MTJsMTI3Ljg3IDEyNy44NmEuMjcuMjcgMCAwMS4wNS4wNnYuMDJhLjEyLjEyIDAgMDEwIC4wN2MwIC4wMy0uMDEuMDUtLjA1LjA5bC00NS4wMiA0NS4wMmEuMi4yIDAgMDEtLjA5LjA1LjEyLjEyIDAgMDEtLjA3IDBjLS4wMiAwLS4wNC0uMDEtLjA4LS4wNUw1MTIgNTU3LjI1IDM4NC4xNCA2ODUuMTJjLS4wNC4wNC0uMDYuMDUtLjA4LjA1YS4xMi4xMiAwIDAxLS4wNyAwYy0uMDMgMC0uMDUtLjAxLS4wOS0uMDVsLTQ1LjAyLTQ1LjAyYS4yLjIgMCAwMS0uMDUtLjA5LjEyLjEyIDAgMDEwLS4wN2MwLS4wMi4wMS0uMDQuMDYtLjA4TDQ2Ni43NSA1MTIgMzM4Ljg4IDM4NC4xNGEuMjcuMjcgMCAwMS0uMDUtLjA2bC0uMDEtLjAyYS4xMi4xMiAwIDAxMC0uMDdjMC0uMDMuMDEtLjA1LjA1LS4wOWw0NS4wMi00NS4wMmEuMi4yIDAgMDEuMDktLjA1LjEyLjEyIDAgMDEuMDcgMGMuMDIgMCAuMDQuMDEuMDguMDZMNTEyIDQ2Ni43NWwxMjcuODYtMTI3Ljg2Yy4wNC0uMDUuMDYtLjA2LjA4LS4wNmEuMTIuMTIgMCAwMS4wNyAweiIgLz48L3N2Zz4=) */
+var RefIcon = /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1__.forwardRef(CloseCircleOutlined);
+if (true) {
+  RefIcon.displayName = 'CloseCircleOutlined';
+}
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (RefIcon);
+
+/***/ }),
+
 /***/ "./node_modules/@ant-design/icons/es/icons/CloseOutlined.js":
 /*!******************************************************************!*\
   !*** ./node_modules/@ant-design/icons/es/icons/CloseOutlined.js ***!
@@ -7025,6 +7136,45 @@ var ExclamationCircleFilled = function ExclamationCircleFilled(props, ref) {
 var RefIcon = /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1__.forwardRef(ExclamationCircleFilled);
 if (true) {
   RefIcon.displayName = 'ExclamationCircleFilled';
+}
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (RefIcon);
+
+/***/ }),
+
+/***/ "./node_modules/@ant-design/icons/es/icons/ExclamationCircleOutlined.js":
+/*!******************************************************************************!*\
+  !*** ./node_modules/@ant-design/icons/es/icons/ExclamationCircleOutlined.js ***!
+  \******************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var _babel_runtime_helpers_esm_extends__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @babel/runtime/helpers/esm/extends */ "./node_modules/@babel/runtime/helpers/esm/extends.js");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_1__);
+/* harmony import */ var _ant_design_icons_svg_es_asn_ExclamationCircleOutlined__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @ant-design/icons-svg/es/asn/ExclamationCircleOutlined */ "./node_modules/@ant-design/icons-svg/es/asn/ExclamationCircleOutlined.js");
+/* harmony import */ var _components_AntdIcon__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../components/AntdIcon */ "./node_modules/@ant-design/icons/es/components/AntdIcon.js");
+
+// GENERATE BY ./scripts/generate.ts
+// DON NOT EDIT IT MANUALLY
+
+
+
+
+var ExclamationCircleOutlined = function ExclamationCircleOutlined(props, ref) {
+  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1__.createElement(_components_AntdIcon__WEBPACK_IMPORTED_MODULE_2__["default"], (0,_babel_runtime_helpers_esm_extends__WEBPACK_IMPORTED_MODULE_0__["default"])({}, props, {
+    ref: ref,
+    icon: _ant_design_icons_svg_es_asn_ExclamationCircleOutlined__WEBPACK_IMPORTED_MODULE_3__["default"]
+  }));
+};
+
+/**![exclamation-circle](data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNTAiIGhlaWdodD0iNTAiIGZpbGw9IiNjYWNhY2EiIHZpZXdCb3g9IjY0IDY0IDg5NiA4OTYiIGZvY3VzYWJsZT0iZmFsc2UiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+PHBhdGggZD0iTTUxMiA2NEMyNjQuNiA2NCA2NCAyNjQuNiA2NCA1MTJzMjAwLjYgNDQ4IDQ0OCA0NDggNDQ4LTIwMC42IDQ0OC00NDhTNzU5LjQgNjQgNTEyIDY0em0wIDgyMGMtMjA1LjQgMC0zNzItMTY2LjYtMzcyLTM3MnMxNjYuNi0zNzIgMzcyLTM3MiAzNzIgMTY2LjYgMzcyIDM3Mi0xNjYuNiAzNzItMzcyIDM3MnoiIC8+PHBhdGggZD0iTTQ2NCA2ODhhNDggNDggMCAxMDk2IDAgNDggNDggMCAxMC05NiAwem0yNC0xMTJoNDhjNC40IDAgOC0zLjYgOC04VjI5NmMwLTQuNC0zLjYtOC04LThoLTQ4Yy00LjQgMC04IDMuNi04IDh2MjcyYzAgNC40IDMuNiA4IDggOHoiIC8+PC9zdmc+) */
+var RefIcon = /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1__.forwardRef(ExclamationCircleOutlined);
+if (true) {
+  RefIcon.displayName = 'ExclamationCircleOutlined';
 }
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (RefIcon);
 
@@ -8429,6 +8579,84 @@ var ShoppingOutlined = function ShoppingOutlined(props, ref) {
 var RefIcon = /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1__.forwardRef(ShoppingOutlined);
 if (true) {
   RefIcon.displayName = 'ShoppingOutlined';
+}
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (RefIcon);
+
+/***/ }),
+
+/***/ "./node_modules/@ant-design/icons/es/icons/StarFilled.js":
+/*!***************************************************************!*\
+  !*** ./node_modules/@ant-design/icons/es/icons/StarFilled.js ***!
+  \***************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var _babel_runtime_helpers_esm_extends__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @babel/runtime/helpers/esm/extends */ "./node_modules/@babel/runtime/helpers/esm/extends.js");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_1__);
+/* harmony import */ var _ant_design_icons_svg_es_asn_StarFilled__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @ant-design/icons-svg/es/asn/StarFilled */ "./node_modules/@ant-design/icons-svg/es/asn/StarFilled.js");
+/* harmony import */ var _components_AntdIcon__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../components/AntdIcon */ "./node_modules/@ant-design/icons/es/components/AntdIcon.js");
+
+// GENERATE BY ./scripts/generate.ts
+// DON NOT EDIT IT MANUALLY
+
+
+
+
+var StarFilled = function StarFilled(props, ref) {
+  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1__.createElement(_components_AntdIcon__WEBPACK_IMPORTED_MODULE_2__["default"], (0,_babel_runtime_helpers_esm_extends__WEBPACK_IMPORTED_MODULE_0__["default"])({}, props, {
+    ref: ref,
+    icon: _ant_design_icons_svg_es_asn_StarFilled__WEBPACK_IMPORTED_MODULE_3__["default"]
+  }));
+};
+
+/**![star](data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNTAiIGhlaWdodD0iNTAiIGZpbGw9IiNjYWNhY2EiIHZpZXdCb3g9IjY0IDY0IDg5NiA4OTYiIGZvY3VzYWJsZT0iZmFsc2UiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+PHBhdGggZD0iTTkwOC4xIDM1My4xbC0yNTMuOS0zNi45TDU0MC43IDg2LjFjLTMuMS02LjMtOC4yLTExLjQtMTQuNS0xNC41LTE1LjgtNy44LTM1LTEuMy00Mi45IDE0LjVMMzY5LjggMzE2LjJsLTI1My45IDM2LjljLTcgMS0xMy40IDQuMy0xOC4zIDkuM2EzMi4wNSAzMi4wNSAwIDAwLjYgNDUuM2wxODMuNyAxNzkuMS00My40IDI1Mi45YTMxLjk1IDMxLjk1IDAgMDA0Ni40IDMzLjdMNTEyIDc1NGwyMjcuMSAxMTkuNGM2LjIgMy4zIDEzLjQgNC40IDIwLjMgMy4yIDE3LjQtMyAyOS4xLTE5LjUgMjYuMS0zNi45bC00My40LTI1Mi45IDE4My43LTE3OS4xYzUtNC45IDguMy0xMS4zIDkuMy0xOC4zIDIuNy0xNy41LTkuNS0zMy43LTI3LTM2LjN6IiAvPjwvc3ZnPg==) */
+var RefIcon = /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1__.forwardRef(StarFilled);
+if (true) {
+  RefIcon.displayName = 'StarFilled';
+}
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (RefIcon);
+
+/***/ }),
+
+/***/ "./node_modules/@ant-design/icons/es/icons/StarOutlined.js":
+/*!*****************************************************************!*\
+  !*** ./node_modules/@ant-design/icons/es/icons/StarOutlined.js ***!
+  \*****************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var _babel_runtime_helpers_esm_extends__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @babel/runtime/helpers/esm/extends */ "./node_modules/@babel/runtime/helpers/esm/extends.js");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_1__);
+/* harmony import */ var _ant_design_icons_svg_es_asn_StarOutlined__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @ant-design/icons-svg/es/asn/StarOutlined */ "./node_modules/@ant-design/icons-svg/es/asn/StarOutlined.js");
+/* harmony import */ var _components_AntdIcon__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../components/AntdIcon */ "./node_modules/@ant-design/icons/es/components/AntdIcon.js");
+
+// GENERATE BY ./scripts/generate.ts
+// DON NOT EDIT IT MANUALLY
+
+
+
+
+var StarOutlined = function StarOutlined(props, ref) {
+  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1__.createElement(_components_AntdIcon__WEBPACK_IMPORTED_MODULE_2__["default"], (0,_babel_runtime_helpers_esm_extends__WEBPACK_IMPORTED_MODULE_0__["default"])({}, props, {
+    ref: ref,
+    icon: _ant_design_icons_svg_es_asn_StarOutlined__WEBPACK_IMPORTED_MODULE_3__["default"]
+  }));
+};
+
+/**![star](data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNTAiIGhlaWdodD0iNTAiIGZpbGw9IiNjYWNhY2EiIHZpZXdCb3g9IjY0IDY0IDg5NiA4OTYiIGZvY3VzYWJsZT0iZmFsc2UiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+PHBhdGggZD0iTTkwOC4xIDM1My4xbC0yNTMuOS0zNi45TDU0MC43IDg2LjFjLTMuMS02LjMtOC4yLTExLjQtMTQuNS0xNC41LTE1LjgtNy44LTM1LTEuMy00Mi45IDE0LjVMMzY5LjggMzE2LjJsLTI1My45IDM2LjljLTcgMS0xMy40IDQuMy0xOC4zIDkuM2EzMi4wNSAzMi4wNSAwIDAwLjYgNDUuM2wxODMuNyAxNzkuMS00My40IDI1Mi45YTMxLjk1IDMxLjk1IDAgMDA0Ni40IDMzLjdMNTEyIDc1NGwyMjcuMSAxMTkuNGM2LjIgMy4zIDEzLjQgNC40IDIwLjMgMy4yIDE3LjQtMyAyOS4xLTE5LjUgMjYuMS0zNi45bC00My40LTI1Mi45IDE4My43LTE3OS4xYzUtNC45IDguMy0xMS4zIDkuMy0xOC4zIDIuNy0xNy41LTkuNS0zMy43LTI3LTM2LjN6TTY2NC44IDU2MS42bDM2LjEgMjEwLjNMNTEyIDY3Mi43IDMyMy4xIDc3MmwzNi4xLTIxMC4zLTE1Mi44LTE0OUw0MTcuNiAzODIgNTEyIDE5MC43IDYwNi40IDM4MmwyMTEuMiAzMC43LTE1Mi44IDE0OC45eiIgLz48L3N2Zz4=) */
+var RefIcon = /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1__.forwardRef(StarOutlined);
+if (true) {
+  RefIcon.displayName = 'StarOutlined';
 }
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (RefIcon);
 
@@ -42260,6 +42488,209 @@ const prepareComponentToken = token => {
 
 /***/ }),
 
+/***/ "./node_modules/antd/es/rate/index.js":
+/*!********************************************!*\
+  !*** ./node_modules/antd/es/rate/index.js ***!
+  \********************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _ant_design_icons_es_icons_StarFilled__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @ant-design/icons/es/icons/StarFilled */ "./node_modules/@ant-design/icons/es/icons/StarFilled.js");
+/* harmony import */ var classnames__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! classnames */ "./node_modules/classnames/index.js");
+/* harmony import */ var classnames__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(classnames__WEBPACK_IMPORTED_MODULE_1__);
+/* harmony import */ var rc_rate__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! rc-rate */ "./node_modules/rc-rate/es/index.js");
+/* harmony import */ var _config_provider__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../config-provider */ "./node_modules/antd/es/config-provider/context.js");
+/* harmony import */ var _tooltip__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../tooltip */ "./node_modules/antd/es/tooltip/index.js");
+/* harmony import */ var _style__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./style */ "./node_modules/antd/es/rate/style/index.js");
+/* harmony import */ var _config_provider_DisabledContext__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ../config-provider/DisabledContext */ "./node_modules/antd/es/config-provider/DisabledContext.js");
+"use client";
+
+var __rest = undefined && undefined.__rest || function (s, e) {
+  var t = {};
+  for (var p in s) if (Object.prototype.hasOwnProperty.call(s, p) && e.indexOf(p) < 0) t[p] = s[p];
+  if (s != null && typeof Object.getOwnPropertySymbols === "function") for (var i = 0, p = Object.getOwnPropertySymbols(s); i < p.length; i++) {
+    if (e.indexOf(p[i]) < 0 && Object.prototype.propertyIsEnumerable.call(s, p[i])) t[p[i]] = s[p[i]];
+  }
+  return t;
+};
+
+
+
+
+
+
+
+
+const Rate = /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.forwardRef((props, ref) => {
+  const {
+      prefixCls,
+      className,
+      rootClassName,
+      style,
+      tooltips,
+      character = /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_ant_design_icons_es_icons_StarFilled__WEBPACK_IMPORTED_MODULE_3__["default"], null),
+      disabled: customDisabled
+    } = props,
+    rest = __rest(props, ["prefixCls", "className", "rootClassName", "style", "tooltips", "character", "disabled"]);
+  const characterRender = (node, _ref) => {
+    let {
+      index
+    } = _ref;
+    if (!tooltips) {
+      return node;
+    }
+    return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_tooltip__WEBPACK_IMPORTED_MODULE_4__["default"], {
+      title: tooltips[index]
+    }, node);
+  };
+  const {
+    getPrefixCls,
+    direction,
+    rate
+  } = react__WEBPACK_IMPORTED_MODULE_0__.useContext(_config_provider__WEBPACK_IMPORTED_MODULE_5__.ConfigContext);
+  const ratePrefixCls = getPrefixCls('rate', prefixCls);
+  // Style
+  const [wrapCSSVar, hashId, cssVarCls] = (0,_style__WEBPACK_IMPORTED_MODULE_6__["default"])(ratePrefixCls);
+  const mergedStyle = Object.assign(Object.assign({}, rate === null || rate === void 0 ? void 0 : rate.style), style);
+  // ===================== Disabled =====================
+  const disabled = react__WEBPACK_IMPORTED_MODULE_0__.useContext(_config_provider_DisabledContext__WEBPACK_IMPORTED_MODULE_7__["default"]);
+  const mergedDisabled = customDisabled !== null && customDisabled !== void 0 ? customDisabled : disabled;
+  return wrapCSSVar(/*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(rc_rate__WEBPACK_IMPORTED_MODULE_2__["default"], Object.assign({
+    ref: ref,
+    character: character,
+    characterRender: characterRender,
+    disabled: mergedDisabled
+  }, rest, {
+    className: classnames__WEBPACK_IMPORTED_MODULE_1___default()(className, rootClassName, hashId, cssVarCls, rate === null || rate === void 0 ? void 0 : rate.className),
+    style: mergedStyle,
+    prefixCls: ratePrefixCls,
+    direction: direction
+  })));
+});
+if (true) {
+  Rate.displayName = 'Rate';
+}
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (Rate);
+
+/***/ }),
+
+/***/ "./node_modules/antd/es/rate/style/index.js":
+/*!**************************************************!*\
+  !*** ./node_modules/antd/es/rate/style/index.js ***!
+  \**************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__),
+/* harmony export */   prepareComponentToken: () => (/* binding */ prepareComponentToken)
+/* harmony export */ });
+/* harmony import */ var _ant_design_cssinjs__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @ant-design/cssinjs */ "./node_modules/@ant-design/cssinjs/es/index.js");
+/* harmony import */ var _style__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../style */ "./node_modules/antd/es/style/index.js");
+/* harmony import */ var _theme_internal__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../theme/internal */ "./node_modules/antd/es/theme/util/genStyleUtils.js");
+/* harmony import */ var _theme_internal__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../theme/internal */ "./node_modules/@ant-design/cssinjs-utils/es/index.js");
+
+
+
+const genRateStarStyle = token => {
+  const {
+    componentCls
+  } = token;
+  return {
+    [`${componentCls}-star`]: {
+      position: 'relative',
+      display: 'inline-block',
+      color: 'inherit',
+      cursor: 'pointer',
+      '&:not(:last-child)': {
+        marginInlineEnd: token.marginXS
+      },
+      '> div': {
+        transition: `all ${token.motionDurationMid}, outline 0s`,
+        '&:hover': {
+          transform: token.starHoverScale
+        },
+        '&:focus': {
+          outline: 0
+        },
+        '&:focus-visible': {
+          outline: `${(0,_ant_design_cssinjs__WEBPACK_IMPORTED_MODULE_0__.unit)(token.lineWidth)} dashed ${token.starColor}`,
+          transform: token.starHoverScale
+        }
+      },
+      '&-first, &-second': {
+        color: token.starBg,
+        transition: `all ${token.motionDurationMid}`,
+        userSelect: 'none'
+      },
+      '&-first': {
+        position: 'absolute',
+        top: 0,
+        insetInlineStart: 0,
+        width: '50%',
+        height: '100%',
+        overflow: 'hidden',
+        opacity: 0
+      },
+      [`&-half ${componentCls}-star-first, &-half ${componentCls}-star-second`]: {
+        opacity: 1
+      },
+      [`&-half ${componentCls}-star-first, &-full ${componentCls}-star-second`]: {
+        color: 'inherit'
+      }
+    }
+  };
+};
+const genRateRtlStyle = token => ({
+  [`&-rtl${token.componentCls}`]: {
+    direction: 'rtl'
+  }
+});
+const genRateStyle = token => {
+  const {
+    componentCls
+  } = token;
+  return {
+    [componentCls]: Object.assign(Object.assign(Object.assign(Object.assign({}, (0,_style__WEBPACK_IMPORTED_MODULE_1__.resetComponent)(token)), {
+      display: 'inline-block',
+      margin: 0,
+      padding: 0,
+      color: token.starColor,
+      fontSize: token.starSize,
+      lineHeight: 1,
+      listStyle: 'none',
+      outline: 'none',
+      // disable styles
+      [`&-disabled${componentCls} ${componentCls}-star`]: {
+        cursor: 'default',
+        '> div:hover': {
+          transform: 'scale(1)'
+        }
+      }
+    }), genRateStarStyle(token)), genRateRtlStyle(token))
+  };
+};
+// ============================== Export ==============================
+const prepareComponentToken = token => ({
+  starColor: token.yellow6,
+  starSize: token.controlHeightLG * 0.5,
+  starHoverScale: 'scale(1.1)',
+  starBg: token.colorFillContent
+});
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ((0,_theme_internal__WEBPACK_IMPORTED_MODULE_2__.genStyleHooks)('Rate', token => {
+  const rateToken = (0,_theme_internal__WEBPACK_IMPORTED_MODULE_3__.mergeToken)(token, {});
+  return [genRateStyle(rateToken)];
+}, prepareComponentToken));
+
+/***/ }),
+
 /***/ "./node_modules/antd/es/result/index.js":
 /*!**********************************************!*\
   !*** ./node_modules/antd/es/result/index.js ***!
@@ -70142,16 +70573,24 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var antd__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! antd */ "./node_modules/antd/es/typography/index.js");
 /* harmony import */ var antd__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! antd */ "./node_modules/antd/es/select/index.js");
-/* harmony import */ var antd__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! antd */ "./node_modules/antd/es/form/index.js");
-/* harmony import */ var antd__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! antd */ "./node_modules/antd/es/message/index.js");
-/* harmony import */ var antd__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! antd */ "./node_modules/antd/es/dropdown/index.js");
-/* harmony import */ var antd__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! antd */ "./node_modules/antd/es/menu/index.js");
-/* harmony import */ var antd__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! antd */ "./node_modules/antd/es/space/index.js");
-/* harmony import */ var antd__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! antd */ "./node_modules/antd/es/tag/index.js");
-/* harmony import */ var antd__WEBPACK_IMPORTED_MODULE_14__ = __webpack_require__(/*! antd */ "./node_modules/antd/es/input/index.js");
-/* harmony import */ var antd__WEBPACK_IMPORTED_MODULE_16__ = __webpack_require__(/*! antd */ "./node_modules/antd/es/table/index.js");
-/* harmony import */ var _ant_design_icons__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(/*! @ant-design/icons */ "./node_modules/@ant-design/icons/es/icons/DownOutlined.js");
-/* harmony import */ var _ant_design_icons__WEBPACK_IMPORTED_MODULE_15__ = __webpack_require__(/*! @ant-design/icons */ "./node_modules/@ant-design/icons/es/icons/SearchOutlined.js");
+/* harmony import */ var antd__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! antd */ "./node_modules/antd/es/input/index.js");
+/* harmony import */ var antd__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! antd */ "./node_modules/antd/es/form/index.js");
+/* harmony import */ var antd__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! antd */ "./node_modules/antd/es/message/index.js");
+/* harmony import */ var antd__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! antd */ "./node_modules/antd/es/space/index.js");
+/* harmony import */ var antd__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! antd */ "./node_modules/antd/es/tooltip/index.js");
+/* harmony import */ var antd__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! antd */ "./node_modules/antd/es/button/index.js");
+/* harmony import */ var antd__WEBPACK_IMPORTED_MODULE_15__ = __webpack_require__(/*! antd */ "./node_modules/antd/es/tag/index.js");
+/* harmony import */ var antd__WEBPACK_IMPORTED_MODULE_17__ = __webpack_require__(/*! antd */ "./node_modules/antd/es/dropdown/index.js");
+/* harmony import */ var antd__WEBPACK_IMPORTED_MODULE_18__ = __webpack_require__(/*! antd */ "./node_modules/antd/es/menu/index.js");
+/* harmony import */ var antd__WEBPACK_IMPORTED_MODULE_21__ = __webpack_require__(/*! antd */ "./node_modules/antd/es/card/index.js");
+/* harmony import */ var antd__WEBPACK_IMPORTED_MODULE_23__ = __webpack_require__(/*! antd */ "./node_modules/antd/es/table/index.js");
+/* harmony import */ var antd__WEBPACK_IMPORTED_MODULE_24__ = __webpack_require__(/*! antd */ "./node_modules/antd/es/modal/index.js");
+/* harmony import */ var _ant_design_icons__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(/*! @ant-design/icons */ "./node_modules/@ant-design/icons/es/icons/CheckCircleOutlined.js");
+/* harmony import */ var _ant_design_icons__WEBPACK_IMPORTED_MODULE_14__ = __webpack_require__(/*! @ant-design/icons */ "./node_modules/@ant-design/icons/es/icons/CloseCircleOutlined.js");
+/* harmony import */ var _ant_design_icons__WEBPACK_IMPORTED_MODULE_16__ = __webpack_require__(/*! @ant-design/icons */ "./node_modules/@ant-design/icons/es/icons/ExclamationCircleOutlined.js");
+/* harmony import */ var _ant_design_icons__WEBPACK_IMPORTED_MODULE_19__ = __webpack_require__(/*! @ant-design/icons */ "./node_modules/@ant-design/icons/es/icons/DownOutlined.js");
+/* harmony import */ var _ant_design_icons__WEBPACK_IMPORTED_MODULE_20__ = __webpack_require__(/*! @ant-design/icons */ "./node_modules/@ant-design/icons/es/icons/EditOutlined.js");
+/* harmony import */ var _ant_design_icons__WEBPACK_IMPORTED_MODULE_22__ = __webpack_require__(/*! @ant-design/icons */ "./node_modules/@ant-design/icons/es/icons/SearchOutlined.js");
 /* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
 /* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_1__);
 /* harmony import */ var moment__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! moment */ "./node_modules/moment/moment.js");
@@ -70183,8 +70622,10 @@ function _arrayWithHoles(r) { if (Array.isArray(r)) return r; }
 
 
 
-var Title = antd__WEBPACK_IMPORTED_MODULE_5__["default"].Title;
+var Title = antd__WEBPACK_IMPORTED_MODULE_5__["default"].Title,
+  Text = antd__WEBPACK_IMPORTED_MODULE_5__["default"].Text;
 var Option = antd__WEBPACK_IMPORTED_MODULE_6__["default"].Option;
+var TextArea = antd__WEBPACK_IMPORTED_MODULE_7__["default"].TextArea;
 var OrdersList = function OrdersList() {
   var _useState = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)([]),
     _useState2 = _slicedToArray(_useState, 2),
@@ -70214,7 +70655,7 @@ var OrdersList = function OrdersList() {
     _useState12 = _slicedToArray(_useState11, 2),
     sorter = _useState12[0],
     setSorter = _useState12[1];
-  var _Form$useForm = antd__WEBPACK_IMPORTED_MODULE_7__["default"].useForm(),
+  var _Form$useForm = antd__WEBPACK_IMPORTED_MODULE_8__["default"].useForm(),
     _Form$useForm2 = _slicedToArray(_Form$useForm, 1),
     form = _Form$useForm2[0];
   var _useState13 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)([]),
@@ -70224,7 +70665,23 @@ var OrdersList = function OrdersList() {
   var _useState15 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(''),
     _useState16 = _slicedToArray(_useState15, 2),
     searchText = _useState16[0],
-    setSearchText = _useState16[1]; // State for search text
+    setSearchText = _useState16[1];
+  var _useState17 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(false),
+    _useState18 = _slicedToArray(_useState17, 2),
+    actionModalVisible = _useState18[0],
+    setActionModalVisible = _useState18[1];
+  var _useState19 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(null),
+    _useState20 = _slicedToArray(_useState19, 2),
+    currentOrder = _useState20[0],
+    setCurrentOrder = _useState20[1];
+  var _useState21 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(''),
+    _useState22 = _slicedToArray(_useState21, 2),
+    actionType = _useState22[0],
+    setActionType = _useState22[1];
+  var _useState23 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(''),
+    _useState24 = _slicedToArray(_useState23, 2),
+    adminNotes = _useState24[0],
+    setAdminNotes = _useState24[1];
 
   // Status options for dropdown
   var statusOptions = [{
@@ -70240,16 +70697,40 @@ var OrdersList = function OrdersList() {
     value: 'delivered',
     color: 'green'
   }, {
+    label: 'Cancellation Requested',
+    value: 'cancellation_requested',
+    color: 'orange'
+  }, {
+    label: 'Cancellation Approved',
+    value: 'cancellation_approved',
+    color: 'green'
+  }, {
+    label: 'Cancellation Denied',
+    value: 'cancellation_denied',
+    color: 'red'
+  }, {
     label: 'Cancelled',
     value: 'cancelled',
     color: 'red'
   }, {
-    label: 'Returned',
-    value: 'returned',
-    color: 'purple'
+    label: 'Refund Requested',
+    value: 'refund_requested',
+    color: 'orange'
+  }, {
+    label: 'Refund Approved',
+    value: 'refund_approved',
+    color: 'green'
+  }, {
+    label: 'Refund Denied',
+    value: 'refund_denied',
+    color: 'red'
   }, {
     label: 'Refunded',
     value: 'refunded',
+    color: 'purple'
+  }, {
+    label: 'Returned',
+    value: 'returned',
     color: 'gray'
   }];
 
@@ -70260,14 +70741,8 @@ var OrdersList = function OrdersList() {
         current,
         pageSize,
         restParams,
-        apiFilters,
+        queryParams,
         response,
-        _ref2,
-        _ref2$orders,
-        _orders,
-        _ref2$pagination,
-        _pagination,
-        data,
         _args = arguments;
       return _regeneratorRuntime().wrap(function _callee$(_context) {
         while (1) switch (_context.prev = _context.next) {
@@ -70275,61 +70750,61 @@ var OrdersList = function OrdersList() {
             params = _args.length > 0 && _args[0] !== undefined ? _args[0] : {};
             setLoading(true);
             _context.prev = 2;
-            current = params.current, pageSize = params.pageSize, restParams = _objectWithoutProperties(params, _excluded); // Convert antd table sorter to backend format
-            if (params.sorter && params.sorter.field) {
-              restParams.sort_by = params.sorter.field;
-              restParams.sort_direction = params.sorter.order === 'ascend' ? 'asc' : 'desc';
-            }
+            current = params.current, pageSize = params.pageSize, restParams = _objectWithoutProperties(params, _excluded); // Build query parameters
+            queryParams = new URLSearchParams();
+            queryParams.append('page', current || pagination.current);
+            queryParams.append('limit', pageSize || pagination.pageSize);
 
-            // Format filters for API
-            apiFilters = {};
-            if (restParams.order_number) {
-              apiFilters.order_number = restParams.order_number;
-            }
-            if (restParams.status && restParams.status.length > 0) {
-              apiFilters.status = restParams.status;
-            }
+            // Add search text if present
             if (searchText) {
-              apiFilters.search = searchText;
+              queryParams.append('search', searchText);
             }
 
-            // API request
-            _context.next = 11;
-            return axios__WEBPACK_IMPORTED_MODULE_1___default().get('/api/orders', {
-              params: _objectSpread({
-                page: current,
-                per_page: pageSize
-              }, apiFilters)
-            });
-          case 11:
-            response = _context.sent;
-            // Ensure data exists
-            _ref2 = response.data || {}, _ref2$orders = _ref2.orders, _orders = _ref2$orders === void 0 ? [] : _ref2$orders, _ref2$pagination = _ref2.pagination, _pagination = _ref2$pagination === void 0 ? {} : _ref2$pagination;
-            data = _orders.map(function (order) {
-              return _objectSpread(_objectSpread({}, order), {}, {
-                key: order.id,
-                payment_method: order.payment ? order.payment.payment_method : 'N/A'
+            // Add any filters
+            if (filters && Object.keys(filters).length > 0) {
+              Object.entries(filters).forEach(function (_ref2) {
+                var _ref3 = _slicedToArray(_ref2, 2),
+                  key = _ref3[0],
+                  values = _ref3[1];
+                if (values && values.length) {
+                  values.forEach(function (value) {
+                    queryParams.append("filter[".concat(key, "][]"), value);
+                  });
+                }
               });
-            });
-            setOrders(data);
-            setPagination({
-              current: (_pagination === null || _pagination === void 0 ? void 0 : _pagination.current_page) || 1,
-              pageSize: (_pagination === null || _pagination === void 0 ? void 0 : _pagination.per_page) || 10,
-              total: (_pagination === null || _pagination === void 0 ? void 0 : _pagination.total) || 0
-            });
-            setLoading(false);
-            _context.next = 23;
+            }
+
+            // Add sorter if present
+            if (sorter && sorter.field) {
+              queryParams.append('sort_by', sorter.field);
+              queryParams.append('sort_order', sorter.order === 'ascend' ? 'asc' : 'desc');
+            }
+            _context.next = 12;
+            return axios__WEBPACK_IMPORTED_MODULE_1___default().get("/api/orders?".concat(queryParams.toString()));
+          case 12:
+            response = _context.sent;
+            setOrders(response.data.orders);
+            setPagination(_objectSpread(_objectSpread({}, pagination), {}, {
+              current: response.data.current_page,
+              pageSize: response.data.per_page,
+              total: response.data.total
+            }));
+            _context.next = 21;
             break;
-          case 19:
-            _context.prev = 19;
+          case 17:
+            _context.prev = 17;
             _context.t0 = _context["catch"](2);
             console.error('Error fetching orders:', _context.t0);
+            antd__WEBPACK_IMPORTED_MODULE_9__["default"].error('Failed to fetch orders');
+          case 21:
+            _context.prev = 21;
             setLoading(false);
-          case 23:
+            return _context.finish(21);
+          case 24:
           case "end":
             return _context.stop();
         }
-      }, _callee, null, [[2, 19]]);
+      }, _callee, null, [[2, 17, 21, 24]]);
     }));
     return function fetchOrders() {
       return _ref.apply(this, arguments);
@@ -70338,8 +70813,8 @@ var OrdersList = function OrdersList() {
 
   // Update order status
   var updateOrderStatus = /*#__PURE__*/function () {
-    var _ref3 = _asyncToGenerator(/*#__PURE__*/_regeneratorRuntime().mark(function _callee2(orderId, newStatus) {
-      var orderToUpdate, updatedOrders;
+    var _ref4 = _asyncToGenerator(/*#__PURE__*/_regeneratorRuntime().mark(function _callee2(orderId, newStatus) {
+      var response, updatedOrders;
       return _regeneratorRuntime().wrap(function _callee2$(_context2) {
         while (1) switch (_context2.prev = _context2.next) {
           case 0:
@@ -70347,32 +70822,28 @@ var OrdersList = function OrdersList() {
               return _objectSpread(_objectSpread({}, prev), {}, _defineProperty({}, orderId, true));
             });
             _context2.prev = 1;
-            orderToUpdate = orders.find(function (order) {
-              return order.id === orderId;
-            }); // Reverse the spread order so that status: newStatus is applied last
-            _context2.next = 5;
-            return axios__WEBPACK_IMPORTED_MODULE_1___default().put("/api/orders/".concat(orderId), _objectSpread(_objectSpread({}, orderToUpdate), {}, {
+            _context2.next = 4;
+            return axios__WEBPACK_IMPORTED_MODULE_1___default().patch("/api/orders/".concat(orderId, "/status"), {
               status: newStatus
-            }));
-          case 5:
-            // Update local state
+            });
+          case 4:
+            response = _context2.sent;
+            // Update the order in the local state
             updatedOrders = orders.map(function (order) {
               if (order.id === orderId) {
-                return _objectSpread(_objectSpread({}, order), {}, {
-                  status: newStatus
-                });
+                return response.data.order;
               }
               return order;
             });
             setOrders(updatedOrders);
-            antd__WEBPACK_IMPORTED_MODULE_8__["default"].success("Order #".concat(orderToUpdate === null || orderToUpdate === void 0 ? void 0 : orderToUpdate.order_number, " status updated to ").concat(newStatus));
+            antd__WEBPACK_IMPORTED_MODULE_9__["default"].success("Order status updated to ".concat(getStatusLabel(newStatus)));
             _context2.next = 14;
             break;
           case 10:
             _context2.prev = 10;
             _context2.t0 = _context2["catch"](1);
             console.error('Error updating order status:', _context2.t0);
-            antd__WEBPACK_IMPORTED_MODULE_8__["default"].error('Failed to update order status');
+            antd__WEBPACK_IMPORTED_MODULE_9__["default"].error('Failed to update order status');
           case 14:
             _context2.prev = 14;
             setStatusLoading(function (prev) {
@@ -70386,9 +70857,113 @@ var OrdersList = function OrdersList() {
       }, _callee2, null, [[1, 10, 14, 17]]);
     }));
     return function updateOrderStatus(_x, _x2) {
-      return _ref3.apply(this, arguments);
+      return _ref4.apply(this, arguments);
     };
   }();
+
+  // Handle approval/denial of requests
+  var handleActionRequest = /*#__PURE__*/function () {
+    var _ref5 = _asyncToGenerator(/*#__PURE__*/_regeneratorRuntime().mark(function _callee3() {
+      var response, requestData, updatedOrders;
+      return _regeneratorRuntime().wrap(function _callee3$(_context3) {
+        while (1) switch (_context3.prev = _context3.next) {
+          case 0:
+            if (!(!currentOrder || !actionType)) {
+              _context3.next = 2;
+              break;
+            }
+            return _context3.abrupt("return");
+          case 2:
+            if (!((actionType === 'denyCancellation' || actionType === 'denyRefund') && !adminNotes.trim())) {
+              _context3.next = 5;
+              break;
+            }
+            antd__WEBPACK_IMPORTED_MODULE_9__["default"].error('Please provide a reason for denial');
+            return _context3.abrupt("return");
+          case 5:
+            setStatusLoading(function (prev) {
+              return _objectSpread(_objectSpread({}, prev), {}, _defineProperty({}, currentOrder.id, true));
+            });
+            _context3.prev = 6;
+            requestData = {
+              admin_notes: adminNotes
+            };
+            _context3.t0 = actionType;
+            _context3.next = _context3.t0 === 'approveCancellation' ? 11 : _context3.t0 === 'denyCancellation' ? 16 : _context3.t0 === 'approveRefund' ? 21 : _context3.t0 === 'denyRefund' ? 26 : 31;
+            break;
+          case 11:
+            _context3.next = 13;
+            return axios__WEBPACK_IMPORTED_MODULE_1___default().post("/api/orders/".concat(currentOrder.id, "/approve-cancellation"), requestData);
+          case 13:
+            response = _context3.sent;
+            antd__WEBPACK_IMPORTED_MODULE_9__["default"].success("Cancellation for order #".concat(currentOrder.order_number, " has been approved"));
+            return _context3.abrupt("break", 32);
+          case 16:
+            _context3.next = 18;
+            return axios__WEBPACK_IMPORTED_MODULE_1___default().post("/api/orders/".concat(currentOrder.id, "/deny-cancellation"), requestData);
+          case 18:
+            response = _context3.sent;
+            antd__WEBPACK_IMPORTED_MODULE_9__["default"].success("Cancellation for order #".concat(currentOrder.order_number, " has been denied"));
+            return _context3.abrupt("break", 32);
+          case 21:
+            _context3.next = 23;
+            return axios__WEBPACK_IMPORTED_MODULE_1___default().post("/api/orders/".concat(currentOrder.id, "/approve-refund"), requestData);
+          case 23:
+            response = _context3.sent;
+            antd__WEBPACK_IMPORTED_MODULE_9__["default"].success("Refund for order #".concat(currentOrder.order_number, " has been approved"));
+            return _context3.abrupt("break", 32);
+          case 26:
+            _context3.next = 28;
+            return axios__WEBPACK_IMPORTED_MODULE_1___default().post("/api/orders/".concat(currentOrder.id, "/deny-refund"), requestData);
+          case 28:
+            response = _context3.sent;
+            antd__WEBPACK_IMPORTED_MODULE_9__["default"].success("Refund for order #".concat(currentOrder.order_number, " has been denied"));
+            return _context3.abrupt("break", 32);
+          case 31:
+            throw new Error('Invalid action type');
+          case 32:
+            // Update local state with the returned order
+            updatedOrders = orders.map(function (order) {
+              if (order.id === currentOrder.id) {
+                return response.data.order;
+              }
+              return order;
+            });
+            setOrders(updatedOrders);
+            _context3.next = 40;
+            break;
+          case 36:
+            _context3.prev = 36;
+            _context3.t1 = _context3["catch"](6);
+            console.error('Error handling request:', _context3.t1);
+            antd__WEBPACK_IMPORTED_MODULE_9__["default"].error('Failed to process request');
+          case 40:
+            _context3.prev = 40;
+            setStatusLoading(function (prev) {
+              return _objectSpread(_objectSpread({}, prev), {}, _defineProperty({}, currentOrder.id, false));
+            });
+            setActionModalVisible(false);
+            setCurrentOrder(null);
+            setActionType('');
+            setAdminNotes('');
+            return _context3.finish(40);
+          case 47:
+          case "end":
+            return _context3.stop();
+        }
+      }, _callee3, null, [[6, 36, 40, 47]]);
+    }));
+    return function handleActionRequest() {
+      return _ref5.apply(this, arguments);
+    };
+  }();
+
+  // Show action modal
+  var showActionModal = function showActionModal(order, type) {
+    setCurrentOrder(order);
+    setActionType(type);
+    setActionModalVisible(true);
+  };
 
   // Initial fetch on component mount and when searchText changes
   (0,react__WEBPACK_IMPORTED_MODULE_0__.useEffect)(function () {
@@ -70400,17 +70975,27 @@ var OrdersList = function OrdersList() {
 
   // Handle table change (pagination, filters, sorter)
   var handleTableChange = function handleTableChange(pagination, filters, sorter) {
+    setPagination(pagination);
+    setFilters(filters);
+
+    // Convert antd sorter format to our format
+    if (sorter && sorter.field) {
+      setSorter({
+        field: sorter.field,
+        order: sorter.order
+      });
+    } else {
+      setSorter({});
+    }
     fetchOrders(_objectSpread(_objectSpread({
       current: pagination.current,
       pageSize: pagination.pageSize
     }, filters), {}, {
-      sorter: {
+      sorter: sorter.field ? {
         field: sorter.field,
         order: sorter.order
-      },
-      search: searchText // Ensure searchText is passed
+      } : {}
     }));
-    setSorter(sorter);
   };
 
   // Handle search input change
@@ -70442,39 +71027,119 @@ var OrdersList = function OrdersList() {
     var option = statusOptions.find(function (opt) {
       return opt.value === status;
     });
-    return option ? option.label : status.charAt(0).toUpperCase() + status.slice(1);
+    return option ? option.label : status.split('_').map(function (word) {
+      return word.charAt(0).toUpperCase() + word.slice(1);
+    }).join(' ');
+  };
+
+  // Render actions for request approvals/denials
+  var renderRequestActions = function renderRequestActions(record) {
+    // Only show approval/denial actions for requested statuses
+    if (record.status === 'cancellation_requested') {
+      return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsxs)(antd__WEBPACK_IMPORTED_MODULE_10__["default"], {
+        size: "small",
+        children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)(antd__WEBPACK_IMPORTED_MODULE_11__["default"], {
+          title: "Approve Cancellation",
+          children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)(antd__WEBPACK_IMPORTED_MODULE_12__["default"], {
+            type: "primary",
+            size: "small",
+            icon: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)(_ant_design_icons__WEBPACK_IMPORTED_MODULE_13__["default"], {}),
+            onClick: function onClick() {
+              return showActionModal(record, 'approveCancellation');
+            },
+            loading: statusLoading[record.id]
+          })
+        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)(antd__WEBPACK_IMPORTED_MODULE_11__["default"], {
+          title: "Deny Cancellation",
+          children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)(antd__WEBPACK_IMPORTED_MODULE_12__["default"], {
+            danger: true,
+            size: "small",
+            icon: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)(_ant_design_icons__WEBPACK_IMPORTED_MODULE_14__["default"], {}),
+            onClick: function onClick() {
+              return showActionModal(record, 'denyCancellation');
+            },
+            loading: statusLoading[record.id]
+          })
+        })]
+      });
+    } else if (record.status === 'refund_requested') {
+      return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsxs)(antd__WEBPACK_IMPORTED_MODULE_10__["default"], {
+        size: "small",
+        children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)(antd__WEBPACK_IMPORTED_MODULE_11__["default"], {
+          title: "Approve Refund",
+          children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)(antd__WEBPACK_IMPORTED_MODULE_12__["default"], {
+            type: "primary",
+            size: "small",
+            icon: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)(_ant_design_icons__WEBPACK_IMPORTED_MODULE_13__["default"], {}),
+            onClick: function onClick() {
+              return showActionModal(record, 'approveRefund');
+            },
+            loading: statusLoading[record.id]
+          })
+        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)(antd__WEBPACK_IMPORTED_MODULE_11__["default"], {
+          title: "Deny Refund",
+          children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)(antd__WEBPACK_IMPORTED_MODULE_12__["default"], {
+            danger: true,
+            size: "small",
+            icon: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)(_ant_design_icons__WEBPACK_IMPORTED_MODULE_14__["default"], {}),
+            onClick: function onClick() {
+              return showActionModal(record, 'denyRefund');
+            },
+            loading: statusLoading[record.id]
+          })
+        })]
+      });
+    }
+    return null;
   };
 
   // Render status dropdown
   var renderStatusDropdown = function renderStatusDropdown(status, record) {
-    var menuItems = statusOptions.map(function (option) {
+    // If the order has a pending request, disable status dropdown
+    if (status === 'cancellation_requested' || status === 'refund_requested') {
+      return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsxs)(antd__WEBPACK_IMPORTED_MODULE_10__["default"], {
+        children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)(antd__WEBPACK_IMPORTED_MODULE_15__["default"], {
+          color: getStatusColor(status),
+          children: getStatusLabel(status)
+        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)(_ant_design_icons__WEBPACK_IMPORTED_MODULE_16__["default"], {
+          style: {
+            color: 'orange'
+          }
+        })]
+      });
+    }
+
+    // Regular status dropdown for other states
+    var menuItems = statusOptions.filter(function (option) {
+      return !option.value.includes('_requested') && !option.value.includes('_approved') && !option.value.includes('_denied');
+    }).map(function (option) {
       return {
         key: option.value,
         label: option.label,
         disabled: option.value === status
       };
     });
-    var handleMenuClick = function handleMenuClick(_ref4) {
-      var key = _ref4.key;
+    var handleMenuClick = function handleMenuClick(_ref6) {
+      var key = _ref6.key;
       if (key !== status) {
         updateOrderStatus(record.id, key);
       }
     };
-    return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)(antd__WEBPACK_IMPORTED_MODULE_9__["default"], {
-      overlay: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)(antd__WEBPACK_IMPORTED_MODULE_10__["default"], {
+    return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)(antd__WEBPACK_IMPORTED_MODULE_17__["default"], {
+      overlay: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)(antd__WEBPACK_IMPORTED_MODULE_18__["default"], {
         onClick: handleMenuClick,
         items: menuItems
       }),
       disabled: statusLoading[record.id],
       trigger: ['click'],
-      children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsxs)(antd__WEBPACK_IMPORTED_MODULE_11__["default"], {
+      children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsxs)(antd__WEBPACK_IMPORTED_MODULE_10__["default"], {
         style: {
           cursor: 'pointer'
         },
-        children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)(antd__WEBPACK_IMPORTED_MODULE_12__["default"], {
+        children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)(antd__WEBPACK_IMPORTED_MODULE_15__["default"], {
           color: getStatusColor(status),
           children: getStatusLabel(status)
-        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)(_ant_design_icons__WEBPACK_IMPORTED_MODULE_13__["default"], {
+        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)(_ant_design_icons__WEBPACK_IMPORTED_MODULE_19__["default"], {
           style: {
             fontSize: '12px'
           }
@@ -70483,7 +71148,7 @@ var OrdersList = function OrdersList() {
     });
   };
 
-  // Table columns
+  // Table columns with new columns for Request Type and Action
   var columns = [{
     title: 'Order Number',
     dataIndex: 'order_number',
@@ -70508,28 +71173,77 @@ var OrdersList = function OrdersList() {
     render: function render(date, record) {
       return date ? moment__WEBPACK_IMPORTED_MODULE_2___default()(date).format('MMM DD, YYYY') : record.created_at ? moment__WEBPACK_IMPORTED_MODULE_2___default()(record.created_at).format('MMM DD, YYYY') : 'N/A';
     }
-  }, {
+  },
+  // Fix for the Payment Method column
+  {
     title: 'Payment Method',
-    dataIndex: 'payment_method',
+    dataIndex: ['payment', 'payment_method'],
     key: 'payment_method',
     filters: [{
-      text: 'Credit Card',
-      value: 'credit_card'
-    }, {
       text: 'PayPal',
       value: 'paypal'
     }, {
-      text: 'Bank Transfer',
-      value: 'bank_transfer'
+      text: 'Gcash',
+      value: 'gcash'
     }, {
       text: 'Cash on Delivery',
       value: 'cod'
     }],
     filterMultiple: true,
     render: function render(method) {
-      return method.split('_').map(function (word) {
-        return word.charAt(0).toUpperCase() + word.slice(1);
-      }).join(' ');
+      if (!method) return 'N/A';
+
+      // Handle both formats: with underscores and without
+      if (method.includes('_')) {
+        return method.split('_').map(function (word) {
+          return word.charAt(0).toUpperCase() + word.slice(1);
+        }).join(' ');
+      } else {
+        // For methods without underscores like "paypal", "gcash", "cod"
+        return method.charAt(0).toUpperCase() + method.slice(1);
+      }
+    }
+  }, {
+    title: 'Request Type',
+    key: 'request_type',
+    render: function render(_, record) {
+      if (record.status === 'cancellation_requested') {
+        return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)(antd__WEBPACK_IMPORTED_MODULE_15__["default"], {
+          color: "orange",
+          children: "Cancellation"
+        });
+      } else if (record.status === 'refund_requested') {
+        return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)(antd__WEBPACK_IMPORTED_MODULE_15__["default"], {
+          color: "orange",
+          children: "Refund"
+        });
+      } else if (record.status === 'cancellation_approved' || record.status === 'cancellation_denied' || record.status === 'cancelled') {
+        return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)(antd__WEBPACK_IMPORTED_MODULE_15__["default"], {
+          color: "gray",
+          children: "Cancellation"
+        });
+      } else if (record.status === 'refund_approved' || record.status === 'refund_denied' || record.status === 'refunded') {
+        return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)(antd__WEBPACK_IMPORTED_MODULE_15__["default"], {
+          color: "gray",
+          children: "Refund"
+        });
+      }
+      return null;
+    },
+    filters: [{
+      text: 'Cancellation',
+      value: 'cancellation'
+    }, {
+      text: 'Refund',
+      value: 'refund'
+    }],
+    onFilter: function onFilter(value, record) {
+      if (value === 'cancellation') {
+        return record.status.includes('cancellation') || record.status === 'cancelled';
+      } else if (value === 'refund') {
+        return record.status.includes('refund') || record.status === 'refunded';
+      }
+      return false;
     }
   }, {
     title: 'Status',
@@ -70545,32 +71259,245 @@ var OrdersList = function OrdersList() {
       };
     }),
     filterMultiple: true
+  }, {
+    title: 'Actions',
+    key: 'actions',
+    render: function render(_, record) {
+      return renderRequestActions(record);
+    }
+  }, {
+    title: 'Notes',
+    key: 'notes',
+    render: function render(_, record) {
+      if (record.request_notes || record.admin_notes) {
+        return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)(antd__WEBPACK_IMPORTED_MODULE_11__["default"], {
+          title: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsxs)(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.Fragment, {
+            children: [record.request_notes && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsxs)("div", {
+              children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("strong", {
+                children: "Request Notes:"
+              }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("br", {}), record.request_notes]
+            }), record.admin_notes && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsxs)("div", {
+              style: {
+                marginTop: '8px'
+              },
+              children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("strong", {
+                children: "Admin Notes:"
+              }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("br", {}), record.admin_notes]
+            })]
+          }),
+          children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)(antd__WEBPACK_IMPORTED_MODULE_12__["default"], {
+            icon: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)(_ant_design_icons__WEBPACK_IMPORTED_MODULE_20__["default"], {}),
+            size: "small"
+          })
+        });
+      }
+      return null;
+    }
   }];
+
+  // Function to handle bulk actions
+  var handleBulkAction = /*#__PURE__*/function () {
+    var _ref7 = _asyncToGenerator(/*#__PURE__*/_regeneratorRuntime().mark(function _callee4(action) {
+      var response;
+      return _regeneratorRuntime().wrap(function _callee4$(_context4) {
+        while (1) switch (_context4.prev = _context4.next) {
+          case 0:
+            if (selectedRowKeys.length) {
+              _context4.next = 3;
+              break;
+            }
+            antd__WEBPACK_IMPORTED_MODULE_9__["default"].warning('Please select at least one order');
+            return _context4.abrupt("return");
+          case 3:
+            setLoading(true);
+            _context4.prev = 4;
+            _context4.next = 7;
+            return axios__WEBPACK_IMPORTED_MODULE_1___default().post('/api/orders/bulk-action', {
+              order_ids: selectedRowKeys,
+              action: action
+            });
+          case 7:
+            response = _context4.sent;
+            // Refresh the orders list
+            fetchOrders({
+              current: pagination.current,
+              pageSize: pagination.pageSize
+            });
+
+            // Clear selection
+            setSelectedRowKeys([]);
+            antd__WEBPACK_IMPORTED_MODULE_9__["default"].success("".concat(response.data.affected_count, " orders processed successfully"));
+            _context4.next = 17;
+            break;
+          case 13:
+            _context4.prev = 13;
+            _context4.t0 = _context4["catch"](4);
+            console.error('Error processing bulk action:', _context4.t0);
+            antd__WEBPACK_IMPORTED_MODULE_9__["default"].error('Failed to process bulk action');
+          case 17:
+            _context4.prev = 17;
+            setLoading(false);
+            return _context4.finish(17);
+          case 20:
+          case "end":
+            return _context4.stop();
+        }
+      }, _callee4, null, [[4, 13, 17, 20]]);
+    }));
+    return function handleBulkAction(_x3) {
+      return _ref7.apply(this, arguments);
+    };
+  }();
+
+  // Bulk action menu
+  var bulkActionMenu = /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsxs)(antd__WEBPACK_IMPORTED_MODULE_18__["default"], {
+    children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)(antd__WEBPACK_IMPORTED_MODULE_18__["default"].Item, {
+      onClick: function onClick() {
+        return handleBulkAction('mark_shipped');
+      },
+      children: "Mark as Shipped"
+    }, "mark_shipped"), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)(antd__WEBPACK_IMPORTED_MODULE_18__["default"].Item, {
+      onClick: function onClick() {
+        return handleBulkAction('mark_delivered');
+      },
+      children: "Mark as Delivered"
+    }, "mark_delivered")]
+  });
+
+  // View order details
+  var viewOrderDetails = function viewOrderDetails(orderId) {
+    // Navigate to order details page
+    window.location.href = "/admin/orders/".concat(orderId);
+  };
   return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)(_AdminReusable_AdminPage__WEBPACK_IMPORTED_MODULE_3__["default"], {
     children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsxs)("div", {
       style: {
         padding: '24px'
       },
-      children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)(antd__WEBPACK_IMPORTED_MODULE_14__["default"], {
-        placeholder: "Search by order number",
-        prefix: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)(_ant_design_icons__WEBPACK_IMPORTED_MODULE_15__["default"], {}),
-        value: searchText,
-        onChange: handleSearch,
-        style: {
-          width: 300,
-          marginBottom: 16
-        }
-      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)(antd__WEBPACK_IMPORTED_MODULE_16__["default"], {
-        rowSelection: rowSelection,
-        columns: columns,
-        dataSource: orders,
-        pagination: pagination,
-        loading: loading,
-        onChange: handleTableChange,
-        scroll: {
-          x: 'max-content'
+      children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)(antd__WEBPACK_IMPORTED_MODULE_21__["default"], {
+        title: "Orders Management",
+        extra: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsxs)(antd__WEBPACK_IMPORTED_MODULE_10__["default"], {
+          children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)(antd__WEBPACK_IMPORTED_MODULE_7__["default"], {
+            placeholder: "Search by order number",
+            prefix: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)(_ant_design_icons__WEBPACK_IMPORTED_MODULE_22__["default"], {}),
+            value: searchText,
+            onChange: handleSearch,
+            style: {
+              width: 300
+            }
+          }), selectedRowKeys.length > 0 && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)(antd__WEBPACK_IMPORTED_MODULE_17__["default"], {
+            overlay: bulkActionMenu,
+            children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsxs)(antd__WEBPACK_IMPORTED_MODULE_12__["default"], {
+              children: ["Bulk Actions ", /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)(_ant_design_icons__WEBPACK_IMPORTED_MODULE_19__["default"], {})]
+            })
+          })]
+        }),
+        children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)(antd__WEBPACK_IMPORTED_MODULE_23__["default"], {
+          rowKey: "id",
+          rowSelection: rowSelection,
+          columns: columns,
+          dataSource: orders,
+          pagination: pagination,
+          loading: loading,
+          onChange: handleTableChange,
+          scroll: {
+            x: 'max-content'
+          },
+          size: "middle",
+          onRow: function onRow(record) {
+            return {
+              onDoubleClick: function onDoubleClick() {
+                return viewOrderDetails(record.id);
+              }
+            };
+          }
+        })
+      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)(antd__WEBPACK_IMPORTED_MODULE_24__["default"], {
+        title: actionType === 'approveCancellation' ? "Approve Cancellation" : actionType === 'denyCancellation' ? "Deny Cancellation" : actionType === 'approveRefund' ? "Approve Refund" : actionType === 'denyRefund' ? "Deny Refund" : "Process Request",
+        visible: actionModalVisible,
+        onOk: handleActionRequest,
+        onCancel: function onCancel() {
+          setActionModalVisible(false);
+          setCurrentOrder(null);
+          setActionType('');
+          setAdminNotes('');
         },
-        size: "middle"
+        okText: actionType !== null && actionType !== void 0 && actionType.includes('approve') ? "Approve" : "Deny",
+        okButtonProps: {
+          type: actionType !== null && actionType !== void 0 && actionType.includes('approve') ? "primary" : "danger",
+          disabled: (actionType === null || actionType === void 0 ? void 0 : actionType.includes('deny')) && !adminNotes.trim()
+        },
+        children: currentOrder && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsxs)(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.Fragment, {
+          children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsxs)("div", {
+            style: {
+              marginBottom: 16
+            },
+            children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)(Text, {
+              strong: true,
+              children: "Order: "
+            }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)(Text, {
+              children: currentOrder.order_number
+            })]
+          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsxs)("div", {
+            style: {
+              marginBottom: 16
+            },
+            children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)(Text, {
+              strong: true,
+              children: "Customer: "
+            }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)(Text, {
+              children: currentOrder.customer_name || 'N/A'
+            })]
+          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsxs)("div", {
+            style: {
+              marginBottom: 16
+            },
+            children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)(Text, {
+              strong: true,
+              children: "Amount: "
+            }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsxs)(Text, {
+              children: ["PHP ", parseFloat(currentOrder.total_amount).toFixed(2)]
+            })]
+          }), currentOrder.request_notes && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsxs)("div", {
+            style: {
+              marginBottom: 16
+            },
+            children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)(Text, {
+              strong: true,
+              children: "Customer Notes: "
+            }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("div", {
+              style: {
+                background: '#f5f5f5',
+                padding: 8,
+                borderRadius: 4
+              },
+              children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)(Text, {
+                children: currentOrder.request_notes
+              })
+            })]
+          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsxs)("div", {
+            style: {
+              marginBottom: 16
+            },
+            children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)(Text, {
+              strong: true,
+              children: "Admin Notes: "
+            }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)(TextArea, {
+              rows: 4,
+              value: adminNotes,
+              onChange: function onChange(e) {
+                return setAdminNotes(e.target.value);
+              },
+              placeholder: actionType !== null && actionType !== void 0 && actionType.includes('deny') ? "Required: Provide reason for denial" : "Optional: Add additional notes"
+            }), (actionType === null || actionType === void 0 ? void 0 : actionType.includes('deny')) && !adminNotes.trim() && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)(Text, {
+              type: "danger",
+              style: {
+                fontSize: 12
+              },
+              children: "Note is required when denying a request"
+            })]
+          })]
+        })
       })]
     })
   });
@@ -73156,7 +74083,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router/dist/development/chunk-K6AXKMTT.mjs");
 /* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
 /* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_1__);
-/* harmony import */ var _images_logodescription_png__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../../../../images/logodescription.png */ "./public/images/logodescription.png");
+/* harmony import */ var _images_logodescription_png__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../../../../../images/logodescription.png */ "./public/images/logodescription.png");
 /* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! react/jsx-runtime */ "./node_modules/react/jsx-runtime.js");
 function _typeof(o) { "@babel/helpers - typeof"; return _typeof = "function" == typeof Symbol && "symbol" == typeof Symbol.iterator ? function (o) { return typeof o; } : function (o) { return o && "function" == typeof Symbol && o.constructor === Symbol && o !== Symbol.prototype ? "symbol" : typeof o; }, _typeof(o); }
 function _regeneratorRuntime() { "use strict"; /*! regenerator-runtime -- Copyright (c) 2014-present, Facebook, Inc. -- license (MIT): https://github.com/facebook/regenerator/blob/main/LICENSE */ _regeneratorRuntime = function _regeneratorRuntime() { return e; }; var t, e = {}, r = Object.prototype, n = r.hasOwnProperty, o = Object.defineProperty || function (t, e, r) { t[e] = r.value; }, i = "function" == typeof Symbol ? Symbol : {}, a = i.iterator || "@@iterator", c = i.asyncIterator || "@@asyncIterator", u = i.toStringTag || "@@toStringTag"; function define(t, e, r) { return Object.defineProperty(t, e, { value: r, enumerable: !0, configurable: !0, writable: !0 }), t[e]; } try { define({}, ""); } catch (t) { define = function define(t, e, r) { return t[e] = r; }; } function wrap(t, e, r, n) { var i = e && e.prototype instanceof Generator ? e : Generator, a = Object.create(i.prototype), c = new Context(n || []); return o(a, "_invoke", { value: makeInvokeMethod(t, r, c) }), a; } function tryCatch(t, e, r) { try { return { type: "normal", arg: t.call(e, r) }; } catch (t) { return { type: "throw", arg: t }; } } e.wrap = wrap; var h = "suspendedStart", l = "suspendedYield", f = "executing", s = "completed", y = {}; function Generator() {} function GeneratorFunction() {} function GeneratorFunctionPrototype() {} var p = {}; define(p, a, function () { return this; }); var d = Object.getPrototypeOf, v = d && d(d(values([]))); v && v !== r && n.call(v, a) && (p = v); var g = GeneratorFunctionPrototype.prototype = Generator.prototype = Object.create(p); function defineIteratorMethods(t) { ["next", "throw", "return"].forEach(function (e) { define(t, e, function (t) { return this._invoke(e, t); }); }); } function AsyncIterator(t, e) { function invoke(r, o, i, a) { var c = tryCatch(t[r], t, o); if ("throw" !== c.type) { var u = c.arg, h = u.value; return h && "object" == _typeof(h) && n.call(h, "__await") ? e.resolve(h.__await).then(function (t) { invoke("next", t, i, a); }, function (t) { invoke("throw", t, i, a); }) : e.resolve(h).then(function (t) { u.value = t, i(u); }, function (t) { return invoke("throw", t, i, a); }); } a(c.arg); } var r; o(this, "_invoke", { value: function value(t, n) { function callInvokeWithMethodAndArg() { return new e(function (e, r) { invoke(t, n, e, r); }); } return r = r ? r.then(callInvokeWithMethodAndArg, callInvokeWithMethodAndArg) : callInvokeWithMethodAndArg(); } }); } function makeInvokeMethod(e, r, n) { var o = h; return function (i, a) { if (o === f) throw Error("Generator is already running"); if (o === s) { if ("throw" === i) throw a; return { value: t, done: !0 }; } for (n.method = i, n.arg = a;;) { var c = n.delegate; if (c) { var u = maybeInvokeDelegate(c, n); if (u) { if (u === y) continue; return u; } } if ("next" === n.method) n.sent = n._sent = n.arg;else if ("throw" === n.method) { if (o === h) throw o = s, n.arg; n.dispatchException(n.arg); } else "return" === n.method && n.abrupt("return", n.arg); o = f; var p = tryCatch(e, r, n); if ("normal" === p.type) { if (o = n.done ? s : l, p.arg === y) continue; return { value: p.arg, done: n.done }; } "throw" === p.type && (o = s, n.method = "throw", n.arg = p.arg); } }; } function maybeInvokeDelegate(e, r) { var n = r.method, o = e.iterator[n]; if (o === t) return r.delegate = null, "throw" === n && e.iterator["return"] && (r.method = "return", r.arg = t, maybeInvokeDelegate(e, r), "throw" === r.method) || "return" !== n && (r.method = "throw", r.arg = new TypeError("The iterator does not provide a '" + n + "' method")), y; var i = tryCatch(o, e.iterator, r.arg); if ("throw" === i.type) return r.method = "throw", r.arg = i.arg, r.delegate = null, y; var a = i.arg; return a ? a.done ? (r[e.resultName] = a.value, r.next = e.nextLoc, "return" !== r.method && (r.method = "next", r.arg = t), r.delegate = null, y) : a : (r.method = "throw", r.arg = new TypeError("iterator result is not an object"), r.delegate = null, y); } function pushTryEntry(t) { var e = { tryLoc: t[0] }; 1 in t && (e.catchLoc = t[1]), 2 in t && (e.finallyLoc = t[2], e.afterLoc = t[3]), this.tryEntries.push(e); } function resetTryEntry(t) { var e = t.completion || {}; e.type = "normal", delete e.arg, t.completion = e; } function Context(t) { this.tryEntries = [{ tryLoc: "root" }], t.forEach(pushTryEntry, this), this.reset(!0); } function values(e) { if (e || "" === e) { var r = e[a]; if (r) return r.call(e); if ("function" == typeof e.next) return e; if (!isNaN(e.length)) { var o = -1, i = function next() { for (; ++o < e.length;) if (n.call(e, o)) return next.value = e[o], next.done = !1, next; return next.value = t, next.done = !0, next; }; return i.next = i; } } throw new TypeError(_typeof(e) + " is not iterable"); } return GeneratorFunction.prototype = GeneratorFunctionPrototype, o(g, "constructor", { value: GeneratorFunctionPrototype, configurable: !0 }), o(GeneratorFunctionPrototype, "constructor", { value: GeneratorFunction, configurable: !0 }), GeneratorFunction.displayName = define(GeneratorFunctionPrototype, u, "GeneratorFunction"), e.isGeneratorFunction = function (t) { var e = "function" == typeof t && t.constructor; return !!e && (e === GeneratorFunction || "GeneratorFunction" === (e.displayName || e.name)); }, e.mark = function (t) { return Object.setPrototypeOf ? Object.setPrototypeOf(t, GeneratorFunctionPrototype) : (t.__proto__ = GeneratorFunctionPrototype, define(t, u, "GeneratorFunction")), t.prototype = Object.create(g), t; }, e.awrap = function (t) { return { __await: t }; }, defineIteratorMethods(AsyncIterator.prototype), define(AsyncIterator.prototype, c, function () { return this; }), e.AsyncIterator = AsyncIterator, e.async = function (t, r, n, o, i) { void 0 === i && (i = Promise); var a = new AsyncIterator(wrap(t, r, n, o), i); return e.isGeneratorFunction(r) ? a : a.next().then(function (t) { return t.done ? t.value : a.next(); }); }, defineIteratorMethods(g), define(g, u, "Generator"), define(g, a, function () { return this; }), define(g, "toString", function () { return "[object Generator]"; }), e.keys = function (t) { var e = Object(t), r = []; for (var n in e) r.push(n); return r.reverse(), function next() { for (; r.length;) { var t = r.pop(); if (t in e) return next.value = t, next.done = !1, next; } return next.done = !0, next; }; }, e.values = values, Context.prototype = { constructor: Context, reset: function reset(e) { if (this.prev = 0, this.next = 0, this.sent = this._sent = t, this.done = !1, this.delegate = null, this.method = "next", this.arg = t, this.tryEntries.forEach(resetTryEntry), !e) for (var r in this) "t" === r.charAt(0) && n.call(this, r) && !isNaN(+r.slice(1)) && (this[r] = t); }, stop: function stop() { this.done = !0; var t = this.tryEntries[0].completion; if ("throw" === t.type) throw t.arg; return this.rval; }, dispatchException: function dispatchException(e) { if (this.done) throw e; var r = this; function handle(n, o) { return a.type = "throw", a.arg = e, r.next = n, o && (r.method = "next", r.arg = t), !!o; } for (var o = this.tryEntries.length - 1; o >= 0; --o) { var i = this.tryEntries[o], a = i.completion; if ("root" === i.tryLoc) return handle("end"); if (i.tryLoc <= this.prev) { var c = n.call(i, "catchLoc"), u = n.call(i, "finallyLoc"); if (c && u) { if (this.prev < i.catchLoc) return handle(i.catchLoc, !0); if (this.prev < i.finallyLoc) return handle(i.finallyLoc); } else if (c) { if (this.prev < i.catchLoc) return handle(i.catchLoc, !0); } else { if (!u) throw Error("try statement without catch or finally"); if (this.prev < i.finallyLoc) return handle(i.finallyLoc); } } } }, abrupt: function abrupt(t, e) { for (var r = this.tryEntries.length - 1; r >= 0; --r) { var o = this.tryEntries[r]; if (o.tryLoc <= this.prev && n.call(o, "finallyLoc") && this.prev < o.finallyLoc) { var i = o; break; } } i && ("break" === t || "continue" === t) && i.tryLoc <= e && e <= i.finallyLoc && (i = null); var a = i ? i.completion : {}; return a.type = t, a.arg = e, i ? (this.method = "next", this.next = i.finallyLoc, y) : this.complete(a); }, complete: function complete(t, e) { if ("throw" === t.type) throw t.arg; return "break" === t.type || "continue" === t.type ? this.next = t.arg : "return" === t.type ? (this.rval = this.arg = t.arg, this.method = "return", this.next = "end") : "normal" === t.type && e && (this.next = e), y; }, finish: function finish(t) { for (var e = this.tryEntries.length - 1; e >= 0; --e) { var r = this.tryEntries[e]; if (r.finallyLoc === t) return this.complete(r.completion, r.afterLoc), resetTryEntry(r), y; } }, "catch": function _catch(t) { for (var e = this.tryEntries.length - 1; e >= 0; --e) { var r = this.tryEntries[e]; if (r.tryLoc === t) { var n = r.completion; if ("throw" === n.type) { var o = n.arg; resetTryEntry(r); } return o; } } throw Error("illegal catch attempt"); }, delegateYield: function delegateYield(e, r, n) { return this.delegate = { iterator: values(e), resultName: r, nextLoc: n }, "next" === this.method && (this.arg = t), y; } }, e; }
@@ -76089,6 +77016,635 @@ var Logout = function Logout() {
 
 /***/ }),
 
+/***/ "./resources/js/components/Profile/OrderActionModals.js":
+/*!**************************************************************!*\
+  !*** ./resources/js/components/Profile/OrderActionModals.js ***!
+  \**************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var antd__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! antd */ "./node_modules/antd/es/input/index.js");
+/* harmony import */ var antd__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! antd */ "./node_modules/antd/es/message/index.js");
+/* harmony import */ var antd__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! antd */ "./node_modules/antd/es/modal/index.js");
+/* harmony import */ var antd__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! antd */ "./node_modules/antd/es/button/index.js");
+/* harmony import */ var antd__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! antd */ "./node_modules/antd/es/radio/index.js");
+/* harmony import */ var antd__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! antd */ "./node_modules/antd/es/rate/index.js");
+/* harmony import */ var _ant_design_icons__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! @ant-design/icons */ "./node_modules/@ant-design/icons/es/icons/StarOutlined.js");
+/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
+/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_1__);
+/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! react/jsx-runtime */ "./node_modules/react/jsx-runtime.js");
+function _typeof(o) { "@babel/helpers - typeof"; return _typeof = "function" == typeof Symbol && "symbol" == typeof Symbol.iterator ? function (o) { return typeof o; } : function (o) { return o && "function" == typeof Symbol && o.constructor === Symbol && o !== Symbol.prototype ? "symbol" : typeof o; }, _typeof(o); }
+function _regeneratorRuntime() { "use strict"; /*! regenerator-runtime -- Copyright (c) 2014-present, Facebook, Inc. -- license (MIT): https://github.com/facebook/regenerator/blob/main/LICENSE */ _regeneratorRuntime = function _regeneratorRuntime() { return e; }; var t, e = {}, r = Object.prototype, n = r.hasOwnProperty, o = Object.defineProperty || function (t, e, r) { t[e] = r.value; }, i = "function" == typeof Symbol ? Symbol : {}, a = i.iterator || "@@iterator", c = i.asyncIterator || "@@asyncIterator", u = i.toStringTag || "@@toStringTag"; function define(t, e, r) { return Object.defineProperty(t, e, { value: r, enumerable: !0, configurable: !0, writable: !0 }), t[e]; } try { define({}, ""); } catch (t) { define = function define(t, e, r) { return t[e] = r; }; } function wrap(t, e, r, n) { var i = e && e.prototype instanceof Generator ? e : Generator, a = Object.create(i.prototype), c = new Context(n || []); return o(a, "_invoke", { value: makeInvokeMethod(t, r, c) }), a; } function tryCatch(t, e, r) { try { return { type: "normal", arg: t.call(e, r) }; } catch (t) { return { type: "throw", arg: t }; } } e.wrap = wrap; var h = "suspendedStart", l = "suspendedYield", f = "executing", s = "completed", y = {}; function Generator() {} function GeneratorFunction() {} function GeneratorFunctionPrototype() {} var p = {}; define(p, a, function () { return this; }); var d = Object.getPrototypeOf, v = d && d(d(values([]))); v && v !== r && n.call(v, a) && (p = v); var g = GeneratorFunctionPrototype.prototype = Generator.prototype = Object.create(p); function defineIteratorMethods(t) { ["next", "throw", "return"].forEach(function (e) { define(t, e, function (t) { return this._invoke(e, t); }); }); } function AsyncIterator(t, e) { function invoke(r, o, i, a) { var c = tryCatch(t[r], t, o); if ("throw" !== c.type) { var u = c.arg, h = u.value; return h && "object" == _typeof(h) && n.call(h, "__await") ? e.resolve(h.__await).then(function (t) { invoke("next", t, i, a); }, function (t) { invoke("throw", t, i, a); }) : e.resolve(h).then(function (t) { u.value = t, i(u); }, function (t) { return invoke("throw", t, i, a); }); } a(c.arg); } var r; o(this, "_invoke", { value: function value(t, n) { function callInvokeWithMethodAndArg() { return new e(function (e, r) { invoke(t, n, e, r); }); } return r = r ? r.then(callInvokeWithMethodAndArg, callInvokeWithMethodAndArg) : callInvokeWithMethodAndArg(); } }); } function makeInvokeMethod(e, r, n) { var o = h; return function (i, a) { if (o === f) throw Error("Generator is already running"); if (o === s) { if ("throw" === i) throw a; return { value: t, done: !0 }; } for (n.method = i, n.arg = a;;) { var c = n.delegate; if (c) { var u = maybeInvokeDelegate(c, n); if (u) { if (u === y) continue; return u; } } if ("next" === n.method) n.sent = n._sent = n.arg;else if ("throw" === n.method) { if (o === h) throw o = s, n.arg; n.dispatchException(n.arg); } else "return" === n.method && n.abrupt("return", n.arg); o = f; var p = tryCatch(e, r, n); if ("normal" === p.type) { if (o = n.done ? s : l, p.arg === y) continue; return { value: p.arg, done: n.done }; } "throw" === p.type && (o = s, n.method = "throw", n.arg = p.arg); } }; } function maybeInvokeDelegate(e, r) { var n = r.method, o = e.iterator[n]; if (o === t) return r.delegate = null, "throw" === n && e.iterator["return"] && (r.method = "return", r.arg = t, maybeInvokeDelegate(e, r), "throw" === r.method) || "return" !== n && (r.method = "throw", r.arg = new TypeError("The iterator does not provide a '" + n + "' method")), y; var i = tryCatch(o, e.iterator, r.arg); if ("throw" === i.type) return r.method = "throw", r.arg = i.arg, r.delegate = null, y; var a = i.arg; return a ? a.done ? (r[e.resultName] = a.value, r.next = e.nextLoc, "return" !== r.method && (r.method = "next", r.arg = t), r.delegate = null, y) : a : (r.method = "throw", r.arg = new TypeError("iterator result is not an object"), r.delegate = null, y); } function pushTryEntry(t) { var e = { tryLoc: t[0] }; 1 in t && (e.catchLoc = t[1]), 2 in t && (e.finallyLoc = t[2], e.afterLoc = t[3]), this.tryEntries.push(e); } function resetTryEntry(t) { var e = t.completion || {}; e.type = "normal", delete e.arg, t.completion = e; } function Context(t) { this.tryEntries = [{ tryLoc: "root" }], t.forEach(pushTryEntry, this), this.reset(!0); } function values(e) { if (e || "" === e) { var r = e[a]; if (r) return r.call(e); if ("function" == typeof e.next) return e; if (!isNaN(e.length)) { var o = -1, i = function next() { for (; ++o < e.length;) if (n.call(e, o)) return next.value = e[o], next.done = !1, next; return next.value = t, next.done = !0, next; }; return i.next = i; } } throw new TypeError(_typeof(e) + " is not iterable"); } return GeneratorFunction.prototype = GeneratorFunctionPrototype, o(g, "constructor", { value: GeneratorFunctionPrototype, configurable: !0 }), o(GeneratorFunctionPrototype, "constructor", { value: GeneratorFunction, configurable: !0 }), GeneratorFunction.displayName = define(GeneratorFunctionPrototype, u, "GeneratorFunction"), e.isGeneratorFunction = function (t) { var e = "function" == typeof t && t.constructor; return !!e && (e === GeneratorFunction || "GeneratorFunction" === (e.displayName || e.name)); }, e.mark = function (t) { return Object.setPrototypeOf ? Object.setPrototypeOf(t, GeneratorFunctionPrototype) : (t.__proto__ = GeneratorFunctionPrototype, define(t, u, "GeneratorFunction")), t.prototype = Object.create(g), t; }, e.awrap = function (t) { return { __await: t }; }, defineIteratorMethods(AsyncIterator.prototype), define(AsyncIterator.prototype, c, function () { return this; }), e.AsyncIterator = AsyncIterator, e.async = function (t, r, n, o, i) { void 0 === i && (i = Promise); var a = new AsyncIterator(wrap(t, r, n, o), i); return e.isGeneratorFunction(r) ? a : a.next().then(function (t) { return t.done ? t.value : a.next(); }); }, defineIteratorMethods(g), define(g, u, "Generator"), define(g, a, function () { return this; }), define(g, "toString", function () { return "[object Generator]"; }), e.keys = function (t) { var e = Object(t), r = []; for (var n in e) r.push(n); return r.reverse(), function next() { for (; r.length;) { var t = r.pop(); if (t in e) return next.value = t, next.done = !1, next; } return next.done = !0, next; }; }, e.values = values, Context.prototype = { constructor: Context, reset: function reset(e) { if (this.prev = 0, this.next = 0, this.sent = this._sent = t, this.done = !1, this.delegate = null, this.method = "next", this.arg = t, this.tryEntries.forEach(resetTryEntry), !e) for (var r in this) "t" === r.charAt(0) && n.call(this, r) && !isNaN(+r.slice(1)) && (this[r] = t); }, stop: function stop() { this.done = !0; var t = this.tryEntries[0].completion; if ("throw" === t.type) throw t.arg; return this.rval; }, dispatchException: function dispatchException(e) { if (this.done) throw e; var r = this; function handle(n, o) { return a.type = "throw", a.arg = e, r.next = n, o && (r.method = "next", r.arg = t), !!o; } for (var o = this.tryEntries.length - 1; o >= 0; --o) { var i = this.tryEntries[o], a = i.completion; if ("root" === i.tryLoc) return handle("end"); if (i.tryLoc <= this.prev) { var c = n.call(i, "catchLoc"), u = n.call(i, "finallyLoc"); if (c && u) { if (this.prev < i.catchLoc) return handle(i.catchLoc, !0); if (this.prev < i.finallyLoc) return handle(i.finallyLoc); } else if (c) { if (this.prev < i.catchLoc) return handle(i.catchLoc, !0); } else { if (!u) throw Error("try statement without catch or finally"); if (this.prev < i.finallyLoc) return handle(i.finallyLoc); } } } }, abrupt: function abrupt(t, e) { for (var r = this.tryEntries.length - 1; r >= 0; --r) { var o = this.tryEntries[r]; if (o.tryLoc <= this.prev && n.call(o, "finallyLoc") && this.prev < o.finallyLoc) { var i = o; break; } } i && ("break" === t || "continue" === t) && i.tryLoc <= e && e <= i.finallyLoc && (i = null); var a = i ? i.completion : {}; return a.type = t, a.arg = e, i ? (this.method = "next", this.next = i.finallyLoc, y) : this.complete(a); }, complete: function complete(t, e) { if ("throw" === t.type) throw t.arg; return "break" === t.type || "continue" === t.type ? this.next = t.arg : "return" === t.type ? (this.rval = this.arg = t.arg, this.method = "return", this.next = "end") : "normal" === t.type && e && (this.next = e), y; }, finish: function finish(t) { for (var e = this.tryEntries.length - 1; e >= 0; --e) { var r = this.tryEntries[e]; if (r.finallyLoc === t) return this.complete(r.completion, r.afterLoc), resetTryEntry(r), y; } }, "catch": function _catch(t) { for (var e = this.tryEntries.length - 1; e >= 0; --e) { var r = this.tryEntries[e]; if (r.tryLoc === t) { var n = r.completion; if ("throw" === n.type) { var o = n.arg; resetTryEntry(r); } return o; } } throw Error("illegal catch attempt"); }, delegateYield: function delegateYield(e, r, n) { return this.delegate = { iterator: values(e), resultName: r, nextLoc: n }, "next" === this.method && (this.arg = t), y; } }, e; }
+function asyncGeneratorStep(n, t, e, r, o, a, c) { try { var i = n[a](c), u = i.value; } catch (n) { return void e(n); } i.done ? t(u) : Promise.resolve(u).then(r, o); }
+function _asyncToGenerator(n) { return function () { var t = this, e = arguments; return new Promise(function (r, o) { var a = n.apply(t, e); function _next(n) { asyncGeneratorStep(a, r, o, _next, _throw, "next", n); } function _throw(n) { asyncGeneratorStep(a, r, o, _next, _throw, "throw", n); } _next(void 0); }); }; }
+function _slicedToArray(r, e) { return _arrayWithHoles(r) || _iterableToArrayLimit(r, e) || _unsupportedIterableToArray(r, e) || _nonIterableRest(); }
+function _nonIterableRest() { throw new TypeError("Invalid attempt to destructure non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
+function _unsupportedIterableToArray(r, a) { if (r) { if ("string" == typeof r) return _arrayLikeToArray(r, a); var t = {}.toString.call(r).slice(8, -1); return "Object" === t && r.constructor && (t = r.constructor.name), "Map" === t || "Set" === t ? Array.from(r) : "Arguments" === t || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(t) ? _arrayLikeToArray(r, a) : void 0; } }
+function _arrayLikeToArray(r, a) { (null == a || a > r.length) && (a = r.length); for (var e = 0, n = Array(a); e < a; e++) n[e] = r[e]; return n; }
+function _iterableToArrayLimit(r, l) { var t = null == r ? null : "undefined" != typeof Symbol && r[Symbol.iterator] || r["@@iterator"]; if (null != t) { var e, n, i, u, a = [], f = !0, o = !1; try { if (i = (t = t.call(r)).next, 0 === l) { if (Object(t) !== t) return; f = !1; } else for (; !(f = (e = i.call(t)).done) && (a.push(e.value), a.length !== l); f = !0); } catch (r) { o = !0, n = r; } finally { try { if (!f && null != t["return"] && (u = t["return"](), Object(u) !== u)) return; } finally { if (o) throw n; } } return a; } }
+function _arrayWithHoles(r) { if (Array.isArray(r)) return r; }
+
+
+
+
+
+var TextArea = antd__WEBPACK_IMPORTED_MODULE_3__["default"].TextArea;
+var OrderActionModals = function OrderActionModals(_ref) {
+  var visible = _ref.visible,
+    modalType = _ref.modalType,
+    onClose = _ref.onClose,
+    order = _ref.order,
+    onSuccess = _ref.onSuccess,
+    actionLoading = _ref.actionLoading,
+    setActionLoading = _ref.setActionLoading;
+  // State for each modal type
+  var _useState = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(null),
+    _useState2 = _slicedToArray(_useState, 2),
+    cancelReason = _useState2[0],
+    setCancelReason = _useState2[1];
+  var _useState3 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(null),
+    _useState4 = _slicedToArray(_useState3, 2),
+    refundReason = _useState4[0],
+    setRefundReason = _useState4[1];
+  var _useState5 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(""),
+    _useState6 = _slicedToArray(_useState5, 2),
+    cancelNotes = _useState6[0],
+    setCancelNotes = _useState6[1];
+  var _useState7 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(""),
+    _useState8 = _slicedToArray(_useState7, 2),
+    refundNotes = _useState8[0],
+    setRefundNotes = _useState8[1];
+  var _useState9 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(""),
+    _useState10 = _slicedToArray(_useState9, 2),
+    reviewText = _useState10[0],
+    setReviewText = _useState10[1];
+  var _useState11 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(5),
+    _useState12 = _slicedToArray(_useState11, 2),
+    reviewRating = _useState12[0],
+    setReviewRating = _useState12[1];
+  var _useState13 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(null),
+    _useState14 = _slicedToArray(_useState13, 2),
+    selectedProductId = _useState14[0],
+    setSelectedProductId = _useState14[1];
+
+  // Reset states when modal closes
+  var handleClose = function handleClose() {
+    setCancelReason(null);
+    setRefundReason(null);
+    setCancelNotes("");
+    setRefundNotes("");
+    setReviewText("");
+    setReviewRating(5);
+    setSelectedProductId(null);
+    onClose();
+  };
+  var handleCancelOrder = /*#__PURE__*/function () {
+    var _ref2 = _asyncToGenerator(/*#__PURE__*/_regeneratorRuntime().mark(function _callee() {
+      var token, requestNotes, response;
+      return _regeneratorRuntime().wrap(function _callee$(_context) {
+        while (1) switch (_context.prev = _context.next) {
+          case 0:
+            if (cancelReason) {
+              _context.next = 3;
+              break;
+            }
+            antd__WEBPACK_IMPORTED_MODULE_4__["default"].error("Please select a reason for cancellation");
+            return _context.abrupt("return");
+          case 3:
+            if (!(cancelReason === "Others" && !cancelNotes.trim())) {
+              _context.next = 6;
+              break;
+            }
+            antd__WEBPACK_IMPORTED_MODULE_4__["default"].error("Please provide details for 'Others' reason");
+            return _context.abrupt("return");
+          case 6:
+            _context.prev = 6;
+            setActionLoading(true);
+            token = localStorage.getItem("userToken"); // Format the reason with notes for the API
+            requestNotes = cancelReason;
+            if (cancelReason === "Others") {
+              requestNotes = "Others: ".concat(cancelNotes);
+            } else if (cancelNotes.trim()) {
+              requestNotes = "".concat(cancelReason, " - Additional notes: ").concat(cancelNotes);
+            }
+
+            // Use the requestCancellation endpoint
+            _context.next = 13;
+            return axios__WEBPACK_IMPORTED_MODULE_1___default().post("http://127.0.0.1:8000/api/orders/".concat(order.id, "/request-cancellation"), {
+              request_notes: requestNotes
+            }, {
+              headers: {
+                Authorization: "Bearer ".concat(token)
+              }
+            });
+          case 13:
+            response = _context.sent;
+            antd__WEBPACK_IMPORTED_MODULE_4__["default"].success("Cancellation requested successfully");
+            onSuccess();
+            handleClose();
+            _context.next = 23;
+            break;
+          case 19:
+            _context.prev = 19;
+            _context.t0 = _context["catch"](6);
+            console.error("Failed to request cancellation:", _context.t0);
+            antd__WEBPACK_IMPORTED_MODULE_4__["default"].error("Failed to request cancellation. Please try again later.");
+          case 23:
+            _context.prev = 23;
+            setActionLoading(false);
+            return _context.finish(23);
+          case 26:
+          case "end":
+            return _context.stop();
+        }
+      }, _callee, null, [[6, 19, 23, 26]]);
+    }));
+    return function handleCancelOrder() {
+      return _ref2.apply(this, arguments);
+    };
+  }();
+  var handleRefundOrder = /*#__PURE__*/function () {
+    var _ref3 = _asyncToGenerator(/*#__PURE__*/_regeneratorRuntime().mark(function _callee2() {
+      var token, requestNotes, response;
+      return _regeneratorRuntime().wrap(function _callee2$(_context2) {
+        while (1) switch (_context2.prev = _context2.next) {
+          case 0:
+            if (refundReason) {
+              _context2.next = 3;
+              break;
+            }
+            antd__WEBPACK_IMPORTED_MODULE_4__["default"].error("Please select a reason for refund");
+            return _context2.abrupt("return");
+          case 3:
+            if (!(refundReason === "Others" && !refundNotes.trim())) {
+              _context2.next = 6;
+              break;
+            }
+            antd__WEBPACK_IMPORTED_MODULE_4__["default"].error("Please provide details for 'Others' reason");
+            return _context2.abrupt("return");
+          case 6:
+            _context2.prev = 6;
+            setActionLoading(true);
+            token = localStorage.getItem("userToken"); // Format the reason with notes for the API
+            requestNotes = refundReason;
+            if (refundReason === "Others") {
+              requestNotes = "Others: ".concat(refundNotes);
+            } else if (refundNotes.trim()) {
+              requestNotes = "".concat(refundReason, " - Additional notes: ").concat(refundNotes);
+            }
+
+            // Use the requestRefund endpoint
+            _context2.next = 13;
+            return axios__WEBPACK_IMPORTED_MODULE_1___default().post("http://127.0.0.1:8000/api/orders/".concat(order.id, "/request-refund"), {
+              request_notes: requestNotes
+            }, {
+              headers: {
+                Authorization: "Bearer ".concat(token)
+              }
+            });
+          case 13:
+            response = _context2.sent;
+            antd__WEBPACK_IMPORTED_MODULE_4__["default"].success("Refund requested successfully");
+            onSuccess();
+            handleClose();
+            _context2.next = 23;
+            break;
+          case 19:
+            _context2.prev = 19;
+            _context2.t0 = _context2["catch"](6);
+            console.error("Failed to request refund:", _context2.t0);
+            antd__WEBPACK_IMPORTED_MODULE_4__["default"].error("Failed to request refund. Please try again later.");
+          case 23:
+            _context2.prev = 23;
+            setActionLoading(false);
+            return _context2.finish(23);
+          case 26:
+          case "end":
+            return _context2.stop();
+        }
+      }, _callee2, null, [[6, 19, 23, 26]]);
+    }));
+    return function handleRefundOrder() {
+      return _ref3.apply(this, arguments);
+    };
+  }();
+  var handleSubmitReview = /*#__PURE__*/function () {
+    var _ref4 = _asyncToGenerator(/*#__PURE__*/_regeneratorRuntime().mark(function _callee3() {
+      var token, response;
+      return _regeneratorRuntime().wrap(function _callee3$(_context3) {
+        while (1) switch (_context3.prev = _context3.next) {
+          case 0:
+            if (selectedProductId) {
+              _context3.next = 3;
+              break;
+            }
+            antd__WEBPACK_IMPORTED_MODULE_4__["default"].error("Please select a product to review");
+            return _context3.abrupt("return");
+          case 3:
+            if (reviewText.trim()) {
+              _context3.next = 6;
+              break;
+            }
+            antd__WEBPACK_IMPORTED_MODULE_4__["default"].error("Please provide review text");
+            return _context3.abrupt("return");
+          case 6:
+            _context3.prev = 6;
+            setActionLoading(true);
+            token = localStorage.getItem("userToken");
+            _context3.next = 11;
+            return axios__WEBPACK_IMPORTED_MODULE_1___default().post("http://127.0.0.1:8000/api/reviews", {
+              product_id: selectedProductId,
+              order_id: order.id,
+              rating: reviewRating,
+              review_text: reviewText
+            }, {
+              headers: {
+                Authorization: "Bearer ".concat(token)
+              }
+            });
+          case 11:
+            response = _context3.sent;
+            antd__WEBPACK_IMPORTED_MODULE_4__["default"].success("Review submitted successfully");
+            onSuccess();
+            handleClose();
+            _context3.next = 21;
+            break;
+          case 17:
+            _context3.prev = 17;
+            _context3.t0 = _context3["catch"](6);
+            console.error("Failed to submit review:", _context3.t0);
+            antd__WEBPACK_IMPORTED_MODULE_4__["default"].error("Failed to submit review. Please try again later.");
+          case 21:
+            _context3.prev = 21;
+            setActionLoading(false);
+            return _context3.finish(21);
+          case 24:
+          case "end":
+            return _context3.stop();
+        }
+      }, _callee3, null, [[6, 17, 21, 24]]);
+    }));
+    return function handleSubmitReview() {
+      return _ref4.apply(this, arguments);
+    };
+  }();
+
+  // Render Cancel Order Modal
+  var renderCancelOrderModal = function renderCancelOrderModal() {
+    return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxs)(antd__WEBPACK_IMPORTED_MODULE_5__["default"], {
+      title: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("div", {
+        style: {
+          textAlign: 'center',
+          color: '#333'
+        },
+        children: "Request Order Cancellation"
+      }),
+      open: visible && modalType === "cancel",
+      onCancel: handleClose,
+      footer: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)(antd__WEBPACK_IMPORTED_MODULE_6__["default"], {
+        onClick: handleClose,
+        style: {
+          borderRadius: '4px'
+        },
+        children: "Back"
+      }, "cancel"), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)(antd__WEBPACK_IMPORTED_MODULE_6__["default"], {
+        type: "primary",
+        loading: actionLoading,
+        onClick: handleCancelOrder,
+        style: {
+          backgroundColor: '#e05d44',
+          borderColor: '#e05d44',
+          borderRadius: '4px',
+          width: '100%'
+        },
+        children: "SUBMIT REQUEST"
+      }, "submit")],
+      bodyStyle: {
+        padding: '20px',
+        backgroundColor: '#f9d0c4'
+      },
+      style: {
+        borderRadius: '8px',
+        overflow: 'hidden'
+      },
+      children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("div", {
+        style: {
+          marginBottom: '16px'
+        },
+        children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("p", {
+          children: "Select a reason for cancellation:"
+        })
+      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxs)(antd__WEBPACK_IMPORTED_MODULE_7__["default"].Group, {
+        onChange: function onChange(e) {
+          return setCancelReason(e.target.value);
+        },
+        value: cancelReason,
+        style: {
+          display: 'flex',
+          flexDirection: 'column',
+          gap: '16px'
+        },
+        children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)(antd__WEBPACK_IMPORTED_MODULE_7__["default"], {
+          value: "Need to change delivery address",
+          children: "Need to change delivery address."
+        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)(antd__WEBPACK_IMPORTED_MODULE_7__["default"], {
+          value: "Seller is unresponsive",
+          children: "Seller is unresponsive."
+        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)(antd__WEBPACK_IMPORTED_MODULE_7__["default"], {
+          value: "I want to change my order",
+          children: "I want to change my order."
+        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)(antd__WEBPACK_IMPORTED_MODULE_7__["default"], {
+          value: "Others",
+          children: "Others."
+        })]
+      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxs)("div", {
+        style: {
+          marginTop: '16px'
+        },
+        children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxs)("p", {
+          children: ["Additional details: ", cancelReason === "Others" && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("span", {
+            style: {
+              color: 'red'
+            },
+            children: "*"
+          })]
+        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)(TextArea, {
+          placeholder: cancelReason === "Others" ? "* Please specify the reason" : "Add any additional information (optional)",
+          value: cancelNotes,
+          onChange: function onChange(e) {
+            return setCancelNotes(e.target.value);
+          },
+          style: {
+            borderRadius: '4px'
+          },
+          rows: 3
+        })]
+      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxs)("div", {
+        style: {
+          marginTop: '16px',
+          backgroundColor: '#f5f5f5',
+          padding: '12px',
+          borderRadius: '4px'
+        },
+        children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("p", {
+          style: {
+            margin: 0,
+            fontWeight: 'bold'
+          },
+          children: "Note:"
+        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("p", {
+          style: {
+            margin: '4px 0 0 0',
+            fontSize: '12px'
+          },
+          children: "Your cancellation request will be reviewed by our team. You will receive a notification once your request has been processed."
+        })]
+      })]
+    });
+  };
+
+  // Render Refund Order Modal
+  var renderRefundOrderModal = function renderRefundOrderModal() {
+    return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxs)(antd__WEBPACK_IMPORTED_MODULE_5__["default"], {
+      title: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("div", {
+        style: {
+          textAlign: 'center',
+          color: '#333'
+        },
+        children: "Request Return/Refund"
+      }),
+      open: visible && modalType === "refund",
+      onCancel: handleClose,
+      footer: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)(antd__WEBPACK_IMPORTED_MODULE_6__["default"], {
+        onClick: handleClose,
+        style: {
+          borderRadius: '4px'
+        },
+        children: "Back"
+      }, "cancel"), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)(antd__WEBPACK_IMPORTED_MODULE_6__["default"], {
+        type: "primary",
+        loading: actionLoading,
+        onClick: handleRefundOrder,
+        style: {
+          backgroundColor: '#e05d44',
+          borderColor: '#e05d44',
+          borderRadius: '4px',
+          width: '100%'
+        },
+        children: "SUBMIT REQUEST"
+      }, "submit")],
+      bodyStyle: {
+        padding: '20px',
+        backgroundColor: '#f9d0c4'
+      },
+      style: {
+        borderRadius: '8px',
+        overflow: 'hidden'
+      },
+      children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("div", {
+        style: {
+          marginBottom: '16px'
+        },
+        children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("p", {
+          children: "Select a reason for return/refund:"
+        })
+      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxs)(antd__WEBPACK_IMPORTED_MODULE_7__["default"].Group, {
+        onChange: function onChange(e) {
+          return setRefundReason(e.target.value);
+        },
+        value: refundReason,
+        style: {
+          display: 'flex',
+          flexDirection: 'column',
+          gap: '16px'
+        },
+        children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)(antd__WEBPACK_IMPORTED_MODULE_7__["default"], {
+          value: "Seller gave the wrong items",
+          children: "Seller gave the wrong items."
+        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)(antd__WEBPACK_IMPORTED_MODULE_7__["default"], {
+          value: "Order is incomplete",
+          children: "Order is incomplete."
+        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)(antd__WEBPACK_IMPORTED_MODULE_7__["default"], {
+          value: "Damaged Item/s",
+          children: "Damaged Item/s."
+        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)(antd__WEBPACK_IMPORTED_MODULE_7__["default"], {
+          value: "Others",
+          children: "Others."
+        })]
+      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxs)("div", {
+        style: {
+          marginTop: '16px'
+        },
+        children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxs)("p", {
+          children: ["Additional details: ", refundReason === "Others" && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("span", {
+            style: {
+              color: 'red'
+            },
+            children: "*"
+          })]
+        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)(TextArea, {
+          placeholder: refundReason === "Others" ? "* Please specify the reason" : "Add any additional information (optional)",
+          value: refundNotes,
+          onChange: function onChange(e) {
+            return setRefundNotes(e.target.value);
+          },
+          style: {
+            borderRadius: '4px'
+          },
+          rows: 3
+        })]
+      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxs)("div", {
+        style: {
+          marginTop: '16px',
+          backgroundColor: '#f5f5f5',
+          padding: '12px',
+          borderRadius: '4px'
+        },
+        children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("p", {
+          style: {
+            margin: 0,
+            fontWeight: 'bold'
+          },
+          children: "Note:"
+        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("p", {
+          style: {
+            margin: '4px 0 0 0',
+            fontSize: '12px'
+          },
+          children: "Your refund request will be reviewed by our team. You will receive a notification once your request has been processed."
+        })]
+      })]
+    });
+  };
+
+  // Render Review Order Modal
+  var renderReviewOrderModal = function renderReviewOrderModal() {
+    var _order$order_items, _order$order_items2;
+    return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxs)(antd__WEBPACK_IMPORTED_MODULE_5__["default"], {
+      title: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("div", {
+        style: {
+          textAlign: 'center',
+          color: '#333'
+        },
+        children: "Rate Product"
+      }),
+      open: visible && modalType === "review",
+      onCancel: handleClose,
+      footer: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)(antd__WEBPACK_IMPORTED_MODULE_6__["default"], {
+        onClick: handleClose,
+        style: {
+          borderRadius: '4px',
+          margin: '0 8px'
+        },
+        children: "Cancel"
+      }, "cancel"), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)(antd__WEBPACK_IMPORTED_MODULE_6__["default"], {
+        type: "primary",
+        loading: actionLoading,
+        onClick: handleSubmitReview,
+        style: {
+          backgroundColor: '#e05d44',
+          borderColor: '#e05d44',
+          borderRadius: '4px',
+          margin: '0 8px'
+        },
+        children: "Submit"
+      }, "submit")],
+      bodyStyle: {
+        padding: '20px',
+        backgroundColor: '#f9d0c4'
+      },
+      style: {
+        borderRadius: '8px',
+        overflow: 'hidden'
+      },
+      children: [(order === null || order === void 0 || (_order$order_items = order.order_items) === null || _order$order_items === void 0 ? void 0 : _order$order_items.length) > 1 && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxs)("div", {
+        style: {
+          marginBottom: '16px'
+        },
+        children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("p", {
+          children: "Select product to review:"
+        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)(antd__WEBPACK_IMPORTED_MODULE_7__["default"].Group, {
+          onChange: function onChange(e) {
+            return setSelectedProductId(e.target.value);
+          },
+          value: selectedProductId,
+          children: order.order_items.map(function (item) {
+            return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)(antd__WEBPACK_IMPORTED_MODULE_7__["default"], {
+              value: item.product.id,
+              children: item.product.product_name
+            }, item.product.id);
+          })
+        })]
+      }), (order === null || order === void 0 || (_order$order_items2 = order.order_items) === null || _order$order_items2 === void 0 ? void 0 : _order$order_items2.length) === 1 && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxs)(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.Fragment, {
+        children: [!selectedProductId && setSelectedProductId(order.order_items[0].product.id), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxs)("p", {
+          children: ["Reviewing: ", order.order_items[0].product.product_name]
+        })]
+      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("div", {
+        style: {
+          margin: '16px 0',
+          textAlign: 'center'
+        },
+        children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)(antd__WEBPACK_IMPORTED_MODULE_8__["default"], {
+          onChange: setReviewRating,
+          value: reviewRating,
+          character: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)(_ant_design_icons__WEBPACK_IMPORTED_MODULE_9__["default"], {}),
+          style: {
+            fontSize: '32px',
+            color: '#e05d44'
+          }
+        })
+      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)(TextArea, {
+        placeholder: "Tell us how you feel.",
+        value: reviewText,
+        onChange: function onChange(e) {
+          return setReviewText(e.target.value);
+        },
+        style: {
+          borderRadius: '16px',
+          padding: '12px',
+          minHeight: '120px'
+        },
+        rows: 4
+      })]
+    });
+  };
+
+  // Show order status info for modals
+  var renderStatusInfo = function renderStatusInfo() {
+    if (!order) return null;
+    return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("div", {
+      style: {
+        marginBottom: '16px',
+        backgroundColor: '#f5f5f5',
+        padding: '12px',
+        borderRadius: '4px'
+      },
+      children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxs)("p", {
+        style: {
+          margin: 0
+        },
+        children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("strong", {
+          children: "Order:"
+        }), " ", order.order_number, " | ", /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("strong", {
+          children: "Status:"
+        }), " ", order.status]
+      })
+    });
+  };
+  return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxs)(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.Fragment, {
+    children: [renderCancelOrderModal(), renderRefundOrderModal(), renderReviewOrderModal()]
+  });
+};
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (OrderActionModals);
+
+/***/ }),
+
 /***/ "./resources/js/components/Profile/ProfileMain.js":
 /*!********************************************************!*\
   !*** ./resources/js/components/Profile/ProfileMain.js ***!
@@ -76370,11 +77926,15 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ });
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var antd__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! antd */ "./node_modules/antd/es/segmented/index.js");
+/* harmony import */ var antd__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! antd */ "./node_modules/antd/es/message/index.js");
+/* harmony import */ var antd__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! antd */ "./node_modules/antd/es/modal/index.js");
+/* harmony import */ var antd__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! antd */ "./node_modules/antd/es/button/index.js");
+/* harmony import */ var antd__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! antd */ "./node_modules/antd/es/segmented/index.js");
 /* harmony import */ var _Profile_ProfileMain__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../Profile/ProfileMain */ "./resources/js/components/Profile/ProfileMain.js");
 /* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
 /* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_2__);
-/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! react/jsx-runtime */ "./node_modules/react/jsx-runtime.js");
+/* harmony import */ var _OrderActionModals__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./OrderActionModals */ "./resources/js/components/Profile/OrderActionModals.js");
+/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! react/jsx-runtime */ "./node_modules/react/jsx-runtime.js");
 function _typeof(o) { "@babel/helpers - typeof"; return _typeof = "function" == typeof Symbol && "symbol" == typeof Symbol.iterator ? function (o) { return typeof o; } : function (o) { return o && "function" == typeof Symbol && o.constructor === Symbol && o !== Symbol.prototype ? "symbol" : typeof o; }, _typeof(o); }
 function _regeneratorRuntime() { "use strict"; /*! regenerator-runtime -- Copyright (c) 2014-present, Facebook, Inc. -- license (MIT): https://github.com/facebook/regenerator/blob/main/LICENSE */ _regeneratorRuntime = function _regeneratorRuntime() { return e; }; var t, e = {}, r = Object.prototype, n = r.hasOwnProperty, o = Object.defineProperty || function (t, e, r) { t[e] = r.value; }, i = "function" == typeof Symbol ? Symbol : {}, a = i.iterator || "@@iterator", c = i.asyncIterator || "@@asyncIterator", u = i.toStringTag || "@@toStringTag"; function define(t, e, r) { return Object.defineProperty(t, e, { value: r, enumerable: !0, configurable: !0, writable: !0 }), t[e]; } try { define({}, ""); } catch (t) { define = function define(t, e, r) { return t[e] = r; }; } function wrap(t, e, r, n) { var i = e && e.prototype instanceof Generator ? e : Generator, a = Object.create(i.prototype), c = new Context(n || []); return o(a, "_invoke", { value: makeInvokeMethod(t, r, c) }), a; } function tryCatch(t, e, r) { try { return { type: "normal", arg: t.call(e, r) }; } catch (t) { return { type: "throw", arg: t }; } } e.wrap = wrap; var h = "suspendedStart", l = "suspendedYield", f = "executing", s = "completed", y = {}; function Generator() {} function GeneratorFunction() {} function GeneratorFunctionPrototype() {} var p = {}; define(p, a, function () { return this; }); var d = Object.getPrototypeOf, v = d && d(d(values([]))); v && v !== r && n.call(v, a) && (p = v); var g = GeneratorFunctionPrototype.prototype = Generator.prototype = Object.create(p); function defineIteratorMethods(t) { ["next", "throw", "return"].forEach(function (e) { define(t, e, function (t) { return this._invoke(e, t); }); }); } function AsyncIterator(t, e) { function invoke(r, o, i, a) { var c = tryCatch(t[r], t, o); if ("throw" !== c.type) { var u = c.arg, h = u.value; return h && "object" == _typeof(h) && n.call(h, "__await") ? e.resolve(h.__await).then(function (t) { invoke("next", t, i, a); }, function (t) { invoke("throw", t, i, a); }) : e.resolve(h).then(function (t) { u.value = t, i(u); }, function (t) { return invoke("throw", t, i, a); }); } a(c.arg); } var r; o(this, "_invoke", { value: function value(t, n) { function callInvokeWithMethodAndArg() { return new e(function (e, r) { invoke(t, n, e, r); }); } return r = r ? r.then(callInvokeWithMethodAndArg, callInvokeWithMethodAndArg) : callInvokeWithMethodAndArg(); } }); } function makeInvokeMethod(e, r, n) { var o = h; return function (i, a) { if (o === f) throw Error("Generator is already running"); if (o === s) { if ("throw" === i) throw a; return { value: t, done: !0 }; } for (n.method = i, n.arg = a;;) { var c = n.delegate; if (c) { var u = maybeInvokeDelegate(c, n); if (u) { if (u === y) continue; return u; } } if ("next" === n.method) n.sent = n._sent = n.arg;else if ("throw" === n.method) { if (o === h) throw o = s, n.arg; n.dispatchException(n.arg); } else "return" === n.method && n.abrupt("return", n.arg); o = f; var p = tryCatch(e, r, n); if ("normal" === p.type) { if (o = n.done ? s : l, p.arg === y) continue; return { value: p.arg, done: n.done }; } "throw" === p.type && (o = s, n.method = "throw", n.arg = p.arg); } }; } function maybeInvokeDelegate(e, r) { var n = r.method, o = e.iterator[n]; if (o === t) return r.delegate = null, "throw" === n && e.iterator["return"] && (r.method = "return", r.arg = t, maybeInvokeDelegate(e, r), "throw" === r.method) || "return" !== n && (r.method = "throw", r.arg = new TypeError("The iterator does not provide a '" + n + "' method")), y; var i = tryCatch(o, e.iterator, r.arg); if ("throw" === i.type) return r.method = "throw", r.arg = i.arg, r.delegate = null, y; var a = i.arg; return a ? a.done ? (r[e.resultName] = a.value, r.next = e.nextLoc, "return" !== r.method && (r.method = "next", r.arg = t), r.delegate = null, y) : a : (r.method = "throw", r.arg = new TypeError("iterator result is not an object"), r.delegate = null, y); } function pushTryEntry(t) { var e = { tryLoc: t[0] }; 1 in t && (e.catchLoc = t[1]), 2 in t && (e.finallyLoc = t[2], e.afterLoc = t[3]), this.tryEntries.push(e); } function resetTryEntry(t) { var e = t.completion || {}; e.type = "normal", delete e.arg, t.completion = e; } function Context(t) { this.tryEntries = [{ tryLoc: "root" }], t.forEach(pushTryEntry, this), this.reset(!0); } function values(e) { if (e || "" === e) { var r = e[a]; if (r) return r.call(e); if ("function" == typeof e.next) return e; if (!isNaN(e.length)) { var o = -1, i = function next() { for (; ++o < e.length;) if (n.call(e, o)) return next.value = e[o], next.done = !1, next; return next.value = t, next.done = !0, next; }; return i.next = i; } } throw new TypeError(_typeof(e) + " is not iterable"); } return GeneratorFunction.prototype = GeneratorFunctionPrototype, o(g, "constructor", { value: GeneratorFunctionPrototype, configurable: !0 }), o(GeneratorFunctionPrototype, "constructor", { value: GeneratorFunction, configurable: !0 }), GeneratorFunction.displayName = define(GeneratorFunctionPrototype, u, "GeneratorFunction"), e.isGeneratorFunction = function (t) { var e = "function" == typeof t && t.constructor; return !!e && (e === GeneratorFunction || "GeneratorFunction" === (e.displayName || e.name)); }, e.mark = function (t) { return Object.setPrototypeOf ? Object.setPrototypeOf(t, GeneratorFunctionPrototype) : (t.__proto__ = GeneratorFunctionPrototype, define(t, u, "GeneratorFunction")), t.prototype = Object.create(g), t; }, e.awrap = function (t) { return { __await: t }; }, defineIteratorMethods(AsyncIterator.prototype), define(AsyncIterator.prototype, c, function () { return this; }), e.AsyncIterator = AsyncIterator, e.async = function (t, r, n, o, i) { void 0 === i && (i = Promise); var a = new AsyncIterator(wrap(t, r, n, o), i); return e.isGeneratorFunction(r) ? a : a.next().then(function (t) { return t.done ? t.value : a.next(); }); }, defineIteratorMethods(g), define(g, u, "Generator"), define(g, a, function () { return this; }), define(g, "toString", function () { return "[object Generator]"; }), e.keys = function (t) { var e = Object(t), r = []; for (var n in e) r.push(n); return r.reverse(), function next() { for (; r.length;) { var t = r.pop(); if (t in e) return next.value = t, next.done = !1, next; } return next.done = !0, next; }; }, e.values = values, Context.prototype = { constructor: Context, reset: function reset(e) { if (this.prev = 0, this.next = 0, this.sent = this._sent = t, this.done = !1, this.delegate = null, this.method = "next", this.arg = t, this.tryEntries.forEach(resetTryEntry), !e) for (var r in this) "t" === r.charAt(0) && n.call(this, r) && !isNaN(+r.slice(1)) && (this[r] = t); }, stop: function stop() { this.done = !0; var t = this.tryEntries[0].completion; if ("throw" === t.type) throw t.arg; return this.rval; }, dispatchException: function dispatchException(e) { if (this.done) throw e; var r = this; function handle(n, o) { return a.type = "throw", a.arg = e, r.next = n, o && (r.method = "next", r.arg = t), !!o; } for (var o = this.tryEntries.length - 1; o >= 0; --o) { var i = this.tryEntries[o], a = i.completion; if ("root" === i.tryLoc) return handle("end"); if (i.tryLoc <= this.prev) { var c = n.call(i, "catchLoc"), u = n.call(i, "finallyLoc"); if (c && u) { if (this.prev < i.catchLoc) return handle(i.catchLoc, !0); if (this.prev < i.finallyLoc) return handle(i.finallyLoc); } else if (c) { if (this.prev < i.catchLoc) return handle(i.catchLoc, !0); } else { if (!u) throw Error("try statement without catch or finally"); if (this.prev < i.finallyLoc) return handle(i.finallyLoc); } } } }, abrupt: function abrupt(t, e) { for (var r = this.tryEntries.length - 1; r >= 0; --r) { var o = this.tryEntries[r]; if (o.tryLoc <= this.prev && n.call(o, "finallyLoc") && this.prev < o.finallyLoc) { var i = o; break; } } i && ("break" === t || "continue" === t) && i.tryLoc <= e && e <= i.finallyLoc && (i = null); var a = i ? i.completion : {}; return a.type = t, a.arg = e, i ? (this.method = "next", this.next = i.finallyLoc, y) : this.complete(a); }, complete: function complete(t, e) { if ("throw" === t.type) throw t.arg; return "break" === t.type || "continue" === t.type ? this.next = t.arg : "return" === t.type ? (this.rval = this.arg = t.arg, this.method = "return", this.next = "end") : "normal" === t.type && e && (this.next = e), y; }, finish: function finish(t) { for (var e = this.tryEntries.length - 1; e >= 0; --e) { var r = this.tryEntries[e]; if (r.finallyLoc === t) return this.complete(r.completion, r.afterLoc), resetTryEntry(r), y; } }, "catch": function _catch(t) { for (var e = this.tryEntries.length - 1; e >= 0; --e) { var r = this.tryEntries[e]; if (r.tryLoc === t) { var n = r.completion; if ("throw" === n.type) { var o = n.arg; resetTryEntry(r); } return o; } } throw Error("illegal catch attempt"); }, delegateYield: function delegateYield(e, r, n) { return this.delegate = { iterator: values(e), resultName: r, nextLoc: n }, "next" === this.method && (this.arg = t), y; } }, e; }
 function asyncGeneratorStep(n, t, e, r, o, a, c) { try { var i = n[a](c), u = i.value; } catch (n) { return void e(n); } i.done ? t(u) : Promise.resolve(u).then(r, o); }
@@ -76389,6 +77949,7 @@ function _arrayWithHoles(r) { if (Array.isArray(r)) return r; }
 
 
 
+ // Import the new component
 
 var Purchases = function Purchases() {
   var _useState = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)([]),
@@ -76399,20 +77960,38 @@ var Purchases = function Purchases() {
     _useState4 = _slicedToArray(_useState3, 2),
     loading = _useState4[0],
     setLoading = _useState4[1];
-
-  // Current segment: "To Ship", "To Receive", etc.
-  var _useState5 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)("To Ship"),
+  var _useState5 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(false),
     _useState6 = _slicedToArray(_useState5, 2),
-    selectedSegment = _useState6[0],
-    setSelectedSegment = _useState6[1];
+    actionLoading = _useState6[0],
+    setActionLoading = _useState6[1];
+  var _useState7 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)("To Ship"),
+    _useState8 = _slicedToArray(_useState7, 2),
+    selectedSegment = _useState8[0],
+    setSelectedSegment = _useState8[1];
+
+  // Modal visibility state
+  var _useState9 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(false),
+    _useState10 = _slicedToArray(_useState9, 2),
+    modalVisible = _useState10[0],
+    setModalVisible = _useState10[1];
+  var _useState11 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(null),
+    _useState12 = _slicedToArray(_useState11, 2),
+    modalType = _useState12[0],
+    setModalType = _useState12[1]; // "cancel", "refund", or "review"
+  var _useState13 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(null),
+    _useState14 = _slicedToArray(_useState13, 2),
+    selectedOrder = _useState14[0],
+    setSelectedOrder = _useState14[1];
 
   // Map each segment label to your actual DB statuses
+  // Update the statusMap in Purchases.js
   var statusMap = {
-    "To Ship": "pending",
-    "To Receive": "shipped",
+    "To Ship": ["pending", "cancellation_requested"],
+    "To Receive": ["shipped", "refund_requested"],
+    // Include refund_requested here
     "Complete": "delivered",
     "Cancelled": "cancelled",
-    "Refund": "refunded"
+    "Refund": "refunded" // Only fully refunded orders should be here
   };
   (0,react__WEBPACK_IMPORTED_MODULE_0__.useEffect)(function () {
     fetchOrders();
@@ -76444,157 +78023,377 @@ var Purchases = function Purchases() {
             response = _context.sent;
             console.log("Fetched orders response:", response.data);
             setOrders(response.data.orders || []);
-            _context.next = 17;
+            _context.next = 18;
             break;
           case 14:
             _context.prev = 14;
             _context.t0 = _context["catch"](0);
             console.error("Failed to fetch orders:", _context.t0);
-          case 17:
-            _context.prev = 17;
+            antd__WEBPACK_IMPORTED_MODULE_5__["default"].error("Could not load your orders. Please try again later.");
+          case 18:
+            _context.prev = 18;
             setLoading(false);
-            return _context.finish(17);
-          case 20:
+            return _context.finish(18);
+          case 21:
           case "end":
             return _context.stop();
         }
-      }, _callee, null, [[0, 14, 17, 20]]);
+      }, _callee, null, [[0, 14, 18, 21]]);
     }));
     return function fetchOrders() {
       return _ref.apply(this, arguments);
     };
   }();
 
+  // Open modal with specific type
+  var openModal = function openModal(type, order) {
+    setModalType(type);
+    setSelectedOrder(order);
+    setModalVisible(true);
+  };
+
+  // Close modal
+  var closeModal = function closeModal() {
+    setModalVisible(false);
+    setModalType(null);
+    setSelectedOrder(null);
+  };
+
+  // Handle successful modal action
+  var handleModalSuccess = function handleModalSuccess() {
+    fetchOrders(); // Refresh orders after successful action
+  };
+  var handleOrderReceived = /*#__PURE__*/function () {
+    var _ref2 = _asyncToGenerator(/*#__PURE__*/_regeneratorRuntime().mark(function _callee3(orderId) {
+      var token;
+      return _regeneratorRuntime().wrap(function _callee3$(_context3) {
+        while (1) switch (_context3.prev = _context3.next) {
+          case 0:
+            try {
+              setActionLoading(true);
+              token = localStorage.getItem("userToken");
+              antd__WEBPACK_IMPORTED_MODULE_6__["default"].confirm({
+                title: 'Confirm Order Received',
+                content: 'Are you sure you want to mark this order as received?',
+                okText: 'Yes, Confirm Receipt',
+                cancelText: 'No',
+                onOk: function () {
+                  var _onOk = _asyncToGenerator(/*#__PURE__*/_regeneratorRuntime().mark(function _callee2() {
+                    var response;
+                    return _regeneratorRuntime().wrap(function _callee2$(_context2) {
+                      while (1) switch (_context2.prev = _context2.next) {
+                        case 0:
+                          _context2.prev = 0;
+                          _context2.next = 3;
+                          return axios__WEBPACK_IMPORTED_MODULE_2___default().post("http://127.0.0.1:8000/api/orders/".concat(orderId, "/deliver"), {},
+                          // Empty body as the endpoint doesn't require additional data
+                          {
+                            headers: {
+                              Authorization: "Bearer ".concat(token)
+                            }
+                          });
+                        case 3:
+                          response = _context2.sent;
+                          antd__WEBPACK_IMPORTED_MODULE_5__["default"].success("Order marked as received");
+                          fetchOrders();
+                          _context2.next = 12;
+                          break;
+                        case 8:
+                          _context2.prev = 8;
+                          _context2.t0 = _context2["catch"](0);
+                          console.error("Failed to mark order as received:", _context2.t0);
+                          antd__WEBPACK_IMPORTED_MODULE_5__["default"].error("Failed to update order status. Please try again later.");
+                        case 12:
+                          _context2.prev = 12;
+                          setActionLoading(false);
+                          return _context2.finish(12);
+                        case 15:
+                        case "end":
+                          return _context2.stop();
+                      }
+                    }, _callee2, null, [[0, 8, 12, 15]]);
+                  }));
+                  function onOk() {
+                    return _onOk.apply(this, arguments);
+                  }
+                  return onOk;
+                }(),
+                onCancel: function onCancel() {
+                  setActionLoading(false);
+                }
+              });
+            } catch (error) {
+              console.error("Failed to mark order as received:", error);
+              antd__WEBPACK_IMPORTED_MODULE_5__["default"].error("Failed to update order status. Please try again later.");
+              setActionLoading(false);
+            }
+          case 1:
+          case "end":
+            return _context3.stop();
+        }
+      }, _callee3);
+    }));
+    return function handleOrderReceived(_x) {
+      return _ref2.apply(this, arguments);
+    };
+  }();
+  var handleViewRefundDetails = function handleViewRefundDetails(orderId) {
+    var refundOrder = orders.find(function (order) {
+      return order.id === orderId;
+    });
+    if (refundOrder) {
+      antd__WEBPACK_IMPORTED_MODULE_6__["default"].info({
+        title: 'Refund Details',
+        content: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsxs)("div", {
+          children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsxs)("p", {
+            children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("strong", {
+              children: "Order Number:"
+            }), " ", refundOrder.order_number]
+          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsxs)("p", {
+            children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("strong", {
+              children: "Status:"
+            }), " ", refundOrder.status === "refund_requested" ? "Awaiting admin approval" : refundOrder.status]
+          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsxs)("p", {
+            children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("strong", {
+              children: "Refund Amount:"
+            }), " PHP ", parseFloat(refundOrder.total_amount).toFixed(2)]
+          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsxs)("p", {
+            children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("strong", {
+              children: "Date Requested:"
+            }), " ", new Date(refundOrder.updated_at).toLocaleDateString()]
+          }), refundOrder.status === "refund_requested" && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("p", {
+            children: "Your refund request is under review. You will be notified once it is approved or denied."
+          })]
+        }),
+        okText: 'Close'
+      });
+    } else {
+      antd__WEBPACK_IMPORTED_MODULE_5__["default"].error("Could not find refund details");
+    }
+  };
+  var handleViewCancellationDetails = function handleViewCancellationDetails(orderId) {
+    var pendingOrder = orders.find(function (order) {
+      return order.id === orderId && order.status === "cancellation_requested";
+    });
+    if (pendingOrder) {
+      antd__WEBPACK_IMPORTED_MODULE_6__["default"].info({
+        title: 'Cancellation Request Pending',
+        content: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsxs)("div", {
+          children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsxs)("p", {
+            children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("strong", {
+              children: "Order Number:"
+            }), " ", pendingOrder.order_number]
+          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsxs)("p", {
+            children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("strong", {
+              children: "Status:"
+            }), " Awaiting admin approval"]
+          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsxs)("p", {
+            children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("strong", {
+              children: "Request Notes:"
+            }), " ", pendingOrder.request_notes || "Not provided"]
+          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsxs)("p", {
+            children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("strong", {
+              children: "Request Date:"
+            }), " ", new Date(pendingOrder.request_date || pendingOrder.updated_at).toLocaleDateString()]
+          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("p", {
+            children: "Your cancellation request is under review. You will be notified once it is approved or denied."
+          })]
+        }),
+        okText: 'Close'
+      });
+    }
+  };
+  var handleBuyAgain = function handleBuyAgain(orderId) {
+    antd__WEBPACK_IMPORTED_MODULE_5__["default"].info("Buy Again functionality will be implemented in a future update");
+  };
+
   // Filter by user & status
   var userId = localStorage.getItem("userId");
   var displayedStatus = statusMap[selectedSegment];
-  var displayedOrders = orders
-  // only the logged-in user's orders
-  .filter(function (order) {
+
+  // Update the filtering logic
+  var displayedOrders = orders.filter(function (order) {
     return parseInt(order.user_id) === parseInt(userId);
-  })
-  // only orders that match the chosen segment's status
-  .filter(function (order) {
-    return order.status === displayedStatus;
+  }).filter(function (order) {
+    var statusCriteria = statusMap[selectedSegment];
+    if (Array.isArray(statusCriteria)) {
+      return statusCriteria.includes(order.status);
+    }
+    return order.status === statusCriteria;
   });
+  // Function to render appropriate buttons based on selected segment
+  // Update renderActionButtons in Purchases.js
+  var renderActionButtons = function renderActionButtons(order) {
+    switch (selectedSegment) {
+      case "To Ship":
+        return order.status === "cancellation_requested" ? /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)(antd__WEBPACK_IMPORTED_MODULE_7__["default"], {
+          disabled: true,
+          className: "user-purchases-action-button",
+          children: "Cancellation Pending"
+        }) : /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)(antd__WEBPACK_IMPORTED_MODULE_7__["default"], {
+          type: "danger",
+          onClick: function onClick() {
+            return openModal("cancel", order);
+          },
+          className: "user-purchases-action-button",
+          loading: actionLoading,
+          children: "Cancel Order"
+        });
+      // Rest of the switch case remains the same
+      case "To Receive":
+        return order.status === "refund_requested" ? /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)(antd__WEBPACK_IMPORTED_MODULE_7__["default"], {
+          disabled: true,
+          className: "user-purchases-action-button",
+          onClick: function onClick() {
+            return handleViewRefundDetails(order.id);
+          },
+          children: "Refund Pending"
+        }) : /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsxs)("div", {
+          className: "user-purchases-button-group",
+          children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)(antd__WEBPACK_IMPORTED_MODULE_7__["default"], {
+            type: "primary",
+            onClick: function onClick() {
+              return handleOrderReceived(order.id);
+            },
+            className: "user-purchases-action-button",
+            loading: actionLoading,
+            children: "Order Received"
+          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)(antd__WEBPACK_IMPORTED_MODULE_7__["default"], {
+            onClick: function onClick() {
+              return openModal("refund", order);
+            },
+            className: "user-purchases-action-button",
+            loading: actionLoading,
+            children: "Refund"
+          })]
+        });
+      case "Complete":
+        return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)(antd__WEBPACK_IMPORTED_MODULE_7__["default"], {
+          type: "primary",
+          onClick: function onClick() {
+            return openModal("review", order);
+          },
+          className: "user-purchases-action-button",
+          children: "Review"
+        });
+      case "Cancelled":
+        return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)(antd__WEBPACK_IMPORTED_MODULE_7__["default"], {
+          type: "primary",
+          onClick: function onClick() {
+            return handleBuyAgain(order.id);
+          },
+          className: "user-purchases-action-button",
+          children: "Buy Again"
+        });
+      case "Refund":
+        return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)(antd__WEBPACK_IMPORTED_MODULE_7__["default"], {
+          type: "primary",
+          onClick: function onClick() {
+            return handleViewRefundDetails(order.id);
+          },
+          className: "user-purchases-action-button",
+          children: "View Refund Details"
+        });
+      default:
+        return null;
+    }
+  };
   if (loading) {
-    return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)(_Profile_ProfileMain__WEBPACK_IMPORTED_MODULE_1__["default"], {
-      children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)("div", {
+    return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)(_Profile_ProfileMain__WEBPACK_IMPORTED_MODULE_1__["default"], {
+      children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsxs)("div", {
         style: {
           padding: "20px"
         },
-        children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("h2", {
+        children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("h2", {
           children: "My Purchases"
-        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("p", {
+        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("p", {
           children: "Loading purchase history..."
         })]
       })
     });
   }
-  return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)(_Profile_ProfileMain__WEBPACK_IMPORTED_MODULE_1__["default"], {
-    children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)("div", {
-      style: {
-        padding: "20px"
-      },
-      children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("h2", {
-        children: "My Purchases"
-      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)(antd__WEBPACK_IMPORTED_MODULE_4__["default"], {
+  return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsxs)(_Profile_ProfileMain__WEBPACK_IMPORTED_MODULE_1__["default"], {
+    children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsxs)("div", {
+      className: "user-purchases-container",
+      children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("div", {
+        className: "user-purchases-header",
+        children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("h2", {
+          children: "My Purchases"
+        })
+      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)(antd__WEBPACK_IMPORTED_MODULE_8__["default"], {
         options: ["To Ship", "To Receive", "Complete", "Cancelled", "Refund"],
         value: selectedSegment,
         onChange: function onChange(val) {
           return setSelectedSegment(val);
-        },
-        style: {
-          marginBottom: "20px"
         }
-      }), displayedOrders.length === 0 ? /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)("p", {
-        children: ["No orders found for \"", selectedSegment, "\""]
-      }) : /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("div", {
-        className: "order-list",
-        children: displayedOrders.map(function (order) {
+      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("div", {
+        className: "user-purchases-order-list",
+        children: displayedOrders.length === 0 ? /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsxs)("p", {
+          className: "user-purchases-empty-orders",
+          children: ["No orders found for \"", selectedSegment, "\""]
+        }) : displayedOrders.map(function (order) {
           var _order$order_items;
-          // Show the purchase date (or created_at), total amount, etc.
           var rawDate = order.purchase_date || order.created_at;
           var orderDate = rawDate ? new Date(rawDate).toLocaleDateString() : "N/A";
           var toPay = parseFloat(order.total_amount) || 0;
-          return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)("div", {
-            className: "order-item",
-            style: {
-              marginBottom: "20px",
-              border: "1px solid #ccc",
-              padding: "10px",
-              borderRadius: "4px"
-            },
-            children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)("h4", {
-              style: {
-                margin: "0 0 5px"
-              },
-              children: ["Order #", order.order_number, " \u2014 ", order.status]
-            }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)("p", {
-              style: {
-                margin: "0 0 5px"
-              },
+          return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsxs)("div", {
+            className: "user-purchases-order-item",
+            onClick: order.status === "cancellation_requested" || order.status === "refund_requested" ? function () {
+              return order.status === "cancellation_requested" ? handleViewCancellationDetails(order.id) : handleViewRefundDetails(order.id);
+            } : undefined,
+            style: order.status === "cancellation_requested" || order.status === "refund_requested" ? {
+              cursor: 'pointer'
+            } : {},
+            children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsxs)("h4", {
+              children: ["Order #", order.order_number, /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsxs)("span", {
+                className: "user-purchases-order-status ".concat(order.status),
+                children: ["\u2014 ", order.status === "cancellation_requested" ? "Cancellation Pending" : order.status === "refund_requested" ? "Refund Pending" : order.status]
+              })]
+            }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsxs)("p", {
               children: ["Ordered: ", orderDate]
-            }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)("p", {
-              style: {
-                margin: "0 0 10px"
-              },
+            }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsxs)("p", {
+              className: "user-purchases-order-total",
               children: ["To Pay: PHP ", toPay.toFixed(2)]
-            }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("div", {
-              style: {
-                display: "flex",
-                flexWrap: "wrap",
-                gap: "10px"
-              },
+            }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("div", {
+              className: "user-purchases-product-grid",
               children: (_order$order_items = order.order_items) === null || _order$order_items === void 0 ? void 0 : _order$order_items.map(function (item) {
                 var product = item.product || {};
-                // Safely parse the product's price
                 var productPrice = parseFloat(product.price) || 0;
                 var productName = product.product_name || "Unknown Product";
-                // Build the product image path or fallback
                 var productImage = product.product_image ? "http://127.0.0.1:8000/storage/".concat(product.product_image) : "/placeholder.jpg";
-                return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)("div", {
-                  style: {
-                    width: "120px",
-                    textAlign: "center",
-                    border: "1px solid #eee",
-                    borderRadius: "4px",
-                    padding: "5px"
-                  },
-                  children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("img", {
+                return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsxs)("div", {
+                  className: "user-purchases-product-card",
+                  children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("img", {
                     src: productImage,
-                    alt: productName,
-                    style: {
-                      width: "100px",
-                      height: "100px",
-                      objectFit: "cover",
-                      marginBottom: "5px",
-                      borderRadius: "4px"
-                    }
-                  }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("div", {
-                    style: {
-                      fontWeight: "bold",
-                      marginBottom: "3px"
-                    },
+                    alt: productName
+                  }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("div", {
+                    className: "user-purchases-product-name",
                     children: productName
-                  }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)("div", {
-                    style: {
-                      fontSize: "0.9em"
-                    },
+                  }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsxs)("div", {
+                    className: "user-purchases-product-price",
                     children: ["Price: PHP ", productPrice.toFixed(2)]
-                  }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)("div", {
-                    style: {
-                      fontSize: "0.9em"
-                    },
+                  }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsxs)("div", {
+                    className: "user-purchases-product-quantity",
                     children: ["Qty: ", item.quantity]
                   })]
                 }, item.id);
               })
+            }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("div", {
+              className: "user-purchases-actions",
+              children: renderActionButtons(order)
             })]
           }, order.id);
         })
       })]
-    })
+    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)(_OrderActionModals__WEBPACK_IMPORTED_MODULE_3__["default"], {
+      visible: modalVisible,
+      modalType: modalType,
+      onClose: closeModal,
+      order: selectedOrder,
+      onSuccess: handleModalSuccess,
+      actionLoading: actionLoading,
+      setActionLoading: setActionLoading
+    })]
   });
 };
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (Purchases);
@@ -78900,6 +80699,10 @@ var Confirmation = function Confirmation() {
             children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("strong", {
               children: "Grand Total:"
             }), " PHP", (totalPrice + 70).toFixed(2)]
+          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxs)("p", {
+            children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("strong", {
+              children: "Payment Method:"
+            }), " ", paymentMethod]
           })]
         })]
       })]
@@ -140025,6 +141828,447 @@ __webpack_require__.r(__webpack_exports__);
   Line: _Line__WEBPACK_IMPORTED_MODULE_0__["default"],
   Circle: _Circle__WEBPACK_IMPORTED_MODULE_1__["default"]
 });
+
+/***/ }),
+
+/***/ "./node_modules/rc-rate/es/Rate.js":
+/*!*****************************************!*\
+  !*** ./node_modules/rc-rate/es/Rate.js ***!
+  \*****************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var _babel_runtime_helpers_esm_extends__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @babel/runtime/helpers/esm/extends */ "./node_modules/@babel/runtime/helpers/esm/extends.js");
+/* harmony import */ var _babel_runtime_helpers_esm_defineProperty__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @babel/runtime/helpers/esm/defineProperty */ "./node_modules/@babel/runtime/helpers/esm/defineProperty.js");
+/* harmony import */ var _babel_runtime_helpers_esm_slicedToArray__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @babel/runtime/helpers/esm/slicedToArray */ "./node_modules/@babel/runtime/helpers/esm/slicedToArray.js");
+/* harmony import */ var _babel_runtime_helpers_esm_objectWithoutProperties__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @babel/runtime/helpers/esm/objectWithoutProperties */ "./node_modules/@babel/runtime/helpers/esm/objectWithoutProperties.js");
+/* harmony import */ var classnames__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! classnames */ "./node_modules/classnames/index.js");
+/* harmony import */ var classnames__WEBPACK_IMPORTED_MODULE_4___default = /*#__PURE__*/__webpack_require__.n(classnames__WEBPACK_IMPORTED_MODULE_4__);
+/* harmony import */ var rc_util_es_hooks_useMergedState__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! rc-util/es/hooks/useMergedState */ "./node_modules/rc-util/es/hooks/useMergedState.js");
+/* harmony import */ var rc_util_es_KeyCode__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! rc-util/es/KeyCode */ "./node_modules/rc-util/es/KeyCode.js");
+/* harmony import */ var rc_util_es_pickAttrs__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! rc-util/es/pickAttrs */ "./node_modules/rc-util/es/pickAttrs.js");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_8___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_8__);
+/* harmony import */ var _Star__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ./Star */ "./node_modules/rc-rate/es/Star.js");
+/* harmony import */ var _useRefs__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! ./useRefs */ "./node_modules/rc-rate/es/useRefs.js");
+/* harmony import */ var _util__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! ./util */ "./node_modules/rc-rate/es/util.js");
+
+
+
+
+var _excluded = ["prefixCls", "className", "defaultValue", "value", "count", "allowHalf", "allowClear", "keyboard", "character", "characterRender", "disabled", "direction", "tabIndex", "autoFocus", "onHoverChange", "onChange", "onFocus", "onBlur", "onKeyDown", "onMouseLeave"];
+
+
+
+
+
+
+
+
+function Rate(props, ref) {
+  var _props$prefixCls = props.prefixCls,
+    prefixCls = _props$prefixCls === void 0 ? 'rc-rate' : _props$prefixCls,
+    className = props.className,
+    defaultValue = props.defaultValue,
+    propValue = props.value,
+    _props$count = props.count,
+    count = _props$count === void 0 ? 5 : _props$count,
+    _props$allowHalf = props.allowHalf,
+    allowHalf = _props$allowHalf === void 0 ? false : _props$allowHalf,
+    _props$allowClear = props.allowClear,
+    allowClear = _props$allowClear === void 0 ? true : _props$allowClear,
+    _props$keyboard = props.keyboard,
+    keyboard = _props$keyboard === void 0 ? true : _props$keyboard,
+    _props$character = props.character,
+    character = _props$character === void 0 ? '★' : _props$character,
+    characterRender = props.characterRender,
+    disabled = props.disabled,
+    _props$direction = props.direction,
+    direction = _props$direction === void 0 ? 'ltr' : _props$direction,
+    _props$tabIndex = props.tabIndex,
+    tabIndex = _props$tabIndex === void 0 ? 0 : _props$tabIndex,
+    autoFocus = props.autoFocus,
+    onHoverChange = props.onHoverChange,
+    onChange = props.onChange,
+    onFocus = props.onFocus,
+    onBlur = props.onBlur,
+    onKeyDown = props.onKeyDown,
+    onMouseLeave = props.onMouseLeave,
+    restProps = (0,_babel_runtime_helpers_esm_objectWithoutProperties__WEBPACK_IMPORTED_MODULE_3__["default"])(props, _excluded);
+  var _useRefs = (0,_useRefs__WEBPACK_IMPORTED_MODULE_10__["default"])(),
+    _useRefs2 = (0,_babel_runtime_helpers_esm_slicedToArray__WEBPACK_IMPORTED_MODULE_2__["default"])(_useRefs, 2),
+    getStarRef = _useRefs2[0],
+    setStarRef = _useRefs2[1];
+  var rateRef = react__WEBPACK_IMPORTED_MODULE_8___default().useRef(null);
+
+  // ============================ Ref =============================
+  var triggerFocus = function triggerFocus() {
+    if (!disabled) {
+      var _rateRef$current;
+      (_rateRef$current = rateRef.current) === null || _rateRef$current === void 0 || _rateRef$current.focus();
+    }
+  };
+  react__WEBPACK_IMPORTED_MODULE_8___default().useImperativeHandle(ref, function () {
+    return {
+      focus: triggerFocus,
+      blur: function blur() {
+        if (!disabled) {
+          var _rateRef$current2;
+          (_rateRef$current2 = rateRef.current) === null || _rateRef$current2 === void 0 || _rateRef$current2.blur();
+        }
+      }
+    };
+  });
+
+  // =========================== Value ============================
+  var _useMergedState = (0,rc_util_es_hooks_useMergedState__WEBPACK_IMPORTED_MODULE_5__["default"])(defaultValue || 0, {
+      value: propValue
+    }),
+    _useMergedState2 = (0,_babel_runtime_helpers_esm_slicedToArray__WEBPACK_IMPORTED_MODULE_2__["default"])(_useMergedState, 2),
+    value = _useMergedState2[0],
+    setValue = _useMergedState2[1];
+  var _useMergedState3 = (0,rc_util_es_hooks_useMergedState__WEBPACK_IMPORTED_MODULE_5__["default"])(null),
+    _useMergedState4 = (0,_babel_runtime_helpers_esm_slicedToArray__WEBPACK_IMPORTED_MODULE_2__["default"])(_useMergedState3, 2),
+    cleanedValue = _useMergedState4[0],
+    setCleanedValue = _useMergedState4[1];
+  var getStarValue = function getStarValue(index, x) {
+    var reverse = direction === 'rtl';
+    var starValue = index + 1;
+    if (allowHalf) {
+      var starEle = getStarRef(index);
+      var leftDis = (0,_util__WEBPACK_IMPORTED_MODULE_11__.getOffsetLeft)(starEle);
+      var width = starEle.clientWidth;
+      if (reverse && x - leftDis > width / 2) {
+        starValue -= 0.5;
+      } else if (!reverse && x - leftDis < width / 2) {
+        starValue -= 0.5;
+      }
+    }
+    return starValue;
+  };
+
+  // >>>>> Change
+  var changeValue = function changeValue(nextValue) {
+    setValue(nextValue);
+    onChange === null || onChange === void 0 || onChange(nextValue);
+  };
+
+  // =========================== Focus ============================
+  var _React$useState = react__WEBPACK_IMPORTED_MODULE_8___default().useState(false),
+    _React$useState2 = (0,_babel_runtime_helpers_esm_slicedToArray__WEBPACK_IMPORTED_MODULE_2__["default"])(_React$useState, 2),
+    focused = _React$useState2[0],
+    setFocused = _React$useState2[1];
+  var onInternalFocus = function onInternalFocus() {
+    setFocused(true);
+    onFocus === null || onFocus === void 0 || onFocus();
+  };
+  var onInternalBlur = function onInternalBlur() {
+    setFocused(false);
+    onBlur === null || onBlur === void 0 || onBlur();
+  };
+
+  // =========================== Hover ============================
+  var _React$useState3 = react__WEBPACK_IMPORTED_MODULE_8___default().useState(null),
+    _React$useState4 = (0,_babel_runtime_helpers_esm_slicedToArray__WEBPACK_IMPORTED_MODULE_2__["default"])(_React$useState3, 2),
+    hoverValue = _React$useState4[0],
+    setHoverValue = _React$useState4[1];
+  var onHover = function onHover(event, index) {
+    var nextHoverValue = getStarValue(index, event.pageX);
+    if (nextHoverValue !== cleanedValue) {
+      setHoverValue(nextHoverValue);
+      setCleanedValue(null);
+    }
+    onHoverChange === null || onHoverChange === void 0 || onHoverChange(nextHoverValue);
+  };
+  var onMouseLeaveCallback = function onMouseLeaveCallback(event) {
+    if (!disabled) {
+      setHoverValue(null);
+      setCleanedValue(null);
+      onHoverChange === null || onHoverChange === void 0 || onHoverChange(undefined);
+    }
+    if (event) {
+      onMouseLeave === null || onMouseLeave === void 0 || onMouseLeave(event);
+    }
+  };
+
+  // =========================== Click ============================
+  var onClick = function onClick(event, index) {
+    var newValue = getStarValue(index, event.pageX);
+    var isReset = false;
+    if (allowClear) {
+      isReset = newValue === value;
+    }
+    onMouseLeaveCallback();
+    changeValue(isReset ? 0 : newValue);
+    setCleanedValue(isReset ? newValue : null);
+  };
+  var onInternalKeyDown = function onInternalKeyDown(event) {
+    var keyCode = event.keyCode;
+    var reverse = direction === 'rtl';
+    var step = allowHalf ? 0.5 : 1;
+    if (keyboard) {
+      if (keyCode === rc_util_es_KeyCode__WEBPACK_IMPORTED_MODULE_6__["default"].RIGHT && value < count && !reverse) {
+        changeValue(value + step);
+        event.preventDefault();
+      } else if (keyCode === rc_util_es_KeyCode__WEBPACK_IMPORTED_MODULE_6__["default"].LEFT && value > 0 && !reverse) {
+        changeValue(value - step);
+        event.preventDefault();
+      } else if (keyCode === rc_util_es_KeyCode__WEBPACK_IMPORTED_MODULE_6__["default"].RIGHT && value > 0 && reverse) {
+        changeValue(value - step);
+        event.preventDefault();
+      } else if (keyCode === rc_util_es_KeyCode__WEBPACK_IMPORTED_MODULE_6__["default"].LEFT && value < count && reverse) {
+        changeValue(value + step);
+        event.preventDefault();
+      }
+    }
+    onKeyDown === null || onKeyDown === void 0 || onKeyDown(event);
+  };
+
+  // =========================== Effect ===========================
+
+  react__WEBPACK_IMPORTED_MODULE_8___default().useEffect(function () {
+    if (autoFocus && !disabled) {
+      triggerFocus();
+    }
+  }, []);
+
+  // =========================== Render ===========================
+  // >>> Star
+  var starNodes = new Array(count).fill(0).map(function (item, index) {
+    return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_8___default().createElement(_Star__WEBPACK_IMPORTED_MODULE_9__["default"], {
+      ref: setStarRef(index),
+      index: index,
+      count: count,
+      disabled: disabled,
+      prefixCls: "".concat(prefixCls, "-star"),
+      allowHalf: allowHalf,
+      value: hoverValue === null ? value : hoverValue,
+      onClick: onClick,
+      onHover: onHover,
+      key: item || index,
+      character: character,
+      characterRender: characterRender,
+      focused: focused
+    });
+  });
+  var classString = classnames__WEBPACK_IMPORTED_MODULE_4___default()(prefixCls, className, (0,_babel_runtime_helpers_esm_defineProperty__WEBPACK_IMPORTED_MODULE_1__["default"])((0,_babel_runtime_helpers_esm_defineProperty__WEBPACK_IMPORTED_MODULE_1__["default"])({}, "".concat(prefixCls, "-disabled"), disabled), "".concat(prefixCls, "-rtl"), direction === 'rtl'));
+
+  // >>> Node
+  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_8___default().createElement("ul", (0,_babel_runtime_helpers_esm_extends__WEBPACK_IMPORTED_MODULE_0__["default"])({
+    className: classString,
+    onMouseLeave: onMouseLeaveCallback,
+    tabIndex: disabled ? -1 : tabIndex,
+    onFocus: disabled ? null : onInternalFocus,
+    onBlur: disabled ? null : onInternalBlur,
+    onKeyDown: disabled ? null : onInternalKeyDown,
+    ref: rateRef
+  }, (0,rc_util_es_pickAttrs__WEBPACK_IMPORTED_MODULE_7__["default"])(restProps, {
+    aria: true,
+    data: true,
+    attr: true
+  })), starNodes);
+}
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (/*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_8___default().forwardRef(Rate));
+
+/***/ }),
+
+/***/ "./node_modules/rc-rate/es/Star.js":
+/*!*****************************************!*\
+  !*** ./node_modules/rc-rate/es/Star.js ***!
+  \*****************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var rc_util_es_KeyCode__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! rc-util/es/KeyCode */ "./node_modules/rc-util/es/KeyCode.js");
+/* harmony import */ var classnames__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! classnames */ "./node_modules/classnames/index.js");
+/* harmony import */ var classnames__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(classnames__WEBPACK_IMPORTED_MODULE_2__);
+
+
+
+function Star(props, ref) {
+  var disabled = props.disabled,
+    prefixCls = props.prefixCls,
+    character = props.character,
+    characterRender = props.characterRender,
+    index = props.index,
+    count = props.count,
+    value = props.value,
+    allowHalf = props.allowHalf,
+    focused = props.focused,
+    onHover = props.onHover,
+    onClick = props.onClick;
+
+  // =========================== Events ===========================
+  var onInternalHover = function onInternalHover(e) {
+    onHover(e, index);
+  };
+  var onInternalClick = function onInternalClick(e) {
+    onClick(e, index);
+  };
+  var onInternalKeyDown = function onInternalKeyDown(e) {
+    if (e.keyCode === rc_util_es_KeyCode__WEBPACK_IMPORTED_MODULE_1__["default"].ENTER) {
+      onClick(e, index);
+    }
+  };
+
+  // =========================== Render ===========================
+  // >>>>> ClassName
+  var starValue = index + 1;
+  var classNameList = new Set([prefixCls]);
+
+  // TODO: Current we just refactor from CC to FC. This logic seems can be optimized.
+  if (value === 0 && index === 0 && focused) {
+    classNameList.add("".concat(prefixCls, "-focused"));
+  } else if (allowHalf && value + 0.5 >= starValue && value < starValue) {
+    classNameList.add("".concat(prefixCls, "-half"));
+    classNameList.add("".concat(prefixCls, "-active"));
+    if (focused) {
+      classNameList.add("".concat(prefixCls, "-focused"));
+    }
+  } else {
+    if (starValue <= value) {
+      classNameList.add("".concat(prefixCls, "-full"));
+    } else {
+      classNameList.add("".concat(prefixCls, "-zero"));
+    }
+    if (starValue === value && focused) {
+      classNameList.add("".concat(prefixCls, "-focused"));
+    }
+  }
+
+  // >>>>> Node
+  var characterNode = typeof character === 'function' ? character(props) : character;
+  var start = /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("li", {
+    className: classnames__WEBPACK_IMPORTED_MODULE_2___default()(Array.from(classNameList)),
+    ref: ref
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
+    onClick: disabled ? null : onInternalClick,
+    onKeyDown: disabled ? null : onInternalKeyDown,
+    onMouseMove: disabled ? null : onInternalHover,
+    role: "radio",
+    "aria-checked": value > index ? 'true' : 'false',
+    "aria-posinset": index + 1,
+    "aria-setsize": count,
+    tabIndex: disabled ? -1 : 0
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
+    className: "".concat(prefixCls, "-first")
+  }, characterNode), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
+    className: "".concat(prefixCls, "-second")
+  }, characterNode)));
+  if (characterRender) {
+    start = characterRender(start, props);
+  }
+  return start;
+}
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (/*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().forwardRef(Star));
+
+/***/ }),
+
+/***/ "./node_modules/rc-rate/es/index.js":
+/*!******************************************!*\
+  !*** ./node_modules/rc-rate/es/index.js ***!
+  \******************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var _Rate__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./Rate */ "./node_modules/rc-rate/es/Rate.js");
+
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (_Rate__WEBPACK_IMPORTED_MODULE_0__["default"]);
+
+/***/ }),
+
+/***/ "./node_modules/rc-rate/es/useRefs.js":
+/*!********************************************!*\
+  !*** ./node_modules/rc-rate/es/useRefs.js ***!
+  \********************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (/* binding */ useRefs)
+/* harmony export */ });
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+
+function useRefs() {
+  var nodeRef = react__WEBPACK_IMPORTED_MODULE_0__.useRef({});
+  function getRef(index) {
+    return nodeRef.current[index];
+  }
+  function setRef(index) {
+    return function (node) {
+      nodeRef.current[index] = node;
+    };
+  }
+  return [getRef, setRef];
+}
+
+/***/ }),
+
+/***/ "./node_modules/rc-rate/es/util.js":
+/*!*****************************************!*\
+  !*** ./node_modules/rc-rate/es/util.js ***!
+  \*****************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   getOffsetLeft: () => (/* binding */ getOffsetLeft)
+/* harmony export */ });
+function getScroll(w) {
+  var ret = w.pageXOffset;
+  var method = 'scrollLeft';
+  if (typeof ret !== 'number') {
+    var d = w.document;
+    // ie6,7,8 standard mode
+    ret = d.documentElement[method];
+    if (typeof ret !== 'number') {
+      // quirks mode
+      ret = d.body[method];
+    }
+  }
+  return ret;
+}
+function getClientPosition(elem) {
+  var x;
+  var y;
+  var doc = elem.ownerDocument;
+  var body = doc.body;
+  var docElem = doc && doc.documentElement;
+  var box = elem.getBoundingClientRect();
+  x = box.left;
+  y = box.top;
+  x -= docElem.clientLeft || body.clientLeft || 0;
+  y -= docElem.clientTop || body.clientTop || 0;
+  return {
+    left: x,
+    top: y
+  };
+}
+function getOffsetLeft(el) {
+  var pos = getClientPosition(el);
+  var doc = el.ownerDocument;
+  // Only IE use `parentWindow`
+  var w = doc.defaultView || doc.parentWindow;
+  pos.left += getScroll(w);
+  return pos.left;
+}
 
 /***/ }),
 

@@ -14748,8 +14748,12 @@ a {
   background-color: #ff3b30;
   padding: 20px;
   border-radius: 8px;
-  height: 615px;
+  min-height: 615px;
+  height: 100%;
   transition: background-color 0.3s ease;
+  display: flex;
+  flex-direction: column;
+  align-self: stretch;
 }
 .profile-sidebar .avatar-section {
   display: flex;
@@ -14769,6 +14773,7 @@ a {
 .profile-sidebar .sidebar-menu {
   background-color: transparent;
   border: none;
+  flex-grow: 1;
 }
 .profile-sidebar .sidebar-menu .menu-label {
   display: flex;
@@ -14810,6 +14815,19 @@ a {
 }
 .profile-sidebar .sidebar-menu .ant-menu-item:hover {
   background-color: rgba(255, 255, 255, 0.2) !important;
+}
+
+.profile-layout {
+  display: flex;
+  min-height: 100vh;
+}
+.profile-layout .profile-content {
+  flex-grow: 1;
+}
+.profile-layout .sidebar-column {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
 }
 
 /* changePassword.scss */
@@ -15238,6 +15256,324 @@ a {
   }
   75% {
     transform: translateX(5px);
+  }
+}
+.user-purchases-container {
+  background-color: #f5f5f5;
+  color: #000000;
+  min-height: 100vh;
+  padding: 20px;
+}
+.user-purchases-container .user-purchases-header h2, .user-purchases-container .user-purchases-header .h2 {
+  font-size: 28px;
+  font-weight: bold;
+  margin-bottom: 20px;
+  color: #000000;
+}
+
+.user-purchases-container .ant-segmented {
+  display: flex;
+  background-color: #ffffff;
+  border-radius: 8px;
+  padding: 4px;
+  margin-bottom: 24px;
+  width: -moz-fit-content;
+  width: fit-content;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+}
+.user-purchases-container .ant-segmented .ant-segmented-item {
+  background: none;
+  border: none;
+  color: rgba(0, 0, 0, 0.5);
+  padding: 8px 16px;
+  font-size: 14px;
+  cursor: pointer;
+  transition: color 0.2s, background-color 0.2s;
+  border-radius: 4px;
+}
+.user-purchases-container .ant-segmented .ant-segmented-item.ant-segmented-item-selected {
+  background-color: rgba(0, 0, 0, 0.05);
+  color: #000000;
+  font-weight: 500;
+}
+.user-purchases-container .ant-segmented .ant-segmented-item:hover:not(.ant-segmented-item-selected) {
+  color: rgba(0, 0, 0, 0.8);
+}
+
+.user-purchases-empty-orders {
+  background-color: #ffffff;
+  border-radius: 8px;
+  padding: 20px;
+  text-align: center;
+  color: rgba(0, 0, 0, 0.7);
+  margin-top: 20px;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+}
+
+.user-purchases-order-list {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.user-purchases-order-item {
+  background-color: #ffffff;
+  border-radius: 8px;
+  overflow: hidden;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+}
+.user-purchases-order-item h4, .user-purchases-order-item .h4 {
+  padding: 16px 16px 8px;
+  font-size: 18px;
+  font-weight: 500;
+  margin: 0;
+  color: #000000;
+}
+.user-purchases-order-item p {
+  padding: 0 16px;
+  margin: 0 0 4px 0;
+  color: rgba(0, 0, 0, 0.7);
+  font-size: 14px;
+}
+.user-purchases-order-item p:last-of-type {
+  margin-bottom: 16px;
+}
+.user-purchases-order-item .user-purchases-order-status {
+  font-weight: 500;
+}
+.user-purchases-order-item .user-purchases-order-status.pending {
+  color: #fa8c16;
+}
+.user-purchases-order-item .user-purchases-order-status.shipped {
+  color: #1890ff;
+}
+.user-purchases-order-item .user-purchases-order-status.delivered {
+  color: #52c41a;
+}
+.user-purchases-order-item .user-purchases-order-status.cancelled {
+  color: #f5222d;
+}
+.user-purchases-order-item .user-purchases-order-status.refunded {
+  color: #722ed1;
+}
+.user-purchases-order-item .user-purchases-order-total {
+  font-weight: 600;
+  color: #000000;
+}
+
+.user-purchases-product-grid {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  padding: 16px;
+  background-color: #ffffff;
+}
+
+.user-purchases-product-card {
+  border: 1px solid #e0e0e0;
+  border-radius: 4px;
+  width: 110px;
+  overflow: hidden;
+  background-color: #ffffff;
+}
+.user-purchases-product-card img {
+  width: 100%;
+  height: 100px;
+  -o-object-fit: cover;
+     object-fit: cover;
+}
+.user-purchases-product-card .user-purchases-product-name {
+  padding: 8px 8px 4px;
+  font-size: 12px;
+  font-weight: 500;
+  margin: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  color: #000000;
+  text-align: center;
+}
+.user-purchases-product-card .user-purchases-product-price,
+.user-purchases-product-card .user-purchases-product-quantity {
+  padding: 0 8px;
+  font-size: 11px;
+  color: rgba(0, 0, 0, 0.7);
+  margin: 0 0 2px 0;
+  text-align: center;
+}
+.user-purchases-product-card .user-purchases-product-price:last-child,
+.user-purchases-product-card .user-purchases-product-quantity:last-child {
+  padding-bottom: 8px;
+}
+
+.user-purchases-actions {
+  padding: 16px;
+  border-top: 1px solid #e0e0e0;
+  display: flex;
+  justify-content: flex-end;
+  gap: 12px;
+  background-color: rgba(0, 0, 0, 0.02);
+}
+
+.user-purchases-action-button {
+  min-width: 120px;
+}
+.user-purchases-action-button.ant-btn-primary {
+  background-color: #1890ff;
+  border-color: #1890ff;
+}
+.user-purchases-action-button.ant-btn-primary:hover, .user-purchases-action-button.ant-btn-primary:focus {
+  background-color: rgb(0, 118.4415584416, 228);
+  border-color: rgb(0, 118.4415584416, 228);
+}
+.user-purchases-action-button.ant-btn-danger {
+  background-color: #f5222d;
+  border-color: #f5222d;
+  color: white;
+}
+.user-purchases-action-button.ant-btn-danger:hover, .user-purchases-action-button.ant-btn-danger:focus {
+  background-color: rgb(218.1298701299, 9.8701298701, 20.7272727273);
+  border-color: rgb(218.1298701299, 9.8701298701, 20.7272727273);
+}
+.user-purchases-action-button:not(.ant-btn-primary):not(.ant-btn-danger) {
+  color: #595959;
+  border-color: #595959;
+}
+.user-purchases-action-button:not(.ant-btn-primary):not(.ant-btn-danger):hover, .user-purchases-action-button:not(.ant-btn-primary):not(.ant-btn-danger):focus {
+  color: rgb(63.5, 63.5, 63.5);
+  border-color: rgb(63.5, 63.5, 63.5);
+}
+
+.user-purchases-button-group {
+  display: flex;
+  gap: 12px;
+}
+
+@media (max-width: 768px) {
+  .user-purchases-container .ant-segmented {
+    width: 100%;
+    overflow-x: auto;
+  }
+  .user-purchases-container .ant-segmented .ant-segmented-item {
+    white-space: nowrap;
+  }
+  .user-purchases-actions {
+    flex-direction: column;
+    align-items: stretch;
+  }
+  .user-purchases-actions .user-purchases-button-group {
+    flex-direction: column;
+    gap: 8px;
+  }
+  .user-purchases-actions .user-purchases-action-button {
+    width: 100%;
+  }
+}
+@media (max-width: 480px) {
+  .user-purchases-product-card {
+    width: calc(50% - 6px);
+  }
+  .user-purchases-order-item h4, .user-purchases-order-item .h4 {
+    font-size: 16px;
+  }
+}
+/* Order Action Modals Styles */
+/* Modal Backgrounds */
+.ant-modal-content {
+  border-radius: 8px;
+  overflow: hidden;
+}
+
+/* Modal Header */
+.ant-modal-header {
+  background-color: #f9d0c4;
+  border-bottom: none;
+  padding: 16px;
+}
+
+.ant-modal-title {
+  font-size: 18px;
+  text-align: center;
+  color: #333;
+}
+
+/* Custom radio buttons */
+.ant-radio-wrapper {
+  margin: 8px 0;
+  font-size: 16px;
+}
+
+.ant-radio-inner::after {
+  background-color: #e05d44;
+}
+
+.ant-radio-checked .ant-radio-inner {
+  border-color: #e05d44;
+}
+
+/* Confirm Buttons */
+.confirm-btn {
+  background-color: #e05d44;
+  border-color: #e05d44;
+  width: 100%;
+  height: 44px;
+  font-size: 16px;
+  font-weight: 500;
+  border-radius: 6px;
+  margin-top: 16px;
+}
+
+.confirm-btn:hover, .confirm-btn:focus {
+  background-color: #c04d34;
+  border-color: #c04d34;
+}
+
+/* Rating Stars */
+.ant-rate-star:not(:last-child) {
+  margin-right: 8px;
+}
+
+.ant-rate-star-full {
+  color: #e05d44;
+}
+
+/* TextArea */
+.review-textarea {
+  border-radius: 16px;
+  padding: 16px;
+  font-size: 16px;
+  resize: none;
+  border: 1px solid #d9d9d9;
+}
+
+.review-textarea:focus {
+  border-color: #e05d44;
+  box-shadow: 0 0 0 2px rgba(224, 93, 68, 0.2);
+}
+
+/* Cancel Order Modal */
+.cancel-reason-group .ant-radio-wrapper {
+  display: block;
+  margin-bottom: 12px;
+}
+
+/* Other Reason TextArea */
+.other-reason-textarea {
+  margin-top: 12px;
+  border-radius: 4px;
+}
+
+/* Mobile responsiveness */
+@media (max-width: 576px) {
+  .ant-modal {
+    max-width: 90%;
+    margin: 0 auto;
+  }
+  .ant-modal-title {
+    font-size: 16px;
+  }
+  .ant-radio-wrapper {
+    font-size: 14px;
   }
 }
 .payment-form button {

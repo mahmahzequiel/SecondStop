@@ -90,8 +90,21 @@ Route::get('/chat/conversations', [ChatController::class, 'getConversations']);
     Route::get("users", [ApiController::class, "getAllUsers"]);
     Route::get('/users', [UserController::class, 'index']);
 
-    // Order Routes (Now Protected)
-    Route::apiResource('orders', OrderController::class);
+    // Order Routes
+Route::apiResource('orders', OrderController::class);
+// Change these routes to point to the request methods
+Route::post('orders/{order}/request-cancellation', [OrderController::class, 'requestCancellation'])->name('orders.request-cancellation');
+Route::post('orders/{order}/request-refund', [OrderController::class, 'requestRefund'])->name('orders.request-refund');
+// Keep the direct delivery method
+Route::post('orders/{order}/deliver', [OrderController::class, 'markAsDelivered'])->name('orders.deliver');
+Route::patch('orders/{order}/status', [OrderController::class, 'updateStatus'])->name('orders.status.update');
+
+// Admin approval routes - ensure these are protected by admin middleware
+Route::post('orders/{order}/approve-cancellation', [OrderController::class, 'approveCancellation'])->name('orders.approve-cancellation');
+Route::post('orders/{order}/deny-cancellation', [OrderController::class, 'denyCancellation'])->name('orders.deny-cancellation');
+Route::post('orders/{order}/approve-refund', [OrderController::class, 'approveRefund'])->name('orders.approve-refund');
+Route::post('orders/{order}/deny-refund', [OrderController::class, 'denyRefund'])->name('orders.deny-refund');
+
     Route::apiResource('payments', PaymentController::class);
     Route::apiResource('shippings', ShippingController::class);
     Route::apiResource('purchases', PurchaseController::class);

@@ -147,6 +147,9 @@ const Confirmation = () => {
             <p>
               <strong>Grand Total:</strong> PHP{(totalPrice + 70).toFixed(2)}
             </p>
+            <p>
+  <strong>Payment Method:</strong> {paymentMethod}
+</p>
           </div>
         </div>
       </div>

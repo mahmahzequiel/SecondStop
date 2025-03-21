@@ -1,0 +1,102 @@
+/* Order Action Modals Styles */
+
+/* Modal Backgrounds */
+.ant-modal-content {
+    border-radius: 8px;
+    overflow: hidden;
+  }
+  
+  /* Modal Header */
+  .ant-modal-header {
+    background-color: #f9d0c4;
+    border-bottom: none;
+    padding: 16px;
+  }
+  
+  .ant-modal-title {
+    font-size: 18px;
+    text-align: center;
+    color: #333;
+  }
+  
+  /* Custom radio buttons */
+  .ant-radio-wrapper {
+    margin: 8px 0;
+    font-size: 16px;
+  }
+  
+  .ant-radio-inner::after {
+    background-color: #e05d44;
+  }
+  
+  .ant-radio-checked .ant-radio-inner {
+    border-color: #e05d44;
+  }
+  
+  /* Confirm Buttons */
+  .confirm-btn {
+    background-color: #e05d44;
+    border-color: #e05d44;
+    width: 100%;
+    height: 44px;
+    font-size: 16px;
+    font-weight: 500;
+    border-radius: 6px;
+    margin-top: 16px;
+  }
+  
+  .confirm-btn:hover, .confirm-btn:focus {
+    background-color: #c04d34;
+    border-color: #c04d34;
+  }
+  
+  /* Rating Stars */
+  .ant-rate-star:not(:last-child) {
+    margin-right: 8px;
+  }
+  
+  .ant-rate-star-full {
+    color: #e05d44;
+  }
+  
+  /* TextArea */
+  .review-textarea {
+    border-radius: 16px;
+    padding: 16px;
+    font-size: 16px;
+    resize: none;
+    border: 1px solid #d9d9d9;
+  }
+  
+  .review-textarea:focus {
+    border-color: #e05d44;
+    box-shadow: 0 0 0 2px rgba(224, 93, 68, 0.2);
+  }
+  
+  /* Cancel Order Modal */
+  .cancel-reason-group .ant-radio-wrapper {
+    display: block;
+    margin-bottom: 12px;
+  }
+  
+  /* Other Reason TextArea */
+  .other-reason-textarea {
+    margin-top: 12px;
+    border-radius: 4px;
+  }
+  
+  /* Mobile responsiveness */
+  @media (max-width: 576px) {
+    .ant-modal {
+      max-width: 90%;
+      margin: 0 auto;
+    }
+    
+    .ant-modal-title {
+      font-size: 16px;
+    }
+    
+    .ant-radio-wrapper {
+      font-size: 14px;
+    }
+  }
