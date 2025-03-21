@@ -124,13 +124,12 @@ const Payment = () => {
     try {
       setPaymentDetails(details);
       alert(`Payment successful via ${details.method}!`);
-
+  
       // 1) Save Payment and retrieve its ID.
       const paymentId = await savePaymentDetails(details);
       if (!paymentId) throw new Error("Payment ID is missing");
-
+  
       // 2) Build order data.
-      // IMPORTANT: Map each selected item to include the cart item primary key as "id"
       const orderData = {
         orderNumber: `ORD-${Math.floor(100000 + Math.random() * 900000)}`,
         purchaseDate: new Date().toISOString(),
@@ -146,7 +145,7 @@ const Payment = () => {
         shippingAddress: buildShippingAddressString(address),
         paymentId
       };
-
+  
       // 3) Save Order.
       const orderId = await saveOrderDetails(orderData);
 
@@ -200,6 +199,9 @@ const Payment = () => {
         .map(item => item.id)
         .filter(id => id != null);
       
+      // Set payment status based on payment method
+      const paymentStatus = orderData.paymentMethod.toLowerCase() === "cod" ? "Unpaid" : "Paid";
+      
       const response = await axios.post("http://127.0.0.1:8000/api/orders", {
         cart_item_ids: cartItemIds,
         payment_id: orderData.paymentId,
@@ -208,6 +210,7 @@ const Payment = () => {
         shipping_cost: 70,
         total_amount: totalPrice + 70,
         status: "pending",
+        payment_status: paymentStatus, // Add payment status field
         purchase_date: new Date().toISOString().split("T")[0],
       }, { headers: { Authorization: `Bearer ${token}` } });
       return response.data.order.id;

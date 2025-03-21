@@ -36,6 +36,7 @@ class CreateOrdersTable extends Migration
                 'refunded',
                 'returned'
             ])->default('pending');
+            $table->enum('payment_status', ['Paid', 'Unpaid']); // New column
             $table->text('request_notes')->nullable();
             $table->text('admin_notes')->nullable();
             $table->dateTime('request_date')->nullable();

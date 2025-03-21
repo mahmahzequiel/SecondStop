@@ -70639,49 +70639,53 @@ var OrdersList = function OrdersList() {
     _useState6 = _slicedToArray(_useState5, 2),
     statusLoading = _useState6[0],
     setStatusLoading = _useState6[1];
-  var _useState7 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)({
+  var _useState7 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)({}),
+    _useState8 = _slicedToArray(_useState7, 2),
+    paymentStatusLoading = _useState8[0],
+    setPaymentStatusLoading = _useState8[1];
+  var _useState9 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)({
       current: 1,
       pageSize: 10,
       total: 0
     }),
-    _useState8 = _slicedToArray(_useState7, 2),
-    pagination = _useState8[0],
-    setPagination = _useState8[1];
-  var _useState9 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)({}),
     _useState10 = _slicedToArray(_useState9, 2),
-    filters = _useState10[0],
-    setFilters = _useState10[1];
+    pagination = _useState10[0],
+    setPagination = _useState10[1];
   var _useState11 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)({}),
     _useState12 = _slicedToArray(_useState11, 2),
-    sorter = _useState12[0],
-    setSorter = _useState12[1];
+    filters = _useState12[0],
+    setFilters = _useState12[1];
+  var _useState13 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)({}),
+    _useState14 = _slicedToArray(_useState13, 2),
+    sorter = _useState14[0],
+    setSorter = _useState14[1];
   var _Form$useForm = antd__WEBPACK_IMPORTED_MODULE_8__["default"].useForm(),
     _Form$useForm2 = _slicedToArray(_Form$useForm, 1),
     form = _Form$useForm2[0];
-  var _useState13 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)([]),
-    _useState14 = _slicedToArray(_useState13, 2),
-    selectedRowKeys = _useState14[0],
-    setSelectedRowKeys = _useState14[1];
-  var _useState15 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(''),
+  var _useState15 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)([]),
     _useState16 = _slicedToArray(_useState15, 2),
-    searchText = _useState16[0],
-    setSearchText = _useState16[1];
-  var _useState17 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(false),
+    selectedRowKeys = _useState16[0],
+    setSelectedRowKeys = _useState16[1];
+  var _useState17 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(''),
     _useState18 = _slicedToArray(_useState17, 2),
-    actionModalVisible = _useState18[0],
-    setActionModalVisible = _useState18[1];
-  var _useState19 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(null),
+    searchText = _useState18[0],
+    setSearchText = _useState18[1];
+  var _useState19 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(false),
     _useState20 = _slicedToArray(_useState19, 2),
-    currentOrder = _useState20[0],
-    setCurrentOrder = _useState20[1];
-  var _useState21 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(''),
+    actionModalVisible = _useState20[0],
+    setActionModalVisible = _useState20[1];
+  var _useState21 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(null),
     _useState22 = _slicedToArray(_useState21, 2),
-    actionType = _useState22[0],
-    setActionType = _useState22[1];
+    currentOrder = _useState22[0],
+    setCurrentOrder = _useState22[1];
   var _useState23 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(''),
     _useState24 = _slicedToArray(_useState23, 2),
-    adminNotes = _useState24[0],
-    setAdminNotes = _useState24[1];
+    actionType = _useState24[0],
+    setActionType = _useState24[1];
+  var _useState25 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(''),
+    _useState26 = _slicedToArray(_useState25, 2),
+    adminNotes = _useState26[0],
+    setAdminNotes = _useState26[1];
 
   // Status options for dropdown
   var statusOptions = [{
@@ -70732,6 +70736,17 @@ var OrdersList = function OrdersList() {
     label: 'Returned',
     value: 'returned',
     color: 'gray'
+  }];
+
+  // Modified Payment status options to match your database enum
+  var paymentStatusOptions = [{
+    label: 'Paid',
+    value: 'Paid',
+    color: 'green'
+  }, {
+    label: 'Unpaid',
+    value: 'Unpaid',
+    color: 'red'
   }];
 
   // Fetch orders from API
@@ -70861,64 +70876,116 @@ var OrdersList = function OrdersList() {
     };
   }();
 
-  // Handle approval/denial of requests
-  var handleActionRequest = /*#__PURE__*/function () {
-    var _ref5 = _asyncToGenerator(/*#__PURE__*/_regeneratorRuntime().mark(function _callee3() {
-      var response, requestData, updatedOrders;
+  // Update payment status
+  var updatePaymentStatus = /*#__PURE__*/function () {
+    var _ref5 = _asyncToGenerator(/*#__PURE__*/_regeneratorRuntime().mark(function _callee3(orderId, newPaymentStatus) {
+      var response, updatedOrders;
       return _regeneratorRuntime().wrap(function _callee3$(_context3) {
         while (1) switch (_context3.prev = _context3.next) {
           case 0:
+            setPaymentStatusLoading(function (prev) {
+              return _objectSpread(_objectSpread({}, prev), {}, _defineProperty({}, orderId, true));
+            });
+            _context3.prev = 1;
+            _context3.next = 4;
+            return axios__WEBPACK_IMPORTED_MODULE_1___default().patch("/api/orders/".concat(orderId, "/payment-status"), {
+              payment_status: newPaymentStatus
+            });
+          case 4:
+            response = _context3.sent;
+            // Update the order in the local state
+            updatedOrders = orders.map(function (order) {
+              if (order.id === orderId) {
+                return _objectSpread(_objectSpread({}, order), {}, {
+                  payment_status: newPaymentStatus
+                });
+              }
+              return order;
+            });
+            setOrders(updatedOrders);
+            antd__WEBPACK_IMPORTED_MODULE_9__["default"].success("Payment status updated to ".concat(newPaymentStatus));
+            _context3.next = 14;
+            break;
+          case 10:
+            _context3.prev = 10;
+            _context3.t0 = _context3["catch"](1);
+            console.error('Error updating payment status:', _context3.t0);
+            antd__WEBPACK_IMPORTED_MODULE_9__["default"].error('Failed to update payment status');
+          case 14:
+            _context3.prev = 14;
+            setPaymentStatusLoading(function (prev) {
+              return _objectSpread(_objectSpread({}, prev), {}, _defineProperty({}, orderId, false));
+            });
+            return _context3.finish(14);
+          case 17:
+          case "end":
+            return _context3.stop();
+        }
+      }, _callee3, null, [[1, 10, 14, 17]]);
+    }));
+    return function updatePaymentStatus(_x3, _x4) {
+      return _ref5.apply(this, arguments);
+    };
+  }();
+
+  // Handle approval/denial of requests
+  var handleActionRequest = /*#__PURE__*/function () {
+    var _ref6 = _asyncToGenerator(/*#__PURE__*/_regeneratorRuntime().mark(function _callee4() {
+      var response, requestData, updatedOrders;
+      return _regeneratorRuntime().wrap(function _callee4$(_context4) {
+        while (1) switch (_context4.prev = _context4.next) {
+          case 0:
             if (!(!currentOrder || !actionType)) {
-              _context3.next = 2;
+              _context4.next = 2;
               break;
             }
-            return _context3.abrupt("return");
+            return _context4.abrupt("return");
           case 2:
             if (!((actionType === 'denyCancellation' || actionType === 'denyRefund') && !adminNotes.trim())) {
-              _context3.next = 5;
+              _context4.next = 5;
               break;
             }
             antd__WEBPACK_IMPORTED_MODULE_9__["default"].error('Please provide a reason for denial');
-            return _context3.abrupt("return");
+            return _context4.abrupt("return");
           case 5:
             setStatusLoading(function (prev) {
               return _objectSpread(_objectSpread({}, prev), {}, _defineProperty({}, currentOrder.id, true));
             });
-            _context3.prev = 6;
+            _context4.prev = 6;
             requestData = {
               admin_notes: adminNotes
             };
-            _context3.t0 = actionType;
-            _context3.next = _context3.t0 === 'approveCancellation' ? 11 : _context3.t0 === 'denyCancellation' ? 16 : _context3.t0 === 'approveRefund' ? 21 : _context3.t0 === 'denyRefund' ? 26 : 31;
+            _context4.t0 = actionType;
+            _context4.next = _context4.t0 === 'approveCancellation' ? 11 : _context4.t0 === 'denyCancellation' ? 16 : _context4.t0 === 'approveRefund' ? 21 : _context4.t0 === 'denyRefund' ? 26 : 31;
             break;
           case 11:
-            _context3.next = 13;
+            _context4.next = 13;
             return axios__WEBPACK_IMPORTED_MODULE_1___default().post("/api/orders/".concat(currentOrder.id, "/approve-cancellation"), requestData);
           case 13:
-            response = _context3.sent;
+            response = _context4.sent;
             antd__WEBPACK_IMPORTED_MODULE_9__["default"].success("Cancellation for order #".concat(currentOrder.order_number, " has been approved"));
-            return _context3.abrupt("break", 32);
+            return _context4.abrupt("break", 32);
           case 16:
-            _context3.next = 18;
+            _context4.next = 18;
             return axios__WEBPACK_IMPORTED_MODULE_1___default().post("/api/orders/".concat(currentOrder.id, "/deny-cancellation"), requestData);
           case 18:
-            response = _context3.sent;
+            response = _context4.sent;
             antd__WEBPACK_IMPORTED_MODULE_9__["default"].success("Cancellation for order #".concat(currentOrder.order_number, " has been denied"));
-            return _context3.abrupt("break", 32);
+            return _context4.abrupt("break", 32);
           case 21:
-            _context3.next = 23;
+            _context4.next = 23;
             return axios__WEBPACK_IMPORTED_MODULE_1___default().post("/api/orders/".concat(currentOrder.id, "/approve-refund"), requestData);
           case 23:
-            response = _context3.sent;
+            response = _context4.sent;
             antd__WEBPACK_IMPORTED_MODULE_9__["default"].success("Refund for order #".concat(currentOrder.order_number, " has been approved"));
-            return _context3.abrupt("break", 32);
+            return _context4.abrupt("break", 32);
           case 26:
-            _context3.next = 28;
+            _context4.next = 28;
             return axios__WEBPACK_IMPORTED_MODULE_1___default().post("/api/orders/".concat(currentOrder.id, "/deny-refund"), requestData);
           case 28:
-            response = _context3.sent;
+            response = _context4.sent;
             antd__WEBPACK_IMPORTED_MODULE_9__["default"].success("Refund for order #".concat(currentOrder.order_number, " has been denied"));
-            return _context3.abrupt("break", 32);
+            return _context4.abrupt("break", 32);
           case 31:
             throw new Error('Invalid action type');
           case 32:
@@ -70930,15 +70997,15 @@ var OrdersList = function OrdersList() {
               return order;
             });
             setOrders(updatedOrders);
-            _context3.next = 40;
+            _context4.next = 40;
             break;
           case 36:
-            _context3.prev = 36;
-            _context3.t1 = _context3["catch"](6);
-            console.error('Error handling request:', _context3.t1);
+            _context4.prev = 36;
+            _context4.t1 = _context4["catch"](6);
+            console.error('Error handling request:', _context4.t1);
             antd__WEBPACK_IMPORTED_MODULE_9__["default"].error('Failed to process request');
           case 40:
-            _context3.prev = 40;
+            _context4.prev = 40;
             setStatusLoading(function (prev) {
               return _objectSpread(_objectSpread({}, prev), {}, _defineProperty({}, currentOrder.id, false));
             });
@@ -70946,15 +71013,15 @@ var OrdersList = function OrdersList() {
             setCurrentOrder(null);
             setActionType('');
             setAdminNotes('');
-            return _context3.finish(40);
+            return _context4.finish(40);
           case 47:
           case "end":
-            return _context3.stop();
+            return _context4.stop();
         }
-      }, _callee3, null, [[6, 36, 40, 47]]);
+      }, _callee4, null, [[6, 36, 40, 47]]);
     }));
     return function handleActionRequest() {
-      return _ref5.apply(this, arguments);
+      return _ref6.apply(this, arguments);
     };
   }();
 
@@ -71030,6 +71097,30 @@ var OrdersList = function OrdersList() {
     return option ? option.label : status.split('_').map(function (word) {
       return word.charAt(0).toUpperCase() + word.slice(1);
     }).join(' ');
+  };
+
+  // Get color for payment status tag
+  var getPaymentStatusColor = function getPaymentStatusColor(status) {
+    // Handle any legacy payment status values by defaulting to reasonable colors
+    if (status === 'paid' || status === 'Paid') {
+      return 'green';
+    } else if (status === 'Unpaid' || !status) {
+      return 'red';
+    }
+    return 'default';
+  };
+
+  // Get label for payment status value - normalize to Paid/Unpaid
+  var getPaymentStatusLabel = function getPaymentStatusLabel(status) {
+    // Default to Unpaid for empty or undefined values
+    if (!status) return 'Unpaid';
+
+    // Normalize various formats to Paid/Unpaid
+    if (status.toLowerCase() === 'paid') {
+      return 'Paid';
+    } else {
+      return 'Unpaid';
+    }
   };
 
   // Render actions for request approvals/denials
@@ -71119,8 +71210,8 @@ var OrdersList = function OrdersList() {
         disabled: option.value === status
       };
     });
-    var handleMenuClick = function handleMenuClick(_ref6) {
-      var key = _ref6.key;
+    var handleMenuClick = function handleMenuClick(_ref7) {
+      var key = _ref7.key;
       if (key !== status) {
         updateOrderStatus(record.id, key);
       }
@@ -71139,6 +71230,59 @@ var OrdersList = function OrdersList() {
         children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)(antd__WEBPACK_IMPORTED_MODULE_15__["default"], {
           color: getStatusColor(status),
           children: getStatusLabel(status)
+        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)(_ant_design_icons__WEBPACK_IMPORTED_MODULE_19__["default"], {
+          style: {
+            fontSize: '12px'
+          }
+        })]
+      })
+    });
+  };
+
+  // Render payment status dropdown
+  var renderPaymentStatusDropdown = function renderPaymentStatusDropdown(status, record) {
+    // Normalize the status to either Paid or Unpaid
+    var currentStatus = status;
+    if (!currentStatus || !['Paid', 'Unpaid'].includes(currentStatus)) {
+      currentStatus = 'Unpaid'; // Default to Unpaid for invalid values
+    }
+
+    // Don't allow payment status changes for cancelled orders
+    if (record.status === 'cancelled' || record.status === 'cancellation_approved') {
+      return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)(antd__WEBPACK_IMPORTED_MODULE_15__["default"], {
+        color: getPaymentStatusColor(currentStatus),
+        children: currentStatus
+      });
+    }
+
+    // Create menu items for dropdown - only Paid and Unpaid options
+    var menuItems = paymentStatusOptions.map(function (option) {
+      return {
+        key: option.value,
+        label: option.label,
+        disabled: option.value === currentStatus
+      };
+    });
+    var handleMenuClick = function handleMenuClick(_ref8) {
+      var key = _ref8.key;
+      if (key !== currentStatus) {
+        updatePaymentStatus(record.id, key);
+      }
+    };
+    return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)(antd__WEBPACK_IMPORTED_MODULE_17__["default"], {
+      overlay: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)(antd__WEBPACK_IMPORTED_MODULE_18__["default"], {
+        onClick: handleMenuClick,
+        items: menuItems
+      }),
+      disabled: paymentStatusLoading[record.id],
+      trigger: ['click'],
+      children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsxs)(antd__WEBPACK_IMPORTED_MODULE_10__["default"], {
+        style: {
+          cursor: 'pointer'
+        },
+        children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)(antd__WEBPACK_IMPORTED_MODULE_15__["default"], {
+          color: getPaymentStatusColor(currentStatus),
+          children: currentStatus
         }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)(_ant_design_icons__WEBPACK_IMPORTED_MODULE_19__["default"], {
           style: {
             fontSize: '12px'
@@ -71173,9 +71317,7 @@ var OrdersList = function OrdersList() {
     render: function render(date, record) {
       return date ? moment__WEBPACK_IMPORTED_MODULE_2___default()(date).format('MMM DD, YYYY') : record.created_at ? moment__WEBPACK_IMPORTED_MODULE_2___default()(record.created_at).format('MMM DD, YYYY') : 'N/A';
     }
-  },
-  // Fix for the Payment Method column
-  {
+  }, {
     title: 'Payment Method',
     dataIndex: ['payment', 'payment_method'],
     key: 'payment_method',
@@ -71202,6 +71344,20 @@ var OrdersList = function OrdersList() {
         // For methods without underscores like "paypal", "gcash", "cod"
         return method.charAt(0).toUpperCase() + method.slice(1);
       }
+    }
+  }, {
+    title: 'Payment Status',
+    dataIndex: 'payment_status',
+    key: 'payment_status',
+    filters: paymentStatusOptions.map(function (option) {
+      return {
+        text: option.label,
+        value: option.value
+      };
+    }),
+    filterMultiple: true,
+    render: function render(status, record) {
+      return renderPaymentStatusDropdown(status, record);
     }
   }, {
     title: 'Request Type',
@@ -71297,27 +71453,27 @@ var OrdersList = function OrdersList() {
 
   // Function to handle bulk actions
   var handleBulkAction = /*#__PURE__*/function () {
-    var _ref7 = _asyncToGenerator(/*#__PURE__*/_regeneratorRuntime().mark(function _callee4(action) {
+    var _ref9 = _asyncToGenerator(/*#__PURE__*/_regeneratorRuntime().mark(function _callee5(action) {
       var response;
-      return _regeneratorRuntime().wrap(function _callee4$(_context4) {
-        while (1) switch (_context4.prev = _context4.next) {
+      return _regeneratorRuntime().wrap(function _callee5$(_context5) {
+        while (1) switch (_context5.prev = _context5.next) {
           case 0:
             if (selectedRowKeys.length) {
-              _context4.next = 3;
+              _context5.next = 3;
               break;
             }
             antd__WEBPACK_IMPORTED_MODULE_9__["default"].warning('Please select at least one order');
-            return _context4.abrupt("return");
+            return _context5.abrupt("return");
           case 3:
             setLoading(true);
-            _context4.prev = 4;
-            _context4.next = 7;
+            _context5.prev = 4;
+            _context5.next = 7;
             return axios__WEBPACK_IMPORTED_MODULE_1___default().post('/api/orders/bulk-action', {
               order_ids: selectedRowKeys,
               action: action
             });
           case 7:
-            response = _context4.sent;
+            response = _context5.sent;
             // Refresh the orders list
             fetchOrders({
               current: pagination.current,
@@ -71327,41 +71483,113 @@ var OrdersList = function OrdersList() {
             // Clear selection
             setSelectedRowKeys([]);
             antd__WEBPACK_IMPORTED_MODULE_9__["default"].success("".concat(response.data.affected_count, " orders processed successfully"));
-            _context4.next = 17;
+            _context5.next = 17;
             break;
           case 13:
-            _context4.prev = 13;
-            _context4.t0 = _context4["catch"](4);
-            console.error('Error processing bulk action:', _context4.t0);
+            _context5.prev = 13;
+            _context5.t0 = _context5["catch"](4);
+            console.error('Error processing bulk action:', _context5.t0);
             antd__WEBPACK_IMPORTED_MODULE_9__["default"].error('Failed to process bulk action');
           case 17:
-            _context4.prev = 17;
+            _context5.prev = 17;
             setLoading(false);
-            return _context4.finish(17);
+            return _context5.finish(17);
           case 20:
           case "end":
-            return _context4.stop();
+            return _context5.stop();
         }
-      }, _callee4, null, [[4, 13, 17, 20]]);
+      }, _callee5, null, [[4, 13, 17, 20]]);
     }));
-    return function handleBulkAction(_x3) {
-      return _ref7.apply(this, arguments);
+    return function handleBulkAction(_x5) {
+      return _ref9.apply(this, arguments);
     };
   }();
 
-  // Bulk action menu
+  // Add bulk actions for payment status - modified for only Paid/Unpaid
+  var handleBulkPaymentAction = /*#__PURE__*/function () {
+    var _ref10 = _asyncToGenerator(/*#__PURE__*/_regeneratorRuntime().mark(function _callee6(action) {
+      var paymentStatus, response;
+      return _regeneratorRuntime().wrap(function _callee6$(_context6) {
+        while (1) switch (_context6.prev = _context6.next) {
+          case 0:
+            if (selectedRowKeys.length) {
+              _context6.next = 3;
+              break;
+            }
+            antd__WEBPACK_IMPORTED_MODULE_9__["default"].warning('Please select at least one order');
+            return _context6.abrupt("return");
+          case 3:
+            // Map action to the correct payment status value
+            paymentStatus = action === 'mark_paid' ? 'Paid' : 'Unpaid';
+            setLoading(true);
+            _context6.prev = 5;
+            _context6.next = 8;
+            return axios__WEBPACK_IMPORTED_MODULE_1___default().post('/api/orders/bulk-payment-action', {
+              order_ids: selectedRowKeys,
+              payment_status: paymentStatus // Send the exact value needed by the backend
+            });
+          case 8:
+            response = _context6.sent;
+            // Refresh the orders list
+            fetchOrders({
+              current: pagination.current,
+              pageSize: pagination.pageSize
+            });
+
+            // Clear selection
+            setSelectedRowKeys([]);
+            antd__WEBPACK_IMPORTED_MODULE_9__["default"].success("Payment status updated for ".concat(response.data.affected_count, " orders"));
+            _context6.next = 18;
+            break;
+          case 14:
+            _context6.prev = 14;
+            _context6.t0 = _context6["catch"](5);
+            console.error('Error processing bulk payment action:', _context6.t0);
+            antd__WEBPACK_IMPORTED_MODULE_9__["default"].error('Failed to update payment status');
+          case 18:
+            _context6.prev = 18;
+            setLoading(false);
+            return _context6.finish(18);
+          case 21:
+          case "end":
+            return _context6.stop();
+        }
+      }, _callee6, null, [[5, 14, 18, 21]]);
+    }));
+    return function handleBulkPaymentAction(_x6) {
+      return _ref10.apply(this, arguments);
+    };
+  }();
+
+  // Bulk action menu - modified for only Paid/Unpaid options
   var bulkActionMenu = /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsxs)(antd__WEBPACK_IMPORTED_MODULE_18__["default"], {
-    children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)(antd__WEBPACK_IMPORTED_MODULE_18__["default"].Item, {
-      onClick: function onClick() {
-        return handleBulkAction('mark_shipped');
-      },
-      children: "Mark as Shipped"
-    }, "mark_shipped"), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)(antd__WEBPACK_IMPORTED_MODULE_18__["default"].Item, {
-      onClick: function onClick() {
-        return handleBulkAction('mark_delivered');
-      },
-      children: "Mark as Delivered"
-    }, "mark_delivered")]
+    children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsxs)(antd__WEBPACK_IMPORTED_MODULE_18__["default"].SubMenu, {
+      title: "Update Status",
+      children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)(antd__WEBPACK_IMPORTED_MODULE_18__["default"].Item, {
+        onClick: function onClick() {
+          return handleBulkAction('mark_shipped');
+        },
+        children: "Mark as Shipped"
+      }, "mark_shipped"), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)(antd__WEBPACK_IMPORTED_MODULE_18__["default"].Item, {
+        onClick: function onClick() {
+          return handleBulkAction('mark_delivered');
+        },
+        children: "Mark as Delivered"
+      }, "mark_delivered")]
+    }, "status"), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsxs)(antd__WEBPACK_IMPORTED_MODULE_18__["default"].SubMenu, {
+      title: "Update Payment Status",
+      children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)(antd__WEBPACK_IMPORTED_MODULE_18__["default"].Item, {
+        onClick: function onClick() {
+          return handleBulkPaymentAction('mark_paid');
+        },
+        children: "Mark as Paid"
+      }, "mark_paid"), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)(antd__WEBPACK_IMPORTED_MODULE_18__["default"].Item, {
+        onClick: function onClick() {
+          return handleBulkPaymentAction('mark_unpaid');
+        },
+        children: "Mark as Unpaid"
+      }, "mark_unpaid")]
+    }, "payment")]
   });
 
   // View order details
@@ -71457,6 +71685,17 @@ var OrdersList = function OrdersList() {
               children: "Amount: "
             }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsxs)(Text, {
               children: ["PHP ", parseFloat(currentOrder.total_amount).toFixed(2)]
+            })]
+          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsxs)("div", {
+            style: {
+              marginBottom: 16
+            },
+            children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)(Text, {
+              strong: true,
+              children: "Payment Status: "
+            }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)(antd__WEBPACK_IMPORTED_MODULE_15__["default"], {
+              color: getPaymentStatusColor(currentOrder.payment_status),
+              children: currentOrder.payment_status === 'Paid' ? 'Paid' : 'Unpaid'
             })]
           }), currentOrder.request_notes && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsxs)("div", {
             style: {
@@ -81275,7 +81514,6 @@ var Payment = function Payment() {
             throw new Error("Payment ID is missing");
           case 8:
             // 2) Build order data.
-            // IMPORTANT: Map each selected item to include the cart item primary key as "id"
             orderData = {
               orderNumber: "ORD-".concat(Math.floor(100000 + Math.random() * 900000)),
               purchaseDate: new Date().toISOString(),
@@ -81382,7 +81620,7 @@ var Payment = function Payment() {
   }();
   var saveOrderDetails = /*#__PURE__*/function () {
     var _ref6 = _asyncToGenerator(/*#__PURE__*/_regeneratorRuntime().mark(function _callee5(orderData) {
-      var token, cartItemIds, response, _error$response3;
+      var token, cartItemIds, paymentStatus, response, _error$response3;
       return _regeneratorRuntime().wrap(function _callee5$(_context5) {
         while (1) switch (_context5.prev = _context5.next) {
           case 0:
@@ -81392,8 +81630,9 @@ var Payment = function Payment() {
               return item.id;
             }).filter(function (id) {
               return id != null;
-            });
-            _context5.next = 5;
+            }); // Set payment status based on payment method
+            paymentStatus = orderData.paymentMethod.toLowerCase() === "cod" ? "Unpaid" : "Paid";
+            _context5.next = 6;
             return axios__WEBPACK_IMPORTED_MODULE_2___default().post("http://127.0.0.1:8000/api/orders", {
               cart_item_ids: cartItemIds,
               payment_id: orderData.paymentId,
@@ -81402,25 +81641,27 @@ var Payment = function Payment() {
               shipping_cost: 70,
               total_amount: totalPrice + 70,
               status: "pending",
+              payment_status: paymentStatus,
+              // Add payment status field
               purchase_date: new Date().toISOString().split("T")[0]
             }, {
               headers: {
                 Authorization: "Bearer ".concat(token)
               }
             });
-          case 5:
+          case 6:
             response = _context5.sent;
             return _context5.abrupt("return", response.data.order.id);
-          case 9:
-            _context5.prev = 9;
+          case 10:
+            _context5.prev = 10;
             _context5.t0 = _context5["catch"](0);
             console.error("❌ Failed to save order details:", ((_error$response3 = _context5.t0.response) === null || _error$response3 === void 0 ? void 0 : _error$response3.data) || _context5.t0);
             throw _context5.t0;
-          case 13:
+          case 14:
           case "end":
             return _context5.stop();
         }
-      }, _callee5, null, [[0, 9]]);
+      }, _callee5, null, [[0, 10]]);
     }));
     return function saveOrderDetails(_x4) {
       return _ref6.apply(this, arguments);

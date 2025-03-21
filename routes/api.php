@@ -104,6 +104,8 @@ Route::post('orders/{order}/approve-cancellation', [OrderController::class, 'app
 Route::post('orders/{order}/deny-cancellation', [OrderController::class, 'denyCancellation'])->name('orders.deny-cancellation');
 Route::post('orders/{order}/approve-refund', [OrderController::class, 'approveRefund'])->name('orders.approve-refund');
 Route::post('orders/{order}/deny-refund', [OrderController::class, 'denyRefund'])->name('orders.deny-refund');
+Route::patch('/orders/{order}/payment-status', [OrderController::class, 'updatePaymentStatus'])
+->name('orders.update-payment-status');
 
     Route::apiResource('payments', PaymentController::class);
     Route::apiResource('shippings', ShippingController::class);

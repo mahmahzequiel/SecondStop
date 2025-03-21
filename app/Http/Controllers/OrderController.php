@@ -39,6 +39,7 @@ class OrderController extends Controller
                 'shipping_cost'  => 'required|numeric|min:0',
                 'total_amount'   => 'required|numeric|min:0',
                 'status'         => 'required|in:pending,shipped,delivered,cancelled,returned,refunded',
+                'payment_status' => 'required|in:Paid,Unpaid', // Added validation for new field
                 'purchase_date'  => 'nullable|date',
                 'cart_item_ids'  => 'required|array',
                 'cart_item_ids.*'=> 'integer|exists:cart_items,id',
@@ -89,6 +90,10 @@ class OrderController extends Controller
             // Build a detailed notification.
             $notificationTitle = "Order Placed Successfully";
             $notificationDescription = "Your order {$order->order_number} has been placed.<br/>";
+            
+            // Add payment status info to notification
+            $notificationDescription .= "Payment Status: {$order->payment_status}<br/>";
+            
             $firstProductImage = null;
 
             if ($allOrderItems->count() > 0) {
@@ -145,44 +150,73 @@ class OrderController extends Controller
     {
         try {
             $validated = $request->validate([
-                'payment_id'    => 'required|exists:payments,id',
-                'address_id'    => 'nullable|exists:addresses,id',
-                'order_number'  => 'required|string|unique:orders,order_number,' . $order->id,
-                'subtotal'      => 'required|numeric|min:0',
-                'shipping_cost' => 'required|numeric|min:0',
-                'total_amount'  => 'required|numeric|min:0',
-                'status'        => 'required|in:pending,shipped,delivered,cancelled,returned,refunded',
-                'purchase_date' => 'nullable|date',
+                'payment_id'     => 'required|exists:payments,id',
+                'address_id'     => 'nullable|exists:addresses,id',
+                'order_number'   => 'required|string|unique:orders,order_number,' . $order->id,
+                'subtotal'       => 'required|numeric|min:0',
+                'shipping_cost'  => 'required|numeric|min:0',
+                'total_amount'   => 'required|numeric|min:0',
+                'status'         => 'required|in:pending,shipped,delivered,cancelled,returned,refunded',
+                'payment_status' => 'required|in:Paid,Unpaid', // Added validation for new field
+                'purchase_date'  => 'nullable|date',
             ]);
 
             $oldStatus = $order->status;
             $newStatus = $validated['status'];
+            
+            $oldPaymentStatus = $order->payment_status;
+            $newPaymentStatus = $validated['payment_status'];
             
             // Update the order
             $order->update($validated);
             
             // Create notification for status change
             $user = $request->user();
-            if ($user && $oldStatus !== $newStatus) {
-                $notificationTitle = "Order Status Updated";
-                $notificationDescription = "Your order {$order->order_number} status has been changed to {$newStatus}.";
+            if ($user) {
+                $shouldNotify = false;
+                $notificationTitle = "";
+                $notificationDescription = "";
                 
-                // Customize notification based on new status
-                if ($newStatus === 'delivered') {
-                    $notificationTitle = "Order Delivered Successfully";
-                    $notificationDescription = "Your order {$order->order_number} has been marked as delivered. Thank you for shopping with us!";
-                } elseif ($newStatus === 'refunded') {
-                    $notificationTitle = "Refund Requested";
-                    $notificationDescription = "Your refund request for order {$order->order_number} has been submitted and is being processed.";
+                // Check if order status changed
+                if ($oldStatus !== $newStatus) {
+                    $shouldNotify = true;
+                    $notificationTitle = "Order Status Updated";
+                    $notificationDescription = "Your order {$order->order_number} status has been changed to {$newStatus}.";
+                    
+                    // Customize notification based on new status
+                    if ($newStatus === 'delivered') {
+                        $notificationTitle = "Order Delivered Successfully";
+                        $notificationDescription = "Your order {$order->order_number} has been marked as delivered. Thank you for shopping with us!";
+                    } elseif ($newStatus === 'refunded') {
+                        $notificationTitle = "Refund Requested";
+                        $notificationDescription = "Your refund request for order {$order->order_number} has been submitted and is being processed.";
+                    }
                 }
                 
-                Notification::create([
-                    'user_id'     => $user->id,
-                    'order_id'    => $order->id,
-                    'title'       => $notificationTitle,
-                    'description' => $notificationDescription,
-                    'is_read'     => 0,
-                ]);
+                // Check if payment status changed
+                if ($oldPaymentStatus !== $newPaymentStatus) {
+                    $shouldNotify = true;
+                    
+                    // If we're already notifying about status change, add payment status info
+                    if ($oldStatus !== $newStatus) {
+                        $notificationDescription .= " Your payment status has been updated to {$newPaymentStatus}.";
+                    } else {
+                        // If only payment status changed
+                        $notificationTitle = "Payment Status Updated";
+                        $notificationDescription = "Your order {$order->order_number} payment status has been updated to {$newPaymentStatus}.";
+                    }
+                }
+                
+                // Send notification if something changed
+                if ($shouldNotify) {
+                    Notification::create([
+                        'user_id'     => $user->id,
+                        'order_id'    => $order->id,
+                        'title'       => $notificationTitle,
+                        'description' => $notificationDescription,
+                        'is_read'     => 0,
+                    ]);
+                }
             }
 
             return response()->json([
@@ -237,6 +271,14 @@ class OrderController extends Controller
             }
             
             $order->update(['status' => 'cancelled']);
+            
+            // If order was paid, we may want to handle refund logic here
+            if ($order->payment_status === 'Paid') {
+                // For now, just note this in the notification
+                $refundNote = "Our team will process your refund shortly.";
+            } else {
+                $refundNote = "";
+            }
 
             // Create a notification about the cancellation
             $user = $request->user();
@@ -245,7 +287,7 @@ class OrderController extends Controller
                     'user_id'       => $user->id,
                     'order_id'      => $order->id,
                     'title'         => "Order Cancelled",
-                    'description'   => "Your order {$order->order_number} has been cancelled.",
+                    'description'   => "Your order {$order->order_number} has been cancelled. {$refundNote}",
                     'is_read'       => 0,
                 ]);
             }
@@ -295,6 +337,48 @@ class OrderController extends Controller
         }
     }
     
+    /**
+     * Update payment status for an order
+     */
+    public function updatePaymentStatus(Request $request, Order $order)
+    {
+        try {
+            // Validate request
+            $validated = $request->validate([
+                'payment_status' => 'required|in:Paid,Unpaid',
+            ]);
+            
+            $oldPaymentStatus = $order->payment_status;
+            $newPaymentStatus = $validated['payment_status'];
+            
+            // Skip if no change
+            if ($oldPaymentStatus === $newPaymentStatus) {
+                return response()->json([
+                    'message' => 'No change in payment status',
+                    'order'   => $order,
+                ]);
+            }
+            
+            // Update payment status
+            $order->update(['payment_status' => $newPaymentStatus]);
+            
+            // Create a notification
+            Notification::create([
+                'user_id'     => $order->user_id,
+                'order_id'    => $order->id,
+                'title'       => "Payment Status Updated",
+                'description' => "Your order {$order->order_number} payment status has been updated to {$newPaymentStatus}.",
+                'is_read'     => 0,
+            ]);
+            
+            return response()->json([
+                'message' => 'Payment status updated successfully',
+                'order'   => $order->refresh()->load(['payment', 'address', 'orderItems.product']),
+            ]);
+        } catch (\Exception $e) {
+            return response()->json(['error' => $e->getMessage()], 500);
+        }
+    }
 
     public function requestCancellation(Request $request, Order $order)
     {
@@ -349,10 +433,16 @@ class OrderController extends Controller
                 'request_notes' => 'required|string|max:500',
             ]);
 
-            // Only allow refunds for shipped or delivered orders
+            // Only allow refunds for shipped or delivered orders that have been paid
             if (!in_array($order->status, ['shipped', 'delivered'])) {
                 return response()->json([
                     'error' => 'Only shipped or delivered orders can be requested for refund'
+                ], 422);
+            }
+            
+            if ($order->payment_status !== 'Paid') {
+                return response()->json([
+                    'error' => 'Only paid orders can be requested for refund'
                 ], 422);
             }
             
@@ -410,13 +500,19 @@ class OrderController extends Controller
             
             // Then finalize to cancelled status
             $order->update(['status' => 'cancelled']);
+            
+            // If order was paid, update to indicate a refund is needed
+            $refundNote = "";
+            if ($order->payment_status === 'Paid') {
+                $refundNote = " A refund will be processed for your payment.";
+            }
 
             // Notify user
             Notification::create([
                 'user_id'     => $order->user_id,
                 'order_id'    => $order->id,
                 'title'       => "Cancellation Approved",
-                'description' => "Your cancellation request for order {$order->order_number} has been approved. " . 
+                'description' => "Your cancellation request for order {$order->order_number} has been approved.{$refundNote} " . 
                                  ($validated['admin_notes'] ? "Admin note: {$validated['admin_notes']}" : ""),
                 'is_read'     => 0,
             ]);
@@ -571,48 +667,53 @@ class OrderController extends Controller
     }
 
     public function updateStatus(Request $request, Order $order)
-{
-    try {
-        $validated = $request->validate([
-            'status' => 'required|in:pending,shipped,delivered,cancelled,returned,refunded',
-        ]);
-        
-        $oldStatus = $order->status;
-        $newStatus = $validated['status'];
-        
-        // Update just the status
-        $order->update(['status' => $newStatus]);
-        
-        // Create notification for status change
-        $user = $request->user();
-        if ($oldStatus !== $newStatus) {
-            $notificationTitle = "Order Status Updated";
-            $notificationDescription = "Your order {$order->order_number} status has been changed to {$newStatus}.";
-            
-            // Customize notification based on new status
-            if ($newStatus === 'delivered') {
-                $notificationTitle = "Order Delivered Successfully";
-                $notificationDescription = "Your order {$order->order_number} has been marked as delivered. Thank you for shopping with us!";
-            } elseif ($newStatus === 'refunded') {
-                $notificationTitle = "Refund Requested";
-                $notificationDescription = "Your refund request for order {$order->order_number} has been submitted and is being processed.";
-            }
-            
-            Notification::create([
-                'user_id'     => $order->user_id, // Notice: using order->user_id, not request->user()->id
-                'order_id'    => $order->id,
-                'title'       => $notificationTitle,
-                'description' => $notificationDescription,
-                'is_read'     => 0,
+    {
+        try {
+            $validated = $request->validate([
+                'status' => 'required|in:pending,shipped,delivered,cancelled,returned,refunded',
             ]);
-        }
+            
+            $oldStatus = $order->status;
+            $newStatus = $validated['status'];
+            
+            // Update just the status
+            $order->update(['status' => $newStatus]);
+            
+            // Create notification for status change
+            if ($oldStatus !== $newStatus) {
+                $notificationTitle = "Order Status Updated";
+                $notificationDescription = "Your order {$order->order_number} status has been changed to {$newStatus}.";
+                
+                // Customize notification based on new status
+                if ($newStatus === 'delivered') {
+                    $notificationTitle = "Order Delivered Successfully";
+                    $notificationDescription = "Your order {$order->order_number} has been marked as delivered. Thank you for shopping with us!";
+                } elseif ($newStatus === 'refunded') {
+                    $notificationTitle = "Order Refunded";
+                    $notificationDescription = "Your order {$order->order_number} has been refunded.";
+                    
+                    // Also update payment status if refunded
+                    if ($order->payment_status === 'Paid') {
+                        $order->update(['payment_status' => 'Unpaid']);
+                        $notificationDescription .= " Your payment has been returned.";
+                    }
+                }
+                
+                Notification::create([
+                    'user_id'     => $order->user_id,
+                    'order_id'    => $order->id,
+                    'title'       => $notificationTitle,
+                    'description' => $notificationDescription,
+                    'is_read'     => 0,
+                ]);
+            }
 
-        return response()->json([
-            'message' => 'Order status updated successfully',
-            'order'   => $order->load(['payment', 'address', 'orderItems.product']),
-        ]);
-    } catch (ValidationException $e) {
-        return response()->json(['errors' => $e->errors()], 422);
+            return response()->json([
+                'message' => 'Order status updated successfully',
+                'order'   => $order->load(['payment', 'address', 'orderItems.product']),
+            ]);
+        } catch (ValidationException $e) {
+            return response()->json(['errors' => $e->errors()], 422);
+        }
     }
-}
 }

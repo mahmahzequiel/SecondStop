@@ -13,6 +13,7 @@ const OrdersList = () => {
   const [orders, setOrders] = useState([]);
   const [loading, setLoading] = useState(true);
   const [statusLoading, setStatusLoading] = useState({});
+  const [paymentStatusLoading, setPaymentStatusLoading] = useState({});
   const [pagination, setPagination] = useState({
     current: 1,
     pageSize: 10,
@@ -42,6 +43,12 @@ const OrdersList = () => {
     { label: 'Refund Denied', value: 'refund_denied', color: 'red' },
     { label: 'Refunded', value: 'refunded', color: 'purple' },
     { label: 'Returned', value: 'returned', color: 'gray' }
+  ];
+
+  // Modified Payment status options to match your database enum
+  const paymentStatusOptions = [
+    { label: 'Paid', value: 'Paid', color: 'green' },
+    { label: 'Unpaid', value: 'Unpaid', color: 'red' }
   ];
 
   // Fetch orders from API
@@ -118,6 +125,36 @@ const OrdersList = () => {
       message.error('Failed to update order status');
     } finally {
       setStatusLoading(prev => ({ ...prev, [orderId]: false }));
+    }
+  };
+
+  // Update payment status
+  const updatePaymentStatus = async (orderId, newPaymentStatus) => {
+    setPaymentStatusLoading(prev => ({ ...prev, [orderId]: true }));
+    
+    try {
+      const response = await axios.patch(`/api/orders/${orderId}/payment-status`, {
+        payment_status: newPaymentStatus
+      });
+      
+      // Update the order in the local state
+      const updatedOrders = orders.map(order => {
+        if (order.id === orderId) {
+          return {
+            ...order,
+            payment_status: newPaymentStatus
+          };
+        }
+        return order;
+      });
+      
+      setOrders(updatedOrders);
+      message.success(`Payment status updated to ${newPaymentStatus}`);
+    } catch (error) {
+      console.error('Error updating payment status:', error);
+      message.error('Failed to update payment status');
+    } finally {
+      setPaymentStatusLoading(prev => ({ ...prev, [orderId]: false }));
     }
   };
 
@@ -250,6 +287,30 @@ const OrdersList = () => {
     ).join(' ');
   };
 
+  // Get color for payment status tag
+  const getPaymentStatusColor = (status) => {
+    // Handle any legacy payment status values by defaulting to reasonable colors
+    if (status === 'paid' || status === 'Paid') {
+      return 'green';
+    } else if (status === 'Unpaid' || !status) {
+      return 'red';
+    }
+    return 'default';
+  };
+
+  // Get label for payment status value - normalize to Paid/Unpaid
+  const getPaymentStatusLabel = (status) => {
+    // Default to Unpaid for empty or undefined values
+    if (!status) return 'Unpaid';
+    
+    // Normalize various formats to Paid/Unpaid
+    if (status.toLowerCase() === 'paid') {
+      return 'Paid';
+    } else {
+      return 'Unpaid';
+    }
+  };
+
   // Render actions for request approvals/denials
   const renderRequestActions = (record) => {
     // Only show approval/denial actions for requested statuses
@@ -351,6 +412,54 @@ const OrdersList = () => {
     );
   };
 
+  // Render payment status dropdown
+  const renderPaymentStatusDropdown = (status, record) => {
+    // Normalize the status to either Paid or Unpaid
+    let currentStatus = status;
+    if (!currentStatus || !['Paid', 'Unpaid'].includes(currentStatus)) {
+      currentStatus = 'Unpaid'; // Default to Unpaid for invalid values
+    }
+    
+    // Don't allow payment status changes for cancelled orders
+    if (record.status === 'cancelled' || record.status === 'cancellation_approved') {
+      return (
+        <Tag color={getPaymentStatusColor(currentStatus)}>
+          {currentStatus}
+        </Tag>
+      );
+    }
+
+    // Create menu items for dropdown - only Paid and Unpaid options
+    const menuItems = paymentStatusOptions.map(option => ({
+      key: option.value,
+      label: option.label,
+      disabled: option.value === currentStatus
+    }));
+
+    const handleMenuClick = ({ key }) => {
+      if (key !== currentStatus) {
+        updatePaymentStatus(record.id, key);
+      }
+    };
+
+    return (
+      <Dropdown
+        overlay={
+          <Menu onClick={handleMenuClick} items={menuItems} />
+        }
+        disabled={paymentStatusLoading[record.id]}
+        trigger={['click']}
+      >
+        <Space style={{ cursor: 'pointer' }}>
+          <Tag color={getPaymentStatusColor(currentStatus)}>
+            {currentStatus}
+          </Tag>
+          <DownOutlined style={{ fontSize: '12px' }} />
+        </Space>
+      </Dropdown>
+    );
+  };
+
   // Table columns with new columns for Request Type and Action
   const columns = [
     {
@@ -377,7 +486,6 @@ const OrdersList = () => {
       render: (date, record) => date ? moment(date).format('MMM DD, YYYY') : 
                               (record.created_at ? moment(record.created_at).format('MMM DD, YYYY') : 'N/A')
     },
-    // Fix for the Payment Method column
     {
       title: 'Payment Method',
       dataIndex: ['payment', 'payment_method'], 
@@ -401,6 +509,17 @@ const OrdersList = () => {
           return method.charAt(0).toUpperCase() + method.slice(1);
         }
       }
+    },
+    {
+      title: 'Payment Status',
+      dataIndex: 'payment_status',
+      key: 'payment_status',
+      filters: paymentStatusOptions.map(option => ({
+        text: option.label,
+        value: option.value
+      })),
+      filterMultiple: true,
+      render: (status, record) => renderPaymentStatusDropdown(status, record),
     },
     {
       title: 'Request Type',
@@ -509,15 +628,60 @@ const OrdersList = () => {
     }
   };
 
-  // Bulk action menu
+  // Add bulk actions for payment status - modified for only Paid/Unpaid
+  const handleBulkPaymentAction = async (action) => {
+    if (!selectedRowKeys.length) {
+      message.warning('Please select at least one order');
+      return;
+    }
+
+    // Map action to the correct payment status value
+    const paymentStatus = action === 'mark_paid' ? 'Paid' : 'Unpaid';
+
+    setLoading(true);
+    try {
+      const response = await axios.post('/api/orders/bulk-payment-action', {
+        order_ids: selectedRowKeys,
+        payment_status: paymentStatus // Send the exact value needed by the backend
+      });
+      
+      // Refresh the orders list
+      fetchOrders({
+        current: pagination.current,
+        pageSize: pagination.pageSize
+      });
+      
+      // Clear selection
+      setSelectedRowKeys([]);
+      
+      message.success(`Payment status updated for ${response.data.affected_count} orders`);
+    } catch (error) {
+      console.error('Error processing bulk payment action:', error);
+      message.error('Failed to update payment status');
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  // Bulk action menu - modified for only Paid/Unpaid options
   const bulkActionMenu = (
     <Menu>
-      <Menu.Item key="mark_shipped" onClick={() => handleBulkAction('mark_shipped')}>
-        Mark as Shipped
-      </Menu.Item>
-      <Menu.Item key="mark_delivered" onClick={() => handleBulkAction('mark_delivered')}>
-        Mark as Delivered
-      </Menu.Item>
+      <Menu.SubMenu key="status" title="Update Status">
+        <Menu.Item key="mark_shipped" onClick={() => handleBulkAction('mark_shipped')}>
+          Mark as Shipped
+        </Menu.Item>
+        <Menu.Item key="mark_delivered" onClick={() => handleBulkAction('mark_delivered')}>
+          Mark as Delivered
+        </Menu.Item>
+      </Menu.SubMenu>
+      <Menu.SubMenu key="payment" title="Update Payment Status">
+        <Menu.Item key="mark_paid" onClick={() => handleBulkPaymentAction('mark_paid')}>
+          Mark as Paid
+        </Menu.Item>
+        <Menu.Item key="mark_unpaid" onClick={() => handleBulkPaymentAction('mark_unpaid')}>
+          Mark as Unpaid
+        </Menu.Item>
+      </Menu.SubMenu>
     </Menu>
   );
 
@@ -602,6 +766,13 @@ const OrdersList = () => {
               <div style={{ marginBottom: 16 }}>
                 <Text strong>Amount: </Text>
                 <Text>PHP {parseFloat(currentOrder.total_amount).toFixed(2)}</Text>
+              </div>
+              
+              <div style={{ marginBottom: 16 }}>
+                <Text strong>Payment Status: </Text>
+                <Tag color={getPaymentStatusColor(currentOrder.payment_status)}>
+                  {currentOrder.payment_status === 'Paid' ? 'Paid' : 'Unpaid'}
+                </Tag>
               </div>
               
               {currentOrder.request_notes && (

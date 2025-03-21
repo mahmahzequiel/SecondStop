@@ -25,7 +25,8 @@ class Order extends Model
         'admin_notes',
         'request_date',
         'admin_action_date',
-        'purchase_date'
+        'purchase_date',
+        'payment_status'
     ];
 
     protected $dates = [
