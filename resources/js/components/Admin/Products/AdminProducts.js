@@ -256,6 +256,11 @@ const [previewTitle, setPreviewTitle] = useState('');
       key: "product_name",
     },
     {
+      title: "Quantity",
+      dataIndex: "quantity",
+      key: "quantity",
+    },
+    {
       title: "Brand",
       dataIndex: "brand",
       key: "brand",

@@ -120,6 +120,43 @@ const Payment = () => {
     }
   };
 
+  // New function to update product quantities
+  const updateProductQuantities = async (items) => {
+    try {
+      if (!Array.isArray(items) || items.length === 0) {
+        console.warn("⚠ No valid items to update quantities.");
+        return;
+      }
+  
+      const token = localStorage.getItem("userToken");
+      
+      // Log what we're working with for debugging
+      console.log("Items to update quantities for:", items);
+      
+      // Extract product IDs from the items
+      const productUpdates = items.map(item => {
+        console.log("Processing item:", item);
+        return {
+          product_id: item.product_id,
+          quantity_change: -1 // Decrease by 1 for each item purchased
+        };
+      });
+  
+      console.log("Product updates to send:", productUpdates);
+  
+      // Make API call to update quantities
+      const response = await axios.post(
+        "http://127.0.0.1:8000/api/products/update-quantities",
+        { updates: productUpdates },
+        { headers: { Authorization: `Bearer ${token}` } }
+      );
+      
+      console.log("✅ Product quantities updated successfully", response.data);
+    } catch (error) {
+      console.error("❌ Failed to update product quantities:", error.response?.data || error);
+    }
+  };
+
   const handlePaymentSuccess = async (details) => {
     try {
       setPaymentDetails(details);
@@ -136,6 +173,7 @@ const Payment = () => {
         userId: localStorage.getItem("userId"),
         items: selectedItems.map((item) => ({
           id: item.id, // Use cart_item id
+          product_id: item.product_id, // Make sure product_id is available
           product_name: item.product_name,
           price: item.price,
           brand: item.brand,
@@ -155,7 +193,10 @@ const Payment = () => {
         await removePurchasedItemsFromCart(cartIds);
       }
 
-      // 5) Navigate to Confirmation.
+      // 5) Update product quantities
+      await updateProductQuantities(orderData.items);
+
+      // 6) Navigate to Confirmation.
       navigate("/confirmation", {
         state: {
           orderNumber: orderData.orderNumber,

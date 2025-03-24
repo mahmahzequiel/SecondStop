@@ -9,7 +9,15 @@ class Inventory extends Model
 {
     use HasFactory;
 
-    protected $fillable = ['product_id', 'stock'];
+    protected $fillable = [
+        'product_id', 
+        'stock', 
+        'date_acquired'
+    ];
+
+    protected $casts = [
+        'date_acquired' => 'date',
+    ];
 
     public function product()
     {

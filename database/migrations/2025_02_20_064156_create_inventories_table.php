@@ -16,7 +16,8 @@ class CreateInventoriesTable extends Migration
         Schema::create('inventories', function (Blueprint $table) {
             $table->id();
             $table->foreignId('product_id')->constrained('products')->onDelete('cascade');
-            $table->integer('stock');
+            $table->integer('stock')->default(0);
+            $table->date('date_acquired')->nullable();
             $table->timestamps();
         });
     }

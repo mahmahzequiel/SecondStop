@@ -29,6 +29,7 @@ Route::put('/roles/{id}/restore', [RoleController::class, 'restore']);
 
 Route::put('/products/{id}/restore', [ProductsController::class, 'restore']);
 Route::resource("products", ProductsController::class);
+Route::post('/products/update-quantities', [ProductsController::class, 'updateQuantities']);
 
 Route::put('/categories/{id}/restore', [CategoryController::class, 'restore']);
 Route::resource('categories', CategoryController::class);
@@ -115,4 +116,9 @@ Route::patch('/orders/{order}/payment-status', [OrderController::class, 'updateP
     Route::post('notification', [NotificationController::class, 'store']);
     Route::get('notification', [NotificationController::class, 'index']);
     Route::patch('notification/{id}/mark-read', [NotificationController::class, 'markAsRead']);
+
+// Inventory Routes 
+Route::apiResource('inventory', \App\Http\Controllers\InventoryController::class);
+Route::put('/inventory/{id}/restore', [\App\Http\Controllers\InventoryController::class, 'restore']);
+
 });

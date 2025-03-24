@@ -48,6 +48,7 @@ import OrderTracking from "./Shipping/OrderTracking";
 import OrdersList from "./Admin/Orders/AdminOrders";
 import AdminSettings from "./Admin/AdminSettings/AdminSettingsPage";
 import MainButton from "./Chat/Mainbutton";
+import Inventory from "./Admin/Products/Inventory";
 
 function AppContent() {
   const location = useLocation();
@@ -84,7 +85,8 @@ function AppContent() {
         <Route path="/customers" element={<AllCustomers />} />
         <Route path="/orderlist" element={<OrdersList />} />
         <Route path="/adminsettings" element={<AdminSettings />} />
-        <Route path="/orders/tracking" element={<OrderTracking />} />
+        <Route path="/inventory" element={<Inventory />} />
+  
         {/* Customer-Only Routes (role_id = 1) */}
         <Route path="/profile" element={<RoleBasedRoute allowedRoles={[1]}> <Profiles /> </RoleBasedRoute>}/>
         {/* Admin-Only Routes (role_id = 2) */}

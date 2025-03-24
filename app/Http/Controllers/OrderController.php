@@ -425,53 +425,68 @@ class OrderController extends Controller
     /**
      * Request a refund for an order
      */
-    public function requestRefund(Request $request, Order $order)
-    {
-        try {
-            // Validate request
-            $validated = $request->validate([
-                'request_notes' => 'required|string|max:500',
-            ]);
+    /**
+ * Request a refund for an order
+ */
+public function requestRefund(Request $request, Order $order)
+{
+    try {
+        // Validate request
+        $validated = $request->validate([
+            'request_notes' => 'required|string|max:500',
+        ]);
 
-            // Only allow refunds for shipped or delivered orders that have been paid
-            if (!in_array($order->status, ['shipped', 'delivered'])) {
-                return response()->json([
-                    'error' => 'Only shipped or delivered orders can be requested for refund'
-                ], 422);
-            }
-            
-            if ($order->payment_status !== 'Paid') {
-                return response()->json([
-                    'error' => 'Only paid orders can be requested for refund'
-                ], 422);
-            }
-            
-            $order->update([
-                'status' => 'refund_requested',
-                'request_notes' => $validated['request_notes'],
-                'request_date' => Carbon::now()
-            ]);
+        // Log the current order status to help with debugging
+        \Log::info('Refund requested for order', [
+            'order_id' => $order->id,
+            'order_number' => $order->order_number,
+            'current_status' => $order->status,
+            'payment_status' => $order->payment_status
+        ]);
 
-            // Create a notification
-            $user = $request->user();
-            if ($user) {
-                Notification::create([
-                    'user_id'     => $user->id,
-                    'order_id'    => $order->id,
-                    'title'       => "Refund Requested",
-                    'description' => "Your refund request for order {$order->order_number} has been submitted and is pending admin approval.",
-                    'is_read'     => 0,
-                ]);
-            }
-
+        // Only allow refunds for shipped or delivered orders that have been paid
+        if (!in_array($order->status, ['shipped', 'delivered'])) {
             return response()->json([
-                'message' => 'Refund requested successfully',
-                'order'   => $order->load(['payment', 'address', 'orderItems.product']),
-            ]);
-        } catch (\Exception $e) {
-            return response()->json(['error' => $e->getMessage()], 500);
+                'error' => "Cannot request refund. Current order status is '{$order->status}', but must be 'shipped' or 'delivered'."
+            ], 422);
         }
+        
+        if ($order->payment_status !== 'Paid') {
+            return response()->json([
+                'error' => "Cannot request refund. Order payment status is '{$order->payment_status}', but must be 'Paid'."
+            ], 422);
+        }
+        
+        $order->update([
+            'status' => 'refund_requested',
+            'request_notes' => $validated['request_notes'],
+            'request_date' => Carbon::now()
+        ]);
+
+        // Create a notification
+        $user = $request->user();
+        if ($user) {
+            Notification::create([
+                'user_id'     => $user->id,
+                'order_id'    => $order->id,
+                'title'       => "Refund Requested",
+                'description' => "Your refund request for order {$order->order_number} has been submitted and is pending admin approval.",
+                'is_read'     => 0,
+            ]);
+        }
+
+        return response()->json([
+            'message' => 'Refund requested successfully',
+            'order'   => $order->load(['payment', 'address', 'orderItems.product']),
+        ]);
+    } catch (\Exception $e) {
+        \Log::error('Error in requestRefund', [
+            'error' => $e->getMessage(),
+            'trace' => $e->getTraceAsString()
+        ]);
+        return response()->json(['error' => $e->getMessage()], 500);
     }
+}
     
     /**
      * Admin approval for cancellation

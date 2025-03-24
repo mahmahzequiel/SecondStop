@@ -117,11 +117,18 @@ const OrderActionModals = ({
       handleClose();
     } catch (error) {
       console.error("Failed to request refund:", error);
-      message.error("Failed to request refund. Please try again later.");
+      // Display the actual error message from the server
+      const errorMessage = error.response?.data?.error || "Failed to request refund. Please try again later.";
+      message.error(errorMessage);
+      
+      // If the error is related to order status, give better guidance
+      if (errorMessage.includes("must be 'shipped' or 'delivered'")) {
+        message.info("You can only request refunds for shipped or delivered orders.");
+      }
     } finally {
       setActionLoading(false);
     }
-  };
+};
 
   const handleSubmitReview = async () => {
     if (!selectedProductId) {

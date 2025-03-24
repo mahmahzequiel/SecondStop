@@ -3,36 +3,34 @@
 namespace App\Http\Controllers;
 
 use App\Models\Inventory;
+use App\Models\Product;
 use Illuminate\Http\Request;
 
 class InventoryController extends Controller
 {
     public function index()
     {
-        return response()->json(Inventory::all());
+        $inventoryItems = Inventory::with('product')->get();
+        return response()->json($inventoryItems);
     }
 
     public function store(Request $request)
     {
         $validated = $request->validate([
             'product_id' => 'required|exists:products,id',
-            'stock' => 'required|integer',
+            'stock' => 'required|integer|min:0',
+            'date_acquired' => 'nullable|date',
         ]);
 
         $inventory = Inventory::create($validated);
         return response()->json($inventory, 201);
     }
 
-    public function show(Inventory $inventory)
-    {
-        return response()->json($inventory);
-    }
-
     public function update(Request $request, Inventory $inventory)
     {
         $validated = $request->validate([
-            'product_id' => 'sometimes|exists:products,id',
-            'stock' => 'sometimes|integer',
+            'stock' => 'sometimes|required|integer|min:0',
+            'date_acquired' => 'sometimes|nullable|date',
         ]);
 
         $inventory->update($validated);

@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Modal, Form, Input, Select, Button, message, Upload } from "antd";
+import { Modal, Form, Input, Select, Button, message, Upload, InputNumber } from "antd";
 import axios from "axios";
 import { UploadOutlined } from "@ant-design/icons";
 
@@ -72,7 +72,7 @@ const AddProductModal = ({ visible, setVisible, setProducts, setFilteredProducts
   return (
     <>
       <Modal title="Add New Product" open={visible} onCancel={() => setVisible(false)} footer={null}>
-        <Form form={form} onFinish={handleFormSubmit}>
+        <Form form={form} onFinish={handleFormSubmit} initialValues={{ quantity: 1 }}>
           <Form.Item
             label="Product Name"
             name="product_name"
@@ -125,6 +125,14 @@ const AddProductModal = ({ visible, setVisible, setProducts, setFilteredProducts
             rules={[{ required: true, message: "Please enter the price!" }]}
           >
             <Input type="number" placeholder="Enter price" />
+          </Form.Item>
+          <Form.Item
+            label="Quantity"
+            name="quantity"
+            rules={[{ required: true, message: "Please enter the quantity!" }]}
+            tooltip="For thrift items, this is typically 1"
+          >
+            <InputNumber min={0} placeholder="Enter quantity" />
           </Form.Item>
           <Form.Item
             label="Description"

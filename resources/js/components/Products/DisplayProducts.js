@@ -37,8 +37,12 @@ const DisplayProducts = () => {
         }
 
         const data = await response.json();
-        setProducts(data);
-        setFilteredProducts(data);
+        
+        // Filter out products with quantity 0 or less
+        const availableProducts = data.filter(product => product.quantity > 0);
+        
+        setProducts(availableProducts);
+        setFilteredProducts(availableProducts);
       } catch (error) {
         setError(error.message);
         console.error("Error fetching products:", error);
@@ -114,6 +118,13 @@ const DisplayProducts = () => {
       alert("User ID is missing. Please log in again.");
       return;
     }
+    
+    // Check if product is in stock before adding to cart
+    if (product.quantity <= 0) {
+      alert("Sorry, this product is out of stock.");
+      return;
+    }
+    
     try {
       // Fetch current cart items to check for duplicates.
       const cartResponse = await axios.get("http://127.0.0.1:8000/api/carts", {
@@ -156,7 +167,7 @@ const DisplayProducts = () => {
     <MainPage onSearch={handleSearch}>
       <div className="display-products dark-theme">
         {/* Advertisement Carousel */}
-        <Advertisement /> {/* Add the Advertisement component here */}
+        <Advertisement />
 
         {/* Category filter tabs from database */}
         <div className="filter-tabs">
@@ -224,6 +235,7 @@ const DisplayProducts = () => {
                   <div className="product-info">
                     <h3 className="product-name">{product.product_name}</h3>
                     <p className="product-price">$ {product.price}</p>
+                    {/* <p className="product-stock">In stock: {product.quantity}</p> */}
                   </div>
                   <div className="product-actions">
                     <button 

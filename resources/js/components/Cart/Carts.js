@@ -97,11 +97,12 @@ const Carts = () => {
         // Map selected items including the proper cart item primary key as "id"
         selectedItems: selectedCartItems.map((item) => ({
           id: item.id,
-          cart_id: item.cart_id,
-          product_name: item.product?.product_name,
-          price: item.product?.price,
-          brand: item.product?.brand,
-          quantity: item.quantity || 1,
+  cart_id: item.cart_id,
+  product_id: item.product?.id, // Add product ID here
+  product_name: item.product?.product_name,
+  price: item.product?.price,
+  brand: item.product?.brand,
+  quantity: item.product?.quantity,
         })),
         totalPrice,
       },
@@ -155,7 +156,7 @@ const Carts = () => {
                       {item.product?.description || "No Description"}
                     </td>
                     <td className="price">PHP {item.product?.price || "0"}.00</td>
-                    <td className="quantity">{item.quantity || 1}</td>
+                    <td className="quantity">{item.product?.quantity}</td>
                   </tr>
                 ))}
               </tbody>

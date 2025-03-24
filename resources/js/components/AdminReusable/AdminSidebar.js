@@ -9,6 +9,7 @@ import {
   ShoppingOutlined,
   MessageOutlined,
   SettingOutlined,
+  InboxOutlined,
 } from "@ant-design/icons";
 
 function AdminSidebar() {
@@ -53,6 +54,12 @@ function AdminSidebar() {
         <Link to="/adminchat">
           <MessageOutlined className="nav-icon" />
           <span>Messages</span>
+        </Link>
+      </div>
+      <div className={`nav-item ${isActive('/inventory') ? 'active' : ''}`}>
+        <Link to="/inventory">
+          <InboxOutlined className="nav-icon" />
+          <span>Inventory</span>
         </Link>
       </div>
       <div className={`nav-item ${isActive('/adminsettings') ? 'active' : ''}`}>

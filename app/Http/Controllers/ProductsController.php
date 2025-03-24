@@ -44,6 +44,7 @@ class ProductsController extends Controller
             'product_name' => 'required|string|max:100',
             'description' => 'nullable|string',
             'price' => 'required|numeric',
+            'quantity' => 'required|integer|min:0',
             'product_image' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
         ]);
 
@@ -54,6 +55,7 @@ class ProductsController extends Controller
         $product->product_name = $request->product_name;
         $product->description = $request->description;
         $product->price = $request->price;
+        $product->quantity = $request->quantity;
 
         if ($request->hasFile('product_image')) {
             $imagePath = $request->file('product_image')->store('products', 'public');
@@ -78,42 +80,43 @@ class ProductsController extends Controller
      * Update the specified product in the database.
      */
     public function update(Request $request, $id)
-{
-    // Log request content
-    \Log::info('Request Data:', $request->all());
+    {
+        // Log request content
+        \Log::info('Request Data:', $request->all());
 
-    // Convert PUT request to POST if `_method=PUT` is detected
-    if ($request->isMethod('post') && $request->input('_method') === 'PUT') {
-        $request->setMethod('PUT');
-    }
-
-    // Validate input
-    $request->validate([
-        'category_id' => 'required|exists:categories,id',
-        'category_type_id' => 'required|exists:category_types,id',
-        'brand_id' => 'required|exists:brands,id',
-        'product_name' => 'required|string|max:100',
-        'description' => 'nullable|string',
-        'price' => 'required|numeric',
-        'product_image' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
-    ]);
-
-    $product = Product::findOrFail($id);
-    $product->update($request->except('product_image'));
-
-    if ($request->hasFile('product_image')) {
-        // Delete old image if exists
-        if ($product->product_image) {
-            Storage::disk('public')->delete($product->product_image);
+        // Convert PUT request to POST if `_method=PUT` is detected
+        if ($request->isMethod('post') && $request->input('_method') === 'PUT') {
+            $request->setMethod('PUT');
         }
-        // Store new image
-        $imagePath = $request->file('product_image')->store('products', 'public');
-        $product->product_image = $imagePath;
-        $product->save();
-    }
 
-    return response()->json($product);
-}
+        // Validate input
+        $request->validate([
+            'category_id' => 'required|exists:categories,id',
+            'category_type_id' => 'required|exists:category_types,id',
+            'brand_id' => 'required|exists:brands,id',
+            'product_name' => 'required|string|max:100',
+            'description' => 'nullable|string',
+            'price' => 'required|numeric',
+            'quantity' => 'required|integer|min:0',
+            'product_image' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
+        ]);
+
+        $product = Product::findOrFail($id);
+        $product->update($request->except('product_image'));
+
+        if ($request->hasFile('product_image')) {
+            // Delete old image if exists
+            if ($product->product_image) {
+                Storage::disk('public')->delete($product->product_image);
+            }
+            // Store new image
+            $imagePath = $request->file('product_image')->store('products', 'public');
+            $product->product_image = $imagePath;
+            $product->save();
+        }
+
+        return response()->json($product);
+    }
 
     /**
      * Archive the specified product (soft delete).
@@ -155,5 +158,32 @@ class ProductsController extends Controller
         $products = Product::where('category_type_id', $categoryTypeId)->get();
 
         return response()->json($products);
+    }
+    public function updateQuantities(Request $request)
+{
+    $request->validate([
+        'updates' => 'required|array',
+        'updates.*.product_id' => 'required|exists:products,id',
+        'updates.*.quantity_change' => 'required|integer'
+    ]);
+
+    $updates = $request->input('updates');
+    
+    \DB::beginTransaction();
+    
+    try {
+        foreach ($updates as $update) {
+            $product = Product::findOrFail($update['product_id']);
+            $newQuantity = max(0, $product->quantity + $update['quantity_change']);
+            $product->quantity = $newQuantity;
+            $product->save();
+        }
+        
+        \DB::commit();
+        return response()->json(['message' => 'Product quantities updated successfully']);
+    } catch (\Exception $e) {
+        \DB::rollBack();
+        return response()->json(['error' => 'Failed to update product quantities', 'message' => $e->getMessage()], 500);
+        }   
     }
 }

@@ -17,6 +17,7 @@ class Product extends Model
         'product_name',
         'description',
         'price',
+        'quantity',  // Add this line
         'product_image',
     ];
 
