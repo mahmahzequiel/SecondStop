@@ -230,71 +230,6 @@
     }
   }
 
-  // Phone Input Wrapper for +63 prefix and divider
-  .phone-input-wrapper {
-    position: relative;
-    width: 100%;
-    height: 48px; /* Match input height for consistent positioning */
-
-    input {
-      width: 100%;
-      padding-left: 60px !important; /* Space for +63 and divider */
-      height: 48px;
-      font-size: 1rem;
-      line-height: 48px;
-      border: 1px solid #e2e8f0 !important; /* Match other inputs */
-      border-radius: 6px;
-      color: #333;
-      font-family: 'Inria Serif', serif;
-      transition: border-color 0.3s ease, box-shadow 0.3s ease;
-      background: #edf2f7; /* Match other inputs */
-
-      &:focus {
-        border-color: #F08A5D !important; /* Match accent color */
-        box-shadow: 0 0 5px rgba(240, 138, 93, 0.3) !important; /* Match focus shadow */
-        outline: none;
-        background: #ffffff !important; /* Match other inputs */
-      }
-
-      &:disabled {
-        background: #edf2f7 !important; /* Match other inputs */
-        cursor: not-allowed;
-      }
-
-      &.error {
-        border-color: #ff4d4f !important;
-        animation: shake 0.5s;
-      }
-    }
-
-    &::before {
-      content: "+63";
-      position: absolute;
-      left: 12px;
-      top: 24px; /* Fixed position: (input height / 2) */
-      transform: translateY(-50%); /* Center vertically relative to top: 24px */
-      color: #000000; /* Match accent color */
-      font-size: 1rem;
-      font-family: 'Inria Serif', serif;
-      background-color: #f8f9fa;
-      padding: 0 4px;
-      pointer-events: none;
-      z-index: 1;
-    }
-
-    &::after {
-      content: "";
-      position: absolute;
-      left: 50px;
-      top: 24px; /* Fixed position: (input height / 2) */
-      transform: translateY(-50%); /* Center vertically relative to top: 24px */
-      width: 1px;
-      height: 30px;
-      background-color: #707070;
-      z-index: 1;
-    }
-  }
-
   // Checkout Action Buttons
   .checkout-actions {
     display: flex;
@@ -352,12 +287,6 @@
       opacity: 1;
       transform: translateY(0);
     }
-  }
-
-  @keyframes shake {
-    0%, 100% { transform: translateX(0); }
-    25% { transform: translateX(-5px); }
-    75% { transform: translateX(5px); }
   }
 
   > * {

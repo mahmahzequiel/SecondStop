@@ -30,8 +30,6 @@ const Checkout = () => {
   const [error, setError] = useState(null);
   const [profileData, setProfileData] = useState(null);
 
-  const [phoneError, setPhoneError] = useState("");
-
   useEffect(() => {
     const fetchProfileAndAddress = async () => {
       try {
@@ -63,7 +61,7 @@ const Checkout = () => {
           setAddress({
             id: defaultAddress.id,
             receiver_fullname: defaultAddress.receiver_fullname || "",
-            contact_number: defaultAddress.contact_number.replace("+63", "") || "", // Strip +63 for display
+            contact_number: defaultAddress.contact_number || "",
             country: defaultAddress.country || "",
             region: defaultAddress.region || "",
             state: defaultAddress.state || "",
@@ -103,21 +101,7 @@ const Checkout = () => {
 
   const handleChange = (e) => {
     const { name, value } = e.target;
-    if (name === "contact_number") {
-      const pattern = /^\d{0,10}$/;
-      if (value === "" || pattern.test(value)) {
-        setAddress(prev => ({ ...prev, [name]: value }));
-        if (value.length === 10) {
-          setPhoneError("");
-        } else if (value.length > 0) {
-          setPhoneError("Phone number must be exactly 9 digits");
-        } else {
-          setPhoneError("");
-        }
-      }
-    } else {
-      setAddress(prev => ({ ...prev, [name]: value }));
-    }
+    setAddress(prev => ({ ...prev, [name]: value }));
   };
 
   const handleSaveAddress = async () => {
@@ -135,10 +119,6 @@ const Checkout = () => {
         alert("Please enter a contact phone number.");
         return;
       }
-      if (phoneError) {
-        alert("Please correct the phone number format.");
-        return;
-      }
       if (!address.house_number) {
         alert("Please enter the house number.");
         return;
@@ -150,7 +130,7 @@ const Checkout = () => {
       const addressData = {
         user_id: userId,
         receiver_fullname: address.receiver_fullname.trim(),
-        contact_number: `+63${address.contact_number.trim()}`, // Prepend +63
+        contact_number: address.contact_number.trim(),
         house_number: address.house_number.trim(),
         street: address.street,
         barangay: address.barangay,
@@ -265,28 +245,20 @@ const Checkout = () => {
                   onChange={handleChange}
                   disabled={!isEditing}
                   required
-                  placeholder=""
+                  placeholder="Enter the recipient's full name"
                 />
               </div>
               <div className="form-field required">
                 <label>Phone Number <span className="required-star">*</span></label>
-                <div className="phone-input-wrapper">
-                  <input
-                    type="text"
-                    name="contact_number"
-                    value={address.contact_number}
-                    onChange={handleChange}
-                    disabled={!isEditing}
-                    required
-                    placeholder=""
-                    className={phoneError ? "error" : ""}
-                  />
-                  {phoneError && (
-                    <div className="error-message" style={{ color: "red", fontSize: "12px" }}>
-                      {phoneError}
-                    </div>
-                  )}
-                </div>
+                <input
+                  type="text"
+                  name="contact_number"
+                  value={address.contact_number}
+                  onChange={handleChange}
+                  disabled={!isEditing}
+                  required
+                  placeholder="Enter contact phone number"
+                />
               </div>
               <div className="form-field required">
                 <label>House Number <span className="required-star">*</span></label>
@@ -297,7 +269,7 @@ const Checkout = () => {
                   onChange={handleChange}
                   disabled={!isEditing}
                   required
-                  placeholder=""
+                  placeholder="Enter house/unit number"
                 />
               </div>
               <div className="form-field required">
@@ -389,12 +361,8 @@ const Checkout = () => {
                 alert("Please complete required address fields before proceeding to payment.");
                 return;
               }
-              if (phoneError) {
-                alert("Please correct the phone number format before proceeding.");
-                return;
-              }
               navigate("/payment", {
-                state: { selectedItems, totalPrice: numericTotalPrice, address: { ...address, contact_number: `+63${address.contact_number}` } },
+                state: { selectedItems, totalPrice: numericTotalPrice, address },
               });
             }}
           >

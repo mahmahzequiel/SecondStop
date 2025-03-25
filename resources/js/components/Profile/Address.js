@@ -263,10 +263,10 @@ const Address = () => {
   const handleChange = (e) => {
     const { name, value, type, checked } = e.target;
     if (name === "contact_number") {
-      const pattern = /^\d{0,9}$/;
+      const pattern = /^\d{0,10}$/;
       if (value === "" || pattern.test(value)) {
         setFormData((prev) => ({ ...prev, [name]: value }));
-        if (value.length === 9) {
+        if (value.length === 10) {
           setPhoneError("");
         } else if (value.length > 0) {
           setPhoneError("Phone number must be exactly 9 digits");
