@@ -17,7 +17,7 @@ const CustomModal = ({ title, visible, onCancel, onOk, children, type = "default
         <div className="modal-header">
           <h3>{title}</h3>
           <button className="modal-close" onClick={onCancel}>
-            &times;
+            ×
           </button>
         </div>
         <div className="modal-body">{children}</div>
@@ -57,6 +57,8 @@ const Address = () => {
     is_default: false,
   });
 
+  const [phoneError, setPhoneError] = useState("");
+
   const [currentPage, setCurrentPage] = useState(1);
   const addressesPerPage = 4;
   const [archivedCurrentPage, setArchivedCurrentPage] = useState(1);
@@ -69,7 +71,6 @@ const Address = () => {
     fetchAddresses();
   }, []);
 
-  // Fetch active (non-archived) addresses
   const fetchAddresses = async () => {
     try {
       const response = await axios.get(
@@ -84,7 +85,6 @@ const Address = () => {
     }
   };
 
-  // Fetch archived addresses
   const fetchArchivedAddresses = async () => {
     try {
       const response = await axios.get(
@@ -98,12 +98,12 @@ const Address = () => {
     }
   };
 
-  // Add a new address
   const addAddress = async () => {
     try {
       const isFirstAddress = addresses.length === 0;
       const dataToSend = {
         ...formData,
+        contact_number: `+63${formData.contact_number}`, // Prepend +63
         is_default: isFirstAddress ? true : formData.is_default,
       };
 
@@ -128,24 +128,20 @@ const Address = () => {
     }
   };
 
-  // Update existing address
   const updateAddress = async () => {
     try {
       const response = await axios.put(
         `http://127.0.0.1:8000/api/address/${editingAddress.id}`,
-        formData,
+        { ...formData, contact_number: `+63${formData.contact_number}` }, // Prepend +63
         { headers: { Authorization: `Bearer ${token}` } }
       );
       const updatedAddress = response.data.address;
 
       setAddresses((prev) => {
         let updated = prev.map((addr) => {
-          // If this address is updated, use the updated version
           if (addr.id === updatedAddress.id) {
             return updatedAddress;
           }
-          // If the user set THIS address as default,
-          // then remove default from other addresses
           if (formData.is_default && addr.is_default === 1) {
             return { ...addr, is_default: 0 };
           }
@@ -160,7 +156,6 @@ const Address = () => {
     }
   };
 
-  // Archive (soft-delete) an address
   const deleteAddress = async (addressId) => {
     try {
       await axios.delete(`http://127.0.0.1:8000/api/address/${addressId}`, {
@@ -173,7 +168,6 @@ const Address = () => {
     }
   };
 
-  // Restore an archived address
   const restoreAddress = async (addressId) => {
     try {
       const response = await axios.put(
@@ -194,14 +188,13 @@ const Address = () => {
     }
   };
 
-  // Show modal (for adding or editing)
   const showModal = (address = null) => {
     const isFirstAddress = addresses.length === 0;
     if (address) {
       setEditingAddress(address);
       setFormData({
         receiver_fullname: address.receiver_fullname || "",
-        contact_number: address.contact_number || "",
+        contact_number: address.contact_number.replace("+63", "") || "", // Strip +63 for editing
         house_number: address.house_number || "",
         street: address.street || "",
         barangay: address.barangay || "",
@@ -210,7 +203,6 @@ const Address = () => {
         state: address.state || "",
         country: address.country || "",
         postal_code: address.postal_code || "",
-        // Convert 1 -> true
         is_default: address.is_default === 1,
       });
     } else {
@@ -226,28 +218,21 @@ const Address = () => {
         state: "",
         country: "",
         postal_code: "",
-        // If no addresses, force default
         is_default: isFirstAddress ? true : false,
       });
     }
     setIsModalVisible(true);
   };
 
-  // Close the modal
   const handleModalCancel = () => {
     setIsModalVisible(false);
     setEditingAddress(null);
   };
 
-  // Save address (add or update)
   const handleModalOk = () => {
-    // 1) If editing the default address, preserve default:
     if (editingAddress && editingAddress.is_default === 1) {
-      // Force the form to remain default
       formData.is_default = true;
     }
-
-    // 2) Check required fields
     if (
       !formData.receiver_fullname ||
       !formData.contact_number ||
@@ -263,7 +248,10 @@ const Address = () => {
       message.error("Please fill out all required fields.");
       return;
     }
-
+    if (phoneError) {
+      message.error("Please correct the phone number format.");
+      return;
+    }
     if (editingAddress) {
       updateAddress();
     } else {
@@ -272,16 +260,28 @@ const Address = () => {
     setIsModalVisible(false);
   };
 
-  // Input change
   const handleChange = (e) => {
     const { name, value, type, checked } = e.target;
-    setFormData((prev) => ({
-      ...prev,
-      [name]: type === "checkbox" ? checked : value,
-    }));
+    if (name === "contact_number") {
+      const pattern = /^\d{0,9}$/;
+      if (value === "" || pattern.test(value)) {
+        setFormData((prev) => ({ ...prev, [name]: value }));
+        if (value.length === 9) {
+          setPhoneError("");
+        } else if (value.length > 0) {
+          setPhoneError("Phone number must be exactly 9 digits");
+        } else {
+          setPhoneError("");
+        }
+      }
+    } else {
+      setFormData((prev) => ({
+        ...prev,
+        [name]: type === "checkbox" ? checked : value,
+      }));
+    }
   };
 
-  // Pagination logic
   const totalPages = Math.ceil(addresses.length / addressesPerPage);
   const currentAddresses = addresses.slice(
     (currentPage - 1) * addressesPerPage,
@@ -331,15 +331,13 @@ const Address = () => {
                 </span>
                 <div className="card-actions">
                   <EditOutlined onClick={() => showModal(address)} />
-                  {/* Hide archive button if address is default */}
                   {address.is_default === 1 ? null : (
                     <InboxOutlined onClick={() => deleteAddress(address.id)} />
                   )}
                 </div>
               </div>
               <div className="address-details">
-                {address.region}, {address.state}, {address.country},{" "}
-                {address.postal_code}
+                {address.region}, {address.state}, {address.country}, {address.postal_code}
               </div>
               {address.is_default === 1 && (
                 <span className="default-badge">Default</span>
@@ -348,7 +346,6 @@ const Address = () => {
           ))}
         </div>
 
-        {/* Pagination for active addresses */}
         {totalPages > 1 && (
           <div className="pagination-container">
             {Array.from({ length: totalPages }, (_, i) => i + 1).map((page) => (
@@ -363,7 +360,6 @@ const Address = () => {
           </div>
         )}
 
-        {/* Modal: Add/Edit Address */}
         <CustomModal
           title={editingAddress ? "Edit Address" : "Add New Address"}
           visible={isModalVisible}
@@ -375,7 +371,7 @@ const Address = () => {
             <div className="form-grid">
               {/* Receiver Fullname */}
               <div className="form-group">
-                <label>Receiver Fullname *</label>
+                <label>Receiver Fullname</label>
                 <div className="input-wrapper">
                   <input
                     name="receiver_fullname"
@@ -387,23 +383,28 @@ const Address = () => {
                 </div>
               </div>
 
-              {/* Phone Number */}
+              {/* Phone Number with +63 prefix and divider */}
               <div className="form-group">
-                <label>Phone Number *</label>
-                <div className="input-wrapper">
+                <label>Phone Number</label>
+                <div className="phone-input-wrapper">
                   <input
                     name="contact_number"
                     value={formData.contact_number}
                     onChange={handleChange}
-                    placeholder="09123456789"
-                    className={!formData.contact_number ? "error" : ""}
+                    placeholder="9xxxxxxxxx"
+                    className={!formData.contact_number || phoneError ? "error" : ""}
                   />
+                  {phoneError && (
+                    <div className="error-message" style={{ color: "red", fontSize: "12px" }}>
+                      {phoneError}
+                    </div>
+                  )}
                 </div>
               </div>
 
               {/* House Number */}
               <div className="form-group">
-                <label>House Number *</label>
+                <label>House Number</label>
                 <div className="input-wrapper">
                   <input
                     name="house_number"
@@ -415,9 +416,9 @@ const Address = () => {
                 </div>
               </div>
 
-              {/* Street */}
+              {/* Street Address */}
               <div className="form-group">
-                <label>Street Address *</label>
+                <label>Street Address</label>
                 <div className="input-wrapper">
                   <input
                     name="street"
@@ -431,7 +432,7 @@ const Address = () => {
 
               {/* Barangay */}
               <div className="form-group">
-                <label>Barangay *</label>
+                <label>Barangay</label>
                 <div className="input-wrapper">
                   <input
                     name="barangay"
@@ -445,7 +446,7 @@ const Address = () => {
 
               {/* City */}
               <div className="form-group">
-                <label>City *</label>
+                <label>City</label>
                 <div className="input-wrapper">
                   <input
                     name="city"
@@ -459,7 +460,7 @@ const Address = () => {
 
               {/* Region */}
               <div className="form-group">
-                <label>Region *</label>
+                <label>Region</label>
                 <div className="input-wrapper">
                   <input
                     name="region"
@@ -471,9 +472,9 @@ const Address = () => {
                 </div>
               </div>
 
-              {/* State */}
+              {/* State/Province */}
               <div className="form-group">
-                <label>State/Province *</label>
+                <label>State/Province</label>
                 <div className="input-wrapper">
                   <input
                     name="state"
@@ -487,7 +488,7 @@ const Address = () => {
 
               {/* Country */}
               <div className="form-group">
-                <label>Country *</label>
+                <label>Country</label>
                 <div className="input-wrapper">
                   <input
                     name="country"
@@ -501,7 +502,7 @@ const Address = () => {
 
               {/* Postal Code */}
               <div className="form-group">
-                <label>Postal Code *</label>
+                <label>Postal Code</label>
                 <div className="input-wrapper">
                   <input
                     name="postal_code"
@@ -518,7 +519,6 @@ const Address = () => {
                 <label className="checkbox-label">
                   <input
                     type="checkbox"
-                    // If user has no addresses, or if editing a default one, disable
                     disabled={addresses.length === 0 || editingAddress?.is_default === 1}
                     checked={formData.is_default}
                     onChange={(e) =>
@@ -536,7 +536,6 @@ const Address = () => {
           </div>
         </CustomModal>
 
-        {/* Modal: Archived Addresses */}
         <CustomModal
           title="Archived Addresses"
           visible={isArchiveModalVisible}
@@ -577,9 +576,7 @@ const Address = () => {
                 (page) => (
                   <button
                     key={page}
-                    className={`archive-page-button ${
-                      page === archivedCurrentPage ? "active" : ""
-                    }`}
+                    className={`archive-page-button ${page === archivedCurrentPage ? "active" : ""}`}
                     onClick={() => setArchivedCurrentPage(page)}
                   >
                     {page}

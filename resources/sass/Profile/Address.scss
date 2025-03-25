@@ -190,6 +190,7 @@
     h3 {
       margin: 0;
       font-size: 1.5rem;
+      color: black;
     }
 
     .modal-close {
@@ -265,6 +266,7 @@
       margin-bottom: 0.5rem;
       font-weight: 500;
       color: #333;
+      font-family: 'Inria Serif', serif;
     }
 
     .input-wrapper {
@@ -276,6 +278,8 @@
         border: 1px solid #ddd;
         border-radius: 6px;
         transition: all 0.3s ease;
+        font-family: 'Inria Serif', serif;
+        font-size: 1rem;
 
         &:focus {
           border-color: #d84727;
@@ -343,6 +347,64 @@
     display: flex;
     align-items: center;
     gap: 0.5rem;
+  }
+}
+
+/* Phone Input Wrapper for +63 prefix and divider */
+.phone-input-wrapper {
+  position: relative;
+  width: 100%;
+  height: 48px; /* Match input height for consistent positioning */
+
+  input {
+    width: 100%;
+    padding-left: 60px !important; /* Space for +63 and divider */
+    height: 48px;
+    font-size: 1rem;
+    line-height: 48px;
+    border: 1px solid #ddd !important; /* Ensure border matches other inputs */
+    border-radius: 6px;
+    color: #333;
+    font-family: 'Inria Serif', serif;
+    transition: border-color 0.3s ease, box-shadow 0.3s ease;
+
+    &:focus {
+      border-color: #d84727 !important;
+      box-shadow: 0 0 0 2px rgba(216, 71, 39, 0.1) !important;
+      outline: none;
+    }
+
+    &.error {
+      border-color: #ff4d4f !important;
+      animation: shake 0.5s;
+    }
+  }
+
+  &::before {
+    content: "+63";
+    position: absolute;
+    left: 12px;
+    top: 24px; /* Fixed position: (input height / 2) */
+    transform: translateY(-50%); /* Center vertically relative to top: 24px */
+    color: #d84727;
+    font-size: 1rem;
+    font-family: 'Inria Serif', serif;
+    background-color: #fff;
+    padding: 0 4px;
+    pointer-events: none;
+    z-index: 1;
+  }
+
+  &::after {
+    content: "";
+    position: absolute;
+    left: 50px;
+    top: 24px; /* Fixed position: (input height / 2) */
+    transform: translateY(-50%); /* Center vertically relative to top: 24px */
+    width: 1px;
+    height: 30px;
+    background-color: #707070;
+    z-index: 1;
   }
 }
 

@@ -1,8 +1,8 @@
 /* registration.scss */
 
-/* 1) Maroon background for the full page */
+/* 1) Maroon background with a subtle gradient for depth */
 .registration-page {
-  background-color: #760038;
+  background: linear-gradient(135deg, #760038 0%, #4a0022 100%);
   min-height: 100vh;
   padding: 80px;
   position: relative;
@@ -10,52 +10,51 @@
   color: #707070;
 }
 
-/* 2) White rectangle in the center */
+/* 2) White rectangle with a softer shadow and slight gradient */
 .registration-container {
   width: 1236px;
   height: 793px;
   margin: 0 auto;
-  padding: 30px;
-  background-color: #fff;
-  border-radius: 10px;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  padding: 40px 60px;
+  background: linear-gradient(to bottom, #ffffff 0%, #f9f9f9 100%);
+  border-radius: 15px;
+  box-shadow: 0 12px 24px rgba(0, 0, 0, 0.2);
+  border: 1px solid rgba(255, 255, 255, 0.1);
 
   h2 {
     text-align: center;
     margin-bottom: 10%;
     font-family: 'Inria Serif', serif;
     font-weight: 700;
-    font-size: 32px;
-    color: #000000;
+    font-size: 36px;
+    color: #2b0015;
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
   }
 
   .ant-form-item {
     margin-bottom: 50px;
 
     .ant-form-item-label > label {
-      color: #707070;
+      color: #505050;
       font-family: 'Inria Serif', serif;
+      font-size: 18px;
+      font-weight: 500;
     }
     .ant-form-item-explain {
       position: relative;
       z-index: 2;
+      color: #d84727;
     }
   }
 
   .form-submit-container {
     display: flex;
     justify-content: flex-end;
-    margin-top: 10px;
+    margin-top: 20px;
   }
 }
 
-/* 3) Heading: Inria Serif Bold 32px -> done above */
-
-/* 4) Text color #707070 -> done above */
-
-/* 5) Box shadow ONLY on the inputs (including password & select) */
-
-/* Back button style */
+/* Back button with a modern hover effect */
 .back-button {
   position: absolute;
   top: 20px;
@@ -65,96 +64,193 @@
   cursor: pointer;
   font-size: 16px;
   font-weight: bold;
-  /* Force white text */
   color: #ffffff !important;
   font-family: 'Inria Serif', serif;
-  padding: 8px 16px;
-  border-radius: 6px;
-  transition: background-color 0.3s ease;
+  padding: 10px 20px;
+  border-radius: 8px;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
 
-  /* Also force the Ant Design icon to be white */
   .anticon {
     color: #ffffff !important;
+    margin-right: 8px;
   }
 
   &:hover {
     background-color: #c91111;
-    /* Keep text white on hover too */
-    color: #ffffff !important;
-
-    .anticon {
-      color: #ffffff !important;
-    }
+    transform: translateY(-2px);
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.25);
   }
 }
 
-
-
-/* 
-  Custom input fields
-  (replaces .ant-input)
-*/
+/* Enhanced input styles with consistent 1px solid border */
 .custom-input {
   width: 100%;
   height: 60px;
   font-size: 24px;
-  line-height: 48px;
-  border: 1px solid #707070;
-  border-radius: 10px;
-  color: #707070;
+  line-height: 60px; /* Match height to center text vertically */
+  border: 1px solid #d9d9d9;
+  border-radius: 12px;
+  background: #fff;
+  color: #000000 !important;
   font-family: 'Inria Serif', serif;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
   padding: 0 16px;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+  --input-color: #d9d9d9; /* Default color for +63 and divider */
+
+  /* Placeholder styling to match email input */
+  &::placeholder {
+    color: #bfbfbf; /* Light gray to match "Enter email" */
+    font-family: 'Inria Serif', serif;
+    font-size: 24px;
+  }
+
+  &:hover {
+    border-color: #760038;
+    --input-color: #760038; /* Update color for +63 and divider */
+  }
 
   &:focus {
     outline: none;
-    border-color: #707070;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    border-color: #d66a51;
+    background: linear-gradient(to right, #fff 0%, #fef5f2 100%);
+    box-shadow: 0 6px 16px rgba(214, 106, 81, 0.3);
+    --input-color: #d66a51; /* Update color for +63 and divider */
+  }
+
+  /* Error state for Ant Design form validation */
+  &.ant-input-status-error {
+    border-color: #ff4d4f !important; /* Match email input's red border */
+    animation: shake 0.5s;
+    --input-color: #ff4d4f !important; /* Update color for +63 and divider */
   }
 }
 
-/* 
-  Custom select
-  (replaces .ant-select, .ant-select-selector, etc.)
-*/
+/* Phone input wrapper with divider */
+.phone-input-wrapper {
+  position: relative;
+  width: 100%;
+  height: 60px; /* Match input height for consistent positioning */
+
+  .custom-input {
+    padding-left: 75px !important;
+    border: 1px solid #d9d9d9 !important;
+    height: 60px;
+    border-radius: 12px;
+    line-height: 60px; /* Ensure text is centered */
+    --input-color: #d9d9d9; /* Default color for +63 and divider */
+
+    &::placeholder {
+      color: #bfbfbf; /* Match placeholder color */
+      font-family: 'Inria Serif', serif;
+      font-size: 24px;
+    }
+
+    &:hover {
+      border-color: #760038 !important;
+      --input-color: #760038; /* Update color for +63 and divider */
+    }
+
+    &:focus {
+      border-color: #d66a51 !important;
+      --input-color: #d66a51; /* Update color for +63 and divider */
+    }
+
+    &.ant-input-status-error {
+      border-color: #ff4d4f !important; /* Match email input's red border */
+      animation: shake 0.5s;
+      --input-color: #ff4d4f !important; /* Update color for +63 and divider */
+    }
+  }
+
+  &::before {
+    content: "+63";
+    position: absolute;
+    left: 16px;
+    top: 50%; /* Center vertically */
+    transform: translateY(-50%);
+    color: var(--input-color); /* Use dynamic color */
+    font-size: 24px;
+    font-family: 'Inria Serif', serif;
+    background-color: #fff;
+    padding: 0 4px;
+    pointer-events: none;
+    z-index: 1;
+    display: flex;
+    align-items: center;
+    height: 24px;
+  }
+
+  &::after {
+    content: "";
+    position: absolute;
+    left: 75px;
+    top: 50%; /* Center vertically */
+    transform: translateY(-50%);
+    width: 2px;
+    height: 40px;
+    background-color: var(--input-color); /* Use dynamic color */
+    z-index: 1;
+  }
+}
+
+/* Enhanced select styles with consistent 1px solid border */
 .custom-select {
   width: 100%;
   height: 60px;
   font-size: 24px;
-  line-height: 48px;
-  border: 1px solid #707070;
-  border-radius: 10px;
-  color: #707070;
+  line-height: 60px; /* Match height to center text vertically */
+  border: 1px solid #d9d9d9;
+  border-radius: 12px;
+  background: #fff;
+  color: #505050;
   font-family: 'Inria Serif', serif;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
   padding: 0 16px;
-  appearance: none; /* remove default arrow if you want a custom arrow */
-  background: url("data:image/svg+xml,%3Csvg ... %3C/svg%3E") no-repeat right 16px center / 12px 12px; /* optional custom arrow icon */
-  
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+  appearance: none;
+  background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="%23707070" stroke-width="2"><polyline points="6 9 12 15 18 9"></polyline></svg>');
+  background-repeat: no-repeat;
+  background-position: right 16px center;
+
+  &:hover {
+    border-color: #760038;
+  }
+
   &:focus {
     outline: none;
-    border-color: #707070;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    border-color: #d84727;
+    box-shadow: 0 6px 16px rgba(216, 71, 39, 0.3);
   }
 }
 
-/* Sign Up button (no shadow) */
+/* Sign Up button with gradient and glow */
 .signup-button {
-  background-color: #D84727;
-  border: 1px solid #D84727;
+  background: linear-gradient(45deg, #d84727 0%, #e67e22 100%);
+  border: none;
   font-size: 24px;
-  padding: 5px 15px;
+  padding: 10px 30px;
   font-family: 'Inria Serif', serif;
-  border-radius: 6px;
+  border-radius: 8px;
   color: #fff;
   cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 12px rgba(216, 71, 39, 0.4);
 
   &:hover,
   &:focus,
   &:active {
-    background-color: #d36e2f;
-    border-color: #d36e2f;
+    background: linear-gradient(45deg, #e67e22 0%, #d84727 100%);
+    transform: translateY(-2px);
+    box-shadow: 0 6px 16px rgba(216, 71, 39, 0.6);
     outline: none;
-    color: #ffffff;
   }
+}
+
+/* Shake animation for error state */
+@keyframes shake {
+  0%, 100% { transform: translateX(0); }
+  25% { transform: translateX(-5px); }
+  75% { transform: translateX(5px); }
 }

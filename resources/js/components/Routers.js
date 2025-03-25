@@ -49,6 +49,7 @@ import OrdersList from "./Admin/Orders/AdminOrders";
 import AdminSettings from "./Admin/AdminSettings/AdminSettingsPage";
 import MainButton from "./Chat/Mainbutton";
 import Inventory from "./Admin/Products/Inventory";
+import ForgotPassword from "./LogIn/ForgotPassword";
 
 function AppContent() {
   const location = useLocation();
@@ -62,6 +63,7 @@ function AppContent() {
         {/* Public / Common Routes */}
         <Route path="/" element={<DisplayProducts />} />
         <Route path="/login" element={<Login />} />
+        
         <Route path="/mainpage" element={<MainPage />} />
         <Route path="/products" element={<DisplayProducts />} />
         <Route path="/register" element={<Register />} />
