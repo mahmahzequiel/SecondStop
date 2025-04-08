@@ -18,6 +18,7 @@ const AdminProducts = () => {
   const [categories, setCategories] = useState([]);
   const [categoryTypes, setCategoryTypes] = useState([]);
   const [brands, setBrands] = useState([]);
+  const [sacks, setSacks] = useState([]); // Add state for sacks
   const [selectedCategory, setSelectedCategory] = useState("");
   const [selectedCategoryType, setSelectedCategoryType] = useState("");
   const [selectedBrand, setSelectedBrand] = useState("");
@@ -29,8 +30,8 @@ const AdminProducts = () => {
   const [selectedProduct, setSelectedProduct] = useState(null); // Track the selected product for editing
   const [selectedRowKeys, setSelectedRowKeys] = useState([]);
   const [previewVisible, setPreviewVisible] = useState(false);
-const [previewImage, setPreviewImage] = useState('');
-const [previewTitle, setPreviewTitle] = useState('');
+  const [previewImage, setPreviewImage] = useState('');
+  const [previewTitle, setPreviewTitle] = useState('');
   
   // Pagination states
   const [currentPage, setCurrentPage] = useState(1);
@@ -81,11 +82,25 @@ const [previewTitle, setPreviewTitle] = useState('');
     }
   };
 
+  // Add function to fetch sacks
+  const fetchSacks = async () => {
+    try {
+      const response = await axios.get("http://127.0.0.1:8000/api/sacks", {
+        params: { status: 'active' }, // Only fetch active sacks
+      });
+      setSacks(Array.isArray(response.data) ? response.data : []);
+    } catch (error) {
+      console.error("Error fetching sacks:", error);
+      setSacks([]);
+    }
+  };
+
   useEffect(() => {
     fetchProducts();
     fetchCategories();
     fetchCategoryTypes();
     fetchBrands();
+    fetchSacks(); // Fetch sacks data
   }, [selectedStatus]);
 
   useEffect(() => {
@@ -190,6 +205,8 @@ const [previewTitle, setPreviewTitle] = useState('');
 
       // Refetch products to update the UI
       fetchProducts();
+      // Also refresh sacks data as quantities might have changed
+      fetchSacks();
       setIsEditProductModalVisible(false);
       message.success("Product updated successfully!");
     } catch (error) {
@@ -202,11 +219,6 @@ const [previewTitle, setPreviewTitle] = useState('');
     setCurrentPage(page);
   };
 
-  // const handlePageSizeChange = (current, size) => {
-  //   setPageSize(size);
-  //   setCurrentPage(1); // Reset to first page when page size changes
-  // };
-
   const onSelectChange = (selectedRowKeys) => {
     setSelectedRowKeys(selectedRowKeys);
   };
@@ -214,6 +226,12 @@ const [previewTitle, setPreviewTitle] = useState('');
   const rowSelection = {
     selectedRowKeys,
     onChange: onSelectChange,
+  };
+
+  // Add handler for when product is added successfully
+  const handleProductAdded = () => {
+    fetchProducts();
+    fetchSacks(); // Refresh sacks data since available quantities have changed
   };
 
   if (loading) return <div>Loading products...</div>;
@@ -277,6 +295,16 @@ const [previewTitle, setPreviewTitle] = useState('');
       dataIndex: "category_type",
       key: "category_type",
       render: (categoryType) => categoryType?.category_type || "N/A",
+    },
+    {
+      title: "Sack Code",
+      key: "sack_code",
+      render: (_, record) => {
+        if (!sacks || sacks.length === 0) return null; // Or <Skeleton />
+        
+        const sack = sacks.find(s => s.id === record.sack_id);
+        return sack?.sack_code || "N/A";
+      }
     },
     {
       title: "Price",
@@ -359,7 +387,7 @@ const [previewTitle, setPreviewTitle] = useState('');
         </Select>
         <div style={{ marginLeft: "auto", display: "flex", gap: "10px" }}>
         <Button 
-            type="primary"  onClick={() => setIsAddProductModalVisible(true)}
+            type="primary" onClick={() => setIsAddProductModalVisible(true)}
             icon={<PlusOutlined />}
             style={{ backgroundColor: "#A63F3F" }}
           >
@@ -399,7 +427,6 @@ const [previewTitle, setPreviewTitle] = useState('');
           total={total}
           onChange={handlePageChange}
           showTotal={(total) => `Total ${total} products`}
-         
         />
       </div>
       <AddProductModal
@@ -410,7 +437,8 @@ const [previewTitle, setPreviewTitle] = useState('');
         categories={categories}
         categoryTypes={categoryTypes}
         brands={brands}
-        
+        sacks={sacks} // Pass sacks data to AddProductModal
+        onProductAdded={handleProductAdded} // Add callback function
       />
       <EditProductModal
         visible={isEditProductModalVisible}
@@ -420,16 +448,17 @@ const [previewTitle, setPreviewTitle] = useState('');
         categories={categories}
         categoryTypes={categoryTypes}
         brands={brands}
+        sacks={sacks} // Pass sacks data to EditProductModal as well
       />
 
-<Modal
-      visible={previewVisible}
-      title={previewTitle}
-      footer={null}
-      onCancel={() => setPreviewVisible(false)}
-    >
-      <img alt={previewTitle} style={{ width: '100%' }} src={previewImage} />
-    </Modal>
+      <Modal
+        visible={previewVisible}
+        title={previewTitle}
+        footer={null}
+        onCancel={() => setPreviewVisible(false)}
+      >
+        <img alt={previewTitle} style={{ width: '100%' }} src={previewImage} />
+      </Modal>
     </AdminPage>
   );
 };

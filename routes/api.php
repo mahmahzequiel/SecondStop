@@ -16,6 +16,9 @@ use App\Http\Controllers\PurchaseController;
 use App\Http\Controllers\NotificationController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\RoleController;
+use App\Http\Controllers\SacksController; // Add this line
+use App\Http\Controllers\AdminDashboardController; // Add this line
+
 
 
 // Open Routes: Registration and Login
@@ -27,9 +30,16 @@ Route::apiResource('/roles', RoleController::class);
 Route::put('/roles/{id}/archive', [RoleController::class, 'archive']);
 Route::put('/roles/{id}/restore', [RoleController::class, 'restore']);
 
+Route::post('sacks/bulk-delete', [SacksController::class, 'bulkDelete']);
+Route::post('sacks/bulk-restore', [SacksController::class, 'bulkRestore']);
+Route::put('sacks/{id}/restore', [SacksController::class, 'restore']);
+Route::apiResource('sacks', SacksController::class);
+Route::post('sacks/update-quantities', [SacksController::class, 'updateQuantities']);
+
 Route::put('/products/{id}/restore', [ProductsController::class, 'restore']);
 Route::resource("products", ProductsController::class);
 Route::post('/products/update-quantities', [ProductsController::class, 'updateQuantities']);
+
 
 Route::put('/categories/{id}/restore', [CategoryController::class, 'restore']);
 Route::resource('categories', CategoryController::class);
@@ -117,8 +127,12 @@ Route::patch('/orders/{order}/payment-status', [OrderController::class, 'updateP
     Route::get('notification', [NotificationController::class, 'index']);
     Route::patch('notification/{id}/mark-read', [NotificationController::class, 'markAsRead']);
 
-// Inventory Routes 
-Route::apiResource('inventory', \App\Http\Controllers\InventoryController::class);
-Route::put('/inventory/{id}/restore', [\App\Http\Controllers\InventoryController::class, 'restore']);
+    Route::group(['prefix' => '/dashboard'], function() {
+        Route::get('stats', [AdminDashboardController::class, 'getStats']);
+        Route::get('sales', [AdminDashboardController::class, 'getSalesData']);
+        Route::get('order-status', [AdminDashboardController::class, 'getOrderStatusDistribution']);
+        Route::get('product-categories', [AdminDashboardController::class, 'getProductCategoryDistribution']);
+    });
+
 
 });

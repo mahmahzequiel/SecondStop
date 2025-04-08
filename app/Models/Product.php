@@ -19,6 +19,7 @@ class Product extends Model
         'price',
         'quantity',  // Add this line
         'product_image',
+        'sack_id',
     ];
 
     protected $dates = ['deleted_at']; // Ensure this is present
@@ -54,4 +55,10 @@ class Product extends Model
     {
         return $this->hasMany(Cart::class, 'product_id');
     }
+
+    public function sack()
+    {
+        return $this->belongsTo(Sacks::class, 'sack_id');
+    }
+
 }

@@ -15,10 +15,21 @@ class CreateInventoriesTable extends Migration
     {
         Schema::create('inventories', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('product_id')->constrained('products')->onDelete('cascade');
-            $table->integer('stock')->default(0);
-            $table->date('date_acquired')->nullable();
+
+            // Foreign key to sacks table
+            $table->unsignedBigInteger('sack_id')->nullable();
+            $table->foreign('sack_id')
+                  ->references('id')
+                  ->on('sacks')
+                  ->onDelete('set null');
+
+            $table->enum('status', ['in_stock', 'sold', 'reserved', 'damaged'])->default('in_stock');
+            $table->string('location', 100)->nullable();
+            $table->string('condition', 50)->nullable();
+            $table->text('notes')->nullable();
+
             $table->timestamps();
+            $table->softDeletes();
         });
     }
 

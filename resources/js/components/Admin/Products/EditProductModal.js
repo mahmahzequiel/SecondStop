@@ -12,10 +12,12 @@ const EditProductModal = ({
   categories,
   categoryTypes,
   brands,
+  sacks,
 }) => {
   const [form] = Form.useForm();
   const [loading, setLoading] = useState(false);
   const [fileList, setFileList] = useState([]);
+  const [imageChanged, setImageChanged] = useState(false);
 
   useEffect(() => {
     if (product) {
@@ -23,9 +25,11 @@ const EditProductModal = ({
         product_name: product.product_name,
         description: product.description,
         price: product.price,
+        quantity: product.quantity,
         category_id: product.category_id,
         category_type_id: product.category_type_id,
         brand_id: product.brand_id,
+        sack_id: product.sack_id,
       });
       
       // Set product image if available
@@ -35,17 +39,21 @@ const EditProductModal = ({
             uid: "-1",
             name: "Existing Image",
             status: "done",
-            url: product.product_image,
+            url: `http://127.0.0.1:8000/storage/${product.product_image}`,
           },
         ]);
       } else {
         setFileList([]);
       }
+      
+      // Reset the image changed flag when the modal opens
+      setImageChanged(false);
     }
   }, [product, form]);
 
   const handleFileChange = ({ fileList }) => {
     setFileList(fileList);
+    setImageChanged(true);
   };
 
   const handleSave = async () => {
@@ -54,17 +62,17 @@ const EditProductModal = ({
       const values = await form.validateFields();
       const formData = new FormData();
       
-      // Append all fields to FormData, including unchanged ones
+      // Append method for PUT request
+      formData.append('_method', 'PUT');
+      
+      // Append all fields to FormData
       Object.keys(values).forEach((key) => {
-        formData.append(key, values[key] || ''); // Ensure no undefined values
+        formData.append(key, values[key] !== undefined ? values[key] : '');
       });
       
-      // Append the image file if a new one is uploaded
-      if (fileList.length > 0 && fileList[0].originFileObj) {
+      // Only append the image file if a new one is uploaded
+      if (imageChanged && fileList.length > 0 && fileList[0].originFileObj) {
         formData.append("product_image", fileList[0].originFileObj);
-      } else if (product.product_image) {
-        // If no new image is uploaded, append the existing image URL
-        formData.append("product_image", product.product_image);
       }
       
       // Log FormData for debugging
@@ -72,10 +80,8 @@ const EditProductModal = ({
         console.log(key, value);
       }
       
-      // Call the onSave function with the FormData
-      onSave(formData);
-      message.success("Product updated successfully!");
-      onCancel();
+      // Call the onSave function with the FormData and product ID
+      onSave(formData, product.id);
     } catch (error) {
       console.error("Error updating product:", error);
       message.error("Failed to update product.");
@@ -140,6 +146,32 @@ const EditProductModal = ({
           </Select>
         </Form.Item>
         <Form.Item
+          name="sack_id"
+          label="Sack"
+          rules={[{ required: true, message: "Please select a sack" }]}
+        >
+          <Select placeholder="Select sack">
+            {sacks.map((sack) => (
+              <Option key={sack.id} value={sack.id}>
+                {sack.sack_code} - Available: {sack.available_items}
+              </Option>
+            ))}
+            {/* Add option to keep current sack if it's already assigned */}
+            {product && product.sack_id && !sacks.some(s => s.id === product.sack_id) && (
+              <Option key={product.sack_id} value={product.sack_id}>
+                {product.sack?.sack_code || `Sack #${product.sack_id}`} (Current)
+              </Option>
+            )}
+          </Select>
+        </Form.Item>
+        <Form.Item
+          name="quantity"
+          label="Quantity"
+          rules={[{ required: true, message: "Please enter the quantity" }]}
+        >
+          <Input type="number" placeholder="Enter quantity" />
+        </Form.Item>
+        <Form.Item
           name="price"
           label="Price"
           rules={[{ required: true, message: "Please enter the price" }]}
@@ -153,7 +185,7 @@ const EditProductModal = ({
         >
           <Input.TextArea placeholder="Enter description" />
         </Form.Item>
-        <Form.Item label="Product Image" name="product_image">
+        <Form.Item label="Product Image">
           <Upload
             fileList={fileList}
             onChange={handleFileChange}
@@ -162,6 +194,11 @@ const EditProductModal = ({
           >
             <Button icon={<UploadOutlined />}>Upload Image</Button>
           </Upload>
+          {product?.product_image && !imageChanged && (
+            <div style={{ marginTop: 8 }}>
+              <small>Current image will be kept if no new image is uploaded</small>
+            </div>
+          )}
         </Form.Item>
       </Form>
     </Modal>

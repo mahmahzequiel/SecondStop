@@ -144,16 +144,25 @@ const Payment = () => {
   
       console.log("Product updates to send:", productUpdates);
   
-      // Make API call to update quantities
-      const response = await axios.post(
+      // 1. Make API call to update product quantities
+      const productResponse = await axios.post(
         "http://127.0.0.1:8000/api/products/update-quantities",
         { updates: productUpdates },
         { headers: { Authorization: `Bearer ${token}` } }
       );
       
-      console.log("✅ Product quantities updated successfully", response.data);
+      console.log("✅ Product quantities updated successfully", productResponse.data);
+      
+      // 2. Make API call to update sack quantities
+      const sackResponse = await axios.post(
+        "http://127.0.0.1:8000/api/sacks/update-quantities",
+        { updates: productUpdates },
+        { headers: { Authorization: `Bearer ${token}` } }
+      );
+      
+      console.log("✅ Sack quantities updated successfully", sackResponse.data);
     } catch (error) {
-      console.error("❌ Failed to update product quantities:", error.response?.data || error);
+      console.error("❌ Failed to update quantities:", error.response?.data || error);
     }
   };
 

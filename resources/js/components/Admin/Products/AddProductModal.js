@@ -1,15 +1,43 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { Modal, Form, Input, Select, Button, message, Upload, InputNumber } from "antd";
 import axios from "axios";
 import { UploadOutlined } from "@ant-design/icons";
 
 const { Option } = Select;
 
-const AddProductModal = ({ visible, setVisible, setProducts, setFilteredProducts, categories = [], categoryTypes = [], brands = [] }) => {
+const AddProductModal = ({ visible, setVisible, setProducts, setFilteredProducts, categories = [], categoryTypes = [], brands = [], sacks = [] }) => {
   const [form] = Form.useForm();
   const [confirmVisible, setConfirmVisible] = useState(false);
   const [formValues, setFormValues] = useState(null);
   const [fileList, setFileList] = useState([]);
+  const [filteredSacks, setFilteredSacks] = useState([]);
+  const [selectedCategory, setSelectedCategory] = useState(null);
+  const [selectedCategoryType, setSelectedCategoryType] = useState(null);
+
+  // Filter sacks based on selected category and category type
+  useEffect(() => {
+    if (selectedCategory && selectedCategoryType) {
+      const filtered = sacks.filter(
+        sack => 
+          sack.category_id === selectedCategory && 
+          sack.category_type_id === selectedCategoryType &&
+          sack.available_items > 0
+      );
+      setFilteredSacks(filtered);
+    } else {
+      setFilteredSacks([]);
+    }
+  }, [selectedCategory, selectedCategoryType, sacks]);
+
+  const handleCategoryChange = (value) => {
+    setSelectedCategory(value);
+    form.setFieldsValue({ sack_id: undefined }); // Reset sack selection
+  };
+
+  const handleCategoryTypeChange = (value) => {
+    setSelectedCategoryType(value);
+    form.setFieldsValue({ sack_id: undefined }); // Reset sack selection
+  };
 
   const handleFormSubmit = (values) => {
     setFormValues(values); // Store the form values temporarily
@@ -41,13 +69,15 @@ const AddProductModal = ({ visible, setVisible, setProducts, setFilteredProducts
         const brand = brands.find((b) => b.id === parseInt(formValues.brand_id));
         const category = categories.find((c) => c.id === parseInt(formValues.category_id));
         const categoryType = categoryTypes.find((t) => t.id === parseInt(formValues.category_type_id));
+        const sack = sacks.find((s) => s.id === parseInt(formValues.sack_id));
   
         // Create a complete product object with nested objects
         newProduct = {
           ...newProduct,
           brand: brand,
           category: category,
-          category_type: categoryType
+          category_type: categoryType,
+          sack: sack
         };
   
         // Immediately update state to reflect new product
@@ -61,7 +91,7 @@ const AddProductModal = ({ visible, setVisible, setProducts, setFilteredProducts
       }
     } catch (error) {
       console.error("Error adding product:", error);
-      message.error("Failed to add product.");
+      message.error("Failed to add product: " + (error.response?.data?.message || error.message));
     }
   };
 
@@ -98,7 +128,10 @@ const AddProductModal = ({ visible, setVisible, setProducts, setFilteredProducts
             name="category_id"
             rules={[{ required: true, message: "Please select a category!" }]}
           >
-            <Select placeholder="Select a category">
+            <Select 
+              placeholder="Select a category"
+              onChange={handleCategoryChange}
+            >
               {categories.map((category) => (
                 <Option key={category.id} value={category.id}>
                   {category.category_name}
@@ -111,10 +144,30 @@ const AddProductModal = ({ visible, setVisible, setProducts, setFilteredProducts
             name="category_type_id"
             rules={[{ required: true, message: "Please select a category type!" }]}
           >
-            <Select placeholder="Select a category type">
+            <Select 
+              placeholder="Select a category type"
+              onChange={handleCategoryTypeChange}
+            >
               {categoryTypes.map((type) => (
                 <Option key={type.id} value={type.id}>
                   {type.category_type}
+                </Option>
+              ))}
+            </Select>
+          </Form.Item>
+          <Form.Item
+            label="Sack"
+            name="sack_id"
+            rules={[{ required: true, message: "Please select a sack!" }]}
+            tooltip="Select a sack with available items"
+          >
+            <Select 
+              placeholder="Select a sack" 
+              disabled={!selectedCategory || !selectedCategoryType}
+            >
+              {filteredSacks.map((sack) => (
+                <Option key={sack.id} value={sack.id}>
+                  {sack.sack_code} - Available: {sack.available_items}
                 </Option>
               ))}
             </Select>

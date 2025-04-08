@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Product;
+use Illuminate\Support\Facades\DB; // Add this import for the DB facade
+use App\Models\Sacks;
 use Illuminate\Support\Facades\Storage;
 
 class ProductsController extends Controller
@@ -37,73 +39,100 @@ class ProductsController extends Controller
      */
     public function store(Request $request)
     {
-        $request->validate([
-            'category_id' => 'required|exists:categories,id',
-            'category_type_id' => 'required|exists:category_types,id',
-            'brand_id' => 'required|exists:brands,id',
+        $validated = $request->validate([
             'product_name' => 'required|string|max:100',
             'description' => 'nullable|string',
-            'price' => 'required|numeric',
-            'quantity' => 'required|integer|min:0',
-            'product_image' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
+            'price' => 'required|numeric|min:0',
+            'quantity' => 'required|integer|min:1',
+            'category_id' => 'required|exists:categories,id',
+            'category_type_id' => 'required|exists:category_types,id',
+            'sack_id' => 'required|exists:sacks,id',
+            'brand_id' => 'nullable|exists:brands,id',
+            'product_image' => 'nullable|image|max:2048', // max 2MB
         ]);
 
-        $product = new Product();
-        $product->category_id = $request->category_id;
-        $product->category_type_id = $request->category_type_id;
-        $product->brand_id = $request->brand_id;
-        $product->product_name = $request->product_name;
-        $product->description = $request->description;
-        $product->price = $request->price;
-        $product->quantity = $request->quantity;
-
-        if ($request->hasFile('product_image')) {
-            $imagePath = $request->file('product_image')->store('products', 'public');
-            $product->product_image = $imagePath;
+        // Start a transaction
+        DB::beginTransaction();
+        
+        try {
+            // Check if there are enough available items in the sack
+            $sack = Sacks::findOrFail($request->sack_id);
+            
+            if ($sack->available_items < $request->quantity) {
+                return response()->json([
+                    'message' => 'Not enough available items in the selected sack',
+                    'available' => $sack->available_items,
+                    'requested' => $request->quantity
+                ], 422);
+            }
+            
+            // Handle image upload if provided
+            if ($request->hasFile('product_image')) {
+                $imagePath = $request->file('product_image')->store('product_images', 'public');
+                $validated['product_image'] = $imagePath;
+            }
+            
+            // Create the product
+            $product = Product::create($validated);
+            
+            // Update the sack quantities
+            $sack->update([
+                'available_items' => $sack->available_items - $request->quantity,
+                'sold_items' => $sack->sold_items + $request->quantity
+            ]);
+            
+            // Commit the transaction
+            DB::commit();
+            
+            // Load the relationships for the response
+            $product->load(['category', 'categoryType', 'brand', 'sack']);
+            
+            return response()->json($product, 201);
+        } catch (\Exception $e) {
+            // Rollback the transaction in case of error
+            DB::rollBack();
+            
+            return response()->json([
+                'message' => 'Failed to create product',
+                'error' => $e->getMessage()
+            ], 500);
         }
-
-        $product->save();
-
-        return response()->json($product, 201);
-    }
-
-    /**
-     * Display the specified product.
-     */
-    public function show($id)
-    {
-        $product = Product::with(['category', 'categoryType', 'brand'])->findOrFail($id);
-        return response()->json($product);
     }
 
     /**
      * Update the specified product in the database.
      */
-    public function update(Request $request, $id)
-    {
-        // Log request content
-        \Log::info('Request Data:', $request->all());
+    /**
+ * Update the specified product in the database.
+ */
+public function update(Request $request, $id)
+{
+    // Log request content
+    \Log::info('Request Data:', $request->all());
 
-        // Convert PUT request to POST if `_method=PUT` is detected
-        if ($request->isMethod('post') && $request->input('_method') === 'PUT') {
-            $request->setMethod('PUT');
-        }
+    // Validate input
+    $request->validate([
+        'category_id' => 'required|exists:categories,id',
+        'category_type_id' => 'required|exists:category_types,id',
+        'brand_id' => 'required|exists:brands,id',
+        'product_name' => 'required|string|max:100',
+        'description' => 'nullable|string',
+        'price' => 'required|numeric',
+        'sack_id' => 'required|exists:sacks,id',
+        'quantity' => 'required|integer|min:0',
+        'product_image' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
+    ]);
 
-        // Validate input
-        $request->validate([
-            'category_id' => 'required|exists:categories,id',
-            'category_type_id' => 'required|exists:category_types,id',
-            'brand_id' => 'required|exists:brands,id',
-            'product_name' => 'required|string|max:100',
-            'description' => 'nullable|string',
-            'price' => 'required|numeric',
-            'quantity' => 'required|integer|min:0',
-            'product_image' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
-        ]);
-
-        $product = Product::findOrFail($id);
-        $product->update($request->except('product_image'));
-
+    $product = Product::findOrFail($id);
+    
+    // Start database transaction
+    DB::beginTransaction();
+    
+    try {
+        // Update product with all fields except product_image
+        $product->update($request->except('product_image', '_method'));
+        
+        // Handle image upload only if a new file is provided
         if ($request->hasFile('product_image')) {
             // Delete old image if exists
             if ($product->product_image) {
@@ -114,9 +143,24 @@ class ProductsController extends Controller
             $product->product_image = $imagePath;
             $product->save();
         }
-
+        
+        // Commit transaction
+        DB::commit();
+        
+        // Load relationships for the response
+        $product->load(['category', 'categoryType', 'brand', 'sack']);
+        
         return response()->json($product);
+    } catch (\Exception $e) {
+        // Rollback transaction on error
+        DB::rollBack();
+        
+        return response()->json([
+            'message' => 'Failed to update product',
+            'error' => $e->getMessage()
+        ], 500);
     }
+}
 
     /**
      * Archive the specified product (soft delete).
@@ -186,4 +230,6 @@ class ProductsController extends Controller
         return response()->json(['error' => 'Failed to update product quantities', 'message' => $e->getMessage()], 500);
         }   
     }
+
+    
 }

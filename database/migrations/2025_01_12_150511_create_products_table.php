@@ -22,6 +22,12 @@ class CreateProductsTable extends Migration
                   ->references('id')
                   ->on('categories')
                   ->onDelete('cascade');
+            
+           $table->unsignedBigInteger('sack_id');
+           $table->foreign('sack_id')
+                ->references('id')
+                ->on('sacks')
+                ->onDelete('cascade');
 
             // Foreign key to category_types table
             $table->unsignedBigInteger('category_type_id');
@@ -29,6 +35,8 @@ class CreateProductsTable extends Migration
                   ->references('id')
                   ->on('category_types')
                   ->onDelete('cascade');
+
+          
 
             // Foreign key to brands table
             $table->unsignedBigInteger('brand_id')->nullable();
