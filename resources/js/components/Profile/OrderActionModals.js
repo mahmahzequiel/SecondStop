@@ -130,42 +130,77 @@ const OrderActionModals = ({
     }
 };
 
-  const handleSubmitReview = async () => {
-    if (!selectedProductId) {
-      message.error("Please select a product to review");
-      return;
+const handleSubmitReview = async () => {
+  if (!reviewText.trim()) {
+    message.error("Please provide review text");
+    return;
+  }
+
+  if (reviewText.trim().length < 10) {
+    message.error("Review text must be at least 10 characters long");
+    return;
+  }
+
+  // For multi-product orders, ensure a product is selected
+  if (order?.order_items?.length > 1 && !selectedProductId) {
+    message.error("Please select a product to review");
+    return;
+  }
+
+  try {
+    setActionLoading(true);
+    const token = localStorage.getItem("userToken");
+    
+    const payload = {
+      order_id: order.id,
+      rating: reviewRating,
+      review_text: reviewText
+    };
+    
+    if (selectedProductId) {
+      payload.product_id = selectedProductId;
     }
 
-    if (!reviewText.trim()) {
-      message.error("Please provide review text");
-      return;
-    }
+    // Fix API endpoint URL format
+    const response = await axios.post(
+      `http://127.0.0.1:8000/api/store-reviews`, // Make sure this matches your route
+      payload,
+      { 
+        headers: { 
+          Authorization: `Bearer ${token}`,
+          'Content-Type': 'application/json'
+        }
+      }
+    );
 
-    try {
-      setActionLoading(true);
-      const token = localStorage.getItem("userToken");
-      
-      const response = await axios.post(
-        `http://127.0.0.1:8000/api/reviews`,
-        { 
-          product_id: selectedProductId,
-          order_id: order.id,
-          rating: reviewRating,
-          review_text: reviewText
-        },
-        { headers: { Authorization: `Bearer ${token}` } }
+    message.success("Review submitted successfully");
+    onSuccess();
+    handleClose();
+  } catch (error) {
+    console.error("Submission error:", error);
+    
+    if (error.response?.status === 422) {
+      const errors = error.response.data.errors;
+      // Create a list of error messages
+      const errorMessages = Object.values(errors).flat();
+      message.error(
+        <div>
+          <div>Please fix the following issues:</div>
+          <ul style={{ marginTop: '8px', paddingLeft: '20px' }}>
+            {errorMessages.map((msg, i) => (
+              <li key={i}>{msg}</li>
+            ))}
+          </ul>
+        </div>,
+        10
       );
-      
-      message.success("Review submitted successfully");
-      onSuccess();
-      handleClose();
-    } catch (error) {
-      console.error("Failed to submit review:", error);
-      message.error("Failed to submit review. Please try again later.");
-    } finally {
-      setActionLoading(false);
+    } else {
+      message.error(error.response?.data?.message || "Failed to submit review.");
     }
-  };
+  } finally {
+    setActionLoading(false);
+  }
+};
 
   // Render Cancel Order Modal
   const renderCancelOrderModal = () => (

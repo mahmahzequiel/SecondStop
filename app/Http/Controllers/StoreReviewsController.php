@@ -3,7 +3,9 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Models\StoreReview;
+use App\Models\StoreReviews;
+use App\Models\Order;
+use App\Models\OrderItem;
 use Illuminate\Support\Facades\Auth;
 
 class StoreReviewsController extends Controller
@@ -15,27 +17,76 @@ class StoreReviewsController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function store(Request $request)
-    {
-        // Validate the request
-        $request->validate([
-            'rating' => 'required|integer|min:1|max:5',
-            'review_text' => 'required|string|max:1000',
-        ]);
+{
+    $validated = $request->validate([
+        'order_id' => [
+            'required',
+            'exists:orders,id',
+            function ($attribute, $value, $fail) {
+                $order = Order::find($value);
+                
+                if (!$order) {
+                    $fail('The selected order id is invalid.');
+                    return;
+                }
+                
+                if ($order->user_id != Auth::id()) {
+                    $fail('This order does not belong to you.');
+                }
+                
+                // Check if order status is suitable for review
+                if ($order->status != 'delivered' && $order->status != 'completed') {
+                    $fail('You can only review orders that have been delivered or completed.');
+                }
+            }
+        ],
+        'rating' => 'required|integer|min:1|max:5',
+        'review_text' => 'required|string|min:10|max:1000',
+        'product_id' => [
+            'nullable',
+            'exists:products,id',
+            function ($attribute, $value, $fail) use ($request) {
+                // If product_id is provided, check if it's part of the order
+                if ($value) {
+                    $orderItem = OrderItem::where('order_id', $request->order_id)
+                        ->where('product_id', $value)
+                        ->first();
+                    
+                    if (!$orderItem) {
+                        $fail('The selected product is not part of this order.');
+                    }
+                    
+                    // Check if review already exists for this product and order
+                    $existingReview = StoreReviews::where('order_id', $request->order_id)
+                        ->where('product_id', $value)
+                        ->first();
+                        
+                    if ($existingReview) {
+                        $fail('You have already reviewed this product for this order.');
+                    }
+                }
+            }
+        ]
+    ]);
 
-        // Create the review
-        $review = StoreReview::create([
-            'user_id' => Auth::id(), // Get the authenticated user's ID
-            'rating' => $request->rating,
-            'review_text' => $request->review_text,
-        ]);
-
-        // Return a success response
-        return response()->json([
-            'message' => 'Review submitted successfully!',
-            'review' => $review,
-        ], 201);
+    // Create the review
+    $review = new StoreReviews();
+    $review->user_id = Auth::id();
+    $review->order_id = $validated['order_id'];
+    $review->rating = $validated['rating'];
+    $review->review_text = $validated['review_text'];
+    
+    if (isset($validated['product_id'])) {
+        $review->product_id = $validated['product_id'];
     }
+    
+    $review->save();
 
+    return response()->json([
+        'message' => 'Review submitted successfully!',
+        'review' => $review->load('user'),
+    ], 201);
+}
     /**
      * Get all reviews.
      *
@@ -43,7 +94,7 @@ class StoreReviewsController extends Controller
      */
     public function index()
     {
-        $reviews = StoreReview::with('user')->latest()->get();
+        $reviews = StoreReviews::with('user')->latest()->get();
 
         return response()->json([
             'reviews' => $reviews,
@@ -58,7 +109,7 @@ class StoreReviewsController extends Controller
      */
     public function show($id)
     {
-        $review = StoreReview::with('user')->findOrFail($id);
+        $review = StoreReviews::with('user')->findOrFail($id);
 
         return response()->json([
             'review' => $review,
@@ -81,7 +132,7 @@ class StoreReviewsController extends Controller
         ]);
 
         // Find the review
-        $review = StoreReview::findOrFail($id);
+        $review = StoreReviews::findOrFail($id);
 
         // Check if the authenticated user owns the review
         if ($review->user_id !== Auth::id()) {
@@ -108,7 +159,7 @@ class StoreReviewsController extends Controller
     public function destroy($id)
     {
         // Find the review
-        $review = StoreReview::findOrFail($id);
+        $review = StoreReviews::findOrFail($id);
 
         // Check if the authenticated user owns the review
         if ($review->user_id !== Auth::id()) {

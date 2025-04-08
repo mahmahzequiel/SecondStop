@@ -231,5 +231,14 @@ public function update(Request $request, $id)
         }   
     }
 
+    /**
+ * Display the specified product.
+ */
+public function show($id)
+{
+    $product = Product::with(['category', 'categoryType', 'brand'])
+        ->findOrFail($id);
     
+    return response()->json($product);
+}
 }

@@ -17,6 +17,7 @@ use App\Http\Controllers\NotificationController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\RoleController;
 use App\Http\Controllers\SacksController; // Add this line
+use App\Http\Controllers\StoreReviewsController;
 use App\Http\Controllers\AdminDashboardController; // Add this line
 
 
@@ -51,6 +52,7 @@ Route::delete("category-types/{categoryType}", [CategoryTypeController::class, "
 Route::post("category-types/{id}/restore", [CategoryTypeController::class, "restore"]);
 
 Route::get("/products-by-category-type", [ProductsController::class, "getProductsByCategoryType"]);
+
 Route::resource('brands', BrandController::class);
 Route::put('/brands/{id}/restore', [BrandController::class, 'restore']);
 
@@ -121,6 +123,8 @@ Route::patch('/orders/{order}/payment-status', [OrderController::class, 'updateP
     Route::apiResource('payments', PaymentController::class);
     Route::apiResource('shippings', ShippingController::class);
     Route::apiResource('purchases', PurchaseController::class);
+
+    Route::apiResource('store-reviews', StoreReviewsController::class);
 
     // Notification Routes (using singular 'notification')
     Route::post('notification', [NotificationController::class, 'store']);

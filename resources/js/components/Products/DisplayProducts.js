@@ -6,6 +6,7 @@ import useCategories from "../Categories/Categories";
 import Filters from "./Filters";
 import axios from "axios";
 import Advertisement from "./Advertisement"; // Import the Advertisement component
+import StoreReviews from "./StoreReviews"; // Import the StoreReviews component
 
 const DisplayProducts = () => {
   const [products, setProducts] = useState([]);
@@ -166,7 +167,7 @@ const DisplayProducts = () => {
   return (
     <MainPage onSearch={handleSearch}>
       <div className="display-products dark-theme">
-        {/* Advertisement Carousel */}
+        {/* TOP: Advertisement Carousel */}
         <Advertisement />
 
         {/* Category filter tabs from database */}
@@ -198,7 +199,7 @@ const DisplayProducts = () => {
           </div>
         </div>
 
-        {/* Main content area with conditional filters */}
+        {/* MIDDLE: Main content area with conditional filters */}
         <div className="content-area">
           {/* Filters panel - automatically displayed when category is selected */}
           {selectedCategory && (
@@ -255,6 +256,9 @@ const DisplayProducts = () => {
             )}
           </div>
         </div>
+        
+        {/* BOTTOM: Store Reviews Component */}
+        <StoreReviews />
       </div>
     </MainPage>
   );

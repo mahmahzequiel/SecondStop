@@ -14,17 +14,17 @@ class CreateStoreReviewsTable extends Migration
     public function up()
     {
         Schema::create('store_reviews', function (Blueprint $table) {
-            $table->id(); // Primary key (auto-incrementing ID)
-            $table->unsignedBigInteger('user_id'); // Foreign key for the user
-            $table->integer('rating'); // Rating column (integer)
-            $table->text('review_text'); // Review text column (text)
-            $table->timestamps(); // Created at and updated at timestamps
-
-            // Define foreign key constraint
-            $table->foreign('user_id')
-                  ->references('id')
-                  ->on('users')
-                  ->onDelete('cascade'); // Cascade delete if the user is deleted
+            $table->id();
+            $table->unsignedBigInteger('user_id');
+            $table->unsignedBigInteger('order_id');
+            $table->unsignedBigInteger('product_id')->nullable(); // Add product_id field
+            $table->integer('rating');
+            $table->text('review_text');
+            $table->timestamps();
+        
+            $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
+            $table->foreign('order_id')->references('id')->on('orders')->onDelete('cascade');
+            $table->foreign('product_id')->references('id')->on('products')->onDelete('cascade'); // Add foreign key
         });
     }
 
