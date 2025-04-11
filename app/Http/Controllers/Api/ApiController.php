@@ -107,85 +107,71 @@ class ApiController extends Controller
     }
 
     // Update profile (must be logged in)
-    public function updateProfile(Request $request)
+    public function update(Request $request)
     {
-        $currentUser = Auth::user();
-        if (!$currentUser) {
-            return response()->json([
-                'status'  => false,
-                'message' => 'Unauthorized access',
-            ], 401);
-        }
-        
-        // If an admin is updating another user's profile, expect a 'user_id' in the request.
-        if ($currentUser->role_id == 2 && $request->has('user_id')) {
-            $customer = User::find($request->user_id);
-            if (!$customer) {
-                return response()->json([
-                    'status'  => false,
-                    'message' => 'User not found',
-                ], 404);
-            }
-        } else {
-            // Otherwise, update the current user's own profile.
-            $customer = $currentUser;
-        }
-        
-        // Retrieve or create the profile for the target customer.
-        $profile = $customer->profile ?? new Profile(['user_id' => $customer->id]);
-
-        // Validate using the target customer’s id for the email uniqueness rule.
+        // Validate the request
         $request->validate([
-            'first_name'    => 'required|string|max:255',
-            'middle_name'   => 'nullable|string|max:255',
-            'last_name'     => 'required|string|max:255',
-            'username'      => 'required|string|max:255|unique:profiles,username,' . $profile->id,
-            'email'         => 'required|email|max:255|unique:users,email,' . $customer->id,
-            'phone_number'  => 'required|string|max:15|unique:profiles,phone_number,' . $profile->id,
-            'sex'           => 'required|in:Male,Female,Other',
-            'profile_image' => 'nullable|file|image|max:2048',
+            'first_name' => 'required|string|max:255',
+            'middle_name' => 'nullable|string|max:255',
+            'last_name' => 'required|string|max:255',
+            'sex' => 'required|in:Male,Female,Other',
+            'phone_number' => 'required|string|max:20',
+            
+            // These fields go to the users table
+            'username' => 'required|string|max:100',
+            'email' => 'required|email|max:100',
+            'role_id' => 'sometimes|integer|in:1,2',
+            
+            'profile_image' => 'nullable|image|max:2048', // 2MB max
         ]);
 
-        try {
-            // Update profile fields
-            $profile->first_name   = $request->first_name;
-            $profile->middle_name  = $request->middle_name;
-            $profile->last_name    = $request->last_name;
-            $profile->username     = $request->username;
-            $profile->email        = $request->email;
-            $profile->phone_number = $request->phone_number;
-            $profile->sex          = $request->sex;
+        // Get the user to update (either current user or specified user_id for admins)
+        $userId = $request->input('user_id') ?? Auth::id();
+        $user = User::findOrFail($userId);
+        $profile = $user->profile;
 
-            // Handle profile image upload if provided
-            if ($request->hasFile('profile_image')) {
-                // Delete old image if it exists
-                if ($profile->profile_image) {
-                    Storage::disk('public')->delete($profile->profile_image);
-                }
-                
-                $file = $request->file('profile_image');
-                $path = $file->store('profiles', 'public');
-                $profile->profile_image = $path;
+        // Update USER fields
+        $user->username = $request->input('username');
+        $user->email = $request->input('email');
+        
+        // Update role_id if provided
+        if ($request->has('role_id')) {
+            $user->role_id = $request->input('role_id');
+        }
+        
+        $user->save();
+
+        // Update PROFILE fields
+        $profile->first_name = $request->input('first_name');
+        $profile->middle_name = $request->input('middle_name');
+        $profile->last_name = $request->input('last_name');
+        $profile->sex = $request->input('sex');
+        $profile->phone_number = $request->input('phone_number');
+        $profile->email = $request->input('email'); // Keep in sync with user email
+        
+        // Handle profile image upload if provided
+        if ($request->hasFile('profile_image')) {
+            // Delete old image if it exists and is not the default
+            if ($profile->profile_image && $profile->profile_image !== 'default.jpg') {
+                Storage::disk('public')->delete($profile->profile_image);
             }
             
-            $profile->save();
-
-            // Also update the customer's email in the users table for consistency.
-            $customer->email = $request->email;
-            $customer->save();
-
-            return response()->json([
-                'status'  => true,
-                'message' => 'Profile updated successfully',
-                'profile' => $profile,
-            ]);
-        } catch (\Exception $e) {
-            return response()->json([
-                'status'  => false,
-                'message' => 'Profile update failed',
-                'error'   => $e->getMessage(),
-            ], 500);
+            // Store the new image
+            $path = $request->file('profile_image')->store('profile_images', 'public');
+            $profile->profile_image = $path;
         }
+
+        $profile->save();
+
+        // Return the updated profile with user data
+        $updatedUser = User::with('profile')->find($userId);
+
+        return response()->json([
+            'status' => true,
+            'message' => 'Profile updated successfully',
+            'profile' => $updatedUser->profile,
+            'user' => $updatedUser
+        ]);
     }
     
 

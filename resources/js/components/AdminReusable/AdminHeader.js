@@ -1,13 +1,17 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import { Link } from "react-router-dom";
-import { Avatar, Dropdown, Space, Typography } from "antd";
-import { UserOutlined, LogoutOutlined, ProfileOutlined, DownOutlined } from "@ant-design/icons";
+import { Avatar, Dropdown, Space, Typography, Badge } from "antd";
+import { UserOutlined, LogoutOutlined, ProfileOutlined, DownOutlined, BellOutlined } from "@ant-design/icons";
 import axios from "axios";
 
 const { Text } = Typography;
 
 function AdminHeader() {
   const [profileData, setProfileData] = useState(null);
+  const [notificationCount, setNotificationCount] = useState(0);
+  const [notifications, setNotifications] = useState([]);
+  const [showNotifications, setShowNotifications] = useState(false);
+  const notifRef = useRef();
   
   useEffect(() => {
     const fetchProfileData = async () => {
@@ -27,6 +31,72 @@ function AdminHeader() {
     
     fetchProfileData();
   }, []);
+
+  useEffect(() => {
+    const fetchNotifications = async () => {
+      try {
+        const token = localStorage.getItem("userToken");
+        if (!token) return;
+        const response = await axios.get(
+          "http://127.0.0.1:8000/api/notification",
+          { headers: { Authorization: `Bearer ${token}` } }
+        );
+        setNotifications(response.data || []);
+        const unread = response.data.filter((n) => n.is_read === 0).length;
+        setNotificationCount(unread);
+      } catch (error) {
+        console.error("Error fetching notifications:", error);
+      }
+    };
+    
+    fetchNotifications();
+  }, []);
+
+  useEffect(() => {
+    const handleClickOutside = (event) => {
+      if (notifRef.current && !notifRef.current.contains(event.target)) {
+        setShowNotifications(false);
+      }
+    };
+    document.addEventListener("mousedown", handleClickOutside);
+    return () => document.removeEventListener("mousedown", handleClickOutside);
+  }, []);
+
+  const handleNotificationsClick = (e) => {
+    e.stopPropagation();
+    setShowNotifications(!showNotifications);
+  };
+
+  const markAsRead = async (notificationId) => {
+    try {
+      const token = localStorage.getItem("userToken");
+      await axios.patch(
+        `http://127.0.0.1:8000/api/notification/${notificationId}/mark-read`,
+        {},
+        { headers: { Authorization: `Bearer ${token}` } }
+      );
+      setNotifications(prev => prev.map(n => n.id === notificationId ? { ...n, is_read: 1 } : n));
+      setNotificationCount(prev => prev - 1);
+    } catch (error) {
+      console.error("Error marking notification as read:", error);
+    }
+  };
+
+  const markAllAsRead = async () => {
+    try {
+      const token = localStorage.getItem("userToken");
+      await axios.patch(
+        "http://127.0.0.1:8000/api/notification/mark-read-all",
+        {},
+        { headers: { Authorization: `Bearer ${token}` } }
+      );
+      setNotifications(prev => prev.map(n => ({ ...n, is_read: 1 })));
+      setNotificationCount(0);
+    } catch (error) {
+      console.error("Error marking all as read:", error);
+    }
+    
+  };
 
   const items = [
     {
@@ -48,6 +118,65 @@ function AdminHeader() {
         <span className="admin-header__title">Second Stop</span>
       </div>
       <div className="admin-header__right">
+        <div className="admin-header__notification-container" ref={notifRef}>
+          <Badge count={notificationCount}>
+            <BellOutlined 
+              style={{ 
+                fontSize: '20px', 
+                color: 'white',
+                marginRight: '20px',
+                cursor: 'pointer'
+              }} 
+              onClick={handleNotificationsClick}
+            />
+          </Badge>
+          {showNotifications && (
+            <div className="admin-header__notification-dropdown">
+              <div className="admin-header__dropdown-header">
+                <h4>Notifications</h4>
+                <button onClick={markAllAsRead} className="admin-header__mark-all-read">
+                  Mark All Read
+                </button>
+              </div>
+              <hr />
+              {notifications.length === 0 ? (
+                <p className="admin-header__no-notifications">No new notifications</p>
+              ) : (
+                notifications.map((notif) => (
+                  <div key={notif.id} className="admin-header__notification-item">
+                    {notif.product_image && (
+                      <img
+                        className="admin-header__notification-image"
+                        src={notif.product_image.startsWith("http")
+                          ? notif.product_image
+                          : `http://127.0.0.1:8000/storage/${notif.product_image}`}
+                        alt="Product preview"
+                      />
+                    )}
+                    <div className="admin-header__notification-content">
+                      <h5>{notif.title}</h5>
+                      <div dangerouslySetInnerHTML={{ __html: notif.description }} />
+                      <div className="admin-header__notification-meta">
+                        <span className={`admin-header__status ${notif.is_read ? 'read' : 'unread'}`}>
+                          {notif.is_read ? 'Read' : 'Unread'}
+                        </span>
+                        {!notif.is_read && (
+                          <button 
+                            onClick={() => markAsRead(notif.id)}
+                            className="admin-header__mark-read-btn"
+                          >
+                            Mark Read
+                          </button>
+                        )}
+                      </div>
+                    </div>
+                  </div>
+                ))
+              )}
+            </div>
+          )}
+        </div>
+        
         <Dropdown menu={{ items }} trigger={['click']}>
           <a onClick={(e) => e.preventDefault()}>
             <Space>

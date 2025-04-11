@@ -19,6 +19,7 @@ use App\Http\Controllers\RoleController;
 use App\Http\Controllers\SacksController; // Add this line
 use App\Http\Controllers\StoreReviewsController;
 use App\Http\Controllers\AdminDashboardController; // Add this line
+use App\Http\Controllers\ProfileController;
 
 
 
@@ -68,8 +69,8 @@ Route::group(["middleware" => ["auth:api"]], function() {
     // User Profile Routes
     Route::get("profile", [ApiController::class, "profile"]);
     Route::post("logout", [ApiController::class, "logout"]);
-    Route::post("profile/update", [ApiController::class, "updateProfile"]);
-    Route::put("profile/update", [ApiController::class, "updateProfile"]);
+    Route::post("profile/update", [ApiController::class, "update"]);
+    // Route::put("profile/update", [ApiController::class, "updateProfile"]);
 
     // Cart Routes
     Route::post('carts', [CartController::class, 'addToCart']);
@@ -106,6 +107,8 @@ Route::get('/chat/conversations', [ChatController::class, 'getConversations']);
     // Order Routes
 Route::apiResource('orders', OrderController::class);
 // Change these routes to point to the request methods
+// Add this above or below your other order routes
+Route::get('orders/{order}', [OrderController::class, 'show'])->name('orders.show');
 Route::post('orders/{order}/request-cancellation', [OrderController::class, 'requestCancellation'])->name('orders.request-cancellation');
 Route::post('orders/{order}/request-refund', [OrderController::class, 'requestRefund'])->name('orders.request-refund');
 // Keep the direct delivery method

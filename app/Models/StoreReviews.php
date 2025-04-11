@@ -14,7 +14,8 @@ class StoreReviews extends Model
         'order_id',
         'product_id',
         'rating',
-        'review_text'
+        'review_text',
+        'review_image'
     ];
 
     // Define relationships

@@ -24,7 +24,7 @@ class AdminDashboardController extends Controller
             // Log DB queries for debugging
             DB::enableQueryLog();
             
-            $totalSales = Order::where('status', 'completed')->sum('total_amount');
+            $totalSales = Order::where('status', 'delivered')->sum('total_amount');
             $pendingOrders = Order::where('status', 'pending')->count();
             $totalProducts = Product::count();
             $totalUsers = User::count();

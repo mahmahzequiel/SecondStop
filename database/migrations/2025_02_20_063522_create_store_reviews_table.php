@@ -20,6 +20,7 @@ class CreateStoreReviewsTable extends Migration
             $table->unsignedBigInteger('product_id')->nullable(); // Add product_id field
             $table->integer('rating');
             $table->text('review_text');
+            $table->string('review_image', 255)->nullable(); // Add review_image field
             $table->timestamps();
         
             $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');

@@ -28,6 +28,8 @@ const OrdersList = () => {
   const [currentOrder, setCurrentOrder] = useState(null);
   const [actionType, setActionType] = useState('');
   const [adminNotes, setAdminNotes] = useState('');
+  const [orderDetailsModalVisible, setOrderDetailsModalVisible] = useState(false);
+const [orderDetails, setOrderDetails] = useState(null);
 
   // Status options for dropdown
   const statusOptions = [
@@ -45,11 +47,22 @@ const OrdersList = () => {
     { label: 'Returned', value: 'returned', color: 'gray' }
   ];
 
+  useEffect(() => {
+    if (orderDetails && orderDetails.orderItems && orderDetails.orderItems.length > 0) {
+      console.log('Order items:', orderDetails.orderItems);
+      console.log('First item product:', orderDetails.orderItems[0]?.product);
+    } else {
+      console.log('No order items found or data not loaded yet');
+    }
+  }, [orderDetails]);
+
   // Modified Payment status options to match your database enum
   const paymentStatusOptions = [
     { label: 'Paid', value: 'Paid', color: 'green' },
     { label: 'Unpaid', value: 'Unpaid', color: 'red' }
   ];
+
+  
 
   // Fetch orders from API
   const fetchOrders = async (params = {}) => {
@@ -412,6 +425,23 @@ const OrdersList = () => {
     );
   };
 
+  const showOrderDetails = async (orderId) => {
+    try {
+      const response = await axios.get(`/api/orders/${orderId}`);
+      if (response.data) {
+        // Transform snake_case to camelCase
+        const transformedData = {
+          ...response.data,
+          orderItems: response.data.order_items || []
+        };
+        setOrderDetails(transformedData);
+        setOrderDetailsModalVisible(true); // Add this line to show the modal
+      }
+    } catch (error) {
+      console.error('Error fetching order details:', error);
+      message.error('Failed to load order details');
+    }
+  };
   // Render payment status dropdown
   const renderPaymentStatusDropdown = (status, record) => {
     // Normalize the status to either Paid or Unpaid
@@ -463,12 +493,15 @@ const OrdersList = () => {
   // Table columns with new columns for Request Type and Action
   const columns = [
     {
-      title: 'Order Number',
-      dataIndex: 'order_number',
-      key: 'order_number',
-      sorter: true,
-      sortOrder: sorter.field === 'order_number' && sorter.order,
-    },
+  title: 'Order Number',
+  dataIndex: 'order_number',
+  key: 'order_number',
+  sorter: true,
+  sortOrder: sorter.field === 'order_number' && sorter.order,
+  render: (text, record) => (
+    <a onClick={() => showOrderDetails(record.id)}>{text}</a>
+  ),
+},
     {
       title: 'Total Amount',
       dataIndex: 'total_amount',
@@ -728,6 +761,100 @@ const OrdersList = () => {
             })}
           />
         </Card>
+
+        {/* Order Details Modal */}
+<Modal
+  title={`Order Details - #${orderDetails?.order_number}`}
+  visible={orderDetailsModalVisible}
+  onCancel={() => setOrderDetailsModalVisible(false)}
+  footer={[
+    <Button key="close" onClick={() => setOrderDetailsModalVisible(false)}>
+      Close
+    </Button>
+  ]}
+  width={800}
+>
+  {orderDetails && (
+    <div>
+      {/* Customer Information */}
+      <Card title="Customer Information" style={{ marginBottom: 16 }}>
+        <div style={{ marginBottom: 8 }}>
+          <Text strong>Receiver Name: </Text>
+          <Text>{orderDetails.address?.receiver_fullname || 'N/A'}</Text>
+        </div>
+        <div style={{ marginBottom: 8 }}>
+          <Text strong>Contact Number: </Text>
+          <Text>{orderDetails.address?.contact_number || 'N/A'}</Text>
+        </div>
+      </Card>
+
+      {/* Shipping Address */}
+      <Card title="Shipping Address" style={{ marginBottom: 16 }}>
+        <Text>
+          {[
+            orderDetails.address?.house_number,
+            orderDetails.address?.street,
+            orderDetails.address?.barangay,
+            orderDetails.address?.city,
+            orderDetails.address?.state,
+            orderDetails.address?.region,
+            orderDetails.address?.country,
+            orderDetails.address?.postal_code
+          ].filter(Boolean).join(', ')}
+        </Text>
+      </Card>
+
+      {/* Order Items */}
+<Card title="Order Items">
+  <Table
+    columns={[
+      { 
+        title: 'Product', 
+        dataIndex: ['product', 'product_name'], // Access nested product name
+        key: 'product',
+        render: (text, record) => text || 'Product not available'
+      },
+      { 
+        title: 'Quantity', 
+        dataIndex: 'quantity', 
+        key: 'quantity' 
+      },
+      { 
+        title: 'Price', 
+        dataIndex: ['product', 'price'], // Access nested product price
+        key: 'price',
+        render: (price) => `PHP ${parseFloat(price || 0).toFixed(2)}`
+      },
+      { 
+        title: 'Total', 
+        key: 'total',
+        render: (_, record) => `PHP ${(record.quantity * (record.product?.price || 0)).toFixed(2)}`
+      }
+    ]}
+    dataSource={orderDetails.orderItems || []}
+    pagination={false}
+    rowKey="id"
+  />
+</Card>
+
+      {/* Order Summary */}
+      <Card title="Order Summary" style={{ marginTop: 16 }}>
+        <div style={{ display: 'flex', justifyContent: 'space-between' }}>
+          <Text strong>Subtotal:</Text>
+          <Text>PHP {parseFloat(orderDetails.subtotal).toFixed(2)}</Text>
+        </div>
+        <div style={{ display: 'flex', justifyContent: 'space-between' }}>
+          <Text strong>Shipping:</Text>
+          <Text>PHP {parseFloat(orderDetails.shipping_cost).toFixed(2)}</Text>
+        </div>
+        <div style={{ display: 'flex', justifyContent: 'space-between', marginTop: 8 }}>
+          <Text strong>Total:</Text>
+          <Text strong>PHP {parseFloat(orderDetails.total_amount).toFixed(2)}</Text>
+        </div>
+      </Card>
+    </div>
+  )}
+</Modal>
         
         {/* Action Modal */}
         <Modal
@@ -757,11 +884,44 @@ const OrdersList = () => {
                 <Text strong>Order: </Text>
                 <Text>{currentOrder.order_number}</Text>
               </div>
+               {console.log('Order data:', currentOrder)}
               
-              <div style={{ marginBottom: 16 }}>
-                <Text strong>Customer: </Text>
-                <Text>{currentOrder.customer_name || 'N/A'}</Text>
-              </div>
+               <div style={{ marginBottom: 16 }}>
+  <Text strong>Customer: </Text>
+  <Text>
+    {currentOrder.address?.receiver_fullname || 
+     (currentOrder.customer_first_name && currentOrder.customer_last_name 
+      ? `${currentOrder.customer_first_name} ${currentOrder.customer_last_name}`
+      : currentOrder.customer_first_name || currentOrder.customer_last_name || 'N/A')}
+  </Text>
+</div>
+
+<div style={{ marginBottom: 16 }}>
+  <Text strong>Contact Number: </Text>
+  <Text>
+    {currentOrder.address?.contact_number || 'N/A'}
+  </Text>
+</div>
+
+<div style={{ marginBottom: 16 }}>
+  <Text strong>Shipping Address: </Text>
+  
+        <Text>
+          {[
+            currentOrder.address.house_number,
+            currentOrder.address.street,
+            currentOrder.address.barangay,
+            currentOrder.address.city,
+            currentOrder.address.state,
+            currentOrder.address.region,
+            currentOrder.address.country,
+            currentOrder.address.postal_code
+          ]
+          .filter(Boolean) // Remove empty fields
+          .join(', ')}
+        </Text>
+  </div>
+
               
               <div style={{ marginBottom: 16 }}>
                 <Text strong>Amount: </Text>

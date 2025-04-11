@@ -25,6 +25,7 @@ const EditProfileModal = ({ visible, onCancel, onSave, user }) => {
         email: user.profile.email || '',
         phone_number: user.profile.phone_number || '',
         sex: user.profile.sex || 'Male',
+        role_id: user.role_id || 1,
       });
       
       if (user.profile.profile_image && user.profile.profile_image !== 'default.jpg') {
@@ -73,6 +74,7 @@ const EditProfileModal = ({ visible, onCancel, onSave, user }) => {
         formData.append('email', values.email);
         formData.append('phone_number', values.phone_number);
         formData.append('sex', values.sex);
+        formData.append('role_id', values.role_id);
         
         // Append user_id if present (for admin editing a customer)
         if (values.user_id) {
@@ -224,6 +226,18 @@ const EditProfileModal = ({ visible, onCancel, onSave, user }) => {
               <Input placeholder="Phone Number" />
             </Form.Item>
           </Col>
+          <Col span={4.8}>
+  <Form.Item
+    name="role_id"
+    label="Role"
+    rules={[{ required: true, message: 'Please select role' }]}
+  >
+    <Select placeholder="Select Role">
+      <Option value={2}>Admin</Option>
+      <Option value={1}>Customer</Option>
+    </Select>
+  </Form.Item>
+</Col>
           <Col span={4.8}>
             <Form.Item
               name="sex"

@@ -97,7 +97,7 @@ function AdminDashboard() {
       const refundedOrders = orders.filter(order => order.status === 'refunded').length;
       
       // Calculate total sales (sum of all completed order amounts)
-      const completedOrders = orders.filter(order => order.status === 'completed');
+      const completedOrders = orders.filter(order => order.status === 'Delivered');
       const totalSales = completedOrders.reduce((total, order) => total + parseFloat(order.total_amount || 0), 0);
       
       // Fetch users
@@ -190,7 +190,7 @@ function AdminDashboard() {
       
       // Count orders by status
       const statusCounts = {
-        'Completed': 0,
+        'Delivered': 0,
         'Pending': 0,
         'Processing': 0,
         'Cancelled': 0,

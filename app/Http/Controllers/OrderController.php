@@ -138,10 +138,19 @@ class OrderController extends Controller
     /**
      * Display a specific order.
      */
-    public function show(Order $order)
-    {
-        return response()->json(['order' => $order->load(['payment', 'address', 'orderItems.product'])]);
-    }
+    public function show($id)
+{
+    $order = Order::with([
+        'address',
+        'orderItems.product',  // This should eager load products with order items
+        'payment'
+    ])->findOrFail($id);
+    
+    // Debug the structure before returning
+    \Log::debug('Order data:', $order->toArray());
+    
+    return response()->json($order);
+}
 
     /**
      * Update an existing order.

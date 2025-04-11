@@ -1,6 +1,6 @@
 import React, { useState } from "react";
-import { Modal, Button, Radio, Input, Rate, message } from "antd";
-import { StarOutlined } from "@ant-design/icons";
+import { Modal, Button, Radio, Input, Rate, message, Upload } from "antd";
+import { StarOutlined, UploadOutlined } from "@ant-design/icons";
 import axios from "axios";
 
 const { TextArea } = Input;
@@ -22,6 +22,9 @@ const OrderActionModals = ({
   const [reviewText, setReviewText] = useState("");
   const [reviewRating, setReviewRating] = useState(5);
   const [selectedProductId, setSelectedProductId] = useState(null);
+  const [fileList, setFileList] = useState([]);
+  const [previewImage, setPreviewImage] = useState('');
+  const [previewVisible, setPreviewVisible] = useState(false);
 
   // Reset states when modal closes
   const handleClose = () => {
@@ -32,6 +35,7 @@ const OrderActionModals = ({
     setReviewText("");
     setReviewRating(5);
     setSelectedProductId(null);
+    setFileList([]);
     onClose();
   };
 
@@ -128,79 +132,144 @@ const OrderActionModals = ({
     } finally {
       setActionLoading(false);
     }
-};
+  };
 
-const handleSubmitReview = async () => {
-  if (!reviewText.trim()) {
-    message.error("Please provide review text");
-    return;
-  }
-
-  if (reviewText.trim().length < 10) {
-    message.error("Review text must be at least 10 characters long");
-    return;
-  }
-
-  // For multi-product orders, ensure a product is selected
-  if (order?.order_items?.length > 1 && !selectedProductId) {
-    message.error("Please select a product to review");
-    return;
-  }
-
-  try {
-    setActionLoading(true);
-    const token = localStorage.getItem("userToken");
-    
-    const payload = {
-      order_id: order.id,
-      rating: reviewRating,
-      review_text: reviewText
-    };
-    
-    if (selectedProductId) {
-      payload.product_id = selectedProductId;
+  const handleSubmitReview = async () => {
+    if (!reviewText.trim()) {
+      message.error("Please provide review text");
+      return;
     }
 
-    // Fix API endpoint URL format
-    const response = await axios.post(
-      `http://127.0.0.1:8000/api/store-reviews`, // Make sure this matches your route
-      payload,
-      { 
-        headers: { 
-          Authorization: `Bearer ${token}`,
-          'Content-Type': 'application/json'
-        }
+    if (reviewText.trim().length < 10) {
+      message.error("Review text must be at least 10 characters long");
+      return;
+    }
+
+    // For multi-product orders, ensure a product is selected
+    if (order?.order_items?.length > 1 && !selectedProductId) {
+      message.error("Please select a product to review");
+      return;
+    }
+
+    try {
+      setActionLoading(true);
+      const token = localStorage.getItem("userToken");
+      
+      // Create FormData properly
+      const formData = new FormData();
+      formData.append('order_id', order.id);
+      formData.append('rating', reviewRating);
+      formData.append('review_text', reviewText);
+      
+      if (selectedProductId) {
+        formData.append('product_id', selectedProductId);
       }
-    );
+      
+      // Properly handle file upload
+      if (fileList.length > 0 && fileList[0].originFileObj) {
+        formData.append('review_image', fileList[0].originFileObj, fileList[0].name);
+      }
 
-    message.success("Review submitted successfully");
-    onSuccess();
-    handleClose();
-  } catch (error) {
-    console.error("Submission error:", error);
-    
-    if (error.response?.status === 422) {
-      const errors = error.response.data.errors;
-      // Create a list of error messages
-      const errorMessages = Object.values(errors).flat();
-      message.error(
-        <div>
-          <div>Please fix the following issues:</div>
-          <ul style={{ marginTop: '8px', paddingLeft: '20px' }}>
-            {errorMessages.map((msg, i) => (
-              <li key={i}>{msg}</li>
-            ))}
-          </ul>
-        </div>,
-        10
+      // Debug: Log FormData contents
+      for (let [key, value] of formData.entries()) {
+        console.log(key, value);
+      }
+
+      const response = await axios.post(
+        `http://127.0.0.1:8000/api/store-reviews`,
+        formData,
+        { 
+          headers: { 
+            'Authorization': `Bearer ${token}`,
+            'Content-Type': 'multipart/form-data'
+          }
+        }
       );
-    } else {
-      message.error(error.response?.data?.message || "Failed to submit review.");
+
+      message.success("Review submitted successfully");
+      onSuccess();
+      handleClose();
+    } catch (error) {
+      console.error("Submission error:", error);
+      
+      if (error.response?.status === 422) {
+        const errors = error.response.data.errors;
+        message.error(
+          <div>
+            <div>Please fix the following issues:</div>
+            <ul style={{ marginTop: '8px', paddingLeft: '20px' }}>
+              {Object.entries(errors).map(([field, messages]) => (
+                messages.map((msg, i) => <li key={`${field}-${i}`}>{msg}</li>)
+              ))}
+            </ul>
+          </div>,
+          10
+        );
+      } else {
+        message.error(error.response?.data?.message || "Failed to submit review.");
+      }
+    } finally {
+      setActionLoading(false);
     }
-  } finally {
-    setActionLoading(false);
-  }
-};
+  };
+
+  // Image upload handler functions
+  const handlePreview = async (file) => {
+    if (!file.url && !file.preview) {
+      file.preview = await getBase64(file.originFileObj);
+    }
+    setPreviewImage(file.url || file.preview);
+    setPreviewVisible(true);
+  };
+
+  const handlePreviewCancel = () => setPreviewVisible(false);
+
+  const uploadProps = {
+    onRemove: file => {
+      const index = fileList.indexOf(file);
+      const newFileList = fileList.slice();
+      newFileList.splice(index, 1);
+      setFileList(newFileList);
+    },
+    beforeUpload: file => {
+      // Check file type
+      const isImage = file.type.startsWith('image/');
+      if (!isImage) {
+        message.error('You can only upload image files!');
+        return false;
+      }
+      
+      // Check file size (2MB max)
+      const isLt2M = file.size / 1024 / 1024 < 2;
+      if (!isLt2M) {
+        message.error('Image must be smaller than 2MB!');
+        return false;
+      }
+      
+      // Add file to state
+      setFileList([{
+        uid: file.uid,
+        name: file.name,
+        status: 'done',
+        originFileObj: file
+      }]);
+      return false; // Prevent auto upload
+    },
+    fileList,
+    accept: 'image/*',
+    multiple: false,
+    maxCount: 1
+  };
+
+  // Helper function to get base64 from file
+  const getBase64 = (file) => {
+    return new Promise((resolve, reject) => {
+      const reader = new FileReader();
+      reader.readAsDataURL(file);
+      reader.onload = () => resolve(reader.result);
+      reader.onerror = error => reject(error);
+    });
+  };
 
   // Render Cancel Order Modal
   const renderCancelOrderModal = () => (
@@ -404,6 +473,36 @@ const handleSubmitReview = async () => {
         }}
         rows={4}
       />
+
+      {/* Add Image Upload Section */}
+      <div style={{ marginTop: '16px' }}>
+        <p style={{ marginBottom: '8px' }}>Add a photo of the product (optional):</p>
+        <Upload
+          {...uploadProps}
+          listType="picture-card"
+          onPreview={handlePreview}
+        >
+          {fileList.length < 1 && (
+            <div>
+              <UploadOutlined />
+              <div style={{ marginTop: 8 }}>Upload</div>
+            </div>
+          )}
+        </Upload>
+        <p style={{ marginTop: '4px', fontSize: '12px', color: '#666' }}>
+          Share a photo of the product (JPEG, PNG or GIF up to 2MB)
+        </p>
+      </div>
+
+      {/* Image Preview Modal */}
+      <Modal
+        open={previewVisible}
+        title="Image Preview"
+        footer={null}
+        onCancel={handlePreviewCancel}
+      >
+        <img alt="Preview" style={{ width: '100%' }} src={previewImage} />
+      </Modal>
     </Modal>
   );
 

@@ -2,29 +2,50 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Notification; // Import the singular Notification model
+use App\Models\Notification;
+use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class NotificationController extends Controller
 {
     public function store(Request $request)
     {
-        $user = $request->user(); // The authenticated user
-
-        // Validate the request data
         $validated = $request->validate([
-            'order_id' => 'required|integer|exists:orders,id',
-            'title' => 'required|string',
+            'title' => 'required|string|max:255',
             'description' => 'nullable|string',
+            'type' => 'nullable|string|in:order,message,system',
+            'order_id' => 'nullable|integer|exists:orders,id',
+            'is_admin' => 'nullable|boolean' // Flag to send to all admins
         ]);
 
-        // Create the notification
+        if ($request->is_admin) {
+            // Send to all admin users
+            $adminUsers = User::where('is_admin', true)->get();
+            $notifications = [];
+            
+            foreach ($adminUsers as $admin) {
+                $notifications[] = Notification::create([
+                    'user_id' => $admin->id,
+                    'order_id' => $validated['order_id'] ?? null,
+                    'title' => $validated['title'],
+                    'description' => $validated['description'] ?? '',
+                    'type' => $validated['type'] ?? 'order',
+                    'is_read' => 0
+                ]);
+            }
+            
+            return response()->json($notifications, 201);
+        }
+
+        // For regular user notifications
         $notification = Notification::create([
-            'user_id' => $user->id,
-            'order_id' => $validated['order_id'],
+            'user_id' => Auth::id(),
+            'order_id' => $validated['order_id'] ?? null,
             'title' => $validated['title'],
             'description' => $validated['description'] ?? '',
-            'is_read' => 0,
+            'type' => $validated['type'] ?? 'order',
+            'is_read' => 0
         ]);
 
         return response()->json($notification, 201);
@@ -32,27 +53,39 @@ class NotificationController extends Controller
 
     public function index(Request $request)
     {
-        $user = $request->user();
-        $notifications = Notification::where('user_id', $user->id)
+        $notifications = Notification::where('user_id', $request->user()->id)
             ->orderBy('created_at', 'desc')
             ->get();
+
         return response()->json($notifications);
     }
 
-    public function markAsRead($id, Request $request)
+    public function markAsRead($id)
     {
-        $user = $request->user();
         $notification = Notification::where('id', $id)
-            ->where('user_id', $user->id)
-            ->first();
+            ->where('user_id', Auth::id())
+            ->firstOrFail();
 
-        if (!$notification) {
-            return response()->json(['message' => 'Not found'], 404);
-        }
-
-        $notification->is_read = 1;
-        $notification->save();
+        $notification->update(['is_read' => 1]);
 
         return response()->json(['message' => 'Notification marked as read']);
+    }
+
+    public function markAllAsRead()
+    {
+        Notification::where('user_id', Auth::id())
+            ->where('is_read', 0)
+            ->update(['is_read' => 1]);
+
+        return response()->json(['message' => 'All notifications marked as read']);
+    }
+
+    public function unreadCount()
+    {
+        $count = Notification::where('user_id', Auth::id())
+            ->where('is_read', 0)
+            ->count();
+
+        return response()->json(['count' => $count]);
     }
 }
