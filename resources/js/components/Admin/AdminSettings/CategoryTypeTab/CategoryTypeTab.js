@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
 import { Table, Button, Input, Space, Modal, Tag, Select, message } from "antd";
-import { SearchOutlined, EditOutlined, DeleteOutlined, PlusOutlined, UndoOutlined } from "@ant-design/icons";
+import { SearchOutlined, EditOutlined, InboxOutlined, PlusOutlined, UndoOutlined } from "@ant-design/icons";
 
 // Import modal components directly
 import AddCategoryTypeModal from "./AddCategoryTypeModal";
@@ -217,8 +217,8 @@ function CategoryTypeTab() {
               onClick={() => handleOpenEditModal(record)}
             />
             {statusFilter === "active" ? (
-              <DeleteOutlined
-                style={{ cursor: "pointer", color: "#ff4d4f" }}
+              <InboxOutlined
+                style={{ cursor: "pointer"}}
                 onClick={() => archiveCategoryType(record.id)}
                 title="Archive"
               />

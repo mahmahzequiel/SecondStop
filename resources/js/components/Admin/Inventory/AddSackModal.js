@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
-import { Modal, Form, InputNumber, Button, message, Input, Select } from 'antd';
+import { Modal, Form, InputNumber, Button, message, Input, Select, Space, Tooltip } from 'antd';
+import { CopyOutlined } from '@ant-design/icons';
 import axios from 'axios';
 
 const { Option } = Select;
@@ -7,10 +8,14 @@ const { Option } = Select;
 const AddSackModal = ({ visible, setVisible, fetchSacks, categories, categoryTypes }) => {
   const [form] = Form.useForm();
   const [loading, setLoading] = useState(false);
+  const [previousSackCodes, setPreviousSackCodes] = useState([]);
+  const [selectedExistingCode, setSelectedExistingCode] = useState(null);
 
-  // Generate a random sack code when modal opens
+  // Fetch existing sack codes when modal opens
   useEffect(() => {
     if (visible) {
+      fetchExistingSackCodes();
+      // Generate a random sack code when modal opens
       const randomCode = `SACK-${Date.now().toString().slice(-6)}`;
       form.setFieldsValue({
         sack_code: randomCode,
@@ -20,6 +25,19 @@ const AddSackModal = ({ visible, setVisible, fetchSacks, categories, categoryTyp
       });
     }
   }, [visible, form]);
+
+  const fetchExistingSackCodes = async () => {
+    try {
+      const response = await axios.get('http://127.0.0.1:8000/api/sacks', {
+        params: { status: 'all' }
+      });
+      // Extract unique sack codes
+      const uniqueCodes = [...new Set(response.data.map(sack => sack.sack_code))];
+      setPreviousSackCodes(uniqueCodes);
+    } catch (error) {
+      console.error('Error fetching existing sack codes:', error);
+    }
+  };
 
   const handleSubmit = async () => {
     try {
@@ -49,10 +67,21 @@ const AddSackModal = ({ visible, setVisible, fetchSacks, categories, categoryTyp
     form.setFieldsValue({ category_type_id: undefined });
   };
 
+  const handleExistingCodeSelect = (sackCode) => {
+    setSelectedExistingCode(sackCode);
+    form.setFieldsValue({ sack_code: sackCode });
+  };
+
+  const handleResetRandomCode = () => {
+    const randomCode = `SACK-${Date.now().toString().slice(-6)}`;
+    form.setFieldsValue({ sack_code: randomCode });
+    setSelectedExistingCode(null);
+  };
+
   return (
     <Modal
       title="Add New Sack"
-      visible={visible}
+      open={visible}
       onCancel={() => setVisible(false)}
       footer={[
         <Button key="back" onClick={() => setVisible(false)}>
@@ -71,9 +100,46 @@ const AddSackModal = ({ visible, setVisible, fetchSacks, categories, categoryTyp
       <Form form={form} layout="vertical">
         <Form.Item
           name="sack_code"
-          label="Sack Code"
+          label={
+            <Space>
+              Sack Code
+              <Tooltip title="Use an existing sack code with new category/type">
+                <Select 
+                  placeholder="Use existing code" 
+                  style={{ width: 150 }}
+                  value={selectedExistingCode}
+                  onChange={handleExistingCodeSelect}
+                  allowClear
+                  onClear={handleResetRandomCode}
+                  dropdownRender={menu => (
+                    <div>
+                      {menu}
+                      <div style={{ padding: '8px', borderTop: '1px solid #e8e8e8' }}>
+                        <Button 
+                          type="link" 
+                          onClick={handleResetRandomCode}
+                          style={{ width: '100%', textAlign: 'left' }}
+                        >
+                          Generate New Code
+                        </Button>
+                      </div>
+                    </div>
+                  )}
+                >
+                  {previousSackCodes.map(code => (
+                    <Option key={code} value={code}>
+                      <Space>
+                        <CopyOutlined />
+                        {code}
+                      </Space>
+                    </Option>
+                  ))}
+                </Select>
+              </Tooltip>
+            </Space>
+          }
         >
-          <Input disabled />
+          <Input readOnly />
         </Form.Item>
 
         <Form.Item

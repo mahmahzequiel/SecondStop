@@ -11,10 +11,13 @@ class PurchaseController extends Controller
      * Display a listing of purchases.
      */
     public function index()
-    {
-        $purchases = Purchase::with('order')->get();
-        return response()->json($purchases);
-    }
+{
+    $purchases = Purchase::with(['order' => function($query) {
+        $query->orderBy('created_at', 'desc');
+    }])->get();
+    
+    return response()->json($purchases);
+}
 
     /**
      * Store a newly created purchase.

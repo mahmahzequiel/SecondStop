@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
 import { Table, Button, Input, Space, Modal, Tag, Select, message } from "antd";
-import { SearchOutlined, EditOutlined, DeleteOutlined, PlusOutlined, UndoOutlined } from "@ant-design/icons";
+import { SearchOutlined, EditOutlined, InboxOutlined, PlusOutlined, UndoOutlined } from "@ant-design/icons";
 
 // Import modal components directly
 import AddBrandModal from "./AddBrandModal";
@@ -200,8 +200,8 @@ function BrandTab() {
               onClick={() => handleOpenEditModal(record)}
             />
             {statusFilter === "active" ? (
-              <DeleteOutlined
-                style={{ cursor: "pointer", color: "#ff4d4f" }}
+              <InboxOutlined
+                style={{ cursor: "pointer" }}
                 onClick={() => archiveBrand(record.id)}
                 title="Archive"
               />
@@ -311,6 +311,7 @@ function BrandTab() {
                 Add Brand
               </Button>
               <Button
+              type="primary"
                 danger
                 onClick={handleBulkArchive}
                 disabled={selectedRowKeys.length === 0}

@@ -26,16 +26,16 @@ const Footer = () => {
           <h4>Contact Us</h4>
           <p>
             <MailOutlined className="footer-icon" />
-            <a href="mailto:secondchic@gmail.com">secondchic@gmail.com</a>
+            <a href="mailto:secondstop@gmail.com">secondstop@gmail.com</a>
           </p>
           <p>
             <PhoneOutlined className="footer-icon" /> 091-234-56789
           </p>
           <p>
-            <FacebookOutlined className="footer-icon" /> SecondChic
+            <FacebookOutlined className="footer-icon" /> SecondStop
           </p>
           <p>
-            <InstagramOutlined className="footer-icon" /> SecondChic
+            <InstagramOutlined className="footer-icon" /> SecondStop
           </p>
         </div>
 

@@ -430,16 +430,19 @@ const AdminProducts = () => {
         />
       </div>
       <AddProductModal
-        visible={isAddProductModalVisible}
-        setVisible={setIsAddProductModalVisible}
-        setProducts={setProducts}
-        setFilteredProducts={setFilteredProducts}
-        categories={categories}
-        categoryTypes={categoryTypes}
-        brands={brands}
-        sacks={sacks} // Pass sacks data to AddProductModal
-        onProductAdded={handleProductAdded} // Add callback function
-      />
+  visible={isAddProductModalVisible}
+  setVisible={setIsAddProductModalVisible}
+  setProducts={setProducts}
+  setFilteredProducts={setFilteredProducts}
+  categories={categories}
+  categoryTypes={categoryTypes}
+  brands={brands}
+  sacks={sacks}
+  onProductAdded={() => {
+    fetchProducts();
+    fetchSacks(); // This will refresh the sacks data
+  }}
+/>
       <EditProductModal
         visible={isEditProductModalVisible}
         onCancel={() => setIsEditProductModalVisible(false)}

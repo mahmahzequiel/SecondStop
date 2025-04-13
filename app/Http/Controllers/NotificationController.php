@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Notification;
 use App\Models\User;
+use App\Models\Order;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -16,44 +17,70 @@ class NotificationController extends Controller
             'description' => 'nullable|string',
             'type' => 'nullable|string|in:order,message,system',
             'order_id' => 'nullable|integer|exists:orders,id',
-            'is_admin' => 'nullable|boolean' // Flag to send to all admins
+            'product_image' => 'nullable|string',
+            'is_admin' => 'nullable|boolean'
         ]);
 
-        if ($request->is_admin) {
-            // Send to all admin users
-            $adminUsers = User::where('is_admin', true)->get();
+        // If this is an order notification, get order details
+        $orderDetails = '';
+        if (isset($validated['order_id']) && $validated['type'] === 'order') {
+            $order = Order::find($validated['order_id']);
+            if ($order) {
+                $orderDetails = "ORD-{$order->id} has been placed. 
+                    Payment Status: " . ($order->payment_status ?? 'Unknown') . "
+                    " . ($order->product_name ?? 'Product') . " (x" . ($order->quantity ?? '1') . ") - PHP " . ($order->price ?? '0.00') . "
+                    Total Amount: PHP " . ($order->total_amount ?? '0.00');
+            }
+        }
+
+        // Create admin notifications
+        if ($validated['type'] === 'order') {
+            // Find all admin users
+            $adminUsers = User::where('is_admin', true)
+                              ->orWhere('id', 2)  // Make sure user_id 2 (admin) gets notification
+                              ->get();
+            
             $notifications = [];
             
             foreach ($adminUsers as $admin) {
                 $notifications[] = Notification::create([
                     'user_id' => $admin->id,
                     'order_id' => $validated['order_id'] ?? null,
-                    'title' => $validated['title'],
-                    'description' => $validated['description'] ?? '',
-                    'type' => $validated['type'] ?? 'order',
-                    'is_read' => 0
+                    'title' => 'New Order',  // Change title for admins
+                    'description' => "An order has been placed. " . $orderDetails,  // Different format for admins
+                    'type' => 'order',
+                    'product_image' => $validated['product_image'] ?? null,
+                    'is_read' => 0,
+                    'is_admin_notification' => 1
                 ]);
             }
-            
-            return response()->json($notifications, 201);
         }
 
-        // For regular user notifications
-        $notification = Notification::create([
-            'user_id' => Auth::id(),
-            'order_id' => $validated['order_id'] ?? null,
-            'title' => $validated['title'],
-            'description' => $validated['description'] ?? '',
-            'type' => $validated['type'] ?? 'order',
-            'is_read' => 0
-        ]);
-
-        return response()->json($notification, 201);
+        // Create customer notification
+        if (Auth::id() && !Auth::user()->is_admin) {
+            $notification = Notification::create([
+                'user_id' => Auth::id(),
+                'order_id' => $validated['order_id'] ?? null,
+                'title' => $validated['title'],
+                'description' => $validated['description'] ?? '',
+                'type' => $validated['type'] ?? 'system',
+                'product_image' => $validated['product_image'] ?? null,
+                'is_read' => 0,
+                'is_admin_notification' => 0
+            ]);
+            
+            return response()->json($notification, 201);
+        }
+        
+        return response()->json(['message' => 'Notifications created successfully'], 201);
     }
 
     public function index(Request $request)
     {
-        $notifications = Notification::where('user_id', $request->user()->id)
+        $user = $request->user();
+        
+        // Get notifications for the current user
+        $notifications = Notification::where('user_id', $user->id)
             ->orderBy('created_at', 'desc')
             ->get();
 

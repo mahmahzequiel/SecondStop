@@ -15,6 +15,15 @@ const Purchases = () => {
   const [modalType, setModalType] = useState(null); // "cancel", "refund", or "review"
   const [selectedOrder, setSelectedOrder] = useState(null);
 
+  useEffect(() => {
+    console.log("Sorted Orders:", displayedOrders.map(o => ({
+      id: o.id,
+      order_number: o.order_number,
+      date: o.purchase_date || o.created_at || o.updated_at,
+      timestamp: new Date(o.purchase_date || o.created_at || o.updated_at).getTime()
+    })));
+  }, [displayedOrders]);
+
   // Map each segment label to your actual DB statuses
   // Update the statusMap in Purchases.js
   const statusMap = {
@@ -162,15 +171,24 @@ const Purchases = () => {
   const displayedStatus = statusMap[selectedSegment];
 
   // Update the filtering logic
+// Update the filtering and sorting logic
+// Update the filtering and sorting logic
+// Update the filtering and sorting logic
 const displayedOrders = orders
-.filter((order) => parseInt(order.user_id) === parseInt(userId))
-.filter((order) => {
-  const statusCriteria = statusMap[selectedSegment];
-  if (Array.isArray(statusCriteria)) {
-    return statusCriteria.includes(order.status);
-  }
-  return order.status === statusCriteria;
-});
+  .filter((order) => parseInt(order.user_id) === parseInt(userId))
+  .filter((order) => {
+    const statusCriteria = statusMap[selectedSegment];
+    if (Array.isArray(statusCriteria)) {
+      return statusCriteria.includes(order.status);
+    }
+    return order.status === statusCriteria;
+  })
+  .sort((a, b) => {
+    // Explicitly use created_at for sorting
+    const timeA = new Date(a.created_at).getTime();
+    const timeB = new Date(b.created_at).getTime();
+    return timeB - timeA; // Newest first
+  });
   // Function to render appropriate buttons based on selected segment
   // Update renderActionButtons in Purchases.js
 const renderActionButtons = (order) => {

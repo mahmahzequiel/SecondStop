@@ -13512,8 +13512,8 @@ a {
 
 /* Reviewer image or initial */
 .reviewer-image {
-  width: 70px;
-  height: 70px;
+  width: 50px;
+  height: 50px;
   border-radius: 50%;
   margin: 0 auto 15px;
   background-color: #e0e0e0;
@@ -13953,42 +13953,70 @@ a {
   width: 100%;
 }
 .admin-sidebar .nav-item:hover {
-  background: #393a3a;
+  background: #972705;
 }
 
 .admin-header__container {
-  background-color: #000000;
-  color: white;
+  position: sticky;
+  top: 0;
+  z-index: 1000;
   display: flex;
   justify-content: space-between;
   align-items: center;
   padding: 10px 20px;
-  position: sticky;
-  top: 0;
-  z-index: 1000; /* Ensures the header stays on top */
-  max-width: 100%; /* Prevents overflow */
+  background-color: #000;
+  color: white;
+  width: 100%;
+  box-sizing: border-box;
 }
-.admin-header__container .admin-header__logo {
+
+.admin-header__logo {
   display: flex;
   align-items: center;
+  min-width: 200px;
 }
-.admin-header__container .admin-header__logo img {
+
+.admin-header__logo img {
   height: 70px;
   width: 70px;
   -o-object-fit: contain;
-     object-fit: contain; /* Ensures the image fits well within the dimensions */
+     object-fit: contain;
 }
-.admin-header__container .admin-header__logo .admin-header__title {
+
+.admin-header__title {
   margin-left: 10px;
   font-size: 20px;
-  color: white; /* Ensures the title is white */
+  color: white;
+  white-space: nowrap;
 }
-.admin-header__container .admin-header__notification-container {
+
+.admin-header__right {
+  display: flex;
+  align-items: center;
+  gap: 20px;
   position: relative;
-  margin-right: 20px;
-  cursor: pointer;
 }
-.admin-header__container .admin-header__notification-container .ant-badge-count {
+
+.admin-header__notification-container {
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+
+.admin-header__notification-bell {
+  font-size: 20px;
+  color: white;
+  cursor: pointer;
+  transition: color 0.2s;
+  padding: 8px;
+  margin-right: 5px;
+}
+
+.admin-header__notification-bell:hover {
+  color: #A63F3F;
+}
+
+.ant-badge-count {
   background: #A63F3F;
   box-shadow: 0 0 0 1px #000;
   font-size: 10px;
@@ -13996,17 +14024,10 @@ a {
   min-width: 16px;
   line-height: 16px;
 }
-.admin-header__container .admin-header__notification-container .anticon-bell {
-  font-size: 20px;
-  color: white;
-  transition: color 0.2s;
-}
-.admin-header__container .admin-header__notification-container .anticon-bell:hover {
-  color: #A63F3F;
-}
-.admin-header__container .admin-header__notification-dropdown {
+
+.admin-header__notification-dropdown {
   position: absolute;
-  top: 100%;
+  top: calc(100% + 10px);
   right: 0;
   width: 350px;
   max-height: 60vh;
@@ -14017,19 +14038,26 @@ a {
   z-index: 1050;
   color: #333;
 }
-.admin-header__container .admin-header__notification-dropdown .admin-header__dropdown-header {
+
+.admin-header__dropdown-header {
   display: flex;
   justify-content: space-between;
   align-items: center;
   padding: 12px 16px;
   border-bottom: 1px solid #f0f0f0;
+  position: sticky;
+  top: 0;
+  background: white;
+  z-index: 1;
 }
-.admin-header__container .admin-header__notification-dropdown .admin-header__dropdown-header h4, .admin-header__container .admin-header__notification-dropdown .admin-header__dropdown-header .h4 {
+
+.admin-header__dropdown-header h4, .admin-header__dropdown-header .h4 {
   margin: 0;
   font-size: 16px;
   font-weight: 500;
 }
-.admin-header__container .admin-header__notification-dropdown .admin-header__dropdown-header .admin-header__mark-all-read {
+
+.admin-header__mark-all-read {
   background: none;
   border: none;
   color: #A63F3F;
@@ -14037,26 +14065,38 @@ a {
   font-size: 12px;
   padding: 0;
 }
-.admin-header__container .admin-header__notification-dropdown .admin-header__dropdown-header .admin-header__mark-all-read:hover {
+
+.admin-header__mark-all-read:hover {
   text-decoration: underline;
 }
-.admin-header__container .admin-header__notification-dropdown .admin-header__no-notifications {
-  padding: 16px;
-  text-align: center;
-  color: #888;
-  margin: 0;
-  font-size: 14px;
+
+.admin-header__notification-list {
+  max-height: calc(60vh - 60px);
+  overflow-y: auto;
 }
-.admin-header__container .admin-header__notification-dropdown .admin-header__notification-item {
+
+.admin-header__notification-item {
   display: flex;
   padding: 12px 16px;
   border-bottom: 1px solid #f0f0f0;
   transition: background-color 0.2s;
 }
-.admin-header__container .admin-header__notification-dropdown .admin-header__notification-item:hover {
+
+.admin-header__notification-item:hover {
   background-color: #f9f9f9;
 }
-.admin-header__container .admin-header__notification-dropdown .admin-header__notification-item .admin-header__notification-image {
+
+.admin-header__notification-item.admin-notification {
+  background-color: #f0f9ff;
+  border-left: 3px solid #1890ff;
+}
+
+.admin-header__notification-icon {
+  font-size: 20px;
+  margin-right: 10px;
+}
+
+.admin-header__notification-image {
   width: 50px;
   height: 50px;
   -o-object-fit: cover;
@@ -14064,68 +14104,88 @@ a {
   border-radius: 4px;
   margin-right: 12px;
 }
-.admin-header__container .admin-header__notification-dropdown .admin-header__notification-item .admin-header__notification-content {
+
+.admin-header__notification-content {
   flex: 1;
+  min-width: 0;
 }
-.admin-header__container .admin-header__notification-dropdown .admin-header__notification-item .admin-header__notification-content h5, .admin-header__container .admin-header__notification-dropdown .admin-header__notification-item .admin-header__notification-content .h5 {
+
+.admin-header__notification-content h5, .admin-header__notification-content .h5 {
   margin: 0 0 4px 0;
   font-size: 14px;
   font-weight: 500;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
-.admin-header__container .admin-header__notification-dropdown .admin-header__notification-item .admin-header__notification-content .admin-header__notification-meta {
+
+.admin-notification-details p {
+  margin: 4px 0;
+  color: #555;
+}
+
+.admin-notification-details p:first-child {
+  font-weight: bold;
+  color: #333;
+}
+
+.admin-header__notification-meta {
   display: flex;
   justify-content: space-between;
   align-items: center;
   margin-top: 6px;
   font-size: 12px;
 }
-.admin-header__container .admin-header__notification-dropdown .admin-header__notification-item .admin-header__notification-content .admin-header__notification-meta .admin-header__status.unread {
+
+.admin-header__status.unread {
   color: #A63F3F;
   font-weight: 500;
 }
-.admin-header__container .admin-header__notification-dropdown .admin-header__notification-item .admin-header__notification-content .admin-header__notification-meta .admin-header__status.read {
+
+.admin-header__status.read {
   color: #888;
 }
-.admin-header__container .admin-header__notification-dropdown .admin-header__notification-item .admin-header__notification-content .admin-header__notification-meta .admin-header__mark-read-btn {
+
+.admin-header__mark-read-btn {
   background: none;
   border: none;
   color: #A63F3F;
   cursor: pointer;
   padding: 0;
 }
-.admin-header__container .admin-header__notification-dropdown .admin-header__notification-item .admin-header__notification-content .admin-header__notification-meta .admin-header__mark-read-btn:hover {
+
+.admin-header__mark-read-btn:hover {
   text-decoration: underline;
 }
-.admin-header__container .admin-header__right {
-  display: flex;
-  align-items: center;
-  flex-wrap: nowrap; /* Prevents wrapping issues */
-}
-.admin-header__container .admin-header__right a {
-  color: #A63F3F;
-  display: flex;
-  align-items: center;
-  gap: 8px; /* Adds spacing between avatar, text, and dropdown */
-  text-decoration: none; /* Removes underline from links */
-}
-.admin-header__container .admin-header__right .ant-typography {
-  color: white; /* Ensures the text is white */
-  font-size: 16px;
-}
-.admin-header__container .admin-header__right .anticon-down {
-  color: white; /* Ensures the dropdown icon is white */
-  font-size: 12px;
+
+.admin-header__no-notifications {
+  padding: 16px;
+  text-align: center;
+  color: #888;
+  margin: 0;
+  font-size: 14px;
 }
 
+/* Dropdown menu styles */
 .ant-dropdown-menu {
   border-radius: 8px;
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+  min-width: 180px;
 }
-.ant-dropdown-menu .ant-dropdown-menu-item {
+
+.ant-dropdown-menu-item {
   padding: 8px 16px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
 }
-.ant-dropdown-menu .ant-dropdown-menu-item:hover {
+
+.ant-dropdown-menu-item:hover {
   background-color: #f5f5f5;
+}
+
+.ant-dropdown-menu-item .anticon {
+  font-size: 14px;
 }
 
 .checkout-container {
@@ -15541,16 +15601,16 @@ a {
   border-radius: 8px;
   padding: 4px;
   margin-bottom: 24px;
-  width: -moz-fit-content;
-  width: fit-content;
+  width: 880px;
   box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
 }
 .user-purchases-container .ant-segmented .ant-segmented-item {
   background: none;
+  margin-right: 40px;
   border: none;
   color: rgba(0, 0, 0, 0.5);
   padding: 8px 16px;
-  font-size: 14px;
+  font-size: 20px;
   cursor: pointer;
   transition: color 0.2s, background-color 0.2s;
   border-radius: 4px;

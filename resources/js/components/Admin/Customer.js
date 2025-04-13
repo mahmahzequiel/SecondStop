@@ -256,9 +256,10 @@ function AllCustomers() {
             </Button>
             <Button 
               type="primary" 
+              danger
               onClick={handleBulkStatusChange}
               disabled={selectedRowKeys.length === 0}
-              style={{ backgroundColor: "#A63F3F" }}
+              style={{ marginLeft: 8 }} 
             >
               {statusFilter === "Archived" ? "Restore" : "Archive"} Selected
             </Button>

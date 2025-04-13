@@ -263,8 +263,9 @@ function AllUsers() {
             </Button>
             <Button 
               type="primary"
+              danger
               onClick={handleBulkStatusChange}
-              style={{ backgroundColor: "#A63F3F" }}
+              style={{ marginLeft: 8 }} 
               disabled={selectedRowKeys.length === 0}
             >
               {statusFilter === "Archived" ? "Restore" : "Archive"} Selected

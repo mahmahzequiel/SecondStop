@@ -95,7 +95,6 @@ function AdminHeader() {
     } catch (error) {
       console.error("Error marking all as read:", error);
     }
-    
   };
 
   const items = [
@@ -117,61 +116,94 @@ function AdminHeader() {
         <img src="/images/logo.png" alt="Logo" />
         <span className="admin-header__title">Second Stop</span>
       </div>
+      
       <div className="admin-header__right">
         <div className="admin-header__notification-container" ref={notifRef}>
           <Badge count={notificationCount}>
             <BellOutlined 
-              style={{ 
-                fontSize: '20px', 
-                color: 'white',
-                marginRight: '20px',
-                cursor: 'pointer'
-              }} 
+              className="admin-header__notification-bell"
               onClick={handleNotificationsClick}
             />
           </Badge>
+          
           {showNotifications && (
             <div className="admin-header__notification-dropdown">
               <div className="admin-header__dropdown-header">
-                <h4>Notifications</h4>
+                <h4>Admin Notifications</h4>
                 <button onClick={markAllAsRead} className="admin-header__mark-all-read">
                   Mark All Read
                 </button>
               </div>
               <hr />
+              
               {notifications.length === 0 ? (
                 <p className="admin-header__no-notifications">No new notifications</p>
               ) : (
-                notifications.map((notif) => (
-                  <div key={notif.id} className="admin-header__notification-item">
-                    {notif.product_image && (
-                      <img
-                        className="admin-header__notification-image"
-                        src={notif.product_image.startsWith("http")
-                          ? notif.product_image
-                          : `http://127.0.0.1:8000/storage/${notif.product_image}`}
-                        alt="Product preview"
-                      />
-                    )}
-                    <div className="admin-header__notification-content">
-                      <h5>{notif.title}</h5>
-                      <div dangerouslySetInnerHTML={{ __html: notif.description }} />
-                      <div className="admin-header__notification-meta">
-                        <span className={`admin-header__status ${notif.is_read ? 'read' : 'unread'}`}>
-                          {notif.is_read ? 'Read' : 'Unread'}
-                        </span>
-                        {!notif.is_read && (
-                          <button 
-                            onClick={() => markAsRead(notif.id)}
-                            className="admin-header__mark-read-btn"
-                          >
-                            Mark Read
-                          </button>
-                        )}
-                      </div>
+                <div className="admin-header__notification-list">
+                  {notifications.map((notif) => (
+                    <div key={notif.id} className={`admin-header__notification-item ${notif.is_admin_notification ? 'admin-notification' : ''}`}>
+                      {notif.is_admin_notification ? (
+                        <>
+                          <div className="admin-header__notification-icon">
+                            {notif.type === 'order' && '📦'}
+                            {notif.type === 'message' && '✉️'}
+                            {notif.type === 'system' && '⚙️'}
+                          </div>
+                          <div className="admin-header__notification-content">
+                            <h5>{notif.title}</h5>
+                            <div className="admin-notification-details">
+                              {notif.description.split('\n').map((line, i) => (
+                                <p key={i}>{line}</p>
+                              ))}
+                            </div>
+                            <div className="admin-header__notification-meta">
+                              <span className={`admin-header__status ${notif.is_read ? 'read' : 'unread'}`}>
+                                {notif.is_read ? 'Read' : 'Unread'}
+                              </span>
+                              {!notif.is_read && (
+                                <button 
+                                  onClick={() => markAsRead(notif.id)}
+                                  className="admin-header__mark-read-btn"
+                                >
+                                  Mark Read
+                                </button>
+                              )}
+                            </div>
+                          </div>
+                        </>
+                      ) : (
+                        <>
+                          {notif.product_image && (
+                            <img
+                              className="admin-header__notification-image"
+                              src={notif.product_image.startsWith("http")
+                                ? notif.product_image
+                                : `http://127.0.0.1:8000/storage/${notif.product_image}`}
+                              alt="Product preview"
+                            />
+                          )}
+                          <div className="admin-header__notification-content">
+                            <h5>{notif.title}</h5>
+                            <div dangerouslySetInnerHTML={{ __html: notif.description }} />
+                            <div className="admin-header__notification-meta">
+                              <span className={`admin-header__status ${notif.is_read ? 'read' : 'unread'}`}>
+                                {notif.is_read ? 'Read' : 'Unread'}
+                              </span>
+                              {!notif.is_read && (
+                                <button 
+                                  onClick={() => markAsRead(notif.id)}
+                                  className="admin-header__mark-read-btn"
+                                >
+                                  Mark Read
+                                </button>
+                              )}
+                            </div>
+                          </div>
+                        </>
+                      )}
                     </div>
-                  </div>
-                ))
+                  ))}
+                </div>
               )}
             </div>
           )}

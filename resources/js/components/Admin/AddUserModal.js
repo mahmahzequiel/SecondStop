@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { Modal, Button, Form, Input, Select, Row, Col, message } from "antd";
 import axios from "axios";
 
-function AddUserModal({ visible, onCancel, onSave }) {
+function AddUserModal({ visible, onCancel, onSave, userType = "all" }) {
   const [form] = Form.useForm();
 
   // Reset form when modal becomes visible
@@ -203,10 +203,13 @@ function AddUserModal({ visible, onCancel, onSave }) {
               name="role"
               label="Role"
               rules={[{ required: true, message: "Role is required" }]}
+              initialValue={userType === "customer" ? "Customer" : "Customer"}
             >
-              <Select>
+              <Select disabled={userType === "customer"}>
                 <Select.Option value="Customer">Customer</Select.Option>
-                <Select.Option value="Admin">Admin</Select.Option>
+                {userType === "all" && (
+                  <Select.Option value="Admin">Admin</Select.Option>
+                )}
               </Select>
             </Form.Item>
           </Col>

@@ -33,7 +33,7 @@ class CreateSacksTable extends Migration
             $table->integer('total_items')->default(0);
             $table->integer('available_items');
             $table->integer('sold_items');
-            $table->string('sack_code', 50)->unique(); // e.g., for tracking sack batch
+            $table->string('sack_code', 50); // e.g., for tracking sack batch
             $table->integer('estimated_pieces')->nullable(); // Estimated number of items in the sack
             $table->decimal('buying_price', 10, 2); // Cost to acquire the sack
 

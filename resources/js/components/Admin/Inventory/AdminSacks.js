@@ -167,7 +167,7 @@ const AdminSacks = () => {
       title: "Buying Price",
       dataIndex: "buying_price",
       key: "buying_price",
-      render: (price) => `$${parseFloat(price).toFixed(2)}`,
+      render: (price) => `PHP${parseFloat(price).toFixed(2)}`,
     },
     {
       title: "Status",

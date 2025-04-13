@@ -3,8 +3,10 @@
 namespace App\Http\Controllers;
 
 use App\Models\Sacks;
+use App\Models\Product;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Validation\Rule;
 
 class SacksController extends Controller
 {
@@ -34,10 +36,21 @@ class SacksController extends Controller
 
     public function store(Request $request)
     {
+        // Modified validation to allow reusing sack codes with different category/type combinations
         $validated = $request->validate([
             'available_items' => 'required|integer|min:0',
             'sold_items' => 'required|integer|min:0',
-            'sack_code' => 'required|string|max:50|unique:sacks',
+            'sack_code' => [
+                'required',
+                'string',
+                'max:50',
+                // Only enforce uniqueness when the combination of sack_code, category_id, and category_type_id is unique
+                Rule::unique('sacks')->where(function ($query) use ($request) {
+                    return $query->where('sack_code', $request->sack_code)
+                                ->where('category_id', $request->category_id)
+                                ->where('category_type_id', $request->category_type_id);
+                })
+            ],
             'estimated_pieces' => 'nullable|integer|min:0',
             'buying_price' => 'required|numeric|min:0',
             'category_id' => 'required|exists:categories,id',
@@ -67,7 +80,18 @@ class SacksController extends Controller
         $validated = $request->validate([
             'available_items' => 'sometimes|required|integer|min:0',
             'sold_items' => 'sometimes|required|integer|min:0',
-            'sack_code' => 'sometimes|required|string|max:50|unique:sacks,sack_code,' . $sack->id,
+            'sack_code' => [
+                'sometimes',
+                'required',
+                'string',
+                'max:50',
+                // Similar modification for update method
+                Rule::unique('sacks')->where(function ($query) use ($request, $sack) {
+                    return $query->where('sack_code', $request->sack_code)
+                                ->where('category_id', $request->category_id ?? $sack->category_id)
+                                ->where('category_type_id', $request->category_type_id ?? $sack->category_type_id);
+                })->ignore($sack->id)
+            ],
             'estimated_pieces' => 'nullable|integer|min:0',
             'buying_price' => 'sometimes|required|numeric|min:0',
             'category_id' => 'sometimes|required|exists:categories,id',
@@ -91,6 +115,7 @@ class SacksController extends Controller
         return response()->json($sack);
     }
 
+    // Rest of the methods remain unchanged
     public function destroy($id)
     {
         $sack = Sacks::findOrFail($id);

@@ -76,10 +76,10 @@ class ProductsController extends Controller
             $product = Product::create($validated);
             
             // Update the sack quantities
-            $sack->update([
-                'available_items' => $sack->available_items - $request->quantity,
-                'sold_items' => $sack->sold_items + $request->quantity
-            ]);
+            // $sack->update([
+            //     'available_items' => $sack->available_items - $request->quantity,
+            //     'sold_items' => $sack->sold_items + $request->quantity
+            // ]);
             
             // Commit the transaction
             DB::commit();

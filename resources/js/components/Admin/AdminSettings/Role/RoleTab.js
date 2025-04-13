@@ -190,9 +190,10 @@ function RoleTab() {
           </Button>
           <Button 
             type="primary"
-            onClick={handleBulkStatusChange}
-            style={{ backgroundColor: "#A63F3F", marginLeft: 8 }}
-            disabled={selectedRowKeys.length === 0}
+            danger                           // Add this prop for the red styling
+           onClick={handleBulkStatusChange}
+          style={{ marginLeft: 8 }}        // Keep just the margin, remove backgroundColor
+          disabled={selectedRowKeys.length === 0}
           >
             {statusFilter === "Archived" ? "Restore" : "Archive"} Selected
           </Button>

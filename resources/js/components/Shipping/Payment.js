@@ -10,6 +10,7 @@ import {
   CreditCardOutlined,
   CheckCircleOutlined
 } from "@ant-design/icons";
+import { notification } from "antd";
 
 // Payment components
 import PaypalPayment from "../PaymentMethods/PaypalPayment";
@@ -170,6 +171,13 @@ const Payment = () => {
     try {
       setPaymentDetails(details);
       alert(`Payment successful via ${details.method}!`);
+      notification.success({
+        message: 'Order Placed Successfully!',
+        description: `Your payment via ${details.method} was processed successfully.`,
+        placement: 'top',
+        duration: 4.5,
+        icon: <CheckCircleOutlined style={{ color: '#52c41a' }} />,
+      });
   
       // 1) Save Payment and retrieve its ID.
       const paymentId = await savePaymentDetails(details);
