@@ -476,18 +476,6 @@ function AdminDashboard() {
 </div>
             </div>
             
-            <div style={{ background: "#fff", padding: "20px", borderRadius: "8px" }}>
-              <div style={{ display: "flex", alignItems: "center", marginBottom: "10px" }}>
-                <Title level={4}>Recent Activity</Title>
-                <InfoCircleOutlined style={{ marginLeft: "8px", color: "#1890ff" }} />
-              </div>
-              
-              <Divider style={{ margin: "10px 0" }} />
-              
-              <Text type="secondary">
-                To view more detailed information about orders, sales, or users, please visit the respective management pages.
-              </Text>
-            </div>
           </>
         )}
       </div>

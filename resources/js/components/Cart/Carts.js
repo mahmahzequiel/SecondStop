@@ -102,7 +102,7 @@ const Carts = () => {
   product_name: item.product?.product_name,
   price: item.product?.price,
   brand: item.product?.brand,
-  quantity: item.product?.quantity,
+ 
         })),
         totalPrice,
       },
@@ -125,7 +125,7 @@ const Carts = () => {
                   <th>Image</th>
                   <th>Description</th>
                   <th>Price</th>
-                  <th>Quantity</th>
+                  
                 </tr>
               </thead>
               <tbody>
@@ -156,7 +156,7 @@ const Carts = () => {
                       {item.product?.description || "No Description"}
                     </td>
                     <td className="price">PHP {item.product?.price || "0"}.00</td>
-                    <td className="quantity">{item.product?.quantity}</td>
+                   
                   </tr>
                 ))}
               </tbody>

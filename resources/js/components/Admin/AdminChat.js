@@ -256,8 +256,11 @@ export default function AdminChat() {
             <List
               dataSource={conversations}
               renderItem={(conv) => {
+                // Check both direct conversation profile_image and userProfiles
                 const profile = userProfiles[conv.user_id];
-                const profileImage = profile ? getProfileImageUrl(profile.profile_image) : null;
+                const profileImage = conv.profile_image 
+                  ? getProfileImageUrl(conv.profile_image) 
+                  : (profile ? getProfileImageUrl(profile.profile_image) : null);
                 
                 return (
                   <List.Item
@@ -278,9 +281,11 @@ export default function AdminChat() {
                       />
                       <div style={{ flex: 1 }}>
                         <div>
-                          {profile ? 
-                            `${profile.first_name} ${profile.last_name}` : 
-                            conv.user_name || `Customer ${conv.user_id}`}
+                          {conv.first_name && conv.last_name 
+                            ? `${conv.first_name} ${conv.last_name}`
+                            : profile 
+                              ? `${profile.first_name || ''} ${profile.last_name || ''}`.trim() 
+                              : conv.user_name || `Customer ${conv.user_id}`}
                         </div>
                         <div style={{ fontSize: "12px", color: "#888" }}>
                           {conv.last_message ? (conv.last_message.length > 20 ? 
@@ -305,14 +310,24 @@ export default function AdminChat() {
           {selectedCustomer ? (
             <>
               <div style={{ display: "flex", alignItems: "center", marginBottom: "10px" }}>
-                <Avatar 
-                  src={userProfiles[selectedCustomer] ? 
-                    getProfileImageUrl(userProfiles[selectedCustomer].profile_image) : null} 
-                  icon={(!userProfiles[selectedCustomer] || 
-                    !userProfiles[selectedCustomer].profile_image) && <UserOutlined />} 
-                  size="large" 
-                  style={{ marginRight: "10px" }} 
-                />
+                {/* Find selected conversation to get profile image */}
+                {(() => {
+                  const selectedConv = conversations.find(c => c.user_id.toString() === selectedCustomer);
+                  const profileImage = selectedConv?.profile_image 
+                    ? getProfileImageUrl(selectedConv.profile_image)
+                    : userProfiles[selectedCustomer] 
+                      ? getProfileImageUrl(userProfiles[selectedCustomer].profile_image) 
+                      : null;
+                  
+                  return (
+                    <Avatar 
+                      src={profileImage}
+                      icon={!profileImage && <UserOutlined />} 
+                      size="large" 
+                      style={{ marginRight: "10px" }} 
+                    />
+                  );
+                })()}
                 <h3 className="admin-chat-header" style={{ margin: 0, color: '#000' }}>Chat with {selectedCustomerName}</h3>
               </div>
               <Card style={{ flex: 1, overflowY: "auto", marginBottom: "10px" }}>

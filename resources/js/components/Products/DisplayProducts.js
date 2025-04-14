@@ -5,8 +5,9 @@ import { useNavigate } from "react-router-dom";
 import useCategories from "../Categories/Categories";
 import Filters from "./Filters";
 import axios from "axios";
-import Advertisement from "./Advertisement"; // Import the Advertisement component
-import StoreReviews from "./StoreReviews"; // Import the StoreReviews component
+import { notification } from "antd"; // Import notification from antd
+import Advertisement from "./Advertisement";
+import StoreReviews from "./StoreReviews";
 
 const DisplayProducts = () => {
   const [products, setProducts] = useState([]);
@@ -106,23 +107,33 @@ const DisplayProducts = () => {
     setFilteredProducts(filtered);
   }, [selectedFilters, selectedBrand, products, selectedCategory]);
 
+  // Function to show antd notifications
+  const showNotification = (type, message, description) => {
+    notification[type]({
+      message: message,
+      description: description,
+      placement: 'topRight',
+      duration: 3,
+    });
+  };
+
   // Add to Cart Functionality with Duplicate Check
   const handleAddToCart = async (product) => {
     const userToken = localStorage.getItem("userToken");
     const userId = localStorage.getItem("userId");
   
     if (!userToken) {
-      alert("Please log in to add items to the cart.");
+      showNotification("error", "Login Required", "Please log in to add items to the cart.");
       return;
     }
     if (!userId) {
-      alert("User ID is missing. Please log in again.");
+      showNotification("error", "Login Error", "User ID is missing. Please log in again.");
       return;
     }
     
     // Check if product is in stock before adding to cart
     if (product.quantity <= 0) {
-      alert("Sorry, this product is out of stock.");
+      showNotification("warning", "Out of Stock", "Sorry, this product is out of stock.");
       return;
     }
     
@@ -139,7 +150,7 @@ const DisplayProducts = () => {
       );
   
       if (productAlreadyInCart) {
-        alert("Item is already in the cart!");
+        showNotification("info", "Already in Cart", "This item is already in your cart!");
         return;
       }
   
@@ -150,14 +161,14 @@ const DisplayProducts = () => {
         { headers: { Authorization: `Bearer ${userToken}`, "Content-Type": "application/json" } }
       );
   
-      alert(`${product.product_name} added to cart!`);
+      showNotification("success", "Added to Cart", `${product.product_name} has been added to your cart!`);
   
       let currentCount = parseInt(localStorage.getItem(`cartCount_${userId}`)) || 0;
       localStorage.setItem(`cartCount_${userId}`, (currentCount + 1).toString());
       window.dispatchEvent(new Event("cartCountUpdated"));
     } catch (error) {
       console.error("Error adding to cart:", error.response?.data || error);
-      alert("Error adding to cart. Please try again.");
+      showNotification("error", "Error", "Failed to add item to cart. Please try again.");
     }
   };
 

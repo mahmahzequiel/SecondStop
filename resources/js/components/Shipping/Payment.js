@@ -170,7 +170,6 @@ const Payment = () => {
   const handlePaymentSuccess = async (details) => {
     try {
       setPaymentDetails(details);
-      alert(`Payment successful via ${details.method}!`);
       notification.success({
         message: 'Order Placed Successfully!',
         description: `Your payment via ${details.method} was processed successfully.`,

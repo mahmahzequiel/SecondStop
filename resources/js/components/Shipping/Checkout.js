@@ -3,6 +3,7 @@ import { useLocation, useNavigate } from "react-router-dom";
 import MainPage from "../Reusable/MainPage";
 import axios from "axios";
 import { ShoppingCartOutlined, CreditCardOutlined, CheckCircleOutlined } from "@ant-design/icons";
+import { notification } from "antd"; // Import notification from antd
 
 const Checkout = () => {
   const navigate = useNavigate();
@@ -29,6 +30,16 @@ const Checkout = () => {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
   const [profileData, setProfileData] = useState(null);
+
+  // Function to show antd notifications
+  const showNotification = (type, message, description) => {
+    notification[type]({
+      message: message,
+      description: description,
+      placement: 'topRight',
+      duration: 4,
+    });
+  };
 
   useEffect(() => {
     const fetchProfileAndAddress = async () => {
@@ -108,23 +119,23 @@ const Checkout = () => {
     try {
       const token = localStorage.getItem("userToken");
       if (!token || !userId) {
-        alert("Missing auth token or userId.");
+        showNotification("error", "Authentication Error", "Missing authentication token or user ID.");
         return;
       }
       if (!address.receiver_fullname) {
-        alert("Please enter the receiver's full name.");
+        showNotification("warning", "Missing Information", "Please enter the receiver's full name.");
         return;
       }
       if (!address.contact_number) {
-        alert("Please enter a contact phone number.");
+        showNotification("warning", "Missing Information", "Please enter a contact phone number.");
         return;
       }
       if (!address.house_number) {
-        alert("Please enter the house number.");
+        showNotification("warning", "Missing Information", "Please enter the house number.");
         return;
       }
       if (!address.street || !address.barangay || !address.city) {
-        alert("Please fill out all required address fields.");
+        showNotification("warning", "Missing Information", "Please fill out all required address fields.");
         return;
       }
       const addressData = {
@@ -157,7 +168,7 @@ const Checkout = () => {
           headers: { Authorization: `Bearer ${token}` },
         });
       }
-      alert("Address saved successfully!");
+      showNotification("success", "Address Saved", "Your delivery address has been saved successfully!");
       setIsEditing(false);
       const savedAddress = response.data.address;
       if (savedAddress) {
@@ -168,7 +179,8 @@ const Checkout = () => {
         }));
       }
     } catch (error) {
-      alert("Failed to save address. Check console for details.");
+      showNotification("error", "Save Failed", "Failed to save address. Please try again later.");
+      console.error("Address save error:", error);
     }
   };
 
@@ -357,8 +369,9 @@ const Checkout = () => {
           <button
             className="proceed-btn"
             onClick={() => {
-              if (!address.receiver_fullname || !address.contact_number || !address.house_number) {
-                alert("Please complete required address fields before proceeding to payment.");
+              if (!address.receiver_fullname || !address.contact_number || !address.house_number || 
+                  !address.street || !address.barangay || !address.city) {
+                showNotification("error", "Incomplete Address", "Please complete all required address fields before proceeding to payment.");
                 return;
               }
               navigate("/payment", {
