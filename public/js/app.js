@@ -82222,23 +82222,25 @@ var Address = function Address() {
     _useState12 = _slicedToArray(_useState11, 2),
     formData = _useState12[0],
     setFormData = _useState12[1];
-  var _useState13 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(1),
+  var _useState13 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(""),
     _useState14 = _slicedToArray(_useState13, 2),
-    currentPage = _useState14[0],
-    setCurrentPage = _useState14[1];
-  var addressesPerPage = 4;
+    phoneError = _useState14[0],
+    setPhoneError = _useState14[1];
   var _useState15 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(1),
     _useState16 = _slicedToArray(_useState15, 2),
-    archivedCurrentPage = _useState16[0],
-    setArchivedCurrentPage = _useState16[1];
+    currentPage = _useState16[0],
+    setCurrentPage = _useState16[1];
+  var addressesPerPage = 4;
+  var _useState17 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(1),
+    _useState18 = _slicedToArray(_useState17, 2),
+    archivedCurrentPage = _useState18[0],
+    setArchivedCurrentPage = _useState18[1];
   var archivedAddressesPerPage = 5;
   var userId = localStorage.getItem("userId");
   var token = localStorage.getItem("userToken");
   (0,react__WEBPACK_IMPORTED_MODULE_0__.useEffect)(function () {
     fetchAddresses();
   }, []);
-
-  // Fetch active (non-archived) addresses
   var fetchAddresses = /*#__PURE__*/function () {
     var _ref2 = _asyncToGenerator(/*#__PURE__*/_regeneratorRuntime().mark(function _callee() {
       var response, fetched;
@@ -82273,8 +82275,6 @@ var Address = function Address() {
       return _ref2.apply(this, arguments);
     };
   }();
-
-  // Fetch archived addresses
   var fetchArchivedAddresses = /*#__PURE__*/function () {
     var _ref3 = _asyncToGenerator(/*#__PURE__*/_regeneratorRuntime().mark(function _callee2() {
       var response;
@@ -82308,8 +82308,6 @@ var Address = function Address() {
       return _ref3.apply(this, arguments);
     };
   }();
-
-  // Add a new address
   var addAddress = /*#__PURE__*/function () {
     var _ref4 = _asyncToGenerator(/*#__PURE__*/_regeneratorRuntime().mark(function _callee3() {
       var isFirstAddress, dataToSend, response, newAddress;
@@ -82319,6 +82317,8 @@ var Address = function Address() {
             _context3.prev = 0;
             isFirstAddress = addresses.length === 0;
             dataToSend = _objectSpread(_objectSpread({}, formData), {}, {
+              contact_number: "+63".concat(formData.contact_number),
+              // Prepend +63
               is_default: isFirstAddress ? true : formData.is_default
             });
             _context3.next = 5;
@@ -82355,8 +82355,6 @@ var Address = function Address() {
       return _ref4.apply(this, arguments);
     };
   }();
-
-  // Update existing address
   var updateAddress = /*#__PURE__*/function () {
     var _ref5 = _asyncToGenerator(/*#__PURE__*/_regeneratorRuntime().mark(function _callee4() {
       var response, updatedAddress;
@@ -82365,7 +82363,11 @@ var Address = function Address() {
           case 0:
             _context4.prev = 0;
             _context4.next = 3;
-            return axios__WEBPACK_IMPORTED_MODULE_2___default().put("http://127.0.0.1:8000/api/address/".concat(editingAddress.id), formData, {
+            return axios__WEBPACK_IMPORTED_MODULE_2___default().put("http://127.0.0.1:8000/api/address/".concat(editingAddress.id), _objectSpread(_objectSpread({}, formData), {}, {
+              contact_number: "+63".concat(formData.contact_number)
+            }),
+            // Prepend +63
+            {
               headers: {
                 Authorization: "Bearer ".concat(token)
               }
@@ -82375,12 +82377,9 @@ var Address = function Address() {
             updatedAddress = response.data.address;
             setAddresses(function (prev) {
               var updated = prev.map(function (addr) {
-                // If this address is updated, use the updated version
                 if (addr.id === updatedAddress.id) {
                   return updatedAddress;
                 }
-                // If the user set THIS address as default,
-                // then remove default from other addresses
                 if (formData.is_default && addr.is_default === 1) {
                   return _objectSpread(_objectSpread({}, addr), {}, {
                     is_default: 0
@@ -82407,8 +82406,6 @@ var Address = function Address() {
       return _ref5.apply(this, arguments);
     };
   }();
-
-  // Archive (soft-delete) an address
   var deleteAddress = /*#__PURE__*/function () {
     var _ref6 = _asyncToGenerator(/*#__PURE__*/_regeneratorRuntime().mark(function _callee5(addressId) {
       return _regeneratorRuntime().wrap(function _callee5$(_context5) {
@@ -82444,8 +82441,6 @@ var Address = function Address() {
       return _ref6.apply(this, arguments);
     };
   }();
-
-  // Restore an archived address
   var restoreAddress = /*#__PURE__*/function () {
     var _ref7 = _asyncToGenerator(/*#__PURE__*/_regeneratorRuntime().mark(function _callee6(addressId) {
       var response, restoredAddress;
@@ -82488,8 +82483,6 @@ var Address = function Address() {
       return _ref7.apply(this, arguments);
     };
   }();
-
-  // Show modal (for adding or editing)
   var showModal = function showModal() {
     var address = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : null;
     var isFirstAddress = addresses.length === 0;
@@ -82497,7 +82490,8 @@ var Address = function Address() {
       setEditingAddress(address);
       setFormData({
         receiver_fullname: address.receiver_fullname || "",
-        contact_number: address.contact_number || "",
+        contact_number: address.contact_number.replace("+63", "") || "",
+        // Strip +63 for editing
         house_number: address.house_number || "",
         street: address.street || "",
         barangay: address.barangay || "",
@@ -82506,7 +82500,6 @@ var Address = function Address() {
         state: address.state || "",
         country: address.country || "",
         postal_code: address.postal_code || "",
-        // Convert 1 -> true
         is_default: address.is_default === 1
       });
     } else {
@@ -82522,30 +82515,25 @@ var Address = function Address() {
         state: "",
         country: "",
         postal_code: "",
-        // If no addresses, force default
         is_default: isFirstAddress ? true : false
       });
     }
     setIsModalVisible(true);
   };
-
-  // Close the modal
   var handleModalCancel = function handleModalCancel() {
     setIsModalVisible(false);
     setEditingAddress(null);
   };
-
-  // Save address (add or update)
   var handleModalOk = function handleModalOk() {
-    // 1) If editing the default address, preserve default:
     if (editingAddress && editingAddress.is_default === 1) {
-      // Force the form to remain default
       formData.is_default = true;
     }
-
-    // 2) Check required fields
     if (!formData.receiver_fullname || !formData.contact_number || !formData.house_number || !formData.street || !formData.barangay || !formData.city || !formData.region || !formData.state || !formData.country || !formData.postal_code) {
       antd__WEBPACK_IMPORTED_MODULE_4__["default"].error("Please fill out all required fields.");
+      return;
+    }
+    if (phoneError) {
+      antd__WEBPACK_IMPORTED_MODULE_4__["default"].error("Please correct the phone number format.");
       return;
     }
     if (editingAddress) {
@@ -82555,20 +82543,32 @@ var Address = function Address() {
     }
     setIsModalVisible(false);
   };
-
-  // Input change
   var handleChange = function handleChange(e) {
     var _e$target = e.target,
       name = _e$target.name,
       value = _e$target.value,
       type = _e$target.type,
       checked = _e$target.checked;
-    setFormData(function (prev) {
-      return _objectSpread(_objectSpread({}, prev), {}, _defineProperty({}, name, type === "checkbox" ? checked : value));
-    });
+    if (name === "contact_number") {
+      var pattern = /^\d{0,10}$/;
+      if (value === "" || pattern.test(value)) {
+        setFormData(function (prev) {
+          return _objectSpread(_objectSpread({}, prev), {}, _defineProperty({}, name, value));
+        });
+        if (value.length === 10) {
+          setPhoneError("");
+        } else if (value.length > 0) {
+          setPhoneError("Phone number must be exactly 9 digits");
+        } else {
+          setPhoneError("");
+        }
+      }
+    } else {
+      setFormData(function (prev) {
+        return _objectSpread(_objectSpread({}, prev), {}, _defineProperty({}, name, type === "checkbox" ? checked : value));
+      });
+    }
   };
-
-  // Pagination logic
   var totalPages = Math.ceil(addresses.length / addressesPerPage);
   var currentAddresses = addresses.slice((currentPage - 1) * addressesPerPage, currentPage * addressesPerPage);
   var archivedTotalPages = Math.ceil(archivedAddresses.length / archivedAddressesPerPage);
@@ -82634,7 +82634,7 @@ var Address = function Address() {
               })]
             }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)("div", {
               className: "address-details",
-              children: [address.region, ", ", address.state, ", ", address.country, ",", " ", address.postal_code]
+              children: [address.region, ", ", address.state, ", ", address.country, ", ", address.postal_code]
             }), address.is_default === 1 && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("span", {
               className: "default-badge",
               children: "Default"
@@ -82669,7 +82669,7 @@ var Address = function Address() {
             children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)("div", {
               className: "form-group",
               children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("label", {
-                children: "Receiver Fullname *"
+                children: "Receiver Fullname"
               }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("div", {
                 className: "input-wrapper",
                 children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("input", {
@@ -82683,21 +82683,28 @@ var Address = function Address() {
             }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)("div", {
               className: "form-group",
               children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("label", {
-                children: "Phone Number *"
-              }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("div", {
-                className: "input-wrapper",
-                children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("input", {
+                children: "Phone Number"
+              }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)("div", {
+                className: "phone-input-wrapper",
+                children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("input", {
                   name: "contact_number",
                   value: formData.contact_number,
                   onChange: handleChange,
-                  placeholder: "09123456789",
-                  className: !formData.contact_number ? "error" : ""
-                })
+                  placeholder: "9xxxxxxxxx",
+                  className: !formData.contact_number || phoneError ? "error" : ""
+                }), phoneError && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("div", {
+                  className: "error-message",
+                  style: {
+                    color: "red",
+                    fontSize: "12px"
+                  },
+                  children: phoneError
+                })]
               })]
             }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)("div", {
               className: "form-group",
               children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("label", {
-                children: "House Number *"
+                children: "House Number"
               }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("div", {
                 className: "input-wrapper",
                 children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("input", {
@@ -82711,7 +82718,7 @@ var Address = function Address() {
             }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)("div", {
               className: "form-group",
               children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("label", {
-                children: "Street Address *"
+                children: "Street Address"
               }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("div", {
                 className: "input-wrapper",
                 children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("input", {
@@ -82725,7 +82732,7 @@ var Address = function Address() {
             }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)("div", {
               className: "form-group",
               children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("label", {
-                children: "Barangay *"
+                children: "Barangay"
               }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("div", {
                 className: "input-wrapper",
                 children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("input", {
@@ -82739,7 +82746,7 @@ var Address = function Address() {
             }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)("div", {
               className: "form-group",
               children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("label", {
-                children: "City *"
+                children: "City"
               }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("div", {
                 className: "input-wrapper",
                 children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("input", {
@@ -82753,7 +82760,7 @@ var Address = function Address() {
             }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)("div", {
               className: "form-group",
               children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("label", {
-                children: "Region *"
+                children: "Region"
               }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("div", {
                 className: "input-wrapper",
                 children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("input", {
@@ -82767,7 +82774,7 @@ var Address = function Address() {
             }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)("div", {
               className: "form-group",
               children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("label", {
-                children: "State/Province *"
+                children: "State/Province"
               }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("div", {
                 className: "input-wrapper",
                 children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("input", {
@@ -82781,7 +82788,7 @@ var Address = function Address() {
             }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)("div", {
               className: "form-group",
               children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("label", {
-                children: "Country *"
+                children: "Country"
               }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("div", {
                 className: "input-wrapper",
                 children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("input", {
@@ -82795,7 +82802,7 @@ var Address = function Address() {
             }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)("div", {
               className: "form-group",
               children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("label", {
-                children: "Postal Code *"
+                children: "Postal Code"
               }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("div", {
                 className: "input-wrapper",
                 children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("input", {
@@ -82811,9 +82818,7 @@ var Address = function Address() {
               children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)("label", {
                 className: "checkbox-label",
                 children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("input", {
-                  type: "checkbox"
-                  // If user has no addresses, or if editing a default one, disable
-                  ,
+                  type: "checkbox",
                   disabled: addresses.length === 0 || (editingAddress === null || editingAddress === void 0 ? void 0 : editingAddress.is_default) === 1,
                   checked: formData.is_default,
                   onChange: function onChange(e) {

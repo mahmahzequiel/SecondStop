@@ -26,6 +26,8 @@ use App\Http\Controllers\ProfileController;
 // Open Routes: Registration and Login
 Route::post("register", [ApiController::class, "register"]);
 Route::post("login", [ApiController::class, "login"]);
+Route::post('forgot-password', [ApiController::class, 'forgotPassword']);
+Route::post('reset-password', [ApiController::class, 'resetPassword']);
 
 // Public Product API Routes
 Route::apiResource('/roles', RoleController::class);
