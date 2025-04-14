@@ -71,33 +71,34 @@ const [orderDetails, setOrderDetails] = useState(null);
       const { current, pageSize, ...restParams } = params;
       
       // Build query parameters
-      const queryParams = new URLSearchParams();
-      queryParams.append('page', current || pagination.current);
-      queryParams.append('limit', pageSize || pagination.pageSize);
+      const queryParams = {
+        page: current || pagination.current,
+        limit: pageSize || pagination.pageSize,
+        sort_by: 'updated_at', // Use updated_at instead of last_updated
+        sort_order: 'desc'
+      };
       
       // Add search text if present
       if (searchText) {
-        queryParams.append('search', searchText);
+        queryParams.search = searchText;
       }
       
       // Add any filters
       if (filters && Object.keys(filters).length > 0) {
         Object.entries(filters).forEach(([key, values]) => {
           if (values && values.length) {
-            values.forEach(value => {
-              queryParams.append(`filter[${key}][]`, value);
-            });
+            queryParams[`filter[${key}]`] = values;
           }
         });
       }
       
-      // Add sorter if present
+      // Add sorter if present (overrides default)
       if (sorter && sorter.field) {
-        queryParams.append('sort_by', sorter.field);
-        queryParams.append('sort_order', sorter.order === 'ascend' ? 'asc' : 'desc');
+        queryParams.sort_by = sorter.field;
+        queryParams.sort_order = sorter.order === 'ascend' ? 'asc' : 'desc';
       }
       
-      const response = await axios.get(`/api/orders?${queryParams.toString()}`);
+      const response = await axios.get('/api/orders', { params: queryParams });
       
       setOrders(response.data.orders);
       setPagination({
@@ -108,19 +109,20 @@ const [orderDetails, setOrderDetails] = useState(null);
       });
     } catch (error) {
       console.error('Error fetching orders:', error);
+      console.error('Error details:', error.response?.data); // Add this for debugging
       message.error('Failed to fetch orders');
     } finally {
       setLoading(false);
     }
   };
 
-  // Update order status
   const updateOrderStatus = async (orderId, newStatus) => {
     setStatusLoading(prev => ({ ...prev, [orderId]: true }));
     
     try {
       const response = await axios.patch(`/api/orders/${orderId}/status`, {
         status: newStatus
+        // Let Laravel automatically update updated_at
       });
       
       // Update the order in the local state
@@ -133,21 +135,29 @@ const [orderDetails, setOrderDetails] = useState(null);
       
       setOrders(updatedOrders);
       message.success(`Order status updated to ${getStatusLabel(newStatus)}`);
+      
+      // Refresh the orders list
+      await fetchOrders({
+        current: pagination.current,
+        pageSize: pagination.pageSize
+      });
     } catch (error) {
       console.error('Error updating order status:', error);
+      console.error('Error details:', error.response?.data);
       message.error('Failed to update order status');
     } finally {
       setStatusLoading(prev => ({ ...prev, [orderId]: false }));
     }
   };
-
-  // Update payment status
+  
+  // Similarly, in your updatePaymentStatus function:
   const updatePaymentStatus = async (orderId, newPaymentStatus) => {
     setPaymentStatusLoading(prev => ({ ...prev, [orderId]: true }));
     
     try {
       const response = await axios.patch(`/api/orders/${orderId}/payment-status`, {
-        payment_status: newPaymentStatus
+        payment_status: newPaymentStatus,
+        last_updated: new Date().toISOString() // Add this line
       });
       
       // Update the order in the local state
@@ -155,7 +165,8 @@ const [orderDetails, setOrderDetails] = useState(null);
         if (order.id === orderId) {
           return {
             ...order,
-            payment_status: newPaymentStatus
+            payment_status: newPaymentStatus,
+            last_updated: new Date().toISOString()
           };
         }
         return order;
@@ -163,6 +174,12 @@ const [orderDetails, setOrderDetails] = useState(null);
       
       setOrders(updatedOrders);
       message.success(`Payment status updated to ${newPaymentStatus}`);
+      
+      // Refresh the orders list with the new sorting
+      fetchOrders({
+        current: pagination.current,
+        pageSize: pagination.pageSize
+      });
     } catch (error) {
       console.error('Error updating payment status:', error);
       message.error('Failed to update payment status');
@@ -240,7 +257,9 @@ const [orderDetails, setOrderDetails] = useState(null);
   useEffect(() => {
     fetchOrders({
       current: pagination.current,
-      pageSize: pagination.pageSize
+      pageSize: pagination.pageSize,
+      sort_by: 'last_updated', // Add this
+      sort_order: 'desc'       // Add this
     });
   }, [searchText]);
 
@@ -630,81 +649,93 @@ const [orderDetails, setOrderDetails] = useState(null);
   ];
 
   // Function to handle bulk actions
-  const handleBulkAction = async (action) => {
-    if (!selectedRowKeys.length) {
-      message.warning('Please select at least one order');
-      return;
-    }
+  // Function to handle bulk actions
+const handleBulkAction = async (action) => {
+  if (!selectedRowKeys.length) {
+    message.warning('Please select at least one order');
+    return;
+  }
 
-    setLoading(true);
-    try {
-      const response = await axios.post('/api/orders/bulk-action', {
-        order_ids: selectedRowKeys,
-        action: action
-      });
-      
-      // Refresh the orders list
-      fetchOrders({
-        current: pagination.current,
-        pageSize: pagination.pageSize
-      });
-      
-      // Clear selection
-      setSelectedRowKeys([]);
-      
-      message.success(`${response.data.affected_count} orders processed successfully`);
-    } catch (error) {
-      console.error('Error processing bulk action:', error);
-      message.error('Failed to process bulk action');
-    } finally {
-      setLoading(false);
-    }
-  };
+  setLoading(true);
+  try {
+    const response = await axios.post('/api/orders/bulk-action', {
+      order_ids: selectedRowKeys,
+      action: action
+    });
+    
+    // Refresh the orders list
+    await fetchOrders({
+      current: pagination.current,
+      pageSize: pagination.pageSize
+    });
+    
+    // Clear selection
+    setSelectedRowKeys([]);
+    
+    message.success(`${response.data.affected_count} orders processed successfully`);
+  } catch (error) {
+    console.error('Error processing bulk action:', error);
+    message.error(error.response?.data?.message || 'Failed to process bulk action');
+  } finally {
+    setLoading(false);
+  }
+};
 
-  // Add bulk actions for payment status - modified for only Paid/Unpaid
-  const handleBulkPaymentAction = async (action) => {
-    if (!selectedRowKeys.length) {
-      message.warning('Please select at least one order');
-      return;
-    }
+// Add bulk actions for payment status
+const handleBulkPaymentAction = async (action) => {
+  if (!selectedRowKeys.length) {
+    message.warning('Please select at least one order');
+    return;
+  }
 
-    // Map action to the correct payment status value
-    const paymentStatus = action === 'mark_paid' ? 'Paid' : 'Unpaid';
+  const paymentStatus = action === 'mark_paid' ? 'Paid' : 'Unpaid';
 
-    setLoading(true);
-    try {
-      const response = await axios.post('/api/orders/bulk-payment-action', {
-        order_ids: selectedRowKeys,
-        payment_status: paymentStatus // Send the exact value needed by the backend
-      });
-      
-      // Refresh the orders list
-      fetchOrders({
-        current: pagination.current,
-        pageSize: pagination.pageSize
-      });
-      
-      // Clear selection
-      setSelectedRowKeys([]);
-      
-      message.success(`Payment status updated for ${response.data.affected_count} orders`);
-    } catch (error) {
-      console.error('Error processing bulk payment action:', error);
-      message.error('Failed to update payment status');
-    } finally {
-      setLoading(false);
-    }
-  };
+  setLoading(true);
+  try {
+    const response = await axios.post('/api/orders/bulk-payment-action', {
+      order_ids: selectedRowKeys,
+      payment_status: paymentStatus
+    });
+    
+    // Refresh the orders list
+    await fetchOrders({
+      current: pagination.current,
+      pageSize: pagination.pageSize
+    });
+    
+    // Clear selection
+    setSelectedRowKeys([]);
+    
+    message.success(`Payment status updated for ${response.data.affected_count} orders`);
+  } catch (error) {
+    console.error('Error processing bulk payment action:', error);
+    message.error(error.response?.data?.message || 'Failed to update payment status');
+  } finally {
+    setLoading(false);
+  }
+};
 
   // Bulk action menu - modified for only Paid/Unpaid options
   const bulkActionMenu = (
     <Menu>
       <Menu.SubMenu key="status" title="Update Status">
+      <Menu.Item key="mark_pending" onClick={() => handleBulkAction('mark_pending')}>
+          Mark as Pending
+        </Menu.Item>
         <Menu.Item key="mark_shipped" onClick={() => handleBulkAction('mark_shipped')}>
           Mark as Shipped
         </Menu.Item>
         <Menu.Item key="mark_delivered" onClick={() => handleBulkAction('mark_delivered')}>
           Mark as Delivered
+        </Menu.Item>
+        <Menu.Item key="mark_cancelled" onClick={() => handleBulkAction('mark_cancelled')}>
+          Mark as Cancelled
+        </Menu.Item>
+        <Menu.Item key="mark_refunded" onClick={() => handleBulkAction('mark_refunded')}>
+          Mark as Refunded
+        </Menu.Item>
+        <Menu.Item key="mark_returned" onClick={() => handleBulkAction('mark_returned')}>
+          Mark as Returned
         </Menu.Item>
       </Menu.SubMenu>
       <Menu.SubMenu key="payment" title="Update Payment Status">

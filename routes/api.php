@@ -44,7 +44,7 @@ Route::post('/products/update-quantities', [ProductsController::class, 'updateQu
 
 
 Route::put('/categories/{id}/restore', [CategoryController::class, 'restore']);
-Route::resource('categories', CategoryController::class);
+Route::apiResource('categories', CategoryController::class);
 
 Route::get("category-types", [CategoryTypeController::class, "index"]);
 Route::put("category-types/{categoryType}", [CategoryTypeController::class, "update"]);
@@ -114,6 +114,8 @@ Route::post('orders/{order}/request-refund', [OrderController::class, 'requestRe
 // Keep the direct delivery method
 Route::post('orders/{order}/deliver', [OrderController::class, 'markAsDelivered'])->name('orders.deliver');
 Route::patch('orders/{order}/status', [OrderController::class, 'updateStatus'])->name('orders.status.update');
+Route::post('orders/bulk-action', [OrderController::class, 'bulkAction'])->name('orders.bulk-action');
+Route::post('orders/bulk-payment-action', [OrderController::class, 'bulkPaymentAction'])->name('orders.bulk-payment-action');
 
 // Admin approval routes - ensure these are protected by admin middleware
 Route::post('orders/{order}/approve-cancellation', [OrderController::class, 'approveCancellation'])->name('orders.approve-cancellation');
@@ -139,6 +141,7 @@ Route::patch('/orders/{order}/payment-status', [OrderController::class, 'updateP
         Route::get('sales', [AdminDashboardController::class, 'getSalesData']);
         Route::get('order-status', [AdminDashboardController::class, 'getOrderStatusDistribution']);
         Route::get('product-categories', [AdminDashboardController::class, 'getProductCategoryDistribution']);
+        Route::get('product-category-types', [AdminDashboardController::class, 'getProductCategoryTypeDistribution']);
     });
 
 

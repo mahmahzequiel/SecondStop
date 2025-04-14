@@ -15,12 +15,39 @@ class OrderController extends Controller
     /**
      * Display a listing of all orders.
      */
-    public function index()
-    {
-        // Load orders with payment, address, and order items (including product details).
-        $orders = Order::with(['payment', 'address', 'orderItems.product'])->get();
-        return response()->json(['orders' => $orders]);
+    public function index(Request $request)
+{
+    $sortBy = $request->input('sort_by', 'updated_at');
+    $sortOrder = $request->input('sort_order', 'desc');
+    $page = $request->input('page', 1);
+    $limit = $request->input('limit', 10);
+    $search = $request->input('search', '');
+
+    $query = Order::with(['payment', 'address', 'orderItems.product'])
+        ->orderBy($sortBy, $sortOrder);
+
+    if ($search) {
+        $query->where('order_number', 'like', "%{$search}%");
     }
+
+    // Handle filters if they exist
+    if ($request->has('filter')) {
+        foreach ($request->input('filter') as $key => $values) {
+            if (is_array($values)) {
+                $query->whereIn($key, $values);
+            }
+        }
+    }
+
+    $orders = $query->paginate($limit, ['*'], 'page', $page);
+
+    return response()->json([
+        'orders' => $orders->items(),
+        'current_page' => $orders->currentPage(),
+        'per_page' => $orders->perPage(),
+        'total' => $orders->total()
+    ]);
+}
 
     /**
      * Store a newly created order, converting selected cart items to order items,
@@ -740,4 +767,69 @@ public function requestRefund(Request $request, Order $order)
             return response()->json(['errors' => $e->errors()], 422);
         }
     }
+
+
+    /**
+ * Handle bulk actions for orders
+ */
+public function bulkAction(Request $request)
+{
+    try {
+        $validated = $request->validate([
+            'order_ids' => 'required|array',
+            'order_ids.*' => 'exists:orders,id',
+            'action' => 'required|in:mark_pending,mark_shipped,mark_delivered,mark_cancelled,mark_refunded,mark_returned'
+        ]);
+
+        $statusMap = [
+            'mark_shipped' => 'shipped',
+            'mark_delivered' => 'delivered',
+            'mark_pending' => 'pending',
+            'mark_cancelled' => 'cancelled',
+            'mark_refunded' => 'refunded',
+            'mark_returned' => 'returned'
+        ];
+
+        $status = $statusMap[$validated['action']];
+        $count = Order::whereIn('id', $validated['order_ids'])
+            ->update(['status' => $status]);
+
+        return response()->json([
+            'message' => 'Bulk action completed successfully',
+            'affected_count' => $count
+        ]);
+
+    } catch (ValidationException $e) {
+        return response()->json(['errors' => $e->errors()], 422);
+    } catch (\Exception $e) {
+        return response()->json(['error' => $e->getMessage()], 500);
+    }
+}
+
+/**
+ * Handle bulk payment status updates
+ */
+public function bulkPaymentAction(Request $request)
+{
+    try {
+        $validated = $request->validate([
+            'order_ids' => 'required|array',
+            'order_ids.*' => 'exists:orders,id',
+            'payment_status' => 'required|in:Paid,Unpaid'
+        ]);
+
+        $count = Order::whereIn('id', $validated['order_ids'])
+            ->update(['payment_status' => $validated['payment_status']]);
+
+        return response()->json([
+            'message' => 'Bulk payment status update completed',
+            'affected_count' => $count
+        ]);
+
+    } catch (ValidationException $e) {
+        return response()->json(['errors' => $e->errors()], 422);
+    } catch (\Exception $e) {
+        return response()->json(['error' => $e->getMessage()], 500);
+    }
+}
 }
