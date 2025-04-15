@@ -16,38 +16,49 @@ class OrderController extends Controller
      * Display a listing of all orders.
      */
     public function index(Request $request)
-{
-    $sortBy = $request->input('sort_by', 'updated_at');
-    $sortOrder = $request->input('sort_order', 'desc');
-    $page = $request->input('page', 1);
-    $limit = $request->input('limit', 10);
-    $search = $request->input('search', '');
+    {
+        $sortBy = $request->input('sort_by', 'updated_at');
+        $sortOrder = $request->input('sort_order', 'desc');
+        $page = $request->input('page', 1);
+        $limit = $request->input('limit', 10);
+        $search = $request->input('search', '');
 
-    $query = Order::with(['payment', 'address', 'orderItems.product'])
-        ->orderBy($sortBy, $sortOrder);
+        $query = Order::with(['payment', 'address', 'orderItems.product'])
+            ->orderBy($sortBy, $sortOrder);
 
-    if ($search) {
-        $query->where('order_number', 'like', "%{$search}%");
-    }
+        if ($search) {
+            $query->where('order_number', 'like', "%{$search}%");
+        }
 
-    // Handle filters if they exist
-    if ($request->has('filter')) {
-        foreach ($request->input('filter') as $key => $values) {
-            if (is_array($values)) {
-                $query->whereIn($key, $values);
+        if ($request->has('filter')) {
+            foreach ($request->input('filter') as $key => $values) {
+                if (is_array($values)) {
+                    $query->whereIn($key, $values);
+                }
             }
         }
+
+        $orders = $query->paginate($limit, ['*'], 'page', $page);
+
+        return response()->json([
+            'orders' => $orders->items(),
+            'current_page' => $orders->currentPage(),
+            'per_page' => $orders->perPage(),
+            'total' => $orders->total()
+        ]);
     }
 
-    $orders = $query->paginate($limit, ['*'], 'page', $page);
+    public function show($id)
+    {
+        $order = Order::with([
+            'address',
+            'orderItems.product',
+            'payment'
+        ])->findOrFail($id);
+        
+        return response()->json($order);
+    }
 
-    return response()->json([
-        'orders' => $orders->items(),
-        'current_page' => $orders->currentPage(),
-        'per_page' => $orders->perPage(),
-        'total' => $orders->total()
-    ]);
-}
 
     /**
      * Store a newly created order, converting selected cart items to order items,
@@ -56,8 +67,6 @@ class OrderController extends Controller
     public function store(Request $request)
     {
         try {
-            // Validate incoming data.
-            // We now require 'cart_item_ids' instead of 'cart_ids'.
             $validated = $request->validate([
                 'payment_id'     => 'required|exists:payments,id',
                 'address_id'     => 'nullable|exists:addresses,id',
@@ -66,59 +75,43 @@ class OrderController extends Controller
                 'shipping_cost'  => 'required|numeric|min:0',
                 'total_amount'   => 'required|numeric|min:0',
                 'status'         => 'required|in:pending,shipped,delivered,cancelled,returned,refunded',
-                'payment_status' => 'required|in:Paid,Unpaid', // Added validation for new field
+                'payment_status' => 'required|in:Paid,Unpaid',
                 'purchase_date'  => 'nullable|date',
                 'cart_item_ids'  => 'required|array',
                 'cart_item_ids.*'=> 'integer|exists:cart_items,id',
             ]);
 
-            // Retrieve the authenticated user.
             $user = $request->user();
             if (!$user) {
                 return response()->json(['error' => 'User not authenticated'], 401);
             }
             $validated['user_id'] = $user->id;
 
-            // Generate an order number if not provided.
             if (empty($validated['order_number'])) {
                 $validated['order_number'] = 'ORD-' . mt_rand(100000, 999999);
             }
 
-            // Create the order record.
             $order = Order::create($validated);
-
-            // Prepare a collection to track order items for notification details.
             $allOrderItems = collect();
 
-            // Loop over each selected cart item ID.
             $cartItemIds = $validated['cart_item_ids'];
             foreach ($cartItemIds as $cartItemId) {
-                // Load each CartItem with its related Product.
                 $cartItem = CartItem::with('product')->find($cartItemId);
                 if ($cartItem) {
-                    // Create an OrderItem from the CartItem.
                     $orderItem = OrderItem::create([
                         'order_id'   => $order->id,
                         'product_id' => $cartItem->product_id,
                         'quantity'   => $cartItem->quantity,
                     ]);
 
-                    // Manually attach the product relation so that $orderItem->product works.
                     $orderItem->setRelation('product', $cartItem->product);
-
-                    // Add this OrderItem to the collection.
                     $allOrderItems->push($orderItem);
-
-                    // Remove just this single CartItem from the cart.
                     $cartItem->delete();
                 }
             }
 
-            // Build a detailed notification.
             $notificationTitle = "Order Placed Successfully";
             $notificationDescription = "Your order {$order->order_number} has been placed.<br/>";
-            
-            // Add payment status info to notification
             $notificationDescription .= "Payment Status: {$order->payment_status}<br/>";
             
             $firstProductImage = null;
@@ -126,7 +119,6 @@ class OrderController extends Controller
             if ($allOrderItems->count() > 0) {
                 $firstItem = $allOrderItems->first();
                 if ($firstItem && $firstItem->product) {
-                    // Optionally, use the first product's name as a highlight.
                     $notificationTitle = $firstItem->product->product_name;
                     if ($firstItem->product->product_image) {
                         $firstProductImage = $firstItem->product->product_image;
@@ -142,7 +134,7 @@ class OrderController extends Controller
             }
             $notificationDescription .= "Total Amount: PHP " . number_format($order->total_amount, 2);
 
-            // Create the notification.
+            // Customer notification
             Notification::create([
                 'user_id'       => $user->id,
                 'order_id'      => $order->id,
@@ -150,7 +142,24 @@ class OrderController extends Controller
                 'description'   => $notificationDescription,
                 'is_read'       => 0,
                 'product_image' => $firstProductImage,
+                'is_admin_notification' => 0,
             ]);
+
+            // Admin notification
+            $adminUsers = \App\Models\User::where('role_id', 2)->get();
+            
+            foreach ($adminUsers as $admin) {
+                Notification::create([
+                    'user_id'             => $admin->id,
+                    'order_id'            => $order->id,
+                    'title'               => "New Order Placed",
+                    'description'         => "New order {$order->order_number} has been placed by {$user->username} \nPayment Status: {$order->payment_status}\nTotal Amount: PHP " . number_format($order->total_amount, 2),
+                    'is_read'             => 0,
+                    'product_image'       => $firstProductImage,
+                    'is_admin_notification' => 2,
+                    'type'                => 'order'
+                ]);
+            }
 
             return response()->json([
                 'message' => 'Order created successfully',
@@ -161,23 +170,6 @@ class OrderController extends Controller
             return response()->json(['errors' => $e->errors()], 422);
         }
     }
-
-    /**
-     * Display a specific order.
-     */
-    public function show($id)
-{
-    $order = Order::with([
-        'address',
-        'orderItems.product',  // This should eager load products with order items
-        'payment'
-    ])->findOrFail($id);
-    
-    // Debug the structure before returning
-    \Log::debug('Order data:', $order->toArray());
-    
-    return response()->json($order);
-}
 
     /**
      * Update an existing order.

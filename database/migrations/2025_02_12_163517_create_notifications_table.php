@@ -36,6 +36,9 @@ class CreateNotificationsTable extends Migration
             // Actual text/message of the notification
             $table->text('description')->nullable();
 
+            $table->boolean('is_admin_notification');
+            $table->string('type')->nullable();
+
             // New column: product_image (stores the image URL or path)
             $table->string('product_image')->nullable();
 

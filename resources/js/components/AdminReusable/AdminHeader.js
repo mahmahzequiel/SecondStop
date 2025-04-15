@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useRef } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { Avatar, Dropdown, Space, Typography, Badge } from "antd";
 import { UserOutlined, LogoutOutlined, ProfileOutlined, DownOutlined, BellOutlined } from "@ant-design/icons";
 import axios from "axios";
@@ -12,6 +12,7 @@ function AdminHeader() {
   const [notifications, setNotifications] = useState([]);
   const [showNotifications, setShowNotifications] = useState(false);
   const notifRef = useRef();
+  const navigate = useNavigate();
   
   useEffect(() => {
     const fetchProfileData = async () => {
@@ -31,6 +32,30 @@ function AdminHeader() {
     
     fetchProfileData();
   }, []);
+  // Add this handler function to your component
+const handleNotificationClick = (notification) => {
+  // Close the notification dropdown
+  setShowNotifications(false);
+  
+  // Mark as read if unread
+  if (!notification.is_read) {
+    markAsRead(notification.id);
+  }
+
+  // Navigate based on notification type
+  if (notification.type === 'order') {
+    // You'll need to use useNavigate from react-router-dom
+    // Add this to your imports: import { useNavigate } from "react-router-dom";
+    // And declare it in your component: const navigate = useNavigate();
+    navigate('/orderlist', { 
+      state: { 
+        orderId: notification.order_id, // Assuming your notification has order_id
+        highlight: true 
+      } 
+    });
+  }
+  // Add other navigation cases for different notification types if needed
+};
 
   useEffect(() => {
     const fetchNotifications = async () => {
@@ -141,13 +166,20 @@ function AdminHeader() {
               ) : (
                 <div className="admin-header__notification-list">
                   {notifications.map((notif) => (
-                    <div key={notif.id} className={`admin-header__notification-item ${notif.is_admin_notification ? 'admin-notification' : ''}`}>
-                      {notif.is_admin_notification ? (
-                        <>
-                          <div className="admin-header__notification-icon">
-                            {notif.type === 'order' && '📦'}
-                            {notif.type === 'message' && '✉️'}
-                            {notif.type === 'system' && '⚙️'}
+  <div 
+    key={notif.id} 
+    className={`admin-header__notification-item ${notif.is_admin_notification ? 'admin-notification' : ''}`}
+    onClick={() => handleNotificationClick(notif)}
+    style={{ cursor: 'pointer' }} // Add pointer cursor
+  >
+    {/* Rest of your notification item content remains the same */}
+    {notif.is_admin_notification ? (
+      <>
+        <div className="admin-header__notification-icon">
+          {notif.type === 'order' && '📦'}
+          {notif.type === 'message' && '✉️'}
+          {notif.type === 'system' && '⚙️'}
+   
                           </div>
                           <div className="admin-header__notification-content">
                             <h5>{notif.title}</h5>

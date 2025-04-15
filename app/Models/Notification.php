@@ -16,6 +16,8 @@ class Notification extends Model
         'description',
         'is_read',
         'product_image', 
+        'is_admin_notification',
+        'type',
         
     ];
 
