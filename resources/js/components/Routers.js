@@ -44,12 +44,12 @@ import ProfileSidebar from "./Profile/ProfileSidebar";
 import ProfileMain from "./Profile/ProfileMain";
 import AdminProducts from "./Admin/Products/AdminProducts";
 import AllCustomers from "./Admin/Customer";
-import OrderTracking from "./Shipping/OrderTracking";
 import OrdersList from "./Admin/Orders/AdminOrders";
 import AdminSettings from "./Admin/AdminSettings/AdminSettingsPage";
 import MainButton from "./Chat/Mainbutton";
-import Inventory from "./Admin/Inventory/AdminSacks";
 import AdminSacks from "./Admin/Inventory/AdminSacks";
+
+
 
 function AppContent() {
   const location = useLocation();
