@@ -259,31 +259,7 @@ class OrderController extends Controller
     /**
      * Soft-delete or force-delete the specified order.
      */
-    public function destroy(Order $order)
-    {
-        if ($order->trashed()) {
-            $order->forceDelete();
-        } else {
-            $order->delete();
-        }
-        return response()->json(['message' => 'Order deleted successfully']);
-    }
-
-    /**
-     * Restore a soft-deleted order.
-     */
-    public function restore($id)
-    {
-        $order = Order::withTrashed()->find($id);
-        if (!$order || !$order->trashed()) {
-            return response()->json(['message' => 'Order not found or not deleted'], 404);
-        }
-        $order->restore();
-        return response()->json([
-            'message' => 'Order restored successfully',
-            'order'   => $order,
-        ]);
-    }
+    
     
     /**
      * Cancel a specific order.
@@ -397,6 +373,7 @@ class OrderController extends Controller
                 'title'       => "Payment Status Updated",
                 'description' => "Your order {$order->order_number} payment status has been updated to {$newPaymentStatus}.",
                 'is_read'     => 0,
+                'is_admin_notification' => 0,
             ]);
             
             return response()->json([
@@ -748,6 +725,7 @@ public function requestRefund(Request $request, Order $order)
                     'title'       => $notificationTitle,
                     'description' => $notificationDescription,
                     'is_read'     => 0,
+                    'is_admin_notification' => 0,
                 ]);
             }
 
