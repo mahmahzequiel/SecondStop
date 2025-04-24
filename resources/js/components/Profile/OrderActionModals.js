@@ -196,7 +196,6 @@ const OrderActionModals = ({
         const errors = error.response.data.errors;
         message.error(
           <div>
-            <div>Please fix the following issues:</div>
             <ul style={{ marginTop: '8px', paddingLeft: '20px' }}>
               {Object.entries(errors).map(([field, messages]) => (
                 messages.map((msg, i) => <li key={`${field}-${i}`}>{msg}</li>)
@@ -278,9 +277,6 @@ const OrderActionModals = ({
       open={visible && modalType === "cancel"}
       onCancel={handleClose}
       footer={[
-        <Button key="cancel" onClick={handleClose} style={{ borderRadius: '4px' }}>
-          Back
-        </Button>,
         <Button
           key="submit"
           type="primary"
@@ -296,11 +292,11 @@ const OrderActionModals = ({
           SUBMIT REQUEST
         </Button>,
       ]}
-      bodyStyle={{ padding: '20px', backgroundColor: '#f9d0c4' }}
+      bodyStyle={{ padding: '20px' }}
       style={{ borderRadius: '8px', overflow: 'hidden' }}
     >
-      <div style={{ marginBottom: '16px' }}>
-        <p>Select a reason for cancellation:</p>
+      <div style={{ marginBottom: '30px', fontSize:'15px' }}>
+        <p>SELECT A REASON FOR CANCELLATION:</p>
       </div>
       
       <Radio.Group 
@@ -341,9 +337,6 @@ const OrderActionModals = ({
       open={visible && modalType === "refund"}
       onCancel={handleClose}
       footer={[
-        <Button key="cancel" onClick={handleClose} style={{ borderRadius: '4px' }}>
-          Back
-        </Button>,
         <Button
           key="submit"
           type="primary"
@@ -359,12 +352,13 @@ const OrderActionModals = ({
           SUBMIT REQUEST
         </Button>,
       ]}
-      bodyStyle={{ padding: '20px', backgroundColor: '#f9d0c4' }}
+      bodyStyle={{ padding: '20px' }}
       style={{ borderRadius: '8px', overflow: 'hidden' }}
     >
-      <div style={{ marginBottom: '16px' }}>
-        <p>Select a reason for return/refund:</p>
-      </div>
+      <div style={{ marginBottom: '30px', fontSize: '15px' }}>
+      <p>SELECT A REASON FOR REFUND:</p>
+    </div>
+
       
       <Radio.Group 
         onChange={(e) => setRefundReason(e.target.value)} 
@@ -400,7 +394,7 @@ const OrderActionModals = ({
   // Render Review Order Modal
   const renderReviewOrderModal = () => (
     <Modal
-      title={<div style={{ textAlign: 'center', color: '#333' }}>Rate Product</div>}
+      title={<div style={{ textAlign: 'center' }}>Rate Product</div>}
       open={visible && modalType === "review"}
       onCancel={handleClose}
       footer={[
@@ -425,7 +419,7 @@ const OrderActionModals = ({
           Submit
         </Button>,
       ]}
-      bodyStyle={{ padding: '20px', backgroundColor: '#f9d0c4' }}
+      bodyStyle={{ padding: '20px' }}
       style={{ borderRadius: '8px', overflow: 'hidden' }}
     >
       {/* Product selector if multiple products in order */}

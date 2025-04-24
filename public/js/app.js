@@ -68949,12 +68949,13 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
 /* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_2__);
 /* harmony import */ var antd__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! antd */ "./node_modules/antd/es/input/index.js");
-/* harmony import */ var antd__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! antd */ "./node_modules/antd/es/list/index.js");
-/* harmony import */ var antd__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! antd */ "./node_modules/antd/es/avatar/index.js");
-/* harmony import */ var antd__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! antd */ "./node_modules/antd/es/badge/index.js");
-/* harmony import */ var antd__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! antd */ "./node_modules/antd/es/card/index.js");
-/* harmony import */ var antd__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! antd */ "./node_modules/antd/es/button/index.js");
-/* harmony import */ var _ant_design_icons__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! @ant-design/icons */ "./node_modules/@ant-design/icons/es/icons/UserOutlined.js");
+/* harmony import */ var antd__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! antd */ "./node_modules/antd/es/list/index.js");
+/* harmony import */ var antd__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! antd */ "./node_modules/antd/es/avatar/index.js");
+/* harmony import */ var antd__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! antd */ "./node_modules/antd/es/badge/index.js");
+/* harmony import */ var antd__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! antd */ "./node_modules/antd/es/card/index.js");
+/* harmony import */ var antd__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(/*! antd */ "./node_modules/antd/es/button/index.js");
+/* harmony import */ var _ant_design_icons__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! @ant-design/icons */ "./node_modules/@ant-design/icons/es/icons/SearchOutlined.js");
+/* harmony import */ var _ant_design_icons__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! @ant-design/icons */ "./node_modules/@ant-design/icons/es/icons/UserOutlined.js");
 /* harmony import */ var laravel_echo__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! laravel-echo */ "./node_modules/laravel-echo/dist/echo.js");
 /* harmony import */ var pusher_js__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! pusher-js */ "./node_modules/pusher-js/dist/web/pusher.js");
 /* harmony import */ var pusher_js__WEBPACK_IMPORTED_MODULE_4___default = /*#__PURE__*/__webpack_require__.n(pusher_js__WEBPACK_IMPORTED_MODULE_4__);
@@ -68983,44 +68984,53 @@ function _arrayWithHoles(r) { if (Array.isArray(r)) return r; }
 
 
 
-var TextArea = antd__WEBPACK_IMPORTED_MODULE_6__["default"].TextArea;
+var TextArea = antd__WEBPACK_IMPORTED_MODULE_6__["default"].TextArea,
+  Search = antd__WEBPACK_IMPORTED_MODULE_6__["default"].Search;
 function AdminChat() {
   var _useState = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)([]),
     _useState2 = _slicedToArray(_useState, 2),
     conversations = _useState2[0],
     setConversations = _useState2[1];
-  var _useState3 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(null),
+  var _useState3 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)([]),
     _useState4 = _slicedToArray(_useState3, 2),
-    selectedCustomer = _useState4[0],
-    setSelectedCustomer = _useState4[1];
+    filteredConversations = _useState4[0],
+    setFilteredConversations = _useState4[1];
   var _useState5 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(""),
     _useState6 = _slicedToArray(_useState5, 2),
-    selectedCustomerName = _useState6[0],
-    setSelectedCustomerName = _useState6[1];
+    searchQuery = _useState6[0],
+    setSearchQuery = _useState6[1];
   var _useState7 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(null),
     _useState8 = _slicedToArray(_useState7, 2),
-    selectedCustomerImage = _useState8[0],
-    setSelectedCustomerImage = _useState8[1];
-  var _useState9 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)([]),
+    selectedCustomer = _useState8[0],
+    setSelectedCustomer = _useState8[1];
+  var _useState9 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(""),
     _useState10 = _slicedToArray(_useState9, 2),
-    messages = _useState10[0],
-    setMessages = _useState10[1];
-  var _useState11 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(""),
+    selectedCustomerName = _useState10[0],
+    setSelectedCustomerName = _useState10[1];
+  var _useState11 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(null),
     _useState12 = _slicedToArray(_useState11, 2),
-    newMessage = _useState12[0],
-    setNewMessage = _useState12[1];
-  var _useState13 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)({}),
+    selectedCustomerImage = _useState12[0],
+    setSelectedCustomerImage = _useState12[1];
+  var _useState13 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)([]),
     _useState14 = _slicedToArray(_useState13, 2),
-    unreadCounts = _useState14[0],
-    setUnreadCounts = _useState14[1];
-  var _useState15 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)({}),
+    messages = _useState14[0],
+    setMessages = _useState14[1];
+  var _useState15 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(""),
     _useState16 = _slicedToArray(_useState15, 2),
-    userProfiles = _useState16[0],
-    setUserProfiles = _useState16[1];
-  var _useState17 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(null),
+    newMessage = _useState16[0],
+    setNewMessage = _useState16[1];
+  var _useState17 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)({}),
     _useState18 = _slicedToArray(_useState17, 2),
-    user = _useState18[0],
-    setUser = _useState18[1];
+    unreadCounts = _useState18[0],
+    setUnreadCounts = _useState18[1];
+  var _useState19 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)({}),
+    _useState20 = _slicedToArray(_useState19, 2),
+    userProfiles = _useState20[0],
+    setUserProfiles = _useState20[1];
+  var _useState21 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(null),
+    _useState22 = _slicedToArray(_useState21, 2),
+    user = _useState22[0],
+    setUser = _useState22[1];
   var userToken = localStorage.getItem("userToken");
   var apiBaseUrl = "http://127.0.0.1:8000/api";
 
@@ -69048,6 +69058,7 @@ function AdminChat() {
       console.log("Customer conversations:", res.data);
       if (res.data.conversations) {
         setConversations(res.data.conversations);
+        setFilteredConversations(res.data.conversations);
 
         // Initialize unread counts
         var counts = {};
@@ -69065,6 +69076,23 @@ function AdminChat() {
       return console.error("Error fetching conversations:", err.response ? err.response.data : err);
     });
   }, [userToken]);
+
+  // Filter conversations when search query changes
+  (0,react__WEBPACK_IMPORTED_MODULE_0__.useEffect)(function () {
+    if (searchQuery.trim() === "") {
+      setFilteredConversations(conversations);
+      return;
+    }
+    var filtered = conversations.filter(function (conv) {
+      var profile = userProfiles[conv.user_id];
+      var firstName = conv.first_name || profile && profile.first_name || "";
+      var lastName = conv.last_name || profile && profile.last_name || "";
+      var fullName = "".concat(firstName, " ").concat(lastName).trim().toLowerCase();
+      var userName = (conv.user_name || "").toLowerCase();
+      return fullName.includes(searchQuery.toLowerCase()) || userName.includes(searchQuery.toLowerCase()) || "customer ".concat(conv.user_id).includes(searchQuery.toLowerCase());
+    });
+    setFilteredConversations(filtered);
+  }, [searchQuery, conversations, userProfiles]);
 
   // Helper function to fetch user profile data
   var fetchUserProfile = function fetchUserProfile(userId) {
@@ -69185,6 +69213,21 @@ function AdminChat() {
           }).then(function (res) {
             if (res.data.conversations) {
               setConversations(res.data.conversations);
+
+              // Apply current search filter to updated conversations
+              if (searchQuery.trim() !== "") {
+                var updatedFiltered = res.data.conversations.filter(function (conv) {
+                  var profile = userProfiles[conv.user_id];
+                  var firstName = conv.first_name || profile && profile.first_name || "";
+                  var lastName = conv.last_name || profile && profile.last_name || "";
+                  var fullName = "".concat(firstName, " ").concat(lastName).trim().toLowerCase();
+                  var userName = (conv.user_name || "").toLowerCase();
+                  return fullName.includes(searchQuery.toLowerCase()) || userName.includes(searchQuery.toLowerCase()) || "customer ".concat(conv.user_id).includes(searchQuery.toLowerCase());
+                });
+                setFilteredConversations(updatedFiltered);
+              } else {
+                setFilteredConversations(res.data.conversations);
+              }
             }
           });
         }
@@ -69193,7 +69236,7 @@ function AdminChat() {
     return function () {
       echo.disconnect();
     };
-  }, [user, userToken, selectedCustomer, userProfiles]);
+  }, [user, userToken, selectedCustomer, userProfiles, searchQuery]);
   var sendMessage = function sendMessage() {
     if (newMessage.trim() === "" || !selectedCustomer) return;
     axios__WEBPACK_IMPORTED_MODULE_2___default().post("".concat(apiBaseUrl, "/chat/send"), {
@@ -69234,152 +69277,99 @@ function AdminChat() {
     // Route through public storage symlink
     return "".concat(window.location.origin, "/storage/").concat(imagePath);
   };
+  var handleSearch = function handleSearch(value) {
+    setSearchQuery(value);
+  };
   return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)(_AdminReusable_AdminPage__WEBPACK_IMPORTED_MODULE_1__["default"], {
     children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsxs)("div", {
-      style: {
-        display: "flex",
-        height: "calc(100vh - 64px)"
-      },
+      className: "adm-chat__container",
       children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsxs)("div", {
-        style: {
-          width: "300px",
-          borderRight: "1px solid #ccc",
-          overflowY: "auto",
-          padding: "10px"
-        },
+        className: "adm-chat__sidebar",
         children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("h3", {
-          className: "admin-chat-header",
-          style: {
-            margin: 0,
-            color: '#000'
-          },
+          className: "adm-chat__header",
           children: "Conversations"
-        }), conversations.length === 0 ? /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("p", {
-          children: "No customer conversations found."
-        }) : /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)(antd__WEBPACK_IMPORTED_MODULE_7__["default"], {
-          dataSource: conversations,
+        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)(Search, {
+          placeholder: "Search customers...",
+          allowClear: true,
+          onSearch: handleSearch,
+          onChange: function onChange(e) {
+            return setSearchQuery(e.target.value);
+          },
+          className: "adm-chat__search",
+          prefix: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)(_ant_design_icons__WEBPACK_IMPORTED_MODULE_7__["default"], {})
+        }), filteredConversations.length === 0 ? /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("p", {
+          className: "adm-chat__empty-state",
+          children: "No matching conversations found."
+        }) : /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)(antd__WEBPACK_IMPORTED_MODULE_8__["default"], {
+          dataSource: filteredConversations,
           renderItem: function renderItem(conv) {
             // Check both direct conversation profile_image and userProfiles
             var profile = userProfiles[conv.user_id];
             var profileImage = conv.profile_image ? getProfileImageUrl(conv.profile_image) : profile ? getProfileImageUrl(profile.profile_image) : null;
-            return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)(antd__WEBPACK_IMPORTED_MODULE_7__["default"].Item, {
-              style: {
-                cursor: "pointer",
-                padding: "8px",
-                marginBottom: "4px",
-                backgroundColor: selectedCustomer === conv.user_id.toString() ? "#e6f7ff" : "transparent",
-                borderRadius: "4px"
-              },
+            var isSelected = selectedCustomer === conv.user_id.toString();
+            return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)(antd__WEBPACK_IMPORTED_MODULE_8__["default"].Item, {
+              className: "adm-chat__list-item ".concat(isSelected ? 'adm-chat__list-item--selected' : ''),
               onClick: function onClick() {
                 return setSelectedCustomer(conv.user_id.toString());
               },
               children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsxs)("div", {
-                style: {
-                  display: "flex",
-                  alignItems: "center",
-                  width: "100%"
-                },
-                children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)(antd__WEBPACK_IMPORTED_MODULE_8__["default"], {
+                className: "adm-chat__customer-row",
+                children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)(antd__WEBPACK_IMPORTED_MODULE_9__["default"], {
                   src: profileImage,
-                  icon: !profileImage && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)(_ant_design_icons__WEBPACK_IMPORTED_MODULE_9__["default"], {}),
-                  style: {
-                    marginRight: "10px"
-                  }
+                  icon: !profileImage && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)(_ant_design_icons__WEBPACK_IMPORTED_MODULE_10__["default"], {}),
+                  className: "adm-chat__avatar"
                 }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsxs)("div", {
-                  style: {
-                    flex: 1
-                  },
+                  className: "adm-chat__customer-info",
                   children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("div", {
-                    children: conv.first_name && conv.last_name ? "".concat(conv.first_name, " ").concat(conv.last_name) : profile ? "".concat(profile.first_name || '', " ").concat(profile.last_name || '').trim() : conv.user_name || "Customer ".concat(conv.user_id)
+                    className: "adm-chat__customer-name",
+                    children: conv.user_name ? "".concat(conv.user_name) : profile ? "".concat(profile.first_name || '', " ").concat(profile.last_name || '').trim() : conv.user_name || "Customer ".concat(conv.user_id)
                   }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("div", {
-                    style: {
-                      fontSize: "12px",
-                      color: "#888"
-                    },
+                    className: "adm-chat__last-message",
                     children: conv.last_message ? conv.last_message.length > 20 ? "".concat(conv.last_message.substring(0, 20), "...") : conv.last_message : "No messages"
                   })]
-                }), unreadCounts[conv.user_id] > 0 && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)(antd__WEBPACK_IMPORTED_MODULE_10__["default"], {
+                }), unreadCounts[conv.user_id] > 0 && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)(antd__WEBPACK_IMPORTED_MODULE_11__["default"], {
                   count: unreadCounts[conv.user_id],
-                  style: {
-                    marginLeft: "5px"
-                  }
+                  className: "adm-chat__badge"
                 })]
               })
             });
           }
         })]
       }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("div", {
-        style: {
-          flex: 1,
-          display: "flex",
-          flexDirection: "column",
-          padding: "10px"
-        },
+        className: "adm-chat__main",
         children: selectedCustomer ? /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsxs)(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.Fragment, {
           children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsxs)("div", {
-            style: {
-              display: "flex",
-              alignItems: "center",
-              marginBottom: "10px"
-            },
+            className: "adm-chat__selected-header",
             children: [function () {
               var selectedConv = conversations.find(function (c) {
                 return c.user_id.toString() === selectedCustomer;
               });
               var profileImage = selectedConv !== null && selectedConv !== void 0 && selectedConv.profile_image ? getProfileImageUrl(selectedConv.profile_image) : userProfiles[selectedCustomer] ? getProfileImageUrl(userProfiles[selectedCustomer].profile_image) : null;
-              return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)(antd__WEBPACK_IMPORTED_MODULE_8__["default"], {
+              return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)(antd__WEBPACK_IMPORTED_MODULE_9__["default"], {
                 src: profileImage,
-                icon: !profileImage && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)(_ant_design_icons__WEBPACK_IMPORTED_MODULE_9__["default"], {}),
+                icon: !profileImage && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)(_ant_design_icons__WEBPACK_IMPORTED_MODULE_10__["default"], {}),
                 size: "large",
-                style: {
-                  marginRight: "10px"
-                }
+                className: "adm-chat__selected-avatar"
               });
             }(), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsxs)("h3", {
-              className: "admin-chat-header",
-              style: {
-                margin: 0,
-                color: '#000'
-              },
+              className: "adm-chat__selected-name",
               children: ["Chat with ", selectedCustomerName]
             })]
-          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)(antd__WEBPACK_IMPORTED_MODULE_11__["default"], {
-            style: {
-              flex: 1,
-              overflowY: "auto",
-              marginBottom: "10px"
-            },
+          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)(antd__WEBPACK_IMPORTED_MODULE_12__["default"], {
+            className: "adm-chat__messages-container",
             children: messages.length === 0 ? /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("div", {
-              style: {
-                textAlign: "center",
-                color: "#999",
-                marginTop: "20px"
-              },
+              className: "adm-chat__no-messages",
               children: "No messages yet. Start the conversation!"
             }) : messages.map(function (msg) {
-              var _msg$sender_id, _msg$sender_id2, _msg$sender_id3, _msg$sender_id4;
+              var _msg$sender_id;
+              var isCustomerMessage = ((_msg$sender_id = msg.sender_id) === null || _msg$sender_id === void 0 ? void 0 : _msg$sender_id.toString()) === selectedCustomer;
               return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsxs)("div", {
-                style: {
-                  marginBottom: "12px",
-                  textAlign: ((_msg$sender_id = msg.sender_id) === null || _msg$sender_id === void 0 ? void 0 : _msg$sender_id.toString()) === selectedCustomer ? "left" : "right",
-                  display: "flex",
-                  flexDirection: "column",
-                  alignItems: ((_msg$sender_id2 = msg.sender_id) === null || _msg$sender_id2 === void 0 ? void 0 : _msg$sender_id2.toString()) === selectedCustomer ? "flex-start" : "flex-end"
-                },
+                className: "adm-chat__message-wrapper ".concat(isCustomerMessage ? 'adm-chat__message-wrapper--customer' : 'adm-chat__message-wrapper--admin'),
                 children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("div", {
-                  style: {
-                    backgroundColor: ((_msg$sender_id3 = msg.sender_id) === null || _msg$sender_id3 === void 0 ? void 0 : _msg$sender_id3.toString()) === selectedCustomer ? "#f1f1f1" : "#1890ff",
-                    color: ((_msg$sender_id4 = msg.sender_id) === null || _msg$sender_id4 === void 0 ? void 0 : _msg$sender_id4.toString()) === selectedCustomer ? "#000" : "#fff",
-                    padding: "8px 12px",
-                    borderRadius: "12px",
-                    maxWidth: "70%",
-                    wordBreak: "break-word"
-                  },
+                  className: "adm-chat__message ".concat(isCustomerMessage ? 'adm-chat__message--customer' : 'adm-chat__message--admin'),
                   children: msg.message
                 }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("small", {
-                  style: {
-                    marginTop: "4px"
-                  },
+                  className: "adm-chat__message-time",
                   children: new Date(msg.created_at || msg.date_time).toLocaleString([], {
                     month: "short",
                     day: "numeric",
@@ -69390,9 +69380,7 @@ function AdminChat() {
               }, msg.id);
             })
           }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsxs)("div", {
-            style: {
-              display: "flex"
-            },
+            className: "adm-chat__input-container",
             children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)(TextArea, {
               rows: 2,
               value: newMessage,
@@ -69401,38 +69389,20 @@ function AdminChat() {
               },
               onKeyPress: handleKeyPress,
               placeholder: "Type your message...",
-              style: {
-                width: "80%",
-                padding: "8px"
-              }
-            }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)(antd__WEBPACK_IMPORTED_MODULE_12__["default"], {
+              className: "adm-chat__input"
+            }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)(antd__WEBPACK_IMPORTED_MODULE_13__["default"], {
               type: "primary",
               onClick: sendMessage,
-              style: {
-                marginLeft: "10px",
-                padding: "8px 16px",
-                height: "auto"
-              },
+              className: "adm-chat__send-btn",
               children: "Send"
             })]
           })]
         }) : /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("div", {
-          style: {
-            display: "flex",
-            justifyContent: "center",
-            alignItems: "center",
-            height: "100%"
-          },
+          className: "adm-chat__empty-chat",
           children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsxs)("div", {
-            style: {
-              textAlign: "center",
-              color: "#999"
-            },
-            children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)(_ant_design_icons__WEBPACK_IMPORTED_MODULE_9__["default"], {
-              style: {
-                fontSize: "64px",
-                marginBottom: "16px"
-              }
+            className: "adm-chat__empty-chat-content",
+            children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)(_ant_design_icons__WEBPACK_IMPORTED_MODULE_10__["default"], {
+              className: "adm-chat__empty-icon"
             }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("p", {
               children: "Select a conversation to start chatting"
             })]
@@ -83908,10 +83878,8 @@ var OrderActionModals = function OrderActionModals(_ref) {
             console.error("Submission error:", _context3.t0);
             if (((_error$response2 = _context3.t0.response) === null || _error$response2 === void 0 ? void 0 : _error$response2.status) === 422) {
               errors = _context3.t0.response.data.errors;
-              antd__WEBPACK_IMPORTED_MODULE_4__["default"].error(/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxs)("div", {
-                children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("div", {
-                  children: "Please fix the following issues:"
-                }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("ul", {
+              antd__WEBPACK_IMPORTED_MODULE_4__["default"].error(/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("div", {
+                children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("ul", {
                   style: {
                     marginTop: '8px',
                     paddingLeft: '20px'
@@ -83926,7 +83894,7 @@ var OrderActionModals = function OrderActionModals(_ref) {
                       }, "".concat(field, "-").concat(i));
                     });
                   })
-                })]
+                })
               }), 10);
             } else {
               antd__WEBPACK_IMPORTED_MODULE_4__["default"].error(((_error$response3 = _context3.t0.response) === null || _error$response3 === void 0 || (_error$response3 = _error$response3.data) === null || _error$response3 === void 0 ? void 0 : _error$response3.message) || "Failed to submit review.");
@@ -84040,12 +84008,6 @@ var OrderActionModals = function OrderActionModals(_ref) {
       open: visible && modalType === "cancel",
       onCancel: handleClose,
       footer: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)(antd__WEBPACK_IMPORTED_MODULE_6__["default"], {
-        onClick: handleClose,
-        style: {
-          borderRadius: '4px'
-        },
-        children: "Back"
-      }, "cancel"), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)(antd__WEBPACK_IMPORTED_MODULE_6__["default"], {
         type: "primary",
         loading: actionLoading,
         onClick: handleCancelOrder,
@@ -84058,8 +84020,7 @@ var OrderActionModals = function OrderActionModals(_ref) {
         children: "SUBMIT REQUEST"
       }, "submit")],
       bodyStyle: {
-        padding: '20px',
-        backgroundColor: '#f9d0c4'
+        padding: '20px'
       },
       style: {
         borderRadius: '8px',
@@ -84067,10 +84028,11 @@ var OrderActionModals = function OrderActionModals(_ref) {
       },
       children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("div", {
         style: {
-          marginBottom: '16px'
+          marginBottom: '30px',
+          fontSize: '15px'
         },
         children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("p", {
-          children: "Select a reason for cancellation:"
+          children: "SELECT A REASON FOR CANCELLATION:"
         })
       }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxs)(antd__WEBPACK_IMPORTED_MODULE_7__["default"].Group, {
         onChange: function onChange(e) {
@@ -84154,12 +84116,6 @@ var OrderActionModals = function OrderActionModals(_ref) {
       open: visible && modalType === "refund",
       onCancel: handleClose,
       footer: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)(antd__WEBPACK_IMPORTED_MODULE_6__["default"], {
-        onClick: handleClose,
-        style: {
-          borderRadius: '4px'
-        },
-        children: "Back"
-      }, "cancel"), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)(antd__WEBPACK_IMPORTED_MODULE_6__["default"], {
         type: "primary",
         loading: actionLoading,
         onClick: handleRefundOrder,
@@ -84172,8 +84128,7 @@ var OrderActionModals = function OrderActionModals(_ref) {
         children: "SUBMIT REQUEST"
       }, "submit")],
       bodyStyle: {
-        padding: '20px',
-        backgroundColor: '#f9d0c4'
+        padding: '20px'
       },
       style: {
         borderRadius: '8px',
@@ -84181,10 +84136,11 @@ var OrderActionModals = function OrderActionModals(_ref) {
       },
       children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("div", {
         style: {
-          marginBottom: '16px'
+          marginBottom: '30px',
+          fontSize: '15px'
         },
         children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("p", {
-          children: "Select a reason for return/refund:"
+          children: "SELECT A REASON FOR REFUND:"
         })
       }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxs)(antd__WEBPACK_IMPORTED_MODULE_7__["default"].Group, {
         onChange: function onChange(e) {
@@ -84261,8 +84217,7 @@ var OrderActionModals = function OrderActionModals(_ref) {
     return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxs)(antd__WEBPACK_IMPORTED_MODULE_5__["default"], {
       title: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("div", {
         style: {
-          textAlign: 'center',
-          color: '#333'
+          textAlign: 'center'
         },
         children: "Rate Product"
       }),
@@ -84288,8 +84243,7 @@ var OrderActionModals = function OrderActionModals(_ref) {
         children: "Submit"
       }, "submit")],
       bodyStyle: {
-        padding: '20px',
-        backgroundColor: '#f9d0c4'
+        padding: '20px'
       },
       style: {
         borderRadius: '8px',
@@ -84857,7 +84811,7 @@ var Purchases = function Purchases() {
               antd__WEBPACK_IMPORTED_MODULE_6__["default"].confirm({
                 title: 'Confirm Order Received',
                 content: 'Are you sure you want to mark this order as received?',
-                okText: 'Yes, Confirm Receipt',
+                okText: 'Yes',
                 cancelText: 'No',
                 onOk: function () {
                   var _onOk = _asyncToGenerator(/*#__PURE__*/_regeneratorRuntime().mark(function _callee2() {
@@ -85591,8 +85545,6 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var antd__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! antd */ "./node_modules/antd/es/form/index.js");
 /* harmony import */ var antd__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! antd */ "./node_modules/antd/es/message/index.js");
-/* harmony import */ var antd__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! antd */ "./node_modules/antd/es/row/index.js");
-/* harmony import */ var antd__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! antd */ "./node_modules/antd/es/col/index.js");
 /* harmony import */ var _ant_design_icons__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! @ant-design/icons */ "./node_modules/@ant-design/icons/es/icons/ArrowLeftOutlined.js");
 /* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router/dist/development/chunk-K6AXKMTT.mjs");
 /* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
@@ -85653,7 +85605,9 @@ var Registration = function Registration() {
             if (data.errors) {
               Object.values(data.errors).forEach(function (errorMessages) {
                 errorMessages.forEach(function (errorMessage) {
+                  console.error(errorMessage);
                   antd__WEBPACK_IMPORTED_MODULE_5__["default"].error(errorMessage);
+                  // You can implement a custom toast notification here
                 });
               });
             }
@@ -85693,16 +85647,16 @@ var Registration = function Registration() {
     };
   }();
   return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxs)("div", {
-    className: "registration-page",
+    className: "reg-page",
     children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxs)("button", {
       type: "button",
-      className: "back-button",
+      className: "reg-back-btn",
       onClick: function onClick() {
         return navigate("/login");
       },
       children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)(_ant_design_icons__WEBPACK_IMPORTED_MODULE_6__["default"], {}), " Back"]
     }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxs)("div", {
-      className: "registration-container",
+      className: "reg-container",
       children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("h2", {
         children: "Sign Up"
       }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxs)(antd__WEBPACK_IMPORTED_MODULE_3__["default"], {
@@ -85710,97 +85664,60 @@ var Registration = function Registration() {
         layout: "vertical",
         onFinish: handleSubmit,
         autoComplete: "off",
-        children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxs)(antd__WEBPACK_IMPORTED_MODULE_7__["default"], {
-          gutter: 16,
-          justify: "center",
-          children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)(antd__WEBPACK_IMPORTED_MODULE_8__["default"], {
-            span: 8,
+        className: "reg-form",
+        children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxs)("div", {
+          className: "reg-form-grid",
+          children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("div", {
+            className: "reg-form-item",
             children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)(antd__WEBPACK_IMPORTED_MODULE_3__["default"].Item, {
               name: "first_name",
               rules: [{
                 required: true,
                 message: "First name is required"
               }],
-              getValueProps: function getValueProps(value) {
-                return {
-                  value: value
-                };
-              },
-              getValueFromEvent: function getValueFromEvent(e) {
-                return e.target.value;
-              },
               children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("input", {
-                className: "custom-input",
+                className: "reg-input",
                 placeholder: "Enter first name"
               })
             })
-          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)(antd__WEBPACK_IMPORTED_MODULE_8__["default"], {
-            span: 8,
+          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("div", {
+            className: "reg-form-item",
             children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)(antd__WEBPACK_IMPORTED_MODULE_3__["default"].Item, {
               name: "middle_name",
               rules: [{
-                required: true,
-                message: "Middle name is required"
+                required: false
               }],
-              getValueProps: function getValueProps(value) {
-                return {
-                  value: value
-                };
-              },
-              getValueFromEvent: function getValueFromEvent(e) {
-                return e.target.value;
-              },
               children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("input", {
-                className: "custom-input",
+                className: "reg-input",
                 placeholder: "Enter middle name"
               })
             })
-          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)(antd__WEBPACK_IMPORTED_MODULE_8__["default"], {
-            span: 8,
+          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("div", {
+            className: "reg-form-item",
             children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)(antd__WEBPACK_IMPORTED_MODULE_3__["default"].Item, {
               name: "last_name",
               rules: [{
                 required: true,
                 message: "Last name is required"
               }],
-              getValueProps: function getValueProps(value) {
-                return {
-                  value: value
-                };
-              },
-              getValueFromEvent: function getValueFromEvent(e) {
-                return e.target.value;
-              },
               children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("input", {
-                className: "custom-input",
+                className: "reg-input",
                 placeholder: "Enter last name"
               })
             })
-          })]
-        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxs)(antd__WEBPACK_IMPORTED_MODULE_7__["default"], {
-          gutter: 16,
-          justify: "center",
-          children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)(antd__WEBPACK_IMPORTED_MODULE_8__["default"], {
-            span: 8,
+          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("div", {
+            className: "reg-form-item",
             children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)(antd__WEBPACK_IMPORTED_MODULE_3__["default"].Item, {
               name: "sex",
               rules: [{
                 required: true,
-                message: "Sex is required"
+                message: "Gender is required"
               }],
-              getValueProps: function getValueProps(value) {
-                return {
-                  value: value
-                };
-              },
-              getValueFromEvent: function getValueFromEvent(e) {
-                return e.target.value;
-              },
               children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxs)("select", {
-                className: "custom-select",
+                className: "reg-select",
                 children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("option", {
                   value: "",
-                  children: "Select"
+                  children: "Gender"
                 }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("option", {
                   value: "Male",
                   children: "Male"
@@ -85813,8 +85730,8 @@ var Registration = function Registration() {
                 })]
               })
             })
-          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)(antd__WEBPACK_IMPORTED_MODULE_8__["default"], {
-            span: 8,
+          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("div", {
+            className: "reg-form-item",
             children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)(antd__WEBPACK_IMPORTED_MODULE_3__["default"].Item, {
               name: "phone_number",
               rules: [{
@@ -85824,21 +85741,13 @@ var Registration = function Registration() {
                 pattern: /^\+639\d{9}$/,
                 message: "Phone number must be in +639XXXXXXXXX format"
               }],
-              getValueProps: function getValueProps(value) {
-                return {
-                  value: value
-                };
-              },
-              getValueFromEvent: function getValueFromEvent(e) {
-                return e.target.value;
-              },
               children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("input", {
-                className: "custom-input",
+                className: "reg-input",
                 placeholder: "+639XXXXXXXXX"
               })
             })
-          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)(antd__WEBPACK_IMPORTED_MODULE_8__["default"], {
-            span: 8,
+          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("div", {
+            className: "reg-form-item",
             children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)(antd__WEBPACK_IMPORTED_MODULE_3__["default"].Item, {
               name: "email",
               rules: [{
@@ -85848,46 +85757,26 @@ var Registration = function Registration() {
                 type: "email",
                 message: "Invalid email address"
               }],
-              getValueProps: function getValueProps(value) {
-                return {
-                  value: value
-                };
-              },
-              getValueFromEvent: function getValueFromEvent(e) {
-                return e.target.value;
-              },
               children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("input", {
-                className: "custom-input",
+                className: "reg-input",
                 placeholder: "Enter email"
               })
             })
-          })]
-        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxs)(antd__WEBPACK_IMPORTED_MODULE_7__["default"], {
-          gutter: 16,
-          justify: "center",
-          children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)(antd__WEBPACK_IMPORTED_MODULE_8__["default"], {
-            span: 8,
+          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("div", {
+            className: "reg-form-item",
             children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)(antd__WEBPACK_IMPORTED_MODULE_3__["default"].Item, {
               name: "username",
               rules: [{
                 required: true,
                 message: "Username is required"
               }],
-              getValueProps: function getValueProps(value) {
-                return {
-                  value: value
-                };
-              },
-              getValueFromEvent: function getValueFromEvent(e) {
-                return e.target.value;
-              },
               children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("input", {
-                className: "custom-input",
+                className: "reg-input",
                 placeholder: "Enter username"
               })
             })
-          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)(antd__WEBPACK_IMPORTED_MODULE_8__["default"], {
-            span: 8,
+          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("div", {
+            className: "reg-form-item",
             children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)(antd__WEBPACK_IMPORTED_MODULE_3__["default"].Item, {
               name: "password",
               rules: [{
@@ -85897,22 +85786,14 @@ var Registration = function Registration() {
                 min: 8,
                 message: "Password must be at least 8 characters long"
               }],
-              getValueProps: function getValueProps(value) {
-                return {
-                  value: value
-                };
-              },
-              getValueFromEvent: function getValueFromEvent(e) {
-                return e.target.value;
-              },
               children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("input", {
-                className: "custom-input",
+                className: "reg-input",
                 type: "password",
                 placeholder: "Enter password"
               })
             })
-          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)(antd__WEBPACK_IMPORTED_MODULE_8__["default"], {
-            span: 8,
+          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("div", {
+            className: "reg-form-item",
             children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)(antd__WEBPACK_IMPORTED_MODULE_3__["default"].Item, {
               name: "password_confirmation",
               dependencies: ["password"],
@@ -85930,26 +85811,18 @@ var Registration = function Registration() {
                   }
                 };
               }],
-              getValueProps: function getValueProps(value) {
-                return {
-                  value: value
-                };
-              },
-              getValueFromEvent: function getValueFromEvent(e) {
-                return e.target.value;
-              },
               children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("input", {
-                className: "custom-input",
+                className: "reg-input",
                 type: "password",
                 placeholder: "Confirm password"
               })
             })
           })]
-        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)(antd__WEBPACK_IMPORTED_MODULE_3__["default"].Item, {
-          className: "form-submit-container",
+        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("div", {
+          className: "reg-submit-container",
           children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("button", {
             type: "submit",
-            className: "signup-button",
+            className: "reg-signup-btn",
             children: "Sign Up"
           })
         })]

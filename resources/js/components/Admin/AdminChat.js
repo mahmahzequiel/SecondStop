@@ -2,14 +2,17 @@ import React, { useState, useEffect } from "react";
 import AdminPage from "../AdminReusable/AdminPage";
 import axios from "axios";
 import { List, Input, Button, Card, Avatar, Badge } from "antd";
-import { UserOutlined } from "@ant-design/icons";
+import { UserOutlined, SearchOutlined } from "@ant-design/icons";
 import Echo from "laravel-echo";
 import Pusher from "pusher-js";
 
-const { TextArea } = Input;
+
+const { TextArea, Search } = Input;
 
 export default function AdminChat() {
   const [conversations, setConversations] = useState([]);
+  const [filteredConversations, setFilteredConversations] = useState([]);
+  const [searchQuery, setSearchQuery] = useState("");
   const [selectedCustomer, setSelectedCustomer] = useState(null);
   const [selectedCustomerName, setSelectedCustomerName] = useState("");
   const [selectedCustomerImage, setSelectedCustomerImage] = useState(null);
@@ -46,6 +49,7 @@ export default function AdminChat() {
         console.log("Customer conversations:", res.data);
         if (res.data.conversations) {
           setConversations(res.data.conversations);
+          setFilteredConversations(res.data.conversations);
           
           // Initialize unread counts
           const counts = {};
@@ -64,6 +68,28 @@ export default function AdminChat() {
         console.error("Error fetching conversations:", err.response ? err.response.data : err)
       );
   }, [userToken]);
+
+  // Filter conversations when search query changes
+  useEffect(() => {
+    if (searchQuery.trim() === "") {
+      setFilteredConversations(conversations);
+      return;
+    }
+
+    const filtered = conversations.filter(conv => {
+      const profile = userProfiles[conv.user_id];
+      const firstName = conv.first_name || (profile && profile.first_name) || "";
+      const lastName = conv.last_name || (profile && profile.last_name) || "";
+      const fullName = `${firstName} ${lastName}`.trim().toLowerCase();
+      const userName = (conv.user_name || "").toLowerCase();
+      
+      return fullName.includes(searchQuery.toLowerCase()) || 
+             userName.includes(searchQuery.toLowerCase()) ||
+             `customer ${conv.user_id}`.includes(searchQuery.toLowerCase());
+    });
+    
+    setFilteredConversations(filtered);
+  }, [searchQuery, conversations, userProfiles]);
 
   // Helper function to fetch user profile data
   const fetchUserProfile = (userId) => {
@@ -188,6 +214,24 @@ export default function AdminChat() {
               .then((res) => {
                 if (res.data.conversations) {
                   setConversations(res.data.conversations);
+                  
+                  // Apply current search filter to updated conversations
+                  if (searchQuery.trim() !== "") {
+                    const updatedFiltered = res.data.conversations.filter(conv => {
+                      const profile = userProfiles[conv.user_id];
+                      const firstName = conv.first_name || (profile && profile.first_name) || "";
+                      const lastName = conv.last_name || (profile && profile.last_name) || "";
+                      const fullName = `${firstName} ${lastName}`.trim().toLowerCase();
+                      const userName = (conv.user_name || "").toLowerCase();
+                      
+                      return fullName.includes(searchQuery.toLowerCase()) || 
+                             userName.includes(searchQuery.toLowerCase()) ||
+                             `customer ${conv.user_id}`.includes(searchQuery.toLowerCase());
+                    });
+                    setFilteredConversations(updatedFiltered);
+                  } else {
+                    setFilteredConversations(res.data.conversations);
+                  }
                 }
               });
           }
@@ -197,7 +241,7 @@ export default function AdminChat() {
     return () => {
       echo.disconnect();
     };
-  }, [user, userToken, selectedCustomer, userProfiles]);
+  }, [user, userToken, selectedCustomer, userProfiles, searchQuery]);
 
   const sendMessage = () => {
     if (newMessage.trim() === "" || !selectedCustomer) return;
@@ -244,17 +288,32 @@ export default function AdminChat() {
     return `${window.location.origin}/storage/${imagePath}`;
   };
 
+  const handleSearch = (value) => {
+    setSearchQuery(value);
+  };
+
   return (
     <AdminPage>
-      <div style={{ display: "flex", height: "calc(100vh - 64px)" }}>
+      <div className="adm-chat__container">
         {/* Sidebar: List of customer conversations */}
-        <div style={{ width: "300px", borderRight: "1px solid #ccc", overflowY: "auto", padding: "10px" }}>
-        <h3 className="admin-chat-header" style={{ margin: 0, color: '#000' }}>Conversations</h3>
-          {conversations.length === 0 ? (
-            <p>No customer conversations found.</p>
+        <div className="adm-chat__sidebar">
+          <h3 className="adm-chat__header">Conversations</h3>
+          
+          {/* Search Bar */}
+          <Search
+            placeholder="Search customers..."
+            allowClear
+            onSearch={handleSearch}
+            onChange={(e) => setSearchQuery(e.target.value)}
+            className="adm-chat__search"
+            prefix={<SearchOutlined />}
+          />
+          
+          {filteredConversations.length === 0 ? (
+            <p className="adm-chat__empty-state">No matching conversations found.</p>
           ) : (
             <List
-              dataSource={conversations}
+              dataSource={filteredConversations}
               renderItem={(conv) => {
                 // Check both direct conversation profile_image and userProfiles
                 const profile = userProfiles[conv.user_id];
@@ -262,32 +321,28 @@ export default function AdminChat() {
                   ? getProfileImageUrl(conv.profile_image) 
                   : (profile ? getProfileImageUrl(profile.profile_image) : null);
                 
+                const isSelected = selectedCustomer === conv.user_id.toString();
+                
                 return (
                   <List.Item
-                    style={{
-                      cursor: "pointer",
-                      padding: "8px",
-                      marginBottom: "4px",
-                      backgroundColor: selectedCustomer === conv.user_id.toString() ? "#e6f7ff" : "transparent",
-                      borderRadius: "4px"
-                    }}
+                    className={`adm-chat__list-item ${isSelected ? 'adm-chat__list-item--selected' : ''}`}
                     onClick={() => setSelectedCustomer(conv.user_id.toString())}
                   >
-                    <div style={{ display: "flex", alignItems: "center", width: "100%" }}>
+                    <div className="adm-chat__customer-row">
                       <Avatar 
                         src={profileImage} 
                         icon={!profileImage && <UserOutlined />} 
-                        style={{ marginRight: "10px" }} 
+                        className="adm-chat__avatar" 
                       />
-                      <div style={{ flex: 1 }}>
-                        <div>
-                          {conv.first_name && conv.last_name 
-                            ? `${conv.first_name} ${conv.last_name}`
+                      <div className="adm-chat__customer-info">
+                        <div className="adm-chat__customer-name">
+                          {conv.user_name
+                            ? `${conv.user_name}`
                             : profile 
                               ? `${profile.first_name || ''} ${profile.last_name || ''}`.trim() 
                               : conv.user_name || `Customer ${conv.user_id}`}
                         </div>
-                        <div style={{ fontSize: "12px", color: "#888" }}>
+                        <div className="adm-chat__last-message">
                           {conv.last_message ? (conv.last_message.length > 20 ? 
                             `${conv.last_message.substring(0, 20)}...` : 
                             conv.last_message) : 
@@ -295,7 +350,7 @@ export default function AdminChat() {
                         </div>
                       </div>
                       {unreadCounts[conv.user_id] > 0 && (
-                        <Badge count={unreadCounts[conv.user_id]} style={{ marginLeft: "5px" }} />
+                        <Badge count={unreadCounts[conv.user_id]} className="adm-chat__badge" />
                       )}
                     </div>
                   </List.Item>
@@ -306,11 +361,10 @@ export default function AdminChat() {
         </div>
 
         {/* Chat Window */}
-        <div style={{ flex: 1, display: "flex", flexDirection: "column", padding: "10px" }}>
+        <div className="adm-chat__main">
           {selectedCustomer ? (
             <>
-              <div style={{ display: "flex", alignItems: "center", marginBottom: "10px" }}>
-                {/* Find selected conversation to get profile image */}
+              <div className="adm-chat__selected-header">
                 {(() => {
                   const selectedConv = conversations.find(c => c.user_id.toString() === selectedCustomer);
                   const profileImage = selectedConv?.profile_image 
@@ -324,75 +378,65 @@ export default function AdminChat() {
                       src={profileImage}
                       icon={!profileImage && <UserOutlined />} 
                       size="large" 
-                      style={{ marginRight: "10px" }} 
+                      className="adm-chat__selected-avatar" 
                     />
                   );
                 })()}
-                <h3 className="admin-chat-header" style={{ margin: 0, color: '#000' }}>Chat with {selectedCustomerName}</h3>
+                <h3 className="adm-chat__selected-name">Chat with {selectedCustomerName}</h3>
               </div>
-              <Card style={{ flex: 1, overflowY: "auto", marginBottom: "10px" }}>
+              <Card className="adm-chat__messages-container">
                 {messages.length === 0 ? (
-                  <div style={{ textAlign: "center", color: "#999", marginTop: "20px" }}>
+                  <div className="adm-chat__no-messages">
                     No messages yet. Start the conversation!
                   </div>
                 ) : (
-                  messages.map((msg) => (
-                    <div 
-                      key={msg.id} 
-                      style={{ 
-                        marginBottom: "12px", 
-                        textAlign: msg.sender_id?.toString() === selectedCustomer ? "left" : "right",
-                        display: "flex",
-                        flexDirection: "column",
-                        alignItems: msg.sender_id?.toString() === selectedCustomer ? "flex-start" : "flex-end"
-                      }}
-                    >
+                  messages.map((msg) => {
+                    const isCustomerMessage = msg.sender_id?.toString() === selectedCustomer;
+                    return (
                       <div 
-                        style={{ 
-                          backgroundColor: msg.sender_id?.toString() === selectedCustomer ? "#f1f1f1" : "#1890ff", 
-                          color: msg.sender_id?.toString() === selectedCustomer ? "#000" : "#fff", 
-                          padding: "8px 12px", 
-                          borderRadius: "12px",
-                          maxWidth: "70%",
-                          wordBreak: "break-word"
-                        }}
+                        key={msg.id} 
+                        className={`adm-chat__message-wrapper ${isCustomerMessage ? 'adm-chat__message-wrapper--customer' : 'adm-chat__message-wrapper--admin'}`}
                       >
-                        {msg.message}
+                        <div 
+                          className={`adm-chat__message ${isCustomerMessage ? 'adm-chat__message--customer' : 'adm-chat__message--admin'}`}
+                        >
+                          {msg.message}
+                        </div>
+                        <small className="adm-chat__message-time">
+                          {new Date(msg.created_at || msg.date_time).toLocaleString([], { 
+                            month: "short", 
+                            day: "numeric", 
+                            hour: "2-digit", 
+                            minute: "2-digit" 
+                          })}
+                        </small>
                       </div>
-                      <small style={{ marginTop: "4px" }}>
-                        {new Date(msg.created_at || msg.date_time).toLocaleString([], { 
-                          month: "short", 
-                          day: "numeric", 
-                          hour: "2-digit", 
-                          minute: "2-digit" 
-                        })}
-                      </small>
-                    </div>
-                  ))
+                    );
+                  })
                 )}
               </Card>
-              <div style={{ display: "flex" }}>
+              <div className="adm-chat__input-container">
                 <TextArea
                   rows={2}
                   value={newMessage}
                   onChange={(e) => setNewMessage(e.target.value)}
                   onKeyPress={handleKeyPress}
                   placeholder="Type your message..."
-                  style={{ width: "80%", padding: "8px" }}
+                  className="adm-chat__input"
                 />
                 <Button 
                   type="primary" 
                   onClick={sendMessage} 
-                  style={{ marginLeft: "10px", padding: "8px 16px", height: "auto" }}
+                  className="adm-chat__send-btn"
                 >
                   Send
                 </Button>
               </div>
             </>
           ) : (
-            <div style={{ display: "flex", justifyContent: "center", alignItems: "center", height: "100%" }}>
-              <div style={{ textAlign: "center", color: "#999" }}>
-                <UserOutlined style={{ fontSize: "64px", marginBottom: "16px" }} />
+            <div className="adm-chat__empty-chat">
+              <div className="adm-chat__empty-chat-content">
+                <UserOutlined className="adm-chat__empty-icon" />
                 <p>Select a conversation to start chatting</p>
               </div>
             </div>

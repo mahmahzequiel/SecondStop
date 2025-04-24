@@ -19,7 +19,7 @@ use App\Http\Controllers\RoleController;
 use App\Http\Controllers\SacksController; // Add this line
 use App\Http\Controllers\StoreReviewsController;
 use App\Http\Controllers\AdminDashboardController; // Add this line
-use App\Http\Controllers\ProfileController;
+
 
 
 
@@ -71,8 +71,9 @@ Route::group(["middleware" => ["auth:api"]], function() {
     // User Profile Routes
     Route::get("profile", [ApiController::class, "profile"]);
     Route::post("logout", [ApiController::class, "logout"]);
-    Route::post("profile/update", [ApiController::class, "update"]);
-    // Route::put("profile/update", [ApiController::class, "updateProfile"]);
+    Route::post("profile/update", [ApiController::class, "updateProfile"]);
+    
+
 
     // Cart Routes
     Route::post('carts', [CartController::class, 'addToCart']);

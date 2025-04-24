@@ -1,5 +1,5 @@
 import React from "react";
-import { Form, Row, Col, message } from "antd";
+import { Form, message } from "antd";
 import { ArrowLeftOutlined } from "@ant-design/icons";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
@@ -8,6 +8,8 @@ import axios from "axios";
 const Registration = () => {
   const [form] = Form.useForm();
   const navigate = useNavigate();
+
+  
 
   // Handle form submission
   const handleSubmit = async (values) => {
@@ -30,7 +32,9 @@ const Registration = () => {
         if (data.errors) {
           Object.values(data.errors).forEach((errorMessages) => {
             errorMessages.forEach((errorMessage) => {
+              console.error(errorMessage);
               message.error(errorMessage);
+              // You can implement a custom toast notification here
             });
           });
         }
@@ -62,79 +66,74 @@ const Registration = () => {
   };
 
   return (
-    <div className="registration-page">
-      {/* Back button (plain HTML <button>) */}
+    <div className="reg-page">
+      {/* Back button */}
       <button
         type="button"
-        className="back-button"
+        className="reg-back-btn"
         onClick={() => navigate("/login")}
       >
         <ArrowLeftOutlined /> Back
       </button>
 
-      <div className="registration-container">
+      <div className="reg-container">
         <h2>Sign Up</h2>
+        
         <Form
           form={form}
           layout="vertical"
           onFinish={handleSubmit}
           autoComplete="off"
+          className="reg-form"
         >
-          {/* First / Middle / Last name */}
-          <Row gutter={16} justify="center">
-            <Col span={8}>
+          <div className="reg-form-grid">
+            {/* First name */}
+            <div className="reg-form-item">
               <Form.Item
                 name="first_name"
                 rules={[{ required: true, message: "First name is required" }]}
-                getValueProps={(value) => ({ value })}
-                getValueFromEvent={(e) => e.target.value}
               >
-                <input className="custom-input" placeholder="Enter first name" />
+                <input className="reg-input" placeholder="Enter first name" />
               </Form.Item>
-            </Col>
-            <Col span={8}>
+            </div>
+            
+            {/* Middle name */}
+            <div className="reg-form-item">
               <Form.Item
                 name="middle_name"
-                rules={[{ required: true, message: "Middle name is required" }]}
-                getValueProps={(value) => ({ value })}
-                getValueFromEvent={(e) => e.target.value}
+                rules={[{ required: false }]}
               >
-                <input
-                  className="custom-input"
-                  placeholder="Enter middle name"
-                />
+                <input className="reg-input" placeholder="Enter middle name" />
               </Form.Item>
-            </Col>
-            <Col span={8}>
+            </div>
+            
+            {/* Last name */}
+            <div className="reg-form-item">
               <Form.Item
                 name="last_name"
                 rules={[{ required: true, message: "Last name is required" }]}
-                getValueProps={(value) => ({ value })}
-                getValueFromEvent={(e) => e.target.value}
               >
-                <input className="custom-input" placeholder="Enter last name" />
+                <input className="reg-input" placeholder="Enter last name" />
               </Form.Item>
-            </Col>
-          </Row>
-
-          {/* Sex / Phone / Email */}
-          <Row gutter={16} justify="center">
-            <Col span={8}>
+            </div>
+            
+            {/* Gender/Sex */}
+            <div className="reg-form-item">
               <Form.Item
                 name="sex"
-                rules={[{ required: true, message: "Sex is required" }]}
-                getValueProps={(value) => ({ value })}
-                getValueFromEvent={(e) => e.target.value}
+                rules={[{ required: true, message: "Gender is required" }]}
               >
-                <select className="custom-select">
-                  <option value="">Select</option>
+                <select className="reg-select">
+                  <option value="">Gender</option>
                   <option value="Male">Male</option>
                   <option value="Female">Female</option>
                   <option value="Other">Other</option>
                 </select>
               </Form.Item>
-            </Col>
-            <Col span={8}>
+            </div>
+            
+            {/* Phone number */}
+            <div className="reg-form-item">
               <Form.Item
                 name="phone_number"
                 rules={[
@@ -144,63 +143,53 @@ const Registration = () => {
                     message: "Phone number must be in +639XXXXXXXXX format",
                   },
                 ]}
-                getValueProps={(value) => ({ value })}
-                getValueFromEvent={(e) => e.target.value}
               >
-                <input
-                  className="custom-input"
-                  placeholder="+639XXXXXXXXX"
-                />
+                <input className="reg-input" placeholder="+639XXXXXXXXX" />
               </Form.Item>
-            </Col>
-            <Col span={8}>
+            </div>
+            
+            {/* Email */}
+            <div className="reg-form-item">
               <Form.Item
                 name="email"
                 rules={[
                   { required: true, message: "Email is required" },
                   { type: "email", message: "Invalid email address" },
                 ]}
-                getValueProps={(value) => ({ value })}
-                getValueFromEvent={(e) => e.target.value}
               >
-                <input className="custom-input" placeholder="Enter email" />
+                <input className="reg-input" placeholder="Enter email" />
               </Form.Item>
-            </Col>
-          </Row>
-
-          {/* Username / Password / Confirm Password */}
-          <Row gutter={16} justify="center">
-            <Col span={8}>
+            </div>
+            
+            {/* Username */}
+            <div className="reg-form-item">
               <Form.Item
                 name="username"
                 rules={[{ required: true, message: "Username is required" }]}
-                getValueProps={(value) => ({ value })}
-                getValueFromEvent={(e) => e.target.value}
               >
-                <input className="custom-input" placeholder="Enter username" />
+                <input className="reg-input" placeholder="Enter username" />
               </Form.Item>
-            </Col>
-            <Col span={8}>
+            </div>
+            
+            {/* Password */}
+            <div className="reg-form-item">
               <Form.Item
                 name="password"
                 rules={[
                   { required: true, message: "Password is required" },
-                  {
-                    min: 8,
-                    message: "Password must be at least 8 characters long",
-                  },
+                  { min: 8, message: "Password must be at least 8 characters long" },
                 ]}
-                getValueProps={(value) => ({ value })}
-                getValueFromEvent={(e) => e.target.value}
               >
                 <input
-                  className="custom-input"
+                  className="reg-input"
                   type="password"
                   placeholder="Enter password"
                 />
               </Form.Item>
-            </Col>
-            <Col span={8}>
+            </div>
+            
+            {/* Confirm password */}
+            <div className="reg-form-item">
               <Form.Item
                 name="password_confirmation"
                 dependencies={["password"]}
@@ -211,30 +200,26 @@ const Registration = () => {
                       if (!value || getFieldValue("password") === value) {
                         return Promise.resolve();
                       }
-                      return Promise.reject(
-                        new Error("Passwords do not match")
-                      );
+                      return Promise.reject(new Error("Passwords do not match"));
                     },
                   }),
                 ]}
-                getValueProps={(value) => ({ value })}
-                getValueFromEvent={(e) => e.target.value}
               >
                 <input
-                  className="custom-input"
+                  className="reg-input"
                   type="password"
                   placeholder="Confirm password"
                 />
               </Form.Item>
-            </Col>
-          </Row>
+            </div>
+          </div>
 
-          {/* Submit button (plain HTML <button>) */}
-          <Form.Item className="form-submit-container">
-            <button type="submit" className="signup-button">
+          {/* Submit button */}
+          <div className="reg-submit-container">
+            <button type="submit" className="reg-signup-btn">
               Sign Up
             </button>
-          </Form.Item>
+          </div>
         </Form>
       </div>
     </div>

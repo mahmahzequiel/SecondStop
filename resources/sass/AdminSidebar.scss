@@ -1,9 +1,9 @@
 .admin-sidebar {
   width: 200px;
-  background-color: #ff3b30;
-  color: black;
+  background-color: #2a2a2e;
+  color: white;
   border-right: 1px solid #f0f0f0;
-  padding: 20px 0px;
+  padding: 20px 0;
 
   .nav-item {
     display: flex;
@@ -11,26 +11,49 @@
     padding: 12px 24px;
     font-size: 20px;
     font-family: 'Inria Serif', serif;
-    color: black;
+    color: white;
     cursor: pointer;
-    transition: background 0.3s ease;
+    transition: all 0.3s ease;
     margin-bottom: 10px;
+    width: 100%;
+    box-sizing: border-box;
+    border-radius: 0;
 
     .nav-icon {
       margin-right: 10px;
+      color: inherit; // Ensure icons match text color
     }
 
-    // This rule applies to any link inside .nav-item
     a {
       display: flex;
       align-items: center;
       color: inherit;
       text-decoration: none;
       width: 100%;
+      height: 100%;
+      background-color: transparent !important; // Force no background
     }
 
+    // Hover state - red background
     &:hover {
-      background: #972705;
+      background-color: #e94a35 !important;
+      color: white;
+    }
+
+    // Active state - red background
+    &.active {
+      background-color: #e94a35 !important;
+      color: white;
+      font-weight: bold;
+      
+      &:hover {
+        background-color: #d03a28 !important; // Slightly darker red on hover
+      }
+    }
+
+    // Remove any potential gray backgrounds from nested elements
+    * {
+      background-color: transparent !important;
     }
   }
 }

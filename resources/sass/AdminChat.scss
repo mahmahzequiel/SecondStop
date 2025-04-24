@@ -1,0 +1,208 @@
+// AdminChat.scss - Styles for Admin Chat component
+// Using 'adm-chat' prefix for unique class names to avoid conflicts
+
+.adm-chat {
+    &__container {
+      display: flex;
+      height: calc(100vh - 100px);
+    }
+  
+    &__sidebar {
+      width: 300px;
+      border-right: 1px solid #ccc;
+      overflow-y: auto;
+      padding: 10px;
+    }
+  
+    &__header {
+      margin: 0 0 10px 0;
+      color: #000;
+    }
+  
+    &__search {
+      margin-bottom: 10px;
+    }
+  
+    &__empty-state {
+      color: #999;
+    }
+  
+    &__list-item {
+      cursor: pointer;
+      padding: 8px;
+      margin-bottom: 4px;
+      border-radius: 4px;
+      transition: background-color 0.2s ease;
+  
+      &:hover {
+        background-color: #f5f5f5;
+      }
+  
+      &--selected {
+        background-color: #e6f7ff !important;
+      }
+    }
+  
+    &__customer-row {
+      display: flex;
+      align-items: center;
+      width: 100%;
+    }
+  
+    &__avatar {
+      margin-right: 10px;
+    }
+  
+    &__customer-info {
+      flex: 1;
+      overflow: hidden;
+    }
+  
+    &__customer-name {
+      font-weight: 500;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+  
+    &__last-message {
+      font-size: 12px;
+      color: #888;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+  
+    &__badge {
+      margin-left: 5px;
+    }
+  
+    &__main {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      padding: 10px;
+    }
+  
+    &__selected-header {
+      display: flex;
+      align-items: center;
+      margin-bottom: 10px;
+    }
+  
+    &__selected-avatar {
+      margin-right: 10px;
+    }
+  
+    &__selected-name {
+      margin: 0;
+      color: #000;
+    }
+  
+    &__messages-container {
+      flex: 1;
+      overflow-y: auto;
+      margin-bottom: 10px;
+    }
+  
+    &__no-messages {
+      text-align: center;
+      color: #999;
+      margin-top: 20px;
+    }
+  
+    &__message-wrapper {
+      margin-bottom: 12px;
+      display: flex;
+      flex-direction: column;
+  
+      &--customer {
+        align-items: flex-start;
+        text-align: left;
+      }
+  
+      &--admin {
+        align-items: flex-end;
+        text-align: right;
+      }
+    }
+  
+    &__message {
+      padding: 8px 12px;
+      border-radius: 12px;
+      max-width: 70%;
+      word-break: break-word;
+  
+      &--customer {
+        background-color: #f1f1f1;
+        color: #000;
+      }
+  
+      &--admin {
+        background-color: #1890ff;
+        color: #fff;
+      }
+    }
+  
+    &__message-time {
+      margin-top: 4px;
+      color: #888;
+      font-size: 11px;
+    }
+  
+  
+    &__empty-chat {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100%;
+    }
+  
+    &__empty-chat-content {
+      text-align: center;
+      color: #999;
+    }
+  
+    &__empty-icon {
+      font-size: 64px;
+      margin-bottom: 16px;
+    }
+
+    &__messages-container {
+        flex: 1;
+        overflow-y: auto;
+        margin-bottom: 20px;  /* Increased from 10px to create more space */
+        height: calc(100% - 120px);  /* Adjust height to leave space for input area */
+      }
+    
+      &__input-container {
+        display: flex;
+        position: relative;
+        bottom: 20px;  /* Move up by 20px */
+        padding-bottom: 10px;
+        margin-top: 0;  /* Remove auto margin to control positioning */
+      }
+    
+      &__input {
+        width: 400%;
+        padding: 8px;
+        resize: none;  /* Prevent user resizing which could break layout */
+      }
+    
+      &__send-btn {
+        margin-left: 10px;
+        padding: 8px 16px;
+        height: 60px;  /* Match the height of the text area */
+        align-self: flex-start;  /* Align to top of container */
+      }
+    
+      /* Optional: Add a fixed height to the main chat area to ensure consistent spacing */
+      &__main {
+        flex: 1;
+        display: flex;
+        flex-direction: column;
+        padding: 10px;
+        height: 100%;
+        position: relative;  /* To allow absolute positioning of children if needed */
+      }
+  }

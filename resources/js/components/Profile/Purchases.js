@@ -88,7 +88,7 @@ const Purchases = () => {
       Modal.confirm({
         title: 'Confirm Order Received',
         content: 'Are you sure you want to mark this order as received?',
-        okText: 'Yes, Confirm Receipt',
+        okText: 'Yes',
         cancelText: 'No',
         onOk: async () => {
           try {
@@ -250,6 +250,7 @@ const renderActionButtons = (order) => {
             type="primary" 
             onClick={() => openModal("review", order)}
             className="user-purchases-action-button"
+           
           >
             Review
           </Button>

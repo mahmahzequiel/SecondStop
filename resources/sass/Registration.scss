@@ -1,160 +1,255 @@
-/* registration.scss */
+/* registration.css */
 
-/* 1) Maroon background for the full page */
-.registration-page {
-  background-color: #760038;
+/* Page background */
+.reg-page {
+  background-color: #e94a35;
   min-height: 100vh;
-  padding: 80px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
   position: relative;
-  font-family: 'Inria Serif', serif;
-  color: #707070;
+  padding: 20px;
+  font-family: sans-serif;
 }
 
-/* 2) White rectangle in the center */
-.registration-container {
-  width: 1236px;
-  height: 793px;
-  margin: 0 auto;
-  padding: 30px;
-  background-color: #fff;
+/* White container */
+.reg-container {
+  width: 90%;
+  max-width: 800px;
+  background-color: #ffffff;
   border-radius: 10px;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-
-  h2 {
-    text-align: center;
-    margin-bottom: 10%;
-    font-family: 'Inria Serif', serif;
-    font-weight: 700;
-    font-size: 32px;
-    color: #000000;
-  }
-
-  .ant-form-item {
-    margin-bottom: 50px;
-
-    .ant-form-item-label > label {
-      color: #707070;
-      font-family: 'Inria Serif', serif;
-    }
-    .ant-form-item-explain {
-      position: relative;
-      z-index: 2;
-    }
-  }
-
-  .form-submit-container {
-    display: flex;
-    justify-content: flex-end;
-    margin-top: 10px;
-  }
+  padding: 30px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+  margin: 40px 0;
 }
 
-/* 3) Heading: Inria Serif Bold 32px -> done above */
+.reg-container h2 {
+  text-align: center;
+  font-size: 28px;
+  font-weight: 600;
+  margin-bottom: 30px;
+  color: #000000;
+}
 
-/* 4) Text color #707070 -> done above */
+/* Form layout - responsive grid system */
+.reg-form {
+  width: 100%;
+}
 
-/* 5) Box shadow ONLY on the inputs (including password & select) */
+.reg-form-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 16px;
+}
 
-/* Back button style */
-.back-button {
+.reg-form-item {
+  width: 100%;
+}
+
+/* Input styling */
+.reg-input,
+.reg-select {
+  width: 100%;
+  height: 46px;
+  padding: 0 15px;
+  border: 1px solid #d9d9d9;
+  border-radius: 4px;
+  font-size: 14px;
+  color: #333;
+  transition: all 0.3s;
+}
+
+.reg-input:focus,
+.reg-select:focus {
+  outline: none;
+  border-color: #e94a35;
+  box-shadow: 0 0 0 2px rgba(233, 74, 53, 0.2);
+}
+
+.reg-input::placeholder,
+.reg-select::placeholder {
+  color: #aaa;
+}
+
+.reg-select {
+  appearance: none;
+  background-image: url("data:image/svg+xml;charset=UTF-8,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3e%3cpolyline points='6 9 12 15 18 9'%3e%3c/polyline%3e%3c/svg%3e");
+  background-repeat: no-repeat;
+  background-position: right 10px center;
+  background-size: 1em;
+}
+
+/* Back button */
+.reg-back-btn {
   position: absolute;
   top: 20px;
   left: 20px;
+  background: none;
   border: none;
-  background-color: #110909;
-  cursor: pointer;
-  font-size: 16px;
-  font-weight: bold;
-  /* Force white text */
-  color: #ffffff !important;
-  font-family: 'Inria Serif', serif;
-  padding: 8px 16px;
-  border-radius: 6px;
-  transition: background-color 0.3s ease;
-
-  /* Also force the Ant Design icon to be white */
-  .anticon {
-    color: #ffffff !important;
-  }
-
-  &:hover {
-    background-color: #c91111;
-    /* Keep text white on hover too */
-    color: #ffffff !important;
-
-    .anticon {
-      color: #ffffff !important;
-    }
-  }
-}
-
-
-
-/* 
-  Custom input fields
-  (replaces .ant-input)
-*/
-.custom-input {
-  width: 100%;
-  height: 60px;
-  font-size: 24px;
-  line-height: 48px;
-  border: 1px solid #707070;
-  border-radius: 10px;
-  color: #707070;
-  font-family: 'Inria Serif', serif;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-  padding: 0 16px;
-
-  &:focus {
-    outline: none;
-    border-color: #707070;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-  }
-}
-
-/* 
-  Custom select
-  (replaces .ant-select, .ant-select-selector, etc.)
-*/
-.custom-select {
-  width: 100%;
-  height: 60px;
-  font-size: 24px;
-  line-height: 48px;
-  border: 1px solid #707070;
-  border-radius: 10px;
-  color: #707070;
-  font-family: 'Inria Serif', serif;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-  padding: 0 16px;
-  appearance: none; /* remove default arrow if you want a custom arrow */
-  background: url("data:image/svg+xml,%3Csvg ... %3C/svg%3E") no-repeat right 16px center / 12px 12px; /* optional custom arrow icon */
-  
-  &:focus {
-    outline: none;
-    border-color: #707070;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-  }
-}
-
-/* Sign Up button (no shadow) */
-.signup-button {
-  background-color: #D84727;
-  border: 1px solid #D84727;
-  font-size: 24px;
-  padding: 5px 15px;
-  font-family: 'Inria Serif', serif;
-  border-radius: 6px;
   color: #fff;
   cursor: pointer;
+  font-size: 16px;
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  padding: 8px 12px;
+  border-radius: 4px;
+  transition: all 0.3s;
+}
 
-  &:hover,
-  &:focus,
-  &:active {
-    background-color: #d36e2f;
-    border-color: #d36e2f;
-    outline: none;
-    color: #ffffff;
+.reg-back-btn:hover {
+  background-color: rgba(255, 255, 255, 0.1);
+}
+
+/* Submit button */
+.reg-submit-container {
+  display: flex;
+  justify-content: center;
+  margin-top: 30px;
+}
+
+.reg-signup-btn {
+  background-color: #e94a35;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  padding: 12px 32px;
+  font-size: 16px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.3s;
+  width: 100%;
+  max-width: 200px;
+}
+
+.reg-signup-btn:hover {
+  background-color: #d03a28;
+  transform: translateY(-2px);
+}
+
+.reg-signup-btn:active {
+  transform: translateY(0);
+}
+
+/* Form validation error messages */
+.ant-form-item-explain {
+  font-size: 12px;
+  color: #e94a35;
+  margin-top: 4px;
+}
+
+/* Custom spacing for form rows */
+.reg-form-item {
+  margin-bottom: 16px;
+}
+
+/* ================= RESPONSIVE BREAKPOINTS ================= */
+/* Large screens - Three columns (default) */
+/* Medium devices (tablets and smaller desktops) */
+@media (max-width: 991.98px) {
+  .reg-form-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  
+  .reg-container {
+    padding: 25px;
+  }
+  
+  .reg-container h2 {
+    font-size: 24px;
+    margin-bottom: 25px;
+  }
+}
+
+/* Small devices (landscape phones and small tablets) */
+@media (max-width: 767.98px) {
+  .reg-form-grid {
+    grid-template-columns: 1fr;
+  }
+  
+  .reg-page {
+    padding: 15px;
+  }
+  
+  .reg-container {
+    padding: 20px;
+    margin: 20px 0;
+    width: 95%;
+  }
+  
+  .reg-container h2 {
+    font-size: 22px;
+    margin-bottom: 20px;
+  }
+  
+  .reg-back-btn {
+    top: 15px;
+    left: 15px;
+    font-size: 14px;
+  }
+  
+  .reg-signup-btn {
+    max-width: 100%;
+  }
+}
+
+/* Extra small devices (portrait phones) */
+@media (max-width: 575.98px) {
+  .reg-page {
+    padding: 10px;
+    justify-content: flex-start;
+    padding-top: 60px;
+  }
+  
+  .reg-container {
+    padding: 15px;
+    margin: 15px 0;
+  }
+  
+  .reg-container h2 {
+    font-size: 20px;
+    margin-bottom: 15px;
+  }
+  
+  .reg-input,
+  .reg-select {
+    height: 42px;
+    font-size: 13px;
+  }
+  
+  .reg-form-item {
+    margin-bottom: 12px;
+  }
+  
+  .reg-back-btn {
+    padding: 6px 10px;
+    font-size: 13px;
+  }
+  
+  .reg-signup-btn {
+    padding: 10px 20px;
+    font-size: 15px;
+  }
+}
+
+/* Very small devices (small phones) */
+@media (max-width: 375px) {
+  .reg-container {
+    padding: 12px;
+  }
+  
+  .reg-container h2 {
+    font-size: 18px;
+  }
+  
+  .reg-input,
+  .reg-select {
+    height: 40px;
+    padding: 0 12px;
+  }
+  
+  .reg-form-item {
+    margin-bottom: 8px;
   }
 }

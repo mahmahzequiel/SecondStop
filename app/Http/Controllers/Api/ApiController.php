@@ -109,85 +109,88 @@ class ApiController extends Controller
 
     // Update profile (must be logged in)
     public function updateProfile(Request $request)
-    {
-        $currentUser = Auth::user();
-        if (!$currentUser) {
+{
+    $currentUser = Auth::user();
+    if (!$currentUser) {
+        return response()->json([
+            'status'  => false,
+            'message' => 'Unauthorized access',
+        ], 401);
+    }
+    
+    // If an admin is updating another user's profile, expect a 'user_id' in the request.
+    if ($currentUser->role_id == 2 && $request->has('user_id')) {
+        $customer = User::find($request->user_id);
+        if (!$customer) {
             return response()->json([
                 'status'  => false,
-                'message' => 'Unauthorized access',
-            ], 401);
+                'message' => 'User not found',
+            ], 404);
         }
-        
-        // If an admin is updating another user's profile, expect a 'user_id' in the request.
-        if ($currentUser->role_id == 2 && $request->has('user_id')) {
-            $customer = User::find($request->user_id);
-            if (!$customer) {
-                return response()->json([
-                    'status'  => false,
-                    'message' => 'User not found',
-                ], 404);
-            }
-        } else {
-            // Otherwise, update the current user's own profile.
-            $customer = $currentUser;
-        }
-        
-        // Retrieve or create the profile for the target customer.
-        $profile = $customer->profile ?? new Profile(['user_id' => $customer->id]);
+    } else {
+        // Otherwise, update the current user's own profile.
+        $customer = $currentUser;
+    }
+    
+    // Retrieve or create the profile for the target customer.
+    $profile = $customer->profile ?? new Profile(['user_id' => $customer->id]);
 
-        // Validate using the target customer’s id for the email uniqueness rule.
-        $request->validate([
-            'first_name'    => 'required|string|max:255',
-            'middle_name'   => 'nullable|string|max:255',
-            'last_name'     => 'required|string|max:255',
-            'username'      => 'required|string|max:255|unique:profiles,username,' . $profile->id,
-            'email'         => 'required|email|max:255|unique:users,email,' . $customer->id,
-            'phone_number'  => 'required|string|max:15|unique:profiles,phone_number,' . $profile->id,
-            'sex'           => 'required|in:Male,Female,Other',
-            'profile_image' => 'nullable|file|image|max:2048',
-        ]);
+    // Validate using the target customer's id for the email uniqueness rule.
+    $request->validate([
+        'first_name'    => 'required|string|max:255',
+        'middle_name'   => 'nullable|string|max:255',
+        'role_id'       => 'sometimes|integer|in:1,2',
+        'last_name'     => 'required|string|max:255',
+        'username'      => 'required|string|max:255|unique:profiles,username,' . $profile->id,
+        'email'         => 'required|email|max:255|unique:users,email,' . $customer->id,
+        'phone_number'  => 'required|string|max:15|unique:profiles,phone_number,' . $profile->id,
+        'sex'           => 'required|in:Male,Female,Other',
+        'profile_image' => 'nullable|file|image|max:2048',
+    ]);
 
-        try {
-            // Update profile fields
-            $profile->first_name   = $request->first_name;
-            $profile->middle_name  = $request->middle_name;
-            $profile->last_name    = $request->last_name;
-            $profile->username     = $request->username;
-            $profile->email        = $request->email;
-            $profile->phone_number = $request->phone_number;
-            $profile->sex          = $request->sex;
+    try {
+        // Update profile fields
+        $profile->first_name   = $request->first_name;
+        $profile->middle_name  = $request->middle_name;
+        $profile->last_name    = $request->last_name;
+        $profile->username     = $request->username;
+        $profile->email        = $request->email;
+        $profile->phone_number = $request->phone_number;
+        $profile->sex          = $request->sex;
 
-            // Handle profile image upload if provided
-            if ($request->hasFile('profile_image')) {
-                // Delete old image if it exists
-                if ($profile->profile_image) {
-                    Storage::disk('public')->delete($profile->profile_image);
-                }
-                
-                $file = $request->file('profile_image');
-                $path = $file->store('profiles', 'public');
-                $profile->profile_image = $path;
+        // Handle profile image upload if provided
+        if ($request->hasFile('profile_image')) {
+            // Delete old image if it exists
+            if ($profile->profile_image) {
+                Storage::disk('public')->delete($profile->profile_image);
             }
             
-            $profile->save();
-
-            // Also update the customer's email in the users table for consistency.
-            $customer->email = $request->email;
-            $customer->save();
-
-            return response()->json([
-                'status'  => true,
-                'message' => 'Profile updated successfully',
-                'profile' => $profile,
-            ]);
-        } catch (\Exception $e) {
-            return response()->json([
-                'status'  => false,
-                'message' => 'Profile update failed',
-                'error'   => $e->getMessage(),
-            ], 500);
+            $file = $request->file('profile_image');
+            $path = $file->store('profiles', 'public');
+            $profile->profile_image = $path;
         }
+        
+        $profile->save();
+
+        // Update the user's email and role_id in the users table
+        $customer->email = $request->email;
+        $customer->role_id = $request->role_id; // Add this line to update the role_id
+        $customer->save();
+
+        return response()->json([
+            'status'  => true,
+            'message' => 'Profile updated successfully',
+            'profile' => $profile,
+            'user'    => $customer, // Include updated user info in response to confirm role change
+        ]);
+    } catch (\Exception $e) {
+        return response()->json([
+            'status'  => false,
+            'message' => 'Profile update failed',
+            'error'   => $e->getMessage(),
+        ], 500);
     }
+}
     
 
 
