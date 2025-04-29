@@ -71045,7 +71045,7 @@ function BrandTab() {
     fetchBrands();
   };
 
-  // Delete brand (soft delete / archive)
+  // Delete brand (soft delete / archive) - Modified with confirmation modal
   var archiveBrand = function archiveBrand(brandId) {
     antd__WEBPACK_IMPORTED_MODULE_7__["default"].confirm({
       title: "Are you sure you want to archive this brand?",
@@ -71066,7 +71066,7 @@ function BrandTab() {
     });
   };
 
-  // Restore archived brand
+  // Restore archived brand - Modified with confirmation modal
   var restoreBrand = function restoreBrand(brandId) {
     antd__WEBPACK_IMPORTED_MODULE_7__["default"].confirm({
       title: "Are you sure you want to restore this brand?",
@@ -71087,58 +71087,53 @@ function BrandTab() {
     });
   };
 
-  // Bulk archive selected brands
-  var handleBulkArchive = function handleBulkArchive() {
+  // Handle bulk actions based on current status filter - uses confirmation modal
+  var handleBulkStatusChange = function handleBulkStatusChange() {
     if (selectedRowKeys.length === 0) {
-      antd__WEBPACK_IMPORTED_MODULE_6__["default"].info("Please select at least one brand to archive");
+      antd__WEBPACK_IMPORTED_MODULE_7__["default"].info({
+        title: 'No brands selected',
+        content: "Please select at least one brand to ".concat(statusFilter === "archived" ? "restore" : "archive", ".")
+      });
       return;
     }
     antd__WEBPACK_IMPORTED_MODULE_7__["default"].confirm({
-      title: "Are you sure you want to archive ".concat(selectedRowKeys.length, " brands?"),
-      content: "This action can be reversed later.",
+      title: "Are you sure you want to ".concat(statusFilter === "archived" ? "restore" : "archive", " ").concat(selectedRowKeys.length, " brands?"),
+      content: statusFilter === "archived" ? "This will make them active again." : "This action can be reversed later.",
       onOk: function onOk() {
-        var archivePromises = selectedRowKeys.map(function (brandId) {
-          return axios__WEBPACK_IMPORTED_MODULE_1___default()["delete"]("".concat(BRANDS_API, "/").concat(brandId));
-        });
         setLoading(true);
-        Promise.all(archivePromises).then(function () {
-          antd__WEBPACK_IMPORTED_MODULE_6__["default"].success("".concat(selectedRowKeys.length, " brands archived successfully!"));
-          fetchBrands();
-          setSelectedRowKeys([]);
-        })["catch"](function (err) {
-          console.error("Error archiving brands:", err);
-          antd__WEBPACK_IMPORTED_MODULE_6__["default"].error("An error occurred while archiving the brands");
-        })["finally"](function () {
-          return setLoading(false);
-        });
-      }
-    });
-  };
 
-  // Bulk restore selected brands
-  var handleBulkRestore = function handleBulkRestore() {
-    if (selectedRowKeys.length === 0) {
-      antd__WEBPACK_IMPORTED_MODULE_6__["default"].info("Please select at least one brand to restore");
-      return;
-    }
-    antd__WEBPACK_IMPORTED_MODULE_7__["default"].confirm({
-      title: "Are you sure you want to restore ".concat(selectedRowKeys.length, " brands?"),
-      content: "This will make them active again.",
-      onOk: function onOk() {
-        var restorePromises = selectedRowKeys.map(function (brandId) {
-          return axios__WEBPACK_IMPORTED_MODULE_1___default().post("".concat(BRANDS_API, "/").concat(brandId, "/restore"), {});
-        });
-        setLoading(true);
-        Promise.all(restorePromises).then(function () {
-          antd__WEBPACK_IMPORTED_MODULE_6__["default"].success("".concat(selectedRowKeys.length, " brands restored successfully!"));
-          fetchBrands();
-          setSelectedRowKeys([]);
-        })["catch"](function (err) {
-          console.error("Error restoring brands:", err);
-          antd__WEBPACK_IMPORTED_MODULE_6__["default"].error("An error occurred while restoring the brands");
-        })["finally"](function () {
-          return setLoading(false);
-        });
+        // Choose the appropriate action based on status filter
+        if (statusFilter === "archived") {
+          // Restore brands
+          var restorePromises = selectedRowKeys.map(function (brandId) {
+            return axios__WEBPACK_IMPORTED_MODULE_1___default().put("".concat(BRANDS_API, "/").concat(brandId, "/restore"), {});
+          });
+          Promise.all(restorePromises).then(function () {
+            antd__WEBPACK_IMPORTED_MODULE_6__["default"].success("".concat(selectedRowKeys.length, " brands restored successfully!"));
+            fetchBrands();
+            setSelectedRowKeys([]);
+          })["catch"](function (err) {
+            console.error("Error restoring brands:", err);
+            antd__WEBPACK_IMPORTED_MODULE_6__["default"].error("An error occurred while restoring the brands");
+          })["finally"](function () {
+            return setLoading(false);
+          });
+        } else {
+          // Archive brands
+          var archivePromises = selectedRowKeys.map(function (brandId) {
+            return axios__WEBPACK_IMPORTED_MODULE_1___default()["delete"]("".concat(BRANDS_API, "/").concat(brandId));
+          });
+          Promise.all(archivePromises).then(function () {
+            antd__WEBPACK_IMPORTED_MODULE_6__["default"].success("".concat(selectedRowKeys.length, " brands archived successfully!"));
+            fetchBrands();
+            setSelectedRowKeys([]);
+          })["catch"](function (err) {
+            console.error("Error archiving brands:", err);
+            antd__WEBPACK_IMPORTED_MODULE_6__["default"].error("An error occurred while archiving the brands");
+          })["finally"](function () {
+            return setLoading(false);
+          });
+        }
       }
     });
   };
@@ -71158,6 +71153,9 @@ function BrandTab() {
             onClick: function onClick() {
               return handleOpenEditModal(record);
             }
+            // Disable edit button for archived brands
+            ,
+            disabled: statusFilter === "archived"
           }), statusFilter === "active" ? /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)(_ant_design_icons__WEBPACK_IMPORTED_MODULE_10__["default"], {
             style: {
               cursor: "pointer"
@@ -71285,31 +71283,24 @@ function BrandTab() {
           })
         })]
       }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsxs)(antd__WEBPACK_IMPORTED_MODULE_8__["default"], {
-        children: [statusFilter === "active" && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsxs)(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.Fragment, {
-          children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)(antd__WEBPACK_IMPORTED_MODULE_15__["default"], {
-            type: "primary",
-            onClick: handleOpenAddModal,
-            icon: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)(_ant_design_icons__WEBPACK_IMPORTED_MODULE_16__["default"], {}),
-            style: {
-              backgroundColor: "#A63F3F"
-            },
-            children: "Add Brand"
-          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)(antd__WEBPACK_IMPORTED_MODULE_15__["default"], {
-            type: "primary",
-            danger: true,
-            onClick: handleBulkArchive,
-            disabled: selectedRowKeys.length === 0,
-            children: "Archive Selected"
-          })]
-        }), statusFilter === "archived" && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)(antd__WEBPACK_IMPORTED_MODULE_15__["default"], {
+        children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)(antd__WEBPACK_IMPORTED_MODULE_15__["default"], {
           type: "primary",
-          onClick: handleBulkRestore,
-          disabled: selectedRowKeys.length === 0,
-          icon: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)(_ant_design_icons__WEBPACK_IMPORTED_MODULE_11__["default"], {}),
+          onClick: handleOpenAddModal,
+          icon: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)(_ant_design_icons__WEBPACK_IMPORTED_MODULE_16__["default"], {}),
           style: {
-            backgroundColor: "#52c41a"
+            backgroundColor: "#A63F3F"
           },
-          children: "Restore Selected"
+          children: "Add Brand"
+        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsxs)(antd__WEBPACK_IMPORTED_MODULE_15__["default"], {
+          type: "primary",
+          danger: true,
+          onClick: handleBulkStatusChange,
+          disabled: selectedRowKeys.length === 0,
+          icon: statusFilter === "archived" ? /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)(_ant_design_icons__WEBPACK_IMPORTED_MODULE_11__["default"], {}) : null,
+          style: {
+            marginLeft: 8
+          },
+          children: [statusFilter === "archived" ? "Restore" : "Archive", " Selected"]
         })]
       })]
     }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)(antd__WEBPACK_IMPORTED_MODULE_17__["default"], {
@@ -71995,29 +71986,24 @@ function CategoryTab() {
           })
         })]
       }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsxs)(antd__WEBPACK_IMPORTED_MODULE_8__["default"], {
-        children: [statusFilter === "active" && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsxs)(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.Fragment, {
-          children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)(antd__WEBPACK_IMPORTED_MODULE_15__["default"], {
-            type: "primary",
-            onClick: handleOpenAddModal,
-            icon: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)(_ant_design_icons__WEBPACK_IMPORTED_MODULE_16__["default"], {}),
-            style: {
-              backgroundColor: "#A63F3F"
-            },
-            children: "Add Category"
-          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)(antd__WEBPACK_IMPORTED_MODULE_15__["default"], {
-            danger: true,
-            onClick: handleBulkArchive,
-            disabled: selectedRowKeys.length === 0,
-            children: "Archive Selected"
-          })]
-        }), statusFilter === "archived" && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)(antd__WEBPACK_IMPORTED_MODULE_15__["default"], {
+        children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)(antd__WEBPACK_IMPORTED_MODULE_15__["default"], {
+          type: "primary",
+          onClick: handleOpenAddModal,
+          icon: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)(_ant_design_icons__WEBPACK_IMPORTED_MODULE_16__["default"], {}),
+          style: {
+            backgroundColor: "#A63F3F"
+          },
+          children: "Add Category"
+        }), statusFilter === "active" ? /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)(antd__WEBPACK_IMPORTED_MODULE_15__["default"], {
+          danger: true,
+          onClick: handleBulkArchive,
+          disabled: selectedRowKeys.length === 0,
+          children: "Archive Selected"
+        }) : /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)(antd__WEBPACK_IMPORTED_MODULE_15__["default"], {
           type: "primary",
           onClick: handleBulkRestore,
           disabled: selectedRowKeys.length === 0,
           icon: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)(_ant_design_icons__WEBPACK_IMPORTED_MODULE_11__["default"], {}),
-          style: {
-            backgroundColor: "#52c41a"
-          },
           children: "Restore Selected"
         })]
       })]
@@ -72193,14 +72179,24 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ });
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var antd__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! antd */ "./node_modules/antd/es/form/index.js");
-/* harmony import */ var antd__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! antd */ "./node_modules/antd/es/message/index.js");
-/* harmony import */ var antd__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! antd */ "./node_modules/antd/es/modal/index.js");
-/* harmony import */ var antd__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! antd */ "./node_modules/antd/es/button/index.js");
-/* harmony import */ var antd__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! antd */ "./node_modules/antd/es/input/index.js");
 /* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
 /* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_1__);
-/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! react/jsx-runtime */ "./node_modules/react/jsx-runtime.js");
+/* harmony import */ var antd__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! antd */ "./node_modules/antd/es/select/index.js");
+/* harmony import */ var antd__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! antd */ "./node_modules/antd/es/message/index.js");
+/* harmony import */ var antd__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! antd */ "./node_modules/antd/es/modal/index.js");
+/* harmony import */ var antd__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! antd */ "./node_modules/antd/es/space/index.js");
+/* harmony import */ var antd__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! antd */ "./node_modules/antd/es/tag/index.js");
+/* harmony import */ var antd__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(/*! antd */ "./node_modules/antd/es/input/index.js");
+/* harmony import */ var antd__WEBPACK_IMPORTED_MODULE_15__ = __webpack_require__(/*! antd */ "./node_modules/antd/es/button/index.js");
+/* harmony import */ var antd__WEBPACK_IMPORTED_MODULE_17__ = __webpack_require__(/*! antd */ "./node_modules/antd/es/table/index.js");
+/* harmony import */ var _ant_design_icons__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! @ant-design/icons */ "./node_modules/@ant-design/icons/es/icons/EditOutlined.js");
+/* harmony import */ var _ant_design_icons__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! @ant-design/icons */ "./node_modules/@ant-design/icons/es/icons/InboxOutlined.js");
+/* harmony import */ var _ant_design_icons__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! @ant-design/icons */ "./node_modules/@ant-design/icons/es/icons/UndoOutlined.js");
+/* harmony import */ var _ant_design_icons__WEBPACK_IMPORTED_MODULE_14__ = __webpack_require__(/*! @ant-design/icons */ "./node_modules/@ant-design/icons/es/icons/SearchOutlined.js");
+/* harmony import */ var _ant_design_icons__WEBPACK_IMPORTED_MODULE_16__ = __webpack_require__(/*! @ant-design/icons */ "./node_modules/@ant-design/icons/es/icons/PlusOutlined.js");
+/* harmony import */ var _AddCategoryTypeModal__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./AddCategoryTypeModal */ "./resources/js/components/Admin/AdminSettings/CategoryTypeTab/AddCategoryTypeModal.js");
+/* harmony import */ var _EditCategoryTypeModal__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./EditCategoryTypeModal */ "./resources/js/components/Admin/AdminSettings/CategoryTypeTab/EditCategoryTypeModal.js");
+/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! react/jsx-runtime */ "./node_modules/react/jsx-runtime.js");
 function _slicedToArray(r, e) { return _arrayWithHoles(r) || _iterableToArrayLimit(r, e) || _unsupportedIterableToArray(r, e) || _nonIterableRest(); }
 function _nonIterableRest() { throw new TypeError("Invalid attempt to destructure non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
 function _unsupportedIterableToArray(r, a) { if (r) { if ("string" == typeof r) return _arrayLikeToArray(r, a); var t = {}.toString.call(r).slice(8, -1); return "Object" === t && r.constructor && (t = r.constructor.name), "Map" === t || "Set" === t ? Array.from(r) : "Arguments" === t || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(t) ? _arrayLikeToArray(r, a) : void 0; } }
@@ -72211,147 +72207,421 @@ function _arrayWithHoles(r) { if (Array.isArray(r)) return r; }
 
 
 
+
+// Import modal components directly
+
+
+
 var CATEGORY_TYPES_API = "http://127.0.0.1:8000/api/category-types";
-function AddCategoryTypeModal(_ref) {
-  var visible = _ref.visible,
-    onCancel = _ref.onCancel,
-    onSave = _ref.onSave;
-  var _Form$useForm = antd__WEBPACK_IMPORTED_MODULE_3__["default"].useForm(),
-    _Form$useForm2 = _slicedToArray(_Form$useForm, 1),
-    form = _Form$useForm2[0];
-  var _useState = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(false),
+var Option = antd__WEBPACK_IMPORTED_MODULE_5__["default"].Option;
+
+// Configure axios for Laravel
+(axios__WEBPACK_IMPORTED_MODULE_1___default().defaults).headers.common['X-Requested-With'] = 'XMLHttpRequest';
+function CategoryTypeTab() {
+  var _useState = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)([]),
     _useState2 = _slicedToArray(_useState, 2),
-    loading = _useState2[0],
-    setLoading = _useState2[1];
-  var _useState3 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(null),
+    categoryTypes = _useState2[0],
+    setCategoryTypes = _useState2[1];
+  var _useState3 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(false),
     _useState4 = _slicedToArray(_useState3, 2),
-    errorDetails = _useState4[0],
-    setErrorDetails = _useState4[1];
+    loading = _useState4[0],
+    setLoading = _useState4[1];
+  var _useState5 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(""),
+    _useState6 = _slicedToArray(_useState5, 2),
+    search = _useState6[0],
+    setSearch = _useState6[1];
+  var _useState7 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)("active"),
+    _useState8 = _slicedToArray(_useState7, 2),
+    statusFilter = _useState8[0],
+    setStatusFilter = _useState8[1]; // Default to active
+  var _useState9 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(false),
+    _useState10 = _slicedToArray(_useState9, 2),
+    isAddModalVisible = _useState10[0],
+    setIsAddModalVisible = _useState10[1];
+  var _useState11 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(false),
+    _useState12 = _slicedToArray(_useState11, 2),
+    isEditModalVisible = _useState12[0],
+    setIsEditModalVisible = _useState12[1];
+  var _useState13 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(null),
+    _useState14 = _slicedToArray(_useState13, 2),
+    selectedCategoryType = _useState14[0],
+    setSelectedCategoryType = _useState14[1];
+  var _useState15 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)([]),
+    _useState16 = _slicedToArray(_useState15, 2),
+    selectedRowKeys = _useState16[0],
+    setSelectedRowKeys = _useState16[1];
+  (0,react__WEBPACK_IMPORTED_MODULE_0__.useEffect)(function () {
+    fetchCategoryTypes();
+  }, [statusFilter]); // Refetch when statusFilter changes
 
-  // Reset form when modal opens/closes
-  react__WEBPACK_IMPORTED_MODULE_0___default().useEffect(function () {
-    if (visible) {
-      form.resetFields();
-      setErrorDetails(null);
-    }
-  }, [visible, form]);
-  var handleSubmit = function handleSubmit() {
-    form.validateFields().then(function (values) {
-      setLoading(true);
-      setErrorDetails(null);
-
-      // Structure the data to match the backend validation requirement
-      var formData = {
-        category_type: values.category_type
-      };
-
-      // Enhanced logging
-      console.log("Sending data to:", CATEGORY_TYPES_API);
-      console.log("Request payload:", formData);
-      axios__WEBPACK_IMPORTED_MODULE_1___default().post(CATEGORY_TYPES_API, formData).then(function (response) {
-        console.log("Success response:", response);
-        antd__WEBPACK_IMPORTED_MODULE_4__["default"].success("Category type created successfully!");
-        form.resetFields();
-        onSave();
-      })["catch"](function (error) {
-        console.error("Error creating category type:", error);
-
-        // Detailed error logging
-        if (error.response) {
-          console.error("Error status:", error.response.status);
-          console.error("Error headers:", error.response.headers);
-          console.error("Error data:", error.response.data);
-          setErrorDetails({
-            status: error.response.status,
-            data: error.response.data
-          });
-        } else if (error.request) {
-          console.error("No response received:", error.request);
-          setErrorDetails({
-            message: "No response received from server"
-          });
-        } else {
-          console.error("Error message:", error.message);
-          setErrorDetails({
-            message: error.message
-          });
-        }
-
-        // Handle validation errors from the backend
-        if (error.response && error.response.data && error.response.data.errors) {
-          // Display specific validation errors
-          var backendErrors = error.response.data.errors;
-          if (backendErrors.category_type) {
-            form.setFields([{
-              name: "category_type",
-              errors: backendErrors.category_type
-            }]);
-          }
-          antd__WEBPACK_IMPORTED_MODULE_4__["default"].error("Please fix the errors in the form");
-        } else {
-          antd__WEBPACK_IMPORTED_MODULE_4__["default"].error("Failed to create category type. See console for details.");
-        }
-      })["finally"](function () {
-        setLoading(false);
-      });
-    })["catch"](function (info) {
-      console.log("Validate Failed:", info);
+  var fetchCategoryTypes = function fetchCategoryTypes() {
+    setLoading(true);
+    axios__WEBPACK_IMPORTED_MODULE_1___default().get("".concat(CATEGORY_TYPES_API, "?status=").concat(statusFilter)).then(function (res) {
+      console.log("".concat(statusFilter, " category types response:"), res.data);
+      if (Array.isArray(res.data)) {
+        setCategoryTypes(res.data);
+      } else {
+        console.error("Invalid category types structure:", res.data);
+        antd__WEBPACK_IMPORTED_MODULE_6__["default"].error("Failed to fetch category types");
+      }
+    })["catch"](function (err) {
+      console.error("Error fetching category types:", err);
+      antd__WEBPACK_IMPORTED_MODULE_6__["default"].error("Error fetching category types");
+    })["finally"](function () {
+      setLoading(false);
     });
   };
-  return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)(antd__WEBPACK_IMPORTED_MODULE_5__["default"], {
-    title: "Add New Category Type",
-    open: visible,
-    onCancel: onCancel,
-    footer: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)(antd__WEBPACK_IMPORTED_MODULE_6__["default"], {
-      onClick: onCancel,
-      children: "Cancel"
-    }, "cancel"), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)(antd__WEBPACK_IMPORTED_MODULE_6__["default"], {
-      type: "primary",
-      loading: loading,
-      onClick: handleSubmit,
+
+  // Handle add modal functions
+  var handleOpenAddModal = function handleOpenAddModal() {
+    return setIsAddModalVisible(true);
+  };
+  var handleCancelAddModal = function handleCancelAddModal() {
+    return setIsAddModalVisible(false);
+  };
+  var handleSaveAddModal = function handleSaveAddModal() {
+    setIsAddModalVisible(false);
+    fetchCategoryTypes();
+  };
+
+  // Handle edit modal functions
+  var handleOpenEditModal = function handleOpenEditModal(categoryType) {
+    setSelectedCategoryType(categoryType);
+    setIsEditModalVisible(true);
+  };
+  var handleCancelEditModal = function handleCancelEditModal() {
+    setSelectedCategoryType(null);
+    setIsEditModalVisible(false);
+  };
+  var handleSaveEditModal = function handleSaveEditModal() {
+    setIsEditModalVisible(false);
+    setSelectedCategoryType(null);
+    fetchCategoryTypes();
+  };
+
+  // Delete category type (soft delete / archive)
+  var archiveCategoryType = function archiveCategoryType(categoryTypeId) {
+    antd__WEBPACK_IMPORTED_MODULE_7__["default"].confirm({
+      title: "Are you sure you want to archive this category type?",
+      content: "This will hide it from active view, but you can restore it later.",
+      onOk: function onOk() {
+        setLoading(true);
+        axios__WEBPACK_IMPORTED_MODULE_1___default()["delete"]("".concat(CATEGORY_TYPES_API, "/").concat(categoryTypeId), {
+          headers: {
+            'Content-Type': 'application/json',
+            'Accept': 'application/json'
+          }
+        }).then(function (response) {
+          console.log("Archive response:", response);
+          antd__WEBPACK_IMPORTED_MODULE_6__["default"].success("Category type archived successfully!");
+          fetchCategoryTypes();
+        })["catch"](function (err) {
+          console.error("Error archiving category type:", err);
+          antd__WEBPACK_IMPORTED_MODULE_6__["default"].error("An error occurred while archiving the category type");
+        })["finally"](function () {
+          return setLoading(false);
+        });
+      }
+    });
+  };
+
+  // Restore archived category type
+  var restoreCategoryType = function restoreCategoryType(categoryTypeId) {
+    antd__WEBPACK_IMPORTED_MODULE_7__["default"].confirm({
+      title: "Are you sure you want to restore this category type?",
+      content: "This will make it active again.",
+      onOk: function onOk() {
+        setLoading(true);
+        axios__WEBPACK_IMPORTED_MODULE_1___default().put("".concat(CATEGORY_TYPES_API, "/").concat(categoryTypeId, "/restore"), {}, {
+          headers: {
+            'Content-Type': 'application/json',
+            'Accept': 'application/json'
+          }
+        }).then(function (response) {
+          console.log("Restore response:", response);
+          antd__WEBPACK_IMPORTED_MODULE_6__["default"].success("Category type restored successfully!");
+          fetchCategoryTypes();
+        })["catch"](function (err) {
+          console.error("Error restoring category type:", err);
+          antd__WEBPACK_IMPORTED_MODULE_6__["default"].error("An error occurred while restoring the category type");
+        })["finally"](function () {
+          return setLoading(false);
+        });
+      }
+    });
+  };
+
+  // Bulk delete/archive selected category types - Updated to use Modal.info instead of message.info
+  var handleBulkArchive = function handleBulkArchive() {
+    if (selectedRowKeys.length === 0) {
+      antd__WEBPACK_IMPORTED_MODULE_7__["default"].info({
+        title: 'No category types selected',
+        content: 'Please select at least one category type to archive.'
+      });
+      return;
+    }
+    antd__WEBPACK_IMPORTED_MODULE_7__["default"].confirm({
+      title: "Are you sure you want to archive ".concat(selectedRowKeys.length, " category types?"),
+      content: "This action can be reversed later.",
+      onOk: function onOk() {
+        var archivePromises = selectedRowKeys.map(function (categoryTypeId) {
+          return axios__WEBPACK_IMPORTED_MODULE_1___default()["delete"]("".concat(CATEGORY_TYPES_API, "/").concat(categoryTypeId), {
+            headers: {
+              'Content-Type': 'application/json',
+              'Accept': 'application/json'
+            }
+          });
+        });
+        setLoading(true);
+        Promise.all(archivePromises).then(function () {
+          antd__WEBPACK_IMPORTED_MODULE_6__["default"].success("".concat(selectedRowKeys.length, " category types archived successfully!"));
+          fetchCategoryTypes();
+          setSelectedRowKeys([]);
+        })["catch"](function (err) {
+          console.error("Error archiving category types:", err);
+          antd__WEBPACK_IMPORTED_MODULE_6__["default"].error("An error occurred while archiving the category types");
+        })["finally"](function () {
+          return setLoading(false);
+        });
+      }
+    });
+  };
+
+  // Bulk restore selected category types - Updated to use Modal.info instead of message.info
+  var handleBulkRestore = function handleBulkRestore() {
+    if (selectedRowKeys.length === 0) {
+      antd__WEBPACK_IMPORTED_MODULE_7__["default"].info({
+        title: 'No category types selected',
+        content: 'Please select at least one category type to restore.'
+      });
+      return;
+    }
+    antd__WEBPACK_IMPORTED_MODULE_7__["default"].confirm({
+      title: "Are you sure you want to restore ".concat(selectedRowKeys.length, " category types?"),
+      content: "This will make them active again.",
+      onOk: function onOk() {
+        var restorePromises = selectedRowKeys.map(function (categoryTypeId) {
+          return axios__WEBPACK_IMPORTED_MODULE_1___default().put("".concat(CATEGORY_TYPES_API, "/").concat(categoryTypeId, "/restore"), {}, {
+            headers: {
+              'Content-Type': 'application/json',
+              'Accept': 'application/json'
+            }
+          });
+        });
+        setLoading(true);
+        Promise.all(restorePromises).then(function () {
+          antd__WEBPACK_IMPORTED_MODULE_6__["default"].success("".concat(selectedRowKeys.length, " category types restored successfully!"));
+          fetchCategoryTypes();
+          setSelectedRowKeys([]);
+        })["catch"](function (err) {
+          console.error("Error restoring category types:", err);
+          antd__WEBPACK_IMPORTED_MODULE_6__["default"].error("An error occurred while restoring the category types");
+        })["finally"](function () {
+          return setLoading(false);
+        });
+      }
+    });
+  };
+
+  // Define table columns based on status filter
+  var getColumns = function getColumns() {
+    var baseColumns = [{
+      title: "Actions",
+      key: "actions",
+      render: function render(_, record) {
+        return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsxs)(antd__WEBPACK_IMPORTED_MODULE_8__["default"], {
+          size: "small",
+          children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)(_ant_design_icons__WEBPACK_IMPORTED_MODULE_9__["default"], {
+            style: {
+              cursor: "pointer"
+            },
+            onClick: function onClick() {
+              return handleOpenEditModal(record);
+            }
+          }), statusFilter === "active" ? /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)(_ant_design_icons__WEBPACK_IMPORTED_MODULE_10__["default"], {
+            style: {
+              cursor: "pointer"
+            },
+            onClick: function onClick() {
+              return archiveCategoryType(record.id);
+            },
+            title: "Archive"
+          }) : /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)(_ant_design_icons__WEBPACK_IMPORTED_MODULE_11__["default"], {
+            style: {
+              cursor: "pointer",
+              color: "#52c41a"
+            },
+            onClick: function onClick() {
+              return restoreCategoryType(record.id);
+            },
+            title: "Restore"
+          })]
+        });
+      }
+    }, {
+      title: "ID",
+      dataIndex: "id",
+      key: "id"
+    }, {
+      title: "Category Type",
+      dataIndex: "category_type",
+      key: "category_type",
+      render: function render(text) {
+        return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)(antd__WEBPACK_IMPORTED_MODULE_12__["default"], {
+          color: statusFilter === "active" ? "purple" : "default",
+          children: text
+        });
+      }
+    }, {
+      title: "Created At",
+      dataIndex: "created_at",
+      key: "created_at",
+      render: function render(date) {
+        return date ? new Date(date).toLocaleDateString() : "-";
+      }
+    }, {
+      title: "Updated At",
+      dataIndex: "updated_at",
+      key: "updated_at",
+      render: function render(date) {
+        return date ? new Date(date).toLocaleDateString() : "-";
+      }
+    }];
+
+    // Add deleted_at column for archived items
+    if (statusFilter === "archived") {
+      baseColumns.push({
+        title: "Archived At",
+        dataIndex: "deleted_at",
+        key: "deleted_at",
+        render: function render(date) {
+          return date ? new Date(date).toLocaleDateString() : "-";
+        }
+      });
+    }
+    return baseColumns;
+  };
+
+  // Filter category types based on search
+  var filteredCategoryTypes = categoryTypes.filter(function (categoryType) {
+    var _categoryType$categor;
+    var type = (categoryType.category_type || "").toLowerCase();
+    var categoryName = (((_categoryType$categor = categoryType.category) === null || _categoryType$categor === void 0 ? void 0 : _categoryType$categor.name) || "").toLowerCase();
+    return type.includes(search.toLowerCase()) || categoryName.includes(search.toLowerCase());
+  });
+  var rowSelection = {
+    selectedRowKeys: selectedRowKeys,
+    onChange: function onChange(keys) {
+      return setSelectedRowKeys(keys);
+    }
+  };
+
+  // Options for status filter dropdown
+  var statusOptions = [{
+    value: "active",
+    label: "Active"
+  }, {
+    value: "archived",
+    label: "Archived"
+  }];
+  return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsxs)("div", {
+    style: {
+      padding: "20px"
+    },
+    children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("h2", {
       style: {
-        backgroundColor: "#A63F3F"
+        marginBottom: "20px"
       },
-      children: "Create"
-    }, "submit")],
-    children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxs)(antd__WEBPACK_IMPORTED_MODULE_3__["default"], {
-      form: form,
-      layout: "vertical",
-      name: "add_category_type_form",
-      children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)(antd__WEBPACK_IMPORTED_MODULE_3__["default"].Item, {
-        name: "category_type",
-        label: "Category Type",
-        rules: [{
-          required: true,
-          message: "Please enter a category type"
-        }, {
-          max: 255,
-          message: "Category type cannot exceed 255 characters"
-        }],
-        children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)(antd__WEBPACK_IMPORTED_MODULE_7__["default"], {
-          placeholder: "Enter category type"
-        })
-      }), errorDetails && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxs)("div", {
-        style: {
-          marginTop: 16,
-          color: 'red',
-          backgroundColor: '#ffeeee',
-          padding: 10,
-          borderRadius: 4
-        },
-        children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("h4", {
-          children: "Error Details:"
-        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("pre", {
-          style: {
-            whiteSpace: 'pre-wrap'
+      children: "Category Types Management"
+    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsxs)("div", {
+      style: {
+        display: "flex",
+        justifyContent: "space-between",
+        marginBottom: "20px"
+      },
+      children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsxs)(antd__WEBPACK_IMPORTED_MODULE_8__["default"], {
+        children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)(antd__WEBPACK_IMPORTED_MODULE_13__["default"], {
+          placeholder: "Search by name or category",
+          prefix: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)(_ant_design_icons__WEBPACK_IMPORTED_MODULE_14__["default"], {}),
+          value: search,
+          onChange: function onChange(e) {
+            return setSearch(e.target.value);
           },
-          children: JSON.stringify(errorDetails, null, 2)
+          style: {
+            width: 200,
+            backgroundColor: "#FFFFFF"
+          }
+        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)(antd__WEBPACK_IMPORTED_MODULE_5__["default"], {
+          value: statusFilter,
+          onChange: function onChange(value) {
+            setStatusFilter(value);
+            setSelectedRowKeys([]);
+          },
+          style: {
+            width: 120
+          },
+          children: statusOptions.map(function (option) {
+            return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)(Option, {
+              value: option.value,
+              children: option.label
+            }, option.value);
+          })
+        })]
+      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsxs)(antd__WEBPACK_IMPORTED_MODULE_8__["default"], {
+        children: [statusFilter === "active" && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsxs)(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.Fragment, {
+          children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)(antd__WEBPACK_IMPORTED_MODULE_15__["default"], {
+            type: "primary",
+            onClick: handleOpenAddModal,
+            icon: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)(_ant_design_icons__WEBPACK_IMPORTED_MODULE_16__["default"], {}),
+            style: {
+              backgroundColor: "#A63F3F"
+            },
+            children: "Add Category Type"
+          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)(antd__WEBPACK_IMPORTED_MODULE_15__["default"], {
+            type: "primary",
+            danger: true,
+            onClick: handleBulkArchive,
+            disabled: selectedRowKeys.length === 0,
+            children: "Archive Selected"
+          })]
+        }), statusFilter === "archived" && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)(antd__WEBPACK_IMPORTED_MODULE_15__["default"], {
+          type: "primary",
+          onClick: handleBulkRestore,
+          disabled: selectedRowKeys.length === 0,
+          icon: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)(_ant_design_icons__WEBPACK_IMPORTED_MODULE_11__["default"], {}),
+          style: {
+            backgroundColor: "#52c41a"
+          },
+          children: "Restore Selected"
         })]
       })]
-    })
+    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)(antd__WEBPACK_IMPORTED_MODULE_17__["default"], {
+      rowSelection: rowSelection,
+      columns: getColumns(),
+      dataSource: filteredCategoryTypes,
+      rowKey: function rowKey(record) {
+        return record.id;
+      },
+      pagination: {
+        pageSize: 10
+      },
+      loading: loading,
+      locale: {
+        emptyText: "No ".concat(statusFilter, " category types found matching the current search")
+      }
+    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)(_AddCategoryTypeModal__WEBPACK_IMPORTED_MODULE_2__["default"], {
+      visible: isAddModalVisible,
+      onCancel: handleCancelAddModal,
+      onSave: handleSaveAddModal
+    }), isEditModalVisible && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)(_EditCategoryTypeModal__WEBPACK_IMPORTED_MODULE_3__["default"], {
+      visible: isEditModalVisible,
+      onCancel: handleCancelEditModal,
+      onSave: handleSaveEditModal,
+      categoryType: selectedCategoryType
+    })]
   });
 }
-/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (AddCategoryTypeModal);
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (CategoryTypeTab);
 
 /***/ }),
 
@@ -72521,7 +72791,7 @@ function CategoryTypeTab() {
       content: "This will make it active again.",
       onOk: function onOk() {
         setLoading(true);
-        axios__WEBPACK_IMPORTED_MODULE_1___default().put("".concat(CATEGORY_TYPES_API, "/").concat(categoryTypeId, "/restore"), {}, {
+        axios__WEBPACK_IMPORTED_MODULE_1___default().post("".concat(CATEGORY_TYPES_API, "/").concat(categoryTypeId, "/restore"), {}, {
           headers: {
             'Content-Type': 'application/json',
             'Accept': 'application/json'
@@ -72751,29 +73021,25 @@ function CategoryTypeTab() {
           })
         })]
       }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsxs)(antd__WEBPACK_IMPORTED_MODULE_8__["default"], {
-        children: [statusFilter === "active" && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsxs)(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.Fragment, {
-          children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)(antd__WEBPACK_IMPORTED_MODULE_15__["default"], {
-            type: "primary",
-            onClick: handleOpenAddModal,
-            icon: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)(_ant_design_icons__WEBPACK_IMPORTED_MODULE_16__["default"], {}),
-            style: {
-              backgroundColor: "#A63F3F"
-            },
-            children: "Add Category Type"
-          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)(antd__WEBPACK_IMPORTED_MODULE_15__["default"], {
-            danger: true,
-            onClick: handleBulkArchive,
-            disabled: selectedRowKeys.length === 0,
-            children: "Archive Selected"
-          })]
-        }), statusFilter === "archived" && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)(antd__WEBPACK_IMPORTED_MODULE_15__["default"], {
+        children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)(antd__WEBPACK_IMPORTED_MODULE_15__["default"], {
           type: "primary",
+          onClick: handleOpenAddModal,
+          icon: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)(_ant_design_icons__WEBPACK_IMPORTED_MODULE_16__["default"], {}),
+          style: {
+            backgroundColor: "#A63F3F"
+          },
+          children: "Add Category Type"
+        }), statusFilter === "active" ? /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)(antd__WEBPACK_IMPORTED_MODULE_15__["default"], {
+          danger: true,
+          onClick: handleBulkArchive,
+          disabled: selectedRowKeys.length === 0,
+          children: "Archive Selected"
+        }) : /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)(antd__WEBPACK_IMPORTED_MODULE_15__["default"], {
+          type: "primary",
+          danger: true,
           onClick: handleBulkRestore,
           disabled: selectedRowKeys.length === 0,
           icon: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)(_ant_design_icons__WEBPACK_IMPORTED_MODULE_11__["default"], {}),
-          style: {
-            backgroundColor: "#52c41a"
-          },
           children: "Restore Selected"
         })]
       })]
@@ -73170,18 +73436,23 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_1__);
 /* harmony import */ var antd__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! antd */ "./node_modules/antd/es/select/index.js");
 /* harmony import */ var antd__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! antd */ "./node_modules/antd/es/message/index.js");
-/* harmony import */ var antd__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! antd */ "./node_modules/antd/es/space/index.js");
-/* harmony import */ var antd__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! antd */ "./node_modules/antd/es/input/index.js");
-/* harmony import */ var antd__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! antd */ "./node_modules/antd/es/button/index.js");
-/* harmony import */ var antd__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! antd */ "./node_modules/antd/es/table/index.js");
-/* harmony import */ var _ant_design_icons__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! @ant-design/icons */ "./node_modules/@ant-design/icons/es/icons/SearchOutlined.js");
-/* harmony import */ var _ant_design_icons__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! @ant-design/icons */ "./node_modules/@ant-design/icons/es/icons/PlusOutlined.js");
-/* harmony import */ var _ant_design_icons__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(/*! @ant-design/icons */ "./node_modules/@ant-design/icons/es/icons/EditOutlined.js");
-/* harmony import */ var _ant_design_icons__WEBPACK_IMPORTED_MODULE_14__ = __webpack_require__(/*! @ant-design/icons */ "./node_modules/@ant-design/icons/es/icons/UndoOutlined.js");
-/* harmony import */ var _ant_design_icons__WEBPACK_IMPORTED_MODULE_15__ = __webpack_require__(/*! @ant-design/icons */ "./node_modules/@ant-design/icons/es/icons/InboxOutlined.js");
+/* harmony import */ var antd__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! antd */ "./node_modules/antd/es/modal/index.js");
+/* harmony import */ var antd__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! antd */ "./node_modules/antd/es/space/index.js");
+/* harmony import */ var antd__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! antd */ "./node_modules/antd/es/input/index.js");
+/* harmony import */ var antd__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! antd */ "./node_modules/antd/es/button/index.js");
+/* harmony import */ var antd__WEBPACK_IMPORTED_MODULE_14__ = __webpack_require__(/*! antd */ "./node_modules/antd/es/table/index.js");
+/* harmony import */ var _ant_design_icons__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! @ant-design/icons */ "./node_modules/@ant-design/icons/es/icons/SearchOutlined.js");
+/* harmony import */ var _ant_design_icons__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! @ant-design/icons */ "./node_modules/@ant-design/icons/es/icons/PlusOutlined.js");
+/* harmony import */ var _ant_design_icons__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(/*! @ant-design/icons */ "./node_modules/@ant-design/icons/es/icons/UndoOutlined.js");
+/* harmony import */ var _ant_design_icons__WEBPACK_IMPORTED_MODULE_15__ = __webpack_require__(/*! @ant-design/icons */ "./node_modules/@ant-design/icons/es/icons/EditOutlined.js");
+/* harmony import */ var _ant_design_icons__WEBPACK_IMPORTED_MODULE_16__ = __webpack_require__(/*! @ant-design/icons */ "./node_modules/@ant-design/icons/es/icons/InboxOutlined.js");
 /* harmony import */ var _AddRoleModal__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./AddRoleModal */ "./resources/js/components/Admin/AdminSettings/Role/AddRoleModal.js");
 /* harmony import */ var _EditRoleModal__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./EditRoleModal */ "./resources/js/components/Admin/AdminSettings/Role/EditRoleModal.js");
 /* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! react/jsx-runtime */ "./node_modules/react/jsx-runtime.js");
+function _toConsumableArray(r) { return _arrayWithoutHoles(r) || _iterableToArray(r) || _unsupportedIterableToArray(r) || _nonIterableSpread(); }
+function _nonIterableSpread() { throw new TypeError("Invalid attempt to spread non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
+function _iterableToArray(r) { if ("undefined" != typeof Symbol && null != r[Symbol.iterator] || null != r["@@iterator"]) return Array.from(r); }
+function _arrayWithoutHoles(r) { if (Array.isArray(r)) return _arrayLikeToArray(r); }
 function _slicedToArray(r, e) { return _arrayWithHoles(r) || _iterableToArrayLimit(r, e) || _unsupportedIterableToArray(r, e) || _nonIterableRest(); }
 function _nonIterableRest() { throw new TypeError("Invalid attempt to destructure non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
 function _unsupportedIterableToArray(r, a) { if (r) { if ("string" == typeof r) return _arrayLikeToArray(r, a); var t = {}.toString.call(r).slice(8, -1); return "Object" === t && r.constructor && (t = r.constructor.name), "Map" === t || "Set" === t ? Array.from(r) : "Arguments" === t || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(t) ? _arrayLikeToArray(r, a) : void 0; } }
@@ -73277,46 +73548,77 @@ function RoleTab() {
     setSelectedRole(role);
     setEditModalVisible(true);
   };
+
+  // Modified to include confirmation modal
   var handleArchive = function handleArchive(roleId) {
-    setLoading(true);
-    axios__WEBPACK_IMPORTED_MODULE_1___default().put("".concat(ROLES_API, "/").concat(roleId, "/archive")).then(function () {
-      antd__WEBPACK_IMPORTED_MODULE_6__["default"].success("Role archived successfully");
-      fetchRoles();
-      setSelectedRowKeys([]);
-    })["catch"](function (err) {
-      console.error("Error archiving role:", err);
-      antd__WEBPACK_IMPORTED_MODULE_6__["default"].error("Failed to archive role");
-    })["finally"](function () {
-      setLoading(false);
+    antd__WEBPACK_IMPORTED_MODULE_7__["default"].confirm({
+      title: "Are you sure you want to archive this role?",
+      content: "This will hide it from active view, but you can restore it later.",
+      onOk: function onOk() {
+        setLoading(true);
+        axios__WEBPACK_IMPORTED_MODULE_1___default().put("".concat(ROLES_API, "/").concat(roleId, "/archive")).then(function () {
+          antd__WEBPACK_IMPORTED_MODULE_6__["default"].success("Role archived successfully");
+          fetchRoles();
+          setSelectedRowKeys([]);
+        })["catch"](function (err) {
+          console.error("Error archiving role:", err);
+          antd__WEBPACK_IMPORTED_MODULE_6__["default"].error("Failed to archive role");
+        })["finally"](function () {
+          setLoading(false);
+        });
+      }
     });
   };
+
+  // Modified to include confirmation modal
   var handleRestore = function handleRestore(roleId) {
-    setLoading(true);
-    axios__WEBPACK_IMPORTED_MODULE_1___default().put("".concat(ROLES_API, "/").concat(roleId, "/restore")).then(function () {
-      antd__WEBPACK_IMPORTED_MODULE_6__["default"].success("Role restored successfully");
-      fetchRoles();
-      setSelectedRowKeys([]);
-    })["catch"](function (err) {
-      console.error("Error restoring role:", err);
-      antd__WEBPACK_IMPORTED_MODULE_6__["default"].error("Failed to restore role");
-    })["finally"](function () {
-      setLoading(false);
+    antd__WEBPACK_IMPORTED_MODULE_7__["default"].confirm({
+      title: "Are you sure you want to restore this role?",
+      content: "This will make it active again.",
+      onOk: function onOk() {
+        setLoading(true);
+        axios__WEBPACK_IMPORTED_MODULE_1___default().put("".concat(ROLES_API, "/").concat(roleId, "/restore")).then(function () {
+          antd__WEBPACK_IMPORTED_MODULE_6__["default"].success("Role restored successfully");
+          fetchRoles();
+          setSelectedRowKeys([]);
+        })["catch"](function (err) {
+          console.error("Error restoring role:", err);
+          antd__WEBPACK_IMPORTED_MODULE_6__["default"].error("Failed to restore role");
+        })["finally"](function () {
+          setLoading(false);
+        });
+      }
     });
   };
+
+  // Modified to include confirmation modal
   var handleBulkStatusChange = function handleBulkStatusChange() {
-    setLoading(true);
-    var endpoint = statusFilter === "Archived" ? "restore" : "archive";
-    Promise.all(selectedRowKeys.map(function (key) {
-      return axios__WEBPACK_IMPORTED_MODULE_1___default().put("".concat(ROLES_API, "/").concat(key, "/").concat(endpoint));
-    })).then(function () {
-      antd__WEBPACK_IMPORTED_MODULE_6__["default"].success("Roles ".concat(statusFilter === "Archived" ? "restored" : "archived", " successfully"));
-      fetchRoles();
-      setSelectedRowKeys([]);
-    })["catch"](function (err) {
-      console.error("Error processing roles:", err);
-      antd__WEBPACK_IMPORTED_MODULE_6__["default"].error("Failed to ".concat(statusFilter === "Archived" ? "restore" : "archive", " roles"));
-    })["finally"](function () {
-      setLoading(false);
+    if (selectedRowKeys.length === 0) {
+      antd__WEBPACK_IMPORTED_MODULE_7__["default"].info({
+        title: 'No roles selected',
+        content: "Please select at least one role to ".concat(statusFilter === "Archived" ? "restore" : "archive", ".")
+      });
+      return;
+    }
+    antd__WEBPACK_IMPORTED_MODULE_7__["default"].confirm({
+      title: "Are you sure you want to ".concat(statusFilter === "Archived" ? "restore" : "archive", " ").concat(selectedRowKeys.length, " roles?"),
+      content: statusFilter === "Archived" ? "This will make them active again." : "This action can be reversed later.",
+      onOk: function onOk() {
+        setLoading(true);
+        var endpoint = statusFilter === "Archived" ? "restore" : "archive";
+        Promise.all(selectedRowKeys.map(function (key) {
+          return axios__WEBPACK_IMPORTED_MODULE_1___default().put("".concat(ROLES_API, "/").concat(key, "/").concat(endpoint));
+        })).then(function () {
+          antd__WEBPACK_IMPORTED_MODULE_6__["default"].success("Roles ".concat(statusFilter === "Archived" ? "restored" : "archived", " successfully"));
+          fetchRoles();
+          setSelectedRowKeys([]);
+        })["catch"](function (err) {
+          console.error("Error processing roles:", err);
+          antd__WEBPACK_IMPORTED_MODULE_6__["default"].error("Failed to ".concat(statusFilter === "Archived" ? "restore" : "archive", " roles"));
+        })["finally"](function () {
+          setLoading(false);
+        });
+      }
     });
   };
 
@@ -73341,7 +73643,7 @@ function RoleTab() {
     className: "roles-container",
     children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("h2", {
       children: "Roles Management"
-    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsxs)(antd__WEBPACK_IMPORTED_MODULE_7__["default"], {
+    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsxs)(antd__WEBPACK_IMPORTED_MODULE_8__["default"], {
       style: {
         marginBottom: 16,
         display: "flex",
@@ -73353,9 +73655,9 @@ function RoleTab() {
           display: "flex",
           gap: 12
         },
-        children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)(antd__WEBPACK_IMPORTED_MODULE_8__["default"], {
+        children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)(antd__WEBPACK_IMPORTED_MODULE_9__["default"], {
           placeholder: "Search roles",
-          prefix: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)(_ant_design_icons__WEBPACK_IMPORTED_MODULE_9__["default"], {}),
+          prefix: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)(_ant_design_icons__WEBPACK_IMPORTED_MODULE_10__["default"], {}),
           value: search,
           onChange: function onChange(e) {
             return setSearch(e.target.value);
@@ -73381,45 +73683,44 @@ function RoleTab() {
           })]
         })]
       }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsxs)("div", {
-        children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)(antd__WEBPACK_IMPORTED_MODULE_10__["default"], {
+        children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)(antd__WEBPACK_IMPORTED_MODULE_11__["default"], {
           type: "primary",
           onClick: handleOpenAddModal,
-          icon: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)(_ant_design_icons__WEBPACK_IMPORTED_MODULE_11__["default"], {}),
+          icon: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)(_ant_design_icons__WEBPACK_IMPORTED_MODULE_12__["default"], {}),
           style: {
             backgroundColor: "#A63F3F"
           },
           children: "Add Role"
-        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsxs)(antd__WEBPACK_IMPORTED_MODULE_10__["default"], {
+        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsxs)(antd__WEBPACK_IMPORTED_MODULE_11__["default"], {
           type: "primary",
-          danger: true // Add this prop for the red styling
-          ,
+          danger: true,
           onClick: handleBulkStatusChange,
           style: {
             marginLeft: 8
-          } // Keep just the margin, remove backgroundColor
-          ,
+          },
           disabled: selectedRowKeys.length === 0,
+          icon: statusFilter === "Archived" ? /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)(_ant_design_icons__WEBPACK_IMPORTED_MODULE_13__["default"], {}) : null,
           children: [statusFilter === "Archived" ? "Restore" : "Archive", " Selected"]
         })]
       })]
-    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)(antd__WEBPACK_IMPORTED_MODULE_12__["default"], {
+    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)(antd__WEBPACK_IMPORTED_MODULE_14__["default"], {
       rowSelection: rowSelection,
       columns: [{
         title: "Actions",
         key: "actions",
         render: function render(_, record) {
-          return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsxs)(antd__WEBPACK_IMPORTED_MODULE_7__["default"], {
+          return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsxs)(antd__WEBPACK_IMPORTED_MODULE_8__["default"], {
             size: "middle",
-            children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)(antd__WEBPACK_IMPORTED_MODULE_10__["default"], {
+            children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)(antd__WEBPACK_IMPORTED_MODULE_11__["default"], {
               type: "text",
-              icon: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)(_ant_design_icons__WEBPACK_IMPORTED_MODULE_13__["default"], {}),
+              icon: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)(_ant_design_icons__WEBPACK_IMPORTED_MODULE_15__["default"], {}),
               onClick: function onClick() {
                 return handleOpenEditModal(record);
               },
               disabled: record.deleted_at !== null
-            }), record.deleted_at !== null ? /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)(antd__WEBPACK_IMPORTED_MODULE_10__["default"], {
+            }), record.deleted_at !== null ? /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)(antd__WEBPACK_IMPORTED_MODULE_11__["default"], {
               type: "text",
-              icon: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)(_ant_design_icons__WEBPACK_IMPORTED_MODULE_14__["default"], {}),
+              icon: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)(_ant_design_icons__WEBPACK_IMPORTED_MODULE_13__["default"], {}),
               style: {
                 color: "#52c41a"
               },
@@ -73427,9 +73728,9 @@ function RoleTab() {
                 return handleRestore(record.id);
               },
               title: "Restore"
-            }) : /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)(antd__WEBPACK_IMPORTED_MODULE_10__["default"], {
+            }) : /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)(antd__WEBPACK_IMPORTED_MODULE_11__["default"], {
               type: "text",
-              icon: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)(_ant_design_icons__WEBPACK_IMPORTED_MODULE_15__["default"], {}),
+              icon: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)(_ant_design_icons__WEBPACK_IMPORTED_MODULE_16__["default"], {}),
               style: {
                 marginLeft: "-20px"
               },
@@ -73461,7 +73762,14 @@ function RoleTab() {
         render: function render(date) {
           return date ? new Date(date).toLocaleDateString() : "-";
         }
-      }],
+      }].concat(_toConsumableArray(statusFilter === "Archived" ? [{
+        title: "Archived At",
+        dataIndex: "deleted_at",
+        key: "deleted_at",
+        render: function render(date) {
+          return date ? new Date(date).toLocaleDateString() : "-";
+        }
+      }] : [])),
       dataSource: filteredRoles,
       rowKey: function rowKey(record) {
         return record.id;
@@ -73469,7 +73777,10 @@ function RoleTab() {
       pagination: {
         pageSize: 10
       },
-      loading: loading
+      loading: loading,
+      locale: {
+        emptyText: "No ".concat(statusFilter.toLowerCase(), " roles found matching the current search")
+      }
     }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)(_AddRoleModal__WEBPACK_IMPORTED_MODULE_2__["default"], {
       visible: addModalVisible,
       onCancel: function onCancel() {
@@ -75015,7 +75326,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _EditSackModal__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./EditSackModal */ "./resources/js/components/Admin/Inventory/EditSackModal.js");
 /* harmony import */ var _ant_design_icons__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! @ant-design/icons */ "./node_modules/@ant-design/icons/es/icons/EditOutlined.js");
 /* harmony import */ var _ant_design_icons__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! @ant-design/icons */ "./node_modules/@ant-design/icons/es/icons/UndoOutlined.js");
-/* harmony import */ var _ant_design_icons__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! @ant-design/icons */ "./node_modules/@ant-design/icons/es/icons/DeleteOutlined.js");
+/* harmony import */ var _ant_design_icons__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! @ant-design/icons */ "./node_modules/@ant-design/icons/es/icons/InboxOutlined.js");
 /* harmony import */ var _ant_design_icons__WEBPACK_IMPORTED_MODULE_16__ = __webpack_require__(/*! @ant-design/icons */ "./node_modules/@ant-design/icons/es/icons/PlusOutlined.js");
 /* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! react/jsx-runtime */ "./node_modules/react/jsx-runtime.js");
 function _typeof(o) { "@babel/helpers - typeof"; return _typeof = "function" == typeof Symbol && "symbol" == typeof Symbol.iterator ? function (o) { return typeof o; } : function (o) { return o && "function" == typeof Symbol && o.constructor === Symbol && o !== Symbol.prototype ? "symbol" : typeof o; }, _typeof(o); }
@@ -75239,8 +75550,7 @@ var AdminSacks = function AdminSacks() {
           title: "Restore"
         }) : /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)(_ant_design_icons__WEBPACK_IMPORTED_MODULE_11__["default"], {
           style: {
-            cursor: "pointer",
-            color: "#ff4d4f"
+            cursor: "pointer"
           },
           onClick: function onClick() {
             return handleDelete(record.id);
@@ -75369,7 +75679,7 @@ var AdminSacks = function AdminSacks() {
       title: "Are you sure you want to delete this sack?",
       content: "This action can be reversed later.",
       okText: "Yes",
-      okType: "danger",
+      // okType: "danger",
       cancelText: "No",
       onOk: function () {
         var _onOk = _asyncToGenerator(/*#__PURE__*/_regeneratorRuntime().mark(function _callee5() {
@@ -75439,7 +75749,7 @@ var AdminSacks = function AdminSacks() {
       title: "Are you sure you want to delete selected sacks?",
       content: "This action can be reversed later.",
       okText: "Yes",
-      okType: "danger",
+      // okType: "danger",
       cancelText: "No",
       onOk: function () {
         var _onOk2 = _asyncToGenerator(/*#__PURE__*/_regeneratorRuntime().mark(function _callee7() {
@@ -75568,6 +75878,9 @@ var AdminSacks = function AdminSacks() {
         },
         children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)(antd__WEBPACK_IMPORTED_MODULE_15__["default"], {
           type: "primary",
+          style: {
+            backgroundColor: "#A63F3F"
+          },
           onClick: function onClick() {
             return setIsAddSackModalVisible(true);
           },
@@ -75595,7 +75908,8 @@ var AdminSacks = function AdminSacks() {
     }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("div", {
       style: {
         marginTop: 16,
-        textAlign: "right"
+        display: "flex",
+        justifyContent: "flex-end"
       },
       children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)(antd__WEBPACK_IMPORTED_MODULE_18__["default"], {
         current: currentPage,
@@ -77576,6 +77890,10 @@ var AddProductModal = function AddProductModal(_ref) {
             })
           })
         }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)(antd__WEBPACK_IMPORTED_MODULE_4__["default"].Item, {
+          style: {
+            marginTop: '20px',
+            marginLeft: '350px'
+          },
           children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)(antd__WEBPACK_IMPORTED_MODULE_10__["default"], {
             type: "primary",
             htmlType: "submit",
@@ -77620,18 +77938,18 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _AdminReusable_AdminPage__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../AdminReusable/AdminPage */ "./resources/js/components/AdminReusable/AdminPage.js");
 /* harmony import */ var antd__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! antd */ "./node_modules/antd/es/input/index.js");
 /* harmony import */ var antd__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! antd */ "./node_modules/antd/es/select/index.js");
-/* harmony import */ var antd__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! antd */ "./node_modules/antd/es/message/index.js");
-/* harmony import */ var antd__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! antd */ "./node_modules/antd/es/space/index.js");
-/* harmony import */ var antd__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(/*! antd */ "./node_modules/antd/es/button/index.js");
-/* harmony import */ var antd__WEBPACK_IMPORTED_MODULE_15__ = __webpack_require__(/*! antd */ "./node_modules/antd/es/table/index.js");
-/* harmony import */ var antd__WEBPACK_IMPORTED_MODULE_16__ = __webpack_require__(/*! antd */ "./node_modules/antd/es/pagination/index.js");
-/* harmony import */ var antd__WEBPACK_IMPORTED_MODULE_17__ = __webpack_require__(/*! antd */ "./node_modules/antd/es/modal/index.js");
+/* harmony import */ var antd__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! antd */ "./node_modules/antd/es/modal/index.js");
+/* harmony import */ var antd__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! antd */ "./node_modules/antd/es/message/index.js");
+/* harmony import */ var antd__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! antd */ "./node_modules/antd/es/space/index.js");
+/* harmony import */ var antd__WEBPACK_IMPORTED_MODULE_14__ = __webpack_require__(/*! antd */ "./node_modules/antd/es/button/index.js");
+/* harmony import */ var antd__WEBPACK_IMPORTED_MODULE_16__ = __webpack_require__(/*! antd */ "./node_modules/antd/es/table/index.js");
+/* harmony import */ var antd__WEBPACK_IMPORTED_MODULE_17__ = __webpack_require__(/*! antd */ "./node_modules/antd/es/pagination/index.js");
 /* harmony import */ var _AddProductModal__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./AddProductModal */ "./resources/js/components/Admin/Products/AddProductModal.js");
 /* harmony import */ var _EditProductModal__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./EditProductModal */ "./resources/js/components/Admin/Products/EditProductModal.js");
-/* harmony import */ var _ant_design_icons__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! @ant-design/icons */ "./node_modules/@ant-design/icons/es/icons/EditOutlined.js");
-/* harmony import */ var _ant_design_icons__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! @ant-design/icons */ "./node_modules/@ant-design/icons/es/icons/UndoOutlined.js");
-/* harmony import */ var _ant_design_icons__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! @ant-design/icons */ "./node_modules/@ant-design/icons/es/icons/InboxOutlined.js");
-/* harmony import */ var _ant_design_icons__WEBPACK_IMPORTED_MODULE_14__ = __webpack_require__(/*! @ant-design/icons */ "./node_modules/@ant-design/icons/es/icons/PlusOutlined.js");
+/* harmony import */ var _ant_design_icons__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! @ant-design/icons */ "./node_modules/@ant-design/icons/es/icons/EditOutlined.js");
+/* harmony import */ var _ant_design_icons__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! @ant-design/icons */ "./node_modules/@ant-design/icons/es/icons/UndoOutlined.js");
+/* harmony import */ var _ant_design_icons__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(/*! @ant-design/icons */ "./node_modules/@ant-design/icons/es/icons/InboxOutlined.js");
+/* harmony import */ var _ant_design_icons__WEBPACK_IMPORTED_MODULE_15__ = __webpack_require__(/*! @ant-design/icons */ "./node_modules/@ant-design/icons/es/icons/PlusOutlined.js");
 /* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! react/jsx-runtime */ "./node_modules/react/jsx-runtime.js");
 function _typeof(o) { "@babel/helpers - typeof"; return _typeof = "function" == typeof Symbol && "symbol" == typeof Symbol.iterator ? function (o) { return typeof o; } : function (o) { return o && "function" == typeof Symbol && o.constructor === Symbol && o !== Symbol.prototype ? "symbol" : typeof o; }, _typeof(o); }
 function ownKeys(e, r) { var t = Object.keys(e); if (Object.getOwnPropertySymbols) { var o = Object.getOwnPropertySymbols(e); r && (o = o.filter(function (r) { return Object.getOwnPropertyDescriptor(e, r).enumerable; })), t.push.apply(t, o); } return t; }
@@ -77653,7 +77971,7 @@ function _arrayWithHoles(r) { if (Array.isArray(r)) return r; }
 
 
 
- // Import the EditProductModal
+
 
 
 var Search = antd__WEBPACK_IMPORTED_MODULE_6__["default"].Search;
@@ -77694,7 +78012,7 @@ var AdminProducts = function AdminProducts() {
   var _useState17 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)([]),
     _useState18 = _slicedToArray(_useState17, 2),
     sacks = _useState18[0],
-    setSacks = _useState18[1]; // Add state for sacks
+    setSacks = _useState18[1];
   var _useState19 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(""),
     _useState20 = _slicedToArray(_useState19, 2),
     selectedCategory = _useState20[0],
@@ -77722,7 +78040,7 @@ var AdminProducts = function AdminProducts() {
   var _useState31 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(null),
     _useState32 = _slicedToArray(_useState31, 2),
     selectedProduct = _useState32[0],
-    setSelectedProduct = _useState32[1]; // Track the selected product for editing
+    setSelectedProduct = _useState32[1];
   var _useState33 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)([]),
     _useState34 = _slicedToArray(_useState33, 2),
     selectedRowKeys = _useState34[0],
@@ -77753,6 +78071,8 @@ var AdminProducts = function AdminProducts() {
     _useState46 = _slicedToArray(_useState45, 2),
     total = _useState46[0],
     setTotal = _useState46[1];
+
+  // Existing fetch functions...
   var fetchProducts = /*#__PURE__*/function () {
     var _ref = _asyncToGenerator(/*#__PURE__*/_regeneratorRuntime().mark(function _callee() {
       var response;
@@ -77877,8 +78197,6 @@ var AdminProducts = function AdminProducts() {
       return _ref4.apply(this, arguments);
     };
   }();
-
-  // Add function to fetch sacks
   var fetchSacks = /*#__PURE__*/function () {
     var _ref5 = _asyncToGenerator(/*#__PURE__*/_regeneratorRuntime().mark(function _callee5() {
       var response;
@@ -77890,7 +78208,7 @@ var AdminProducts = function AdminProducts() {
             return axios__WEBPACK_IMPORTED_MODULE_1___default().get("http://127.0.0.1:8000/api/sacks", {
               params: {
                 status: 'active'
-              } // Only fetch active sacks
+              }
             });
           case 3:
             response = _context5.sent;
@@ -77917,7 +78235,7 @@ var AdminProducts = function AdminProducts() {
     fetchCategories();
     fetchCategoryTypes();
     fetchBrands();
-    fetchSacks(); // Fetch sacks data
+    fetchSacks();
   }, [selectedStatus]);
   (0,react__WEBPACK_IMPORTED_MODULE_0__.useEffect)(function () {
     localStorage.setItem("selectedStatus", selectedStatus);
@@ -77946,154 +78264,209 @@ var AdminProducts = function AdminProducts() {
     }
     setFilteredProducts(filtered);
     setTotal(filtered.length);
-    setCurrentPage(1); // Reset to first page when filters change
+    setCurrentPage(1);
   }, [searchQuery, selectedCategory, selectedCategoryType, selectedBrand, products]);
-  var handleArchive = /*#__PURE__*/function () {
-    var _ref6 = _asyncToGenerator(/*#__PURE__*/_regeneratorRuntime().mark(function _callee6(productId) {
-      return _regeneratorRuntime().wrap(function _callee6$(_context6) {
-        while (1) switch (_context6.prev = _context6.next) {
-          case 0:
-            _context6.prev = 0;
-            _context6.next = 3;
-            return axios__WEBPACK_IMPORTED_MODULE_1___default()["delete"]("http://127.0.0.1:8000/api/products/".concat(productId));
-          case 3:
-            setProducts(products.map(function (product) {
-              return product.id === productId ? _objectSpread(_objectSpread({}, product), {}, {
-                is_archived: true
-              }) : product;
-            }));
-            antd__WEBPACK_IMPORTED_MODULE_8__["default"].success("Product archived successfully!");
-            _context6.next = 11;
-            break;
-          case 7:
-            _context6.prev = 7;
-            _context6.t0 = _context6["catch"](0);
-            console.error("Error archiving product:", _context6.t0);
-            antd__WEBPACK_IMPORTED_MODULE_8__["default"].error("Failed to archive product.");
-          case 11:
-          case "end":
-            return _context6.stop();
+
+  // Archive a single product with confirmation
+  var handleArchive = function handleArchive(productId) {
+    // Find the product to display its name in the confirmation
+    var product = products.find(function (p) {
+      return p.id === productId;
+    });
+    antd__WEBPACK_IMPORTED_MODULE_8__["default"].confirm({
+      title: "Are you sure you want to archive this product?",
+      content: "Product \"".concat(product === null || product === void 0 ? void 0 : product.product_name, "\" will no longer be available to customers."),
+      okText: "Yes",
+      // okType: "danger",
+      cancelText: "No",
+      onOk: function () {
+        var _onOk = _asyncToGenerator(/*#__PURE__*/_regeneratorRuntime().mark(function _callee6() {
+          return _regeneratorRuntime().wrap(function _callee6$(_context6) {
+            while (1) switch (_context6.prev = _context6.next) {
+              case 0:
+                _context6.prev = 0;
+                _context6.next = 3;
+                return axios__WEBPACK_IMPORTED_MODULE_1___default()["delete"]("http://127.0.0.1:8000/api/products/".concat(productId));
+              case 3:
+                setProducts(products.map(function (product) {
+                  return product.id === productId ? _objectSpread(_objectSpread({}, product), {}, {
+                    is_archived: true
+                  }) : product;
+                }));
+                antd__WEBPACK_IMPORTED_MODULE_9__["default"].success("Product archived successfully!");
+                _context6.next = 11;
+                break;
+              case 7:
+                _context6.prev = 7;
+                _context6.t0 = _context6["catch"](0);
+                console.error("Error archiving product:", _context6.t0);
+                antd__WEBPACK_IMPORTED_MODULE_9__["default"].error("Failed to archive product.");
+              case 11:
+              case "end":
+                return _context6.stop();
+            }
+          }, _callee6, null, [[0, 7]]);
+        }));
+        function onOk() {
+          return _onOk.apply(this, arguments);
         }
-      }, _callee6, null, [[0, 7]]);
-    }));
-    return function handleArchive(_x) {
-      return _ref6.apply(this, arguments);
-    };
-  }();
-  var handleBulkArchive = /*#__PURE__*/function () {
-    var _ref7 = _asyncToGenerator(/*#__PURE__*/_regeneratorRuntime().mark(function _callee7() {
-      return _regeneratorRuntime().wrap(function _callee7$(_context7) {
-        while (1) switch (_context7.prev = _context7.next) {
-          case 0:
-            _context7.prev = 0;
-            _context7.next = 3;
-            return Promise.all(selectedRowKeys.map(function (id) {
-              return axios__WEBPACK_IMPORTED_MODULE_1___default()["delete"]("http://127.0.0.1:8000/api/products/".concat(id));
-            }));
-          case 3:
-            setProducts(products.map(function (product) {
-              return selectedRowKeys.includes(product.id) ? _objectSpread(_objectSpread({}, product), {}, {
-                is_archived: true
-              }) : product;
-            }));
-            setSelectedRowKeys([]);
-            antd__WEBPACK_IMPORTED_MODULE_8__["default"].success("Selected products archived successfully!");
-            _context7.next = 12;
-            break;
-          case 8:
-            _context7.prev = 8;
-            _context7.t0 = _context7["catch"](0);
-            console.error("Error archiving products:", _context7.t0);
-            antd__WEBPACK_IMPORTED_MODULE_8__["default"].error("Failed to archive selected products.");
-          case 12:
-          case "end":
-            return _context7.stop();
+        return onOk;
+      }()
+    });
+  };
+
+  // Bulk archive with confirmation
+  var handleBulkArchive = function handleBulkArchive() {
+    antd__WEBPACK_IMPORTED_MODULE_8__["default"].confirm({
+      title: "Are you sure you want to archive selected products?",
+      content: "".concat(selectedRowKeys.length, " products will no longer be available to customers."),
+      okText: "Yes",
+      // okType: "danger",
+      cancelText: "No",
+      onOk: function () {
+        var _onOk2 = _asyncToGenerator(/*#__PURE__*/_regeneratorRuntime().mark(function _callee7() {
+          return _regeneratorRuntime().wrap(function _callee7$(_context7) {
+            while (1) switch (_context7.prev = _context7.next) {
+              case 0:
+                _context7.prev = 0;
+                _context7.next = 3;
+                return Promise.all(selectedRowKeys.map(function (id) {
+                  return axios__WEBPACK_IMPORTED_MODULE_1___default()["delete"]("http://127.0.0.1:8000/api/products/".concat(id));
+                }));
+              case 3:
+                setProducts(products.map(function (product) {
+                  return selectedRowKeys.includes(product.id) ? _objectSpread(_objectSpread({}, product), {}, {
+                    is_archived: true
+                  }) : product;
+                }));
+                setSelectedRowKeys([]);
+                antd__WEBPACK_IMPORTED_MODULE_9__["default"].success("Selected products archived successfully!");
+                _context7.next = 12;
+                break;
+              case 8:
+                _context7.prev = 8;
+                _context7.t0 = _context7["catch"](0);
+                console.error("Error archiving products:", _context7.t0);
+                antd__WEBPACK_IMPORTED_MODULE_9__["default"].error("Failed to archive selected products.");
+              case 12:
+              case "end":
+                return _context7.stop();
+            }
+          }, _callee7, null, [[0, 8]]);
+        }));
+        function onOk() {
+          return _onOk2.apply(this, arguments);
         }
-      }, _callee7, null, [[0, 8]]);
-    }));
-    return function handleBulkArchive() {
-      return _ref7.apply(this, arguments);
-    };
-  }();
-  var handleBulkRestore = /*#__PURE__*/function () {
-    var _ref8 = _asyncToGenerator(/*#__PURE__*/_regeneratorRuntime().mark(function _callee8() {
-      return _regeneratorRuntime().wrap(function _callee8$(_context8) {
-        while (1) switch (_context8.prev = _context8.next) {
-          case 0:
-            _context8.prev = 0;
-            _context8.next = 3;
-            return Promise.all(selectedRowKeys.map(function (id) {
-              return axios__WEBPACK_IMPORTED_MODULE_1___default().put("http://127.0.0.1:8000/api/products/".concat(id, "/restore"));
-            }));
-          case 3:
-            setProducts(products.map(function (product) {
-              return selectedRowKeys.includes(product.id) ? _objectSpread(_objectSpread({}, product), {}, {
-                is_archived: false
-              }) : product;
-            }));
-            setSelectedRowKeys([]);
-            antd__WEBPACK_IMPORTED_MODULE_8__["default"].success("Selected products restored successfully!");
-            _context8.next = 12;
-            break;
-          case 8:
-            _context8.prev = 8;
-            _context8.t0 = _context8["catch"](0);
-            console.error("Error restoring products:", _context8.t0);
-            antd__WEBPACK_IMPORTED_MODULE_8__["default"].error("Failed to restore selected products.");
-          case 12:
-          case "end":
-            return _context8.stop();
+        return onOk;
+      }()
+    });
+  };
+
+  // Restore a single product with confirmation
+  var handleRestore = function handleRestore(productId) {
+    // Find the product to display its name in the confirmation
+    var product = products.find(function (p) {
+      return p.id === productId;
+    });
+    antd__WEBPACK_IMPORTED_MODULE_8__["default"].confirm({
+      title: "Are you sure you want to restore this product?",
+      content: "Product \"".concat(product === null || product === void 0 ? void 0 : product.product_name, "\" will be available to customers again."),
+      okText: "Yes",
+      okType: "primary",
+      cancelText: "No",
+      onOk: function () {
+        var _onOk3 = _asyncToGenerator(/*#__PURE__*/_regeneratorRuntime().mark(function _callee8() {
+          return _regeneratorRuntime().wrap(function _callee8$(_context8) {
+            while (1) switch (_context8.prev = _context8.next) {
+              case 0:
+                _context8.prev = 0;
+                _context8.next = 3;
+                return axios__WEBPACK_IMPORTED_MODULE_1___default().put("http://127.0.0.1:8000/api/products/".concat(productId, "/restore"));
+              case 3:
+                setProducts(products.map(function (product) {
+                  return product.id === productId ? _objectSpread(_objectSpread({}, product), {}, {
+                    is_archived: false
+                  }) : product;
+                }));
+                antd__WEBPACK_IMPORTED_MODULE_9__["default"].success("Product restored successfully!");
+                _context8.next = 11;
+                break;
+              case 7:
+                _context8.prev = 7;
+                _context8.t0 = _context8["catch"](0);
+                console.error("Error restoring product:", _context8.t0);
+                antd__WEBPACK_IMPORTED_MODULE_9__["default"].error("Failed to restore product.");
+              case 11:
+              case "end":
+                return _context8.stop();
+            }
+          }, _callee8, null, [[0, 7]]);
+        }));
+        function onOk() {
+          return _onOk3.apply(this, arguments);
         }
-      }, _callee8, null, [[0, 8]]);
-    }));
-    return function handleBulkRestore() {
-      return _ref8.apply(this, arguments);
-    };
-  }();
-  var handleRestore = /*#__PURE__*/function () {
-    var _ref9 = _asyncToGenerator(/*#__PURE__*/_regeneratorRuntime().mark(function _callee9(productId) {
-      return _regeneratorRuntime().wrap(function _callee9$(_context9) {
-        while (1) switch (_context9.prev = _context9.next) {
-          case 0:
-            _context9.prev = 0;
-            _context9.next = 3;
-            return axios__WEBPACK_IMPORTED_MODULE_1___default().put("http://127.0.0.1:8000/api/products/".concat(productId, "/restore"));
-          case 3:
-            setProducts(products.map(function (product) {
-              return product.id === productId ? _objectSpread(_objectSpread({}, product), {}, {
-                is_archived: false
-              }) : product;
-            }));
-            antd__WEBPACK_IMPORTED_MODULE_8__["default"].success("Product restored successfully!");
-            _context9.next = 11;
-            break;
-          case 7:
-            _context9.prev = 7;
-            _context9.t0 = _context9["catch"](0);
-            console.error("Error restoring product:", _context9.t0);
-            antd__WEBPACK_IMPORTED_MODULE_8__["default"].error("Failed to restore product.");
-          case 11:
-          case "end":
-            return _context9.stop();
+        return onOk;
+      }()
+    });
+  };
+
+  // Bulk restore with confirmation
+  var handleBulkRestore = function handleBulkRestore() {
+    antd__WEBPACK_IMPORTED_MODULE_8__["default"].confirm({
+      title: "Are you sure you want to restore selected products?",
+      content: "".concat(selectedRowKeys.length, " products will be available to customers again."),
+      okText: "Yes",
+      okType: "primary",
+      cancelText: "No",
+      onOk: function () {
+        var _onOk4 = _asyncToGenerator(/*#__PURE__*/_regeneratorRuntime().mark(function _callee9() {
+          return _regeneratorRuntime().wrap(function _callee9$(_context9) {
+            while (1) switch (_context9.prev = _context9.next) {
+              case 0:
+                _context9.prev = 0;
+                _context9.next = 3;
+                return Promise.all(selectedRowKeys.map(function (id) {
+                  return axios__WEBPACK_IMPORTED_MODULE_1___default().put("http://127.0.0.1:8000/api/products/".concat(id, "/restore"));
+                }));
+              case 3:
+                setProducts(products.map(function (product) {
+                  return selectedRowKeys.includes(product.id) ? _objectSpread(_objectSpread({}, product), {}, {
+                    is_archived: false
+                  }) : product;
+                }));
+                setSelectedRowKeys([]);
+                antd__WEBPACK_IMPORTED_MODULE_9__["default"].success("Selected products restored successfully!");
+                _context9.next = 12;
+                break;
+              case 8:
+                _context9.prev = 8;
+                _context9.t0 = _context9["catch"](0);
+                console.error("Error restoring products:", _context9.t0);
+                antd__WEBPACK_IMPORTED_MODULE_9__["default"].error("Failed to restore selected products.");
+              case 12:
+              case "end":
+                return _context9.stop();
+            }
+          }, _callee9, null, [[0, 8]]);
+        }));
+        function onOk() {
+          return _onOk4.apply(this, arguments);
         }
-      }, _callee9, null, [[0, 7]]);
-    }));
-    return function handleRestore(_x2) {
-      return _ref9.apply(this, arguments);
-    };
-  }();
+        return onOk;
+      }()
+    });
+  };
   var handleOpenEditModal = function handleOpenEditModal(product) {
     setSelectedProduct(product);
     setIsEditProductModalVisible(true);
   };
   var handleSaveEdit = /*#__PURE__*/function () {
-    var _ref10 = _asyncToGenerator(/*#__PURE__*/_regeneratorRuntime().mark(function _callee10(formData) {
+    var _ref6 = _asyncToGenerator(/*#__PURE__*/_regeneratorRuntime().mark(function _callee10(formData) {
       var response, _error$response;
       return _regeneratorRuntime().wrap(function _callee10$(_context10) {
         while (1) switch (_context10.prev = _context10.next) {
           case 0:
             _context10.prev = 0;
-            // Append the _method=PUT field for Laravel to recognize it as an update request
             formData.append("_method", "PUT");
             _context10.next = 4;
             return axios__WEBPACK_IMPORTED_MODULE_1___default().post("http://127.0.0.1:8000/api/products/".concat(selectedProduct.id), formData, {
@@ -78103,27 +78476,25 @@ var AdminProducts = function AdminProducts() {
             });
           case 4:
             response = _context10.sent;
-            // Refetch products to update the UI
             fetchProducts();
-            // Also refresh sacks data as quantities might have changed
             fetchSacks();
             setIsEditProductModalVisible(false);
-            antd__WEBPACK_IMPORTED_MODULE_8__["default"].success("Product updated successfully!");
+            antd__WEBPACK_IMPORTED_MODULE_9__["default"].success("Product updated successfully!");
             _context10.next = 15;
             break;
           case 11:
             _context10.prev = 11;
             _context10.t0 = _context10["catch"](0);
             console.error("Error updating product:", (_error$response = _context10.t0.response) === null || _error$response === void 0 ? void 0 : _error$response.data);
-            antd__WEBPACK_IMPORTED_MODULE_8__["default"].error("Failed to update product.");
+            antd__WEBPACK_IMPORTED_MODULE_9__["default"].error("Failed to update product.");
           case 15:
           case "end":
             return _context10.stop();
         }
       }, _callee10, null, [[0, 11]]);
     }));
-    return function handleSaveEdit(_x3) {
-      return _ref10.apply(this, arguments);
+    return function handleSaveEdit(_x) {
+      return _ref6.apply(this, arguments);
     };
   }();
   var handlePageChange = function handlePageChange(page, pageSize) {
@@ -78136,11 +78507,9 @@ var AdminProducts = function AdminProducts() {
     selectedRowKeys: selectedRowKeys,
     onChange: onSelectChange
   };
-
-  // Add handler for when product is added successfully
   var handleProductAdded = function handleProductAdded() {
     fetchProducts();
-    fetchSacks(); // Refresh sacks data since available quantities have changed
+    fetchSacks();
   };
   if (loading) return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("div", {
     children: "Loading products..."
@@ -78148,8 +78517,6 @@ var AdminProducts = function AdminProducts() {
   if (error) return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("div", {
     children: error
   });
-
-  // Calculate the current page data
   var startIndex = (currentPage - 1) * pageSize;
   var endIndex = startIndex + pageSize;
   var currentPageData = filteredProducts.slice(startIndex, endIndex);
@@ -78157,16 +78524,16 @@ var AdminProducts = function AdminProducts() {
     title: "Actions",
     key: "actions",
     render: function render(_, record) {
-      return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsxs)(antd__WEBPACK_IMPORTED_MODULE_9__["default"], {
+      return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsxs)(antd__WEBPACK_IMPORTED_MODULE_10__["default"], {
         size: "small",
-        children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)(_ant_design_icons__WEBPACK_IMPORTED_MODULE_10__["default"], {
+        children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)(_ant_design_icons__WEBPACK_IMPORTED_MODULE_11__["default"], {
           style: {
             cursor: "pointer"
           },
           onClick: function onClick() {
             return handleOpenEditModal(record);
           }
-        }), selectedStatus === "archived" || record.is_archived ? /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)(_ant_design_icons__WEBPACK_IMPORTED_MODULE_11__["default"], {
+        }), selectedStatus === "archived" || record.is_archived ? /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)(_ant_design_icons__WEBPACK_IMPORTED_MODULE_12__["default"], {
           style: {
             cursor: "pointer",
             color: "#52c41a"
@@ -78175,7 +78542,7 @@ var AdminProducts = function AdminProducts() {
             return handleRestore(record.id);
           },
           title: "Restore"
-        }) : /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)(_ant_design_icons__WEBPACK_IMPORTED_MODULE_12__["default"], {
+        }) : /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)(_ant_design_icons__WEBPACK_IMPORTED_MODULE_13__["default"], {
           style: {
             cursor: "pointer"
           },
@@ -78186,7 +78553,9 @@ var AdminProducts = function AdminProducts() {
         })]
       });
     }
-  }, {
+  },
+  // Other columns remain the same...
+  {
     title: "Product Name",
     dataIndex: "product_name",
     key: "product_name"
@@ -78219,8 +78588,7 @@ var AdminProducts = function AdminProducts() {
     title: "Sack Code",
     key: "sack_code",
     render: function render(_, record) {
-      if (!sacks || sacks.length === 0) return null; // Or <Skeleton />
-
+      if (!sacks || sacks.length === 0) return null;
       var sack = sacks.find(function (s) {
         return s.id === record.sack_id;
       });
@@ -78342,30 +78710,30 @@ var AdminProducts = function AdminProducts() {
           display: "flex",
           gap: "10px"
         },
-        children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)(antd__WEBPACK_IMPORTED_MODULE_13__["default"], {
+        children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)(antd__WEBPACK_IMPORTED_MODULE_14__["default"], {
           type: "primary",
           onClick: function onClick() {
             return setIsAddProductModalVisible(true);
           },
-          icon: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)(_ant_design_icons__WEBPACK_IMPORTED_MODULE_14__["default"], {}),
+          icon: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)(_ant_design_icons__WEBPACK_IMPORTED_MODULE_15__["default"], {}),
           style: {
             backgroundColor: "#A63F3F"
           },
           children: "Add Product"
-        }), selectedStatus === "active" ? /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)(antd__WEBPACK_IMPORTED_MODULE_13__["default"], {
+        }), selectedStatus === "active" ? /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)(antd__WEBPACK_IMPORTED_MODULE_14__["default"], {
           type: "primary",
           danger: true,
           onClick: handleBulkArchive,
           disabled: selectedRowKeys.length === 0,
           children: "Archive Selected Products"
-        }) : /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)(antd__WEBPACK_IMPORTED_MODULE_13__["default"], {
+        }) : /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)(antd__WEBPACK_IMPORTED_MODULE_14__["default"], {
           type: "primary",
           onClick: handleBulkRestore,
           disabled: selectedRowKeys.length === 0,
           children: "Restore Selected Products"
         })]
       })]
-    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)(antd__WEBPACK_IMPORTED_MODULE_15__["default"], {
+    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)(antd__WEBPACK_IMPORTED_MODULE_16__["default"], {
       rowSelection: rowSelection,
       columns: columns,
       dataSource: currentPageData,
@@ -78374,9 +78742,10 @@ var AdminProducts = function AdminProducts() {
     }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("div", {
       style: {
         marginTop: 16,
-        textAlign: "right"
+        display: "flex",
+        justifyContent: "flex-end"
       },
-      children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)(antd__WEBPACK_IMPORTED_MODULE_16__["default"], {
+      children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)(antd__WEBPACK_IMPORTED_MODULE_17__["default"], {
         current: currentPage,
         pageSize: pageSize,
         total: total,
@@ -78394,10 +78763,7 @@ var AdminProducts = function AdminProducts() {
       categoryTypes: categoryTypes,
       brands: brands,
       sacks: sacks,
-      onProductAdded: function onProductAdded() {
-        fetchProducts();
-        fetchSacks(); // This will refresh the sacks data
-      }
+      onProductAdded: handleProductAdded
     }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)(_EditProductModal__WEBPACK_IMPORTED_MODULE_4__["default"], {
       visible: isEditProductModalVisible,
       onCancel: function onCancel() {
@@ -78408,8 +78774,8 @@ var AdminProducts = function AdminProducts() {
       categories: categories,
       categoryTypes: categoryTypes,
       brands: brands,
-      sacks: sacks // Pass sacks data to EditProductModal as well
-    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)(antd__WEBPACK_IMPORTED_MODULE_17__["default"], {
+      sacks: sacks
+    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)(antd__WEBPACK_IMPORTED_MODULE_8__["default"], {
       visible: previewVisible,
       title: previewTitle,
       footer: null,

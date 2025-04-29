@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
-import { Table, Input, Space, message, Button, Popconfirm, Select } from "antd";
-import { SearchOutlined, EditOutlined, InboxOutlined, PlusOutlined, UndoOutlined, DeleteOutlined } from "@ant-design/icons";
+import { Table, Input, Space, message, Button, Modal, Select } from "antd";
+import { SearchOutlined, EditOutlined, InboxOutlined, PlusOutlined, UndoOutlined } from "@ant-design/icons";
 import AddRoleModal from "./AddRoleModal";
 import EditRoleModal from "./EditRoleModal";
 
@@ -78,63 +78,94 @@ function RoleTab() {
     setEditModalVisible(true);
   };
 
+  // Modified to include confirmation modal
   const handleArchive = (roleId) => {
-    setLoading(true);
-    axios
-      .put(`${ROLES_API}/${roleId}/archive`)
-      .then(() => {
-        message.success("Role archived successfully");
-        fetchRoles();
-        setSelectedRowKeys([]);
-      })
-      .catch((err) => {
-        console.error("Error archiving role:", err);
-        message.error("Failed to archive role");
-      })
-      .finally(() => {
-        setLoading(false);
-      });
+    Modal.confirm({
+      title: "Are you sure you want to archive this role?",
+      content: "This will hide it from active view, but you can restore it later.",
+      onOk: () => {
+        setLoading(true);
+        axios
+          .put(`${ROLES_API}/${roleId}/archive`)
+          .then(() => {
+            message.success("Role archived successfully");
+            fetchRoles();
+            setSelectedRowKeys([]);
+          })
+          .catch((err) => {
+            console.error("Error archiving role:", err);
+            message.error("Failed to archive role");
+          })
+          .finally(() => {
+            setLoading(false);
+          });
+      },
+    });
   };
 
+  // Modified to include confirmation modal
   const handleRestore = (roleId) => {
-    setLoading(true);
-    axios
-      .put(`${ROLES_API}/${roleId}/restore`)
-      .then(() => {
-        message.success("Role restored successfully");
-        fetchRoles();
-        setSelectedRowKeys([]);
-      })
-      .catch((err) => {
-        console.error("Error restoring role:", err);
-        message.error("Failed to restore role");
-      })
-      .finally(() => {
-        setLoading(false);
-      });
+    Modal.confirm({
+      title: "Are you sure you want to restore this role?",
+      content: "This will make it active again.",
+      onOk: () => {
+        setLoading(true);
+        axios
+          .put(`${ROLES_API}/${roleId}/restore`)
+          .then(() => {
+            message.success("Role restored successfully");
+            fetchRoles();
+            setSelectedRowKeys([]);
+          })
+          .catch((err) => {
+            console.error("Error restoring role:", err);
+            message.error("Failed to restore role");
+          })
+          .finally(() => {
+            setLoading(false);
+          });
+      },
+    });
   };
 
+  // Modified to include confirmation modal
   const handleBulkStatusChange = () => {
-    setLoading(true);
-    const endpoint = statusFilter === "Archived" ? "restore" : "archive";
-    
-    Promise.all(
-      selectedRowKeys.map((key) => 
-        axios.put(`${ROLES_API}/${key}/${endpoint}`)
-      )
-    )
-      .then(() => {
-        message.success(`Roles ${statusFilter === "Archived" ? "restored" : "archived"} successfully`);
-        fetchRoles();
-        setSelectedRowKeys([]);
-      })
-      .catch((err) => {
-        console.error(`Error processing roles:`, err);
-        message.error(`Failed to ${statusFilter === "Archived" ? "restore" : "archive"} roles`);
-      })
-      .finally(() => {
-        setLoading(false);
+    if (selectedRowKeys.length === 0) {
+      Modal.info({ 
+        title: 'No roles selected', 
+        content: `Please select at least one role to ${statusFilter === "Archived" ? "restore" : "archive"}.` 
       });
+      return;
+    }
+
+    Modal.confirm({
+      title: `Are you sure you want to ${statusFilter === "Archived" ? "restore" : "archive"} ${selectedRowKeys.length} roles?`,
+      content: statusFilter === "Archived" 
+        ? "This will make them active again." 
+        : "This action can be reversed later.",
+      onOk: () => {
+        setLoading(true);
+        const endpoint = statusFilter === "Archived" ? "restore" : "archive";
+        
+        Promise.all(
+          selectedRowKeys.map((key) => 
+            axios.put(`${ROLES_API}/${key}/${endpoint}`)
+          )
+        )
+          .then(() => {
+            message.success(`Roles ${statusFilter === "Archived" ? "restored" : "archived"} successfully`);
+            fetchRoles();
+            setSelectedRowKeys([]);
+          })
+          .catch((err) => {
+            console.error(`Error processing roles:`, err);
+            message.error(`Failed to ${statusFilter === "Archived" ? "restore" : "archive"} roles`);
+          })
+          .finally(() => {
+            setLoading(false);
+          });
+      },
+    });
   };
 
   // Filter roles based on search text and archive status
@@ -190,10 +221,11 @@ function RoleTab() {
           </Button>
           <Button 
             type="primary"
-            danger                           // Add this prop for the red styling
-           onClick={handleBulkStatusChange}
-          style={{ marginLeft: 8 }}        // Keep just the margin, remove backgroundColor
-          disabled={selectedRowKeys.length === 0}
+            danger
+            onClick={handleBulkStatusChange}
+            style={{ marginLeft: 8 }}
+            disabled={selectedRowKeys.length === 0}
+            icon={statusFilter === "Archived" ? <UndoOutlined /> : null}
           >
             {statusFilter === "Archived" ? "Restore" : "Archive"} Selected
           </Button>
@@ -230,7 +262,6 @@ function RoleTab() {
                     title="Archive"
                   />
                 )}
-              
               </Space>
             ),
           },
@@ -252,12 +283,23 @@ function RoleTab() {
             key: "updated_at",
             render: (date) => (date ? new Date(date).toLocaleDateString() : "-"),
           },
-          
+          // Show Archived At column only for archived items
+          ...(statusFilter === "Archived" ? [
+            {
+              title: "Archived At",
+              dataIndex: "deleted_at",
+              key: "deleted_at",
+              render: (date) => (date ? new Date(date).toLocaleDateString() : "-"),
+            }
+          ] : [])
         ]}
         dataSource={filteredRoles}
         rowKey={(record) => record.id}
         pagination={{ pageSize: 10 }}
         loading={loading}
+        locale={{ 
+          emptyText: `No ${statusFilter.toLowerCase()} roles found matching the current search` 
+        }}
       />
 
       {/* Add Role Modal */}

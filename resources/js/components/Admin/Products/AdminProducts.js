@@ -3,7 +3,7 @@ import axios from "axios";
 import AdminPage from "../../AdminReusable/AdminPage";
 import { Table, Button, Input, Select, message, Space, Pagination, Modal } from "antd";
 import AddProductModal from "./AddProductModal";
-import EditProductModal from "./EditProductModal"; // Import the EditProductModal
+import EditProductModal from "./EditProductModal";
 import { EditOutlined, InboxOutlined, UndoOutlined, PlusOutlined } from "@ant-design/icons";
 
 const { Search } = Input;
@@ -18,7 +18,7 @@ const AdminProducts = () => {
   const [categories, setCategories] = useState([]);
   const [categoryTypes, setCategoryTypes] = useState([]);
   const [brands, setBrands] = useState([]);
-  const [sacks, setSacks] = useState([]); // Add state for sacks
+  const [sacks, setSacks] = useState([]); 
   const [selectedCategory, setSelectedCategory] = useState("");
   const [selectedCategoryType, setSelectedCategoryType] = useState("");
   const [selectedBrand, setSelectedBrand] = useState("");
@@ -27,7 +27,7 @@ const AdminProducts = () => {
   );
   const [isAddProductModalVisible, setIsAddProductModalVisible] = useState(false);
   const [isEditProductModalVisible, setIsEditProductModalVisible] = useState(false);
-  const [selectedProduct, setSelectedProduct] = useState(null); // Track the selected product for editing
+  const [selectedProduct, setSelectedProduct] = useState(null);
   const [selectedRowKeys, setSelectedRowKeys] = useState([]);
   const [previewVisible, setPreviewVisible] = useState(false);
   const [previewImage, setPreviewImage] = useState('');
@@ -38,6 +38,7 @@ const AdminProducts = () => {
   const [pageSize, setPageSize] = useState(6);
   const [total, setTotal] = useState(0);
 
+  // Existing fetch functions...
   const fetchProducts = async () => {
     try {
       const response = await axios.get("http://127.0.0.1:8000/api/products", {
@@ -82,11 +83,10 @@ const AdminProducts = () => {
     }
   };
 
-  // Add function to fetch sacks
   const fetchSacks = async () => {
     try {
       const response = await axios.get("http://127.0.0.1:8000/api/sacks", {
-        params: { status: 'active' }, // Only fetch active sacks
+        params: { status: 'active' },
       });
       setSacks(Array.isArray(response.data) ? response.data : []);
     } catch (error) {
@@ -100,7 +100,7 @@ const AdminProducts = () => {
     fetchCategories();
     fetchCategoryTypes();
     fetchBrands();
-    fetchSacks(); // Fetch sacks data
+    fetchSacks();
   }, [selectedStatus]);
 
   useEffect(() => {
@@ -126,65 +126,111 @@ const AdminProducts = () => {
   
     setFilteredProducts(filtered);
     setTotal(filtered.length);
-    setCurrentPage(1); // Reset to first page when filters change
+    setCurrentPage(1);
   }, [searchQuery, selectedCategory, selectedCategoryType, selectedBrand, products]);
 
-  const handleArchive = async (productId) => {
-    try {
-      await axios.delete(`http://127.0.0.1:8000/api/products/${productId}`);
-      setProducts(products.map(product =>
-        product.id === productId ? { ...product, is_archived: true } : product
-      ));
-      message.success("Product archived successfully!");
-    } catch (error) {
-      console.error("Error archiving product:", error);
-      message.error("Failed to archive product.");
-    }
+  // Archive a single product with confirmation
+  const handleArchive = (productId) => {
+    // Find the product to display its name in the confirmation
+    const product = products.find(p => p.id === productId);
+    
+    Modal.confirm({
+      title: "Are you sure you want to archive this product?",
+      content: `Product "${product?.product_name}" will no longer be available to customers.`,
+      okText: "Yes",
+      // okType: "danger",
+      cancelText: "No",
+      onOk: async () => {
+        try {
+          await axios.delete(`http://127.0.0.1:8000/api/products/${productId}`);
+          setProducts(products.map(product =>
+            product.id === productId ? { ...product, is_archived: true } : product
+          ));
+          message.success("Product archived successfully!");
+        } catch (error) {
+          console.error("Error archiving product:", error);
+          message.error("Failed to archive product.");
+        }
+      },
+    });
   };
 
-  const handleBulkArchive = async () => {
-    try {
-      await Promise.all(
-        selectedRowKeys.map(id => axios.delete(`http://127.0.0.1:8000/api/products/${id}`))
-      );
-      setProducts(products.map(product =>
-        selectedRowKeys.includes(product.id) ? { ...product, is_archived: true } : product
-      ));
-      setSelectedRowKeys([]);
-      message.success("Selected products archived successfully!");
-    } catch (error) {
-      console.error("Error archiving products:", error);
-      message.error("Failed to archive selected products.");
-    }
+  // Bulk archive with confirmation
+  const handleBulkArchive = () => {
+    Modal.confirm({
+      title: "Are you sure you want to archive selected products?",
+      content: `${selectedRowKeys.length} products will no longer be available to customers.`,
+      okText: "Yes",
+      // okType: "danger",
+      cancelText: "No",
+      onOk: async () => {
+        try {
+          await Promise.all(
+            selectedRowKeys.map(id => axios.delete(`http://127.0.0.1:8000/api/products/${id}`))
+          );
+          setProducts(products.map(product =>
+            selectedRowKeys.includes(product.id) ? { ...product, is_archived: true } : product
+          ));
+          setSelectedRowKeys([]);
+          message.success("Selected products archived successfully!");
+        } catch (error) {
+          console.error("Error archiving products:", error);
+          message.error("Failed to archive selected products.");
+        }
+      },
+    });
   };
 
-  const handleBulkRestore = async () => {
-    try {
-      await Promise.all(
-        selectedRowKeys.map(id => axios.put(`http://127.0.0.1:8000/api/products/${id}/restore`))
-      );
-      setProducts(products.map(product =>
-        selectedRowKeys.includes(product.id) ? { ...product, is_archived: false } : product
-      ));
-      setSelectedRowKeys([]);
-      message.success("Selected products restored successfully!");
-    } catch (error) {
-      console.error("Error restoring products:", error);
-      message.error("Failed to restore selected products.");
-    }
+  // Restore a single product with confirmation
+  const handleRestore = (productId) => {
+    // Find the product to display its name in the confirmation
+    const product = products.find(p => p.id === productId);
+    
+    Modal.confirm({
+      title: "Are you sure you want to restore this product?",
+      content: `Product "${product?.product_name}" will be available to customers again.`,
+      okText: "Yes",
+      okType: "primary",
+      cancelText: "No",
+      onOk: async () => {
+        try {
+          await axios.put(`http://127.0.0.1:8000/api/products/${productId}/restore`);
+          setProducts(products.map(product =>
+            product.id === productId ? { ...product, is_archived: false } : product
+          ));
+          message.success("Product restored successfully!");
+        } catch (error) {
+          console.error("Error restoring product:", error);
+          message.error("Failed to restore product.");
+        }
+      },
+    });
   };
 
-  const handleRestore = async (productId) => {
-    try {
-      await axios.put(`http://127.0.0.1:8000/api/products/${productId}/restore`);
-      setProducts(products.map(product =>
-        product.id === productId ? { ...product, is_archived: false } : product
-      ));
-      message.success("Product restored successfully!");
-    } catch (error) {
-      console.error("Error restoring product:", error);
-      message.error("Failed to restore product.");
-    }
+  // Bulk restore with confirmation
+  const handleBulkRestore = () => {
+    Modal.confirm({
+      title: "Are you sure you want to restore selected products?",
+      content: `${selectedRowKeys.length} products will be available to customers again.`,
+      okText: "Yes",
+      okType: "primary",
+      cancelText: "No",
+      onOk: async () => {
+        try {
+          await Promise.all(
+            selectedRowKeys.map(id => axios.put(`http://127.0.0.1:8000/api/products/${id}/restore`))
+          );
+          setProducts(products.map(product =>
+            selectedRowKeys.includes(product.id) ? { ...product, is_archived: false } : product
+          ));
+          setSelectedRowKeys([]);
+          message.success("Selected products restored successfully!");
+        } catch (error) {
+          console.error("Error restoring products:", error);
+          message.error("Failed to restore selected products.");
+        }
+      },
+    });
   };
 
   const handleOpenEditModal = (product) => {
@@ -194,18 +240,13 @@ const AdminProducts = () => {
 
   const handleSaveEdit = async (formData) => {
     try {
-      // Append the _method=PUT field for Laravel to recognize it as an update request
       formData.append("_method", "PUT");
-
       const response = await axios.post(
         `http://127.0.0.1:8000/api/products/${selectedProduct.id}`,
         formData,
         { headers: { "Content-Type": "multipart/form-data" } }
       );
-
-      // Refetch products to update the UI
       fetchProducts();
-      // Also refresh sacks data as quantities might have changed
       fetchSacks();
       setIsEditProductModalVisible(false);
       message.success("Product updated successfully!");
@@ -228,16 +269,14 @@ const AdminProducts = () => {
     onChange: onSelectChange,
   };
 
-  // Add handler for when product is added successfully
   const handleProductAdded = () => {
     fetchProducts();
-    fetchSacks(); // Refresh sacks data since available quantities have changed
+    fetchSacks();
   };
 
   if (loading) return <div>Loading products...</div>;
   if (error) return <div>{error}</div>;
 
-  // Calculate the current page data
   const startIndex = (currentPage - 1) * pageSize;
   const endIndex = startIndex + pageSize;
   const currentPageData = filteredProducts.slice(startIndex, endIndex);
@@ -268,6 +307,7 @@ const AdminProducts = () => {
         </Space>
       ),
     },
+    // Other columns remain the same...
     {
       title: "Product Name",
       dataIndex: "product_name",
@@ -300,7 +340,7 @@ const AdminProducts = () => {
       title: "Sack Code",
       key: "sack_code",
       render: (_, record) => {
-        if (!sacks || sacks.length === 0) return null; // Or <Skeleton />
+        if (!sacks || sacks.length === 0) return null;
         
         const sack = sacks.find(s => s.id === record.sack_id);
         return sack?.sack_code || "N/A";
@@ -386,7 +426,7 @@ const AdminProducts = () => {
           <Option value="all">All</Option>
         </Select>
         <div style={{ marginLeft: "auto", display: "flex", gap: "10px" }}>
-        <Button 
+          <Button 
             type="primary" onClick={() => setIsAddProductModalVisible(true)}
             icon={<PlusOutlined />}
             style={{ backgroundColor: "#A63F3F" }}
@@ -420,7 +460,7 @@ const AdminProducts = () => {
         rowKey="id"
         pagination={false}
       />
-      <div style={{ marginTop: 16, textAlign: "right" }}>
+      <div style={{ marginTop: 16, display: "flex", justifyContent: "flex-end" }}>
         <Pagination
           current={currentPage}
           pageSize={pageSize}
@@ -429,20 +469,19 @@ const AdminProducts = () => {
           showTotal={(total) => `Total ${total} products`}
         />
       </div>
+      
       <AddProductModal
-  visible={isAddProductModalVisible}
-  setVisible={setIsAddProductModalVisible}
-  setProducts={setProducts}
-  setFilteredProducts={setFilteredProducts}
-  categories={categories}
-  categoryTypes={categoryTypes}
-  brands={brands}
-  sacks={sacks}
-  onProductAdded={() => {
-    fetchProducts();
-    fetchSacks(); // This will refresh the sacks data
-  }}
-/>
+        visible={isAddProductModalVisible}
+        setVisible={setIsAddProductModalVisible}
+        setProducts={setProducts}
+        setFilteredProducts={setFilteredProducts}
+        categories={categories}
+        categoryTypes={categoryTypes}
+        brands={brands}
+        sacks={sacks}
+        onProductAdded={handleProductAdded}
+      />
+      
       <EditProductModal
         visible={isEditProductModalVisible}
         onCancel={() => setIsEditProductModalVisible(false)}
@@ -451,7 +490,7 @@ const AdminProducts = () => {
         categories={categories}
         categoryTypes={categoryTypes}
         brands={brands}
-        sacks={sacks} // Pass sacks data to EditProductModal as well
+        sacks={sacks}
       />
 
       <Modal

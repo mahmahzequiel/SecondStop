@@ -77,7 +77,7 @@ function BrandTab() {
     fetchBrands();
   };
 
-  // Delete brand (soft delete / archive)
+  // Delete brand (soft delete / archive) - Modified with confirmation modal
   const archiveBrand = (brandId) => {
     Modal.confirm({
       title: "Are you sure you want to archive this brand?",
@@ -101,7 +101,7 @@ function BrandTab() {
     });
   };
 
-  // Restore archived brand
+  // Restore archived brand - Modified with confirmation modal
   const restoreBrand = (brandId) => {
     Modal.confirm({
       title: "Are you sure you want to restore this brand?",
@@ -125,64 +125,60 @@ function BrandTab() {
     });
   };
 
-  // Bulk archive selected brands
-  const handleBulkArchive = () => {
+  // Handle bulk actions based on current status filter - uses confirmation modal
+  const handleBulkStatusChange = () => {
     if (selectedRowKeys.length === 0) {
-      message.info("Please select at least one brand to archive");
+      Modal.info({ 
+        title: 'No brands selected', 
+        content: `Please select at least one brand to ${statusFilter === "archived" ? "restore" : "archive"}.` 
+      });
       return;
     }
 
     Modal.confirm({
-      title: `Are you sure you want to archive ${selectedRowKeys.length} brands?`,
-      content: "This action can be reversed later.",
+      title: `Are you sure you want to ${statusFilter === "archived" ? "restore" : "archive"} ${selectedRowKeys.length} brands?`,
+      content: statusFilter === "archived" 
+        ? "This will make them active again." 
+        : "This action can be reversed later.",
       onOk: () => {
-        const archivePromises = selectedRowKeys.map(brandId =>
-          axios.delete(`${BRANDS_API}/${brandId}`)
-        );
-
         setLoading(true);
-        Promise.all(archivePromises)
-          .then(() => {
-            message.success(`${selectedRowKeys.length} brands archived successfully!`);
-            fetchBrands();
-            setSelectedRowKeys([]);
-          })
-          .catch(err => {
-            console.error("Error archiving brands:", err);
-            message.error("An error occurred while archiving the brands");
-          })
-          .finally(() => setLoading(false));
-      },
-    });
-  };
+        
+        // Choose the appropriate action based on status filter
+        if (statusFilter === "archived") {
+          // Restore brands
+          const restorePromises = selectedRowKeys.map(brandId =>
+            axios.put(`${BRANDS_API}/${brandId}/restore`, {})
+          );
 
-  // Bulk restore selected brands
-  const handleBulkRestore = () => {
-    if (selectedRowKeys.length === 0) {
-      message.info("Please select at least one brand to restore");
-      return;
-    }
+          Promise.all(restorePromises)
+            .then(() => {
+              message.success(`${selectedRowKeys.length} brands restored successfully!`);
+              fetchBrands();
+              setSelectedRowKeys([]);
+            })
+            .catch(err => {
+              console.error("Error restoring brands:", err);
+              message.error("An error occurred while restoring the brands");
+            })
+            .finally(() => setLoading(false));
+        } else {
+          // Archive brands
+          const archivePromises = selectedRowKeys.map(brandId =>
+            axios.delete(`${BRANDS_API}/${brandId}`)
+          );
 
-    Modal.confirm({
-      title: `Are you sure you want to restore ${selectedRowKeys.length} brands?`,
-      content: "This will make them active again.",
-      onOk: () => {
-        const restorePromises = selectedRowKeys.map(brandId =>
-          axios.post(`${BRANDS_API}/${brandId}/restore`, {})
-        );
-
-        setLoading(true);
-        Promise.all(restorePromises)
-          .then(() => {
-            message.success(`${selectedRowKeys.length} brands restored successfully!`);
-            fetchBrands();
-            setSelectedRowKeys([]);
-          })
-          .catch(err => {
-            console.error("Error restoring brands:", err);
-            message.error("An error occurred while restoring the brands");
-          })
-          .finally(() => setLoading(false));
+          Promise.all(archivePromises)
+            .then(() => {
+              message.success(`${selectedRowKeys.length} brands archived successfully!`);
+              fetchBrands();
+              setSelectedRowKeys([]);
+            })
+            .catch(err => {
+              console.error("Error archiving brands:", err);
+              message.error("An error occurred while archiving the brands");
+            })
+            .finally(() => setLoading(false));
+        }
       },
     });
   };
@@ -198,6 +194,8 @@ function BrandTab() {
             <EditOutlined
               style={{ cursor: "pointer" }}
               onClick={() => handleOpenEditModal(record)}
+              // Disable edit button for archived brands
+              disabled={statusFilter === "archived"}
             />
             {statusFilter === "active" ? (
               <InboxOutlined
@@ -300,38 +298,27 @@ function BrandTab() {
         </Space>
 
         <Space>
-          {statusFilter === "active" && (
-            <>
-              <Button
-                type="primary"
-                onClick={handleOpenAddModal}
-                icon={<PlusOutlined />}
-                style={{ backgroundColor: "#A63F3F" }}
-              >
-                Add Brand
-              </Button>
-              <Button
-              type="primary"
-                danger
-                onClick={handleBulkArchive}
-                disabled={selectedRowKeys.length === 0}
-              >
-                Archive Selected
-              </Button>
-            </>
-          )}
+          {/* Always show Add Brand button, like in RoleTab */}
+          <Button
+            type="primary"
+            onClick={handleOpenAddModal}
+            icon={<PlusOutlined />}
+            style={{ backgroundColor: "#A63F3F" }}
+          >
+            Add Brand
+          </Button>
           
-          {statusFilter === "archived" && (
-            <Button
-              type="primary"
-              onClick={handleBulkRestore}
-              disabled={selectedRowKeys.length === 0}
-              icon={<UndoOutlined />}
-              style={{ backgroundColor: "#52c41a" }}
-            >
-              Restore Selected
-            </Button>
-          )}
+          {/* Dynamic button that changes based on status filter */}
+          <Button
+            type="primary"
+            danger
+            onClick={handleBulkStatusChange}
+            disabled={selectedRowKeys.length === 0}
+            icon={statusFilter === "archived" ? <UndoOutlined /> : null}
+            style={{ marginLeft: 8 }}
+          >
+            {statusFilter === "archived" ? "Restore" : "Archive"} Selected
+          </Button>
         </Space>
       </div>
 

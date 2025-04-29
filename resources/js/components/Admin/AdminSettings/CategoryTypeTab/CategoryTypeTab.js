@@ -112,7 +112,7 @@ function CategoryTypeTab() {
         setLoading(true);
         
         axios
-          .put(`${CATEGORY_TYPES_API}/${categoryTypeId}/restore`, {}, {
+          .post(`${CATEGORY_TYPES_API}/${categoryTypeId}/restore`, {}, {
             headers: {
               'Content-Type': 'application/json',
               'Accept': 'application/json'
@@ -319,33 +319,31 @@ function CategoryTypeTab() {
         </Space>
 
         <Space>
-          {statusFilter === "active" && (
-            <>
-              <Button
-                type="primary"
-                onClick={handleOpenAddModal}
-                icon={<PlusOutlined />}
-                style={{ backgroundColor: "#A63F3F" }}
-              >
-                Add Category Type
-              </Button>
-              <Button
-                danger
-                onClick={handleBulkArchive}
-                disabled={selectedRowKeys.length === 0}
-              >
-                Archive Selected
-              </Button>
-            </>
-          )}
+          {/* Always show Add button */}
+          <Button
+            type="primary"
+            onClick={handleOpenAddModal}
+            icon={<PlusOutlined />}
+            style={{ backgroundColor: "#A63F3F" }}
+          >
+            Add Category Type
+          </Button>
           
-          {statusFilter === "archived" && (
+          {statusFilter === "active" ? (
+            <Button
+              danger
+              onClick={handleBulkArchive}
+              disabled={selectedRowKeys.length === 0}
+            >
+              Archive Selected
+            </Button>
+          ) : (
             <Button
               type="primary"
+              danger
               onClick={handleBulkRestore}
               disabled={selectedRowKeys.length === 0}
               icon={<UndoOutlined />}
-              style={{ backgroundColor: "#52c41a" }}
             >
               Restore Selected
             </Button>

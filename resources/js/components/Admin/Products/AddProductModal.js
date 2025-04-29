@@ -206,7 +206,7 @@ const AddProductModal = ({ visible, setVisible, setProducts, setFilteredProducts
               <Button icon={<UploadOutlined />}>Upload Image</Button>
             </Upload>
           </Form.Item>
-          <Form.Item>
+          <Form.Item style={{ marginTop: '20px', marginLeft: '350px' }}>
             <Button type="primary" htmlType="submit">
               Add Product
             </Button>

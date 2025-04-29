@@ -14,7 +14,7 @@ import {
 } from "antd";
 import AddSackModal from "./AddSackModal";
 import EditSackModal from "./EditSackModal";
-import { EditOutlined, DeleteOutlined, UndoOutlined, PlusOutlined } from "@ant-design/icons";
+import { EditOutlined, InboxOutlined, UndoOutlined, PlusOutlined } from "@ant-design/icons";
 
 const { Search } = Input;
 const { Option } = Select;
@@ -113,8 +113,8 @@ const AdminSacks = () => {
               title="Restore"
             />
           ) : (
-            <DeleteOutlined
-              style={{ cursor: "pointer", color: "#ff4d4f" }}
+            <InboxOutlined
+              style={{ cursor: "pointer" }}
               onClick={() => handleDelete(record.id)}
               title="Delete"
             />
@@ -207,7 +207,7 @@ const handleDelete = (id) => {
     title: "Are you sure you want to delete this sack?",
     content: "This action can be reversed later.",
     okText: "Yes",
-    okType: "danger",
+    // okType: "danger",
     cancelText: "No",
     onOk: async () => {
       try {
@@ -240,7 +240,7 @@ const handleBulkDelete = () => {
     title: "Are you sure you want to delete selected sacks?",
     content: "This action can be reversed later.",
     okText: "Yes",
-    okType: "danger",
+    // okType: "danger",
     cancelText: "No",
     onOk: async () => {
       try {
@@ -312,6 +312,7 @@ const currentPageData = filteredSacks.slice(
         <div style={{ marginLeft: "auto", display: "flex", gap: "10px" }}>
           <Button 
             type="primary" 
+            style={{ backgroundColor: "#A63F3F" }}
             onClick={() => setIsAddSackModalVisible(true)}
             icon={<PlusOutlined />}
           >
@@ -344,7 +345,7 @@ const currentPageData = filteredSacks.slice(
         rowKey="id"
         pagination={false}
       />
-      <div style={{ marginTop: 16, textAlign: "right" }}>
+      <div style={{ marginTop: 16, display: "flex", justifyContent: "flex-end" }}>
         <Pagination
           current={currentPage}
           pageSize={pageSize}
