@@ -116,7 +116,10 @@ function Header() {
           <div className="main-header__navbar-icons">
             {/* Notification Section */}
             <div className="main-header__notification-container" ref={notifRef}>
-              <BellOutlined className="main-header__notification-icon icon" style={{ marginLeft: '850px', fontSize: '2.2rem' }}onClick={handleNotificationsClick} />
+              <BellOutlined 
+                className="main-header__icon" 
+                onClick={handleNotificationsClick} 
+              />
               {notificationCount > 0 && (
                 <span className="main-header__notification-badge">{notificationCount}</span>
               )}
@@ -169,7 +172,7 @@ function Header() {
 
             {/* Cart Icon */}
             <Link to="/cart" className="main-header__cart-link">
-              <ShoppingCartOutlined className="icon"style={{ fontSize: '2.2rem' }} />
+              <ShoppingCartOutlined className="main-header__icon" />
               {cartCount > 0 && <span className="main-header__cart-badge">{cartCount}</span>}
             </Link>
 
@@ -180,7 +183,7 @@ function Header() {
               className="main-header__profile-link"
               aria-label="User profile"
             >
-              <UserOutlined className="icon"style={{ fontSize: '2.2rem' }} />
+              <UserOutlined className="main-header__icon" />
             </Link>
           </div>
         </div>

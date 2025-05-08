@@ -1,5 +1,6 @@
 @import url(https://fonts.googleapis.com/css?family=Nunito);
-@import url(https://fonts.googleapis.com/css2?family=Inria+Serif:wght@400;700&display=swap);
+@import url(https://fonts.googleapis.com/css2?family=Inria+Serif:wght@400;700&family=Poppins:wght@400;500;600&display=swap);
+@import url(https://fonts.googleapis.com/css2?family=Inria+Serif:wght@400;700&family=Poppins:wght@400;500;600&display=swap);
 @charset "UTF-8";
 /*!
  * Bootstrap  v5.3.3 (https://getbootstrap.com/)
@@ -12027,119 +12028,174 @@ textarea.form-control-lg {
 .login-container .left-section {
   flex: 1;
   display: flex;
+  flex-direction: column;
   justify-content: center;
   align-items: center;
-  background-color: #750139;
+  background: linear-gradient(135deg, #d8d0f0 0%, #111213 100%);
+  padding: 2rem;
+  text-align: center;
 }
-.login-container .left-section .login-logo {
-  max-width: 60%;
-  height: auto;
+.login-container .left-section .logo-container {
+  width: 150px;
+  height: 150px;
+  background-color: #e53e3e;
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 1.5rem;
+  margin-bottom: 1.5rem;
+}
+.login-container .left-section .brand-name {
+  color: white;
+  font-family: "Inria Serif", serif;
+  font-size: 3.5rem;
+  font-weight: 700;
+  margin: 1rem 0 0.25rem;
+  text-shadow: 0px 2px 4px rgba(0, 0, 0, 0.1);
+}
+.login-container .left-section .tagline {
+  color: white;
+  font-family: "Poppins", sans-serif;
+  font-size: 1.5rem;
+  font-weight: 400;
+  margin: 0;
+  text-shadow: 0px 2px 4px rgba(0, 0, 0, 0.1);
 }
 .login-container .right-section {
   flex: 1;
   display: flex;
   justify-content: center;
   align-items: center;
-  background-color: #750139;
+  background: linear-gradient(135deg, #d8d0f0 0%, #a8c6e5 100%);
 }
 .login-container .right-section .form-container {
-  width: 603px;
-  height: 706px;
-  flex-shrink: 0;
-  background: #FFF;
-  box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
-  border-radius: 20px;
-  padding: 20px;
+  width: 480px;
+  background: #FFFFFF;
+  box-shadow: 0px 4px 20px rgba(0, 0, 0, 0.1);
+  border-radius: 16px;
+  padding: 2.5rem;
   display: flex;
   flex-direction: column;
-  align-items: center; /* Center aligns content */
-  justify-content: center;
-  position: relative; /* Enables absolute positioning inside */
 }
 .login-container .right-section .form-container h1, .login-container .right-section .form-container .h1 {
-  position: absolute;
-  top: 33px;
-  left: 42px;
-  font-size: 40px;
-  font-weight: bold;
-  font-family: "Inria Serif", serif; /* Updated font */
-  margin: 0;
+  font-family: "Poppins", sans-serif;
+  font-size: 1.75rem;
+  font-weight: 600;
+  color: #1a202c;
+  margin-bottom: 2rem;
+  text-align: center;
 }
 .login-container .right-section .form-container .error-message {
-  color: red;
+  color: #e53e3e;
   text-align: left;
-  margin-bottom: 10px;
-  margin-left: 42px; /* Align error message with input */
+  margin-bottom: 1rem;
+  font-size: 0.875rem;
 }
 .login-container .right-section .form-container .input-group {
   width: 100%;
-  margin-bottom: 15px; /* Keeps input spacing */
+  margin-bottom: 1.25rem;
 }
 .login-container .right-section .form-container .input-container {
   display: flex;
   align-items: center;
-  width: 483px;
-  height: 78px;
-  flex-shrink: 0;
-  border-radius: 15px !important; /* Ensures 15px border-radius */
-  border: 1px solid #000;
-  background: #FFF;
-  padding: 10px;
+  width: 100%;
+  height: 3.5rem;
+  border-radius: 0.5rem;
+  border: 1px solid #e2e8f0;
+  background: #FFFFFF;
+  padding: 0 1rem;
   overflow: hidden;
-  margin: 0 auto; /* Centers input container */
+  transition: border-color 0.2s;
+}
+.login-container .right-section .form-container .input-container:focus-within {
+  border-color: #4299e1;
 }
 .login-container .right-section .form-container .input-container input {
   flex: 1;
   border: none;
   outline: none;
-  padding: 0 15px;
-  font-size: 16px;
+  padding: 0 0.5rem;
+  font-size: 1rem;
+  font-family: "Poppins", sans-serif;
   background: transparent;
-  border-radius: inherit;
-  display: block;
   width: 100%;
   height: 100%;
+  color: #4a5568;
+}
+.login-container .right-section .form-container .input-container input::-moz-placeholder {
+  color: #a0aec0;
+}
+.login-container .right-section .form-container .input-container input::placeholder {
+  color: #a0aec0;
 }
 .login-container .right-section .form-container .input-container .icon-left {
-  margin-right: 10px;
+  color: #a0aec0;
+  font-size: 1.25rem;
 }
 .login-container .right-section .form-container .input-container .icon-right {
-  margin-left: 10px;
+  color: #a0aec0;
+  font-size: 1.25rem;
   cursor: pointer;
+  transition: color 0.2s;
+}
+.login-container .right-section .form-container .input-container .icon-right:hover {
+  color: #4a5568;
 }
 .login-container .right-section .form-container .signin-btn {
-  width: 483px;
-  height: 50px;
-  background: #007bff;
+  width: 100%;
+  height: 3rem;
+  background: linear-gradient(90deg, #4299e1 0%, #805ad5 100%);
   color: white;
   border: none;
-  border-radius: 15px;
+  border-radius: 0.5rem;
   cursor: pointer;
-  font-size: 18px;
+  font-size: 1rem;
+  font-weight: 500;
+  font-family: "Poppins", sans-serif;
   text-align: center;
   display: flex;
   align-items: center;
   justify-content: center;
-  margin-top: 20px;
-  margin: 0 auto; /* Centers button */
+  margin-top: 1.5rem;
+  transition: opacity 0.2s;
 }
 .login-container .right-section .form-container .signin-btn:hover {
-  background: #0056b3;
+  opacity: 0.9;
+}
+.login-container .right-section .form-container .signin-btn:disabled {
+  opacity: 0.7;
+  cursor: not-allowed;
 }
 .login-container .right-section .form-container .forgot-password {
-  font-size: 16px;
-  color: blue;
-  text-align: left;
+  font-family: "Poppins", sans-serif;
+  font-size: 0.875rem;
+  color: #4299e1;
+  text-align: center;
   cursor: pointer;
-  margin-top: 15px;
-  margin-left: 10px; /* Moves forgot password 42px from the left */
+  margin-top: 1.25rem;
+  transition: color 0.2s;
+}
+.login-container .right-section .form-container .forgot-password:hover {
+  color: #2b6cb0;
+  text-decoration: underline;
 }
 .login-container .right-section .form-container .signup-link {
-  font-family: "Inria Serif", serif;
-  font-size: 20px;
-  font-weight: bold;
-  margin-top: 61px;
+  font-family: "Poppins", sans-serif;
+  font-size: 1rem;
+  margin-top: 2.5rem;
   text-align: center;
+  color: #4a5568;
+}
+.login-container .right-section .form-container .signup-link span {
+  color: #4299e1;
+  font-weight: 600;
+  cursor: pointer;
+  transition: color 0.2s;
+}
+.login-container .right-section .form-container .signup-link span:hover {
+  color: #2b6cb0;
+  text-decoration: underline;
 }
 
 /* General Resets */
@@ -12171,8 +12227,9 @@ a {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  max-width: 1200px;
+  max-width: 1500px;
   margin: 0 auto;
+  width: 100%;
 }
 
 /* Logo Styles */
@@ -12180,39 +12237,40 @@ a {
   display: flex;
   align-items: center;
   gap: 0.5rem;
-  margin-left: -10rem; /* Move logo further to the left */
 }
 
 .main-header__logo-image {
-  width: 80px; /* Adjust this value as needed */
-  height: auto; /* Maintain aspect ratio */
+  width: 80px;
+  height: auto;
+  transition: width 0.3s ease;
 }
 
 .main-header__logo-text {
   font-size: 1.5rem;
   font-weight: 600;
   color: #ffffff;
+  transition: font-size 0.3s ease;
 }
 
 /* Header Right Section */
 .main-header__right {
   display: flex;
   align-items: center;
-  margin-right: -8rem; /* Move icons further to the right */
 }
 
 /* Navbar Icons */
 .main-header__navbar-icons {
   display: flex;
-  gap: 1.5rem; /* Increase gap between icons */
+  gap: 1.5rem;
   align-items: center;
+  margin-left: auto; /* Ensures icons stay aligned properly */
 }
 
 .main-header__icon {
-  font-size: 2rem; /* Increased icon size */
+  font-size: 2rem;
   color: #ffffff;
   cursor: pointer;
-  transition: color 0.2s;
+  transition: all 0.2s;
 }
 
 .main-header__icon:hover {
@@ -12241,6 +12299,9 @@ a {
 .main-header__cart-link,
 .main-header__profile-link {
   position: relative;
+  display: flex; /* Ensure proper alignment of icons */
+  align-items: center;
+  justify-content: center;
 }
 
 /* Notification Dropdown */
@@ -12338,6 +12399,104 @@ a {
   padding: 0;
 }
 
+/* Responsive Styles */
+@media (max-width: 1200px) {
+  .main-header__container {
+    max-width: 100%;
+    padding: 0 1rem;
+  }
+}
+@media (max-width: 992px) {
+  .main-header__logo-image {
+    width: 70px;
+  }
+  .main-header__logo-text {
+    font-size: 1.3rem;
+  }
+  .main-header__icon {
+    font-size: 1.8rem;
+  }
+  .main-header__navbar-icons {
+    gap: 1.2rem;
+  }
+}
+@media (max-width: 768px) {
+  .main-header__dark {
+    padding: 1rem;
+  }
+  .main-header__container {
+    padding: 0 0.5rem;
+  }
+  .main-header__logo-image {
+    width: 60px;
+  }
+  .main-header__logo-text {
+    font-size: 1.1rem;
+  }
+  .main-header__icon {
+    font-size: 1.6rem;
+  }
+  .main-header__navbar-icons {
+    gap: 1rem;
+  }
+  .main-header__notification-dropdown {
+    width: 280px;
+    right: -50px; /* Adjust dropdown position for smaller screens */
+  }
+}
+@media (max-width: 576px) {
+  .main-header__container {
+    padding: 0 0.5rem;
+    justify-content: space-between;
+  }
+  .main-header__logo-text {
+    display: none;
+  }
+  .main-header__logo-image {
+    width: 50px;
+  }
+  .main-header__icon {
+    font-size: 1.4rem;
+  }
+  .main-header__navbar-icons {
+    gap: 0.8rem;
+  }
+  .main-header__notification-dropdown {
+    width: 250px;
+    right: -80px; /* Further adjust dropdown position */
+  }
+  /* Add proper spacing for the right section */
+  .main-header__right {
+    margin-left: auto;
+  }
+}
+@media (max-width: 400px) {
+  .main-header__dark {
+    padding: 0.8rem 0.5rem;
+  }
+  .main-header__logo-image {
+    width: 45px;
+  }
+  .main-header__icon {
+    font-size: 1.2rem;
+  }
+  .main-header__navbar-icons {
+    gap: 0.6rem;
+  }
+  .main-header__notification-badge,
+  .main-header__cart-badge {
+    font-size: 0.6rem;
+    min-width: 16px;
+    height: 16px;
+    top: -6px;
+    right: -6px;
+  }
+  /* Ensure container takes full width with proper padding */
+  .main-header__container {
+    width: 100%;
+    padding: 0 0.3rem;
+  }
+}
 /* Dark Theme Styles for DisplayProducts */
 .dark-theme {
   background-color: #121212;
@@ -13007,10 +13166,10 @@ a {
     padding: 2rem 1rem;
   }
 }
-/* registration.css */
+/* registration.css - Updated for style consistency with login page */
 /* Page background */
 .reg-page {
-  background-color: #e94a35;
+  background: linear-gradient(135deg, #d8d0f0 0%, #111213 100%);
   min-height: 100vh;
   display: flex;
   flex-direction: column;
@@ -13018,26 +13177,27 @@ a {
   align-items: center;
   position: relative;
   padding: 20px;
-  font-family: sans-serif;
+  font-family: "Poppins", sans-serif;
 }
 
-/* White container */
+/* Container */
 .reg-container {
-  width: 90%;
-  max-width: 800px;
-  background-color: #ffffff;
-  border-radius: 10px;
+  width: 100%;
+  max-width: 1000px;
+  background-color: #d3cbc0;
+  border-radius: 16px;
   padding: 30px;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+  box-shadow: 0px 4px 20px rgba(0, 0, 0, 0.1);
   margin: 40px 0;
 }
 
 .reg-container h2, .reg-container .h2 {
   text-align: center;
-  font-size: 28px;
+  font-size: 1.75rem;
   font-weight: 600;
   margin-bottom: 30px;
-  color: #000000;
+  color: #1a202c;
+  font-family: "Poppins", sans-serif;
 }
 
 /* Form layout - responsive grid system */
@@ -13053,35 +13213,37 @@ a {
 
 .reg-form-item {
   width: 100%;
+  margin-bottom: 1.25rem;
 }
 
 /* Input styling */
 .reg-input,
 .reg-select {
   width: 100%;
-  height: 46px;
+  height: 3.5rem;
   padding: 0 15px;
-  border: 1px solid #d9d9d9;
-  border-radius: 4px;
-  font-size: 14px;
-  color: #333;
+  border: 1px solid #000000;
+  border-radius: 0.5rem;
+  font-size: 1rem;
+  color: #000000;
   transition: all 0.3s;
+  font-family: "Poppins", sans-serif;
 }
 
 .reg-input:focus,
 .reg-select:focus {
   outline: none;
-  border-color: #e94a35;
-  box-shadow: 0 0 0 2px rgba(233, 74, 53, 0.2);
+  border-color: #4299e1;
+  box-shadow: 0 0 0 2px rgba(66, 153, 225, 0.2);
 }
 
 .reg-input::-moz-placeholder, .reg-select::-moz-placeholder {
-  color: #aaa;
+  color: #a0aec0;
 }
 
 .reg-input::placeholder,
 .reg-select::placeholder {
-  color: #aaa;
+  color: #a0aec0;
 }
 
 .reg-select {
@@ -13101,7 +13263,7 @@ a {
   left: 20px;
   background: none;
   border: none;
-  color: #fff;
+  color: #4a5568;
   cursor: pointer;
   font-size: 16px;
   display: flex;
@@ -13110,52 +13272,81 @@ a {
   padding: 8px 12px;
   border-radius: 4px;
   transition: all 0.3s;
+  font-family: "Poppins", sans-serif;
 }
 
 .reg-back-btn:hover {
-  background-color: rgba(255, 255, 255, 0.1);
+  background-color: rgba(66, 153, 225, 0.1);
+  color: #4299e1;
 }
 
 /* Submit button */
 .reg-submit-container {
   display: flex;
   justify-content: center;
-  margin-top: 30px;
+  margin-top: 1.5rem;
 }
 
 .reg-signup-btn {
-  background-color: #e94a35;
+  background: linear-gradient(90deg, #4299e1 0%, #805ad5 100%);
   color: white;
   border: none;
-  border-radius: 4px;
+  border-radius: 0.5rem;
   padding: 12px 32px;
-  font-size: 16px;
+  font-size: 1rem;
   font-weight: 500;
   cursor: pointer;
-  transition: all 0.3s;
+  transition: opacity 0.2s;
   width: 100%;
   max-width: 200px;
+  height: 3rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: "Poppins", sans-serif;
 }
 
 .reg-signup-btn:hover {
-  background-color: #d03a28;
-  transform: translateY(-2px);
+  opacity: 0.9;
 }
 
 .reg-signup-btn:active {
-  transform: translateY(0);
+  opacity: 0.8;
+}
+
+.reg-signup-btn:disabled {
+  opacity: 0.7;
+  cursor: not-allowed;
 }
 
 /* Form validation error messages */
-.ant-form-item-explain {
-  font-size: 12px;
-  color: #e94a35;
+.ant-form-item-explain,
+.error-message {
+  font-size: 0.875rem;
+  color: #e53e3e;
   margin-top: 4px;
+  font-family: "Poppins", sans-serif;
 }
 
-/* Custom spacing for form rows */
-.reg-form-item {
-  margin-bottom: 16px;
+/* Login link */
+.login-link {
+  font-family: "Poppins", sans-serif;
+  font-size: 1rem;
+  margin-top: 2.5rem;
+  text-align: center;
+  color: #4a5568;
+}
+
+.login-link span {
+  color: #4299e1;
+  font-weight: 600;
+  cursor: pointer;
+  transition: color 0.2s;
+}
+
+.login-link span:hover {
+  color: #2b6cb0;
+  text-decoration: underline;
 }
 
 /* ================= RESPONSIVE BREAKPOINTS ================= */
@@ -13229,23 +13420,6 @@ a {
   .reg-signup-btn {
     padding: 10px 20px;
     font-size: 15px;
-  }
-}
-/* Very small devices (small phones) */
-@media (max-width: 375px) {
-  .reg-container {
-    padding: 12px;
-  }
-  .reg-container h2, .reg-container .h2 {
-    font-size: 18px;
-  }
-  .reg-input,
-  .reg-select {
-    height: 40px;
-    padding: 0 12px;
-  }
-  .reg-form-item {
-    margin-bottom: 8px;
   }
 }
 /* Content area layout */

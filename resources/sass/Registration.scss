@@ -1,8 +1,10 @@
-/* registration.css */
+/* registration.css - Updated for style consistency with login page */
+
+@import url('https://fonts.googleapis.com/css2?family=Inria+Serif:wght@400;700&family=Poppins:wght@400;500;600&display=swap');
 
 /* Page background */
 .reg-page {
-  background-color: #e94a35;
+  background: linear-gradient(135deg, #d8d0f0 0%, #111213 100%);
   min-height: 100vh;
   display: flex;
   flex-direction: column;
@@ -10,26 +12,27 @@
   align-items: center;
   position: relative;
   padding: 20px;
-  font-family: sans-serif;
+  font-family: 'Poppins', sans-serif;
 }
 
-/* White container */
+/* Container */
 .reg-container {
-  width: 90%;
-  max-width: 800px;
-  background-color: #ffffff;
-  border-radius: 10px;
+  width: 100%;
+  max-width: 1000px;
+  background-color: #d3cbc0;
+  border-radius: 16px;
   padding: 30px;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+  box-shadow: 0px 4px 20px rgba(0, 0, 0, 0.1);
   margin: 40px 0;
 }
 
 .reg-container h2 {
   text-align: center;
-  font-size: 28px;
+  font-size: 1.75rem;
   font-weight: 600;
   margin-bottom: 30px;
-  color: #000000;
+  color: #1a202c;
+  font-family: 'Poppins', sans-serif;
 }
 
 /* Form layout - responsive grid system */
@@ -45,31 +48,33 @@
 
 .reg-form-item {
   width: 100%;
+  margin-bottom: 1.25rem;
 }
 
 /* Input styling */
 .reg-input,
 .reg-select {
   width: 100%;
-  height: 46px;
+  height: 3.5rem;
   padding: 0 15px;
-  border: 1px solid #d9d9d9;
-  border-radius: 4px;
-  font-size: 14px;
-  color: #333;
+  border: 1px solid #000000;
+  border-radius: 0.5rem;
+  font-size: 1rem;
+  color: #000000;
   transition: all 0.3s;
+  font-family: 'Poppins', sans-serif;
 }
 
 .reg-input:focus,
 .reg-select:focus {
   outline: none;
-  border-color: #e94a35;
-  box-shadow: 0 0 0 2px rgba(233, 74, 53, 0.2);
+  border-color: #4299e1;
+  box-shadow: 0 0 0 2px rgba(66, 153, 225, 0.2);
 }
 
 .reg-input::placeholder,
 .reg-select::placeholder {
-  color: #aaa;
+  color: #a0aec0;
 }
 
 .reg-select {
@@ -87,7 +92,7 @@
   left: 20px;
   background: none;
   border: none;
-  color: #fff;
+  color: #4a5568;
   cursor: pointer;
   font-size: 16px;
   display: flex;
@@ -96,52 +101,81 @@
   padding: 8px 12px;
   border-radius: 4px;
   transition: all 0.3s;
+  font-family: 'Poppins', sans-serif;
 }
 
 .reg-back-btn:hover {
-  background-color: rgba(255, 255, 255, 0.1);
+  background-color: rgba(66, 153, 225, 0.1);
+  color: #4299e1;
 }
 
 /* Submit button */
 .reg-submit-container {
   display: flex;
   justify-content: center;
-  margin-top: 30px;
+  margin-top: 1.5rem;
 }
 
 .reg-signup-btn {
-  background-color: #e94a35;
+  background: linear-gradient(90deg, #4299e1 0%, #805ad5 100%);
   color: white;
   border: none;
-  border-radius: 4px;
+  border-radius: 0.5rem;
   padding: 12px 32px;
-  font-size: 16px;
+  font-size: 1rem;
   font-weight: 500;
   cursor: pointer;
-  transition: all 0.3s;
+  transition: opacity 0.2s;
   width: 100%;
   max-width: 200px;
+  height: 3rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: 'Poppins', sans-serif;
 }
 
 .reg-signup-btn:hover {
-  background-color: #d03a28;
-  transform: translateY(-2px);
+  opacity: 0.9;
 }
 
 .reg-signup-btn:active {
-  transform: translateY(0);
+  opacity: 0.8;
+}
+
+.reg-signup-btn:disabled {
+  opacity: 0.7;
+  cursor: not-allowed;
 }
 
 /* Form validation error messages */
-.ant-form-item-explain {
-  font-size: 12px;
-  color: #e94a35;
+.ant-form-item-explain,
+.error-message {
+  font-size: 0.875rem;
+  color: #e53e3e;
   margin-top: 4px;
+  font-family: 'Poppins', sans-serif;
 }
 
-/* Custom spacing for form rows */
-.reg-form-item {
-  margin-bottom: 16px;
+/* Login link */
+.login-link {
+  font-family: 'Poppins', sans-serif;
+  font-size: 1rem;
+  margin-top: 2.5rem;
+  text-align: center;
+  color: #4a5568;
+}
+
+.login-link span {
+  color: #4299e1;
+  font-weight: 600;
+  cursor: pointer;
+  transition: color 0.2s;
+}
+
+.login-link span:hover {
+  color: #2b6cb0;
+  text-decoration: underline;
 }
 
 /* ================= RESPONSIVE BREAKPOINTS ================= */
@@ -230,26 +264,5 @@
   .reg-signup-btn {
     padding: 10px 20px;
     font-size: 15px;
-  }
-}
-
-/* Very small devices (small phones) */
-@media (max-width: 375px) {
-  .reg-container {
-    padding: 12px;
-  }
-  
-  .reg-container h2 {
-    font-size: 18px;
-  }
-  
-  .reg-input,
-  .reg-select {
-    height: 40px;
-    padding: 0 12px;
-  }
-  
-  .reg-form-item {
-    margin-bottom: 8px;
   }
 }

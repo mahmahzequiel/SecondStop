@@ -246,7 +246,7 @@ const DisplayProducts = () => {
                   </div>
                   <div className="product-info">
                     <h3 className="product-name">{product.product_name}</h3>
-                    <p className="product-price">$ {product.price}</p>
+                    <p className="product-price">PHP {product.price}</p>
                     {/* <p className="product-stock">In stock: {product.quantity}</p> */}
                   </div>
                   <div className="product-actions">

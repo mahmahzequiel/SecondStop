@@ -1,138 +1,199 @@
-@import url('https://fonts.googleapis.com/css2?family=Inria+Serif:wght@400;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Inria+Serif:wght@400;700&family=Poppins:wght@400;500;600&display=swap');
 
 .login-container {
   display: flex;
   height: 100vh;
 
   .left-section {
-      flex: 1;
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background: linear-gradient(135deg, #d8d0f0 0%, #111213 100%);
+    padding: 2rem;
+    text-align: center;
+
+    .logo-container {
+      width: 150px;
+      height: 150px;
+      background-color: #e53e3e;
+      border-radius: 50%;
       display: flex;
       justify-content: center;
       align-items: center;
-      background-color: #750139;
+      padding: 1.5rem;
+      margin-bottom: 1.5rem;
+    }
 
-      .login-logo {
-          max-width: 60%;
-          height: auto;
-      }
+    .brand-name {
+      color: white;
+      font-family: 'Inria Serif', serif;
+      font-size: 3.5rem;
+      font-weight: 700;
+      margin: 1rem 0 0.25rem;
+      text-shadow: 0px 2px 4px rgba(0, 0, 0, 0.1);
+    }
+
+    .tagline {
+      color: white;
+      font-family: 'Poppins', sans-serif;
+      font-size: 1.5rem;
+      font-weight: 400;
+      margin: 0;
+      text-shadow: 0px 2px 4px rgba(0, 0, 0, 0.1);
+    }
   }
 
   .right-section {
-      flex: 1;
+    flex: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: linear-gradient(135deg, #d8d0f0 0%, #a8c6e5 100%);
+
+    .form-container {
+      width: 480px;
+      background: #FFFFFF;
+      box-shadow: 0px 4px 20px rgba(0, 0, 0, 0.1);
+      border-radius: 16px;
+      padding: 2.5rem;
       display: flex;
-      justify-content: center;
-      align-items: center;
-      background-color: #750139;
-
-      .form-container {
-          width: 603px;
-          height: 706px;
-          flex-shrink: 0;
-          background: #FFF;
-          box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
-          border-radius: 20px;
-          padding: 20px;
-          display: flex;
-          flex-direction: column;
-          align-items: center; /* Center aligns content */
-          justify-content: center;
-          position: relative; /* Enables absolute positioning inside */
-
-          h1 {
-              position: absolute;
-              top: 33px;
-              left: 42px;
-              font-size: 40px;
-              font-weight: bold;
-              font-family: 'Inria Serif', serif; /* Updated font */
-              margin: 0;
-          }
-
-          .error-message {
-              color: red;
-              text-align: left;
-              margin-bottom: 10px;
-              margin-left: 42px; /* Align error message with input */
-          }
-
-          .input-group {
-              width: 100%;
-              margin-bottom: 15px; /* Keeps input spacing */
-          }
-
-          .input-container {
-              display: flex;
-              align-items: center;
-              width: 483px;
-              height: 78px;
-              flex-shrink: 0;
-              border-radius: 15px !important; /* Ensures 15px border-radius */
-              border: 1px solid #000;
-              background: #FFF;
-              padding: 10px;
-              overflow: hidden;
-              margin: 0 auto; /* Centers input container */
-          }
-
-          .input-container input {
-              flex: 1;
-              border: none;
-              outline: none;
-              padding: 0 15px;
-              font-size: 16px;
-              background: transparent;
-              border-radius: inherit;
-              display: block;
-              width: 100%;
-              height: 100%;
-          }
-
-          .input-container .icon-left {
-              margin-right: 10px;
-          }
-
-          .input-container .icon-right {
-              margin-left: 10px;
-              cursor: pointer;
-          }
-
-          .signin-btn {
-              width: 483px;
-              height: 50px;
-              background: #007bff;
-              color: white;
-              border: none;
-              border-radius: 15px;
-              cursor: pointer;
-              font-size: 18px;
-              text-align: center;
-              display: flex;
-              align-items: center;
-              justify-content: center;
-              margin-top: 20px;
-              margin: 0 auto; /* Centers button */
-          }
-
-          .signin-btn:hover {
-              background: #0056b3;
-          }
-
-          .forgot-password {
-              font-size: 16px;
-              color: blue;
-              text-align: left;
-              cursor: pointer;
-              margin-top: 15px;
-              margin-left: 10px; /* Moves forgot password 42px from the left */
-          }
-
-          .signup-link {
-            font-family: 'Inria Serif', serif;
-            font-size: 20px;
-            font-weight: bold;
-            margin-top: 61px;
-            text-align: center;
-          }
+      flex-direction: column;
+      
+      h1 {
+        font-family: 'Poppins', sans-serif;
+        font-size: 1.75rem;
+        font-weight: 600;
+        color: #1a202c;
+        margin-bottom: 2rem;
+        text-align: center;
       }
+
+      .error-message {
+        color: #e53e3e;
+        text-align: left;
+        margin-bottom: 1rem;
+        font-size: 0.875rem;
+      }
+
+      .input-group {
+        width: 100%;
+        margin-bottom: 1.25rem;
+      }
+
+      .input-container {
+        display: flex;
+        align-items: center;
+        width: 100%;
+        height: 3.5rem;
+        border-radius: 0.5rem;
+        border: 1px solid #e2e8f0;
+        background: #FFFFFF;
+        padding: 0 1rem;
+        overflow: hidden;
+        transition: border-color 0.2s;
+
+        &:focus-within {
+          border-color: #4299e1;
+        }
+
+        input {
+          flex: 1;
+          border: none;
+          outline: none;
+          padding: 0 0.5rem;
+          font-size: 1rem;
+          font-family: 'Poppins', sans-serif;
+          background: transparent;
+          width: 100%;
+          height: 100%;
+          color: #4a5568;
+
+          &::placeholder {
+            color: #a0aec0;
+          }
+        }
+
+        .icon-left {
+          color: #a0aec0;
+          font-size: 1.25rem;
+        }
+
+        .icon-right {
+          color: #a0aec0;
+          font-size: 1.25rem;
+          cursor: pointer;
+          transition: color 0.2s;
+
+          &:hover {
+            color: #4a5568;
+          }
+        }
+      }
+
+      .signin-btn {
+        width: 100%;
+        height: 3rem;
+        background: linear-gradient(90deg, #4299e1 0%, #805ad5 100%);
+        color: white;
+        border: none;
+        border-radius: 0.5rem;
+        cursor: pointer;
+        font-size: 1rem;
+        font-weight: 500;
+        font-family: 'Poppins', sans-serif;
+        text-align: center;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin-top: 1.5rem;
+        transition: opacity 0.2s;
+
+        &:hover {
+          opacity: 0.9;
+        }
+
+        &:disabled {
+          opacity: 0.7;
+          cursor: not-allowed;
+        }
+      }
+
+      .forgot-password {
+        font-family: 'Poppins', sans-serif;
+        font-size: 0.875rem;
+        color: #4299e1;
+        text-align: center;
+        cursor: pointer;
+        margin-top: 1.25rem;
+        transition: color 0.2s;
+
+        &:hover {
+          color: #2b6cb0;
+          text-decoration: underline;
+        }
+      }
+
+      .signup-link {
+        font-family: 'Poppins', sans-serif;
+        font-size: 1rem;
+        margin-top: 2.5rem;
+        text-align: center;
+        color: #4a5568;
+
+        span {
+          color: #4299e1;
+          font-weight: 600;
+          cursor: pointer;
+          transition: color 0.2s;
+
+          &:hover {
+            color: #2b6cb0;
+            text-decoration: underline;
+          }
+        }
+      }
+    }
   }
 }

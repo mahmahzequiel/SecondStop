@@ -27,8 +27,9 @@ a {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  max-width: 1200px;
+  max-width: 1500px;
   margin: 0 auto;
+  width: 100%;
 }
 
 /* Logo Styles */
@@ -36,39 +37,40 @@ a {
   display: flex;
   align-items: center;
   gap: 0.5rem;
-  margin-left: -10rem; /* Move logo further to the left */
 }
 
 .main-header__logo-image {
-  width: 80px; /* Adjust this value as needed */
-  height: auto; /* Maintain aspect ratio */
+  width: 80px;
+  height: auto;
+  transition: width 0.3s ease;
 }
 
 .main-header__logo-text {
   font-size: 1.5rem;
   font-weight: 600;
   color: #ffffff;
+  transition: font-size 0.3s ease;
 }
 
 /* Header Right Section */
 .main-header__right {
   display: flex;
   align-items: center;
-  margin-right: -8rem; /* Move icons further to the right */
 }
 
 /* Navbar Icons */
 .main-header__navbar-icons {
   display: flex;
-  gap: 1.5rem; /* Increase gap between icons */
+  gap: 1.5rem;
   align-items: center;
+  margin-left: auto; /* Ensures icons stay aligned properly */
 }
 
 .main-header__icon {
-  font-size: 2rem; /* Increased icon size */
+  font-size: 2rem;
   color: #ffffff;
   cursor: pointer;
-  transition: color 0.2s;
+  transition: all 0.2s;
 }
 
 .main-header__icon:hover {
@@ -97,6 +99,9 @@ a {
 .main-header__cart-link,
 .main-header__profile-link {
   position: relative;
+  display: flex; /* Ensure proper alignment of icons */
+  align-items: center;
+  justify-content: center;
 }
 
 /* Notification Dropdown */
@@ -191,4 +196,127 @@ a {
   cursor: pointer;
   font-size: 0.7rem;
   padding: 0;
+}
+
+/* Responsive Styles */
+@media (max-width: 1200px) {
+  .main-header__container {
+    max-width: 100%;
+    padding: 0 1rem;
+  }
+}
+
+@media (max-width: 992px) {
+  .main-header__logo-image {
+    width: 70px;
+  }
+  
+  .main-header__logo-text {
+    font-size: 1.3rem;
+  }
+  
+  .main-header__icon {
+    font-size: 1.8rem;
+  }
+  
+  .main-header__navbar-icons {
+    gap: 1.2rem;
+  }
+}
+
+@media (max-width: 768px) {
+  .main-header__dark {
+    padding: 1rem;
+  }
+  
+  .main-header__container {
+    padding: 0 0.5rem;
+  }
+  
+  .main-header__logo-image {
+    width: 60px;
+  }
+  
+  .main-header__logo-text {
+    font-size: 1.1rem;
+  }
+  
+  .main-header__icon {
+    font-size: 1.6rem;
+  }
+  
+  .main-header__navbar-icons {
+    gap: 1rem;
+  }
+  
+  .main-header__notification-dropdown {
+    width: 280px;
+    right: -50px; /* Adjust dropdown position for smaller screens */
+  }
+}
+
+@media (max-width: 576px) {
+  .main-header__container {
+    padding: 0 0.5rem;
+    justify-content: space-between;
+  }
+  
+  .main-header__logo-text {
+    display: none;
+  }
+  
+  .main-header__logo-image {
+    width: 50px;
+  }
+  
+  .main-header__icon {
+    font-size: 1.4rem;
+  }
+  
+  .main-header__navbar-icons {
+    gap: 0.8rem;
+  }
+  
+  .main-header__notification-dropdown {
+    width: 250px;
+    right: -80px; /* Further adjust dropdown position */
+  }
+  
+  /* Add proper spacing for the right section */
+  .main-header__right {
+    margin-left: auto;
+  }
+}
+
+@media (max-width: 400px) {
+  .main-header__dark {
+    padding: 0.8rem 0.5rem;
+  }
+  
+  .main-header__logo-image {
+    width: 45px;
+  }
+  
+  .main-header__icon {
+    font-size: 1.2rem;
+  }
+  
+  .main-header__navbar-icons {
+    gap: 0.6rem;
+  }
+  
+  .main-header__notification-badge,
+  .main-header__cart-badge {
+    font-size: 0.6rem;
+    min-width: 16px;
+    height: 16px;
+    top: -6px;
+    right: -6px;
+  }
+  
+  /* Ensure container takes full width with proper padding */
+  .main-header__container {
+    width: 100%;
+    padding: 0 0.3rem;
+  }
 }

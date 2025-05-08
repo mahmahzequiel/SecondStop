@@ -235,7 +235,7 @@ const ProductDetails = () => {
             </div>
 
             <div className="product-details-price">
-              <span className="currency">$</span>
+              <span className="currency">PHP</span>
               <span className="amount">{product.price}</span>
             </div>
 
