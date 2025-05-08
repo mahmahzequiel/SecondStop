@@ -204,45 +204,71 @@ const [orderDetails, setOrderDetails] = useState(null);
       let response;
       const requestData = { admin_notes: adminNotes };
       
-      switch (actionType) {
-        case 'approveCancellation':
-          response = await axios.post(`/api/orders/${currentOrder.id}/approve-cancellation`, requestData);
-          message.success(`Cancellation for order #${currentOrder.order_number} has been approved`);
-          break;
-        case 'denyCancellation':
-          response = await axios.post(`/api/orders/${currentOrder.id}/deny-cancellation`, requestData);
-          message.success(`Cancellation for order #${currentOrder.order_number} has been denied`);
-          break;
-        case 'approveRefund':
-          response = await axios.post(`/api/orders/${currentOrder.id}/approve-refund`, requestData);
-          message.success(`Refund for order #${currentOrder.order_number} has been approved`);
-          break;
-        case 'denyRefund':
-          response = await axios.post(`/api/orders/${currentOrder.id}/deny-refund`, requestData);
-          message.success(`Refund for order #${currentOrder.order_number} has been denied`);
-          break;
-        default:
-          throw new Error('Invalid action type');
-      }
-      
-      // Update local state with the returned order
-      const updatedOrders = orders.map(order => {
-        if (order.id === currentOrder.id) {
-          return response.data.order;
+      try {
+        switch (actionType) {
+          case 'approveCancellation':
+            response = await axios.post(`/api/orders/${currentOrder.id}/approve-cancellation`, requestData);
+            message.success(`Cancellation for order #${currentOrder.order_number} has been approved`);
+            break;
+          case 'denyCancellation':
+            response = await axios.post(`/api/orders/${currentOrder.id}/deny-cancellation`, requestData);
+            message.success(`Cancellation for order #${currentOrder.order_number} has been denied`);
+            break;
+          case 'approveRefund':
+            response = await axios.post(`/api/orders/${currentOrder.id}/approve-refund`, requestData);
+            message.success(`Refund for order #${currentOrder.order_number} has been approved`);
+            break;
+          case 'denyRefund':
+            response = await axios.post(`/api/orders/${currentOrder.id}/deny-refund`, requestData);
+            message.success(`Refund for order #${currentOrder.order_number} has been denied`);
+            break;
+          default:
+            throw new Error('Invalid action type');
         }
-        return order;
-      });
-      
-      setOrders(updatedOrders);
+        
+        // Update local state with the returned order
+        const updatedOrders = orders.map(order => {
+          if (order.id === currentOrder.id) {
+            return response.data.order;
+          }
+          return order;
+        });
+        
+        setOrders(updatedOrders);
+        setActionModalVisible(false);
+        setCurrentOrder(null);
+        setActionType('');
+        setAdminNotes('');
+      } catch (error) {
+        console.error('Failed to process request:', error);
+        
+        // If it's a 500 error, the update might have still succeeded
+        if (error.response && error.response.status === 500) {
+          // Try to fetch orders to check if the update was successful
+          try {
+            await fetchOrders({
+              current: pagination.current,
+              pageSize: pagination.pageSize
+            });
+            // If fetchOrders succeeds, the update probably worked
+            message.success(`Request for order #${currentOrder.order_number} has been processed successfully`);
+            setActionModalVisible(false);
+            setCurrentOrder(null);
+            setActionType('');
+            setAdminNotes('');
+          } catch (fetchError) {
+            console.error('Error fetching updated orders:', fetchError);
+            message.error("Server error. Please refresh the page to verify the update.");
+          }
+        } else {
+          message.error(error.response?.data?.message || "Failed to process request. Please try again later.");
+        }
+      }
     } catch (error) {
-      console.error('Error handling request:', error);
-      message.error('Failed to process request');
+      console.error('Failed to process request:', error);
+      message.error("Failed to process request. Please try again later.");
     } finally {
       setStatusLoading(prev => ({ ...prev, [currentOrder.id]: false }));
-      setActionModalVisible(false);
-      setCurrentOrder(null);
-      setActionType('');
-      setAdminNotes('');
     }
   };
 

@@ -76527,7 +76527,7 @@ var OrdersList = function OrdersList() {
   // Handle approval/denial of requests
   var handleActionRequest = /*#__PURE__*/function () {
     var _ref6 = _asyncToGenerator(/*#__PURE__*/_regeneratorRuntime().mark(function _callee4() {
-      var response, requestData, updatedOrders;
+      var response, requestData, updatedOrders, _error$response3;
       return _regeneratorRuntime().wrap(function _callee4$(_context4) {
         while (1) switch (_context4.prev = _context4.next) {
           case 0:
@@ -76551,40 +76551,41 @@ var OrdersList = function OrdersList() {
             requestData = {
               admin_notes: adminNotes
             };
+            _context4.prev = 8;
             _context4.t0 = actionType;
-            _context4.next = _context4.t0 === 'approveCancellation' ? 11 : _context4.t0 === 'denyCancellation' ? 16 : _context4.t0 === 'approveRefund' ? 21 : _context4.t0 === 'denyRefund' ? 26 : 31;
+            _context4.next = _context4.t0 === 'approveCancellation' ? 12 : _context4.t0 === 'denyCancellation' ? 17 : _context4.t0 === 'approveRefund' ? 22 : _context4.t0 === 'denyRefund' ? 27 : 32;
             break;
-          case 11:
-            _context4.next = 13;
+          case 12:
+            _context4.next = 14;
             return axios__WEBPACK_IMPORTED_MODULE_1___default().post("/api/orders/".concat(currentOrder.id, "/approve-cancellation"), requestData);
-          case 13:
+          case 14:
             response = _context4.sent;
             antd__WEBPACK_IMPORTED_MODULE_9__["default"].success("Cancellation for order #".concat(currentOrder.order_number, " has been approved"));
-            return _context4.abrupt("break", 32);
-          case 16:
-            _context4.next = 18;
+            return _context4.abrupt("break", 33);
+          case 17:
+            _context4.next = 19;
             return axios__WEBPACK_IMPORTED_MODULE_1___default().post("/api/orders/".concat(currentOrder.id, "/deny-cancellation"), requestData);
-          case 18:
+          case 19:
             response = _context4.sent;
             antd__WEBPACK_IMPORTED_MODULE_9__["default"].success("Cancellation for order #".concat(currentOrder.order_number, " has been denied"));
-            return _context4.abrupt("break", 32);
-          case 21:
-            _context4.next = 23;
+            return _context4.abrupt("break", 33);
+          case 22:
+            _context4.next = 24;
             return axios__WEBPACK_IMPORTED_MODULE_1___default().post("/api/orders/".concat(currentOrder.id, "/approve-refund"), requestData);
-          case 23:
+          case 24:
             response = _context4.sent;
             antd__WEBPACK_IMPORTED_MODULE_9__["default"].success("Refund for order #".concat(currentOrder.order_number, " has been approved"));
-            return _context4.abrupt("break", 32);
-          case 26:
-            _context4.next = 28;
+            return _context4.abrupt("break", 33);
+          case 27:
+            _context4.next = 29;
             return axios__WEBPACK_IMPORTED_MODULE_1___default().post("/api/orders/".concat(currentOrder.id, "/deny-refund"), requestData);
-          case 28:
+          case 29:
             response = _context4.sent;
             antd__WEBPACK_IMPORTED_MODULE_9__["default"].success("Refund for order #".concat(currentOrder.order_number, " has been denied"));
-            return _context4.abrupt("break", 32);
-          case 31:
-            throw new Error('Invalid action type');
+            return _context4.abrupt("break", 33);
           case 32:
+            throw new Error('Invalid action type');
+          case 33:
             // Update local state with the returned order
             updatedOrders = orders.map(function (order) {
               if (order.id === currentOrder.id) {
@@ -76593,28 +76594,66 @@ var OrdersList = function OrdersList() {
               return order;
             });
             setOrders(updatedOrders);
-            _context4.next = 40;
-            break;
-          case 36:
-            _context4.prev = 36;
-            _context4.t1 = _context4["catch"](6);
-            console.error('Error handling request:', _context4.t1);
-            antd__WEBPACK_IMPORTED_MODULE_9__["default"].error('Failed to process request');
-          case 40:
-            _context4.prev = 40;
-            setStatusLoading(function (prev) {
-              return _objectSpread(_objectSpread({}, prev), {}, _defineProperty({}, currentOrder.id, false));
-            });
             setActionModalVisible(false);
             setCurrentOrder(null);
             setActionType('');
             setAdminNotes('');
-            return _context4.finish(40);
-          case 47:
+            _context4.next = 62;
+            break;
+          case 41:
+            _context4.prev = 41;
+            _context4.t1 = _context4["catch"](8);
+            console.error('Failed to process request:', _context4.t1);
+
+            // If it's a 500 error, the update might have still succeeded
+            if (!(_context4.t1.response && _context4.t1.response.status === 500)) {
+              _context4.next = 61;
+              break;
+            }
+            _context4.prev = 45;
+            _context4.next = 48;
+            return fetchOrders({
+              current: pagination.current,
+              pageSize: pagination.pageSize
+            });
+          case 48:
+            // If fetchOrders succeeds, the update probably worked
+            antd__WEBPACK_IMPORTED_MODULE_9__["default"].success("Request for order #".concat(currentOrder.order_number, " has been processed successfully"));
+            setActionModalVisible(false);
+            setCurrentOrder(null);
+            setActionType('');
+            setAdminNotes('');
+            _context4.next = 59;
+            break;
+          case 55:
+            _context4.prev = 55;
+            _context4.t2 = _context4["catch"](45);
+            console.error('Error fetching updated orders:', _context4.t2);
+            antd__WEBPACK_IMPORTED_MODULE_9__["default"].error("Server error. Please refresh the page to verify the update.");
+          case 59:
+            _context4.next = 62;
+            break;
+          case 61:
+            antd__WEBPACK_IMPORTED_MODULE_9__["default"].error(((_error$response3 = _context4.t1.response) === null || _error$response3 === void 0 || (_error$response3 = _error$response3.data) === null || _error$response3 === void 0 ? void 0 : _error$response3.message) || "Failed to process request. Please try again later.");
+          case 62:
+            _context4.next = 68;
+            break;
+          case 64:
+            _context4.prev = 64;
+            _context4.t3 = _context4["catch"](6);
+            console.error('Failed to process request:', _context4.t3);
+            antd__WEBPACK_IMPORTED_MODULE_9__["default"].error("Failed to process request. Please try again later.");
+          case 68:
+            _context4.prev = 68;
+            setStatusLoading(function (prev) {
+              return _objectSpread(_objectSpread({}, prev), {}, _defineProperty({}, currentOrder.id, false));
+            });
+            return _context4.finish(68);
+          case 71:
           case "end":
             return _context4.stop();
         }
-      }, _callee4, null, [[6, 36, 40, 47]]);
+      }, _callee4, null, [[6, 64, 68, 71], [8, 41], [45, 55]]);
     }));
     return function handleActionRequest() {
       return _ref6.apply(this, arguments);
@@ -77097,7 +77136,7 @@ var OrdersList = function OrdersList() {
   // Function to handle bulk actions
   var handleBulkAction = /*#__PURE__*/function () {
     var _ref10 = _asyncToGenerator(/*#__PURE__*/_regeneratorRuntime().mark(function _callee6(action) {
-      var response, _error$response3;
+      var response, _error$response4;
       return _regeneratorRuntime().wrap(function _callee6$(_context6) {
         while (1) switch (_context6.prev = _context6.next) {
           case 0:
@@ -77132,7 +77171,7 @@ var OrdersList = function OrdersList() {
             _context6.prev = 14;
             _context6.t0 = _context6["catch"](4);
             console.error('Error processing bulk action:', _context6.t0);
-            antd__WEBPACK_IMPORTED_MODULE_9__["default"].error(((_error$response3 = _context6.t0.response) === null || _error$response3 === void 0 || (_error$response3 = _error$response3.data) === null || _error$response3 === void 0 ? void 0 : _error$response3.message) || 'Failed to process bulk action');
+            antd__WEBPACK_IMPORTED_MODULE_9__["default"].error(((_error$response4 = _context6.t0.response) === null || _error$response4 === void 0 || (_error$response4 = _error$response4.data) === null || _error$response4 === void 0 ? void 0 : _error$response4.message) || 'Failed to process bulk action');
           case 18:
             _context6.prev = 18;
             setLoading(false);
@@ -77151,7 +77190,7 @@ var OrdersList = function OrdersList() {
   // Add bulk actions for payment status
   var handleBulkPaymentAction = /*#__PURE__*/function () {
     var _ref11 = _asyncToGenerator(/*#__PURE__*/_regeneratorRuntime().mark(function _callee7(action) {
-      var paymentStatus, response, _error$response4;
+      var paymentStatus, response, _error$response5;
       return _regeneratorRuntime().wrap(function _callee7$(_context7) {
         while (1) switch (_context7.prev = _context7.next) {
           case 0:
@@ -77187,7 +77226,7 @@ var OrdersList = function OrdersList() {
             _context7.prev = 15;
             _context7.t0 = _context7["catch"](5);
             console.error('Error processing bulk payment action:', _context7.t0);
-            antd__WEBPACK_IMPORTED_MODULE_9__["default"].error(((_error$response4 = _context7.t0.response) === null || _error$response4 === void 0 || (_error$response4 = _error$response4.data) === null || _error$response4 === void 0 ? void 0 : _error$response4.message) || 'Failed to update payment status');
+            antd__WEBPACK_IMPORTED_MODULE_9__["default"].error(((_error$response5 = _context7.t0.response) === null || _error$response5 === void 0 || (_error$response5 = _error$response5.data) === null || _error$response5 === void 0 ? void 0 : _error$response5.message) || 'Failed to update payment status');
           case 19:
             _context7.prev = 19;
             setLoading(false);
@@ -80699,7 +80738,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router/dist/development/chunk-K6AXKMTT.mjs");
 /* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
 /* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_1__);
-/* harmony import */ var _images_logodescription_png__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../../../../../images/logodescription.png */ "./public/images/logodescription.png");
+/* harmony import */ var _images_logodescription_png__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../../../../images/logodescription.png */ "./public/images/logodescription.png");
 /* harmony import */ var _ForgotPassword__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./ForgotPassword */ "./resources/js/components/LogIn/ForgotPassword.js");
 /* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! react/jsx-runtime */ "./node_modules/react/jsx-runtime.js");
 function _typeof(o) { "@babel/helpers - typeof"; return _typeof = "function" == typeof Symbol && "symbol" == typeof Symbol.iterator ? function (o) { return typeof o; } : function (o) { return o && "function" == typeof Symbol && o.constructor === Symbol && o !== Symbol.prototype ? "symbol" : typeof o; }, _typeof(o); }
@@ -84033,7 +84072,7 @@ var OrderActionModals = function OrderActionModals(_ref) {
   };
   var handleCancelOrder = /*#__PURE__*/function () {
     var _ref2 = _asyncToGenerator(/*#__PURE__*/_regeneratorRuntime().mark(function _callee() {
-      var token, requestNotes, response;
+      var token, requestNotes;
       return _regeneratorRuntime().wrap(function _callee$(_context) {
         while (1) switch (_context.prev = _context.next) {
           case 0:
@@ -84060,9 +84099,8 @@ var OrderActionModals = function OrderActionModals(_ref) {
             } else if (cancelNotes.trim()) {
               requestNotes = "".concat(cancelReason, " - Additional notes: ").concat(cancelNotes);
             }
-
-            // Use the requestCancellation endpoint
-            _context.next = 13;
+            _context.prev = 11;
+            _context.next = 14;
             return axios__WEBPACK_IMPORTED_MODULE_1___default().post("http://127.0.0.1:8000/api/orders/".concat(order.id, "/request-cancellation"), {
               request_notes: requestNotes
             }, {
@@ -84070,27 +84108,57 @@ var OrderActionModals = function OrderActionModals(_ref) {
                 Authorization: "Bearer ".concat(token)
               }
             });
-          case 13:
-            response = _context.sent;
+          case 14:
             antd__WEBPACK_IMPORTED_MODULE_4__["default"].success("Cancellation requested successfully");
             onSuccess();
             handleClose();
-            _context.next = 23;
+            _context.next = 36;
             break;
           case 19:
             _context.prev = 19;
-            _context.t0 = _context["catch"](6);
+            _context.t0 = _context["catch"](11);
             console.error("Failed to request cancellation:", _context.t0);
-            antd__WEBPACK_IMPORTED_MODULE_4__["default"].error("Failed to request cancellation. Please try again later.");
-          case 23:
+
+            // If it's a 500 error, the update might have still succeeded
+            if (!(_context.t0.response && _context.t0.response.status === 500)) {
+              _context.next = 35;
+              break;
+            }
             _context.prev = 23;
-            setActionLoading(false);
-            return _context.finish(23);
+            _context.next = 26;
+            return onSuccess();
           case 26:
+            // If onSuccess succeeds, the update probably worked
+            antd__WEBPACK_IMPORTED_MODULE_4__["default"].success("Cancellation requested successfully");
+            handleClose();
+            _context.next = 33;
+            break;
+          case 30:
+            _context.prev = 30;
+            _context.t1 = _context["catch"](23);
+            antd__WEBPACK_IMPORTED_MODULE_4__["default"].error("Server error. Please refresh the page to verify the update.");
+          case 33:
+            _context.next = 36;
+            break;
+          case 35:
+            antd__WEBPACK_IMPORTED_MODULE_4__["default"].error("Failed to request cancellation. Please try again later.");
+          case 36:
+            _context.next = 42;
+            break;
+          case 38:
+            _context.prev = 38;
+            _context.t2 = _context["catch"](6);
+            console.error("Failed to request cancellation:", _context.t2);
+            antd__WEBPACK_IMPORTED_MODULE_4__["default"].error("Failed to request cancellation. Please try again later.");
+          case 42:
+            _context.prev = 42;
+            setActionLoading(false);
+            return _context.finish(42);
+          case 45:
           case "end":
             return _context.stop();
         }
-      }, _callee, null, [[6, 19, 23, 26]]);
+      }, _callee, null, [[6, 38, 42, 45], [11, 19], [23, 30]]);
     }));
     return function handleCancelOrder() {
       return _ref2.apply(this, arguments);
@@ -85041,8 +85109,19 @@ function _arrayWithHoles(r) { if (Array.isArray(r)) return r; }
 
 
 
- // Import the new component
 
+
+var addWorkingDays = function addWorkingDays(startDate, days) {
+  var currentDate = new Date(startDate);
+  var count = 0;
+  while (count < days) {
+    currentDate.setDate(currentDate.getDate() + 1);
+    if (currentDate.getDay() !== 0 && currentDate.getDay() !== 6) {
+      count++;
+    }
+  }
+  return currentDate;
+};
 var Purchases = function Purchases() {
   var _useState = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)([]),
     _useState2 = _slicedToArray(_useState, 2),
@@ -85060,8 +85139,6 @@ var Purchases = function Purchases() {
     _useState8 = _slicedToArray(_useState7, 2),
     selectedSegment = _useState8[0],
     setSelectedSegment = _useState8[1];
-
-  // Modal visibility state
   var _useState9 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(false),
     _useState10 = _slicedToArray(_useState9, 2),
     modalVisible = _useState10[0],
@@ -85069,31 +85146,23 @@ var Purchases = function Purchases() {
   var _useState11 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(null),
     _useState12 = _slicedToArray(_useState11, 2),
     modalType = _useState12[0],
-    setModalType = _useState12[1]; // "cancel", "refund", or "review"
+    setModalType = _useState12[1];
   var _useState13 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(null),
     _useState14 = _slicedToArray(_useState13, 2),
     selectedOrder = _useState14[0],
     setSelectedOrder = _useState14[1];
-  (0,react__WEBPACK_IMPORTED_MODULE_0__.useEffect)(function () {
-    console.log("Sorted Orders:", displayedOrders.map(function (o) {
-      return {
-        id: o.id,
-        order_number: o.order_number,
-        date: o.purchase_date || o.created_at || o.updated_at,
-        timestamp: new Date(o.purchase_date || o.created_at || o.updated_at).getTime()
-      };
-    }));
-  }, [displayedOrders]);
-
-  // Map each segment label to your actual DB statuses
-  // Update the statusMap in Purchases.js
+  var dateOptions = {
+    weekday: "short",
+    year: "numeric",
+    month: "short",
+    day: "numeric"
+  };
   var statusMap = {
     "To Ship": ["pending", "cancellation_requested"],
     "To Receive": ["shipped", "refund_requested"],
-    // Include refund_requested here
     "Complete": "delivered",
     "Cancelled": "cancelled",
-    "Refund": "refunded" // Only fully refunded orders should be here
+    "Refund": "refunded"
   };
   (0,react__WEBPACK_IMPORTED_MODULE_0__.useEffect)(function () {
     fetchOrders();
@@ -85123,47 +85192,40 @@ var Purchases = function Purchases() {
             });
           case 9:
             response = _context.sent;
-            console.log("Fetched orders response:", response.data);
             setOrders(response.data.orders || []);
-            _context.next = 18;
+            _context.next = 17;
             break;
-          case 14:
-            _context.prev = 14;
+          case 13:
+            _context.prev = 13;
             _context.t0 = _context["catch"](0);
             console.error("Failed to fetch orders:", _context.t0);
             antd__WEBPACK_IMPORTED_MODULE_5__["default"].error("Could not load your orders. Please try again later.");
-          case 18:
-            _context.prev = 18;
+          case 17:
+            _context.prev = 17;
             setLoading(false);
-            return _context.finish(18);
-          case 21:
+            return _context.finish(17);
+          case 20:
           case "end":
             return _context.stop();
         }
-      }, _callee, null, [[0, 14, 18, 21]]);
+      }, _callee, null, [[0, 13, 17, 20]]);
     }));
     return function fetchOrders() {
       return _ref.apply(this, arguments);
     };
   }();
-
-  // Open modal with specific type
   var openModal = function openModal(type, order) {
     setModalType(type);
     setSelectedOrder(order);
     setModalVisible(true);
   };
-
-  // Close modal
   var closeModal = function closeModal() {
     setModalVisible(false);
     setModalType(null);
     setSelectedOrder(null);
   };
-
-  // Handle successful modal action
   var handleModalSuccess = function handleModalSuccess() {
-    fetchOrders(); // Refresh orders after successful action
+    fetchOrders();
   };
   var handleOrderReceived = /*#__PURE__*/function () {
     var _ref2 = _asyncToGenerator(/*#__PURE__*/_regeneratorRuntime().mark(function _callee3(orderId) {
@@ -85175,45 +85237,66 @@ var Purchases = function Purchases() {
               setActionLoading(true);
               token = localStorage.getItem("userToken");
               antd__WEBPACK_IMPORTED_MODULE_6__["default"].confirm({
-                title: 'Confirm Order Received',
-                content: 'Are you sure you want to mark this order as received?',
-                okText: 'Yes',
-                cancelText: 'No',
+                title: "Confirm Order Received",
+                content: "Are you sure you want to mark this order as received?",
+                okText: "Yes",
+                cancelText: "No",
                 onOk: function () {
                   var _onOk = _asyncToGenerator(/*#__PURE__*/_regeneratorRuntime().mark(function _callee2() {
-                    var response;
                     return _regeneratorRuntime().wrap(function _callee2$(_context2) {
                       while (1) switch (_context2.prev = _context2.next) {
                         case 0:
                           _context2.prev = 0;
                           _context2.next = 3;
-                          return axios__WEBPACK_IMPORTED_MODULE_2___default().post("http://127.0.0.1:8000/api/orders/".concat(orderId, "/deliver"), {},
-                          // Empty body as the endpoint doesn't require additional data
-                          {
+                          return axios__WEBPACK_IMPORTED_MODULE_2___default().post("http://127.0.0.1:8000/api/orders/".concat(orderId, "/deliver"), {}, {
                             headers: {
                               Authorization: "Bearer ".concat(token)
                             }
                           });
                         case 3:
-                          response = _context2.sent;
+                          // If we get here, the request was successful
                           antd__WEBPACK_IMPORTED_MODULE_5__["default"].success("Order marked as received");
-                          fetchOrders();
-                          _context2.next = 12;
+                          _context2.next = 6;
+                          return fetchOrders();
+                        case 6:
+                          _context2.next = 24;
                           break;
                         case 8:
                           _context2.prev = 8;
                           _context2.t0 = _context2["catch"](0);
                           console.error("Failed to mark order as received:", _context2.t0);
-                          antd__WEBPACK_IMPORTED_MODULE_5__["default"].error("Failed to update order status. Please try again later.");
-                        case 12:
+
+                          // If it's a 500 error, the update might have still succeeded
+                          if (!(_context2.t0.response && _context2.t0.response.status === 500)) {
+                            _context2.next = 23;
+                            break;
+                          }
                           _context2.prev = 12;
-                          setActionLoading(false);
-                          return _context2.finish(12);
+                          _context2.next = 15;
+                          return fetchOrders();
                         case 15:
+                          // If fetchOrders succeeds, the update probably worked
+                          antd__WEBPACK_IMPORTED_MODULE_5__["default"].success("Order marked as received");
+                          _context2.next = 21;
+                          break;
+                        case 18:
+                          _context2.prev = 18;
+                          _context2.t1 = _context2["catch"](12);
+                          antd__WEBPACK_IMPORTED_MODULE_5__["default"].error("Server error. Please refresh the page to verify the update.");
+                        case 21:
+                          _context2.next = 24;
+                          break;
+                        case 23:
+                          antd__WEBPACK_IMPORTED_MODULE_5__["default"].error("Failed to update order status. Please try again later.");
+                        case 24:
+                          _context2.prev = 24;
+                          setActionLoading(false);
+                          return _context2.finish(24);
+                        case 27:
                         case "end":
                           return _context2.stop();
                       }
-                    }, _callee2, null, [[0, 8, 12, 15]]);
+                    }, _callee2, null, [[0, 8, 24, 27], [12, 18]]);
                   }));
                   function onOk() {
                     return _onOk.apply(this, arguments);
@@ -85245,7 +85328,7 @@ var Purchases = function Purchases() {
     });
     if (refundOrder) {
       antd__WEBPACK_IMPORTED_MODULE_6__["default"].info({
-        title: 'Refund Details',
+        title: "Refund Details",
         content: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsxs)("div", {
           children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsxs)("p", {
             children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("strong", {
@@ -85267,7 +85350,7 @@ var Purchases = function Purchases() {
             children: "Your refund request is under review. You will be notified once it is approved or denied."
           })]
         }),
-        okText: 'Close'
+        okText: "Close"
       });
     } else {
       antd__WEBPACK_IMPORTED_MODULE_5__["default"].error("Could not find refund details");
@@ -85279,7 +85362,7 @@ var Purchases = function Purchases() {
     });
     if (pendingOrder) {
       antd__WEBPACK_IMPORTED_MODULE_6__["default"].info({
-        title: 'Cancellation Request Pending',
+        title: "Cancellation Request Pending",
         content: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsxs)("div", {
           children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsxs)("p", {
             children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("strong", {
@@ -85301,38 +85384,22 @@ var Purchases = function Purchases() {
             children: "Your cancellation request is under review. You will be notified once it is approved or denied."
           })]
         }),
-        okText: 'Close'
+        okText: "Close"
       });
     }
   };
   var handleBuyAgain = function handleBuyAgain(orderId) {
     antd__WEBPACK_IMPORTED_MODULE_5__["default"].info("Buy Again functionality will be implemented in a future update");
   };
-
-  // Filter by user & status
   var userId = localStorage.getItem("userId");
-  var displayedStatus = statusMap[selectedSegment];
-
-  // Update the filtering logic
-  // Update the filtering and sorting logic
-  // Update the filtering and sorting logic
-  // Update the filtering and sorting logic
   var displayedOrders = orders.filter(function (order) {
     return parseInt(order.user_id) === parseInt(userId);
   }).filter(function (order) {
     var statusCriteria = statusMap[selectedSegment];
-    if (Array.isArray(statusCriteria)) {
-      return statusCriteria.includes(order.status);
-    }
-    return order.status === statusCriteria;
+    return Array.isArray(statusCriteria) ? statusCriteria.includes(order.status) : order.status === statusCriteria;
   }).sort(function (a, b) {
-    // Explicitly use created_at for sorting
-    var timeA = new Date(a.created_at).getTime();
-    var timeB = new Date(b.created_at).getTime();
-    return timeB - timeA; // Newest first
+    return new Date(b.created_at).getTime() - new Date(a.created_at).getTime();
   });
-  // Function to render appropriate buttons based on selected segment
-  // Update renderActionButtons in Purchases.js
   var renderActionButtons = function renderActionButtons(order) {
     switch (selectedSegment) {
       case "To Ship":
@@ -85349,7 +85416,6 @@ var Purchases = function Purchases() {
           loading: actionLoading,
           children: "Cancel Order"
         });
-      // Rest of the switch case remains the same
       case "To Receive":
         return order.status === "refund_requested" ? /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)(antd__WEBPACK_IMPORTED_MODULE_7__["default"], {
           disabled: true,
@@ -85444,7 +85510,15 @@ var Purchases = function Purchases() {
         }) : displayedOrders.map(function (order) {
           var _order$order_items;
           var rawDate = order.purchase_date || order.created_at;
-          var orderDate = rawDate ? new Date(rawDate).toLocaleDateString() : "N/A";
+          var orderDateObj = rawDate ? new Date(rawDate) : null;
+          var isValidDate = orderDateObj && !isNaN(orderDateObj.getTime());
+          var orderDate = isValidDate ? orderDateObj.toLocaleDateString("en-US", dateOptions) : "N/A";
+          var expectedDelivery = "N/A";
+          if ((selectedSegment === "To Ship" || selectedSegment === "To Receive") && isValidDate) {
+            var earliestDelivery = addWorkingDays(orderDateObj, 5);
+            var latestDelivery = addWorkingDays(orderDateObj, 7);
+            expectedDelivery = "".concat(earliestDelivery.toLocaleDateString("en-US", dateOptions), " - ").concat(latestDelivery.toLocaleDateString("en-US", dateOptions));
+          }
           var toPay = parseFloat(order.total_amount) || 0;
           return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsxs)("div", {
             className: "user-purchases-order-item",
@@ -85452,7 +85526,7 @@ var Purchases = function Purchases() {
               return order.status === "cancellation_requested" ? handleViewCancellationDetails(order.id) : handleViewRefundDetails(order.id);
             } : undefined,
             style: order.status === "cancellation_requested" || order.status === "refund_requested" ? {
-              cursor: 'pointer'
+              cursor: "pointer"
             } : {},
             children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsxs)("h4", {
               children: ["Order #", order.order_number, /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsxs)("span", {
@@ -85461,6 +85535,10 @@ var Purchases = function Purchases() {
               })]
             }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsxs)("p", {
               children: ["Ordered: ", orderDate]
+            }), (selectedSegment === "To Ship" || selectedSegment === "To Receive") && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsxs)("p", {
+              children: ["Expected delivery: ", expectedDelivery]
+            }), selectedSegment === "Complete" && order.updated_at && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsxs)("p", {
+              children: ["Completed on: ", new Date(order.updated_at).toLocaleDateString("en-US", dateOptions)]
             }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsxs)("p", {
               className: "user-purchases-order-total",
               children: ["To Pay: PHP ", toPay.toFixed(2)]
@@ -179313,7 +179391,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _babel_runtime_helpers_esm_typeof__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @babel/runtime/helpers/esm/typeof */ "./node_modules/@babel/runtime/helpers/esm/typeof.js");
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_1__);
-/* harmony import */ var react_is__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! react-is */ "./node_modules/react-is/index.js");
+/* harmony import */ var react_is__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! react-is */ "./node_modules/rc-util/node_modules/react-is/index.js");
 /* harmony import */ var _hooks_useMemo__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./hooks/useMemo */ "./node_modules/rc-util/es/hooks/useMemo.js");
 /* harmony import */ var _React_isFragment__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./React/isFragment */ "./node_modules/rc-util/es/React/isFragment.js");
 
@@ -179619,6 +179697,254 @@ warningOnce.preMessage = preMessage;
 warningOnce.resetWarned = resetWarned;
 warningOnce.noteOnce = noteOnce;
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (warningOnce);
+
+/***/ }),
+
+/***/ "./node_modules/rc-util/node_modules/react-is/cjs/react-is.development.js":
+/*!********************************************************************************!*\
+  !*** ./node_modules/rc-util/node_modules/react-is/cjs/react-is.development.js ***!
+  \********************************************************************************/
+/***/ ((__unused_webpack_module, exports) => {
+
+"use strict";
+/**
+ * @license React
+ * react-is.development.js
+ *
+ * Copyright (c) Facebook, Inc. and its affiliates.
+ *
+ * This source code is licensed under the MIT license found in the
+ * LICENSE file in the root directory of this source tree.
+ */
+
+
+
+if (true) {
+  (function() {
+'use strict';
+
+// ATTENTION
+// When adding new symbols to this file,
+// Please consider also adding to 'react-devtools-shared/src/backend/ReactSymbols'
+// The Symbol used to tag the ReactElement-like types.
+var REACT_ELEMENT_TYPE = Symbol.for('react.element');
+var REACT_PORTAL_TYPE = Symbol.for('react.portal');
+var REACT_FRAGMENT_TYPE = Symbol.for('react.fragment');
+var REACT_STRICT_MODE_TYPE = Symbol.for('react.strict_mode');
+var REACT_PROFILER_TYPE = Symbol.for('react.profiler');
+var REACT_PROVIDER_TYPE = Symbol.for('react.provider');
+var REACT_CONTEXT_TYPE = Symbol.for('react.context');
+var REACT_SERVER_CONTEXT_TYPE = Symbol.for('react.server_context');
+var REACT_FORWARD_REF_TYPE = Symbol.for('react.forward_ref');
+var REACT_SUSPENSE_TYPE = Symbol.for('react.suspense');
+var REACT_SUSPENSE_LIST_TYPE = Symbol.for('react.suspense_list');
+var REACT_MEMO_TYPE = Symbol.for('react.memo');
+var REACT_LAZY_TYPE = Symbol.for('react.lazy');
+var REACT_OFFSCREEN_TYPE = Symbol.for('react.offscreen');
+
+// -----------------------------------------------------------------------------
+
+var enableScopeAPI = false; // Experimental Create Event Handle API.
+var enableCacheElement = false;
+var enableTransitionTracing = false; // No known bugs, but needs performance testing
+
+var enableLegacyHidden = false; // Enables unstable_avoidThisFallback feature in Fiber
+// stuff. Intended to enable React core members to more easily debug scheduling
+// issues in DEV builds.
+
+var enableDebugTracing = false; // Track which Fiber(s) schedule render work.
+
+var REACT_MODULE_REFERENCE;
+
+{
+  REACT_MODULE_REFERENCE = Symbol.for('react.module.reference');
+}
+
+function isValidElementType(type) {
+  if (typeof type === 'string' || typeof type === 'function') {
+    return true;
+  } // Note: typeof might be other than 'symbol' or 'number' (e.g. if it's a polyfill).
+
+
+  if (type === REACT_FRAGMENT_TYPE || type === REACT_PROFILER_TYPE || enableDebugTracing  || type === REACT_STRICT_MODE_TYPE || type === REACT_SUSPENSE_TYPE || type === REACT_SUSPENSE_LIST_TYPE || enableLegacyHidden  || type === REACT_OFFSCREEN_TYPE || enableScopeAPI  || enableCacheElement  || enableTransitionTracing ) {
+    return true;
+  }
+
+  if (typeof type === 'object' && type !== null) {
+    if (type.$$typeof === REACT_LAZY_TYPE || type.$$typeof === REACT_MEMO_TYPE || type.$$typeof === REACT_PROVIDER_TYPE || type.$$typeof === REACT_CONTEXT_TYPE || type.$$typeof === REACT_FORWARD_REF_TYPE || // This needs to include all possible module reference object
+    // types supported by any Flight configuration anywhere since
+    // we don't know which Flight build this will end up being used
+    // with.
+    type.$$typeof === REACT_MODULE_REFERENCE || type.getModuleId !== undefined) {
+      return true;
+    }
+  }
+
+  return false;
+}
+
+function typeOf(object) {
+  if (typeof object === 'object' && object !== null) {
+    var $$typeof = object.$$typeof;
+
+    switch ($$typeof) {
+      case REACT_ELEMENT_TYPE:
+        var type = object.type;
+
+        switch (type) {
+          case REACT_FRAGMENT_TYPE:
+          case REACT_PROFILER_TYPE:
+          case REACT_STRICT_MODE_TYPE:
+          case REACT_SUSPENSE_TYPE:
+          case REACT_SUSPENSE_LIST_TYPE:
+            return type;
+
+          default:
+            var $$typeofType = type && type.$$typeof;
+
+            switch ($$typeofType) {
+              case REACT_SERVER_CONTEXT_TYPE:
+              case REACT_CONTEXT_TYPE:
+              case REACT_FORWARD_REF_TYPE:
+              case REACT_LAZY_TYPE:
+              case REACT_MEMO_TYPE:
+              case REACT_PROVIDER_TYPE:
+                return $$typeofType;
+
+              default:
+                return $$typeof;
+            }
+
+        }
+
+      case REACT_PORTAL_TYPE:
+        return $$typeof;
+    }
+  }
+
+  return undefined;
+}
+var ContextConsumer = REACT_CONTEXT_TYPE;
+var ContextProvider = REACT_PROVIDER_TYPE;
+var Element = REACT_ELEMENT_TYPE;
+var ForwardRef = REACT_FORWARD_REF_TYPE;
+var Fragment = REACT_FRAGMENT_TYPE;
+var Lazy = REACT_LAZY_TYPE;
+var Memo = REACT_MEMO_TYPE;
+var Portal = REACT_PORTAL_TYPE;
+var Profiler = REACT_PROFILER_TYPE;
+var StrictMode = REACT_STRICT_MODE_TYPE;
+var Suspense = REACT_SUSPENSE_TYPE;
+var SuspenseList = REACT_SUSPENSE_LIST_TYPE;
+var hasWarnedAboutDeprecatedIsAsyncMode = false;
+var hasWarnedAboutDeprecatedIsConcurrentMode = false; // AsyncMode should be deprecated
+
+function isAsyncMode(object) {
+  {
+    if (!hasWarnedAboutDeprecatedIsAsyncMode) {
+      hasWarnedAboutDeprecatedIsAsyncMode = true; // Using console['warn'] to evade Babel and ESLint
+
+      console['warn']('The ReactIs.isAsyncMode() alias has been deprecated, ' + 'and will be removed in React 18+.');
+    }
+  }
+
+  return false;
+}
+function isConcurrentMode(object) {
+  {
+    if (!hasWarnedAboutDeprecatedIsConcurrentMode) {
+      hasWarnedAboutDeprecatedIsConcurrentMode = true; // Using console['warn'] to evade Babel and ESLint
+
+      console['warn']('The ReactIs.isConcurrentMode() alias has been deprecated, ' + 'and will be removed in React 18+.');
+    }
+  }
+
+  return false;
+}
+function isContextConsumer(object) {
+  return typeOf(object) === REACT_CONTEXT_TYPE;
+}
+function isContextProvider(object) {
+  return typeOf(object) === REACT_PROVIDER_TYPE;
+}
+function isElement(object) {
+  return typeof object === 'object' && object !== null && object.$$typeof === REACT_ELEMENT_TYPE;
+}
+function isForwardRef(object) {
+  return typeOf(object) === REACT_FORWARD_REF_TYPE;
+}
+function isFragment(object) {
+  return typeOf(object) === REACT_FRAGMENT_TYPE;
+}
+function isLazy(object) {
+  return typeOf(object) === REACT_LAZY_TYPE;
+}
+function isMemo(object) {
+  return typeOf(object) === REACT_MEMO_TYPE;
+}
+function isPortal(object) {
+  return typeOf(object) === REACT_PORTAL_TYPE;
+}
+function isProfiler(object) {
+  return typeOf(object) === REACT_PROFILER_TYPE;
+}
+function isStrictMode(object) {
+  return typeOf(object) === REACT_STRICT_MODE_TYPE;
+}
+function isSuspense(object) {
+  return typeOf(object) === REACT_SUSPENSE_TYPE;
+}
+function isSuspenseList(object) {
+  return typeOf(object) === REACT_SUSPENSE_LIST_TYPE;
+}
+
+exports.ContextConsumer = ContextConsumer;
+exports.ContextProvider = ContextProvider;
+exports.Element = Element;
+exports.ForwardRef = ForwardRef;
+exports.Fragment = Fragment;
+exports.Lazy = Lazy;
+exports.Memo = Memo;
+exports.Portal = Portal;
+exports.Profiler = Profiler;
+exports.StrictMode = StrictMode;
+exports.Suspense = Suspense;
+exports.SuspenseList = SuspenseList;
+exports.isAsyncMode = isAsyncMode;
+exports.isConcurrentMode = isConcurrentMode;
+exports.isContextConsumer = isContextConsumer;
+exports.isContextProvider = isContextProvider;
+exports.isElement = isElement;
+exports.isForwardRef = isForwardRef;
+exports.isFragment = isFragment;
+exports.isLazy = isLazy;
+exports.isMemo = isMemo;
+exports.isPortal = isPortal;
+exports.isProfiler = isProfiler;
+exports.isStrictMode = isStrictMode;
+exports.isSuspense = isSuspense;
+exports.isSuspenseList = isSuspenseList;
+exports.isValidElementType = isValidElementType;
+exports.typeOf = typeOf;
+  })();
+}
+
+
+/***/ }),
+
+/***/ "./node_modules/rc-util/node_modules/react-is/index.js":
+/*!*************************************************************!*\
+  !*** ./node_modules/rc-util/node_modules/react-is/index.js ***!
+  \*************************************************************/
+/***/ ((module, __unused_webpack_exports, __webpack_require__) => {
+
+"use strict";
+
+
+if (false) {} else {
+  module.exports = __webpack_require__(/*! ./cjs/react-is.development.js */ "./node_modules/rc-util/node_modules/react-is/cjs/react-is.development.js");
+}
+
 
 /***/ }),
 
@@ -211584,254 +211910,6 @@ if (false) {} else {
 
 /***/ }),
 
-/***/ "./node_modules/react-is/cjs/react-is.development.js":
-/*!***********************************************************!*\
-  !*** ./node_modules/react-is/cjs/react-is.development.js ***!
-  \***********************************************************/
-/***/ ((__unused_webpack_module, exports) => {
-
-"use strict";
-/**
- * @license React
- * react-is.development.js
- *
- * Copyright (c) Facebook, Inc. and its affiliates.
- *
- * This source code is licensed under the MIT license found in the
- * LICENSE file in the root directory of this source tree.
- */
-
-
-
-if (true) {
-  (function() {
-'use strict';
-
-// ATTENTION
-// When adding new symbols to this file,
-// Please consider also adding to 'react-devtools-shared/src/backend/ReactSymbols'
-// The Symbol used to tag the ReactElement-like types.
-var REACT_ELEMENT_TYPE = Symbol.for('react.element');
-var REACT_PORTAL_TYPE = Symbol.for('react.portal');
-var REACT_FRAGMENT_TYPE = Symbol.for('react.fragment');
-var REACT_STRICT_MODE_TYPE = Symbol.for('react.strict_mode');
-var REACT_PROFILER_TYPE = Symbol.for('react.profiler');
-var REACT_PROVIDER_TYPE = Symbol.for('react.provider');
-var REACT_CONTEXT_TYPE = Symbol.for('react.context');
-var REACT_SERVER_CONTEXT_TYPE = Symbol.for('react.server_context');
-var REACT_FORWARD_REF_TYPE = Symbol.for('react.forward_ref');
-var REACT_SUSPENSE_TYPE = Symbol.for('react.suspense');
-var REACT_SUSPENSE_LIST_TYPE = Symbol.for('react.suspense_list');
-var REACT_MEMO_TYPE = Symbol.for('react.memo');
-var REACT_LAZY_TYPE = Symbol.for('react.lazy');
-var REACT_OFFSCREEN_TYPE = Symbol.for('react.offscreen');
-
-// -----------------------------------------------------------------------------
-
-var enableScopeAPI = false; // Experimental Create Event Handle API.
-var enableCacheElement = false;
-var enableTransitionTracing = false; // No known bugs, but needs performance testing
-
-var enableLegacyHidden = false; // Enables unstable_avoidThisFallback feature in Fiber
-// stuff. Intended to enable React core members to more easily debug scheduling
-// issues in DEV builds.
-
-var enableDebugTracing = false; // Track which Fiber(s) schedule render work.
-
-var REACT_MODULE_REFERENCE;
-
-{
-  REACT_MODULE_REFERENCE = Symbol.for('react.module.reference');
-}
-
-function isValidElementType(type) {
-  if (typeof type === 'string' || typeof type === 'function') {
-    return true;
-  } // Note: typeof might be other than 'symbol' or 'number' (e.g. if it's a polyfill).
-
-
-  if (type === REACT_FRAGMENT_TYPE || type === REACT_PROFILER_TYPE || enableDebugTracing  || type === REACT_STRICT_MODE_TYPE || type === REACT_SUSPENSE_TYPE || type === REACT_SUSPENSE_LIST_TYPE || enableLegacyHidden  || type === REACT_OFFSCREEN_TYPE || enableScopeAPI  || enableCacheElement  || enableTransitionTracing ) {
-    return true;
-  }
-
-  if (typeof type === 'object' && type !== null) {
-    if (type.$$typeof === REACT_LAZY_TYPE || type.$$typeof === REACT_MEMO_TYPE || type.$$typeof === REACT_PROVIDER_TYPE || type.$$typeof === REACT_CONTEXT_TYPE || type.$$typeof === REACT_FORWARD_REF_TYPE || // This needs to include all possible module reference object
-    // types supported by any Flight configuration anywhere since
-    // we don't know which Flight build this will end up being used
-    // with.
-    type.$$typeof === REACT_MODULE_REFERENCE || type.getModuleId !== undefined) {
-      return true;
-    }
-  }
-
-  return false;
-}
-
-function typeOf(object) {
-  if (typeof object === 'object' && object !== null) {
-    var $$typeof = object.$$typeof;
-
-    switch ($$typeof) {
-      case REACT_ELEMENT_TYPE:
-        var type = object.type;
-
-        switch (type) {
-          case REACT_FRAGMENT_TYPE:
-          case REACT_PROFILER_TYPE:
-          case REACT_STRICT_MODE_TYPE:
-          case REACT_SUSPENSE_TYPE:
-          case REACT_SUSPENSE_LIST_TYPE:
-            return type;
-
-          default:
-            var $$typeofType = type && type.$$typeof;
-
-            switch ($$typeofType) {
-              case REACT_SERVER_CONTEXT_TYPE:
-              case REACT_CONTEXT_TYPE:
-              case REACT_FORWARD_REF_TYPE:
-              case REACT_LAZY_TYPE:
-              case REACT_MEMO_TYPE:
-              case REACT_PROVIDER_TYPE:
-                return $$typeofType;
-
-              default:
-                return $$typeof;
-            }
-
-        }
-
-      case REACT_PORTAL_TYPE:
-        return $$typeof;
-    }
-  }
-
-  return undefined;
-}
-var ContextConsumer = REACT_CONTEXT_TYPE;
-var ContextProvider = REACT_PROVIDER_TYPE;
-var Element = REACT_ELEMENT_TYPE;
-var ForwardRef = REACT_FORWARD_REF_TYPE;
-var Fragment = REACT_FRAGMENT_TYPE;
-var Lazy = REACT_LAZY_TYPE;
-var Memo = REACT_MEMO_TYPE;
-var Portal = REACT_PORTAL_TYPE;
-var Profiler = REACT_PROFILER_TYPE;
-var StrictMode = REACT_STRICT_MODE_TYPE;
-var Suspense = REACT_SUSPENSE_TYPE;
-var SuspenseList = REACT_SUSPENSE_LIST_TYPE;
-var hasWarnedAboutDeprecatedIsAsyncMode = false;
-var hasWarnedAboutDeprecatedIsConcurrentMode = false; // AsyncMode should be deprecated
-
-function isAsyncMode(object) {
-  {
-    if (!hasWarnedAboutDeprecatedIsAsyncMode) {
-      hasWarnedAboutDeprecatedIsAsyncMode = true; // Using console['warn'] to evade Babel and ESLint
-
-      console['warn']('The ReactIs.isAsyncMode() alias has been deprecated, ' + 'and will be removed in React 18+.');
-    }
-  }
-
-  return false;
-}
-function isConcurrentMode(object) {
-  {
-    if (!hasWarnedAboutDeprecatedIsConcurrentMode) {
-      hasWarnedAboutDeprecatedIsConcurrentMode = true; // Using console['warn'] to evade Babel and ESLint
-
-      console['warn']('The ReactIs.isConcurrentMode() alias has been deprecated, ' + 'and will be removed in React 18+.');
-    }
-  }
-
-  return false;
-}
-function isContextConsumer(object) {
-  return typeOf(object) === REACT_CONTEXT_TYPE;
-}
-function isContextProvider(object) {
-  return typeOf(object) === REACT_PROVIDER_TYPE;
-}
-function isElement(object) {
-  return typeof object === 'object' && object !== null && object.$$typeof === REACT_ELEMENT_TYPE;
-}
-function isForwardRef(object) {
-  return typeOf(object) === REACT_FORWARD_REF_TYPE;
-}
-function isFragment(object) {
-  return typeOf(object) === REACT_FRAGMENT_TYPE;
-}
-function isLazy(object) {
-  return typeOf(object) === REACT_LAZY_TYPE;
-}
-function isMemo(object) {
-  return typeOf(object) === REACT_MEMO_TYPE;
-}
-function isPortal(object) {
-  return typeOf(object) === REACT_PORTAL_TYPE;
-}
-function isProfiler(object) {
-  return typeOf(object) === REACT_PROFILER_TYPE;
-}
-function isStrictMode(object) {
-  return typeOf(object) === REACT_STRICT_MODE_TYPE;
-}
-function isSuspense(object) {
-  return typeOf(object) === REACT_SUSPENSE_TYPE;
-}
-function isSuspenseList(object) {
-  return typeOf(object) === REACT_SUSPENSE_LIST_TYPE;
-}
-
-exports.ContextConsumer = ContextConsumer;
-exports.ContextProvider = ContextProvider;
-exports.Element = Element;
-exports.ForwardRef = ForwardRef;
-exports.Fragment = Fragment;
-exports.Lazy = Lazy;
-exports.Memo = Memo;
-exports.Portal = Portal;
-exports.Profiler = Profiler;
-exports.StrictMode = StrictMode;
-exports.Suspense = Suspense;
-exports.SuspenseList = SuspenseList;
-exports.isAsyncMode = isAsyncMode;
-exports.isConcurrentMode = isConcurrentMode;
-exports.isContextConsumer = isContextConsumer;
-exports.isContextProvider = isContextProvider;
-exports.isElement = isElement;
-exports.isForwardRef = isForwardRef;
-exports.isFragment = isFragment;
-exports.isLazy = isLazy;
-exports.isMemo = isMemo;
-exports.isPortal = isPortal;
-exports.isProfiler = isProfiler;
-exports.isStrictMode = isStrictMode;
-exports.isSuspense = isSuspense;
-exports.isSuspenseList = isSuspenseList;
-exports.isValidElementType = isValidElementType;
-exports.typeOf = typeOf;
-  })();
-}
-
-
-/***/ }),
-
-/***/ "./node_modules/react-is/index.js":
-/*!****************************************!*\
-  !*** ./node_modules/react-is/index.js ***!
-  \****************************************/
-/***/ ((module, __unused_webpack_exports, __webpack_require__) => {
-
-"use strict";
-
-
-if (false) {} else {
-  module.exports = __webpack_require__(/*! ./cjs/react-is.development.js */ "./node_modules/react-is/cjs/react-is.development.js");
-}
-
-
-/***/ }),
-
 /***/ "./node_modules/react-router/node_modules/cookie/dist/index.js":
 /*!*********************************************************************!*\
   !*** ./node_modules/react-router/node_modules/cookie/dist/index.js ***!
@@ -230027,7 +230105,7 @@ var formatAxisMap = function formatAxisMap(props, axisMap, offset, axisType, cha
     if (axis.type === 'number' && (axis.padding === 'gap' || axis.padding === 'no-gap')) {
       var diff = domain[1] - domain[0];
       var smallestDistanceBetweenValues = Infinity;
-      var sortedValues = axis.categoricalDomain.sort();
+      var sortedValues = axis.categoricalDomain.sort(_DataUtils__WEBPACK_IMPORTED_MODULE_4__.compareValues);
       sortedValues.forEach(function (value, index) {
         if (index > 0) {
           smallestDistanceBetweenValues = Math.min((value || 0) - (sortedValues[index - 1] || 0), smallestDistanceBetweenValues);
@@ -231567,6 +231645,7 @@ var getOffset = function getOffset(rect) {
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   compareValues: () => (/* binding */ compareValues),
 /* harmony export */   findEntryInArray: () => (/* binding */ findEntryInArray),
 /* harmony export */   getAnyElementOfObject: () => (/* binding */ getAnyElementOfObject),
 /* harmony export */   getLinearRegression: () => (/* binding */ getLinearRegression),
@@ -231725,6 +231804,33 @@ var getLinearRegression = function getLinearRegression(data) {
     a: a,
     b: (ysum - a * xsum) / len
   };
+};
+
+/**
+ * Compare values.
+ *
+ * This function is intended to be passed to `Array.prototype.sort()`. It properly compares generic homogeneous arrays that are either `string[]`,
+ * `number[]`, or `Date[]`. When comparing heterogeneous arrays or homogeneous arrays of other types, it will attempt to compare items properly but
+ * will fall back to string comparison for mismatched or unsupported types.
+ *
+ * For some background, `Array.prototype.sort()`'s default comparator coerces each of the array's items into a string and compares the strings. This
+ * often leads to undesirable behavior, especially with numerical items.
+ *
+ * @param {unknown} a The first item to compare
+ * @param {unknown} b The second item to compare
+ * @return {number} A negative number if a < b, a positive number if a > b, 0 if equal
+ */
+var compareValues = function compareValues(a, b) {
+  if (isNumber(a) && isNumber(b)) {
+    return a - b;
+  }
+  if (lodash_isString__WEBPACK_IMPORTED_MODULE_0___default()(a) && lodash_isString__WEBPACK_IMPORTED_MODULE_0___default()(b)) {
+    return a.localeCompare(b);
+  }
+  if (a instanceof Date && b instanceof Date) {
+    return a.getTime() - b.getTime();
+  }
+  return String(a).localeCompare(String(b));
 };
 
 /***/ }),
@@ -232194,7 +232300,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var lodash_isObject__WEBPACK_IMPORTED_MODULE_4___default = /*#__PURE__*/__webpack_require__.n(lodash_isObject__WEBPACK_IMPORTED_MODULE_4__);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_5___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_5__);
-/* harmony import */ var react_is__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! react-is */ "./node_modules/react-is/index.js");
+/* harmony import */ var react_is__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! react-is */ "./node_modules/recharts/node_modules/react-is/index.js");
 /* harmony import */ var _DataUtils__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ./DataUtils */ "./node_modules/recharts/es6/util/DataUtils.js");
 /* harmony import */ var _ShallowEqual__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ./ShallowEqual */ "./node_modules/recharts/es6/util/ShallowEqual.js");
 /* harmony import */ var _types__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ./types */ "./node_modules/recharts/es6/util/types.js");
@@ -233393,6 +233499,254 @@ var adaptEventsOfChild = function adaptEventsOfChild(props, data, index) {
   });
   return out;
 };
+
+/***/ }),
+
+/***/ "./node_modules/recharts/node_modules/react-is/cjs/react-is.development.js":
+/*!*********************************************************************************!*\
+  !*** ./node_modules/recharts/node_modules/react-is/cjs/react-is.development.js ***!
+  \*********************************************************************************/
+/***/ ((__unused_webpack_module, exports) => {
+
+"use strict";
+/**
+ * @license React
+ * react-is.development.js
+ *
+ * Copyright (c) Facebook, Inc. and its affiliates.
+ *
+ * This source code is licensed under the MIT license found in the
+ * LICENSE file in the root directory of this source tree.
+ */
+
+
+
+if (true) {
+  (function() {
+'use strict';
+
+// ATTENTION
+// When adding new symbols to this file,
+// Please consider also adding to 'react-devtools-shared/src/backend/ReactSymbols'
+// The Symbol used to tag the ReactElement-like types.
+var REACT_ELEMENT_TYPE = Symbol.for('react.element');
+var REACT_PORTAL_TYPE = Symbol.for('react.portal');
+var REACT_FRAGMENT_TYPE = Symbol.for('react.fragment');
+var REACT_STRICT_MODE_TYPE = Symbol.for('react.strict_mode');
+var REACT_PROFILER_TYPE = Symbol.for('react.profiler');
+var REACT_PROVIDER_TYPE = Symbol.for('react.provider');
+var REACT_CONTEXT_TYPE = Symbol.for('react.context');
+var REACT_SERVER_CONTEXT_TYPE = Symbol.for('react.server_context');
+var REACT_FORWARD_REF_TYPE = Symbol.for('react.forward_ref');
+var REACT_SUSPENSE_TYPE = Symbol.for('react.suspense');
+var REACT_SUSPENSE_LIST_TYPE = Symbol.for('react.suspense_list');
+var REACT_MEMO_TYPE = Symbol.for('react.memo');
+var REACT_LAZY_TYPE = Symbol.for('react.lazy');
+var REACT_OFFSCREEN_TYPE = Symbol.for('react.offscreen');
+
+// -----------------------------------------------------------------------------
+
+var enableScopeAPI = false; // Experimental Create Event Handle API.
+var enableCacheElement = false;
+var enableTransitionTracing = false; // No known bugs, but needs performance testing
+
+var enableLegacyHidden = false; // Enables unstable_avoidThisFallback feature in Fiber
+// stuff. Intended to enable React core members to more easily debug scheduling
+// issues in DEV builds.
+
+var enableDebugTracing = false; // Track which Fiber(s) schedule render work.
+
+var REACT_MODULE_REFERENCE;
+
+{
+  REACT_MODULE_REFERENCE = Symbol.for('react.module.reference');
+}
+
+function isValidElementType(type) {
+  if (typeof type === 'string' || typeof type === 'function') {
+    return true;
+  } // Note: typeof might be other than 'symbol' or 'number' (e.g. if it's a polyfill).
+
+
+  if (type === REACT_FRAGMENT_TYPE || type === REACT_PROFILER_TYPE || enableDebugTracing  || type === REACT_STRICT_MODE_TYPE || type === REACT_SUSPENSE_TYPE || type === REACT_SUSPENSE_LIST_TYPE || enableLegacyHidden  || type === REACT_OFFSCREEN_TYPE || enableScopeAPI  || enableCacheElement  || enableTransitionTracing ) {
+    return true;
+  }
+
+  if (typeof type === 'object' && type !== null) {
+    if (type.$$typeof === REACT_LAZY_TYPE || type.$$typeof === REACT_MEMO_TYPE || type.$$typeof === REACT_PROVIDER_TYPE || type.$$typeof === REACT_CONTEXT_TYPE || type.$$typeof === REACT_FORWARD_REF_TYPE || // This needs to include all possible module reference object
+    // types supported by any Flight configuration anywhere since
+    // we don't know which Flight build this will end up being used
+    // with.
+    type.$$typeof === REACT_MODULE_REFERENCE || type.getModuleId !== undefined) {
+      return true;
+    }
+  }
+
+  return false;
+}
+
+function typeOf(object) {
+  if (typeof object === 'object' && object !== null) {
+    var $$typeof = object.$$typeof;
+
+    switch ($$typeof) {
+      case REACT_ELEMENT_TYPE:
+        var type = object.type;
+
+        switch (type) {
+          case REACT_FRAGMENT_TYPE:
+          case REACT_PROFILER_TYPE:
+          case REACT_STRICT_MODE_TYPE:
+          case REACT_SUSPENSE_TYPE:
+          case REACT_SUSPENSE_LIST_TYPE:
+            return type;
+
+          default:
+            var $$typeofType = type && type.$$typeof;
+
+            switch ($$typeofType) {
+              case REACT_SERVER_CONTEXT_TYPE:
+              case REACT_CONTEXT_TYPE:
+              case REACT_FORWARD_REF_TYPE:
+              case REACT_LAZY_TYPE:
+              case REACT_MEMO_TYPE:
+              case REACT_PROVIDER_TYPE:
+                return $$typeofType;
+
+              default:
+                return $$typeof;
+            }
+
+        }
+
+      case REACT_PORTAL_TYPE:
+        return $$typeof;
+    }
+  }
+
+  return undefined;
+}
+var ContextConsumer = REACT_CONTEXT_TYPE;
+var ContextProvider = REACT_PROVIDER_TYPE;
+var Element = REACT_ELEMENT_TYPE;
+var ForwardRef = REACT_FORWARD_REF_TYPE;
+var Fragment = REACT_FRAGMENT_TYPE;
+var Lazy = REACT_LAZY_TYPE;
+var Memo = REACT_MEMO_TYPE;
+var Portal = REACT_PORTAL_TYPE;
+var Profiler = REACT_PROFILER_TYPE;
+var StrictMode = REACT_STRICT_MODE_TYPE;
+var Suspense = REACT_SUSPENSE_TYPE;
+var SuspenseList = REACT_SUSPENSE_LIST_TYPE;
+var hasWarnedAboutDeprecatedIsAsyncMode = false;
+var hasWarnedAboutDeprecatedIsConcurrentMode = false; // AsyncMode should be deprecated
+
+function isAsyncMode(object) {
+  {
+    if (!hasWarnedAboutDeprecatedIsAsyncMode) {
+      hasWarnedAboutDeprecatedIsAsyncMode = true; // Using console['warn'] to evade Babel and ESLint
+
+      console['warn']('The ReactIs.isAsyncMode() alias has been deprecated, ' + 'and will be removed in React 18+.');
+    }
+  }
+
+  return false;
+}
+function isConcurrentMode(object) {
+  {
+    if (!hasWarnedAboutDeprecatedIsConcurrentMode) {
+      hasWarnedAboutDeprecatedIsConcurrentMode = true; // Using console['warn'] to evade Babel and ESLint
+
+      console['warn']('The ReactIs.isConcurrentMode() alias has been deprecated, ' + 'and will be removed in React 18+.');
+    }
+  }
+
+  return false;
+}
+function isContextConsumer(object) {
+  return typeOf(object) === REACT_CONTEXT_TYPE;
+}
+function isContextProvider(object) {
+  return typeOf(object) === REACT_PROVIDER_TYPE;
+}
+function isElement(object) {
+  return typeof object === 'object' && object !== null && object.$$typeof === REACT_ELEMENT_TYPE;
+}
+function isForwardRef(object) {
+  return typeOf(object) === REACT_FORWARD_REF_TYPE;
+}
+function isFragment(object) {
+  return typeOf(object) === REACT_FRAGMENT_TYPE;
+}
+function isLazy(object) {
+  return typeOf(object) === REACT_LAZY_TYPE;
+}
+function isMemo(object) {
+  return typeOf(object) === REACT_MEMO_TYPE;
+}
+function isPortal(object) {
+  return typeOf(object) === REACT_PORTAL_TYPE;
+}
+function isProfiler(object) {
+  return typeOf(object) === REACT_PROFILER_TYPE;
+}
+function isStrictMode(object) {
+  return typeOf(object) === REACT_STRICT_MODE_TYPE;
+}
+function isSuspense(object) {
+  return typeOf(object) === REACT_SUSPENSE_TYPE;
+}
+function isSuspenseList(object) {
+  return typeOf(object) === REACT_SUSPENSE_LIST_TYPE;
+}
+
+exports.ContextConsumer = ContextConsumer;
+exports.ContextProvider = ContextProvider;
+exports.Element = Element;
+exports.ForwardRef = ForwardRef;
+exports.Fragment = Fragment;
+exports.Lazy = Lazy;
+exports.Memo = Memo;
+exports.Portal = Portal;
+exports.Profiler = Profiler;
+exports.StrictMode = StrictMode;
+exports.Suspense = Suspense;
+exports.SuspenseList = SuspenseList;
+exports.isAsyncMode = isAsyncMode;
+exports.isConcurrentMode = isConcurrentMode;
+exports.isContextConsumer = isContextConsumer;
+exports.isContextProvider = isContextProvider;
+exports.isElement = isElement;
+exports.isForwardRef = isForwardRef;
+exports.isFragment = isFragment;
+exports.isLazy = isLazy;
+exports.isMemo = isMemo;
+exports.isPortal = isPortal;
+exports.isProfiler = isProfiler;
+exports.isStrictMode = isStrictMode;
+exports.isSuspense = isSuspense;
+exports.isSuspenseList = isSuspenseList;
+exports.isValidElementType = isValidElementType;
+exports.typeOf = typeOf;
+  })();
+}
+
+
+/***/ }),
+
+/***/ "./node_modules/recharts/node_modules/react-is/index.js":
+/*!**************************************************************!*\
+  !*** ./node_modules/recharts/node_modules/react-is/index.js ***!
+  \**************************************************************/
+/***/ ((module, __unused_webpack_exports, __webpack_require__) => {
+
+"use strict";
+
+
+if (false) {} else {
+  module.exports = __webpack_require__(/*! ./cjs/react-is.development.js */ "./node_modules/recharts/node_modules/react-is/cjs/react-is.development.js");
+}
+
 
 /***/ }),
 

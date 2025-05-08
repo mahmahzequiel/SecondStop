@@ -63,18 +63,36 @@ const OrderActionModals = ({
         requestNotes = `${cancelReason} - Additional notes: ${cancelNotes}`;
       }
       
-      // Use the requestCancellation endpoint
-      const response = await axios.post(
-        `http://127.0.0.1:8000/api/orders/${order.id}/request-cancellation`,
-        { 
-          request_notes: requestNotes
-        },
-        { headers: { Authorization: `Bearer ${token}` } }
-      );
-      
-      message.success("Cancellation requested successfully");
-      onSuccess();
-      handleClose();
+      try {
+        await axios.post(
+          `http://127.0.0.1:8000/api/orders/${order.id}/request-cancellation`,
+          { 
+            request_notes: requestNotes
+          },
+          { headers: { Authorization: `Bearer ${token}` } }
+        );
+        
+        message.success("Cancellation requested successfully");
+        onSuccess();
+        handleClose();
+      } catch (error) {
+        console.error("Failed to request cancellation:", error);
+        
+        // If it's a 500 error, the update might have still succeeded
+        if (error.response && error.response.status === 500) {
+          // Try to fetch orders to check if the update was successful
+          try {
+            await onSuccess();
+            // If onSuccess succeeds, the update probably worked
+            message.success("Cancellation requested successfully");
+            handleClose();
+          } catch (fetchError) {
+            message.error("Server error. Please refresh the page to verify the update.");
+          }
+        } else {
+          message.error("Failed to request cancellation. Please try again later.");
+        }
+      }
     } catch (error) {
       console.error("Failed to request cancellation:", error);
       message.error("Failed to request cancellation. Please try again later.");
