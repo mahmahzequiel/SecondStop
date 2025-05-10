@@ -89,7 +89,7 @@ function AppContent() {
         <Route path="/inventory" element={<AdminSacks />} />
   
         {/* Customer-Only Routes (role_id = 1) */}
-        <Route path="/profile" element={<RoleBasedRoute allowedRoles={[1]}> <Profiles /> </RoleBasedRoute>}/>
+        <Route path="/profile" element={<RoleBasedRoute allowedRoles={[1]}> <ProfileMain /> </RoleBasedRoute>}/>
         {/* Admin-Only Routes (role_id = 2) */}
         <Route path="/admin" element={<RoleBasedRoute allowedRoles={[2]}> <AdminDashboard /></RoleBasedRoute>}/>
         <Route path="/adminprofile" element={<RoleBasedRoute allowedRoles={[2]}> <AdminProfile /></RoleBasedRoute>}/>

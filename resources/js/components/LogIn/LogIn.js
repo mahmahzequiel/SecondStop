@@ -1,9 +1,10 @@
 // Login.js
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
+import { EyeOutlined, EyeInvisibleOutlined } from "@ant-design/icons";
 import logo from "/images/logodescription.png";
-import ForgotPassword from "./ForgotPassword"; // adjust the path as needed
+import ForgotPassword from "./ForgotPassword";
 
 export default function Login() {
   const navigate = useNavigate();
@@ -13,6 +14,41 @@ export default function Login() {
   const [error, setError] = useState("");
   const [loading, setLoading] = useState(false);
   const [showForgotModal, setShowForgotModal] = useState(false);
+  // Add a new state to track if we're checking authentication
+  const [checkingAuth, setCheckingAuth] = useState(true);
+
+  // Check if user is already logged in on component mount
+  useEffect(() => {
+    const checkLoginStatus = () => {
+      const userToken = localStorage.getItem("userToken");
+      const user = localStorage.getItem("user");
+      
+      if (userToken && user) {
+        try {
+          // Parse user data to determine where to redirect
+          const userData = JSON.parse(user);
+          
+          // Redirect admin users to admin dashboard, regular users to products
+          if (userData.role_id === 2) {
+            navigate("/admin", { replace: true });
+          } else {
+            navigate("/products", { replace: true });
+          }
+        } catch (error) {
+          // If there's an error parsing user data, clear potentially corrupted data
+          console.error("Error parsing user data:", error);
+          localStorage.removeItem("userToken");
+          localStorage.removeItem("user");
+          setCheckingAuth(false);
+        }
+      } else {
+        // No user is logged in, render the login page
+        setCheckingAuth(false);
+      }
+    };
+
+    checkLoginStatus();
+  }, [navigate]);
 
   const togglePasswordState = () => setShowPassword((prev) => !prev);
 
@@ -56,10 +92,12 @@ export default function Login() {
         axios.defaults.headers.common["Authorization"] = `Bearer ${access_token}`;
         localStorage.setItem("user", JSON.stringify(user));
         await fetchCartCountForUser(user.id);
+        
+        // Use replace: true to prevent going back to login page with browser back button
         if (user.role_id === 2) {
-          navigate("/admin");
+          navigate("/admin", { replace: true });
         } else {
-          navigate("/products");
+          navigate("/products", { replace: true });
         }
       } else {
         setError("Invalid credentials. Please try again.");
@@ -71,6 +109,11 @@ export default function Login() {
       setLoading(false);
     }
   };
+
+  // If still checking authentication status, show nothing or a simple loading indicator
+  if (checkingAuth) {
+    return null; // Return nothing to prevent any flash of content
+  }
 
   return (
     <>
@@ -107,10 +150,17 @@ export default function Login() {
                     value={password}
                     onChange={(e) => setPassword(e.target.value)}
                   />
-                  <i
-                    className={`bx ${showPassword ? "bx-show" : "bx-low-vision"} bx-sm icon-right`}
+                  <button 
+                    type="button"
                     onClick={togglePasswordState}
-                  ></i>
+                    className="password-toggle-btn"
+                    aria-label={showPassword ? "Hide password" : "Show password"}
+                  >
+                    {showPassword ? 
+                      <EyeOutlined className="password-icon" /> : 
+                      <EyeInvisibleOutlined className="password-icon" />
+                    }
+                  </button>
                 </div>
               </div>
               <button className="signin-btn" type="submit" disabled={loading}>

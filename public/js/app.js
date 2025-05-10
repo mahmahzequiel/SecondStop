@@ -80738,6 +80738,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router/dist/development/chunk-K6AXKMTT.mjs");
 /* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
 /* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_1__);
+/* harmony import */ var _ant_design_icons__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! @ant-design/icons */ "./node_modules/@ant-design/icons/es/icons/EyeOutlined.js");
+/* harmony import */ var _ant_design_icons__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! @ant-design/icons */ "./node_modules/@ant-design/icons/es/icons/EyeInvisibleOutlined.js");
 /* harmony import */ var _images_logodescription_png__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../../../../../images/logodescription.png */ "./public/images/logodescription.png");
 /* harmony import */ var _ForgotPassword__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./ForgotPassword */ "./resources/js/components/LogIn/ForgotPassword.js");
 /* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! react/jsx-runtime */ "./node_modules/react/jsx-runtime.js");
@@ -80756,7 +80758,8 @@ function _arrayWithHoles(r) { if (Array.isArray(r)) return r; }
 
 
 
- // adjust the path as needed
+
+
 
 function Login() {
   var navigate = (0,react_router_dom__WEBPACK_IMPORTED_MODULE_5__.useNavigate)();
@@ -80784,6 +80787,46 @@ function Login() {
     _useState12 = _slicedToArray(_useState11, 2),
     showForgotModal = _useState12[0],
     setShowForgotModal = _useState12[1];
+  // Add a new state to track if we're checking authentication
+  var _useState13 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(true),
+    _useState14 = _slicedToArray(_useState13, 2),
+    checkingAuth = _useState14[0],
+    setCheckingAuth = _useState14[1];
+
+  // Check if user is already logged in on component mount
+  (0,react__WEBPACK_IMPORTED_MODULE_0__.useEffect)(function () {
+    var checkLoginStatus = function checkLoginStatus() {
+      var userToken = localStorage.getItem("userToken");
+      var user = localStorage.getItem("user");
+      if (userToken && user) {
+        try {
+          // Parse user data to determine where to redirect
+          var userData = JSON.parse(user);
+
+          // Redirect admin users to admin dashboard, regular users to products
+          if (userData.role_id === 2) {
+            navigate("/admin", {
+              replace: true
+            });
+          } else {
+            navigate("/products", {
+              replace: true
+            });
+          }
+        } catch (error) {
+          // If there's an error parsing user data, clear potentially corrupted data
+          console.error("Error parsing user data:", error);
+          localStorage.removeItem("userToken");
+          localStorage.removeItem("user");
+          setCheckingAuth(false);
+        }
+      } else {
+        // No user is logged in, render the login page
+        setCheckingAuth(false);
+      }
+    };
+    checkLoginStatus();
+  }, [navigate]);
   var togglePasswordState = function togglePasswordState() {
     return setShowPassword(function (prev) {
       return !prev;
@@ -80867,10 +80910,15 @@ function Login() {
             _context2.next = 18;
             return fetchCartCountForUser(user.id);
           case 18:
+            // Use replace: true to prevent going back to login page with browser back button
             if (user.role_id === 2) {
-              navigate("/admin");
+              navigate("/admin", {
+                replace: true
+              });
             } else {
-              navigate("/products");
+              navigate("/products", {
+                replace: true
+              });
             }
             _context2.next = 22;
             break;
@@ -80898,6 +80946,11 @@ function Login() {
       return _ref2.apply(this, arguments);
     };
   }();
+
+  // If still checking authentication status, show nothing or a simple loading indicator
+  if (checkingAuth) {
+    return null; // Return nothing to prevent any flash of content
+  }
   return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsxs)(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.Fragment, {
     children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsxs)("div", {
       className: "login-container",
@@ -80953,9 +81006,16 @@ function Login() {
                   onChange: function onChange(e) {
                     return setPassword(e.target.value);
                   }
-                }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("i", {
-                  className: "bx ".concat(showPassword ? "bx-show" : "bx-low-vision", " bx-sm icon-right"),
-                  onClick: togglePasswordState
+                }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("button", {
+                  type: "button",
+                  onClick: togglePasswordState,
+                  className: "password-toggle-btn",
+                  "aria-label": showPassword ? "Hide password" : "Show password",
+                  children: showPassword ? /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)(_ant_design_icons__WEBPACK_IMPORTED_MODULE_6__["default"], {
+                    className: "password-icon"
+                  }) : /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)(_ant_design_icons__WEBPACK_IMPORTED_MODULE_7__["default"], {
+                    className: "password-icon"
+                  })
                 })]
               })]
             }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("button", {
@@ -86986,7 +87046,7 @@ function AppContent() {
         path: "/profile",
         element: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_35__.jsxs)(_RoleBasedRoute__WEBPACK_IMPORTED_MODULE_20__["default"], {
           allowedRoles: [1],
-          children: [" ", /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_35__.jsx)(_Profile_profiles__WEBPACK_IMPORTED_MODULE_7__["default"], {}), " "]
+          children: [" ", /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_35__.jsx)(_Profile_ProfileMain__WEBPACK_IMPORTED_MODULE_28__["default"], {}), " "]
         })
       }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_35__.jsx)(react_router_dom__WEBPACK_IMPORTED_MODULE_36__.Route, {
         path: "/admin",
