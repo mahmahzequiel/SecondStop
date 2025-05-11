@@ -22,6 +22,7 @@ function CategoryTypeTab() {
   const [isEditModalVisible, setIsEditModalVisible] = useState(false);
   const [selectedCategoryType, setSelectedCategoryType] = useState(null);
   const [selectedRowKeys, setSelectedRowKeys] = useState([]);
+  const [error, setError] = useState(null);
 
   useEffect(() => {
     fetchCategoryTypes();
@@ -29,19 +30,26 @@ function CategoryTypeTab() {
 
   const fetchCategoryTypes = () => {
     setLoading(true);
+    setError(null);
+    
     axios
       .get(`${CATEGORY_TYPES_API}?status=${statusFilter}`)
       .then((res) => {
         console.log(`${statusFilter} category types response:`, res.data);
         if (Array.isArray(res.data)) {
           setCategoryTypes(res.data);
+        } else if (res.data && Array.isArray(res.data.data)) {
+          // Handle Laravel API resource format
+          setCategoryTypes(res.data.data);
         } else {
           console.error("Invalid category types structure:", res.data);
+          setError("Failed to parse category types data");
           message.error("Failed to fetch category types");
         }
       })
       .catch((err) => {
         console.error("Error fetching category types:", err);
+        setError(`Error: ${err.message || "Unknown error"}`);
         message.error("Error fetching category types");
       })
       .finally(() => {
@@ -103,7 +111,7 @@ function CategoryTypeTab() {
     });
   };
 
-  // Restore archived category type
+  // Restore archived category type - FIXED METHOD TYPE TO PUT
   const restoreCategoryType = (categoryTypeId) => {
     Modal.confirm({
       title: "Are you sure you want to restore this category type?",
@@ -112,7 +120,7 @@ function CategoryTypeTab() {
         setLoading(true);
         
         axios
-          .post(`${CATEGORY_TYPES_API}/${categoryTypeId}/restore`, {}, {
+          .put(`${CATEGORY_TYPES_API}/${categoryTypeId}/restore`, {}, {
             headers: {
               'Content-Type': 'application/json',
               'Accept': 'application/json'
@@ -135,7 +143,10 @@ function CategoryTypeTab() {
   // Bulk delete/archive selected category types
   const handleBulkArchive = () => {
     if (selectedRowKeys.length === 0) {
-      message.info("Please select at least one category type to archive");
+      Modal.info({ 
+        title: 'No category types selected', 
+        content: 'Please select at least one category type to archive.' 
+      });
       return;
     }
 
@@ -168,10 +179,13 @@ function CategoryTypeTab() {
     });
   };
 
-  // Bulk restore selected category types
+  // Bulk restore selected category types - FIXED METHOD TYPE TO PUT
   const handleBulkRestore = () => {
     if (selectedRowKeys.length === 0) {
-      message.info("Please select at least one category type to restore");
+      Modal.info({ 
+        title: 'No category types selected', 
+        content: 'Please select at least one category type to restore.' 
+      });
       return;
     }
 
@@ -180,7 +194,7 @@ function CategoryTypeTab() {
       content: "This will make them active again.",
       onOk: () => {
         const restorePromises = selectedRowKeys.map(categoryTypeId =>
-          axios.post(`${CATEGORY_TYPES_API}/${categoryTypeId}/restore`, {}, {
+          axios.put(`${CATEGORY_TYPES_API}/${categoryTypeId}/restore`, {}, {
             headers: {
               'Content-Type': 'application/json',
               'Accept': 'application/json'
@@ -270,10 +284,11 @@ function CategoryTypeTab() {
     return baseColumns;
   };
 
-  // Filter category types based on search
+  // Filter category types based on search - IMPROVED NULL CHECKING
   const filteredCategoryTypes = categoryTypes.filter((categoryType) => {
-    const type = (categoryType.category_type || "").toLowerCase();
-    const categoryName = (categoryType.category?.name || "").toLowerCase();
+    if (!categoryType) return false;
+    const type = ((categoryType.category_type || "").toString()).toLowerCase();
+    const categoryName = ((categoryType.category?.name || "").toString()).toLowerCase();
     return type.includes(search.toLowerCase()) || categoryName.includes(search.toLowerCase());
   });
 
@@ -287,6 +302,32 @@ function CategoryTypeTab() {
     { value: "active", label: "Active" },
     { value: "archived", label: "Archived" }
   ];
+  
+  // If there was an error loading the component, show an error message
+  if (error) {
+    return (
+      <div style={{ padding: "20px" }}>
+        <h2>Category Types Management</h2>
+        <div style={{ 
+          padding: "20px", 
+          background: "#fff1f0", 
+          border: "1px solid #ffa39e", 
+          borderRadius: "4px",
+          marginTop: "16px"
+        }}>
+          <h3>Error Loading Category Types</h3>
+          <p>{error}</p>
+          <Button 
+            type="primary" 
+            onClick={fetchCategoryTypes}
+            style={{ marginTop: "10px" }}
+          >
+            Try Again
+          </Button>
+        </div>
+      </div>
+    );
+  }
 
   return (
     <div style={{ padding: "20px" }}>
@@ -319,7 +360,7 @@ function CategoryTypeTab() {
         </Space>
 
         <Space>
-          {/* Always show Add button */}
+          {/* FIXED: Always show Add button regardless of filter */}
           <Button
             type="primary"
             onClick={handleOpenAddModal}
@@ -331,6 +372,7 @@ function CategoryTypeTab() {
           
           {statusFilter === "active" ? (
             <Button
+              type="primary"
               danger
               onClick={handleBulkArchive}
               disabled={selectedRowKeys.length === 0}
@@ -340,10 +382,10 @@ function CategoryTypeTab() {
           ) : (
             <Button
               type="primary"
-              danger
               onClick={handleBulkRestore}
               disabled={selectedRowKeys.length === 0}
               icon={<UndoOutlined />}
+              style={{ backgroundColor: "#52c41a" }}
             >
               Restore Selected
             </Button>
@@ -363,17 +405,17 @@ function CategoryTypeTab() {
         }}
       />
 
-      {/* Integrated Add Category Type Modal */}
+      {/* FIXED: Updated modal property from 'visible' to 'open' */}
       <AddCategoryTypeModal
-        visible={isAddModalVisible}
+        open={isAddModalVisible}
         onCancel={handleCancelAddModal}
         onSave={handleSaveAddModal}
       />
 
-      {/* Integrated Edit Category Type Modal */}
+      {/* FIXED: Updated modal property from 'visible' to 'open' */}
       {isEditModalVisible && (
         <EditCategoryTypeModal
-          visible={isEditModalVisible}
+          open={isEditModalVisible}
           onCancel={handleCancelEditModal}
           onSave={handleSaveEditModal}
           categoryType={selectedCategoryType}

@@ -52,7 +52,7 @@ Route::get("category-types", [CategoryTypeController::class, "index"]);
 Route::put("category-types/{categoryType}", [CategoryTypeController::class, "update"]);
 Route::post("category-types", [CategoryTypeController::class, "store"]);
 Route::delete("category-types/{categoryType}", [CategoryTypeController::class, "destroy"]);
-Route::post("category-types/{id}/restore", [CategoryTypeController::class, "restore"]);
+Route::put("category-types/{id}/restore", [CategoryTypeController::class, "restore"]);
 
 Route::get("/products-by-category-type", [ProductsController::class, "getProductsByCategoryType"]);
 

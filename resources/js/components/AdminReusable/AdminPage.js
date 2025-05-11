@@ -1,6 +1,7 @@
 import React from "react";
 import AdminHeader from "./AdminHeader";
 import AdminSidebar from "./AdminSidebar";
+import FloatingAdminChat from "../Admin/AdminChat";
 
 function AdminPage({ children }) {
   return (
@@ -13,15 +14,16 @@ function AdminPage({ children }) {
           style={{ 
             overflowY: 'scroll', 
             overflowX: 'hidden', 
-            height: 'calc(100vh - 64px)',  // Adjust based on your header height
+            height: 'calc(100vh - 64px)',
             maxHeight: 'calc(100vh - 64px)',
-            WebkitOverflowScrolling: 'touch' // For smooth scrolling on iOS
+            WebkitOverflowScrolling: 'touch'
           }}
         >
-          {/* Render children here */}
           {children}
         </div>
       </div>
+      {/* Add the FloatingAdminChat component here */}
+      <FloatingAdminChat />
     </div>
   );
 }

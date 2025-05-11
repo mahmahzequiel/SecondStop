@@ -25,7 +25,8 @@ function AdminDashboard() {
     totalProducts: 0,
     totalUsers: 0,
     cancelledOrders: 0,
-    refundedOrders: 0
+    refundedOrders: 0,
+    totalProductsSold: 0
   });
   
   const [salesData, setSalesData] = useState([]);
@@ -100,6 +101,16 @@ function AdminDashboard() {
       const completedOrders = orders.filter(order => order.status === 'Delivered');
       const totalSales = completedOrders.reduce((total, order) => total + parseFloat(order.total_amount || 0), 0);
       
+      // Calculate total products sold (sum of quantities from completed orders)
+      let totalProductsSold = 0;
+      completedOrders.forEach(order => {
+        if (order.order_items && Array.isArray(order.order_items)) {
+          order.order_items.forEach(item => {
+            totalProductsSold += (parseInt(item.quantity) || 0);
+          });
+        }
+      });
+      
       // Fetch users
       const usersResponse = await axios.get('http://127.0.0.1:8000/api/users');
       const totalUsers = Array.isArray(usersResponse.data) ? usersResponse.data.length : 0;
@@ -110,7 +121,8 @@ function AdminDashboard() {
         totalProducts,
         totalUsers,
         cancelledOrders,
-        refundedOrders
+        refundedOrders,
+        totalProductsSold
       });
     } catch (error) {
       console.error('Error fetching stats data:', error);
@@ -333,8 +345,20 @@ function AdminDashboard() {
                   bodyStyle={{ padding: "15px" }}
                 >
                   <Statistic
-                    title="Total Products"
+                    title="Total Products Available"
                     value={stats.totalProducts}
+                    prefix={<ShoppingOutlined />}
+                  />
+                </Card>
+              </Col>
+              <Col xs={24} sm={12} md={8} lg={4}>
+                <Card 
+                  style={{ borderRadius: "8px", height: "100%" }}
+                  bodyStyle={{ padding: "15px" }}
+                >
+                  <Statistic
+                    title="Total Products Sold"
+                    value={stats.totalProductsSold}
                     prefix={<ShoppingOutlined />}
                   />
                 </Card>
@@ -392,88 +416,88 @@ function AdminDashboard() {
               </div>
 
               <div style={{ height: "400px" }}>
-  <ResponsiveContainer width="100%" height="100%">
-    {chartType === 'sales' && salesData.length > 0 ? (
-      <LineChart data={salesData}>
-        <CartesianGrid strokeDasharray="3 3" />
-        <XAxis dataKey="date" />
-        <YAxis yAxisId="left" />
-        <YAxis yAxisId="right" orientation="right" />
-        <RechartsTooltip 
-          formatter={(value, name) => [
-            name === 'Sales Amount' ? `PHP ${value.toLocaleString()}` : value,
-            name
-          ]}
-        />
-        <Legend />
-        <Line 
-          type="monotone" 
-          dataKey="sales" 
-          stroke="#0088FE" 
-          strokeWidth={2}
-          name="Sales Amount"
-          yAxisId="left"
-        />
-        <Line 
-          type="monotone" 
-          dataKey="orders" 
-          stroke="#82ca9d" 
-          strokeWidth={2}
-          name="Orders Count"
-          yAxisId="right"
-        />
-      </LineChart>
-    ) : chartType === 'sales' ? (
-      <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', height: '100%' }}>
-        <Text type="secondary">No sales data available</Text>
-      </div>
-    ) : null}
-    
-    {chartType === 'orders' && orderStatusData.length > 0 ? (
-      <PieChart>
-        <Pie
-          data={orderStatusData}
-          cx="50%"
-          cy="50%"
-          labelLine={false}
-          outerRadius={150}
-          fill="#8884d8"
-          dataKey="value"
-          label={({name, percent}) => `${name}: ${(percent * 100).toFixed(0)}%`}
-        >
-          {orderStatusData.map((entry, index) => (
-            <Cell key={`cell-${index}`} fill={COLORS[index % COLORS.length]} />
-          ))}
-        </Pie>
-        <RechartsTooltip />
-        <Legend />
-      </PieChart>
-    ) : chartType === 'orders' ? (
-      <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', height: '100%' }}>
-        <Text type="secondary">No order status data available</Text>
-      </div>
-    ) : null}
-    
-    {chartType === 'products' && productCategoryData.length > 0 ? (
-      <BarChart data={productCategoryData}>
-        <CartesianGrid strokeDasharray="3 3" />
-        <XAxis dataKey="name" />
-        <YAxis />
-        <RechartsTooltip />
-        <Legend />
-        <Bar dataKey="value" fill="#8884d8" name="Product Count">
-          {productCategoryData.map((entry, index) => (
-            <Cell key={`cell-${index}`} fill={COLORS[index % COLORS.length]} />
-          ))}
-        </Bar>
-      </BarChart>
-    ) : chartType === 'products' ? (
-      <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', height: '100%' }}>
-        <Text type="secondary">No product category data available</Text>
-      </div>
-    ) : null}
-  </ResponsiveContainer>
-</div>
+                <ResponsiveContainer width="100%" height="100%">
+                  {chartType === 'sales' && salesData.length > 0 ? (
+                    <LineChart data={salesData}>
+                      <CartesianGrid strokeDasharray="3 3" />
+                      <XAxis dataKey="date" />
+                      <YAxis yAxisId="left" />
+                      <YAxis yAxisId="right" orientation="right" />
+                      <RechartsTooltip 
+                        formatter={(value, name) => [
+                          name === 'Sales Amount' ? `PHP ${value.toLocaleString()}` : value,
+                          name
+                        ]}
+                      />
+                      <Legend />
+                      <Line 
+                        type="monotone" 
+                        dataKey="sales" 
+                        stroke="#0088FE" 
+                        strokeWidth={2}
+                        name="Sales Amount"
+                        yAxisId="left"
+                      />
+                      <Line 
+                        type="monotone" 
+                        dataKey="orders" 
+                        stroke="#82ca9d" 
+                        strokeWidth={2}
+                        name="Orders Count"
+                        yAxisId="right"
+                      />
+                    </LineChart>
+                  ) : chartType === 'sales' ? (
+                    <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', height: '100%' }}>
+                      <Text type="secondary">No sales data available</Text>
+                    </div>
+                  ) : null}
+                  
+                  {chartType === 'orders' && orderStatusData.length > 0 ? (
+                    <PieChart>
+                      <Pie
+                        data={orderStatusData}
+                        cx="50%"
+                        cy="50%"
+                        labelLine={false}
+                        outerRadius={150}
+                        fill="#8884d8"
+                        dataKey="value"
+                        label={({name, percent}) => `${name}: ${(percent * 100).toFixed(0)}%`}
+                      >
+                        {orderStatusData.map((entry, index) => (
+                          <Cell key={`cell-${index}`} fill={COLORS[index % COLORS.length]} />
+                        ))}
+                      </Pie>
+                      <RechartsTooltip />
+                      <Legend />
+                    </PieChart>
+                  ) : chartType === 'orders' ? (
+                    <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', height: '100%' }}>
+                      <Text type="secondary">No order status data available</Text>
+                    </div>
+                  ) : null}
+                  
+                  {chartType === 'products' && productCategoryData.length > 0 ? (
+                    <BarChart data={productCategoryData}>
+                      <CartesianGrid strokeDasharray="3 3" />
+                      <XAxis dataKey="name" />
+                      <YAxis />
+                      <RechartsTooltip />
+                      <Legend />
+                      <Bar dataKey="value" fill="#8884d8" name="Product Count">
+                        {productCategoryData.map((entry, index) => (
+                          <Cell key={`cell-${index}`} fill={COLORS[index % COLORS.length]} />
+                        ))}
+                      </Bar>
+                    </BarChart>
+                  ) : chartType === 'products' ? (
+                    <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', height: '100%' }}>
+                      <Text type="secondary">No product category data available</Text>
+                    </div>
+                  ) : null}
+                </ResponsiveContainer>
+              </div>
             </div>
             
           </>

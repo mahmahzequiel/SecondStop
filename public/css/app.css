@@ -12062,6 +12062,10 @@ textarea.form-control-lg {
   margin: 0;
   text-shadow: 0px 2px 4px rgba(0, 0, 0, 0.1);
 }
+.login-container .left-section .login-logo {
+  max-width: 80%;
+  height: auto;
+}
 .login-container .right-section {
   flex: 1;
   display: flex;
@@ -12132,15 +12136,24 @@ textarea.form-control-lg {
 .login-container .right-section .form-container .input-container .icon-left {
   color: #a0aec0;
   font-size: 1.25rem;
+  margin-right: 0.5rem;
 }
-.login-container .right-section .form-container .input-container .icon-right {
-  color: #a0aec0;
-  font-size: 1.25rem;
+.login-container .right-section .form-container .input-container .password-toggle-btn {
+  background: none;
+  border: none;
+  padding: 0;
   cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #a0aec0;
   transition: color 0.2s;
 }
-.login-container .right-section .form-container .input-container .icon-right:hover {
+.login-container .right-section .form-container .input-container .password-toggle-btn:hover {
   color: #4a5568;
+}
+.login-container .right-section .form-container .input-container .password-toggle-btn .password-icon {
+  font-size: 1.25rem;
 }
 .login-container .right-section .form-container .signin-btn {
   width: 100%;
@@ -12196,13 +12209,6 @@ textarea.form-control-lg {
 .login-container .right-section .form-container .signup-link span:hover {
   color: #2b6cb0;
   text-decoration: underline;
-}
-
-/* General Resets */
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
 }
 
 body {
@@ -14389,6 +14395,7 @@ a {
 .admin-sidebar .nav-item .nav-icon {
   margin-right: 10px;
   color: inherit;
+  font-size: 25px;
 }
 .admin-sidebar .nav-item a {
   display: flex;
@@ -14468,7 +14475,7 @@ a {
   cursor: pointer;
   transition: color 0.2s;
   padding: 8px;
-  margin-right: 5px;
+  margin-right: -10px;
 }
 
 .admin-header__notification-bell:hover {

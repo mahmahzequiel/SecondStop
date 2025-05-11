@@ -1,15 +1,13 @@
-import React, { useState, useEffect } from "react";
-import AdminPage from "../AdminReusable/AdminPage";
+import React, { useState, useEffect, useRef } from "react";
 import axios from "axios";
-import { List, Input, Button, Card, Avatar, Badge } from "antd";
-import { UserOutlined, SearchOutlined } from "@ant-design/icons";
+import { List, Input, Button, Badge, Tooltip, Card, Avatar } from "antd";
+import { UserOutlined, SearchOutlined, MessageOutlined, CloseOutlined, ArrowLeftOutlined, SendOutlined } from "@ant-design/icons";
 import Echo from "laravel-echo";
 import Pusher from "pusher-js";
 
-
 const { TextArea, Search } = Input;
 
-export default function AdminChat() {
+export default function FloatingAdminChat() {
   const [conversations, setConversations] = useState([]);
   const [filteredConversations, setFilteredConversations] = useState([]);
   const [searchQuery, setSearchQuery] = useState("");
@@ -21,8 +19,22 @@ export default function AdminChat() {
   const [unreadCounts, setUnreadCounts] = useState({});
   const [userProfiles, setUserProfiles] = useState({});
   const [user, setUser] = useState(null);
+  const [chatOpen, setChatOpen] = useState(false);
+  const [listVisible, setListVisible] = useState(true);
+  const messagesEndRef = useRef(null);
+  const messagesContainerRef = useRef(null);
   const userToken = localStorage.getItem("userToken");
   const apiBaseUrl = "http://127.0.0.1:8000/api";
+
+  // Scroll to bottom of messages
+  useEffect(() => {
+    if (messagesContainerRef.current) {
+      messagesContainerRef.current.scrollTop = messagesContainerRef.current.scrollHeight;
+    }
+  }, [messages]);
+
+  // Calculate total unread messages
+  const totalUnread = Object.values(unreadCounts).reduce((sum, count) => sum + count, 0);
 
   // Fetch admin's profile to get user ID
   useEffect(() => {
@@ -292,101 +304,232 @@ export default function AdminChat() {
     setSearchQuery(value);
   };
 
-  return (
-    <AdminPage>
-      <div className="adm-chat__container">
-        {/* Sidebar: List of customer conversations */}
-        <div className="adm-chat__sidebar">
-          <h3 className="adm-chat__header">Conversations</h3>
-          
-          {/* Search Bar */}
-          <Search
-            placeholder="Search customers..."
-            allowClear
-            onSearch={handleSearch}
-            onChange={(e) => setSearchQuery(e.target.value)}
-            className="adm-chat__search"
-            prefix={<SearchOutlined />}
-          />
-          
-          {filteredConversations.length === 0 ? (
-            <p className="adm-chat__empty-state">No matching conversations found.</p>
-          ) : (
-            <List
-              dataSource={filteredConversations}
-              renderItem={(conv) => {
-                // Check both direct conversation profile_image and userProfiles
-                const profile = userProfiles[conv.user_id];
-                const profileImage = conv.profile_image 
-                  ? getProfileImageUrl(conv.profile_image) 
-                  : (profile ? getProfileImageUrl(profile.profile_image) : null);
-                
-                const isSelected = selectedCustomer === conv.user_id.toString();
-                
-                return (
-                  <List.Item
-                    className={`adm-chat__list-item ${isSelected ? 'adm-chat__list-item--selected' : ''}`}
-                    onClick={() => setSelectedCustomer(conv.user_id.toString())}
-                  >
-                    <div className="adm-chat__customer-row">
-                      <Avatar 
-                        src={profileImage} 
-                        icon={!profileImage && <UserOutlined />} 
-                        className="adm-chat__avatar" 
-                      />
-                      <div className="adm-chat__customer-info">
-                        <div className="adm-chat__customer-name">
-                          {conv.user_name
-                            ? `${conv.user_name}`
-                            : profile 
-                              ? `${profile.first_name || ''} ${profile.last_name || ''}`.trim() 
-                              : conv.user_name || `Customer ${conv.user_id}`}
-                        </div>
-                        <div className="adm-chat__last-message">
-                          {conv.last_message ? (conv.last_message.length > 20 ? 
-                            `${conv.last_message.substring(0, 20)}...` : 
-                            conv.last_message) : 
-                            "No messages"}
-                        </div>
-                      </div>
-                      {unreadCounts[conv.user_id] > 0 && (
-                        <Badge count={unreadCounts[conv.user_id]} className="adm-chat__badge" />
-                      )}
-                    </div>
-                  </List.Item>
-                );
-              }}
-            />
-          )}
-        </div>
+  const handleOpenChat = () => {
+    setChatOpen(true);
+  };
 
-        {/* Chat Window */}
-        <div className="adm-chat__main">
-          {selectedCustomer ? (
-            <>
-              <div className="adm-chat__selected-header">
-                {(() => {
-                  const selectedConv = conversations.find(c => c.user_id.toString() === selectedCustomer);
-                  const profileImage = selectedConv?.profile_image 
-                    ? getProfileImageUrl(selectedConv.profile_image)
-                    : userProfiles[selectedCustomer] 
-                      ? getProfileImageUrl(userProfiles[selectedCustomer].profile_image) 
-                      : null;
-                  
-                  return (
-                    <Avatar 
-                      src={profileImage}
-                      icon={!profileImage && <UserOutlined />} 
-                      size="large" 
-                      className="adm-chat__selected-avatar" 
-                    />
-                  );
-                })()}
-                <h3 className="adm-chat__selected-name">Chat with {selectedCustomerName}</h3>
+  const handleCloseChat = () => {
+    setChatOpen(false);
+    setSelectedCustomer(null);
+    setListVisible(true); // Reset to list view when closing
+  };
+
+  const handleSelectCustomer = (userId) => {
+    setSelectedCustomer(userId);
+    setListVisible(false);
+  };
+
+  const handleBackToList = () => {
+    setListVisible(true);
+    setSelectedCustomer(null);
+  };
+
+  return (
+    <>
+      {/* Floating Chat Button */}
+      <Button
+        type="primary"
+        icon={<MessageOutlined style={{ fontSize: "22px" }} />}
+        onClick={handleOpenChat}
+        style={{
+          position: 'fixed',
+          bottom: '20px',
+          right: '20px',
+          width: '60px',
+          height: '60px',
+          borderRadius: '50%',
+          zIndex: 999,
+          display: 'flex',
+          alignItems: 'center',
+          justifyContent: 'center',
+          boxShadow: '0 4px 12px rgba(0,0,0,0.15)',
+          background: '#1890ff'
+        }}
+      >
+        {totalUnread > 0 && (
+          <Badge 
+            count={totalUnread} 
+            offset={[-5, 5]}
+            style={{ position: 'absolute', top: 0, right: 0 }}
+          />
+        )}
+      </Button>
+
+      {/* Floating Chat Card */}
+      {chatOpen && (
+        <Card
+          style={{
+            position: "fixed",
+            bottom: 90,
+            right: 20,
+            width: 350,
+            height: 500,
+            boxShadow: "0 4px 12px rgba(0,0,0,0.15)",
+            display: "flex",
+            flexDirection: "column",
+            padding: 0,
+            zIndex: 999
+          }}
+          bodyStyle={{ padding: 0, flex: 1, display: "flex", flexDirection: "column" }}
+          title={
+            <div style={{ display: 'flex', alignItems: 'center' }}>
+              {!listVisible && selectedCustomer && (
+                <Button 
+                  type="text" 
+                  icon={<ArrowLeftOutlined />} 
+                  onClick={handleBackToList}
+                  style={{ marginRight: '8px', padding: '4px' }}
+                />
+              )}
+              <span>{listVisible ? "Customer Conversations" : `Chat with ${selectedCustomerName}`}</span>
+            </div>
+          }
+          extra={
+            <CloseOutlined
+              onClick={handleCloseChat}
+              style={{ cursor: "pointer" }}
+            />
+          }
+        >
+          {listVisible ? (
+            // Conversations List View
+            <div style={{ height: '100%', display: 'flex', flexDirection: 'column' }}>
+              {/* Search Bar */}
+              <div style={{ padding: '12px' }}>
+                <Search
+                  placeholder="Search customers..."
+                  allowClear
+                  onSearch={handleSearch}
+                  onChange={(e) => setSearchQuery(e.target.value)}
+                  style={{ width: '100%' }}
+                  prefix={<SearchOutlined />}
+                />
               </div>
-              <Card className="adm-chat__messages-container">
+              
+              {/* Conversations List */}
+              <div style={{ flex: 1, overflowY: 'auto', padding: '0 12px' }}>
+                {filteredConversations.length === 0 ? (
+                  <div style={{ 
+                    display: 'flex', 
+                    justifyContent: 'center', 
+                    alignItems: 'center',
+                    height: '100%',
+                    color: '#999',
+                    padding: '20px'
+                  }}>
+                    No matching conversations found.
+                  </div>
+                ) : (
+                  <List
+                    dataSource={filteredConversations}
+                    renderItem={(conv) => {
+                      // Check both direct conversation profile_image and userProfiles
+                      const profile = userProfiles[conv.user_id];
+                      const profileImage = conv.profile_image 
+                        ? getProfileImageUrl(conv.profile_image) 
+                        : (profile ? getProfileImageUrl(profile.profile_image) : null);
+                      
+                      return (
+                        <List.Item
+                          style={{ 
+                            padding: '12px', 
+                            borderRadius: '8px',
+                            margin: '8px 0',
+                            cursor: 'pointer',
+                            background: '#f5f5f5',
+                            transition: 'all 0.3s'
+                          }}
+                          onClick={() => handleSelectCustomer(conv.user_id.toString())}
+                        >
+                          <div style={{ 
+                            display: 'flex', 
+                            alignItems: 'center', 
+                            width: '100%' 
+                          }}>
+                            <Badge dot={unreadCounts[conv.user_id] > 0} offset={[-5, 5]}>
+                              <Avatar 
+                                src={profileImage} 
+                                icon={!profileImage && <UserOutlined />}
+                                style={{ marginRight: '12px' }}
+                              />
+                            </Badge>
+                            <div style={{ flex: 1, minWidth: 0 }}>
+                              <div style={{ 
+                                fontWeight: unreadCounts[conv.user_id] > 0 ? 600 : 400,
+                                display: 'flex',
+                                justifyContent: 'space-between',
+                                alignItems: 'center'
+                              }}>
+                                <div style={{ 
+                                  whiteSpace: 'nowrap', 
+                                  overflow: 'hidden', 
+                                  textOverflow: 'ellipsis',
+                                  maxWidth: '70%'
+                                }}>
+                                  {conv.user_name
+                                    ? `${conv.user_name}`
+                                    : profile 
+                                      ? `${profile.first_name || ''} ${profile.last_name || ''}`.trim() 
+                                      : conv.user_name || `Customer ${conv.user_id}`}
+                                </div>
+                                {unreadCounts[conv.user_id] > 0 && (
+                                  <Badge 
+                                    count={unreadCounts[conv.user_id]} 
+                                    size="small"
+                                    style={{ marginLeft: 'auto' }}
+                                  />
+                                )}
+                              </div>
+                              <div style={{ 
+                                color: '#666', 
+                                fontSize: '12px',
+                                whiteSpace: 'nowrap',
+                                overflow: 'hidden',
+                                textOverflow: 'ellipsis',
+                                lineHeight: '1.5'
+                              }}>
+                                {conv.last_message ? (conv.last_message.length > 25 ? 
+                                  `${conv.last_message.substring(0, 25)}...` : 
+                                  conv.last_message) : 
+                                  "No messages"}
+                              </div>
+                            </div>
+                          </div>
+                        </List.Item>
+                      );
+                    }}
+                  />
+                )}
+              </div>
+            </div>
+          ) : (
+            // Chat View
+            <div style={{ 
+              display: 'flex', 
+              flexDirection: 'column', 
+              height: '100%',
+              width: '100%'
+            }}>
+              {/* Messages Area */}
+              <div 
+                ref={messagesContainerRef}
+                style={{ 
+                  flex: 1, 
+                  overflowY: 'auto',
+                  padding: '12px',
+                  display: 'flex',
+                  flexDirection: 'column',
+                  maxHeight: '400px'
+                }}
+              >
                 {messages.length === 0 ? (
-                  <div className="adm-chat__no-messages">
+                  <div style={{ 
+                    display: 'flex', 
+                    justifyContent: 'center', 
+                    alignItems: 'center',
+                    height: '100%',
+                    color: '#999'
+                  }}>
                     No messages yet. Start the conversation!
                   </div>
                 ) : (
@@ -395,54 +538,68 @@ export default function AdminChat() {
                     return (
                       <div 
                         key={msg.id} 
-                        className={`adm-chat__message-wrapper ${isCustomerMessage ? 'adm-chat__message-wrapper--customer' : 'adm-chat__message-wrapper--admin'}`}
+                        style={{ 
+                          alignSelf: isCustomerMessage ? 'flex-start' : 'flex-end',
+                          maxWidth: '100%',
+                          marginBottom: 10
+                        }}
                       >
                         <div 
-                          className={`adm-chat__message ${isCustomerMessage ? 'adm-chat__message--customer' : 'adm-chat__message--admin'}`}
+                          style={{ 
+                            backgroundColor: isCustomerMessage ? '#f0f2f5' : '#1890ff',
+                            color: isCustomerMessage ? 'black' : 'white',
+                            padding: '8px 12px',
+                            borderRadius: 8,
+                            wordBreak: 'break-word'
+                          }}
                         >
                           {msg.message}
                         </div>
-                        <small className="adm-chat__message-time">
-                          {new Date(msg.created_at || msg.date_time).toLocaleString([], { 
-                            month: "short", 
-                            day: "numeric", 
-                            hour: "2-digit", 
-                            minute: "2-digit" 
+                        <div style={{ 
+                          fontSize: 11,
+                          color: '#888',
+                          marginTop: 3,
+                          textAlign: isCustomerMessage ? 'left' : 'right'
+                        }}>
+                          {new Date(msg.created_at || msg.date_time).toLocaleTimeString([], { 
+                            hour: '2-digit', 
+                            minute: '2-digit' 
                           })}
-                        </small>
+                        </div>
                       </div>
                     );
                   })
                 )}
-              </Card>
-              <div className="adm-chat__input-container">
+                <div ref={messagesEndRef} />
+              </div>
+
+              {/* Message Input Area */}
+              <div
+                style={{
+                  display: "flex",
+                  padding: 10,
+                  borderTop: "1px solid #e8e8e8"
+                }}
+              >
                 <TextArea
-                  rows={2}
+                  placeholder="Type a message..."
                   value={newMessage}
                   onChange={(e) => setNewMessage(e.target.value)}
                   onKeyPress={handleKeyPress}
-                  placeholder="Type your message..."
-                  className="adm-chat__input"
+                  style={{ marginRight: 8, resize: 'none' }}
+                  rows={2}
                 />
-                <Button 
-                  type="primary" 
-                  onClick={sendMessage} 
-                  className="adm-chat__send-btn"
-                >
-                  Send
-                </Button>
-              </div>
-            </>
-          ) : (
-            <div className="adm-chat__empty-chat">
-              <div className="adm-chat__empty-chat-content">
-                <UserOutlined className="adm-chat__empty-icon" />
-                <p>Select a conversation to start chatting</p>
+                <Button
+                  type="primary"
+                  icon={<SendOutlined />}
+                  onClick={sendMessage}
+                  style={{ height: '100%' }}
+                />
               </div>
             </div>
           )}
-        </div>
-      </div>
-    </AdminPage>
+        </Card>
+      )}
+    </>
   );
 }

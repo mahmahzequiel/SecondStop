@@ -50,12 +50,6 @@ function AdminSidebar() {
           <span>Customers</span>
         </Link>
       </div>
-      <div className={`nav-item ${isActive('/adminchat') ? 'active' : ''}`}>
-        <Link to="/adminchat">
-          <MessageOutlined className="nav-icon" />
-          <span>Messages</span>
-        </Link>
-      </div>
       <div className={`nav-item ${isActive('/inventory') ? 'active' : ''}`}>
         <Link to="/inventory">
           <InboxOutlined className="nav-icon" />

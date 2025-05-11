@@ -10,6 +10,7 @@ import { debounce } from "lodash";
 const { Option } = Select;
 
 const USERS_API = "http://127.0.0.1:8000/api/users";
+const CUSTOMERS_API = "http://127.0.0.1:8000/api/customers"; // Add a dedicated endpoint for customers if possible
 
 function AllCustomers() {
   const [customers, setCustomers] = useState([]);
@@ -33,11 +34,23 @@ function AllCustomers() {
     if (statusFilter === "Active") backendStatus = "active";
     if (statusFilter === "Archived") backendStatus = "archived";
     
+    // Try to use a dedicated customers endpoint if available
+    // Otherwise use the users endpoint with role=customer parameter
     axios
-      .get(USERS_API, { params: { status: backendStatus } })
+      .get(`${USERS_API}`, { 
+        params: { 
+          status: backendStatus,
+          role: "customer" // Add role parameter to filter by customer role
+        } 
+      })
       .then((res) => {
         if (res.data?.status && res.data?.data?.users) {
-          const customersList = res.data.data.users.filter(user => user.role_id === 1);
+          // Accept users with role_id 1 OR user_type === "customer"
+          const customersList = res.data.data.users.filter(user => 
+            user.role_id === 1 || 
+            user.user_type === "customer" ||
+            user.role?.name?.toLowerCase() === "customer"
+          );
           setCustomers(customersList);
         } else {
           console.error("Invalid users structure:", res.data);
@@ -180,7 +193,11 @@ function AllCustomers() {
       title: "Full Name",
       dataIndex: ["profile", "full_name"],
       key: "name",
-      render: (text) => text || "No Name",
+      render: (text, record) => {
+        // Try to get name from multiple possible locations
+        const name = text || record.name || record.full_name || "No Name";
+        return name;
+      },
     },
     {
       title: "Email",
@@ -191,13 +208,21 @@ function AllCustomers() {
       title: "Phone Number",
       dataIndex: ["profile", "phone_number"],
       key: "phone_number",
-      render: (text) => text || "N/A",
+      render: (text, record) => {
+        // Try multiple possible locations for phone number
+        const phone = text || record.phone_number || record.phone || "N/A";
+        return phone;
+      },
     },
     {
       title: "Sex",
       dataIndex: ["profile", "sex"],
       key: "sex",
-      render: (text) => text || "N/A",
+      render: (text, record) => {
+        // Try multiple possible locations for sex/gender
+        const gender = text || record.sex || record.gender || "N/A";
+        return gender;
+      },
     },
     {
       title: "Status",

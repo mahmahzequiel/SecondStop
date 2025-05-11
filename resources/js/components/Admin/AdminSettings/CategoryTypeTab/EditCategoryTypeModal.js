@@ -4,7 +4,7 @@ import axios from "axios";
 
 const CATEGORY_TYPES_API = "http://127.0.0.1:8000/api/category-types";
 
-function EditCategoryTypeModal({ visible, onCancel, onSave, categoryType }) {
+function EditCategoryTypeModal({ open, onCancel, onSave, categoryType }) {
   const [form] = Form.useForm();
   const [loading, setLoading] = useState(false);
 
@@ -27,7 +27,13 @@ function EditCategoryTypeModal({ visible, onCancel, onSave, categoryType }) {
       .then((values) => {
         setLoading(true);
         
-        axios.put(`${CATEGORY_TYPES_API}/${categoryType.id}`, values)
+        axios.put(`${CATEGORY_TYPES_API}/${categoryType.id}`, values, {
+          headers: {
+            'Content-Type': 'application/json',
+            'Accept': 'application/json',
+            'X-Requested-With': 'XMLHttpRequest'
+          }
+        })
           .then((res) => {
             message.success("Category type updated successfully!");
             form.resetFields();
@@ -67,7 +73,7 @@ function EditCategoryTypeModal({ visible, onCancel, onSave, categoryType }) {
   return (
     <Modal
       title="Edit Category Type"
-      open={visible}
+      open={open}
       onCancel={handleCancel}
       footer={[
         <Button key="back" onClick={handleCancel}>
