@@ -1,14 +1,19 @@
-import React, { useEffect, useState } from 'react'; // Added useState import
-import { Modal, Form, Input, InputNumber, Button, message } from 'antd';
+import React, { useEffect, useState } from 'react';
+import { Modal, Form, Input, InputNumber, Button, message, Select } from 'antd';
 
-const EditSackModal = ({ visible, onCancel, onSave, sack }) => {
+const { Option } = Select;
+
+const EditSackModal = ({ visible, onCancel, onSave, sack, categories, categoryTypes }) => {
   const [form] = Form.useForm();
-  const [loading, setLoading] = useState(false); // Now properly imported
+  const [loading, setLoading] = useState(false);
 
   useEffect(() => {
     if (sack) {
       form.setFieldsValue({
+        id: sack.id, // Include the ID in the form data
         sack_code: sack.sack_code,
+        category_id: sack.category_id,
+        category_type_id: sack.category_type_id,
         available_items: sack.available_items,
         sold_items: sack.sold_items,
         estimated_pieces: sack.estimated_pieces,
@@ -21,7 +26,8 @@ const EditSackModal = ({ visible, onCancel, onSave, sack }) => {
     try {
       const values = await form.validateFields();
       setLoading(true);
-      await onSave(values);
+      // Ensure the sack ID is included in the data sent to onSave
+      await onSave({ ...values, id: sack.id });
     } catch (error) {
       console.error('Error updating sack:', error);
       message.error('Failed to update sack');
@@ -33,7 +39,7 @@ const EditSackModal = ({ visible, onCancel, onSave, sack }) => {
   return (
     <Modal
       title={`Edit Sack: ${sack?.sack_code}`}
-      visible={visible}
+      open={visible} // Changed 'visible' to 'open' for Ant Design v5 compatibility
       onCancel={onCancel}
       footer={[
         <Button key="back" onClick={onCancel}>
@@ -50,6 +56,11 @@ const EditSackModal = ({ visible, onCancel, onSave, sack }) => {
       ]}
     >
       <Form form={form} layout="vertical">
+        {/* Hidden field to store the ID */}
+        <Form.Item name="id" hidden>
+          <Input />
+        </Form.Item>
+        
         <Form.Item
           name="sack_code"
           label="Sack Code"
@@ -57,6 +68,35 @@ const EditSackModal = ({ visible, onCancel, onSave, sack }) => {
         >
           <Input />
         </Form.Item>
+        
+        <Form.Item
+          name="category_id"
+          label="Category"
+          rules={[{ required: true, message: 'Please select a category' }]}
+        >
+          <Select placeholder="Select a category">
+            {categories.map(category => (
+              <Option key={category.id} value={category.id}>
+                {category.category_name}
+              </Option>
+            ))}
+          </Select>
+        </Form.Item>
+        
+        <Form.Item
+          name="category_type_id"
+          label="Category Type"
+          rules={[{ required: true, message: 'Please select a category type' }]}
+        >
+          <Select placeholder="Select a category type">
+            {categoryTypes.map(type => (
+              <Option key={type.id} value={type.id}>
+                {type.category_type}
+              </Option>
+            ))}
+          </Select>
+        </Form.Item>
+        
         <Form.Item
           name="available_items"
           label="Available Items"
@@ -64,6 +104,7 @@ const EditSackModal = ({ visible, onCancel, onSave, sack }) => {
         >
           <InputNumber min={0} style={{ width: '100%' }} />
         </Form.Item>
+        
         <Form.Item
           name="sold_items"
           label="Sold Items"
@@ -71,16 +112,18 @@ const EditSackModal = ({ visible, onCancel, onSave, sack }) => {
         >
           <InputNumber min={0} style={{ width: '100%' }} />
         </Form.Item>
+        
         <Form.Item
           name="estimated_pieces"
-          label="Estimated Pieces (optional)"
+          label="Quantity"
         >
           <InputNumber min={0} style={{ width: '100%' }} />
         </Form.Item>
+        
         <Form.Item
           name="buying_price"
-          label="Buying Price"
-          rules={[{ required: true, message: 'Please enter buying price' }]}
+          label="Price"
+          rules={[{ required: true, message: 'Please enter price' }]}
         >
           <InputNumber min={0} step={0.01} style={{ width: '100%' }} />
         </Form.Item>

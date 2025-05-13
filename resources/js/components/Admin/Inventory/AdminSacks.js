@@ -158,12 +158,6 @@ const AdminSacks = () => {
       render: (text) => <Tag color="orange">{text}</Tag>,
     },
     {
-      title: "Estimated Pieces",
-      dataIndex: "estimated_pieces",
-      key: "estimated_pieces",
-      render: (text) => text || 'N/A',
-    },
-    {
       title: "Buying Price",
       dataIndex: "buying_price",
       key: "buying_price",
@@ -306,7 +300,7 @@ const currentPageData = filteredSacks.slice(
           style={{ width: 120 }}
         >
           <Option value="active">Active</Option>
-          <Option value="archived">Deleted</Option>
+          <Option value="archived">Archived</Option>
           <Option value="all">All</Option>
         </Select>
         <div style={{ marginLeft: "auto", display: "flex", gap: "10px" }}>

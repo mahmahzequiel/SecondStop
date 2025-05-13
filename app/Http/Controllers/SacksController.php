@@ -51,7 +51,7 @@ class SacksController extends Controller
                                 ->where('category_type_id', $request->category_type_id);
                 })
             ],
-            'estimated_pieces' => 'nullable|integer|min:0',
+            'estimated_pieces' => 'required|integer|min:0',
             'buying_price' => 'required|numeric|min:0',
             'category_id' => 'required|exists:categories,id',
             'category_type_id' => 'required|exists:category_types,id',
@@ -92,7 +92,7 @@ class SacksController extends Controller
                                 ->where('category_type_id', $request->category_type_id ?? $sack->category_type_id);
                 })->ignore($sack->id)
             ],
-            'estimated_pieces' => 'nullable|integer|min:0',
+            'estimated_pieces' => 'sometimes|integer|min:0',
             'buying_price' => 'sometimes|required|numeric|min:0',
             'category_id' => 'sometimes|required|exists:categories,id',
             'category_type_id' => 'sometimes|required|exists:category_types,id',

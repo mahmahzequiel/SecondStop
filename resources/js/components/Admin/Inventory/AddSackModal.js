@@ -177,8 +177,8 @@ const AddSackModal = ({ visible, setVisible, fetchSacks, categories, categoryTyp
         
         <Form.Item
           name="estimated_pieces"
-          label="Estimated Pieces"
-          rules={[{ required: true, message: 'Please enter estimated pieces' }]}
+          label="Quantity"
+          rules={[{ required: true, message: 'Please enter quantity' }]}
         >
           <InputNumber 
             min={1} 
@@ -209,8 +209,8 @@ const AddSackModal = ({ visible, setVisible, fetchSacks, categories, categoryTyp
         
         <Form.Item
           name="buying_price"
-          label="Buying Price"
-          rules={[{ required: true, message: 'Please enter buying price' }]}
+          label="Price"
+          rules={[{ required: true, message: 'Please enter price' }]}
         >
           <InputNumber min={0} step={0.01} style={{ width: '100%' }} />
         </Form.Item>
