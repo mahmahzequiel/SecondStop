@@ -15490,6 +15490,7 @@ a {
 }
 .profile-content .profile-header .profile-avatar {
   margin-right: 15px;
+  border: 1px solid #545252;
 }
 .profile-content .profile-header .profile-name {
   color: #333333;
@@ -15685,18 +15686,18 @@ a {
   flex-direction: column;
 }
 
-/* changePassword.scss */
-.change-password-content {
+/* Password Change Container */
+.password-change-container {
   padding: 0;
   height: 100%;
+  background-color: #f8f9fa;
   /* Card styling */
   /* Title styling */
   /* Divider styling */
   /* Form styling */
-  /* Error message styling */
-  /* Eye icon styling */
+  /* Submit Button */
 }
-.change-password-content .ant-card {
+.password-change-container .password-change-card {
   height: 100vh;
   border-radius: 0;
   box-shadow: none;
@@ -15705,50 +15706,48 @@ a {
   flex-direction: column;
   background-color: #f8f9fa;
 }
-.change-password-content .ant-card-body {
+.password-change-container .password-change-card .ant-card-body {
   padding: 40px;
-  flex: 1;
-}
-.change-password-content .ant-card-body {
   flex: 1;
   display: flex;
   flex-direction: column;
 }
-.change-password-content .password-title {
+.password-change-container .password-change-title {
   font-size: 2rem;
   color: #333333;
   margin: 0;
   font-weight: bolder;
   font-family: "Inria Serif", serif;
 }
-.change-password-content .title-divider {
+.password-change-container .password-change-divider {
   margin-bottom: 30px;
   border-top: 1px solid #e8e8e8;
 }
-.change-password-content .ant-form {
+.password-change-container .password-change-form {
   margin-top: 20px;
-  /* Change Password Button */
+  /* Password visibility toggle */
+  /* Error state */
 }
-.change-password-content .ant-form .ant-form-item {
+.password-change-container .password-change-form .password-change-form-item {
   margin-bottom: 24px;
 }
-.change-password-content .ant-form .ant-form-item-label > label {
+.password-change-container .password-change-form .password-change-form-item .ant-form-item-label > label {
   font-weight: 600;
   color: #333333;
   font-size: 16px;
   font-family: "Inria Serif", serif;
   height: auto;
 }
-.change-password-content .ant-form .ant-form-item-label > label .required-asterisk {
+.password-change-container .password-change-form .password-change-form-item .password-change-required {
   color: #ff4d4f;
   margin-right: 4px;
 }
-.change-password-content .ant-form .ant-form-item-explain-error {
+.password-change-container .password-change-form .password-change-form-item .ant-form-item-explain-error {
   color: #ff4d4f;
   font-size: 14px;
   margin-top: 6px;
 }
-.change-password-content .ant-form .ant-input-password {
+.password-change-container .password-change-form .password-change-input {
   border-radius: 6px;
   padding: 8px 12px;
   border: 1px solid #545252;
@@ -15756,13 +15755,25 @@ a {
   font-size: 16px;
   transition: all 0.3s;
 }
-.change-password-content .ant-form .ant-input-password:hover {
+.password-change-container .password-change-form .password-change-input:hover {
   border-color: #40a9ff;
 }
-.change-password-content .ant-form .ant-input-password-disabled {
+.password-change-container .password-change-form .password-change-input.ant-input-password-disabled {
   background-color: #f5f5f5;
 }
-.change-password-content .ant-form .ant-btn-primary {
+.password-change-container .password-change-form .ant-input-password-icon {
+  color: #999;
+}
+.password-change-container .password-change-form .ant-input-password-icon:hover {
+  color: #333;
+}
+.password-change-container .password-change-form .ant-form-item-has-error .password-change-input {
+  border-color: #ff4d4f;
+}
+.password-change-container .password-change-submit-item {
+  margin-top: 32px;
+}
+.password-change-container .password-change-submit-btn {
   background-color: #ff6347;
   border-color: #ff6347;
   border-radius: 6px;
@@ -15770,123 +15781,74 @@ a {
   font-weight: 500;
   height: 40px;
   width: 100%;
+  transition: all 0.3s;
 }
-.change-password-content .ant-form .ant-btn-primary:hover, .change-password-content .ant-form .ant-btn-primary:focus {
+.password-change-container .password-change-submit-btn:hover, .password-change-container .password-change-submit-btn:focus {
   background-color: #ff7e6b;
   border-color: #ff7e6b;
 }
-.change-password-content .ant-form .ant-btn-primary:active {
+.password-change-container .password-change-submit-btn:active {
   background-color: #e05a40;
   border-color: #e05a40;
 }
-.change-password-content .ant-form-item-has-error .ant-input-password {
-  border-color: #ff4d4f;
-}
-.change-password-content .ant-input-password-icon {
-  color: #999;
-}
-.change-password-content .ant-input-password-icon:hover {
-  color: #333;
+.password-change-container .password-change-submit-btn[disabled] {
+  background-color: #d9d9d9;
+  border-color: #d9d9d9;
+  color: rgba(0, 0, 0, 0.25);
 }
 
-/* Address Container */
-.address-container {
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .password-change-container .password-change-card .ant-card-body {
+    padding: 24px;
+  }
+  .password-change-container .password-change-title {
+    font-size: 1.5rem;
+  }
+  .password-change-container .password-change-form .password-change-form-item {
+    margin-bottom: 20px;
+  }
+}
+/* Address Book Container */
+.address-book-container {
   padding: 2rem;
   max-width: 1200px;
   min-height: 100vh;
   margin: 0 auto;
   background-color: #f8f9fa;
 }
-.address-container .title-divider {
-  margin-bottom: 30px;
-  border-top: 1px solid #e0e0e0;
-}
-.address-container .address-title {
+.address-book-container .address-book-title {
   color: #333;
   font-family: "Inria Serif", serif;
 }
-.address-container .address-header {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  margin-bottom: 2rem;
-}
-.address-container .address-header h2, .address-container .address-header .h2 {
-  font-size: 2rem;
-  color: #333;
-  margin: 0;
-  font-weight: 600;
-  font-family: "Inria Serif", serif;
-}
-.address-container .address-header .header-buttons {
-  display: flex;
-  gap: 1rem;
-}
-.address-container .address-header .header-buttons .ant-btn {
-  display: flex;
-  align-items: center;
-  gap: 0.5rem;
-  font-weight: 500;
-  transition: all 0.2s ease;
-}
-.address-container .address-header .header-buttons .ant-btn.ant-btn-primary {
-  background: #ff4d4f;
-  border-color: #ff4d4f;
-}
-.address-container .address-header .header-buttons .ant-btn.ant-btn-primary:hover {
-  background: #ff7875;
-  border-color: #ff7875;
-}
-.address-container .address-header .header-buttons .ant-btn.archive-button {
-  background: #f0f0f0;
-  border-color: #d9d9d9;
-  color: #666;
-}
-.address-container .address-header .header-buttons .ant-btn.archive-button:hover {
-  color: #333;
-  border-color: #bfbfbf;
+.address-book-container .address-book-divider {
+  margin: "16px 0";
 }
 
-/* Address Cards Grid */
-.ant-row {
+/* Address Book Cards */
+.address-book-row {
   margin: 0 -8px !important;
 }
-.ant-row .ant-col {
+
+.address-book-col {
   padding: 0 8px !important;
 }
 
-.ant-card {
+.address-book-card {
   border-radius: 8px;
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
   margin-bottom: 16px;
   transition: box-shadow 0.3s ease;
 }
-.ant-card:hover {
+.address-book-card:hover {
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.12);
 }
-.ant-card .ant-card-head {
-  border-bottom: 1px solid #f0f0f0;
-  padding: 16px 20px;
+.address-book-card .address-book-card-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
 }
-.ant-card .ant-card-head .ant-card-head-title {
-  font-weight: 500;
-  color: #333;
-}
-.ant-card .ant-card-body {
-  padding: 20px;
-}
-.ant-card .ant-card-body p {
-  margin-bottom: 8px;
-  color: #666;
-}
-.ant-card .ant-card-body p strong {
-  color: #333;
-  font-weight: 500;
-}
-.ant-card .ant-card-body p:last-child {
-  margin-bottom: 0;
-}
-.ant-card .default-badge {
+.address-book-card .address-book-default-badge {
   display: inline-block;
   background: #f6ffed;
   border: 1px solid #b7eb8f;
@@ -15895,177 +15857,214 @@ a {
   border-radius: 4px;
   font-size: 12px;
   line-height: 20px;
-  margin-top: 8px;
+  margin-left: 8px;
+}
+.address-book-card .address-book-contact-info,
+.address-book-card .address-book-address-line,
+.address-book-card .address-book-city-info {
+  margin-bottom: 8px;
+  color: #666;
+}
+.address-book-card .address-book-contact-info strong,
+.address-book-card .address-book-address-line strong,
+.address-book-card .address-book-city-info strong {
+  color: #333;
+  font-weight: 500;
+}
+
+/* Buttons */
+.address-book-add-btn {
+  background: #ff4d4f;
+  border-color: #ff4d4f;
+}
+.address-book-add-btn:hover {
+  background: #ff7875;
+  border-color: #ff7875;
+}
+
+.address-book-archive-btn {
+  background: #f0f0f0;
+  border-color: #d9d9d9;
+  color: #666;
+}
+.address-book-archive-btn:hover {
+  color: #333;
+  border-color: #bfbfbf;
+}
+
+.address-book-edit-btn,
+.address-book-delete-btn {
+  padding: 4px;
+  margin-left: 8px;
 }
 
 /* Pagination */
-.ant-pagination {
-  margin-top: 24px;
+.address-book-pagination-container {
   text-align: center;
+  margin-top: 24px;
 }
-.ant-pagination .ant-pagination-item {
+
+.address-book-pagination .ant-pagination-item {
   border-radius: 4px;
-  transition: all 0.2s ease;
 }
-.ant-pagination .ant-pagination-item:hover {
+.address-book-pagination .ant-pagination-item:hover {
   border-color: #ff4d4f;
 }
-.ant-pagination .ant-pagination-item:hover a {
+.address-book-pagination .ant-pagination-item:hover a {
   color: #ff4d4f;
 }
-.ant-pagination .ant-pagination-item-active {
+.address-book-pagination .ant-pagination-item-active {
   border-color: #ff4d4f;
   background: #ff4d4f;
 }
-.ant-pagination .ant-pagination-item-active a {
+.address-book-pagination .ant-pagination-item-active a {
   color: white;
 }
-.ant-pagination .ant-pagination-item-active:hover {
+.address-book-pagination .ant-pagination-item-active:hover {
   border-color: #ff7875;
   background: #ff7875;
 }
 
 /* Modal Styles */
-.ant-modal .ant-modal-content {
+.address-book-modal .ant-modal-content {
   border-radius: 8px;
-  overflow: hidden;
 }
-.ant-modal .ant-modal-header {
-  background: #fff;
-  border-bottom: 1px solid #f0f0f0;
-  padding: 16px 24px;
-}
-.ant-modal .ant-modal-header .ant-modal-title {
-  font-size: 18px;
-  font-weight: 500;
-  color: #333;
-}
-.ant-modal .ant-modal-body {
-  padding: 24px;
-}
-.ant-modal .ant-modal-footer {
-  border-top: 1px solid #f0f0f0;
-  padding: 16px 24px;
-}
-.ant-modal .ant-modal-footer .ant-btn {
+.address-book-modal .address-book-modal-cancel {
   border-radius: 4px;
-  font-weight: 500;
-  padding: 6px 16px;
-  height: auto;
 }
-.ant-modal .ant-modal-footer .ant-btn:first-child {
-  margin-right: 8px;
-}
-.ant-modal .ant-modal-footer .ant-btn.ant-btn-primary {
+.address-book-modal .address-book-modal-submit {
   background: #ff4d4f;
   border-color: #ff4d4f;
+  border-radius: 4px;
 }
-.ant-modal .ant-modal-footer .ant-btn.ant-btn-primary:hover {
+.address-book-modal .address-book-modal-submit:hover {
   background: #ff7875;
   border-color: #ff7875;
 }
 
 /* Form Styles */
-.ant-form .ant-form-item {
+.address-book-form-row {
   margin-bottom: 16px;
 }
-.ant-form .ant-form-item:last-child {
-  margin-bottom: 0;
+
+.address-book-form-col {
+  padding: 0 8px;
 }
-.ant-form .ant-form-item .ant-form-item-label label {
+
+.address-book-form-item {
+  margin-bottom: 16px;
+}
+
+.address-book-form-label {
+  display: block;
   color: #666;
   font-weight: 500;
+  margin-bottom: 8px;
 }
-.ant-form .ant-form-item .ant-form-item-control-input .ant-input,
-.ant-form .ant-form-item .ant-form-item-control-input .ant-input-number,
-.ant-form .ant-form-item .ant-form-item-control-input .ant-select-selector {
+
+.address-book-form-input,
+.address-book-phone-input,
+.address-book-country-select,
+.address-book-province-select,
+.address-book-city-select {
+  width: 100%;
   border-radius: 4px;
-  padding: 8px 12px;
-  border-color: #d9d9d9;
-  transition: all 0.2s ease;
 }
-.ant-form .ant-form-item .ant-form-item-control-input .ant-input:hover,
-.ant-form .ant-form-item .ant-form-item-control-input .ant-input-number:hover,
-.ant-form .ant-form-item .ant-form-item-control-input .ant-select-selector:hover {
+.address-book-form-input:hover,
+.address-book-phone-input:hover,
+.address-book-country-select:hover,
+.address-book-province-select:hover,
+.address-book-city-select:hover {
   border-color: #bfbfbf;
 }
-.ant-form .ant-form-item .ant-form-item-control-input .ant-input:focus, .ant-form .ant-form-item .ant-form-item-control-input .ant-input.ant-input-focused,
-.ant-form .ant-form-item .ant-form-item-control-input .ant-input-number:focus,
-.ant-form .ant-form-item .ant-form-item-control-input .ant-input-number.ant-input-focused,
-.ant-form .ant-form-item .ant-form-item-control-input .ant-select-selector:focus,
-.ant-form .ant-form-item .ant-form-item-control-input .ant-select-selector.ant-input-focused {
+.address-book-form-input:focus,
+.address-book-phone-input:focus,
+.address-book-country-select:focus,
+.address-book-province-select:focus,
+.address-book-city-select:focus {
   border-color: #ff4d4f;
   box-shadow: 0 0 0 2px rgba(255, 77, 79, 0.2);
 }
-.ant-form .ant-form-item .ant-form-item-control-input .ant-input-affix-wrapper {
+
+.address-book-phone-error {
+  color: #ff4d4f;
+  font-size: 12px;
+  margin-top: 4px;
+}
+
+.address-book-select-option {
   padding: 8px 12px;
 }
-.ant-form .ant-form-item .ant-form-item-control-input .ant-select {
-  width: 100%;
-}
-.ant-form .ant-form-item .ant-checkbox-wrapper {
+
+.address-book-default-checkbox {
   color: #666;
-  transition: all 0.2s ease;
+  margin-top: 16px;
 }
-.ant-form .ant-form-item .ant-checkbox-wrapper:hover {
-  color: #333;
-}
-.ant-form .ant-form-item .ant-checkbox-wrapper .ant-checkbox-inner {
+.address-book-default-checkbox .ant-checkbox-inner {
   border-radius: 2px;
 }
-.ant-form .ant-form-item .ant-checkbox-wrapper .ant-checkbox-checked .ant-checkbox-inner {
+.address-book-default-checkbox .ant-checkbox-checked .ant-checkbox-inner {
   background-color: #ff4d4f;
   border-color: #ff4d4f;
 }
 
-/* Archive Modal Specific Styles */
-.archive-modal .ant-card {
+/* Archive Modal */
+.address-book-archive-modal .ant-modal-content {
+  border-radius: 8px;
+}
+
+.address-book-empty-archive {
+  text-align: center;
+  padding: 20px 0;
+  color: #666;
+}
+
+.address-book-archive-card {
   margin-bottom: 16px;
 }
-.archive-modal .ant-card:last-child {
+.address-book-archive-card:last-child {
   margin-bottom: 0;
 }
-.archive-modal .ant-card .ant-card-body {
-  padding: 16px;
+
+.address-book-archive-row {
+  align-items: center;
 }
-.archive-modal .restore-button {
+
+.address-book-archive-name,
+.address-book-archive-address,
+.address-book-archive-region {
+  color: #666;
+  margin-bottom: 4px;
+}
+.address-book-archive-name strong,
+.address-book-archive-address strong,
+.address-book-archive-region strong {
+  color: #333;
+}
+
+.address-book-restore-btn {
   background: #ff4d4f;
   border-color: #ff4d4f;
-  color: white;
   border-radius: 4px;
-  font-weight: 500;
 }
-.archive-modal .restore-button:hover {
+.address-book-restore-btn:hover {
   background: #ff7875;
   border-color: #ff7875;
 }
 
+.address-book-archive-pagination-container {
+  text-align: center;
+  margin-top: 20px;
+}
+
 /* Responsive Adjustments */
 @media (max-width: 768px) {
-  .address-header {
-    flex-direction: column;
-    align-items: flex-start;
-    gap: 1rem;
+  .address-book-container {
+    padding: 1rem;
   }
-  .address-header .header-buttons {
-    width: 100%;
-    flex-direction: column;
-  }
-  .ant-modal {
+  .address-book-modal {
     width: 90% !important;
     max-width: 100%;
-  }
-}
-/* Animation */
-@keyframes shake {
-  0%, 100% {
-    transform: translateX(0);
-  }
-  25% {
-    transform: translateX(-5px);
-  }
-  75% {
-    transform: translateX(5px);
   }
 }
 .user-purchases-container {

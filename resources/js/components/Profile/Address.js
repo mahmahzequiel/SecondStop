@@ -4,7 +4,6 @@ import axios from "axios";
 import { EditOutlined, InboxOutlined, PlusOutlined, DeleteOutlined } from "@ant-design/icons";
 import { message, Divider, Select, Card, Button, Row, Col, Input, Checkbox, Pagination, Modal } from "antd";
 
-
 const { Option } = Select;
 
 const sortAddresses = (addressesArr) => {
@@ -273,10 +272,10 @@ const Address = () => {
 
   return (
     <ProfileMain>
-      <div className="address-container">
+      <div className="address-book-container">
         <Row justify="space-between" align="middle" style={{ marginBottom: 20 }}>
           <Col>
-            <h2 className="address-title">My Addresses</h2>
+            <h2 className="address-book-title">My Addresses</h2>
           </Col>
           <Col>
             <Button 
@@ -284,6 +283,7 @@ const Address = () => {
               icon={<PlusOutlined />} 
               onClick={() => showModal()}
               style={{ marginRight: 10 }}
+              className="address-book-add-btn"
             >
               Add New Address
             </Button>
@@ -293,24 +293,25 @@ const Address = () => {
                 await fetchArchivedAddresses();
                 setIsArchiveModalVisible(true);
               }}
+              className="address-book-archive-btn"
             >
               Archive
             </Button>
           </Col>
         </Row>
 
-        <Divider style={{ margin: '16px 0' }} />
+        <Divider style={{ margin: '16px 0' }} className="address-book-divider" />
 
-        <Row gutter={[16, 16]}>
+        <Row gutter={[16, 16]} className="address-book-row">
           {currentAddresses.map((address) => (
-            <Col xs={24} sm={12} key={address.id}>
+            <Col xs={24} sm={12} key={address.id} className="address-book-col">
               <Card
                 title={
-                  <div style={{ display: 'flex', justifyContent: 'space-between' }}>
+                  <div style={{ display: 'flex', justifyContent: 'space-between' }} className="address-book-card-header">
                     <span>
                       {address.receiver_fullname}
                       {address.is_default === 1 && (
-                        <span className="default-badge">Default</span>
+                        <span className="address-book-default-badge">Default</span>
                       )}
                     </span>
                     <div>
@@ -318,6 +319,7 @@ const Address = () => {
                         type="text" 
                         icon={<EditOutlined />} 
                         onClick={() => showModal(address)}
+                        className="address-book-edit-btn"
                       />
                       {address.is_default === 1 ? null : (
                         <Button 
@@ -325,20 +327,21 @@ const Address = () => {
                           icon={<DeleteOutlined />} 
                           danger
                           onClick={() => deleteAddress(address.id)}
+                          className="address-book-delete-btn"
                         />
                       )}
                     </div>
                   </div>
                 }
-                className="address-card"
+                className="address-book-card"
               >
-                <p>
+                <p className="address-book-contact-info">
                   <strong>Contact:</strong> {address.contact_number}
                 </p>
-                <p>
+                <p className="address-book-address-line">
                   <strong>Address:</strong> {address.house_number}, {address.street}, {address.barangay}
                 </p>
-                <p>
+                <p className="address-book-city-info">
                   {address.city}, {address.province}, {address.country}
                 </p>
               </Card>
@@ -347,13 +350,14 @@ const Address = () => {
         </Row>
 
         {addresses.length > addressesPerPage && (
-          <div style={{ textAlign: 'center', marginTop: 20 }}>
+          <div style={{ textAlign: 'center', marginTop: 20 }} className="address-book-pagination-container">
             <Pagination 
               current={currentPage}
               total={addresses.length}
               pageSize={addressesPerPage}
               onChange={(page) => setCurrentPage(page)}
               showSizeChanger={false}
+              className="address-book-pagination"
             />
           </div>
         )}
@@ -366,30 +370,32 @@ const Address = () => {
           onOk={handleModalOk}
           width={700}
           footer={[
-            <Button key="back" onClick={handleModalCancel}>
+            <Button key="back" onClick={handleModalCancel} className="address-book-modal-cancel">
               Cancel
             </Button>,
-            <Button key="submit" type="primary" onClick={handleModalOk}>
+            <Button key="submit" type="primary" onClick={handleModalOk} className="address-book-modal-submit">
               {editingAddress ? "Update Address" : "Add Address"}
             </Button>,
           ]}
+          className="address-book-modal"
         >
-          <Row gutter={16}>
-            <Col span={12}>
-              <div style={{ marginBottom: 16 }}>
-                <label>Receiver Fullname</label>
+          <Row gutter={16} className="address-book-form-row">
+            <Col span={12} className="address-book-form-col">
+              <div style={{ marginBottom: 16 }} className="address-book-form-item">
+                <label className="address-book-form-label">Receiver Fullname</label>
                 <Input
                   name="receiver_fullname"
                   value={formData.receiver_fullname}
                   onChange={handleChange}
                   placeholder="Juan dela Cruz"
                   status={!formData.receiver_fullname ? "error" : ""}
+                  className="address-book-form-input"
                 />
               </div>
             </Col>
-            <Col span={12}>
-              <div style={{ marginBottom: 16 }}>
-                <label>Phone Number</label>
+            <Col span={12} className="address-book-form-col">
+              <div style={{ marginBottom: 16 }} className="address-book-form-item">
+                <label className="address-book-form-label">Phone Number</label>
                 <Input
                   name="contact_number"
                   value={formData.contact_number}
@@ -398,100 +404,107 @@ const Address = () => {
                   status={!formData.contact_number || phoneError ? "error" : ""}
                   addonBefore="+63"
                   maxLength={10}
+                  className="address-book-phone-input"
                 />
                 {phoneError && (
-                  <div style={{ color: 'red', fontSize: 12 }}>{phoneError}</div>
+                  <div className="address-book-phone-error">{phoneError}</div>
                 )}
               </div>
             </Col>
           </Row>
 
-          <Row gutter={16}>
-            <Col span={12}>
-              <div style={{ marginBottom: 16 }}>
-                <label>Country</label>
+          <Row gutter={16} className="address-book-form-row">
+            <Col span={12} className="address-book-form-col">
+              <div style={{ marginBottom: 16 }} className="address-book-form-item">
+                <label className="address-book-form-label">Country</label>
                 <Select
                   value={formData.country}
                   onChange={(value) => handleSelectChange(value, "country")}
                   style={{ width: '100%' }}
                   disabled={countryOptions.length <= 1}
+                  className="address-book-country-select"
                 >
                   {countryOptions.map(country => (
-                    <Option key={country} value={country}>{country}</Option>
+                    <Option key={country} value={country} className="address-book-select-option">{country}</Option>
                   ))}
                 </Select>
               </div>
             </Col>
-            <Col span={12}>
-              <div style={{ marginBottom: 16 }}>
-                <label>Province</label>
+            <Col span={12} className="address-book-form-col">
+              <div style={{ marginBottom: 16 }} className="address-book-form-item">
+                <label className="address-book-form-label">Province</label>
                 <Select
                   value={formData.province}
                   onChange={(value) => handleSelectChange(value, "province")}
                   style={{ width: '100%' }}
                   disabled={provinceOptions.length <= 1}
+                  className="address-book-province-select"
                 >
                   {provinceOptions.map(province => (
-                    <Option key={province} value={province}>{province}</Option>
+                    <Option key={province} value={province} className="address-book-select-option">{province}</Option>
                   ))}
                 </Select>
               </div>
             </Col>
           </Row>
 
-          <Row gutter={16}>
-            <Col span={12}>
-              <div style={{ marginBottom: 16 }}>
-                <label>City</label>
+          <Row gutter={16} className="address-book-form-row">
+            <Col span={12} className="address-book-form-col">
+              <div style={{ marginBottom: 16 }} className="address-book-form-item">
+                <label className="address-book-form-label">City</label>
                 <Select
                   value={formData.city || undefined}
                   onChange={(value) => handleSelectChange(value, "city")}
                   placeholder="Select city"
                   status={!formData.city ? "error" : ""}
                   style={{ width: '100%' }}
+                  className="address-book-city-select"
                 >
                   {cityOptions.map(city => (
-                    <Option key={city} value={city}>{city}</Option>
+                    <Option key={city} value={city} className="address-book-select-option">{city}</Option>
                   ))}
                 </Select>
               </div>
             </Col>
-            <Col span={12}>
-              <div style={{ marginBottom: 16 }}>
-                <label>Barangay</label>
+            <Col span={12} className="address-book-form-col">
+              <div style={{ marginBottom: 16 }} className="address-book-form-item">
+                <label className="address-book-form-label">Barangay</label>
                 <Input
                   name="barangay"
                   value={formData.barangay}
                   onChange={handleChange}
                   placeholder="Enter barangay"
                   status={!formData.barangay ? "error" : ""}
+                  className="address-book-form-input"
                 />
               </div>
             </Col>
           </Row>
 
-          <Row gutter={16}>
-            <Col span={12}>
-              <div style={{ marginBottom: 16 }}>
-                <label>Street Address</label>
+          <Row gutter={16} className="address-book-form-row">
+            <Col span={12} className="address-book-form-col">
+              <div style={{ marginBottom: 16 }} className="address-book-form-item">
+                <label className="address-book-form-label">Street Address</label>
                 <Input
                   name="street"
                   value={formData.street}
                   onChange={handleChange}
                   placeholder="123 Main Street"
                   status={!formData.street ? "error" : ""}
+                  className="address-book-form-input"
                 />
               </div>
             </Col>
-            <Col span={12}>
-              <div style={{ marginBottom: 16 }}>
-                <label>House Number</label>
+            <Col span={12} className="address-book-form-col">
+              <div style={{ marginBottom: 16 }} className="address-book-form-item">
+                <label className="address-book-form-label">House Number</label>
                 <Input
                   name="house_number"
                   value={formData.house_number}
                   onChange={handleChange}
                   placeholder="Enter house number"
                   status={!formData.house_number ? "error" : ""}
+                  className="address-book-form-input"
                 />
               </div>
             </Col>
@@ -506,6 +519,7 @@ const Address = () => {
                 is_default: e.target.checked,
               }))
             }
+            className="address-book-default-checkbox"
           >
             Set as default shipping address
           </Checkbox>
@@ -518,10 +532,10 @@ const Address = () => {
           onCancel={() => setIsArchiveModalVisible(false)}
           footer={null}
           width={700}
-          className="archive-modal"
+          className="address-book-archive-modal"
         >
           {archivedAddresses.length === 0 ? (
-            <div style={{ textAlign: 'center', padding: '20px 0' }}>
+            <div style={{ textAlign: 'center', padding: '20px 0' }} className="address-book-empty-archive">
               <p>No archived addresses found</p>
             </div>
           ) : (
@@ -531,24 +545,25 @@ const Address = () => {
                   key={addr.id} 
                   style={{ marginBottom: 16 }}
                   bodyStyle={{ padding: 16 }}
+                  className="address-book-archive-card"
                 >
-                  <Row justify="space-between" align="middle">
-                    <Col>
-                      <p style={{ marginBottom: 4 }}>
+                  <Row justify="space-between" align="middle" className="address-book-archive-row">
+                    <Col className="address-book-archive-col">
+                      <p style={{ marginBottom: 4 }} className="address-book-archive-name">
                         <strong>{addr.receiver_fullname}</strong> - {addr.contact_number}
                       </p>
-                      <p style={{ marginBottom: 0 }}>
+                      <p style={{ marginBottom: 0 }} className="address-book-archive-address">
                         {addr.house_number}, {addr.street}, {addr.barangay}, {addr.city}
                       </p>
-                      <p style={{ marginBottom: 0 }}>
+                      <p style={{ marginBottom: 0 }} className="address-book-archive-region">
                         {addr.province}, {addr.country}
                       </p>
                     </Col>
-                    <Col>
+                    <Col className="address-book-archive-col">
                       <Button 
                         type="primary" 
                         onClick={() => restoreAddress(addr.id)}
-                        className="restore-button"
+                        className="address-book-restore-btn"
                       >
                         Restore
                       </Button>
@@ -558,13 +573,14 @@ const Address = () => {
               ))}
               
               {archivedTotalPages > 1 && (
-                <div style={{ textAlign: 'center', marginTop: 20 }}>
+                <div style={{ textAlign: 'center', marginTop: 20 }} className="address-book-archive-pagination-container">
                   <Pagination 
                     current={archivedCurrentPage}
                     total={archivedAddresses.length}
                     pageSize={archivedAddressesPerPage}
                     onChange={(page) => setArchivedCurrentPage(page)}
                     showSizeChanger={false}
+                    className="address-book-archive-pagination"
                   />
                 </div>
               )}

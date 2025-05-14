@@ -83349,7 +83349,7 @@ var Address = function Address() {
   var currentArchivedAddresses = archivedAddresses.slice((archivedCurrentPage - 1) * archivedAddressesPerPage, archivedCurrentPage * archivedAddressesPerPage);
   return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)(_Profile_ProfileMain__WEBPACK_IMPORTED_MODULE_1__["default"], {
     children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)("div", {
-      className: "address-container",
+      className: "address-book-container",
       children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)(antd__WEBPACK_IMPORTED_MODULE_6__["default"], {
         justify: "space-between",
         align: "middle",
@@ -83358,7 +83358,7 @@ var Address = function Address() {
         },
         children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)(antd__WEBPACK_IMPORTED_MODULE_7__["default"], {
           children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("h2", {
-            className: "address-title",
+            className: "address-book-title",
             children: "My Addresses"
           })
         }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)(antd__WEBPACK_IMPORTED_MODULE_7__["default"], {
@@ -83371,6 +83371,7 @@ var Address = function Address() {
             style: {
               marginRight: 10
             },
+            className: "address-book-add-btn",
             children: "Add New Address"
           }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)(antd__WEBPACK_IMPORTED_MODULE_8__["default"], {
             icon: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)(_ant_design_icons__WEBPACK_IMPORTED_MODULE_10__["default"], {}),
@@ -83388,28 +83389,33 @@ var Address = function Address() {
                 }
               }, _callee7);
             })),
+            className: "address-book-archive-btn",
             children: "Archive"
           })]
         })]
       }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)(antd__WEBPACK_IMPORTED_MODULE_11__["default"], {
         style: {
           margin: '16px 0'
-        }
+        },
+        className: "address-book-divider"
       }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)(antd__WEBPACK_IMPORTED_MODULE_6__["default"], {
         gutter: [16, 16],
+        className: "address-book-row",
         children: currentAddresses.map(function (address) {
           return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)(antd__WEBPACK_IMPORTED_MODULE_7__["default"], {
             xs: 24,
             sm: 12,
+            className: "address-book-col",
             children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)(antd__WEBPACK_IMPORTED_MODULE_12__["default"], {
               title: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)("div", {
                 style: {
                   display: 'flex',
                   justifyContent: 'space-between'
                 },
+                className: "address-book-card-header",
                 children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)("span", {
                   children: [address.receiver_fullname, address.is_default === 1 && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("span", {
-                    className: "default-badge",
+                    className: "address-book-default-badge",
                     children: "Default"
                   })]
                 }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)("div", {
@@ -83418,27 +83424,32 @@ var Address = function Address() {
                     icon: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)(_ant_design_icons__WEBPACK_IMPORTED_MODULE_13__["default"], {}),
                     onClick: function onClick() {
                       return showModal(address);
-                    }
+                    },
+                    className: "address-book-edit-btn"
                   }), address.is_default === 1 ? null : /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)(antd__WEBPACK_IMPORTED_MODULE_8__["default"], {
                     type: "text",
                     icon: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)(_ant_design_icons__WEBPACK_IMPORTED_MODULE_14__["default"], {}),
                     danger: true,
                     onClick: function onClick() {
                       return deleteAddress(address.id);
-                    }
+                    },
+                    className: "address-book-delete-btn"
                   })]
                 })]
               }),
-              className: "address-card",
+              className: "address-book-card",
               children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)("p", {
+                className: "address-book-contact-info",
                 children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("strong", {
                   children: "Contact:"
                 }), " ", address.contact_number]
               }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)("p", {
+                className: "address-book-address-line",
                 children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("strong", {
                   children: "Address:"
                 }), " ", address.house_number, ", ", address.street, ", ", address.barangay]
               }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)("p", {
+                className: "address-book-city-info",
                 children: [address.city, ", ", address.province, ", ", address.country]
               })]
             })
@@ -83449,6 +83460,7 @@ var Address = function Address() {
           textAlign: 'center',
           marginTop: 20
         },
+        className: "address-book-pagination-container",
         children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)(antd__WEBPACK_IMPORTED_MODULE_15__["default"], {
           current: currentPage,
           total: addresses.length,
@@ -83456,7 +83468,8 @@ var Address = function Address() {
           onChange: function onChange(page) {
             return setCurrentPage(page);
           },
-          showSizeChanger: false
+          showSizeChanger: false,
+          className: "address-book-pagination"
         })
       }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)(antd__WEBPACK_IMPORTED_MODULE_16__["default"], {
         title: editingAddress ? "Edit Address" : "Add New Address",
@@ -83466,37 +83479,48 @@ var Address = function Address() {
         width: 700,
         footer: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)(antd__WEBPACK_IMPORTED_MODULE_8__["default"], {
           onClick: handleModalCancel,
+          className: "address-book-modal-cancel",
           children: "Cancel"
         }, "back"), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)(antd__WEBPACK_IMPORTED_MODULE_8__["default"], {
           type: "primary",
           onClick: handleModalOk,
+          className: "address-book-modal-submit",
           children: editingAddress ? "Update Address" : "Add Address"
         }, "submit")],
+        className: "address-book-modal",
         children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)(antd__WEBPACK_IMPORTED_MODULE_6__["default"], {
           gutter: 16,
+          className: "address-book-form-row",
           children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)(antd__WEBPACK_IMPORTED_MODULE_7__["default"], {
             span: 12,
+            className: "address-book-form-col",
             children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)("div", {
               style: {
                 marginBottom: 16
               },
+              className: "address-book-form-item",
               children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("label", {
+                className: "address-book-form-label",
                 children: "Receiver Fullname"
               }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)(antd__WEBPACK_IMPORTED_MODULE_17__["default"], {
                 name: "receiver_fullname",
                 value: formData.receiver_fullname,
                 onChange: handleChange,
                 placeholder: "Juan dela Cruz",
-                status: !formData.receiver_fullname ? "error" : ""
+                status: !formData.receiver_fullname ? "error" : "",
+                className: "address-book-form-input"
               })]
             })
           }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)(antd__WEBPACK_IMPORTED_MODULE_7__["default"], {
             span: 12,
+            className: "address-book-form-col",
             children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)("div", {
               style: {
                 marginBottom: 16
               },
+              className: "address-book-form-item",
               children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("label", {
+                className: "address-book-form-label",
                 children: "Phone Number"
               }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)(antd__WEBPACK_IMPORTED_MODULE_17__["default"], {
                 name: "contact_number",
@@ -83505,25 +83529,27 @@ var Address = function Address() {
                 placeholder: "9xxxxxxxxx",
                 status: !formData.contact_number || phoneError ? "error" : "",
                 addonBefore: "+63",
-                maxLength: 10
+                maxLength: 10,
+                className: "address-book-phone-input"
               }), phoneError && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("div", {
-                style: {
-                  color: 'red',
-                  fontSize: 12
-                },
+                className: "address-book-phone-error",
                 children: phoneError
               })]
             })
           })]
         }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)(antd__WEBPACK_IMPORTED_MODULE_6__["default"], {
           gutter: 16,
+          className: "address-book-form-row",
           children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)(antd__WEBPACK_IMPORTED_MODULE_7__["default"], {
             span: 12,
+            className: "address-book-form-col",
             children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)("div", {
               style: {
                 marginBottom: 16
               },
+              className: "address-book-form-item",
               children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("label", {
+                className: "address-book-form-label",
                 children: "Country"
               }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)(antd__WEBPACK_IMPORTED_MODULE_4__["default"], {
                 value: formData.country,
@@ -83534,9 +83560,11 @@ var Address = function Address() {
                   width: '100%'
                 },
                 disabled: countryOptions.length <= 1,
+                className: "address-book-country-select",
                 children: countryOptions.map(function (country) {
                   return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)(Option, {
                     value: country,
+                    className: "address-book-select-option",
                     children: country
                   }, country);
                 })
@@ -83544,11 +83572,14 @@ var Address = function Address() {
             })
           }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)(antd__WEBPACK_IMPORTED_MODULE_7__["default"], {
             span: 12,
+            className: "address-book-form-col",
             children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)("div", {
               style: {
                 marginBottom: 16
               },
+              className: "address-book-form-item",
               children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("label", {
+                className: "address-book-form-label",
                 children: "Province"
               }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)(antd__WEBPACK_IMPORTED_MODULE_4__["default"], {
                 value: formData.province,
@@ -83559,9 +83590,11 @@ var Address = function Address() {
                   width: '100%'
                 },
                 disabled: provinceOptions.length <= 1,
+                className: "address-book-province-select",
                 children: provinceOptions.map(function (province) {
                   return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)(Option, {
                     value: province,
+                    className: "address-book-select-option",
                     children: province
                   }, province);
                 })
@@ -83570,13 +83603,17 @@ var Address = function Address() {
           })]
         }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)(antd__WEBPACK_IMPORTED_MODULE_6__["default"], {
           gutter: 16,
+          className: "address-book-form-row",
           children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)(antd__WEBPACK_IMPORTED_MODULE_7__["default"], {
             span: 12,
+            className: "address-book-form-col",
             children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)("div", {
               style: {
                 marginBottom: 16
               },
+              className: "address-book-form-item",
               children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("label", {
+                className: "address-book-form-label",
                 children: "City"
               }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)(antd__WEBPACK_IMPORTED_MODULE_4__["default"], {
                 value: formData.city || undefined,
@@ -83588,9 +83625,11 @@ var Address = function Address() {
                 style: {
                   width: '100%'
                 },
+                className: "address-book-city-select",
                 children: cityOptions.map(function (city) {
                   return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)(Option, {
                     value: city,
+                    className: "address-book-select-option",
                     children: city
                   }, city);
                 })
@@ -83598,53 +83637,66 @@ var Address = function Address() {
             })
           }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)(antd__WEBPACK_IMPORTED_MODULE_7__["default"], {
             span: 12,
+            className: "address-book-form-col",
             children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)("div", {
               style: {
                 marginBottom: 16
               },
+              className: "address-book-form-item",
               children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("label", {
+                className: "address-book-form-label",
                 children: "Barangay"
               }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)(antd__WEBPACK_IMPORTED_MODULE_17__["default"], {
                 name: "barangay",
                 value: formData.barangay,
                 onChange: handleChange,
                 placeholder: "Enter barangay",
-                status: !formData.barangay ? "error" : ""
+                status: !formData.barangay ? "error" : "",
+                className: "address-book-form-input"
               })]
             })
           })]
         }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)(antd__WEBPACK_IMPORTED_MODULE_6__["default"], {
           gutter: 16,
+          className: "address-book-form-row",
           children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)(antd__WEBPACK_IMPORTED_MODULE_7__["default"], {
             span: 12,
+            className: "address-book-form-col",
             children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)("div", {
               style: {
                 marginBottom: 16
               },
+              className: "address-book-form-item",
               children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("label", {
+                className: "address-book-form-label",
                 children: "Street Address"
               }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)(antd__WEBPACK_IMPORTED_MODULE_17__["default"], {
                 name: "street",
                 value: formData.street,
                 onChange: handleChange,
                 placeholder: "123 Main Street",
-                status: !formData.street ? "error" : ""
+                status: !formData.street ? "error" : "",
+                className: "address-book-form-input"
               })]
             })
           }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)(antd__WEBPACK_IMPORTED_MODULE_7__["default"], {
             span: 12,
+            className: "address-book-form-col",
             children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)("div", {
               style: {
                 marginBottom: 16
               },
+              className: "address-book-form-item",
               children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("label", {
+                className: "address-book-form-label",
                 children: "House Number"
               }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)(antd__WEBPACK_IMPORTED_MODULE_17__["default"], {
                 name: "house_number",
                 value: formData.house_number,
                 onChange: handleChange,
                 placeholder: "Enter house number",
-                status: !formData.house_number ? "error" : ""
+                status: !formData.house_number ? "error" : "",
+                className: "address-book-form-input"
               })]
             })
           })]
@@ -83658,6 +83710,7 @@ var Address = function Address() {
               });
             });
           },
+          className: "address-book-default-checkbox",
           children: "Set as default shipping address"
         })]
       }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)(antd__WEBPACK_IMPORTED_MODULE_16__["default"], {
@@ -83668,12 +83721,13 @@ var Address = function Address() {
         },
         footer: null,
         width: 700,
-        className: "archive-modal",
+        className: "address-book-archive-modal",
         children: archivedAddresses.length === 0 ? /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("div", {
           style: {
             textAlign: 'center',
             padding: '20px 0'
           },
+          className: "address-book-empty-archive",
           children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("p", {
             children: "No archived addresses found"
           })
@@ -83686,14 +83740,18 @@ var Address = function Address() {
               bodyStyle: {
                 padding: 16
               },
+              className: "address-book-archive-card",
               children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)(antd__WEBPACK_IMPORTED_MODULE_6__["default"], {
                 justify: "space-between",
                 align: "middle",
+                className: "address-book-archive-row",
                 children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)(antd__WEBPACK_IMPORTED_MODULE_7__["default"], {
+                  className: "address-book-archive-col",
                   children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)("p", {
                     style: {
                       marginBottom: 4
                     },
+                    className: "address-book-archive-name",
                     children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("strong", {
                       children: addr.receiver_fullname
                     }), " - ", addr.contact_number]
@@ -83701,20 +83759,23 @@ var Address = function Address() {
                     style: {
                       marginBottom: 0
                     },
+                    className: "address-book-archive-address",
                     children: [addr.house_number, ", ", addr.street, ", ", addr.barangay, ", ", addr.city]
                   }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)("p", {
                     style: {
                       marginBottom: 0
                     },
+                    className: "address-book-archive-region",
                     children: [addr.province, ", ", addr.country]
                   })]
                 }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)(antd__WEBPACK_IMPORTED_MODULE_7__["default"], {
+                  className: "address-book-archive-col",
                   children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)(antd__WEBPACK_IMPORTED_MODULE_8__["default"], {
                     type: "primary",
                     onClick: function onClick() {
                       return restoreAddress(addr.id);
                     },
-                    className: "restore-button",
+                    className: "address-book-restore-btn",
                     children: "Restore"
                   })
                 })]
@@ -83725,6 +83786,7 @@ var Address = function Address() {
               textAlign: 'center',
               marginTop: 20
             },
+            className: "address-book-archive-pagination-container",
             children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)(antd__WEBPACK_IMPORTED_MODULE_15__["default"], {
               current: archivedCurrentPage,
               total: archivedAddresses.length,
@@ -83732,7 +83794,8 @@ var Address = function Address() {
               onChange: function onChange(page) {
                 return setArchivedCurrentPage(page);
               },
-              showSizeChanger: false
+              showSizeChanger: false,
+              className: "address-book-archive-pagination"
             })
           })]
         })
@@ -83846,25 +83909,24 @@ var ChangePassword = function ChangePassword() {
   }();
   return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)(_ProfileMain__WEBPACK_IMPORTED_MODULE_1__["default"], {
     children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("div", {
-      className: "change-password-content",
+      className: "password-change-container",
       children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)(antd__WEBPACK_IMPORTED_MODULE_6__["default"], {
         bordered: false,
+        className: "password-change-card",
         children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("h2", {
-          className: "text-2xl font-bold mb-4",
+          className: "password-change-title",
           children: "Change Password"
         }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("div", {
-          className: "border-b border-gray-200 mb-6"
+          className: "password-change-divider"
         }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)(antd__WEBPACK_IMPORTED_MODULE_4__["default"], {
           form: form,
           layout: "vertical",
           onFinish: onFinish,
+          className: "password-change-form",
           children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)(antd__WEBPACK_IMPORTED_MODULE_4__["default"].Item, {
             label: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)("span", {
               children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("span", {
-                style: {
-                  color: '#ff4d4f',
-                  marginRight: '4px'
-                },
+                className: "password-change-required",
                 children: "*"
               }), " Old Password"]
             }),
@@ -83873,17 +83935,16 @@ var ChangePassword = function ChangePassword() {
               required: true,
               message: "Please input your current password!"
             }],
+            className: "password-change-form-item",
             children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)(antd__WEBPACK_IMPORTED_MODULE_7__["default"].Password, {
               placeholder: "Current Password",
-              disabled: loading
+              disabled: loading,
+              className: "password-change-input"
             })
           }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)(antd__WEBPACK_IMPORTED_MODULE_4__["default"].Item, {
             label: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)("span", {
               children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("span", {
-                style: {
-                  color: '#ff4d4f',
-                  marginRight: '4px'
-                },
+                className: "password-change-required",
                 children: "*"
               }), " New Password"]
             }),
@@ -83904,17 +83965,16 @@ var ChangePassword = function ChangePassword() {
               pattern: /[0-9]/,
               message: "At least one number"
             }],
+            className: "password-change-form-item",
             children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)(antd__WEBPACK_IMPORTED_MODULE_7__["default"].Password, {
               placeholder: "New Password",
-              disabled: loading
+              disabled: loading,
+              className: "password-change-input"
             })
           }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)(antd__WEBPACK_IMPORTED_MODULE_4__["default"].Item, {
             label: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)("span", {
               children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("span", {
-                style: {
-                  color: '#ff4d4f',
-                  marginRight: '4px'
-                },
+                className: "password-change-required",
                 children: "*"
               }), " Confirm Password"]
             }),
@@ -83934,23 +83994,20 @@ var ChangePassword = function ChangePassword() {
                 }
               };
             }],
+            className: "password-change-form-item",
             children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)(antd__WEBPACK_IMPORTED_MODULE_7__["default"].Password, {
               placeholder: "Confirm New Password",
-              disabled: loading
+              disabled: loading,
+              className: "password-change-input"
             })
           }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)(antd__WEBPACK_IMPORTED_MODULE_4__["default"].Item, {
+            className: "password-change-submit-item",
             children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)(antd__WEBPACK_IMPORTED_MODULE_8__["default"], {
               type: "primary",
               htmlType: "submit",
               loading: loading,
               disabled: loading,
-              style: {
-                backgroundColor: '#ff6347',
-                borderColor: '#ff6347',
-                width: '100%',
-                height: '40px',
-                borderRadius: '6px'
-              },
+              className: "password-change-submit-btn",
               children: "Change Password"
             })
           })]

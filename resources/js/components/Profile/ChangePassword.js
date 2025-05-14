@@ -45,25 +45,30 @@ const ChangePassword = () => {
 
   return (
     <ProfileMain>
-      <div className="change-password-content">
-        <Card bordered={false}>
-          <h2 className="text-2xl font-bold mb-4">Change Password</h2>
-          <div className="border-b border-gray-200 mb-6" />
+      <div className="password-change-container">
+        <Card bordered={false} className="password-change-card">
+          <h2 className="password-change-title">Change Password</h2>
+          <div className="password-change-divider" />
 
-          <Form form={form} layout="vertical" onFinish={onFinish}>
+          <Form form={form} layout="vertical" onFinish={onFinish} className="password-change-form">
             <Form.Item
-              label={<span><span style={{ color: '#ff4d4f', marginRight: '4px' }}>*</span> Old Password</span>}
+              label={<span><span className="password-change-required">*</span> Old Password</span>}
               name="currentPassword"
               rules={[{ 
                 required: true, 
                 message: "Please input your current password!" 
               }]}
+              className="password-change-form-item"
             >
-              <Input.Password placeholder="Current Password" disabled={loading} />
+              <Input.Password 
+                placeholder="Current Password" 
+                disabled={loading} 
+                className="password-change-input"
+              />
             </Form.Item>
 
             <Form.Item
-              label={<span><span style={{ color: '#ff4d4f', marginRight: '4px' }}>*</span> New Password</span>}
+              label={<span><span className="password-change-required">*</span> New Password</span>}
               name="newPassword"
               rules={[
                 { required: true, message: "Please input your new password!" },
@@ -72,12 +77,17 @@ const ChangePassword = () => {
                 { pattern: /[a-z]/, message: "At least one lowercase letter" },
                 { pattern: /[0-9]/, message: "At least one number" },
               ]}
+              className="password-change-form-item"
             >
-              <Input.Password placeholder="New Password" disabled={loading} />
+              <Input.Password 
+                placeholder="New Password" 
+                disabled={loading} 
+                className="password-change-input"
+              />
             </Form.Item>
 
             <Form.Item
-              label={<span><span style={{ color: '#ff4d4f', marginRight: '4px' }}>*</span> Confirm Password</span>}
+              label={<span><span className="password-change-required">*</span> Confirm Password</span>}
               name="confirmNewPassword"
               dependencies={["newPassword"]}
               rules={[
@@ -91,23 +101,22 @@ const ChangePassword = () => {
                   },
                 }),
               ]}
+              className="password-change-form-item"
             >
-              <Input.Password placeholder="Confirm New Password" disabled={loading} />
+              <Input.Password 
+                placeholder="Confirm New Password" 
+                disabled={loading} 
+                className="password-change-input"
+              />
             </Form.Item>
 
-            <Form.Item>
+            <Form.Item className="password-change-submit-item">
               <Button 
                 type="primary" 
                 htmlType="submit" 
                 loading={loading}
                 disabled={loading}
-                style={{ 
-                  backgroundColor: '#ff6347', 
-                  borderColor: '#ff6347',
-                  width: '100%',
-                  height: '40px',
-                  borderRadius: '6px'
-                }}
+                className="password-change-submit-btn"
               >
                 Change Password
               </Button>

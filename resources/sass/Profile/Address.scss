@@ -1,82 +1,31 @@
-/* Address Container */
-.address-container {
+/* Address Book Container */
+.address-book-container {
   padding: 2rem;
   max-width: 1200px;
   min-height: 100vh;
   margin: 0 auto;
-  background-color: #f8f9fa; // Light background for the container
+  background-color: #f8f9fa;
 
-  .title-divider {
-    margin-bottom: 30px;
-    border-top: 1px solid #e0e0e0; // Softer divider color
-  }
-  
-
-  .address-title {
+  .address-book-title {
     color: #333;
     font-family: 'Inria Serif', serif;
   }
 
-  .address-header {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    margin-bottom: 2rem;
-
-    h2 {
-      font-size: 2rem;
-      color: #333; // Darker text for better contrast
-      margin: 0;
-      font-weight: 600; // Slightly less bold
-      font-family: 'Inria Serif', serif;
-    }
-
-    .header-buttons {
-      display: flex;
-      gap: 1rem;
-
-      .ant-btn {
-        display: flex;
-        align-items: center;
-        gap: 0.5rem;
-        font-weight: 500;
-        transition: all 0.2s ease;
-
-        &.ant-btn-primary {
-          background: #ff4d4f; // Ant Design primary red
-          border-color: #ff4d4f;
-
-          &:hover {
-            background: #ff7875;
-            border-color: #ff7875;
-          }
-        }
-
-        &.archive-button {
-          background: #f0f0f0;
-          border-color: #d9d9d9;
-          color: #666;
-
-          &:hover {
-            color: #333;
-            border-color: #bfbfbf;
-          }
-        }
-      }
-    }
+  .address-book-divider {
+    margin: '16px 0';
   }
 }
 
-/* Address Cards Grid */
-.ant-row {
+/* Address Book Cards */
+.address-book-row {
   margin: 0 -8px !important;
-
-  .ant-col {
-    padding: 0 8px !important;
-  }
 }
 
-.ant-card {
+.address-book-col {
+  padding: 0 8px !important;
+}
+
+.address-book-card {
   border-radius: 8px;
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
   margin-bottom: 16px;
@@ -86,35 +35,13 @@
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.12);
   }
 
-  .ant-card-head {
-    border-bottom: 1px solid #f0f0f0;
-    padding: 16px 20px;
-
-    .ant-card-head-title {
-      font-weight: 500;
-      color: #333;
-    }
+  .address-book-card-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
   }
 
-  .ant-card-body {
-    padding: 20px;
-
-    p {
-      margin-bottom: 8px;
-      color: #666;
-
-      strong {
-        color: #333;
-        font-weight: 500;
-      }
-
-      &:last-child {
-        margin-bottom: 0;
-      }
-    }
-  }
-
-  .default-badge {
+  .address-book-default-badge {
     display: inline-block;
     background: #f6ffed;
     border: 1px solid #b7eb8f;
@@ -123,18 +50,59 @@
     border-radius: 4px;
     font-size: 12px;
     line-height: 20px;
-    margin-top: 8px;
+    margin-left: 8px;
+  }
+
+  .address-book-contact-info,
+  .address-book-address-line,
+  .address-book-city-info {
+    margin-bottom: 8px;
+    color: #666;
+
+    strong {
+      color: #333;
+      font-weight: 500;
+    }
   }
 }
 
-/* Pagination */
-.ant-pagination {
-  margin-top: 24px;
-  text-align: center;
+/* Buttons */
+.address-book-add-btn {
+  background: #ff4d4f;
+  border-color: #ff4d4f;
 
+  &:hover {
+    background: #ff7875;
+    border-color: #ff7875;
+  }
+}
+
+.address-book-archive-btn {
+  background: #f0f0f0;
+  border-color: #d9d9d9;
+  color: #666;
+
+  &:hover {
+    color: #333;
+    border-color: #bfbfbf;
+  }
+}
+
+.address-book-edit-btn,
+.address-book-delete-btn {
+  padding: 4px;
+  margin-left: 8px;
+}
+
+/* Pagination */
+.address-book-pagination-container {
+  text-align: center;
+  margin-top: 24px;
+}
+
+.address-book-pagination {
   .ant-pagination-item {
     border-radius: 4px;
-    transition: all 0.2s ease;
 
     &:hover {
       border-color: #ff4d4f;
@@ -161,142 +129,19 @@
 }
 
 /* Modal Styles */
-.ant-modal {
+.address-book-modal {
   .ant-modal-content {
     border-radius: 8px;
-    overflow: hidden;
   }
 
-  .ant-modal-header {
-    background: #fff;
-    border-bottom: 1px solid #f0f0f0;
-    padding: 16px 24px;
-
-    .ant-modal-title {
-      font-size: 18px;
-      font-weight: 500;
-      color: #333;
-    }
+  .address-book-modal-cancel {
+    border-radius: 4px;
   }
 
-  .ant-modal-body {
-    padding: 24px;
-  }
-
-  .ant-modal-footer {
-    border-top: 1px solid #f0f0f0;
-    padding: 16px 24px;
-
-    .ant-btn {
-      border-radius: 4px;
-      font-weight: 500;
-      padding: 6px 16px;
-      height: auto;
-
-      &:first-child {
-        margin-right: 8px;
-      }
-
-      &.ant-btn-primary {
-        background: #ff4d4f;
-        border-color: #ff4d4f;
-
-        &:hover {
-          background: #ff7875;
-          border-color: #ff7875;
-        }
-      }
-    }
-  }
-}
-
-/* Form Styles */
-.ant-form {
-  .ant-form-item {
-    margin-bottom: 16px;
-
-    &:last-child {
-      margin-bottom: 0;
-    }
-
-    .ant-form-item-label {
-      label {
-        color: #666;
-        font-weight: 500;
-      }
-    }
-
-    .ant-form-item-control-input {
-      .ant-input,
-      .ant-input-number,
-      .ant-select-selector {
-        border-radius: 4px;
-        padding: 8px 12px;
-        border-color: #d9d9d9;
-        transition: all 0.2s ease;
-
-        &:hover {
-          border-color: #bfbfbf;
-        }
-
-        &:focus,
-        &.ant-input-focused {
-          border-color: #ff4d4f;
-          box-shadow: 0 0 0 2px rgba(255, 77, 79, 0.2);
-        }
-      }
-
-      .ant-input-affix-wrapper {
-        padding: 8px 12px;
-      }
-
-      .ant-select {
-        width: 100%;
-      }
-    }
-
-    .ant-checkbox-wrapper {
-      color: #666;
-      transition: all 0.2s ease;
-
-      &:hover {
-        color: #333;
-      }
-
-      .ant-checkbox-inner {
-        border-radius: 2px;
-      }
-
-      .ant-checkbox-checked {
-        .ant-checkbox-inner {
-          background-color: #ff4d4f;
-          border-color: #ff4d4f;
-        }
-      }
-    }
-  }
-}
-
-/* Archive Modal Specific Styles */
-.archive-modal {
-  .ant-card {
-    margin-bottom: 16px;
-
-    &:last-child {
-      margin-bottom: 0;
-    }
-
-    .ant-card-body {
-      padding: 16px;
-    }
-  }
-
-  .restore-button {
+  .address-book-modal-submit {
     background: #ff4d4f;
     border-color: #ff4d4f;
-    color: white;
     border-radius: 4px;
-    font-weight: 500;
 
     &:hover {
       background: #ff7875;
@@ -305,28 +150,129 @@
   }
 }
 
-/* Responsive Adjustments */
-@media (max-width: 768px) {
-  .address-header {
-    flex-direction: column;
-    align-items: flex-start;
-    gap: 1rem;
+/* Form Styles */
+.address-book-form-row {
+  margin-bottom: 16px;
+}
 
-    .header-buttons {
-      width: 100%;
-      flex-direction: column;
-    }
+.address-book-form-col {
+  padding: 0 8px;
+}
+
+.address-book-form-item {
+  margin-bottom: 16px;
+}
+
+.address-book-form-label {
+  display: block;
+  color: #666;
+  font-weight: 500;
+  margin-bottom: 8px;
+}
+
+.address-book-form-input,
+.address-book-phone-input,
+.address-book-country-select,
+.address-book-province-select,
+.address-book-city-select {
+  width: 100%;
+  border-radius: 4px;
+
+  &:hover {
+    border-color: #bfbfbf;
   }
 
-  .ant-modal {
-    width: 90% !important;
-    max-width: 100%;
+  &:focus {
+    border-color: #ff4d4f;
+    box-shadow: 0 0 0 2px rgba(255, 77, 79, 0.2);
   }
 }
 
-/* Animation */
-@keyframes shake {
-  0%, 100% { transform: translateX(0); }
-  25% { transform: translateX(-5px); }
-  75% { transform: translateX(5px); }
+.address-book-phone-error {
+  color: #ff4d4f;
+  font-size: 12px;
+  margin-top: 4px;
+}
+
+.address-book-select-option {
+  padding: 8px 12px;
+}
+
+.address-book-default-checkbox {
+  color: #666;
+  margin-top: 16px;
+
+  .ant-checkbox-inner {
+    border-radius: 2px;
+  }
+
+  .ant-checkbox-checked .ant-checkbox-inner {
+    background-color: #ff4d4f;
+    border-color: #ff4d4f;
+  }
+}
+
+/* Archive Modal */
+.address-book-archive-modal {
+  .ant-modal-content {
+    border-radius: 8px;
+  }
+}
+
+.address-book-empty-archive {
+  text-align: center;
+  padding: 20px 0;
+  color: #666;
+}
+
+.address-book-archive-card {
+  margin-bottom: 16px;
+
+  &:last-child {
+    margin-bottom: 0;
+  }
+}
+
+.address-book-archive-row {
+  align-items: center;
+}
+
+.address-book-archive-name,
+.address-book-archive-address,
+.address-book-archive-region {
+  color: #666;
+  margin-bottom: 4px;
+
+  strong {
+    color: #333;
+  }
+}
+
+.address-book-restore-btn {
+  background: #ff4d4f;
+  border-color: #ff4d4f;
+  border-radius: 4px;
+
+  &:hover {
+    background: #ff7875;
+    border-color: #ff7875;
+  }
+}
+
+.address-book-archive-pagination-container {
+  text-align: center;
+  margin-top: 20px;
+}
+
+/* Responsive Adjustments */
+@media (max-width: 768px) {
+  .address-book-container {
+    padding: 1rem;
+  }
+
+  .address-book-modal {
+    width: 90% !important;
+    max-width: 100%;
+  }
+
 }
