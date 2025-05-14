@@ -72,11 +72,6 @@ function ProfileSidebar({ profileData }) {
       label: <Link to="/purchases">Purchases</Link>
     },
     {
-      key: "faq",
-      icon: <QuestionCircleOutlined />,
-      label: <Link to="/faq">FAQ</Link>
-    },
-    {
       key: "logout",
       icon: <LogoutOutlined />,
       label: <Link to="/logout">Logout</Link>,

@@ -142,10 +142,10 @@ const Confirmation = () => {
               <strong>Subtotal:</strong> PHP{totalPrice}.00
             </p>
             <p>
-              <strong>Shipping Cost:</strong> PHP70.00
+              <strong>Shipping Cost:</strong> PHP150.00
             </p>
             <p>
-              <strong>Grand Total:</strong> PHP{(totalPrice + 70).toFixed(2)}
+              <strong>Grand Total:</strong> PHP{(totalPrice + 150).toFixed(2)}
             </p>
             <p>
   <strong>Payment Method:</strong> {paymentMethod}

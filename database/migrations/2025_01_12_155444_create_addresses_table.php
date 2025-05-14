@@ -18,13 +18,14 @@ class CreateAddressesTable extends Migration
             $table->unsignedBigInteger('user_id'); // Foreign key to users table
             $table->string('receiver_fullname')->nullable();
             $table->string('contact_number')->nullable();
-            $table->string('street')->nullable();
-            $table->string('barangay')->nullable();
-            $table->string('city')->nullable();
-            $table->string('state')->nullable();
-            $table->string('country')->nullable();
-            $table->string('region')->nullable();
-            $table->string('postal_code')->nullable();
+            $table->enum('country', ['Philippines'])->default('Philippines'); // Only PH
+            $table->enum('province', ['Agusan Del Norte'])->default('Agusan Del Norte');
+            $table->string('street')->nullable(); // Keep as string for free input
+            $table->string('barangay')->nullable(); // Keep as string for flexibility
+            // Only limit the city to 3 options
+            $table->enum('city', ['Davao City', 'Digos City', 'Tagum City'])->nullable();
+            // $table->string('state')->nullable();
+            // $table->string('postal_code')->nullable();
             $table->string('house_number')->nullable();
             $table->boolean('is_default')->default(false); // Mark default address
             $table->timestamps();
@@ -42,6 +43,6 @@ class CreateAddressesTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('addresses'); // This removes the table entirely, so no need for dropSoftDeletes()
+        Schema::dropIfExists('addresses');
     }
 }

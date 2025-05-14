@@ -1,39 +1,14 @@
 import React, { useEffect, useState } from "react";
 import ProfileMain from "../Profile/ProfileMain";
 import axios from "axios";
-import { EditOutlined, InboxOutlined, PlusOutlined } from "@ant-design/icons";
-import { message, Divider } from "antd";
+import { EditOutlined, InboxOutlined, PlusOutlined, DeleteOutlined } from "@ant-design/icons";
+import { message, Divider, Select, Card, Button, Row, Col, Input, Checkbox, Pagination, Modal } from "antd";
 
-// Helper: ensure default address is at the front
+
+const { Option } = Select;
+
 const sortAddresses = (addressesArr) => {
   return addressesArr.slice().sort((a, b) => b.is_default - a.is_default);
-};
-
-const CustomModal = ({ title, visible, onCancel, onOk, children, type = "default" }) => {
-  if (!visible) return null;
-  return (
-    <div className="custom-modal-overlay">
-      <div className={`custom-modal ${type}-modal`}>
-        <div className="modal-header">
-          <h3>{title}</h3>
-          <button className="modal-close" onClick={onCancel}>
-            ×
-          </button>
-        </div>
-        <div className="modal-body">{children}</div>
-        {onOk && (
-          <div className="modal-footer">
-            <button className="btn-cancel" onClick={onCancel}>
-              Cancel
-            </button>
-            <button className="btn-primary" onClick={onOk}>
-              {type === "address" ? "Save Address" : "Confirm"}
-            </button>
-          </div>
-        )}
-      </div>
-    </div>
-  );
 };
 
 const Address = () => {
@@ -50,19 +25,20 @@ const Address = () => {
     street: "",
     barangay: "",
     city: "",
-    region: "",
-    state: "",
-    country: "",
-    postal_code: "",
+    province: "Agusan Del Norte",
+    country: "Philippines",
     is_default: false,
   });
 
   const [phoneError, setPhoneError] = useState("");
-
   const [currentPage, setCurrentPage] = useState(1);
-  const addressesPerPage = 4;
   const [archivedCurrentPage, setArchivedCurrentPage] = useState(1);
+  const addressesPerPage = 4;
   const archivedAddressesPerPage = 5;
+
+  const cityOptions = ["Davao City", "Digos City", "Tagum City"];
+  const provinceOptions = ["Agusan Del Norte"];
+  const countryOptions = ["Philippines"];
 
   const userId = localStorage.getItem("userId");
   const token = localStorage.getItem("userToken");
@@ -103,7 +79,7 @@ const Address = () => {
       const isFirstAddress = addresses.length === 0;
       const dataToSend = {
         ...formData,
-        contact_number: `+63${formData.contact_number}`, // Prepend +63
+        contact_number: `+63${formData.contact_number}`,
         is_default: isFirstAddress ? true : formData.is_default,
       };
 
@@ -132,7 +108,7 @@ const Address = () => {
     try {
       const response = await axios.put(
         `http://127.0.0.1:8000/api/address/${editingAddress.id}`,
-        { ...formData, contact_number: `+63${formData.contact_number}` }, // Prepend +63
+        { ...formData, contact_number: `+63${formData.contact_number}` },
         { headers: { Authorization: `Bearer ${token}` } }
       );
       const updatedAddress = response.data.address;
@@ -194,15 +170,13 @@ const Address = () => {
       setEditingAddress(address);
       setFormData({
         receiver_fullname: address.receiver_fullname || "",
-        contact_number: address.contact_number.replace("+63", "") || "", // Strip +63 for editing
+        contact_number: address.contact_number.replace("+63", "") || "",
         house_number: address.house_number || "",
         street: address.street || "",
         barangay: address.barangay || "",
         city: address.city || "",
-        region: address.region || "",
-        state: address.state || "",
-        country: address.country || "",
-        postal_code: address.postal_code || "",
+        province: address.province || "Agusan Del Norte",
+        country: address.country || "Philippines",
         is_default: address.is_default === 1,
       });
     } else {
@@ -214,10 +188,8 @@ const Address = () => {
         street: "",
         barangay: "",
         city: "",
-        region: "",
-        state: "",
-        country: "",
-        postal_code: "",
+        province: "Agusan Del Norte",
+        country: "Philippines",
         is_default: isFirstAddress ? true : false,
       });
     }
@@ -239,11 +211,7 @@ const Address = () => {
       !formData.house_number ||
       !formData.street ||
       !formData.barangay ||
-      !formData.city ||
-      !formData.region ||
-      !formData.state ||
-      !formData.country ||
-      !formData.postal_code
+      !formData.city
     ) {
       message.error("Please fill out all required fields.");
       return;
@@ -269,7 +237,7 @@ const Address = () => {
         if (value.length === 10) {
           setPhoneError("");
         } else if (value.length > 0) {
-          setPhoneError("Phone number must be exactly 9 digits");
+          setPhoneError("Phone number must be exactly 10 digits");
         } else {
           setPhoneError("");
         }
@@ -280,6 +248,13 @@ const Address = () => {
         [name]: type === "checkbox" ? checked : value,
       }));
     }
+  };
+
+  const handleSelectChange = (value, name) => {
+    setFormData((prev) => ({
+      ...prev,
+      [name]: value,
+    }));
   };
 
   const totalPages = Math.ceil(addresses.length / addressesPerPage);
@@ -299,293 +274,303 @@ const Address = () => {
   return (
     <ProfileMain>
       <div className="address-container">
-        <div className="address-header">
-          <h2 className="address-title">My Addresses</h2>
-          <div className="header-buttons">
-            <button className="add-button" onClick={() => showModal()}>
-              <PlusOutlined /> Add New Address
-            </button>
-            <button
-              className="archive-button"
+        <Row justify="space-between" align="middle" style={{ marginBottom: 20 }}>
+          <Col>
+            <h2 className="address-title">My Addresses</h2>
+          </Col>
+          <Col>
+            <Button 
+              type="primary" 
+              icon={<PlusOutlined />} 
+              onClick={() => showModal()}
+              style={{ marginRight: 10 }}
+            >
+              Add New Address
+            </Button>
+            <Button 
+              icon={<InboxOutlined />} 
               onClick={async () => {
                 await fetchArchivedAddresses();
                 setIsArchiveModalVisible(true);
               }}
             >
-              <InboxOutlined /> Archive
-            </button>
-          </div>
-        </div>
+              Archive
+            </Button>
+          </Col>
+        </Row>
 
-        <Divider className="title-divider" />
+        <Divider style={{ margin: '16px 0' }} />
 
-        <div className="address-content">
+        <Row gutter={[16, 16]}>
           {currentAddresses.map((address) => (
-            <div className="address-card" key={address.id}>
-              <div className="card-header">
-                <span className="address-title">
-                  {address.receiver_fullname ? `${address.receiver_fullname} - ` : ""}
-                  {address.contact_number ? `(${address.contact_number}) - ` : ""}
-                  {address.house_number && `${address.house_number}, `}
-                  {address.street}, {address.barangay}, {address.city}
-                </span>
-                <div className="card-actions">
-                  <EditOutlined onClick={() => showModal(address)} />
-                  {address.is_default === 1 ? null : (
-                    <InboxOutlined onClick={() => deleteAddress(address.id)} />
-                  )}
-                </div>
-              </div>
-              <div className="address-details">
-                {address.region}, {address.state}, {address.country}, {address.postal_code}
-              </div>
-              {address.is_default === 1 && (
-                <span className="default-badge">Default</span>
-              )}
-            </div>
-          ))}
-        </div>
-
-        {totalPages > 1 && (
-          <div className="pagination-container">
-            {Array.from({ length: totalPages }, (_, i) => i + 1).map((page) => (
-              <button
-                key={page}
-                className={`pagination-button ${page === currentPage ? "active" : ""}`}
-                onClick={() => setCurrentPage(page)}
+            <Col xs={24} sm={12} key={address.id}>
+              <Card
+                title={
+                  <div style={{ display: 'flex', justifyContent: 'space-between' }}>
+                    <span>
+                      {address.receiver_fullname}
+                      {address.is_default === 1 && (
+                        <span className="default-badge">Default</span>
+                      )}
+                    </span>
+                    <div>
+                      <Button 
+                        type="text" 
+                        icon={<EditOutlined />} 
+                        onClick={() => showModal(address)}
+                      />
+                      {address.is_default === 1 ? null : (
+                        <Button 
+                          type="text" 
+                          icon={<DeleteOutlined />} 
+                          danger
+                          onClick={() => deleteAddress(address.id)}
+                        />
+                      )}
+                    </div>
+                  </div>
+                }
+                className="address-card"
               >
-                {page}
-              </button>
-            ))}
+                <p>
+                  <strong>Contact:</strong> {address.contact_number}
+                </p>
+                <p>
+                  <strong>Address:</strong> {address.house_number}, {address.street}, {address.barangay}
+                </p>
+                <p>
+                  {address.city}, {address.province}, {address.country}
+                </p>
+              </Card>
+            </Col>
+          ))}
+        </Row>
+
+        {addresses.length > addressesPerPage && (
+          <div style={{ textAlign: 'center', marginTop: 20 }}>
+            <Pagination 
+              current={currentPage}
+              total={addresses.length}
+              pageSize={addressesPerPage}
+              onChange={(page) => setCurrentPage(page)}
+              showSizeChanger={false}
+            />
           </div>
         )}
 
-        <CustomModal
+        {/* Add/Edit Address Modal */}
+        <Modal
           title={editingAddress ? "Edit Address" : "Add New Address"}
           visible={isModalVisible}
           onCancel={handleModalCancel}
           onOk={handleModalOk}
-          type="address"
+          width={700}
+          footer={[
+            <Button key="back" onClick={handleModalCancel}>
+              Cancel
+            </Button>,
+            <Button key="submit" type="primary" onClick={handleModalOk}>
+              {editingAddress ? "Update Address" : "Add Address"}
+            </Button>,
+          ]}
         >
-          <div className="address-form">
-            <div className="form-grid">
-              {/* Receiver Fullname */}
-              <div className="form-group">
+          <Row gutter={16}>
+            <Col span={12}>
+              <div style={{ marginBottom: 16 }}>
                 <label>Receiver Fullname</label>
-                <div className="input-wrapper">
-                  <input
-                    name="receiver_fullname"
-                    value={formData.receiver_fullname}
-                    onChange={handleChange}
-                    placeholder="Juan dela Cruz"
-                    className={!formData.receiver_fullname ? "error" : ""}
-                  />
-                </div>
+                <Input
+                  name="receiver_fullname"
+                  value={formData.receiver_fullname}
+                  onChange={handleChange}
+                  placeholder="Juan dela Cruz"
+                  status={!formData.receiver_fullname ? "error" : ""}
+                />
               </div>
-
-              {/* Phone Number with +63 prefix and divider */}
-              <div className="form-group">
+            </Col>
+            <Col span={12}>
+              <div style={{ marginBottom: 16 }}>
                 <label>Phone Number</label>
-                <div className="phone-input-wrapper">
-                  <input
-                    name="contact_number"
-                    value={formData.contact_number}
-                    onChange={handleChange}
-                    placeholder="9xxxxxxxxx"
-                    className={!formData.contact_number || phoneError ? "error" : ""}
-                  />
-                  {phoneError && (
-                    <div className="error-message" style={{ color: "red", fontSize: "12px" }}>
-                      {phoneError}
-                    </div>
-                  )}
-                </div>
+                <Input
+                  name="contact_number"
+                  value={formData.contact_number}
+                  onChange={handleChange}
+                  placeholder="9xxxxxxxxx"
+                  status={!formData.contact_number || phoneError ? "error" : ""}
+                  addonBefore="+63"
+                  maxLength={10}
+                />
+                {phoneError && (
+                  <div style={{ color: 'red', fontSize: 12 }}>{phoneError}</div>
+                )}
               </div>
+            </Col>
+          </Row>
 
-              {/* House Number */}
-              <div className="form-group">
-                <label>House Number</label>
-                <div className="input-wrapper">
-                  <input
-                    name="house_number"
-                    value={formData.house_number}
-                    onChange={handleChange}
-                    placeholder="Enter house number"
-                    className={!formData.house_number ? "error" : ""}
-                  />
-                </div>
-              </div>
-
-              {/* Street Address */}
-              <div className="form-group">
-                <label>Street Address</label>
-                <div className="input-wrapper">
-                  <input
-                    name="street"
-                    value={formData.street}
-                    onChange={handleChange}
-                    placeholder="123 Main Street"
-                    className={!formData.street ? "error" : ""}
-                  />
-                </div>
-              </div>
-
-              {/* Barangay */}
-              <div className="form-group">
-                <label>Barangay</label>
-                <div className="input-wrapper">
-                  <input
-                    name="barangay"
-                    value={formData.barangay}
-                    onChange={handleChange}
-                    placeholder="Enter barangay"
-                    className={!formData.barangay ? "error" : ""}
-                  />
-                </div>
-              </div>
-
-              {/* City */}
-              <div className="form-group">
-                <label>City</label>
-                <div className="input-wrapper">
-                  <input
-                    name="city"
-                    value={formData.city}
-                    onChange={handleChange}
-                    placeholder="Enter city"
-                    className={!formData.city ? "error" : ""}
-                  />
-                </div>
-              </div>
-
-              {/* Region */}
-              <div className="form-group">
-                <label>Region</label>
-                <div className="input-wrapper">
-                  <input
-                    name="region"
-                    value={formData.region}
-                    onChange={handleChange}
-                    placeholder="Enter region"
-                    className={!formData.region ? "error" : ""}
-                  />
-                </div>
-              </div>
-
-              {/* State/Province */}
-              <div className="form-group">
-                <label>State/Province</label>
-                <div className="input-wrapper">
-                  <input
-                    name="state"
-                    value={formData.state}
-                    onChange={handleChange}
-                    placeholder="Enter state/province"
-                    className={!formData.state ? "error" : ""}
-                  />
-                </div>
-              </div>
-
-              {/* Country */}
-              <div className="form-group">
+          <Row gutter={16}>
+            <Col span={12}>
+              <div style={{ marginBottom: 16 }}>
                 <label>Country</label>
-                <div className="input-wrapper">
-                  <input
-                    name="country"
-                    value={formData.country}
-                    onChange={handleChange}
-                    placeholder="Enter country"
-                    className={!formData.country ? "error" : ""}
-                  />
-                </div>
+                <Select
+                  value={formData.country}
+                  onChange={(value) => handleSelectChange(value, "country")}
+                  style={{ width: '100%' }}
+                  disabled={countryOptions.length <= 1}
+                >
+                  {countryOptions.map(country => (
+                    <Option key={country} value={country}>{country}</Option>
+                  ))}
+                </Select>
               </div>
-
-              {/* Postal Code */}
-              <div className="form-group">
-                <label>Postal Code</label>
-                <div className="input-wrapper">
-                  <input
-                    name="postal_code"
-                    value={formData.postal_code}
-                    onChange={handleChange}
-                    placeholder="Enter postal code"
-                    className={!formData.postal_code ? "error" : ""}
-                  />
-                </div>
+            </Col>
+            <Col span={12}>
+              <div style={{ marginBottom: 16 }}>
+                <label>Province</label>
+                <Select
+                  value={formData.province}
+                  onChange={(value) => handleSelectChange(value, "province")}
+                  style={{ width: '100%' }}
+                  disabled={provinceOptions.length <= 1}
+                >
+                  {provinceOptions.map(province => (
+                    <Option key={province} value={province}>{province}</Option>
+                  ))}
+                </Select>
               </div>
+            </Col>
+          </Row>
 
-              {/* Set as default shipping address */}
-              <div className="form-group full-width">
-                <label className="checkbox-label">
-                  <input
-                    type="checkbox"
-                    disabled={addresses.length === 0 || editingAddress?.is_default === 1}
-                    checked={formData.is_default}
-                    onChange={(e) =>
-                      setFormData((prev) => ({
-                        ...prev,
-                        is_default: e.target.checked,
-                      }))
-                    }
-                  />
-                  <span className="checkmark"></span>
-                  Set as default shipping address
-                </label>
+          <Row gutter={16}>
+            <Col span={12}>
+              <div style={{ marginBottom: 16 }}>
+                <label>City</label>
+                <Select
+                  value={formData.city || undefined}
+                  onChange={(value) => handleSelectChange(value, "city")}
+                  placeholder="Select city"
+                  status={!formData.city ? "error" : ""}
+                  style={{ width: '100%' }}
+                >
+                  {cityOptions.map(city => (
+                    <Option key={city} value={city}>{city}</Option>
+                  ))}
+                </Select>
               </div>
-            </div>
-          </div>
-        </CustomModal>
+            </Col>
+            <Col span={12}>
+              <div style={{ marginBottom: 16 }}>
+                <label>Barangay</label>
+                <Input
+                  name="barangay"
+                  value={formData.barangay}
+                  onChange={handleChange}
+                  placeholder="Enter barangay"
+                  status={!formData.barangay ? "error" : ""}
+                />
+              </div>
+            </Col>
+          </Row>
 
-        <CustomModal
+          <Row gutter={16}>
+            <Col span={12}>
+              <div style={{ marginBottom: 16 }}>
+                <label>Street Address</label>
+                <Input
+                  name="street"
+                  value={formData.street}
+                  onChange={handleChange}
+                  placeholder="123 Main Street"
+                  status={!formData.street ? "error" : ""}
+                />
+              </div>
+            </Col>
+            <Col span={12}>
+              <div style={{ marginBottom: 16 }}>
+                <label>House Number</label>
+                <Input
+                  name="house_number"
+                  value={formData.house_number}
+                  onChange={handleChange}
+                  placeholder="Enter house number"
+                  status={!formData.house_number ? "error" : ""}
+                />
+              </div>
+            </Col>
+          </Row>
+
+          <Checkbox
+            disabled={addresses.length === 0 || editingAddress?.is_default === 1}
+            checked={formData.is_default}
+            onChange={(e) =>
+              setFormData((prev) => ({
+                ...prev,
+                is_default: e.target.checked,
+              }))
+            }
+          >
+            Set as default shipping address
+          </Checkbox>
+        </Modal>
+
+        {/* Archive Modal */}
+        <Modal
           title="Archived Addresses"
           visible={isArchiveModalVisible}
           onCancel={() => setIsArchiveModalVisible(false)}
-          type="archive"
+          footer={null}
+          width={700}
+          className="archive-modal"
         >
-          <div className="archive-content">
-            {archivedAddresses.length === 0 ? (
-              <p className="empty-archive">No archived addresses found</p>
-            ) : (
-              currentArchivedAddresses.map((addr) => (
-                <div className="archive-item" key={addr.id}>
-                  <div className="archive-details">
-                    <p>
-                      {addr.receiver_fullname && `${addr.receiver_fullname} - `}
-                      {addr.contact_number && `(${addr.contact_number})`} <br />
-                      {addr.house_number ? `${addr.house_number}, ` : ""}
-                      {addr.street}, {addr.barangay}, {addr.city}
-                    </p>
-                    <p>
-                      {addr.region}, {addr.state}, {addr.country}, {addr.postal_code}
-                    </p>
-                  </div>
-                  <button
-                    className="restore-button"
-                    onClick={() => restoreAddress(addr.id)}
-                  >
-                    Restore
-                  </button>
-                </div>
-              ))
-            )}
-          </div>
-
-          {archivedTotalPages > 1 && (
-            <div className="archive-pagination">
-              {Array.from({ length: archivedTotalPages }, (_, i) => i + 1).map(
-                (page) => (
-                  <button
-                    key={page}
-                    className={`archive-page-button ${page === archivedCurrentPage ? "active" : ""}`}
-                    onClick={() => setArchivedCurrentPage(page)}
-                  >
-                    {page}
-                  </button>
-                )
-              )}
+          {archivedAddresses.length === 0 ? (
+            <div style={{ textAlign: 'center', padding: '20px 0' }}>
+              <p>No archived addresses found</p>
             </div>
+          ) : (
+            <>
+              {currentArchivedAddresses.map((addr) => (
+                <Card 
+                  key={addr.id} 
+                  style={{ marginBottom: 16 }}
+                  bodyStyle={{ padding: 16 }}
+                >
+                  <Row justify="space-between" align="middle">
+                    <Col>
+                      <p style={{ marginBottom: 4 }}>
+                        <strong>{addr.receiver_fullname}</strong> - {addr.contact_number}
+                      </p>
+                      <p style={{ marginBottom: 0 }}>
+                        {addr.house_number}, {addr.street}, {addr.barangay}, {addr.city}
+                      </p>
+                      <p style={{ marginBottom: 0 }}>
+                        {addr.province}, {addr.country}
+                      </p>
+                    </Col>
+                    <Col>
+                      <Button 
+                        type="primary" 
+                        onClick={() => restoreAddress(addr.id)}
+                        className="restore-button"
+                      >
+                        Restore
+                      </Button>
+                    </Col>
+                  </Row>
+                </Card>
+              ))}
+              
+              {archivedTotalPages > 1 && (
+                <div style={{ textAlign: 'center', marginTop: 20 }}>
+                  <Pagination 
+                    current={archivedCurrentPage}
+                    total={archivedAddresses.length}
+                    pageSize={archivedAddressesPerPage}
+                    onChange={(page) => setArchivedCurrentPage(page)}
+                    showSizeChanger={false}
+                  />
+                </div>
+              )}
+            </>
           )}
-        </CustomModal>
+        </Modal>
       </div>
     </ProfileMain>
   );

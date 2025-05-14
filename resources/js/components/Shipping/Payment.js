@@ -8,9 +8,10 @@ import {
   ShoppingOutlined,
   ShoppingCartOutlined,
   CreditCardOutlined,
-  CheckCircleOutlined
+  CheckCircleOutlined,
+  ArrowLeftOutlined
 } from "@ant-design/icons";
-import { notification } from "antd";
+import { notification, Button } from "antd";
 
 // Payment components
 import PaypalPayment from "../PaymentMethods/PaypalPayment";
@@ -194,7 +195,7 @@ const Payment = () => {
           price: item.price,
           brand: item.brand,
         })),
-        totalPrice: totalPrice + 70,
+        totalPrice: totalPrice + 150,
         paymentMethod: details.method,
         shippingAddress: buildShippingAddressString(address),
         paymentId
@@ -219,7 +220,7 @@ const Payment = () => {
           purchaseDate: orderData.purchaseDate,
           address,
           selectedItems,
-          totalPrice: totalPrice + 70,
+          totalPrice: totalPrice + 150,
           paymentMethod: details.method,
         },
       });
@@ -264,8 +265,8 @@ const Payment = () => {
         payment_id: orderData.paymentId,
         address_id: address.id ? address.id : null,
         subtotal: totalPrice,
-        shipping_cost: 70,
-        total_amount: totalPrice + 70,
+        shipping_cost: 150,
+        total_amount: totalPrice + 150,
         status: "pending",
         payment_status: paymentStatus, // Add payment status field
         purchase_date: new Date().toISOString().split("T")[0],
@@ -309,9 +310,25 @@ const Payment = () => {
     setIsGcashModalVisible(method === "Gcash");
   };
 
+  // Handler for back button
+  const handleGoBack = () => {
+    navigate(-1); // Navigate to the previous page in history
+  };
+
   return (
     <MainPage>
       <div className="payment-container">
+        {/* Back button */}
+        <Button 
+          icon={<ArrowLeftOutlined />} 
+          onClick={handleGoBack}
+          style={{ 
+            marginBottom: "20px" 
+          }}
+        >
+          Back
+        </Button>
+
         <div className="progress-bar">
           <div className="step">
             <ShoppingCartOutlined style={{ fontSize: "24px", marginBottom: "8px" }} />
@@ -351,12 +368,12 @@ const Payment = () => {
           </div>
           <div className="price-row">
             <span className="label">Shipping Cost</span>
-            <span className="price">PHP 70.00</span>
+            <span className="price">PHP 150.00</span>
           </div>
           <hr />
           <div className="price-row">
             <span className="label">Grand Total</span>
-            <span className="price">PHP {(totalPrice + 70).toFixed(2)}</span>
+            <span className="price">PHP {(totalPrice + 150).toFixed(2)}</span>
           </div>
         </div>
 

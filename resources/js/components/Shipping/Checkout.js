@@ -15,16 +15,20 @@ const Checkout = () => {
     id: null,
     receiver_fullname: "",
     contact_number: "",
-    country: "",
-    region: "",
-    state: "",
+    country: "Philippines", // Default value based on your schema
+    province: "Agusan Del Norte", // Default value based on your schema
     city: "",
     barangay: "",
-    postalCode: "",
     street: "",
     house_number: "",
     is_default: false,
   });
+  
+  // Predefined lists for dropdown menus based on your schema
+  const countryOptions = ["Philippines"];
+  const provinceOptions = ["Agusan Del Norte"];
+  const cityOptions = ["Davao City", "Digos City", "Tagum City"];
+  
   const [isEditing, setIsEditing] = useState(false);
   const [userId, setUserId] = useState(null);
   const [loading, setLoading] = useState(true);
@@ -73,12 +77,10 @@ const Checkout = () => {
             id: defaultAddress.id,
             receiver_fullname: defaultAddress.receiver_fullname || "",
             contact_number: defaultAddress.contact_number || "",
-            country: defaultAddress.country || "",
-            region: defaultAddress.region || "",
-            state: defaultAddress.state || "",
+            country: defaultAddress.country || "Philippines",
+            province: defaultAddress.province || "Agusan Del Norte",
             city: defaultAddress.city || "",
             barangay: defaultAddress.barangay || "",
-            postalCode: defaultAddress.postal_code || "",
             street: defaultAddress.street || "",
             house_number: defaultAddress.house_number || "",
             is_default: defaultAddress.is_default === 1,
@@ -89,12 +91,10 @@ const Checkout = () => {
             id: null,
             receiver_fullname: "",
             contact_number: "",
-            country: "",
-            region: "",
-            state: "",
+            country: "Philippines", // Default for new address
+            province: "Agusan Del Norte", // Default for new address
             city: "",
             barangay: "",
-            postalCode: "",
             street: "",
             house_number: "",
             is_default: false,
@@ -146,10 +146,8 @@ const Checkout = () => {
         street: address.street,
         barangay: address.barangay,
         city: address.city,
-        state: address.state,
         country: address.country,
-        region: address.region,
-        postal_code: address.postalCode,
+        province: address.province,
       };
       if (address.id) {
         addressData.is_default = address.is_default ? 1 : 0;
@@ -236,11 +234,11 @@ const Checkout = () => {
                 </tr>
                 <tr>
                   <td><strong>Shipping</strong></td>
-                  <td>PHP 70.00</td>
+                  <td>PHP 150.00</td>
                 </tr>
                 <tr>
                   <td><strong>Grand Total</strong></td>
-                  <td>PHP {(numericTotalPrice + 70).toFixed(2)}</td>
+                  <td>PHP {(numericTotalPrice + 150).toFixed(2)}</td>
                 </tr>
               </tbody>
             </table>
@@ -272,6 +270,105 @@ const Checkout = () => {
                   placeholder="Enter contact phone number"
                 />
               </div>
+
+              <div className="form-field required">
+                <label>Country <span className="required-star">*</span></label>
+                <select
+                  name="country"
+                  value={address.country}
+                  onChange={handleChange}
+                  disabled={!isEditing}
+                  required
+                  className="form-select"
+                  style={{
+                    width: '100%',
+                    padding: '8px 12px',
+                    borderRadius: '4px',
+                    border: '1px solid #ddd',
+                    height: '40px',
+                    backgroundColor: isEditing ? '#fff' : '#f9f9f9'
+                  }}
+                >
+                  {countryOptions.map((country, index) => (
+                    <option key={index} value={country}>{country}</option>
+                  ))}
+                </select>
+              </div>
+
+              <div className="form-field required">
+                <label>Province <span className="required-star">*</span></label>
+                <select
+                  name="province"
+                  value={address.province}
+                  onChange={handleChange}
+                  disabled={!isEditing}
+                  required
+                  className="form-select"
+                  style={{
+                    width: '100%',
+                    padding: '8px 12px',
+                    borderRadius: '4px',
+                    border: '1px solid #ddd',
+                    height: '40px',
+                    backgroundColor: isEditing ? '#fff' : '#f9f9f9'
+                  }}
+                >
+                  {provinceOptions.map((province, index) => (
+                    <option key={index} value={province}>{province}</option>
+                  ))}
+                </select>
+              </div>
+
+              <div className="form-field required">
+                <label>City <span className="required-star">*</span></label>
+                <select
+                  name="city"
+                  value={address.city}
+                  onChange={handleChange}
+                  disabled={!isEditing}
+                  required
+                  className="form-select"
+                  style={{
+                    width: '100%',
+                    padding: '8px 12px',
+                    borderRadius: '4px',
+                    border: '1px solid #ddd',
+                    height: '40px',
+                    backgroundColor: isEditing ? '#fff' : '#f9f9f9'
+                  }}
+                >
+                  <option value="">Select a city</option>
+                  {cityOptions.map((city, index) => (
+                    <option key={index} value={city}>{city}</option>
+                  ))}
+                </select>
+              </div>
+
+              <div className="form-field required">
+                <label>Barangay <span className="required-star">*</span></label>
+                <input
+                  type="text"
+                  name="barangay"
+                  value={address.barangay}
+                  onChange={handleChange}
+                  disabled={!isEditing}
+                  required
+                  placeholder="Enter barangay"
+                />
+              </div>
+              <div className="form-field required">
+                <label>Street <span className="required-star">*</span></label>
+                <input
+                  type="text"
+                  name="street"
+                  value={address.street}
+                  onChange={handleChange}
+                  disabled={!isEditing}
+                  required
+                  placeholder="Enter street name"
+                />
+              </div>
+
               <div className="form-field required">
                 <label>House Number <span className="required-star">*</span></label>
                 <input
@@ -284,79 +381,7 @@ const Checkout = () => {
                   placeholder="Enter house/unit number"
                 />
               </div>
-              <div className="form-field required">
-                <label>Street <span className="required-star">*</span></label>
-                <input
-                  type="text"
-                  name="street"
-                  value={address.street}
-                  onChange={handleChange}
-                  disabled={!isEditing}
-                  required
-                />
-              </div>
-              <div className="form-field required">
-                <label>Barangay <span className="required-star">*</span></label>
-                <input
-                  type="text"
-                  name="barangay"
-                  value={address.barangay}
-                  onChange={handleChange}
-                  disabled={!isEditing}
-                  required
-                />
-              </div>
-              <div className="form-field required">
-                <label>City <span className="required-star">*</span></label>
-                <input
-                  type="text"
-                  name="city"
-                  value={address.city}
-                  onChange={handleChange}
-                  disabled={!isEditing}
-                  required
-                />
-              </div>
-              <div className="form-field">
-                <label>Region</label>
-                <input
-                  type="text"
-                  name="region"
-                  value={address.region}
-                  onChange={handleChange}
-                  disabled={!isEditing}
-                />
-              </div>
-              <div className="form-field">
-                <label>State</label>
-                <input
-                  type="text"
-                  name="state"
-                  value={address.state}
-                  onChange={handleChange}
-                  disabled={!isEditing}
-                />
-              </div>
-              <div className="form-field">
-                <label>Country</label>
-                <input
-                  type="text"
-                  name="country"
-                  value={address.country}
-                  onChange={handleChange}
-                  disabled={!isEditing}
-                />
-              </div>
-              <div className="form-field">
-                <label>Postal Code</label>
-                <input
-                  type="text"
-                  name="postalCode"
-                  value={address.postalCode}
-                  onChange={handleChange}
-                  disabled={!isEditing}
-                />
-              </div>
+              
             </form>
             {!isEditing ? (
               <button onClick={() => setIsEditing(true)} className="edit-btn">Edit Address</button>

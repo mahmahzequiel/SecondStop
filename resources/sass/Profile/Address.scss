@@ -2,11 +2,19 @@
 .address-container {
   padding: 2rem;
   max-width: 1200px;
+  min-height: 100vh;
   margin: 0 auto;
+  background-color: #f8f9fa; // Light background for the container
 
   .title-divider {
     margin-bottom: 30px;
-    border-top: 1px solid #fff;
+    border-top: 1px solid #e0e0e0; // Softer divider color
+  }
+  
+
+  .address-title {
+    color: #333;
+    font-family: 'Inria Serif', serif;
   }
 
   .address-header {
@@ -17,9 +25,9 @@
 
     h2 {
       font-size: 2rem;
-      color: #ffffff;
+      color: #333; // Darker text for better contrast
       margin: 0;
-      font-weight: bolder;
+      font-weight: 600; // Slightly less bold
       font-family: 'Inria Serif', serif;
     }
 
@@ -27,31 +35,31 @@
       display: flex;
       gap: 1rem;
 
-      button {
+      .ant-btn {
         display: flex;
         align-items: center;
         gap: 0.5rem;
-        padding: 0.75rem 1.5rem;
-        border: none;
-        border-radius: 6px;
-        cursor: pointer;
-        transition: all 0.3s ease;
+        font-weight: 500;
+        transition: all 0.2s ease;
 
-        &.add-button {
-          background: #d84727;
-          color: white;
+        &.ant-btn-primary {
+          background: #ff4d4f; // Ant Design primary red
+          border-color: #ff4d4f;
 
           &:hover {
-            background: #c23a1d;
+            background: #ff7875;
+            border-color: #ff7875;
           }
         }
 
         &.archive-button {
-          background: #666;
-          color: white;
+          background: #f0f0f0;
+          border-color: #d9d9d9;
+          color: #666;
 
           &:hover {
-            background: #555;
+            color: #333;
+            border-color: #bfbfbf;
           }
         }
       }
@@ -59,370 +67,264 @@
   }
 }
 
-/* Address Cards */
-.address-content {
-  display: grid;
-  gap: 1.5rem;
+/* Address Cards Grid */
+.ant-row {
+  margin: 0 -8px !important;
 
-  .address-card {
-    background: #fff;
-    border-radius: 8px;
-    padding: 1.5rem;
-    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  .ant-col {
+    padding: 0 8px !important;
+  }
+}
 
-    .card-header {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      margin-bottom: 1rem;
+.ant-card {
+  border-radius: 8px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+  margin-bottom: 16px;
+  transition: box-shadow 0.3s ease;
 
-      .card-actions {
-        display: flex;
-        gap: 1rem;
+  &:hover {
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.12);
+  }
 
-        svg {
-          cursor: pointer;
-          color: #666;
-          transition: color 0.3s ease;
+  .ant-card-head {
+    border-bottom: 1px solid #f0f0f0;
+    padding: 16px 20px;
 
-          &:hover {
-            color: #d84727;
-          }
-        }
-      }
+    .ant-card-head-title {
+      font-weight: 500;
+      color: #333;
     }
+  }
 
-    .address-details {
+  .ant-card-body {
+    padding: 20px;
+
+    p {
+      margin-bottom: 8px;
       color: #666;
-      margin-bottom: 1rem;
-    }
 
-    .default-badge {
-      background: #e6f7ff;
-      color: #1890ff;
-      padding: 0.25rem 0.75rem;
-      border-radius: 4px;
-      font-size: 0.9rem;
-    }
+      strong {
+        color: #333;
+        font-weight: 500;
+      }
 
-    .set-default-button {
-      background: none;
-      border: 1px solid #ddd;
-      padding: 0.5rem 1rem;
-      border-radius: 4px;
-      cursor: pointer;
-      transition: all 0.3s ease;
-
-      &:hover {
-        border-color: #d84727;
-        color: #d84727;
+      &:last-child {
+        margin-bottom: 0;
       }
     }
+  }
+
+  .default-badge {
+    display: inline-block;
+    background: #f6ffed;
+    border: 1px solid #b7eb8f;
+    color: #52c41a;
+    padding: 0 8px;
+    border-radius: 4px;
+    font-size: 12px;
+    line-height: 20px;
+    margin-top: 8px;
   }
 }
 
 /* Pagination */
-.pagination-container {
-  display: flex;
-  justify-content: center;
-  gap: 0.5rem;
-  margin-top: 2rem;
+.ant-pagination {
+  margin-top: 24px;
+  text-align: center;
 
-  .pagination-button {
-    padding: 0.5rem 1rem;
-    border: 1px solid #ddd;
-    background: white;
+  .ant-pagination-item {
     border-radius: 4px;
-    cursor: pointer;
-    transition: all 0.3s ease;
+    transition: all 0.2s ease;
 
-    &.active {
-      background: #1890ff;
-      color: white;
-      border-color: #1890ff;
+    &:hover {
+      border-color: #ff4d4f;
+      
+      a {
+        color: #ff4d4f;
+      }
     }
 
-    &:hover:not(.active) {
-      border-color: #d84727;
-      color: #d84727;
+    &-active {
+      border-color: #ff4d4f;
+      background: #ff4d4f;
+
+      a {
+        color: white;
+      }
+
+      &:hover {
+        border-color: #ff7875;
+        background: #ff7875;
+      }
     }
   }
 }
 
-/* Custom Modal */
-.custom-modal-overlay {
-  position: fixed;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  background: rgba(0, 0, 0, 0.5);
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  z-index: 1000;
-
-  .custom-modal {
-    background: white;
+/* Modal Styles */
+.ant-modal {
+  .ant-modal-content {
     border-radius: 8px;
-    width: 90%;
-    max-width: 700px;
+    overflow: hidden;
+  }
 
-    &.address-modal {
-      .modal-header {
-        background: #fff8f6;
-        border-bottom: 1px solid #ffeae5;
-      }
-    }
+  .ant-modal-header {
+    background: #fff;
+    border-bottom: 1px solid #f0f0f0;
+    padding: 16px 24px;
 
-    &.archive-modal {
-      max-width: 600px;
+    .ant-modal-title {
+      font-size: 18px;
+      font-weight: 500;
+      color: #333;
     }
   }
 
-  .modal-header {
-    padding: 1.5rem;
-    border-bottom: 1px solid #eee;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
+  .ant-modal-body {
+    padding: 24px;
+  }
 
-    h3 {
-      margin: 0;
-      font-size: 1.5rem;
+  .ant-modal-footer {
+    border-top: 1px solid #f0f0f0;
+    padding: 16px 24px;
+
+    .ant-btn {
+      border-radius: 4px;
+      font-weight: 500;
+      padding: 6px 16px;
+      height: auto;
+
+      &:first-child {
+        margin-right: 8px;
+      }
+
+      &.ant-btn-primary {
+        background: #ff4d4f;
+        border-color: #ff4d4f;
+
+        &:hover {
+          background: #ff7875;
+          border-color: #ff7875;
+        }
+      }
+    }
+  }
+}
+
+/* Form Styles */
+.ant-form {
+  .ant-form-item {
+    margin-bottom: 16px;
+
+    &:last-child {
+      margin-bottom: 0;
     }
 
-    .modal-close {
-      background: none;
-      border: none;
-      font-size: 1.5rem;
-      cursor: pointer;
+    .ant-form-item-label {
+      label {
+        color: #666;
+        font-weight: 500;
+      }
+    }
+
+    .ant-form-item-control-input {
+      .ant-input,
+      .ant-input-number,
+      .ant-select-selector {
+        border-radius: 4px;
+        padding: 8px 12px;
+        border-color: #d9d9d9;
+        transition: all 0.2s ease;
+
+        &:hover {
+          border-color: #bfbfbf;
+        }
+
+        &:focus,
+        &.ant-input-focused {
+          border-color: #ff4d4f;
+          box-shadow: 0 0 0 2px rgba(255, 77, 79, 0.2);
+        }
+      }
+
+      .ant-input-affix-wrapper {
+        padding: 8px 12px;
+      }
+
+      .ant-select {
+        width: 100%;
+      }
+    }
+
+    .ant-checkbox-wrapper {
       color: #666;
+      transition: all 0.2s ease;
 
       &:hover {
-        color: #d84727;
+        color: #333;
+      }
+
+      .ant-checkbox-inner {
+        border-radius: 2px;
+      }
+
+      .ant-checkbox-checked {
+        .ant-checkbox-inner {
+          background-color: #ff4d4f;
+          border-color: #ff4d4f;
+        }
       }
     }
   }
+}
 
-  .modal-body {
-    padding: 1.5rem;
+/* Archive Modal Specific Styles */
+.archive-modal {
+  .ant-card {
+    margin-bottom: 16px;
+
+    &:last-child {
+      margin-bottom: 0;
+    }
+
+    .ant-card-body {
+      padding: 16px;
+    }
   }
 
-  .modal-footer {
-    padding: 1.5rem;
-    border-top: 1px solid #eee;
-    display: flex;
-    justify-content: flex-end;
+  .restore-button {
+    background: #ff4d4f;
+    border-color: #ff4d4f;
+    color: white;
+    border-radius: 4px;
+    font-weight: 500;
+
+    &:hover {
+      background: #ff7875;
+      border-color: #ff7875;
+    }
+  }
+}
+
+/* Responsive Adjustments */
+@media (max-width: 768px) {
+  .address-header {
+    flex-direction: column;
+    align-items: flex-start;
     gap: 1rem;
 
-    .btn-cancel,
-    .btn-primary {
-      padding: 0.65rem 1.2rem;
-      border-radius: 4px;
-      border: none;
-      cursor: pointer;
-      transition: background-color 0.3s ease;
-      font-weight: 500;
+    .header-buttons {
+      width: 100%;
+      flex-direction: column;
     }
+  }
 
-    .btn-cancel {
-      background-color: #f0f0f0;
-      color: #333;
-      border: 1px solid #ddd;
-
-      &:hover {
-        background-color: #e6e6e6;
-      }
-    }
-
-    .btn-primary {
-      background-color: #d84727;
-      color: #fff;
-      border: 1px solid #d84727;
-
-      &:hover {
-        background-color: #c23a1d;
-        border-color: #c23a1d;
-      }
-    }
+  .ant-modal {
+    width: 90% !important;
+    max-width: 100%;
   }
 }
 
-/* Address Form */
-.address-form {
-  .form-grid {
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    gap: 1.5rem;
-  }
-
-  .form-group {
-    margin-bottom: 1rem;
-
-    label {
-      display: block;
-      margin-bottom: 0.5rem;
-      font-weight: 500;
-      color: #333;
-    }
-
-    .input-wrapper {
-      position: relative;
-
-      input {
-        width: 100%;
-        padding: 0.75rem;
-        border: 1px solid #ddd;
-        border-radius: 6px;
-        transition: all 0.3s ease;
-
-        &:focus {
-          border-color: #d84727;
-          box-shadow: 0 0 0 2px rgba(216, 71, 39, 0.1);
-          outline: none;
-        }
-
-        &.error {
-          border-color: #ff4d4f;
-          animation: shake 0.5s;
-        }
-      }
-    }
-
-    &.full-width {
-      grid-column: 1 / -1;
-    }
-
-    .checkbox-label {
-      display: flex;
-      align-items: center;
-      gap: 0.5rem;
-      cursor: pointer;
-
-      input {
-        display: none;
-
-        &:checked + .checkmark {
-          background: #d84727;
-          border-color: #d84727;
-
-          &::after {
-            display: block;
-          }
-        }
-      }
-
-      .checkmark {
-        width: 20px;
-        height: 20px;
-        border: 2px solid #ddd;
-        border-radius: 4px;
-        position: relative;
-
-        &::after {
-          content: "";
-          position: absolute;
-          left: 5px;
-          top: 1px;
-          width: 5px;
-          height: 10px;
-          border: solid white;
-          border-width: 0 2px 2px 0;
-          transform: rotate(45deg);
-          display: none;
-        }
-      }
-    }
-  }
-
-  .form-note {
-    color: #666;
-    font-size: 0.9rem;
-    margin-top: 1rem;
-    display: flex;
-    align-items: center;
-    gap: 0.5rem;
-  }
-}
-
-/* Archive Content */
-.archive-content {
-  .empty-archive {
-    text-align: center;
-    color: #666;
-    padding: 2rem;
-  }
-
-  .archive-item {
-    padding: 1rem;
-    margin-bottom: 1rem;
-    background: #f8f9fa;
-    border-radius: 6px;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-
-    .archive-details {
-      p {
-        margin: 0;
-        color: #333;
-
-        &:first-child {
-          font-weight: 500;
-        }
-
-        &:last-child {
-          color: #666;
-          font-size: 0.9rem;
-        }
-      }
-    }
-
-    .restore-button {
-      background: #d84727;
-      color: white;
-      border: none;
-      padding: 0.5rem 1rem;
-      border-radius: 4px;
-      cursor: pointer;
-      transition: background 0.3s ease;
-
-      &:hover {
-        background: #c23a1d;
-      }
-    }
-  }
-}
-
-/* Archive Pagination */
-.archive-pagination {
-  display: flex;
-  justify-content: center;
-  gap: 0.5rem;
-  margin-top: 1.5rem;
-
-  .archive-page-button {
-    padding: 0.5rem 1rem;
-    border: 1px solid #ddd;
-    background: white;
-    border-radius: 4px;
-    cursor: pointer;
-    transition: all 0.3s ease;
-
-    &.active {
-      background: #d84727;
-      color: white;
-      border-color: #d84727;
-    }
-
-    &:hover:not(.active) {
-      border-color: #d84727;
-      color: #d84727;
-    }
-  }
-}
-
+/* Animation */
 @keyframes shake {
   0%, 100% { transform: translateX(0); }
   25% { transform: translateX(-5px); }

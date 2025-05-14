@@ -43,7 +43,7 @@ const Footer = () => {
         <div className="footer-section">
           <h4>Address</h4>
           <p>
-            <EnvironmentOutlined className="footer-icon" /> 123 Oak Street, Butuan City
+            <EnvironmentOutlined className="footer-icon" /> 123 Brgy. Sikatuna, Butuan City
           </p>
         </div>
 

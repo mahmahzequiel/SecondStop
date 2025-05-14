@@ -80224,10 +80224,10 @@ var FAQ = function FAQ(_ref) {
   var onClose = _ref.onClose;
   var faqItems = [{
     question: "How do I create an account?",
-    answer: "You can create an account by clicking on the 'Sign Up' button at the top right corner of the homepage and following the registration process."
+    answer: "You can create an account by clicking on the 'Sign Up' button at the log in page."
   }, {
     question: "What payment methods do you accept?",
-    answer: "We accept all major credit cards (Visa, MasterCard, American Express), PayPal, and bank transfers."
+    answer: "We accept Gcash, PayPal, and Cash on Delivery."
   }, {
     question: "How can I reset my password?",
     answer: "Click on the 'Forgot Password' link on the login page, enter your email address, and follow the instructions sent to your email."
@@ -80235,10 +80235,19 @@ var FAQ = function FAQ(_ref) {
     question: "Is my data secure?",
     answer: "Yes, we use industry-standard encryption protocols to ensure your data is secure. We also have a strict privacy policy that prohibits sharing your information with third parties without your consent."
   }, {
+    question: "Are there any flaws or defects I should know about?",
+    answer: "We clearly disclose all known flaws in the product description and photos. If an item has minor imperfections (small stains, loose threads, etc.), we'll always mention it."
+  }, {
+    question: "How can I tell if an item will fit me?",
+    answer: "We provide detailed measurements for each garment (pit-to-pit, waist, length etc.) in the description. For vintage items, we recommend checking these against your best-fitting similar garment, as sizing has changed over decades."
+  }, {
+    question: "Do you sanitize or clean the clothes before selling?",
+    answer: "All items undergo professional-grade sanitation, but we recommend washing before first wear as personal sensitivity varies. Delicate vintage items receive special care cleaning."
+  }, {
     question: "How do I contact customer support?",
-    answer: "You can contact our customer support team via email at support@example.com or through the Chat button."
+    answer: "You can contact our customer support team through the Chat button and we'll get back to you as soon as possible."
   }];
-  return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)(antd__WEBPACK_IMPORTED_MODULE_4__["default"], {
+  return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(antd__WEBPACK_IMPORTED_MODULE_4__["default"], {
     title: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(Title, {
       level: 4,
       children: "Frequently Asked Questions"
@@ -80257,7 +80266,7 @@ var FAQ = function FAQ(_ref) {
       onClick: onClose,
       children: "Close"
     }),
-    children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(antd__WEBPACK_IMPORTED_MODULE_3__["default"], {
+    children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(antd__WEBPACK_IMPORTED_MODULE_3__["default"], {
       accordion: true,
       children: faqItems.map(function (item, index) {
         return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(Panel, {
@@ -80267,18 +80276,7 @@ var FAQ = function FAQ(_ref) {
           })
         }, index);
       })
-    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)("div", {
-      style: {
-        marginTop: '20px',
-        textAlign: 'center'
-      },
-      children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(Paragraph, {
-        children: "Still have questions?"
-      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(antd__WEBPACK_IMPORTED_MODULE_5__["default"], {
-        type: "primary",
-        children: "Contact Us"
-      })]
-    })]
+    })
   });
 };
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (FAQ);
@@ -82916,11 +82914,21 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _Profile_ProfileMain__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../Profile/ProfileMain */ "./resources/js/components/Profile/ProfileMain.js");
 /* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
 /* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_2__);
-/* harmony import */ var _ant_design_icons__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! @ant-design/icons */ "./node_modules/@ant-design/icons/es/icons/PlusOutlined.js");
-/* harmony import */ var _ant_design_icons__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! @ant-design/icons */ "./node_modules/@ant-design/icons/es/icons/InboxOutlined.js");
-/* harmony import */ var _ant_design_icons__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! @ant-design/icons */ "./node_modules/@ant-design/icons/es/icons/EditOutlined.js");
-/* harmony import */ var antd__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! antd */ "./node_modules/antd/es/message/index.js");
-/* harmony import */ var antd__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! antd */ "./node_modules/antd/es/divider/index.js");
+/* harmony import */ var _ant_design_icons__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! @ant-design/icons */ "./node_modules/@ant-design/icons/es/icons/PlusOutlined.js");
+/* harmony import */ var _ant_design_icons__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! @ant-design/icons */ "./node_modules/@ant-design/icons/es/icons/InboxOutlined.js");
+/* harmony import */ var _ant_design_icons__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(/*! @ant-design/icons */ "./node_modules/@ant-design/icons/es/icons/EditOutlined.js");
+/* harmony import */ var _ant_design_icons__WEBPACK_IMPORTED_MODULE_14__ = __webpack_require__(/*! @ant-design/icons */ "./node_modules/@ant-design/icons/es/icons/DeleteOutlined.js");
+/* harmony import */ var antd__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! antd */ "./node_modules/antd/es/select/index.js");
+/* harmony import */ var antd__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! antd */ "./node_modules/antd/es/message/index.js");
+/* harmony import */ var antd__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! antd */ "./node_modules/antd/es/row/index.js");
+/* harmony import */ var antd__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! antd */ "./node_modules/antd/es/col/index.js");
+/* harmony import */ var antd__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! antd */ "./node_modules/antd/es/button/index.js");
+/* harmony import */ var antd__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! antd */ "./node_modules/antd/es/divider/index.js");
+/* harmony import */ var antd__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! antd */ "./node_modules/antd/es/card/index.js");
+/* harmony import */ var antd__WEBPACK_IMPORTED_MODULE_15__ = __webpack_require__(/*! antd */ "./node_modules/antd/es/pagination/index.js");
+/* harmony import */ var antd__WEBPACK_IMPORTED_MODULE_16__ = __webpack_require__(/*! antd */ "./node_modules/antd/es/modal/index.js");
+/* harmony import */ var antd__WEBPACK_IMPORTED_MODULE_17__ = __webpack_require__(/*! antd */ "./node_modules/antd/es/input/index.js");
+/* harmony import */ var antd__WEBPACK_IMPORTED_MODULE_18__ = __webpack_require__(/*! antd */ "./node_modules/antd/es/checkbox/index.js");
 /* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! react/jsx-runtime */ "./node_modules/react/jsx-runtime.js");
 function _typeof(o) { "@babel/helpers - typeof"; return _typeof = "function" == typeof Symbol && "symbol" == typeof Symbol.iterator ? function (o) { return typeof o; } : function (o) { return o && "function" == typeof Symbol && o.constructor === Symbol && o !== Symbol.prototype ? "symbol" : typeof o; }, _typeof(o); }
 function _toConsumableArray(r) { return _arrayWithoutHoles(r) || _iterableToArray(r) || _unsupportedIterableToArray(r) || _nonIterableSpread(); }
@@ -82947,51 +82955,10 @@ function _arrayWithHoles(r) { if (Array.isArray(r)) return r; }
 
 
 
-// Helper: ensure default address is at the front
-
+var Option = antd__WEBPACK_IMPORTED_MODULE_4__["default"].Option;
 var sortAddresses = function sortAddresses(addressesArr) {
   return addressesArr.slice().sort(function (a, b) {
     return b.is_default - a.is_default;
-  });
-};
-var CustomModal = function CustomModal(_ref) {
-  var title = _ref.title,
-    visible = _ref.visible,
-    onCancel = _ref.onCancel,
-    onOk = _ref.onOk,
-    children = _ref.children,
-    _ref$type = _ref.type,
-    type = _ref$type === void 0 ? "default" : _ref$type;
-  if (!visible) return null;
-  return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("div", {
-    className: "custom-modal-overlay",
-    children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)("div", {
-      className: "custom-modal ".concat(type, "-modal"),
-      children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)("div", {
-        className: "modal-header",
-        children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("h3", {
-          children: title
-        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("button", {
-          className: "modal-close",
-          onClick: onCancel,
-          children: "\xD7"
-        })]
-      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("div", {
-        className: "modal-body",
-        children: children
-      }), onOk && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)("div", {
-        className: "modal-footer",
-        children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("button", {
-          className: "btn-cancel",
-          onClick: onCancel,
-          children: "Cancel"
-        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("button", {
-          className: "btn-primary",
-          onClick: onOk,
-          children: type === "address" ? "Save Address" : "Confirm"
-        })]
-      })]
-    })
   });
 };
 var Address = function Address() {
@@ -83022,10 +82989,8 @@ var Address = function Address() {
       street: "",
       barangay: "",
       city: "",
-      region: "",
-      state: "",
-      country: "",
-      postal_code: "",
+      province: "Agusan Del Norte",
+      country: "Philippines",
       is_default: false
     }),
     _useState12 = _slicedToArray(_useState11, 2),
@@ -83039,19 +83004,22 @@ var Address = function Address() {
     _useState16 = _slicedToArray(_useState15, 2),
     currentPage = _useState16[0],
     setCurrentPage = _useState16[1];
-  var addressesPerPage = 4;
   var _useState17 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(1),
     _useState18 = _slicedToArray(_useState17, 2),
     archivedCurrentPage = _useState18[0],
     setArchivedCurrentPage = _useState18[1];
+  var addressesPerPage = 4;
   var archivedAddressesPerPage = 5;
+  var cityOptions = ["Davao City", "Digos City", "Tagum City"];
+  var provinceOptions = ["Agusan Del Norte"];
+  var countryOptions = ["Philippines"];
   var userId = localStorage.getItem("userId");
   var token = localStorage.getItem("userToken");
   (0,react__WEBPACK_IMPORTED_MODULE_0__.useEffect)(function () {
     fetchAddresses();
   }, []);
   var fetchAddresses = /*#__PURE__*/function () {
-    var _ref2 = _asyncToGenerator(/*#__PURE__*/_regeneratorRuntime().mark(function _callee() {
+    var _ref = _asyncToGenerator(/*#__PURE__*/_regeneratorRuntime().mark(function _callee() {
       var response, fetched;
       return _regeneratorRuntime().wrap(function _callee$(_context) {
         while (1) switch (_context.prev = _context.next) {
@@ -83073,7 +83041,7 @@ var Address = function Address() {
           case 9:
             _context.prev = 9;
             _context.t0 = _context["catch"](0);
-            antd__WEBPACK_IMPORTED_MODULE_4__["default"].error("Failed to fetch addresses");
+            antd__WEBPACK_IMPORTED_MODULE_5__["default"].error("Failed to fetch addresses");
           case 12:
           case "end":
             return _context.stop();
@@ -83081,11 +83049,11 @@ var Address = function Address() {
       }, _callee, null, [[0, 9]]);
     }));
     return function fetchAddresses() {
-      return _ref2.apply(this, arguments);
+      return _ref.apply(this, arguments);
     };
   }();
   var fetchArchivedAddresses = /*#__PURE__*/function () {
-    var _ref3 = _asyncToGenerator(/*#__PURE__*/_regeneratorRuntime().mark(function _callee2() {
+    var _ref2 = _asyncToGenerator(/*#__PURE__*/_regeneratorRuntime().mark(function _callee2() {
       var response;
       return _regeneratorRuntime().wrap(function _callee2$(_context2) {
         while (1) switch (_context2.prev = _context2.next) {
@@ -83106,7 +83074,7 @@ var Address = function Address() {
           case 8:
             _context2.prev = 8;
             _context2.t0 = _context2["catch"](0);
-            antd__WEBPACK_IMPORTED_MODULE_4__["default"].error("Failed to fetch archived addresses");
+            antd__WEBPACK_IMPORTED_MODULE_5__["default"].error("Failed to fetch archived addresses");
           case 11:
           case "end":
             return _context2.stop();
@@ -83114,11 +83082,11 @@ var Address = function Address() {
       }, _callee2, null, [[0, 8]]);
     }));
     return function fetchArchivedAddresses() {
-      return _ref3.apply(this, arguments);
+      return _ref2.apply(this, arguments);
     };
   }();
   var addAddress = /*#__PURE__*/function () {
-    var _ref4 = _asyncToGenerator(/*#__PURE__*/_regeneratorRuntime().mark(function _callee3() {
+    var _ref3 = _asyncToGenerator(/*#__PURE__*/_regeneratorRuntime().mark(function _callee3() {
       var isFirstAddress, dataToSend, response, newAddress;
       return _regeneratorRuntime().wrap(function _callee3$(_context3) {
         while (1) switch (_context3.prev = _context3.next) {
@@ -83127,7 +83095,6 @@ var Address = function Address() {
             isFirstAddress = addresses.length === 0;
             dataToSend = _objectSpread(_objectSpread({}, formData), {}, {
               contact_number: "+63".concat(formData.contact_number),
-              // Prepend +63
               is_default: isFirstAddress ? true : formData.is_default
             });
             _context3.next = 5;
@@ -83147,13 +83114,13 @@ var Address = function Address() {
               })), [newAddress]) : [].concat(_toConsumableArray(prev), [newAddress]);
               return sortAddresses(newArr);
             });
-            antd__WEBPACK_IMPORTED_MODULE_4__["default"].success("Address added successfully");
+            antd__WEBPACK_IMPORTED_MODULE_5__["default"].success("Address added successfully");
             _context3.next = 14;
             break;
           case 11:
             _context3.prev = 11;
             _context3.t0 = _context3["catch"](0);
-            antd__WEBPACK_IMPORTED_MODULE_4__["default"].error("Failed to add address");
+            antd__WEBPACK_IMPORTED_MODULE_5__["default"].error("Failed to add address");
           case 14:
           case "end":
             return _context3.stop();
@@ -83161,11 +83128,11 @@ var Address = function Address() {
       }, _callee3, null, [[0, 11]]);
     }));
     return function addAddress() {
-      return _ref4.apply(this, arguments);
+      return _ref3.apply(this, arguments);
     };
   }();
   var updateAddress = /*#__PURE__*/function () {
-    var _ref5 = _asyncToGenerator(/*#__PURE__*/_regeneratorRuntime().mark(function _callee4() {
+    var _ref4 = _asyncToGenerator(/*#__PURE__*/_regeneratorRuntime().mark(function _callee4() {
       var response, updatedAddress;
       return _regeneratorRuntime().wrap(function _callee4$(_context4) {
         while (1) switch (_context4.prev = _context4.next) {
@@ -83174,9 +83141,7 @@ var Address = function Address() {
             _context4.next = 3;
             return axios__WEBPACK_IMPORTED_MODULE_2___default().put("http://127.0.0.1:8000/api/address/".concat(editingAddress.id), _objectSpread(_objectSpread({}, formData), {}, {
               contact_number: "+63".concat(formData.contact_number)
-            }),
-            // Prepend +63
-            {
+            }), {
               headers: {
                 Authorization: "Bearer ".concat(token)
               }
@@ -83198,13 +83163,13 @@ var Address = function Address() {
               });
               return sortAddresses(updated);
             });
-            antd__WEBPACK_IMPORTED_MODULE_4__["default"].success("Address updated successfully");
+            antd__WEBPACK_IMPORTED_MODULE_5__["default"].success("Address updated successfully");
             _context4.next = 12;
             break;
           case 9:
             _context4.prev = 9;
             _context4.t0 = _context4["catch"](0);
-            antd__WEBPACK_IMPORTED_MODULE_4__["default"].error("Failed to update address");
+            antd__WEBPACK_IMPORTED_MODULE_5__["default"].error("Failed to update address");
           case 12:
           case "end":
             return _context4.stop();
@@ -83212,11 +83177,11 @@ var Address = function Address() {
       }, _callee4, null, [[0, 9]]);
     }));
     return function updateAddress() {
-      return _ref5.apply(this, arguments);
+      return _ref4.apply(this, arguments);
     };
   }();
   var deleteAddress = /*#__PURE__*/function () {
-    var _ref6 = _asyncToGenerator(/*#__PURE__*/_regeneratorRuntime().mark(function _callee5(addressId) {
+    var _ref5 = _asyncToGenerator(/*#__PURE__*/_regeneratorRuntime().mark(function _callee5(addressId) {
       return _regeneratorRuntime().wrap(function _callee5$(_context5) {
         while (1) switch (_context5.prev = _context5.next) {
           case 0:
@@ -83233,13 +83198,13 @@ var Address = function Address() {
                 return addr.id !== addressId;
               });
             });
-            antd__WEBPACK_IMPORTED_MODULE_4__["default"].success("Address archived successfully");
+            antd__WEBPACK_IMPORTED_MODULE_5__["default"].success("Address archived successfully");
             _context5.next = 10;
             break;
           case 7:
             _context5.prev = 7;
             _context5.t0 = _context5["catch"](0);
-            antd__WEBPACK_IMPORTED_MODULE_4__["default"].error("Failed to archive address");
+            antd__WEBPACK_IMPORTED_MODULE_5__["default"].error("Failed to archive address");
           case 10:
           case "end":
             return _context5.stop();
@@ -83247,11 +83212,11 @@ var Address = function Address() {
       }, _callee5, null, [[0, 7]]);
     }));
     return function deleteAddress(_x) {
-      return _ref6.apply(this, arguments);
+      return _ref5.apply(this, arguments);
     };
   }();
   var restoreAddress = /*#__PURE__*/function () {
-    var _ref7 = _asyncToGenerator(/*#__PURE__*/_regeneratorRuntime().mark(function _callee6(addressId) {
+    var _ref6 = _asyncToGenerator(/*#__PURE__*/_regeneratorRuntime().mark(function _callee6(addressId) {
       var response, restoredAddress;
       return _regeneratorRuntime().wrap(function _callee6$(_context6) {
         while (1) switch (_context6.prev = _context6.next) {
@@ -83275,13 +83240,13 @@ var Address = function Address() {
                 return addr.id !== addressId;
               });
             });
-            antd__WEBPACK_IMPORTED_MODULE_4__["default"].success("Address restored successfully");
+            antd__WEBPACK_IMPORTED_MODULE_5__["default"].success("Address restored successfully");
             _context6.next = 13;
             break;
           case 10:
             _context6.prev = 10;
             _context6.t0 = _context6["catch"](0);
-            antd__WEBPACK_IMPORTED_MODULE_4__["default"].error("Failed to restore address");
+            antd__WEBPACK_IMPORTED_MODULE_5__["default"].error("Failed to restore address");
           case 13:
           case "end":
             return _context6.stop();
@@ -83289,7 +83254,7 @@ var Address = function Address() {
       }, _callee6, null, [[0, 10]]);
     }));
     return function restoreAddress(_x2) {
-      return _ref7.apply(this, arguments);
+      return _ref6.apply(this, arguments);
     };
   }();
   var showModal = function showModal() {
@@ -83300,15 +83265,12 @@ var Address = function Address() {
       setFormData({
         receiver_fullname: address.receiver_fullname || "",
         contact_number: address.contact_number.replace("+63", "") || "",
-        // Strip +63 for editing
         house_number: address.house_number || "",
         street: address.street || "",
         barangay: address.barangay || "",
         city: address.city || "",
-        region: address.region || "",
-        state: address.state || "",
-        country: address.country || "",
-        postal_code: address.postal_code || "",
+        province: address.province || "Agusan Del Norte",
+        country: address.country || "Philippines",
         is_default: address.is_default === 1
       });
     } else {
@@ -83320,10 +83282,8 @@ var Address = function Address() {
         street: "",
         barangay: "",
         city: "",
-        region: "",
-        state: "",
-        country: "",
-        postal_code: "",
+        province: "Agusan Del Norte",
+        country: "Philippines",
         is_default: isFirstAddress ? true : false
       });
     }
@@ -83337,12 +83297,12 @@ var Address = function Address() {
     if (editingAddress && editingAddress.is_default === 1) {
       formData.is_default = true;
     }
-    if (!formData.receiver_fullname || !formData.contact_number || !formData.house_number || !formData.street || !formData.barangay || !formData.city || !formData.region || !formData.state || !formData.country || !formData.postal_code) {
-      antd__WEBPACK_IMPORTED_MODULE_4__["default"].error("Please fill out all required fields.");
+    if (!formData.receiver_fullname || !formData.contact_number || !formData.house_number || !formData.street || !formData.barangay || !formData.city) {
+      antd__WEBPACK_IMPORTED_MODULE_5__["default"].error("Please fill out all required fields.");
       return;
     }
     if (phoneError) {
-      antd__WEBPACK_IMPORTED_MODULE_4__["default"].error("Please correct the phone number format.");
+      antd__WEBPACK_IMPORTED_MODULE_5__["default"].error("Please correct the phone number format.");
       return;
     }
     if (editingAddress) {
@@ -83367,7 +83327,7 @@ var Address = function Address() {
         if (value.length === 10) {
           setPhoneError("");
         } else if (value.length > 0) {
-          setPhoneError("Phone number must be exactly 9 digits");
+          setPhoneError("Phone number must be exactly 10 digits");
         } else {
           setPhoneError("");
         }
@@ -83378,6 +83338,11 @@ var Address = function Address() {
       });
     }
   };
+  var handleSelectChange = function handleSelectChange(value, name) {
+    setFormData(function (prev) {
+      return _objectSpread(_objectSpread({}, prev), {}, _defineProperty({}, name, value));
+    });
+  };
   var totalPages = Math.ceil(addresses.length / addressesPerPage);
   var currentAddresses = addresses.slice((currentPage - 1) * addressesPerPage, currentPage * addressesPerPage);
   var archivedTotalPages = Math.ceil(archivedAddresses.length / archivedAddressesPerPage);
@@ -83385,21 +83350,30 @@ var Address = function Address() {
   return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)(_Profile_ProfileMain__WEBPACK_IMPORTED_MODULE_1__["default"], {
     children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)("div", {
       className: "address-container",
-      children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)("div", {
-        className: "address-header",
-        children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("h2", {
-          className: "address-title",
-          children: "My Addresses"
-        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)("div", {
-          className: "header-buttons",
-          children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)("button", {
-            className: "add-button",
+      children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)(antd__WEBPACK_IMPORTED_MODULE_6__["default"], {
+        justify: "space-between",
+        align: "middle",
+        style: {
+          marginBottom: 20
+        },
+        children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)(antd__WEBPACK_IMPORTED_MODULE_7__["default"], {
+          children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("h2", {
+            className: "address-title",
+            children: "My Addresses"
+          })
+        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)(antd__WEBPACK_IMPORTED_MODULE_7__["default"], {
+          children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)(antd__WEBPACK_IMPORTED_MODULE_8__["default"], {
+            type: "primary",
+            icon: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)(_ant_design_icons__WEBPACK_IMPORTED_MODULE_9__["default"], {}),
             onClick: function onClick() {
               return showModal();
             },
-            children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)(_ant_design_icons__WEBPACK_IMPORTED_MODULE_5__["default"], {}), " Add New Address"]
-          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)("button", {
-            className: "archive-button",
+            style: {
+              marginRight: 10
+            },
+            children: "Add New Address"
+          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)(antd__WEBPACK_IMPORTED_MODULE_8__["default"], {
+            icon: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)(_ant_design_icons__WEBPACK_IMPORTED_MODULE_10__["default"], {}),
             onClick: /*#__PURE__*/_asyncToGenerator(/*#__PURE__*/_regeneratorRuntime().mark(function _callee7() {
               return _regeneratorRuntime().wrap(function _callee7$(_context7) {
                 while (1) switch (_context7.prev = _context7.next) {
@@ -83414,283 +83388,354 @@ var Address = function Address() {
                 }
               }, _callee7);
             })),
-            children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)(_ant_design_icons__WEBPACK_IMPORTED_MODULE_6__["default"], {}), " Archive"]
+            children: "Archive"
           })]
         })]
-      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)(antd__WEBPACK_IMPORTED_MODULE_7__["default"], {
-        className: "title-divider"
-      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("div", {
-        className: "address-content",
+      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)(antd__WEBPACK_IMPORTED_MODULE_11__["default"], {
+        style: {
+          margin: '16px 0'
+        }
+      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)(antd__WEBPACK_IMPORTED_MODULE_6__["default"], {
+        gutter: [16, 16],
         children: currentAddresses.map(function (address) {
-          return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)("div", {
-            className: "address-card",
-            children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)("div", {
-              className: "card-header",
-              children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)("span", {
-                className: "address-title",
-                children: [address.receiver_fullname ? "".concat(address.receiver_fullname, " - ") : "", address.contact_number ? "(".concat(address.contact_number, ") - ") : "", address.house_number && "".concat(address.house_number, ", "), address.street, ", ", address.barangay, ", ", address.city]
-              }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)("div", {
-                className: "card-actions",
-                children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)(_ant_design_icons__WEBPACK_IMPORTED_MODULE_8__["default"], {
-                  onClick: function onClick() {
-                    return showModal(address);
-                  }
-                }), address.is_default === 1 ? null : /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)(_ant_design_icons__WEBPACK_IMPORTED_MODULE_6__["default"], {
-                  onClick: function onClick() {
-                    return deleteAddress(address.id);
-                  }
+          return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)(antd__WEBPACK_IMPORTED_MODULE_7__["default"], {
+            xs: 24,
+            sm: 12,
+            children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)(antd__WEBPACK_IMPORTED_MODULE_12__["default"], {
+              title: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)("div", {
+                style: {
+                  display: 'flex',
+                  justifyContent: 'space-between'
+                },
+                children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)("span", {
+                  children: [address.receiver_fullname, address.is_default === 1 && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("span", {
+                    className: "default-badge",
+                    children: "Default"
+                  })]
+                }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)("div", {
+                  children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)(antd__WEBPACK_IMPORTED_MODULE_8__["default"], {
+                    type: "text",
+                    icon: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)(_ant_design_icons__WEBPACK_IMPORTED_MODULE_13__["default"], {}),
+                    onClick: function onClick() {
+                      return showModal(address);
+                    }
+                  }), address.is_default === 1 ? null : /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)(antd__WEBPACK_IMPORTED_MODULE_8__["default"], {
+                    type: "text",
+                    icon: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)(_ant_design_icons__WEBPACK_IMPORTED_MODULE_14__["default"], {}),
+                    danger: true,
+                    onClick: function onClick() {
+                      return deleteAddress(address.id);
+                    }
+                  })]
                 })]
+              }),
+              className: "address-card",
+              children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)("p", {
+                children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("strong", {
+                  children: "Contact:"
+                }), " ", address.contact_number]
+              }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)("p", {
+                children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("strong", {
+                  children: "Address:"
+                }), " ", address.house_number, ", ", address.street, ", ", address.barangay]
+              }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)("p", {
+                children: [address.city, ", ", address.province, ", ", address.country]
               })]
-            }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)("div", {
-              className: "address-details",
-              children: [address.region, ", ", address.state, ", ", address.country, ", ", address.postal_code]
-            }), address.is_default === 1 && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("span", {
-              className: "default-badge",
-              children: "Default"
-            })]
+            })
           }, address.id);
         })
-      }), totalPages > 1 && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("div", {
-        className: "pagination-container",
-        children: Array.from({
-          length: totalPages
-        }, function (_, i) {
-          return i + 1;
-        }).map(function (page) {
-          return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("button", {
-            className: "pagination-button ".concat(page === currentPage ? "active" : ""),
-            onClick: function onClick() {
-              return setCurrentPage(page);
-            },
-            children: page
-          }, page);
+      }), addresses.length > addressesPerPage && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("div", {
+        style: {
+          textAlign: 'center',
+          marginTop: 20
+        },
+        children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)(antd__WEBPACK_IMPORTED_MODULE_15__["default"], {
+          current: currentPage,
+          total: addresses.length,
+          pageSize: addressesPerPage,
+          onChange: function onChange(page) {
+            return setCurrentPage(page);
+          },
+          showSizeChanger: false
         })
-      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)(CustomModal, {
+      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)(antd__WEBPACK_IMPORTED_MODULE_16__["default"], {
         title: editingAddress ? "Edit Address" : "Add New Address",
         visible: isModalVisible,
         onCancel: handleModalCancel,
         onOk: handleModalOk,
-        type: "address",
-        children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("div", {
-          className: "address-form",
-          children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)("div", {
-            className: "form-grid",
-            children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)("div", {
-              className: "form-group",
+        width: 700,
+        footer: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)(antd__WEBPACK_IMPORTED_MODULE_8__["default"], {
+          onClick: handleModalCancel,
+          children: "Cancel"
+        }, "back"), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)(antd__WEBPACK_IMPORTED_MODULE_8__["default"], {
+          type: "primary",
+          onClick: handleModalOk,
+          children: editingAddress ? "Update Address" : "Add Address"
+        }, "submit")],
+        children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)(antd__WEBPACK_IMPORTED_MODULE_6__["default"], {
+          gutter: 16,
+          children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)(antd__WEBPACK_IMPORTED_MODULE_7__["default"], {
+            span: 12,
+            children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)("div", {
+              style: {
+                marginBottom: 16
+              },
               children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("label", {
                 children: "Receiver Fullname"
-              }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("div", {
-                className: "input-wrapper",
-                children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("input", {
-                  name: "receiver_fullname",
-                  value: formData.receiver_fullname,
-                  onChange: handleChange,
-                  placeholder: "Juan dela Cruz",
-                  className: !formData.receiver_fullname ? "error" : ""
-                })
+              }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)(antd__WEBPACK_IMPORTED_MODULE_17__["default"], {
+                name: "receiver_fullname",
+                value: formData.receiver_fullname,
+                onChange: handleChange,
+                placeholder: "Juan dela Cruz",
+                status: !formData.receiver_fullname ? "error" : ""
               })]
-            }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)("div", {
-              className: "form-group",
+            })
+          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)(antd__WEBPACK_IMPORTED_MODULE_7__["default"], {
+            span: 12,
+            children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)("div", {
+              style: {
+                marginBottom: 16
+              },
               children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("label", {
                 children: "Phone Number"
-              }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)("div", {
-                className: "phone-input-wrapper",
-                children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("input", {
-                  name: "contact_number",
-                  value: formData.contact_number,
-                  onChange: handleChange,
-                  placeholder: "9xxxxxxxxx",
-                  className: !formData.contact_number || phoneError ? "error" : ""
-                }), phoneError && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("div", {
-                  className: "error-message",
-                  style: {
-                    color: "red",
-                    fontSize: "12px"
-                  },
-                  children: phoneError
-                })]
+              }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)(antd__WEBPACK_IMPORTED_MODULE_17__["default"], {
+                name: "contact_number",
+                value: formData.contact_number,
+                onChange: handleChange,
+                placeholder: "9xxxxxxxxx",
+                status: !formData.contact_number || phoneError ? "error" : "",
+                addonBefore: "+63",
+                maxLength: 10
+              }), phoneError && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("div", {
+                style: {
+                  color: 'red',
+                  fontSize: 12
+                },
+                children: phoneError
               })]
-            }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)("div", {
-              className: "form-group",
-              children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("label", {
-                children: "House Number"
-              }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("div", {
-                className: "input-wrapper",
-                children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("input", {
-                  name: "house_number",
-                  value: formData.house_number,
-                  onChange: handleChange,
-                  placeholder: "Enter house number",
-                  className: !formData.house_number ? "error" : ""
-                })
-              })]
-            }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)("div", {
-              className: "form-group",
-              children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("label", {
-                children: "Street Address"
-              }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("div", {
-                className: "input-wrapper",
-                children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("input", {
-                  name: "street",
-                  value: formData.street,
-                  onChange: handleChange,
-                  placeholder: "123 Main Street",
-                  className: !formData.street ? "error" : ""
-                })
-              })]
-            }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)("div", {
-              className: "form-group",
-              children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("label", {
-                children: "Barangay"
-              }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("div", {
-                className: "input-wrapper",
-                children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("input", {
-                  name: "barangay",
-                  value: formData.barangay,
-                  onChange: handleChange,
-                  placeholder: "Enter barangay",
-                  className: !formData.barangay ? "error" : ""
-                })
-              })]
-            }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)("div", {
-              className: "form-group",
-              children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("label", {
-                children: "City"
-              }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("div", {
-                className: "input-wrapper",
-                children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("input", {
-                  name: "city",
-                  value: formData.city,
-                  onChange: handleChange,
-                  placeholder: "Enter city",
-                  className: !formData.city ? "error" : ""
-                })
-              })]
-            }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)("div", {
-              className: "form-group",
-              children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("label", {
-                children: "Region"
-              }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("div", {
-                className: "input-wrapper",
-                children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("input", {
-                  name: "region",
-                  value: formData.region,
-                  onChange: handleChange,
-                  placeholder: "Enter region",
-                  className: !formData.region ? "error" : ""
-                })
-              })]
-            }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)("div", {
-              className: "form-group",
-              children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("label", {
-                children: "State/Province"
-              }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("div", {
-                className: "input-wrapper",
-                children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("input", {
-                  name: "state",
-                  value: formData.state,
-                  onChange: handleChange,
-                  placeholder: "Enter state/province",
-                  className: !formData.state ? "error" : ""
-                })
-              })]
-            }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)("div", {
-              className: "form-group",
+            })
+          })]
+        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)(antd__WEBPACK_IMPORTED_MODULE_6__["default"], {
+          gutter: 16,
+          children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)(antd__WEBPACK_IMPORTED_MODULE_7__["default"], {
+            span: 12,
+            children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)("div", {
+              style: {
+                marginBottom: 16
+              },
               children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("label", {
                 children: "Country"
-              }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("div", {
-                className: "input-wrapper",
-                children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("input", {
-                  name: "country",
-                  value: formData.country,
-                  onChange: handleChange,
-                  placeholder: "Enter country",
-                  className: !formData.country ? "error" : ""
+              }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)(antd__WEBPACK_IMPORTED_MODULE_4__["default"], {
+                value: formData.country,
+                onChange: function onChange(value) {
+                  return handleSelectChange(value, "country");
+                },
+                style: {
+                  width: '100%'
+                },
+                disabled: countryOptions.length <= 1,
+                children: countryOptions.map(function (country) {
+                  return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)(Option, {
+                    value: country,
+                    children: country
+                  }, country);
                 })
               })]
-            }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)("div", {
-              className: "form-group",
+            })
+          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)(antd__WEBPACK_IMPORTED_MODULE_7__["default"], {
+            span: 12,
+            children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)("div", {
+              style: {
+                marginBottom: 16
+              },
               children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("label", {
-                children: "Postal Code"
-              }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("div", {
-                className: "input-wrapper",
-                children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("input", {
-                  name: "postal_code",
-                  value: formData.postal_code,
-                  onChange: handleChange,
-                  placeholder: "Enter postal code",
-                  className: !formData.postal_code ? "error" : ""
+                children: "Province"
+              }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)(antd__WEBPACK_IMPORTED_MODULE_4__["default"], {
+                value: formData.province,
+                onChange: function onChange(value) {
+                  return handleSelectChange(value, "province");
+                },
+                style: {
+                  width: '100%'
+                },
+                disabled: provinceOptions.length <= 1,
+                children: provinceOptions.map(function (province) {
+                  return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)(Option, {
+                    value: province,
+                    children: province
+                  }, province);
                 })
               })]
-            }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("div", {
-              className: "form-group full-width",
-              children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)("label", {
-                className: "checkbox-label",
-                children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("input", {
-                  type: "checkbox",
-                  disabled: addresses.length === 0 || (editingAddress === null || editingAddress === void 0 ? void 0 : editingAddress.is_default) === 1,
-                  checked: formData.is_default,
-                  onChange: function onChange(e) {
-                    return setFormData(function (prev) {
-                      return _objectSpread(_objectSpread({}, prev), {}, {
-                        is_default: e.target.checked
-                      });
-                    });
-                  }
-                }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("span", {
-                  className: "checkmark"
-                }), "Set as default shipping address"]
-              })
-            })]
-          })
-        })
-      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)(CustomModal, {
+            })
+          })]
+        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)(antd__WEBPACK_IMPORTED_MODULE_6__["default"], {
+          gutter: 16,
+          children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)(antd__WEBPACK_IMPORTED_MODULE_7__["default"], {
+            span: 12,
+            children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)("div", {
+              style: {
+                marginBottom: 16
+              },
+              children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("label", {
+                children: "City"
+              }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)(antd__WEBPACK_IMPORTED_MODULE_4__["default"], {
+                value: formData.city || undefined,
+                onChange: function onChange(value) {
+                  return handleSelectChange(value, "city");
+                },
+                placeholder: "Select city",
+                status: !formData.city ? "error" : "",
+                style: {
+                  width: '100%'
+                },
+                children: cityOptions.map(function (city) {
+                  return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)(Option, {
+                    value: city,
+                    children: city
+                  }, city);
+                })
+              })]
+            })
+          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)(antd__WEBPACK_IMPORTED_MODULE_7__["default"], {
+            span: 12,
+            children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)("div", {
+              style: {
+                marginBottom: 16
+              },
+              children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("label", {
+                children: "Barangay"
+              }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)(antd__WEBPACK_IMPORTED_MODULE_17__["default"], {
+                name: "barangay",
+                value: formData.barangay,
+                onChange: handleChange,
+                placeholder: "Enter barangay",
+                status: !formData.barangay ? "error" : ""
+              })]
+            })
+          })]
+        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)(antd__WEBPACK_IMPORTED_MODULE_6__["default"], {
+          gutter: 16,
+          children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)(antd__WEBPACK_IMPORTED_MODULE_7__["default"], {
+            span: 12,
+            children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)("div", {
+              style: {
+                marginBottom: 16
+              },
+              children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("label", {
+                children: "Street Address"
+              }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)(antd__WEBPACK_IMPORTED_MODULE_17__["default"], {
+                name: "street",
+                value: formData.street,
+                onChange: handleChange,
+                placeholder: "123 Main Street",
+                status: !formData.street ? "error" : ""
+              })]
+            })
+          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)(antd__WEBPACK_IMPORTED_MODULE_7__["default"], {
+            span: 12,
+            children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)("div", {
+              style: {
+                marginBottom: 16
+              },
+              children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("label", {
+                children: "House Number"
+              }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)(antd__WEBPACK_IMPORTED_MODULE_17__["default"], {
+                name: "house_number",
+                value: formData.house_number,
+                onChange: handleChange,
+                placeholder: "Enter house number",
+                status: !formData.house_number ? "error" : ""
+              })]
+            })
+          })]
+        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)(antd__WEBPACK_IMPORTED_MODULE_18__["default"], {
+          disabled: addresses.length === 0 || (editingAddress === null || editingAddress === void 0 ? void 0 : editingAddress.is_default) === 1,
+          checked: formData.is_default,
+          onChange: function onChange(e) {
+            return setFormData(function (prev) {
+              return _objectSpread(_objectSpread({}, prev), {}, {
+                is_default: e.target.checked
+              });
+            });
+          },
+          children: "Set as default shipping address"
+        })]
+      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)(antd__WEBPACK_IMPORTED_MODULE_16__["default"], {
         title: "Archived Addresses",
         visible: isArchiveModalVisible,
         onCancel: function onCancel() {
           return setIsArchiveModalVisible(false);
         },
-        type: "archive",
-        children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("div", {
-          className: "archive-content",
-          children: archivedAddresses.length === 0 ? /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("p", {
-            className: "empty-archive",
+        footer: null,
+        width: 700,
+        className: "archive-modal",
+        children: archivedAddresses.length === 0 ? /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("div", {
+          style: {
+            textAlign: 'center',
+            padding: '20px 0'
+          },
+          children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("p", {
             children: "No archived addresses found"
-          }) : currentArchivedAddresses.map(function (addr) {
-            return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)("div", {
-              className: "archive-item",
-              children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)("div", {
-                className: "archive-details",
-                children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)("p", {
-                  children: [addr.receiver_fullname && "".concat(addr.receiver_fullname, " - "), addr.contact_number && "(".concat(addr.contact_number, ")"), " ", /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("br", {}), addr.house_number ? "".concat(addr.house_number, ", ") : "", addr.street, ", ", addr.barangay, ", ", addr.city]
-                }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)("p", {
-                  children: [addr.region, ", ", addr.state, ", ", addr.country, ", ", addr.postal_code]
-                })]
-              }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("button", {
-                className: "restore-button",
-                onClick: function onClick() {
-                  return restoreAddress(addr.id);
-                },
-                children: "Restore"
-              })]
-            }, addr.id);
           })
-        }), archivedTotalPages > 1 && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("div", {
-          className: "archive-pagination",
-          children: Array.from({
-            length: archivedTotalPages
-          }, function (_, i) {
-            return i + 1;
-          }).map(function (page) {
-            return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("button", {
-              className: "archive-page-button ".concat(page === archivedCurrentPage ? "active" : ""),
-              onClick: function onClick() {
+        }) : /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.Fragment, {
+          children: [currentArchivedAddresses.map(function (addr) {
+            return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)(antd__WEBPACK_IMPORTED_MODULE_12__["default"], {
+              style: {
+                marginBottom: 16
+              },
+              bodyStyle: {
+                padding: 16
+              },
+              children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)(antd__WEBPACK_IMPORTED_MODULE_6__["default"], {
+                justify: "space-between",
+                align: "middle",
+                children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)(antd__WEBPACK_IMPORTED_MODULE_7__["default"], {
+                  children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)("p", {
+                    style: {
+                      marginBottom: 4
+                    },
+                    children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("strong", {
+                      children: addr.receiver_fullname
+                    }), " - ", addr.contact_number]
+                  }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)("p", {
+                    style: {
+                      marginBottom: 0
+                    },
+                    children: [addr.house_number, ", ", addr.street, ", ", addr.barangay, ", ", addr.city]
+                  }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)("p", {
+                    style: {
+                      marginBottom: 0
+                    },
+                    children: [addr.province, ", ", addr.country]
+                  })]
+                }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)(antd__WEBPACK_IMPORTED_MODULE_7__["default"], {
+                  children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)(antd__WEBPACK_IMPORTED_MODULE_8__["default"], {
+                    type: "primary",
+                    onClick: function onClick() {
+                      return restoreAddress(addr.id);
+                    },
+                    className: "restore-button",
+                    children: "Restore"
+                  })
+                })]
+              })
+            }, addr.id);
+          }), archivedTotalPages > 1 && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("div", {
+            style: {
+              textAlign: 'center',
+              marginTop: 20
+            },
+            children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)(antd__WEBPACK_IMPORTED_MODULE_15__["default"], {
+              current: archivedCurrentPage,
+              total: archivedAddresses.length,
+              pageSize: archivedAddressesPerPage,
+              onChange: function onChange(page) {
                 return setArchivedCurrentPage(page);
               },
-              children: page
-            }, page);
-          })
-        })]
+              showSizeChanger: false
+            })
+          })]
+        })
       })]
     })
   });
@@ -83715,8 +83760,9 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _ProfileMain__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./ProfileMain */ "./resources/js/components/Profile/ProfileMain.js");
 /* harmony import */ var antd__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! antd */ "./node_modules/antd/es/form/index.js");
 /* harmony import */ var antd__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! antd */ "./node_modules/antd/es/message/index.js");
-/* harmony import */ var antd__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! antd */ "./node_modules/antd/es/input/index.js");
-/* harmony import */ var antd__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! antd */ "./node_modules/antd/es/button/index.js");
+/* harmony import */ var antd__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! antd */ "./node_modules/antd/es/card/index.js");
+/* harmony import */ var antd__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! antd */ "./node_modules/antd/es/input/index.js");
+/* harmony import */ var antd__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! antd */ "./node_modules/antd/es/button/index.js");
 /* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
 /* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_2__);
 /* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! react/jsx-runtime */ "./node_modules/react/jsx-runtime.js");
@@ -83799,88 +83845,117 @@ var ChangePassword = function ChangePassword() {
     };
   }();
   return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)(_ProfileMain__WEBPACK_IMPORTED_MODULE_1__["default"], {
-    children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)("div", {
+    children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("div", {
       className: "change-password-content",
-      children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("h2", {
-        className: "password-title",
-        children: "Change Password"
-      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("div", {
-        className: "title-divider"
-      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)(antd__WEBPACK_IMPORTED_MODULE_4__["default"], {
-        form: form,
-        layout: "vertical",
-        onFinish: onFinish,
-        children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)(antd__WEBPACK_IMPORTED_MODULE_4__["default"].Item, {
-          label: "Old Password",
-          name: "currentPassword",
-          rules: [{
-            required: true,
-            message: "Please input your current password!"
-          }],
-          children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)(antd__WEBPACK_IMPORTED_MODULE_6__["default"].Password, {
-            placeholder: "Current Password",
-            disabled: loading
-          })
-        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)(antd__WEBPACK_IMPORTED_MODULE_4__["default"].Item, {
-          label: "New Password",
-          name: "newPassword",
-          rules: [{
-            required: true,
-            message: "Please input your new password!"
-          }, {
-            min: 8,
-            message: "Password must be at least 8 characters"
-          }, {
-            pattern: /[A-Z]/,
-            message: "At least one uppercase letter"
-          }, {
-            pattern: /[a-z]/,
-            message: "At least one lowercase letter"
-          }, {
-            pattern: /[0-9]/,
-            message: "At least one number"
-          }],
-          children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)(antd__WEBPACK_IMPORTED_MODULE_6__["default"].Password, {
-            placeholder: "New Password",
-            disabled: loading
-          })
-        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)(antd__WEBPACK_IMPORTED_MODULE_4__["default"].Item, {
-          label: "Confirm Password",
-          name: "confirmNewPassword",
-          dependencies: ["newPassword"],
-          rules: [{
-            required: true,
-            message: "Please confirm your new password!"
-          }, function (_ref2) {
-            var getFieldValue = _ref2.getFieldValue;
-            return {
-              validator: function validator(_, value) {
-                if (!value || getFieldValue("newPassword") === value) {
-                  return Promise.resolve();
+      children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)(antd__WEBPACK_IMPORTED_MODULE_6__["default"], {
+        bordered: false,
+        children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("h2", {
+          className: "text-2xl font-bold mb-4",
+          children: "Change Password"
+        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("div", {
+          className: "border-b border-gray-200 mb-6"
+        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)(antd__WEBPACK_IMPORTED_MODULE_4__["default"], {
+          form: form,
+          layout: "vertical",
+          onFinish: onFinish,
+          children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)(antd__WEBPACK_IMPORTED_MODULE_4__["default"].Item, {
+            label: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)("span", {
+              children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("span", {
+                style: {
+                  color: '#ff4d4f',
+                  marginRight: '4px'
+                },
+                children: "*"
+              }), " Old Password"]
+            }),
+            name: "currentPassword",
+            rules: [{
+              required: true,
+              message: "Please input your current password!"
+            }],
+            children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)(antd__WEBPACK_IMPORTED_MODULE_7__["default"].Password, {
+              placeholder: "Current Password",
+              disabled: loading
+            })
+          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)(antd__WEBPACK_IMPORTED_MODULE_4__["default"].Item, {
+            label: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)("span", {
+              children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("span", {
+                style: {
+                  color: '#ff4d4f',
+                  marginRight: '4px'
+                },
+                children: "*"
+              }), " New Password"]
+            }),
+            name: "newPassword",
+            rules: [{
+              required: true,
+              message: "Please input your new password!"
+            }, {
+              min: 8,
+              message: "Password must be at least 8 characters"
+            }, {
+              pattern: /[A-Z]/,
+              message: "At least one uppercase letter"
+            }, {
+              pattern: /[a-z]/,
+              message: "At least one lowercase letter"
+            }, {
+              pattern: /[0-9]/,
+              message: "At least one number"
+            }],
+            children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)(antd__WEBPACK_IMPORTED_MODULE_7__["default"].Password, {
+              placeholder: "New Password",
+              disabled: loading
+            })
+          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)(antd__WEBPACK_IMPORTED_MODULE_4__["default"].Item, {
+            label: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)("span", {
+              children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("span", {
+                style: {
+                  color: '#ff4d4f',
+                  marginRight: '4px'
+                },
+                children: "*"
+              }), " Confirm Password"]
+            }),
+            name: "confirmNewPassword",
+            dependencies: ["newPassword"],
+            rules: [{
+              required: true,
+              message: "Please confirm your new password!"
+            }, function (_ref2) {
+              var getFieldValue = _ref2.getFieldValue;
+              return {
+                validator: function validator(_, value) {
+                  if (!value || getFieldValue("newPassword") === value) {
+                    return Promise.resolve();
+                  }
+                  return Promise.reject(new Error("Passwords do not match"));
                 }
-                return Promise.reject(new Error("Passwords do not match"));
-              }
-            };
-          }],
-          children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)(antd__WEBPACK_IMPORTED_MODULE_6__["default"].Password, {
-            placeholder: "Confirm New Password",
-            disabled: loading
-          })
-        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)(antd__WEBPACK_IMPORTED_MODULE_4__["default"].Item, {
-          children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)(antd__WEBPACK_IMPORTED_MODULE_7__["default"], {
-            type: "primary",
-            htmlType: "submit",
-            loading: loading,
-            disabled: loading,
-            className: "save-button",
-            style: {
-              backgroundColor: '#ff3b30',
-              borderColor: '#ff0000'
-            },
-            children: loading ? "Changing..." : "Change Password"
-          })
+              };
+            }],
+            children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)(antd__WEBPACK_IMPORTED_MODULE_7__["default"].Password, {
+              placeholder: "Confirm New Password",
+              disabled: loading
+            })
+          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)(antd__WEBPACK_IMPORTED_MODULE_4__["default"].Item, {
+            children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)(antd__WEBPACK_IMPORTED_MODULE_8__["default"], {
+              type: "primary",
+              htmlType: "submit",
+              loading: loading,
+              disabled: loading,
+              style: {
+                backgroundColor: '#ff6347',
+                borderColor: '#ff6347',
+                width: '100%',
+                height: '40px',
+                borderRadius: '6px'
+              },
+              children: "Change Password"
+            })
+          })]
         })]
-      })]
+      })
     })
   });
 };
@@ -85001,16 +85076,15 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ });
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var antd__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! antd */ "./node_modules/antd/es/avatar/index.js");
-/* harmony import */ var antd__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! antd */ "./node_modules/antd/es/menu/index.js");
+/* harmony import */ var antd__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! antd */ "./node_modules/antd/es/avatar/index.js");
+/* harmony import */ var antd__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! antd */ "./node_modules/antd/es/menu/index.js");
 /* harmony import */ var _ant_design_icons__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @ant-design/icons */ "./node_modules/@ant-design/icons/es/icons/SettingOutlined.js");
 /* harmony import */ var _ant_design_icons__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! @ant-design/icons */ "./node_modules/@ant-design/icons/es/icons/DownOutlined.js");
 /* harmony import */ var _ant_design_icons__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! @ant-design/icons */ "./node_modules/@ant-design/icons/es/icons/UserOutlined.js");
 /* harmony import */ var _ant_design_icons__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! @ant-design/icons */ "./node_modules/@ant-design/icons/es/icons/LockOutlined.js");
 /* harmony import */ var _ant_design_icons__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! @ant-design/icons */ "./node_modules/@ant-design/icons/es/icons/HomeOutlined.js");
 /* harmony import */ var _ant_design_icons__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! @ant-design/icons */ "./node_modules/@ant-design/icons/es/icons/FileOutlined.js");
-/* harmony import */ var _ant_design_icons__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! @ant-design/icons */ "./node_modules/@ant-design/icons/es/icons/QuestionCircleOutlined.js");
-/* harmony import */ var _ant_design_icons__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! @ant-design/icons */ "./node_modules/@ant-design/icons/es/icons/LogoutOutlined.js");
+/* harmony import */ var _ant_design_icons__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! @ant-design/icons */ "./node_modules/@ant-design/icons/es/icons/LogoutOutlined.js");
 /* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router/dist/development/chunk-K6AXKMTT.mjs");
 /* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react/jsx-runtime */ "./node_modules/react/jsx-runtime.js");
 function _slicedToArray(r, e) { return _arrayWithHoles(r) || _iterableToArrayLimit(r, e) || _unsupportedIterableToArray(r, e) || _nonIterableRest(); }
@@ -85090,15 +85164,8 @@ function ProfileSidebar(_ref) {
       children: "Purchases"
     })
   }, {
-    key: "faq",
-    icon: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_ant_design_icons__WEBPACK_IMPORTED_MODULE_9__["default"], {}),
-    label: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(react_router_dom__WEBPACK_IMPORTED_MODULE_2__.Link, {
-      to: "/faq",
-      children: "FAQ"
-    })
-  }, {
     key: "logout",
-    icon: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_ant_design_icons__WEBPACK_IMPORTED_MODULE_10__["default"], {}),
+    icon: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_ant_design_icons__WEBPACK_IMPORTED_MODULE_9__["default"], {}),
     label: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(react_router_dom__WEBPACK_IMPORTED_MODULE_2__.Link, {
       to: "/logout",
       children: "Logout"
@@ -85109,7 +85176,7 @@ function ProfileSidebar(_ref) {
     className: "profile-sidebar",
     children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)("div", {
       className: "avatar-section",
-      children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(antd__WEBPACK_IMPORTED_MODULE_11__["default"], {
+      children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(antd__WEBPACK_IMPORTED_MODULE_10__["default"], {
         size: 80,
         src: profileData !== null && profileData !== void 0 && profileData.profile_image ? "http://127.0.0.1:8000/storage/".concat(profileData.profile_image) : null,
         icon: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_ant_design_icons__WEBPACK_IMPORTED_MODULE_5__["default"], {})
@@ -85117,7 +85184,7 @@ function ProfileSidebar(_ref) {
         className: "user-fullname",
         children: profileData ? "".concat(profileData.first_name, " ").concat(profileData.middle_name || "", " ").concat(profileData.last_name) : "User Name"
       })]
-    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(antd__WEBPACK_IMPORTED_MODULE_12__["default"], {
+    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(antd__WEBPACK_IMPORTED_MODULE_11__["default"], {
       mode: "inline",
       openKeys: openKeys,
       onOpenChange: handleOpenChange,
@@ -86409,7 +86476,7 @@ var Footer = function Footer() {
         }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)("p", {
           children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_ant_design_icons__WEBPACK_IMPORTED_MODULE_6__["default"], {
             className: "footer-icon"
-          }), " 123 Oak Street, Butuan City"]
+          }), " 123 Brgy. Sikatuna, Butuan City"]
         })]
       }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)("div", {
         className: "footer-section",
@@ -87139,12 +87206,12 @@ var Checkout = function Checkout() {
       id: null,
       receiver_fullname: "",
       contact_number: "",
-      country: "",
-      region: "",
-      state: "",
+      country: "Philippines",
+      // Default value based on your schema
+      province: "Agusan Del Norte",
+      // Default value based on your schema
       city: "",
       barangay: "",
-      postalCode: "",
       street: "",
       house_number: "",
       is_default: false
@@ -87152,6 +87219,11 @@ var Checkout = function Checkout() {
     _useState2 = _slicedToArray(_useState, 2),
     address = _useState2[0],
     setAddress = _useState2[1];
+
+  // Predefined lists for dropdown menus based on your schema
+  var countryOptions = ["Philippines"];
+  var provinceOptions = ["Agusan Del Norte"];
+  var cityOptions = ["Davao City", "Digos City", "Tagum City"];
   var _useState3 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(false),
     _useState4 = _slicedToArray(_useState3, 2),
     isEditing = _useState4[0],
@@ -87236,12 +87308,10 @@ var Checkout = function Checkout() {
                   id: defaultAddress.id,
                   receiver_fullname: defaultAddress.receiver_fullname || "",
                   contact_number: defaultAddress.contact_number || "",
-                  country: defaultAddress.country || "",
-                  region: defaultAddress.region || "",
-                  state: defaultAddress.state || "",
+                  country: defaultAddress.country || "Philippines",
+                  province: defaultAddress.province || "Agusan Del Norte",
                   city: defaultAddress.city || "",
                   barangay: defaultAddress.barangay || "",
-                  postalCode: defaultAddress.postal_code || "",
                   street: defaultAddress.street || "",
                   house_number: defaultAddress.house_number || "",
                   is_default: defaultAddress.is_default === 1
@@ -87252,12 +87322,12 @@ var Checkout = function Checkout() {
                   id: null,
                   receiver_fullname: "",
                   contact_number: "",
-                  country: "",
-                  region: "",
-                  state: "",
+                  country: "Philippines",
+                  // Default for new address
+                  province: "Agusan Del Norte",
+                  // Default for new address
                   city: "",
                   barangay: "",
-                  postalCode: "",
                   street: "",
                   house_number: "",
                   is_default: false
@@ -87345,10 +87415,8 @@ var Checkout = function Checkout() {
               street: address.street,
               barangay: address.barangay,
               city: address.city,
-              state: address.state,
               country: address.country,
-              region: address.region,
-              postal_code: address.postalCode
+              province: address.province
             };
             if (address.id) {
               addressData.is_default = address.is_default ? 1 : 0;
@@ -87493,7 +87561,7 @@ var Checkout = function Checkout() {
                     children: "Shipping"
                   })
                 }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("td", {
-                  children: "PHP 70.00"
+                  children: "PHP 150.00"
                 })]
               }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)("tr", {
                 children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("td", {
@@ -87501,7 +87569,7 @@ var Checkout = function Checkout() {
                     children: "Grand Total"
                   })
                 }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)("td", {
-                  children: ["PHP ", (numericTotalPrice + 70).toFixed(2)]
+                  children: ["PHP ", (numericTotalPrice + 150).toFixed(2)]
                 })]
               })]
             })
@@ -87546,33 +87614,92 @@ var Checkout = function Checkout() {
             }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)("div", {
               className: "form-field required",
               children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)("label", {
-                children: ["House Number ", /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("span", {
+                children: ["Country ", /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("span", {
                   className: "required-star",
                   children: "*"
                 })]
-              }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("input", {
-                type: "text",
-                name: "house_number",
-                value: address.house_number,
+              }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("select", {
+                name: "country",
+                value: address.country,
                 onChange: handleChange,
                 disabled: !isEditing,
                 required: true,
-                placeholder: "Enter house/unit number"
+                className: "form-select",
+                style: {
+                  width: '100%',
+                  padding: '8px 12px',
+                  borderRadius: '4px',
+                  border: '1px solid #ddd',
+                  height: '40px',
+                  backgroundColor: isEditing ? '#fff' : '#f9f9f9'
+                },
+                children: countryOptions.map(function (country, index) {
+                  return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("option", {
+                    value: country,
+                    children: country
+                  }, index);
+                })
               })]
             }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)("div", {
               className: "form-field required",
               children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)("label", {
-                children: ["Street ", /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("span", {
+                children: ["Province ", /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("span", {
                   className: "required-star",
                   children: "*"
                 })]
-              }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("input", {
-                type: "text",
-                name: "street",
-                value: address.street,
+              }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("select", {
+                name: "province",
+                value: address.province,
                 onChange: handleChange,
                 disabled: !isEditing,
-                required: true
+                required: true,
+                className: "form-select",
+                style: {
+                  width: '100%',
+                  padding: '8px 12px',
+                  borderRadius: '4px',
+                  border: '1px solid #ddd',
+                  height: '40px',
+                  backgroundColor: isEditing ? '#fff' : '#f9f9f9'
+                },
+                children: provinceOptions.map(function (province, index) {
+                  return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("option", {
+                    value: province,
+                    children: province
+                  }, index);
+                })
+              })]
+            }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)("div", {
+              className: "form-field required",
+              children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)("label", {
+                children: ["City ", /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("span", {
+                  className: "required-star",
+                  children: "*"
+                })]
+              }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)("select", {
+                name: "city",
+                value: address.city,
+                onChange: handleChange,
+                disabled: !isEditing,
+                required: true,
+                className: "form-select",
+                style: {
+                  width: '100%',
+                  padding: '8px 12px',
+                  borderRadius: '4px',
+                  border: '1px solid #ddd',
+                  height: '40px',
+                  backgroundColor: isEditing ? '#fff' : '#f9f9f9'
+                },
+                children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("option", {
+                  value: "",
+                  children: "Select a city"
+                }), cityOptions.map(function (city, index) {
+                  return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("option", {
+                    value: city,
+                    children: city
+                  }, index);
+                })]
               })]
             }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)("div", {
               className: "form-field required",
@@ -87587,66 +87714,40 @@ var Checkout = function Checkout() {
                 value: address.barangay,
                 onChange: handleChange,
                 disabled: !isEditing,
-                required: true
+                required: true,
+                placeholder: "Enter barangay"
               })]
             }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)("div", {
               className: "form-field required",
               children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)("label", {
-                children: ["City ", /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("span", {
+                children: ["Street ", /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("span", {
                   className: "required-star",
                   children: "*"
                 })]
               }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("input", {
                 type: "text",
-                name: "city",
-                value: address.city,
+                name: "street",
+                value: address.street,
                 onChange: handleChange,
                 disabled: !isEditing,
-                required: true
+                required: true,
+                placeholder: "Enter street name"
               })]
             }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)("div", {
-              className: "form-field",
-              children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("label", {
-                children: "Region"
+              className: "form-field required",
+              children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)("label", {
+                children: ["House Number ", /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("span", {
+                  className: "required-star",
+                  children: "*"
+                })]
               }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("input", {
                 type: "text",
-                name: "region",
-                value: address.region,
+                name: "house_number",
+                value: address.house_number,
                 onChange: handleChange,
-                disabled: !isEditing
-              })]
-            }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)("div", {
-              className: "form-field",
-              children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("label", {
-                children: "State"
-              }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("input", {
-                type: "text",
-                name: "state",
-                value: address.state,
-                onChange: handleChange,
-                disabled: !isEditing
-              })]
-            }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)("div", {
-              className: "form-field",
-              children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("label", {
-                children: "Country"
-              }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("input", {
-                type: "text",
-                name: "country",
-                value: address.country,
-                onChange: handleChange,
-                disabled: !isEditing
-              })]
-            }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)("div", {
-              className: "form-field",
-              children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("label", {
-                children: "Postal Code"
-              }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("input", {
-                type: "text",
-                name: "postalCode",
-                value: address.postalCode,
-                onChange: handleChange,
-                disabled: !isEditing
+                disabled: !isEditing,
+                required: true,
+                placeholder: "Enter house/unit number"
               })]
             })]
           }), !isEditing ? /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("button", {
@@ -87864,11 +87965,11 @@ var Confirmation = function Confirmation() {
           }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxs)("p", {
             children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("strong", {
               children: "Shipping Cost:"
-            }), " PHP70.00"]
+            }), " PHP150.00"]
           }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxs)("p", {
             children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("strong", {
               children: "Grand Total:"
-            }), " PHP", (totalPrice + 70).toFixed(2)]
+            }), " PHP", (totalPrice + 150).toFixed(2)]
           }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxs)("p", {
             children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("strong", {
               children: "Payment Method:"
@@ -87901,12 +88002,14 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
 /* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_2__);
 /* harmony import */ var _ant_design_icons__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! @ant-design/icons */ "./node_modules/@ant-design/icons/es/icons/CheckCircleOutlined.js");
-/* harmony import */ var _ant_design_icons__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! @ant-design/icons */ "./node_modules/@ant-design/icons/es/icons/ShoppingCartOutlined.js");
-/* harmony import */ var _ant_design_icons__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! @ant-design/icons */ "./node_modules/@ant-design/icons/es/icons/CreditCardOutlined.js");
-/* harmony import */ var _ant_design_icons__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! @ant-design/icons */ "./node_modules/@ant-design/icons/es/icons/PayCircleOutlined.js");
-/* harmony import */ var _ant_design_icons__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(/*! @ant-design/icons */ "./node_modules/@ant-design/icons/es/icons/MobileOutlined.js");
-/* harmony import */ var _ant_design_icons__WEBPACK_IMPORTED_MODULE_14__ = __webpack_require__(/*! @ant-design/icons */ "./node_modules/@ant-design/icons/es/icons/ShoppingOutlined.js");
+/* harmony import */ var _ant_design_icons__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! @ant-design/icons */ "./node_modules/@ant-design/icons/es/icons/ArrowLeftOutlined.js");
+/* harmony import */ var _ant_design_icons__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! @ant-design/icons */ "./node_modules/@ant-design/icons/es/icons/ShoppingCartOutlined.js");
+/* harmony import */ var _ant_design_icons__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(/*! @ant-design/icons */ "./node_modules/@ant-design/icons/es/icons/CreditCardOutlined.js");
+/* harmony import */ var _ant_design_icons__WEBPACK_IMPORTED_MODULE_14__ = __webpack_require__(/*! @ant-design/icons */ "./node_modules/@ant-design/icons/es/icons/PayCircleOutlined.js");
+/* harmony import */ var _ant_design_icons__WEBPACK_IMPORTED_MODULE_15__ = __webpack_require__(/*! @ant-design/icons */ "./node_modules/@ant-design/icons/es/icons/MobileOutlined.js");
+/* harmony import */ var _ant_design_icons__WEBPACK_IMPORTED_MODULE_16__ = __webpack_require__(/*! @ant-design/icons */ "./node_modules/@ant-design/icons/es/icons/ShoppingOutlined.js");
 /* harmony import */ var antd__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! antd */ "./node_modules/antd/es/notification/index.js");
+/* harmony import */ var antd__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! antd */ "./node_modules/antd/es/button/index.js");
 /* harmony import */ var _PaymentMethods_PaypalPayment__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../PaymentMethods/PaypalPayment */ "./resources/js/components/PaymentMethods/PaypalPayment.js");
 /* harmony import */ var _PaymentMethods_GcashPayment__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../PaymentMethods/GcashPayment */ "./resources/js/components/PaymentMethods/GcashPayment.js");
 /* harmony import */ var _PaymentMethods_CODPayment__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../PaymentMethods/CODPayment */ "./resources/js/components/PaymentMethods/CODPayment.js");
@@ -88219,7 +88322,7 @@ var Payment = function Payment() {
                   brand: item.brand
                 };
               }),
-              totalPrice: totalPrice + 70,
+              totalPrice: totalPrice + 150,
               paymentMethod: details.method,
               shippingAddress: buildShippingAddressString(address),
               paymentId: paymentId
@@ -88249,7 +88352,7 @@ var Payment = function Payment() {
                 purchaseDate: orderData.purchaseDate,
                 address: address,
                 selectedItems: selectedItems,
-                totalPrice: totalPrice + 70,
+                totalPrice: totalPrice + 150,
                 paymentMethod: details.method
               }
             });
@@ -88333,8 +88436,8 @@ var Payment = function Payment() {
               payment_id: orderData.paymentId,
               address_id: address.id ? address.id : null,
               subtotal: totalPrice,
-              shipping_cost: 70,
-              total_amount: totalPrice + 70,
+              shipping_cost: 150,
+              total_amount: totalPrice + 150,
               status: "pending",
               payment_status: paymentStatus,
               // Add payment status field
@@ -88394,14 +88497,26 @@ var Payment = function Payment() {
     setIsPaypalVisible(method === "Paypal");
     setIsGcashModalVisible(method === "Gcash");
   };
+
+  // Handler for back button
+  var handleGoBack = function handleGoBack() {
+    navigate(-1); // Navigate to the previous page in history
+  };
   return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)(_Reusable_MainPage__WEBPACK_IMPORTED_MODULE_1__["default"], {
     children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsxs)("div", {
       className: "payment-container",
-      children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsxs)("div", {
+      children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)(antd__WEBPACK_IMPORTED_MODULE_10__["default"], {
+        icon: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)(_ant_design_icons__WEBPACK_IMPORTED_MODULE_11__["default"], {}),
+        onClick: handleGoBack,
+        style: {
+          marginBottom: "20px"
+        },
+        children: "Back"
+      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsxs)("div", {
         className: "progress-bar",
         children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsxs)("div", {
           className: "step",
-          children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)(_ant_design_icons__WEBPACK_IMPORTED_MODULE_10__["default"], {
+          children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)(_ant_design_icons__WEBPACK_IMPORTED_MODULE_12__["default"], {
             style: {
               fontSize: "24px",
               marginBottom: "8px"
@@ -88413,7 +88528,7 @@ var Payment = function Payment() {
           className: "line"
         }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsxs)("div", {
           className: "step active",
-          children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)(_ant_design_icons__WEBPACK_IMPORTED_MODULE_11__["default"], {
+          children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)(_ant_design_icons__WEBPACK_IMPORTED_MODULE_13__["default"], {
             style: {
               fontSize: "24px",
               marginBottom: "8px"
@@ -88482,7 +88597,7 @@ var Payment = function Payment() {
             children: "Shipping Cost"
           }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("span", {
             className: "price",
-            children: "PHP 70.00"
+            children: "PHP 150.00"
           })]
         }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("hr", {}), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsxs)("div", {
           className: "price-row",
@@ -88491,7 +88606,7 @@ var Payment = function Payment() {
             children: "Grand Total"
           }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsxs)("span", {
             className: "price",
-            children: ["PHP ", (totalPrice + 70).toFixed(2)]
+            children: ["PHP ", (totalPrice + 150).toFixed(2)]
           })]
         })]
       }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("h3", {
@@ -88504,21 +88619,21 @@ var Payment = function Payment() {
             name: "payment",
             value: "Paypal",
             onChange: handlePaymentMethodChange
-          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)(_ant_design_icons__WEBPACK_IMPORTED_MODULE_12__["default"], {}), " Paypal"]
+          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)(_ant_design_icons__WEBPACK_IMPORTED_MODULE_14__["default"], {}), " Paypal"]
         }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsxs)("label", {
           children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("input", {
             type: "radio",
             name: "payment",
             value: "Gcash",
             onChange: handlePaymentMethodChange
-          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)(_ant_design_icons__WEBPACK_IMPORTED_MODULE_13__["default"], {}), " Gcash"]
+          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)(_ant_design_icons__WEBPACK_IMPORTED_MODULE_15__["default"], {}), " Gcash"]
         }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsxs)("label", {
           children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("input", {
             type: "radio",
             name: "payment",
             value: "COD",
             onChange: handlePaymentMethodChange
-          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)(_ant_design_icons__WEBPACK_IMPORTED_MODULE_14__["default"], {}), " Cash On Delivery"]
+          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)(_ant_design_icons__WEBPACK_IMPORTED_MODULE_16__["default"], {}), " Cash On Delivery"]
         })]
       }), renderPaymentForm()]
     })

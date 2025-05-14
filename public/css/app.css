@@ -15477,10 +15477,11 @@ a {
 }
 
 .profile-content {
-  background-color: #1f1f1f;
-  color: #fff;
+  background-color: #ffffff;
+  color: #333333;
   padding: 20px;
   border-radius: 8px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
 }
 .profile-content .profile-header {
   display: flex;
@@ -15491,8 +15492,9 @@ a {
   margin-right: 15px;
 }
 .profile-content .profile-header .profile-name {
-  color: #fff;
+  color: #333333;
   margin: 0;
+  font-weight: 600;
 }
 .profile-content .profile-header .photo-actions {
   margin-top: 10px;
@@ -15500,37 +15502,48 @@ a {
 .profile-content .profile-header .photo-actions .upload-button {
   background-color: #ff3b30;
   border: none;
+  color: white;
 }
 .profile-content .profile-header .photo-actions .remove-button {
   color: #ff3b30;
   margin-left: 8px;
+  background: none;
+  border: none;
+  cursor: pointer;
 }
 .profile-content .profile-form {
   width: 100%;
 }
 .profile-content .profile-form .form-input {
-  background-color: #2a2a2a;
-  color: #fff;
-  border: none;
+  background-color: #f5f5f5;
+  color: #333333;
+  border: 1px solid #545252;
   border-radius: 4px;
   height: 40px;
   margin-bottom: 10px;
+  padding: 0 12px;
 }
 .profile-content .profile-form .form-input::-moz-placeholder {
-  color: #aaa;
+  color: #888;
 }
 .profile-content .profile-form .form-input::placeholder {
-  color: #aaa;
+  color: #888;
 }
 .profile-content .profile-form .form-input:disabled {
-  background-color: #494747;
-  color: #ffffff;
+  background-color: #f0f0f0;
+  color: #474646;
+}
+.profile-content .profile-form .form-input:focus {
+  border-color: #ff3b30;
+  box-shadow: 0 0 0 2px rgba(255, 59, 48, 0.2);
+  outline: none;
 }
 .profile-content .profile-form .gender-radio {
-  color: #fff;
+  color: #333333;
+  margin-bottom: 15px;
 }
 .profile-content .profile-form .gender-radio .ant-radio-wrapper {
-  color: #fff;
+  color: #333333;
 }
 .profile-content .profile-form .gender-radio .ant-radio-wrapper:hover .ant-radio-inner {
   border-color: #ff3b30;
@@ -15539,38 +15552,58 @@ a {
   background-color: #ff3b30;
   border-color: #ff3b30;
 }
+.profile-content .profile-form .form-actions {
+  margin-top: 20px;
+}
 .profile-content .profile-form .form-actions .edit-profile-btn {
   background-color: #ff3b30;
+  color: white;
   border: none;
   border-radius: 4px;
   width: 100%;
   height: 40px;
+  font-weight: 500;
+  transition: background-color 0.2s;
+}
+.profile-content .profile-form .form-actions .edit-profile-btn:hover {
+  background-color: #e0352b;
 }
 .profile-content .profile-form .form-actions .action-buttons {
   display: flex;
   gap: 10px;
+  margin-top: 15px;
 }
 .profile-content .profile-form .form-actions .action-buttons .cancel-btn {
-  background-color: #2a2a2a;
-  color: #fff;
-  border: none;
+  background-color: #f5f5f5;
+  color: #333333;
+  border: 1px solid #e0e0e0;
   flex: 1;
   border-radius: 4px;
   height: 40px;
+  transition: all 0.2s;
+}
+.profile-content .profile-form .form-actions .action-buttons .cancel-btn:hover {
+  background-color: #eaeaea;
 }
 .profile-content .profile-form .form-actions .action-buttons .save-btn {
   background-color: #ff3b30;
+  color: white;
   border: none;
   flex: 1;
   border-radius: 4px;
   height: 40px;
+  font-weight: 500;
+  transition: background-color 0.2s;
+}
+.profile-content .profile-form .form-actions .action-buttons .save-btn:hover {
+  background-color: #e0352b;
 }
 
 .profile-sidebar {
   background-color: #ff3b30;
   padding: 20px;
   border-radius: 8px;
-  min-height: 615px;
+  min-height: 550px;
   height: 100%;
   transition: background-color 0.3s ease;
   display: flex;
@@ -15654,18 +15687,36 @@ a {
 
 /* changePassword.scss */
 .change-password-content {
-  padding: 30px;
-  max-width: 600px;
-  margin: 0 auto;
+  padding: 0;
   height: 100%;
+  /* Card styling */
   /* Title styling */
   /* Divider styling */
   /* Form styling */
   /* Error message styling */
+  /* Eye icon styling */
+}
+.change-password-content .ant-card {
+  height: 100vh;
+  border-radius: 0;
+  box-shadow: none;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  background-color: #f8f9fa;
+}
+.change-password-content .ant-card-body {
+  padding: 40px;
+  flex: 1;
+}
+.change-password-content .ant-card-body {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
 }
 .change-password-content .password-title {
   font-size: 2rem;
-  color: #ffffff;
+  color: #333333;
   margin: 0;
   font-weight: bolder;
   font-family: "Inria Serif", serif;
@@ -15676,16 +15727,21 @@ a {
 }
 .change-password-content .ant-form {
   margin-top: 20px;
+  /* Change Password Button */
 }
 .change-password-content .ant-form .ant-form-item {
   margin-bottom: 24px;
 }
 .change-password-content .ant-form .ant-form-item-label > label {
   font-weight: 600;
-  color: #ffffff;
+  color: #333333;
   font-size: 16px;
   font-family: "Inria Serif", serif;
   height: auto;
+}
+.change-password-content .ant-form .ant-form-item-label > label .required-asterisk {
+  color: #ff4d4f;
+  margin-right: 4px;
 }
 .change-password-content .ant-form .ant-form-item-explain-error {
   color: #ff4d4f;
@@ -15695,7 +15751,7 @@ a {
 .change-password-content .ant-form .ant-input-password {
   border-radius: 6px;
   padding: 8px 12px;
-  border: 1px solid #d9d9d9;
+  border: 1px solid #545252;
   background-color: #fff;
   font-size: 16px;
   transition: all 0.3s;
@@ -15706,19 +15762,48 @@ a {
 .change-password-content .ant-form .ant-input-password-disabled {
   background-color: #f5f5f5;
 }
+.change-password-content .ant-form .ant-btn-primary {
+  background-color: #ff6347;
+  border-color: #ff6347;
+  border-radius: 6px;
+  font-size: 16px;
+  font-weight: 500;
+  height: 40px;
+  width: 100%;
+}
+.change-password-content .ant-form .ant-btn-primary:hover, .change-password-content .ant-form .ant-btn-primary:focus {
+  background-color: #ff7e6b;
+  border-color: #ff7e6b;
+}
+.change-password-content .ant-form .ant-btn-primary:active {
+  background-color: #e05a40;
+  border-color: #e05a40;
+}
 .change-password-content .ant-form-item-has-error .ant-input-password {
   border-color: #ff4d4f;
+}
+.change-password-content .ant-input-password-icon {
+  color: #999;
+}
+.change-password-content .ant-input-password-icon:hover {
+  color: #333;
 }
 
 /* Address Container */
 .address-container {
   padding: 2rem;
   max-width: 1200px;
+  min-height: 100vh;
   margin: 0 auto;
+  background-color: #f8f9fa;
 }
 .address-container .title-divider {
   margin-bottom: 30px;
-  border-top: 1px solid #fff;
+  border-top: 1px solid #e0e0e0;
+}
+.address-container .address-title {
+  color: #333;
+  font-family: "Inria Serif", serif;
 }
 .address-container .address-header {
   display: flex;
@@ -15728,347 +15813,250 @@ a {
 }
 .address-container .address-header h2, .address-container .address-header .h2 {
   font-size: 2rem;
-  color: #ffffff;
+  color: #333;
   margin: 0;
-  font-weight: bolder;
+  font-weight: 600;
   font-family: "Inria Serif", serif;
 }
 .address-container .address-header .header-buttons {
   display: flex;
   gap: 1rem;
 }
-.address-container .address-header .header-buttons button {
+.address-container .address-header .header-buttons .ant-btn {
   display: flex;
   align-items: center;
   gap: 0.5rem;
-  padding: 0.75rem 1.5rem;
-  border: none;
-  border-radius: 6px;
-  cursor: pointer;
-  transition: all 0.3s ease;
+  font-weight: 500;
+  transition: all 0.2s ease;
 }
-.address-container .address-header .header-buttons button.add-button {
-  background: #d84727;
-  color: white;
+.address-container .address-header .header-buttons .ant-btn.ant-btn-primary {
+  background: #ff4d4f;
+  border-color: #ff4d4f;
 }
-.address-container .address-header .header-buttons button.add-button:hover {
-  background: #c23a1d;
+.address-container .address-header .header-buttons .ant-btn.ant-btn-primary:hover {
+  background: #ff7875;
+  border-color: #ff7875;
 }
-.address-container .address-header .header-buttons button.archive-button {
-  background: #666;
-  color: white;
+.address-container .address-header .header-buttons .ant-btn.archive-button {
+  background: #f0f0f0;
+  border-color: #d9d9d9;
+  color: #666;
 }
-.address-container .address-header .header-buttons button.archive-button:hover {
-  background: #555;
+.address-container .address-header .header-buttons .ant-btn.archive-button:hover {
+  color: #333;
+  border-color: #bfbfbf;
 }
 
-/* Address Cards */
-.address-content {
-  display: grid;
-  gap: 1.5rem;
+/* Address Cards Grid */
+.ant-row {
+  margin: 0 -8px !important;
 }
-.address-content .address-card {
-  background: #fff;
+.ant-row .ant-col {
+  padding: 0 8px !important;
+}
+
+.ant-card {
   border-radius: 8px;
-  padding: 1.5rem;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+  margin-bottom: 16px;
+  transition: box-shadow 0.3s ease;
 }
-.address-content .address-card .card-header {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  margin-bottom: 1rem;
+.ant-card:hover {
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.12);
 }
-.address-content .address-card .card-header .card-actions {
-  display: flex;
-  gap: 1rem;
+.ant-card .ant-card-head {
+  border-bottom: 1px solid #f0f0f0;
+  padding: 16px 20px;
 }
-.address-content .address-card .card-header .card-actions svg {
-  cursor: pointer;
+.ant-card .ant-card-head .ant-card-head-title {
+  font-weight: 500;
+  color: #333;
+}
+.ant-card .ant-card-body {
+  padding: 20px;
+}
+.ant-card .ant-card-body p {
+  margin-bottom: 8px;
   color: #666;
-  transition: color 0.3s ease;
 }
-.address-content .address-card .card-header .card-actions svg:hover {
-  color: #d84727;
+.ant-card .ant-card-body p strong {
+  color: #333;
+  font-weight: 500;
 }
-.address-content .address-card .address-details {
-  color: #666;
-  margin-bottom: 1rem;
+.ant-card .ant-card-body p:last-child {
+  margin-bottom: 0;
 }
-.address-content .address-card .default-badge {
-  background: #e6f7ff;
-  color: #1890ff;
-  padding: 0.25rem 0.75rem;
+.ant-card .default-badge {
+  display: inline-block;
+  background: #f6ffed;
+  border: 1px solid #b7eb8f;
+  color: #52c41a;
+  padding: 0 8px;
   border-radius: 4px;
-  font-size: 0.9rem;
-}
-.address-content .address-card .set-default-button {
-  background: none;
-  border: 1px solid #ddd;
-  padding: 0.5rem 1rem;
-  border-radius: 4px;
-  cursor: pointer;
-  transition: all 0.3s ease;
-}
-.address-content .address-card .set-default-button:hover {
-  border-color: #d84727;
-  color: #d84727;
+  font-size: 12px;
+  line-height: 20px;
+  margin-top: 8px;
 }
 
 /* Pagination */
-.pagination-container {
-  display: flex;
-  justify-content: center;
-  gap: 0.5rem;
-  margin-top: 2rem;
-}
-.pagination-container .pagination-button {
-  padding: 0.5rem 1rem;
-  border: 1px solid #ddd;
-  background: white;
-  border-radius: 4px;
-  cursor: pointer;
-  transition: all 0.3s ease;
-}
-.pagination-container .pagination-button.active {
-  background: #1890ff;
-  color: white;
-  border-color: #1890ff;
-}
-.pagination-container .pagination-button:hover:not(.active) {
-  border-color: #d84727;
-  color: #d84727;
-}
-
-/* Custom Modal */
-.custom-modal-overlay {
-  position: fixed;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  background: rgba(0, 0, 0, 0.5);
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  z-index: 1000;
-}
-.custom-modal-overlay .custom-modal {
-  background: white;
-  border-radius: 8px;
-  width: 90%;
-  max-width: 700px;
-}
-.custom-modal-overlay .custom-modal.address-modal .modal-header {
-  background: #fff8f6;
-  border-bottom: 1px solid #ffeae5;
-}
-.custom-modal-overlay .custom-modal.archive-modal {
-  max-width: 600px;
-}
-.custom-modal-overlay .modal-header {
-  padding: 1.5rem;
-  border-bottom: 1px solid #eee;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-}
-.custom-modal-overlay .modal-header h3, .custom-modal-overlay .modal-header .h3 {
-  margin: 0;
-  font-size: 1.5rem;
-}
-.custom-modal-overlay .modal-header .modal-close {
-  background: none;
-  border: none;
-  font-size: 1.5rem;
-  cursor: pointer;
-  color: #666;
-}
-.custom-modal-overlay .modal-header .modal-close:hover {
-  color: #d84727;
-}
-.custom-modal-overlay .modal-body {
-  padding: 1.5rem;
-}
-.custom-modal-overlay .modal-footer {
-  padding: 1.5rem;
-  border-top: 1px solid #eee;
-  display: flex;
-  justify-content: flex-end;
-  gap: 1rem;
-}
-.custom-modal-overlay .modal-footer .btn-cancel,
-.custom-modal-overlay .modal-footer .btn-primary {
-  padding: 0.65rem 1.2rem;
-  border-radius: 4px;
-  border: none;
-  cursor: pointer;
-  transition: background-color 0.3s ease;
-  font-weight: 500;
-}
-.custom-modal-overlay .modal-footer .btn-cancel {
-  background-color: #f0f0f0;
-  color: #333;
-  border: 1px solid #ddd;
-}
-.custom-modal-overlay .modal-footer .btn-cancel:hover {
-  background-color: #e6e6e6;
-}
-.custom-modal-overlay .modal-footer .btn-primary {
-  background-color: #d84727;
-  color: #fff;
-  border: 1px solid #d84727;
-}
-.custom-modal-overlay .modal-footer .btn-primary:hover {
-  background-color: #c23a1d;
-  border-color: #c23a1d;
-}
-
-/* Address Form */
-.address-form .form-grid {
-  display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  gap: 1.5rem;
-}
-.address-form .form-group {
-  margin-bottom: 1rem;
-}
-.address-form .form-group label {
-  display: block;
-  margin-bottom: 0.5rem;
-  font-weight: 500;
-  color: #333;
-}
-.address-form .form-group .input-wrapper {
-  position: relative;
-}
-.address-form .form-group .input-wrapper input {
-  width: 100%;
-  padding: 0.75rem;
-  border: 1px solid #ddd;
-  border-radius: 6px;
-  transition: all 0.3s ease;
-}
-.address-form .form-group .input-wrapper input:focus {
-  border-color: #d84727;
-  box-shadow: 0 0 0 2px rgba(216, 71, 39, 0.1);
-  outline: none;
-}
-.address-form .form-group .input-wrapper input.error {
-  border-color: #ff4d4f;
-  animation: shake 0.5s;
-}
-.address-form .form-group.full-width {
-  grid-column: 1/-1;
-}
-.address-form .form-group .checkbox-label {
-  display: flex;
-  align-items: center;
-  gap: 0.5rem;
-  cursor: pointer;
-}
-.address-form .form-group .checkbox-label input {
-  display: none;
-}
-.address-form .form-group .checkbox-label input:checked + .checkmark {
-  background: #d84727;
-  border-color: #d84727;
-}
-.address-form .form-group .checkbox-label input:checked + .checkmark::after {
-  display: block;
-}
-.address-form .form-group .checkbox-label .checkmark {
-  width: 20px;
-  height: 20px;
-  border: 2px solid #ddd;
-  border-radius: 4px;
-  position: relative;
-}
-.address-form .form-group .checkbox-label .checkmark::after {
-  content: "";
-  position: absolute;
-  left: 5px;
-  top: 1px;
-  width: 5px;
-  height: 10px;
-  border: solid white;
-  border-width: 0 2px 2px 0;
-  transform: rotate(45deg);
-  display: none;
-}
-.address-form .form-note {
-  color: #666;
-  font-size: 0.9rem;
-  margin-top: 1rem;
-  display: flex;
-  align-items: center;
-  gap: 0.5rem;
-}
-
-/* Archive Content */
-.archive-content .empty-archive {
+.ant-pagination {
+  margin-top: 24px;
   text-align: center;
-  color: #666;
-  padding: 2rem;
 }
-.archive-content .archive-item {
-  padding: 1rem;
-  margin-bottom: 1rem;
-  background: #f8f9fa;
-  border-radius: 6px;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
+.ant-pagination .ant-pagination-item {
+  border-radius: 4px;
+  transition: all 0.2s ease;
 }
-.archive-content .archive-item .archive-details p {
-  margin: 0;
+.ant-pagination .ant-pagination-item:hover {
+  border-color: #ff4d4f;
+}
+.ant-pagination .ant-pagination-item:hover a {
+  color: #ff4d4f;
+}
+.ant-pagination .ant-pagination-item-active {
+  border-color: #ff4d4f;
+  background: #ff4d4f;
+}
+.ant-pagination .ant-pagination-item-active a {
+  color: white;
+}
+.ant-pagination .ant-pagination-item-active:hover {
+  border-color: #ff7875;
+  background: #ff7875;
+}
+
+/* Modal Styles */
+.ant-modal .ant-modal-content {
+  border-radius: 8px;
+  overflow: hidden;
+}
+.ant-modal .ant-modal-header {
+  background: #fff;
+  border-bottom: 1px solid #f0f0f0;
+  padding: 16px 24px;
+}
+.ant-modal .ant-modal-header .ant-modal-title {
+  font-size: 18px;
+  font-weight: 500;
   color: #333;
 }
-.archive-content .archive-item .archive-details p:first-child {
+.ant-modal .ant-modal-body {
+  padding: 24px;
+}
+.ant-modal .ant-modal-footer {
+  border-top: 1px solid #f0f0f0;
+  padding: 16px 24px;
+}
+.ant-modal .ant-modal-footer .ant-btn {
+  border-radius: 4px;
+  font-weight: 500;
+  padding: 6px 16px;
+  height: auto;
+}
+.ant-modal .ant-modal-footer .ant-btn:first-child {
+  margin-right: 8px;
+}
+.ant-modal .ant-modal-footer .ant-btn.ant-btn-primary {
+  background: #ff4d4f;
+  border-color: #ff4d4f;
+}
+.ant-modal .ant-modal-footer .ant-btn.ant-btn-primary:hover {
+  background: #ff7875;
+  border-color: #ff7875;
+}
+
+/* Form Styles */
+.ant-form .ant-form-item {
+  margin-bottom: 16px;
+}
+.ant-form .ant-form-item:last-child {
+  margin-bottom: 0;
+}
+.ant-form .ant-form-item .ant-form-item-label label {
+  color: #666;
   font-weight: 500;
 }
-.archive-content .archive-item .archive-details p:last-child {
+.ant-form .ant-form-item .ant-form-item-control-input .ant-input,
+.ant-form .ant-form-item .ant-form-item-control-input .ant-input-number,
+.ant-form .ant-form-item .ant-form-item-control-input .ant-select-selector {
+  border-radius: 4px;
+  padding: 8px 12px;
+  border-color: #d9d9d9;
+  transition: all 0.2s ease;
+}
+.ant-form .ant-form-item .ant-form-item-control-input .ant-input:hover,
+.ant-form .ant-form-item .ant-form-item-control-input .ant-input-number:hover,
+.ant-form .ant-form-item .ant-form-item-control-input .ant-select-selector:hover {
+  border-color: #bfbfbf;
+}
+.ant-form .ant-form-item .ant-form-item-control-input .ant-input:focus, .ant-form .ant-form-item .ant-form-item-control-input .ant-input.ant-input-focused,
+.ant-form .ant-form-item .ant-form-item-control-input .ant-input-number:focus,
+.ant-form .ant-form-item .ant-form-item-control-input .ant-input-number.ant-input-focused,
+.ant-form .ant-form-item .ant-form-item-control-input .ant-select-selector:focus,
+.ant-form .ant-form-item .ant-form-item-control-input .ant-select-selector.ant-input-focused {
+  border-color: #ff4d4f;
+  box-shadow: 0 0 0 2px rgba(255, 77, 79, 0.2);
+}
+.ant-form .ant-form-item .ant-form-item-control-input .ant-input-affix-wrapper {
+  padding: 8px 12px;
+}
+.ant-form .ant-form-item .ant-form-item-control-input .ant-select {
+  width: 100%;
+}
+.ant-form .ant-form-item .ant-checkbox-wrapper {
   color: #666;
-  font-size: 0.9rem;
+  transition: all 0.2s ease;
 }
-.archive-content .archive-item .restore-button {
-  background: #d84727;
-  color: white;
-  border: none;
-  padding: 0.5rem 1rem;
-  border-radius: 4px;
-  cursor: pointer;
-  transition: background 0.3s ease;
+.ant-form .ant-form-item .ant-checkbox-wrapper:hover {
+  color: #333;
 }
-.archive-content .archive-item .restore-button:hover {
-  background: #c23a1d;
+.ant-form .ant-form-item .ant-checkbox-wrapper .ant-checkbox-inner {
+  border-radius: 2px;
+}
+.ant-form .ant-form-item .ant-checkbox-wrapper .ant-checkbox-checked .ant-checkbox-inner {
+  background-color: #ff4d4f;
+  border-color: #ff4d4f;
 }
 
-/* Archive Pagination */
-.archive-pagination {
-  display: flex;
-  justify-content: center;
-  gap: 0.5rem;
-  margin-top: 1.5rem;
+/* Archive Modal Specific Styles */
+.archive-modal .ant-card {
+  margin-bottom: 16px;
 }
-.archive-pagination .archive-page-button {
-  padding: 0.5rem 1rem;
-  border: 1px solid #ddd;
-  background: white;
-  border-radius: 4px;
-  cursor: pointer;
-  transition: all 0.3s ease;
+.archive-modal .ant-card:last-child {
+  margin-bottom: 0;
 }
-.archive-pagination .archive-page-button.active {
-  background: #d84727;
+.archive-modal .ant-card .ant-card-body {
+  padding: 16px;
+}
+.archive-modal .restore-button {
+  background: #ff4d4f;
+  border-color: #ff4d4f;
   color: white;
-  border-color: #d84727;
+  border-radius: 4px;
+  font-weight: 500;
 }
-.archive-pagination .archive-page-button:hover:not(.active) {
-  border-color: #d84727;
-  color: #d84727;
+.archive-modal .restore-button:hover {
+  background: #ff7875;
+  border-color: #ff7875;
 }
 
+/* Responsive Adjustments */
+@media (max-width: 768px) {
+  .address-header {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 1rem;
+  }
+  .address-header .header-buttons {
+    width: 100%;
+    flex-direction: column;
+  }
+  .ant-modal {
+    width: 90% !important;
+    max-width: 100%;
+  }
+}
+/* Animation */
 @keyframes shake {
   0%, 100% {
     transform: translateX(0);

@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import ProfileMain from "./ProfileMain";
-import { Form, Input, Button, message } from "antd";
+import { Form, Input, Button, message, Card } from "antd";
 import axios from "axios";
 
 const ChangePassword = () => {
@@ -46,67 +46,74 @@ const ChangePassword = () => {
   return (
     <ProfileMain>
       <div className="change-password-content">
-        <h2 className="password-title">Change Password</h2>
-        <div className="title-divider" />
+        <Card bordered={false}>
+          <h2 className="text-2xl font-bold mb-4">Change Password</h2>
+          <div className="border-b border-gray-200 mb-6" />
 
-        <Form form={form} layout="vertical" onFinish={onFinish}>
-          <Form.Item
-            label="Old Password"
-            name="currentPassword"
-            rules={[{ 
-              required: true, 
-              message: "Please input your current password!" 
-            }]}
-          >
-            <Input.Password placeholder="Current Password" disabled={loading} />
-          </Form.Item>
-
-          <Form.Item
-            label="New Password"
-            name="newPassword"
-            rules={[
-              { required: true, message: "Please input your new password!" },
-              { min: 8, message: "Password must be at least 8 characters" },
-              { pattern: /[A-Z]/, message: "At least one uppercase letter" },
-              { pattern: /[a-z]/, message: "At least one lowercase letter" },
-              { pattern: /[0-9]/, message: "At least one number" },
-            ]}
-          >
-            <Input.Password placeholder="New Password" disabled={loading} />
-          </Form.Item>
-
-          <Form.Item
-            label="Confirm Password"
-            name="confirmNewPassword"
-            dependencies={["newPassword"]}
-            rules={[
-              { required: true, message: "Please confirm your new password!" },
-              ({ getFieldValue }) => ({
-                validator(_, value) {
-                  if (!value || getFieldValue("newPassword") === value) {
-                    return Promise.resolve();
-                  }
-                  return Promise.reject(new Error("Passwords do not match"));
-                },
-              }),
-            ]}
-          >
-            <Input.Password placeholder="Confirm New Password" disabled={loading} />
-          </Form.Item>
-
-          <Form.Item>
-            <Button 
-              type="primary" 
-              htmlType="submit" 
-              loading={loading}
-              disabled={loading}
-              className="save-button"
-              style={{ backgroundColor: '#ff3b30', borderColor: '#ff0000' }}
+          <Form form={form} layout="vertical" onFinish={onFinish}>
+            <Form.Item
+              label={<span><span style={{ color: '#ff4d4f', marginRight: '4px' }}>*</span> Old Password</span>}
+              name="currentPassword"
+              rules={[{ 
+                required: true, 
+                message: "Please input your current password!" 
+              }]}
             >
-              {loading ? "Changing..." : "Change Password"}
-            </Button>
-          </Form.Item>
-        </Form>
+              <Input.Password placeholder="Current Password" disabled={loading} />
+            </Form.Item>
+
+            <Form.Item
+              label={<span><span style={{ color: '#ff4d4f', marginRight: '4px' }}>*</span> New Password</span>}
+              name="newPassword"
+              rules={[
+                { required: true, message: "Please input your new password!" },
+                { min: 8, message: "Password must be at least 8 characters" },
+                { pattern: /[A-Z]/, message: "At least one uppercase letter" },
+                { pattern: /[a-z]/, message: "At least one lowercase letter" },
+                { pattern: /[0-9]/, message: "At least one number" },
+              ]}
+            >
+              <Input.Password placeholder="New Password" disabled={loading} />
+            </Form.Item>
+
+            <Form.Item
+              label={<span><span style={{ color: '#ff4d4f', marginRight: '4px' }}>*</span> Confirm Password</span>}
+              name="confirmNewPassword"
+              dependencies={["newPassword"]}
+              rules={[
+                { required: true, message: "Please confirm your new password!" },
+                ({ getFieldValue }) => ({
+                  validator(_, value) {
+                    if (!value || getFieldValue("newPassword") === value) {
+                      return Promise.resolve();
+                    }
+                    return Promise.reject(new Error("Passwords do not match"));
+                  },
+                }),
+              ]}
+            >
+              <Input.Password placeholder="Confirm New Password" disabled={loading} />
+            </Form.Item>
+
+            <Form.Item>
+              <Button 
+                type="primary" 
+                htmlType="submit" 
+                loading={loading}
+                disabled={loading}
+                style={{ 
+                  backgroundColor: '#ff6347', 
+                  borderColor: '#ff6347',
+                  width: '100%',
+                  height: '40px',
+                  borderRadius: '6px'
+                }}
+              >
+                Change Password
+              </Button>
+            </Form.Item>
+          </Form>
+        </Card>
       </div>
     </ProfileMain>
   );

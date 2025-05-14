@@ -53,10 +53,8 @@ class AddressController extends Controller
                     'street' => $address->street,
                     'barangay' => $address->barangay,
                     'city' => $address->city,
-                    'state' => $address->state,
-                    'region' => $address->region,
+                    'province' => $address->province,
                     'country' => $address->country,
-                    'postal_code' => $address->postal_code,
                     'is_default' => $address->is_default,
                 ];
             }),
@@ -87,10 +85,8 @@ class AddressController extends Controller
             'street' => $request->street,
             'barangay' => $request->barangay,
             'city' => $request->city,
-            'state' => $request->state,
-            'country' => $request->country,
-            'region' => $request->region,
-            'postal_code' => $request->postal_code,
+            'province' => $request->province ?? 'Agusan Del Norte',
+            'country' => $request->country ?? 'Philippines',
             'is_default' => $request->is_default ? 1 : 0,
         ]);
 
@@ -111,15 +107,13 @@ class AddressController extends Controller
 
         $validatedData = $request->validate([
             'receiver_fullname' => 'sometimes|string|max:255',
-            'phone_number'      => 'sometimes|string|max:50',
+            'contact_number' => 'sometimes|string|max:50',
             'house_number' => 'sometimes|string|max:50',
             'street' => 'sometimes|string|max:255',
             'barangay' => 'sometimes|string|max:100',
-            'city' => 'sometimes|string|max:100',
-            'state' => 'sometimes|string|max:100',
-            'region' => 'sometimes|string|max:100',
-            'country' => 'sometimes|string|max:100',
-            'postal_code' => 'sometimes|string|max:20',
+            'city' => 'sometimes|in:Davao City,Digos City,Tagum City',
+            'province' => 'sometimes|in:Agusan Del Norte',
+            'country' => 'sometimes|in:Philippines',
             'is_default' => 'sometimes|boolean',
         ]);
 
@@ -152,11 +146,11 @@ class AddressController extends Controller
         if ($address->is_default == 1) {
             $address->is_default = 0;
             $address->save();
-    }
+        }
 
-    $address->delete();
+        $address->delete();
 
-    return response()->json(['message' => 'Address archived successfully'], Response::HTTP_OK);
+        return response()->json(['message' => 'Address archived successfully'], Response::HTTP_OK);
     }
 
     /**
