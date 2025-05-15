@@ -110,8 +110,8 @@ const handleNotificationClick = (notification) => {
   const markAllAsRead = async () => {
     try {
       const token = localStorage.getItem("userToken");
-      await axios.patch(
-        "http://127.0.0.1:8000/api/notification/mark-read-all",
+      await axios.put(
+        "http://127.0.0.1:8000/api/notification/mark-all-read",
         {},
         { headers: { Authorization: `Bearer ${token}` } }
       );

@@ -137,6 +137,7 @@ Route::patch('/orders/{order}/payment-status', [OrderController::class, 'updateP
     Route::post('notification', [NotificationController::class, 'store']);
     Route::get('notification', [NotificationController::class, 'index']);
     Route::patch('notification/{id}/mark-read', [NotificationController::class, 'markAsRead']);
+    Route::put('notification/mark-all-read', [NotificationController::class, 'markAllAsRead']); 
 
     Route::group(['prefix' => '/dashboard'], function() {
         Route::get('stats', [AdminDashboardController::class, 'getStats']);

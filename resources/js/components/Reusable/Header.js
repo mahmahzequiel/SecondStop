@@ -83,8 +83,8 @@ function Header() {
   const markAllAsRead = async () => {
     try {
       const token = localStorage.getItem("userToken");
-      await axios.patch(
-        "http://127.0.0.1:8000/api/notification/mark-read-all",
+      await axios.put(
+        "http://127.0.0.1:8000/api/notification/mark-all-read", // Updated endpoint to match backend route
         {},
         { headers: { Authorization: `Bearer ${token}` } }
       );
@@ -92,6 +92,7 @@ function Header() {
       setNotificationCount(0);
     } catch (error) {
       console.error("Error marking all as read:", error);
+      message.error("Failed to mark all notifications as read");
     }
   };
 

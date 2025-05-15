@@ -68265,7 +68265,7 @@ function AdminHeader() {
             _context4.prev = 0;
             token = localStorage.getItem("userToken");
             _context4.next = 4;
-            return axios__WEBPACK_IMPORTED_MODULE_1___default().patch("http://127.0.0.1:8000/api/notification/mark-read-all", {}, {
+            return axios__WEBPACK_IMPORTED_MODULE_1___default().put("http://127.0.0.1:8000/api/notification/mark-all-read", {}, {
               headers: {
                 Authorization: "Bearer ".concat(token)
               }
@@ -86739,7 +86739,9 @@ function Header() {
             _context3.prev = 0;
             token = localStorage.getItem("userToken");
             _context3.next = 4;
-            return axios__WEBPACK_IMPORTED_MODULE_1___default().patch("http://127.0.0.1:8000/api/notification/mark-read-all", {}, {
+            return axios__WEBPACK_IMPORTED_MODULE_1___default().put("http://127.0.0.1:8000/api/notification/mark-all-read",
+            // Updated endpoint to match backend route
+            {}, {
               headers: {
                 Authorization: "Bearer ".concat(token)
               }
@@ -86753,13 +86755,14 @@ function Header() {
               });
             });
             setNotificationCount(0);
-            _context3.next = 11;
+            _context3.next = 12;
             break;
           case 8:
             _context3.prev = 8;
             _context3.t0 = _context3["catch"](0);
             console.error("Error marking all as read:", _context3.t0);
-          case 11:
+            antd__WEBPACK_IMPORTED_MODULE_4__["default"].error("Failed to mark all notifications as read");
+          case 12:
           case "end":
             return _context3.stop();
         }
