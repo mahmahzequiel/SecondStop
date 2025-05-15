@@ -15,6 +15,8 @@ function Chatbot() {
   const messagesEndRef = useRef(null);
   const messagesContainerRef = useRef(null); // Ref for the messages container
   const pusherRef = useRef(null);
+  // Add this to track message IDs we've already seen
+  const processedMessageIds = useRef(new Set());
 
   // Get auth information from localStorage
   const userToken = localStorage.getItem("userToken");
@@ -158,6 +160,14 @@ function Chatbot() {
         }));
         
         console.log("Formatted messages:", formattedMessages);
+        
+        // Track all existing message IDs
+        formattedMessages.forEach(msg => {
+          if (msg.id) {
+            processedMessageIds.current.add(msg.id);
+          }
+        });
+        
         setMessages(formattedMessages);
         
         if (messagesRes.data.admin_id) {
@@ -193,74 +203,37 @@ function Chatbot() {
     }
   };
 
-  // Initialize Pusher for real-time updates
+  // Initialize Pusher for real-time updates - removed to avoid duplication
   useEffect(() => {
     if (!userId) return;
     
-    const pusher = new Pusher('450508915178ad069fcf', {
-      cluster: 'ap1',
-      forceTLS: true
-    });
-    
-    pusherRef.current = pusher;
-
-    const channel = pusher.subscribe('chat-channel');
-    
-    channel.bind('new-message', (data) => {
-      console.log("New message received:", data);
-      
-      if (data && data.chat && data.chat.receiver_id === userId) {
-        console.log("Message is for this user, adding to messages");
-        
-        if (data.chat.sender_id !== userId) {
-          setAdminId(data.chat.sender_id);
-          console.log("Updating adminId to:", data.chat.sender_id);
-        }
-        
-        setMessages(prev => [...prev, { 
-          id: data.chat.id,
-          text: data.chat.message, 
-          sender: data.chat.sender_id === userId ? 'user' : 'bot',
-          timestamp: new Date(data.chat.created_at || data.chat.date_time)
-        }]);
-        
-        if (!openChat) {
-          setUnreadCount(prev => prev + 1);
-        } else {
-          markMessagesAsRead();
-        }
-      } else {
-        console.log("Message is not for this user, ignoring");
-      }
-    });
-
-    return () => {
-      try {
-        channel.unbind_all();
-        pusher.unsubscribe('chat-channel');
-      } catch (error) {
-        console.error("Error unbinding Pusher events:", error);
-      }
-    };
-  }, [userId, openChat]);
-
-  // Listen to the user's personal channel for new messages
-  useEffect(() => {
-    if (!userId) return;
-    
+    // Use a single Pusher instance for all channels
     if (!pusherRef.current) {
+      console.log("Initializing Pusher");
       pusherRef.current = new Pusher('450508915178ad069fcf', {
         cluster: 'ap1',
         forceTLS: true
       });
     }
     
+    // Subscribe to the personal channel only
     const personalChannel = pusherRef.current.subscribe(`chat.${userId}`);
     
-    personalChannel.bind('new.message', (e) => {
-      console.log("New message received via personal channel:", e);
+    personalChannel.bind('new.message', (data) => {
+      console.log("New message received via personal channel:", data);
       
-      const messageData = e.chat || e;
+      const messageData = data.chat || data;
+      
+      // Skip if we've already processed this message ID
+      if (messageData.id && processedMessageIds.current.has(messageData.id)) {
+        console.log("Skipping already processed message:", messageData.id);
+        return;
+      }
+      
+      // Add the message ID to our processed set
+      if (messageData.id) {
+        processedMessageIds.current.add(messageData.id);
+      }
       
       if (messageData) {
         if (messageData.sender_id !== userId) {
@@ -320,12 +293,14 @@ function Chatbot() {
       return;
     }
     
+    const tempId = `temp-${Date.now()}`;
     const newUserMessage = { 
-      id: `temp-${Date.now()}`,
+      id: tempId,
       text: message, 
       sender: "user",
       timestamp: new Date()
     };
+    
     setMessages(prev => [...prev, newUserMessage]);
     
     const messageToSend = message;
@@ -344,11 +319,17 @@ function Chatbot() {
       console.log("Message sent successfully:", res.data);
       
       if (res.data.data) {
+        const realMessageId = res.data.data.id;
+        
+        // Add this new message ID to our processed set
+        processedMessageIds.current.add(realMessageId);
+        
+        // Update the temp message with the real message data
         setMessages(prev => 
           prev.map(msg => 
-            msg.id === newUserMessage.id 
+            msg.id === tempId 
               ? { 
-                  id: res.data.data.id,
+                  id: realMessageId,
                   text: res.data.data.message,
                   sender: 'user',
                   timestamp: new Date(res.data.data.created_at || res.data.data.date_time)

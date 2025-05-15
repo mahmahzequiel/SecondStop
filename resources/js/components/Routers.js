@@ -30,8 +30,6 @@ import ChangePassword from "./Profile/ChangePassword";
 import FAQ from "./Profile/Faq";
 import ProductDetails from "./Products/ProductDetails";
 import Carts from "./Cart/Carts";
-import Chatbot from "./Chat/Chatbot";
-import AdminPage from "./AdminReusable/AdminPage";
 import Checkout from "./Shipping/Checkout";
 import RoleBasedRoute from "./RoleBasedRoute";    
 import AdminDashboard from "./Admin/AdminDashboard";

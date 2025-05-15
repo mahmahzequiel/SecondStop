@@ -16,6 +16,7 @@ class Chat extends Model
         'date_time',
         'message',
         'is_read',
+        'original_recipient_id'
     ];
 
     public function sender()
