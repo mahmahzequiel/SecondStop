@@ -1,0 +1,17 @@
+// Add these styles to your CSS file for the highlighted row
+.highlighted-order-row {
+  background-color: #fffbe6 !important; /* Light yellow highlight */
+  animation: pulse-highlight 2s ease-in-out 3; /* Pulsing animation repeats 3 times */
+}
+
+@keyframes pulse-highlight {
+  0% {
+    background-color: #fffbe6;
+  }
+  50% {
+    background-color: #fff1b8;
+  }
+  100% {
+    background-color: #fffbe6;
+  }
+}

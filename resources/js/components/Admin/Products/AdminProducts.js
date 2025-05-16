@@ -40,20 +40,24 @@ const AdminProducts = () => {
 
   // Existing fetch functions...
   const fetchProducts = async () => {
-    try {
-      const response = await axios.get("http://127.0.0.1:8000/api/products", {
-        params: { status: selectedStatus },
-      });
-      setProducts(response.data);
-      setFilteredProducts(response.data);
-      setTotal(response.data.length);
-    } catch (error) {
-      setError("Error fetching products.");
-      console.error("Error fetching products:", error);
-    } finally {
-      setLoading(false);
-    }
-  };
+  try {
+    const response = await axios.get("http://127.0.0.1:8000/api/products", {
+      params: { status: selectedStatus },
+    });
+    
+    // Sort products by id in descending order (assuming newer products have higher ids)
+    const sortedProducts = response.data.sort((a, b) => b.id - a.id);
+    
+    setProducts(sortedProducts);
+    setFilteredProducts(sortedProducts);
+    setTotal(sortedProducts.length);
+  } catch (error) {
+    setError("Error fetching products.");
+    console.error("Error fetching products:", error);
+  } finally {
+    setLoading(false);
+  }
+};
 
   const fetchCategories = async () => {
     try {
@@ -270,9 +274,9 @@ const AdminProducts = () => {
   };
 
   const handleProductAdded = () => {
-    fetchProducts();
-    fetchSacks();
-  };
+  fetchProducts(); // This will now fetch and sort products
+  fetchSacks();
+};
 
   if (loading) return <div>Loading products...</div>;
   if (error) return <div>{error}</div>;

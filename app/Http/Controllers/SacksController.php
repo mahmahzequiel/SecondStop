@@ -98,12 +98,10 @@ class SacksController extends Controller
             'category_type_id' => 'sometimes|required|exists:category_types,id',
         ]);
 
+        // Only update total_items if both available_items and sold_items are explicitly provided
+        // This ensures that when only one changes (through product operations), total_items stays the same
         if (isset($validated['available_items']) && isset($validated['sold_items'])) {
             $validated['total_items'] = $validated['available_items'] + $validated['sold_items'];
-        } elseif (isset($validated['available_items'])) {
-            $validated['total_items'] = $validated['available_items'] + $sack->sold_items;
-        } elseif (isset($validated['sold_items'])) {
-            $validated['total_items'] = $sack->available_items + $validated['sold_items'];
         }
 
         $sack->update($validated);
@@ -210,11 +208,11 @@ class SacksController extends Controller
                         continue;
                     }
                     
-                    // Update the sack
+                    // Update the sack without changing total_items
                     $sack->update([
                         'available_items' => $newAvailableItems,
                         'sold_items' => $newSoldItems
-                        // total_items remains the same since we're just moving items from available to sold
+                        // total_items is not updated since we're just moving items from available to sold
                     ]);
                     
                     $results[] = [

@@ -5,7 +5,7 @@ import { UploadOutlined } from "@ant-design/icons";
 
 const { Option } = Select;
 
-const AddProductModal = ({ visible, setVisible, setProducts, setFilteredProducts, categories = [], categoryTypes = [], brands = [], sacks = [] }) => {
+const AddProductModal = ({ visible, setVisible, setProducts, setFilteredProducts, categories = [], categoryTypes = [], brands = [], sacks = [], onProductAdded }) => {
   const [form] = Form.useForm();
   const [confirmVisible, setConfirmVisible] = useState(false);
   const [formValues, setFormValues] = useState(null);
@@ -44,6 +44,42 @@ const AddProductModal = ({ visible, setVisible, setProducts, setFilteredProducts
     setConfirmVisible(true); // Show confirmation modal
   };
 
+  const updateSackAvailableItems = async (sackId, availableItems) => {
+    try {
+      // Find the selected sack to get its current data
+      const selectedSack = sacks.find(s => s.id === sackId);
+      
+      if (!selectedSack) {
+        throw new Error("Selected sack not found");
+      }
+      
+      // Ensure available items won't go below zero
+      const newAvailableItems = Math.max(0, availableItems);
+      
+      // Create the update payload with only the fields that need to be updated
+      const updatePayload = {
+        id: sackId,
+        available_items: newAvailableItems
+      };
+      
+      // Send the update request
+      const response = await axios.put(
+        `http://127.0.0.1:8000/api/sacks/${sackId}`, 
+        updatePayload
+      );
+      
+      if (response.status === 200) {
+        console.log(`Sack ${selectedSack.sack_code} available items updated to ${newAvailableItems}`);
+        return true;
+      } else {
+        throw new Error("Failed to update sack");
+      }
+    } catch (error) {
+      console.error("Error updating sack available items:", error);
+      throw error;
+    }
+  };
+
   const handleConfirmAddProduct = async () => {
     setConfirmVisible(false);
   
@@ -52,10 +88,21 @@ const AddProductModal = ({ visible, setVisible, setProducts, setFilteredProducts
       Object.keys(formValues).forEach(key => {
         formData.append(key, formValues[key]);
       });
+      
       if (fileList.length > 0) {
         formData.append('product_image', fileList[0].originFileObj);
       }
 
+      // Find the selected sack to get its current available items
+      const sackId = parseInt(formValues.sack_id);
+      const selectedSack = sacks.find(s => s.id === sackId);
+      
+      if (!selectedSack || selectedSack.available_items <= 0) {
+        message.error("Selected sack has no available items");
+        return;
+      }
+
+      // Add the product first
       const response = await axios.post("http://127.0.0.1:8000/api/products", formData, {
         headers: {
           'Content-Type': 'multipart/form-data'
@@ -63,31 +110,46 @@ const AddProductModal = ({ visible, setVisible, setProducts, setFilteredProducts
       });
   
       if (response.status === 201) {
-        let newProduct = response.data;
-  
-        // Find the complete brand, category, and category type objects
-        const brand = brands.find((b) => b.id === parseInt(formValues.brand_id));
-        const category = categories.find((c) => c.id === parseInt(formValues.category_id));
-        const categoryType = categoryTypes.find((t) => t.id === parseInt(formValues.category_type_id));
-        const sack = sacks.find((s) => s.id === parseInt(formValues.sack_id));
-  
-        // Create a complete product object with nested objects
-        newProduct = {
-          ...newProduct,
-          brand: brand,
-          category: category,
-          category_type: categoryType,
-          sack: sack
-        };
-  
-        // Immediately update state to reflect new product
-        setProducts((prev) => [newProduct, ...prev]);
-        setFilteredProducts((prev) => [newProduct, ...prev]);
-  
-        message.success("Product added successfully!");
-        form.resetFields();
-        setFileList([]);
-        setVisible(false);
+        try {
+          // After successful product creation, update the sack's available items
+          await updateSackAvailableItems(sackId, selectedSack.available_items - 1);
+          
+          let newProduct = response.data;
+      
+          // Find the complete brand, category, and category type objects
+          const brand = brands.find((b) => b.id === parseInt(formValues.brand_id));
+          const category = categories.find((c) => c.id === parseInt(formValues.category_id));
+          const categoryType = categoryTypes.find((t) => t.id === parseInt(formValues.category_type_id));
+          const sack = {
+            ...selectedSack,
+            available_items: selectedSack.available_items - 1 // Update the available items in local state
+          };
+      
+          // Create a complete product object with nested objects
+          newProduct = {
+            ...newProduct,
+            brand: brand,
+            category: category,
+            category_type: categoryType,
+            sack: sack
+          };
+      
+          // Immediately update state to reflect new product
+          setProducts((prev) => [newProduct, ...prev]);
+          setFilteredProducts((prev) => [newProduct, ...prev]);
+      
+          message.success("Product added successfully and sack updated!");
+          form.resetFields();
+          setFileList([]);
+          setVisible(false);
+          
+          // Call the parent component's callback to refresh data
+          if (onProductAdded) {
+            onProductAdded();
+          }
+        } catch (sackError) {
+          message.warning("Product added but failed to update sack available items. Please refresh the page.");
+        }
       }
     } catch (error) {
       console.error("Error adding product:", error);
@@ -224,6 +286,7 @@ const AddProductModal = ({ visible, setVisible, setProducts, setFilteredProducts
         cancelText="Cancel"
       >
         <p>Are you sure you want to add this product?</p>
+        
       </Modal>
     </>
   );

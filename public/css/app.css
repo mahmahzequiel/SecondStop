@@ -12581,6 +12581,7 @@ a {
   display: flex;
   gap: 20px;
   margin-top: 20px;
+  align-items: flex-start; /* This prevents stretching */
 }
 @media (max-width: 992px) {
   .content-area {
@@ -12592,12 +12593,14 @@ a {
 .filters-panel {
   width: 260px;
   flex-shrink: 0;
-  align-self: flex-start;
+  position: sticky; /* Optional: makes the filter panel sticky */
+  top: 20px; /* Optional: adds some space from the top when sticky */
 }
 @media (max-width: 992px) {
   .filters-panel {
     width: 100%;
     margin-bottom: 20px;
+    position: static; /* Turn off sticky on mobile */
   }
 }
 
@@ -12712,14 +12715,19 @@ a {
   grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
   gap: 20px;
   flex: 1;
+  align-items: start; /* This prevents stretching */
 }
 
+/* Product Card - fixed height instead of flexible */
 .product-card {
   background-color: #1e1e1e;
   border-radius: 10px;
   overflow: hidden;
   transition: transform 0.3s ease;
   position: relative;
+  display: flex;
+  flex-direction: column;
+  height: auto; /* Let height be determined by content */
 }
 
 .product-card:hover {
@@ -12728,7 +12736,7 @@ a {
 
 .product-image-container {
   position: relative;
-  height: 200px;
+  height: 200px; /* Fixed height for image container */
   overflow: hidden;
   cursor: pointer;
 }
@@ -12750,6 +12758,7 @@ a {
   display: flex;
   justify-content: space-between;
   align-items: center;
+  height: auto; /* Let content determine height */
 }
 
 .product-name {
@@ -13992,6 +14001,22 @@ a {
   background: #a84300;
 }
 
+.highlighted-order-row {
+  background-color: #fffbe6 !important; /* Light yellow highlight */
+  animation: pulse-highlight 2s ease-in-out 3; /* Pulsing animation repeats 3 times */
+}
+
+@keyframes pulse-highlight {
+  0% {
+    background-color: #fffbe6;
+  }
+  50% {
+    background-color: #fff1b8;
+  }
+  100% {
+    background-color: #fffbe6;
+  }
+}
 .admin-page {
   display: flex;
   flex-direction: column;

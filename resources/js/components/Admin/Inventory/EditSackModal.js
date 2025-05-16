@@ -113,12 +113,12 @@ const EditSackModal = ({ visible, onCancel, onSave, sack, categories, categoryTy
           <InputNumber min={0} style={{ width: '100%' }} />
         </Form.Item>
         
-        <Form.Item
+        {/* <Form.Item
           name="estimated_pieces"
           label="Quantity"
         >
           <InputNumber min={0} style={{ width: '100%' }} />
-        </Form.Item>
+        </Form.Item> */}
         
         <Form.Item
           name="buying_price"
